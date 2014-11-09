@@ -1,0 +1,22 @@
+diff --git a/rethinkORM/rethinkModel.py b/rethinkORM/rethinkModel.py
+index e39fb96..a4b2980 100644
+--- a/rethinkORM/rethinkModel.py
++++ b/rethinkORM/rethinkModel.py
+@@ -33,7 +33,7 @@ class RethinkModel(object):
+     non_atomic = False
+     """Determins if the transaction can be non atomic or not"""
+
+-    upsert = True
++    conflict = 'replace'
+     """Will either update, or create a new object if true and a primary key is
+     given."""
+
+@@ -261,7 +261,7 @@ name exists in data""")
+             reply = r.table(self.table) \
+                 .insert(self._data,
+                         durability=self.durability,
+-                        upsert=self.upsert) \
++                        conflict=self.conflict) \
+                 .run(self._conn)
+             self._new = False
+
