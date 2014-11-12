@@ -1,5 +1,5 @@
 ##############################################
-FROM pybase
+FROM frapi_pybase
 MAINTAINER "Paolo D'Onorio De Meo" p.donoriodemeo@gmail.com
 
 #Install curl if not exists - to query and test
@@ -20,6 +20,10 @@ RUN apt-get install -y git
 RUN cd /usr/local/lib/python2.7/dist-packages && git apply /tmp/rethinkdb.patch
 
 ##############################################
+# Clean up APT
+#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+##############################################
 #Where i will work (mount from outside?)
 RUN mkdir -p /usr/local/shared
 WORKDIR /usr/local/shared
@@ -38,12 +42,7 @@ WORKDIR /usr/local/shared
 # ...put your own build instructions here...
 EXPOSE 5000
 
-#USE SCREEN
-RUN echo "screen" > /root/screen.sh
-ENTRYPOINT ["bash"]
-CMD ["/root/screen.sh"]
-
-##############################################
-# Clean up APT when done.
-#USER root
-#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# #USE SCREEN
+# RUN echo "screen" > /root/screen.sh
+# ENTRYPOINT ["bash"]
+# CMD ["/root/screen.sh"]

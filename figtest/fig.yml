@@ -1,0 +1,30 @@
+# Create my cluster :)
+
+rdb:
+  image: frapi_rethinkdb
+  environment:
+      KEYDBPASS: ""
+web:
+  image: frapi_webapp
+  #build: ../docker/webapp
+  environment:
+      KEYDBPASS: ""
+  command: python -B app/main.py
+  volumes:
+   - /Users/projects/greta/shared:/usr/local/shared
+  working_dir: /usr/local/shared
+  links:
+   - rdb:db
+  ports:
+   - "5005:5000"
+
+# OTHER USEFULL OPTIONS
+
+# hostname: foo
+# domainname: foo.com
+# mem_limit: 1000000000
+# privileged: true
+#
+# volumes_from:
+#  - service_name
+#  - container_name
