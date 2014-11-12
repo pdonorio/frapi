@@ -1,5 +1,5 @@
 # Create my cluster :)
-
+# Syntax: http://www.fig.sh/yml.html
 rdb:
   image: frapi_rethinkdb
   environment:
@@ -19,12 +19,7 @@ web:
    - "5005:5000"
 
 # OTHER USEFULL OPTIONS
-
-# hostname: foo
-# domainname: foo.com
 # mem_limit: 1000000000
 # privileged: true
-#
 # volumes_from:
-#  - service_name
 #  - container_name

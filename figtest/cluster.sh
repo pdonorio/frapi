@@ -1,20 +1,38 @@
 #!/bin/bash
 
-if [ -z $1 ]; then
-    echo "Usage: $0 [run|stop|remove]";
-    exit 1;
-elif [ "$1" == "run" ];
-then
-    fig up -d
-elif [ "$1" == "stop" ];
-then
-    fig stop
-elif [ "$1" == "remove" ];
-then
-    fig stop
-    sleep 3
-    yes | fig rm
-fi
+# check if docker exists
+# check if fig exists
+# check if boot2docker, if it's running!
+
+# key and security?
+
+# Main switch
+case "$1" in
+    "run")
+        fig up -d
+    ;;
+    "stop")
+        fig stop
+    ;;
+    "remove")
+        #can i call this from the other?
+        fig stop
+        check=$(fig ps -q)
+        if [ "$check" == "" ]; then
+            echo "No container to remove"
+            exit 1;
+        else
+            echo "Removing [$check]"
+            sleep 2
+            yes | fig rm
+            exit 0;
+        fi
+    ;;
+    *)
+        echo "Usage: $0 [run|stop|remove]";
+        exit 1;
+    ;;
+esac
 
 echo "Status:"
 fig ps
