@@ -57,29 +57,33 @@ function secure_server {
 }
 
 ###########################################
+figcom="fig -f fig/pywebapp.yml"
+
 # Main switch
 case "$1" in
     "run")
         mkdir -p ../data
-        fig up -d
-        fig run --entrypoint bash web /root/screen.sh
+        $figcom up -d
+        $figcom run --entrypoint bash web /root/screen.sh
+
+        # SECURITY
         #secure_server xyz
-        #fig run python secure
+        #$figcom run python secure
     ;;
     "stop")
-        fig stop
+        $figcom stop
     ;;
     "remove")
         #can i call this from the other?
-        fig stop
-        check=$(fig ps -q)
+        $figcom stop
+        check=$($figcom ps -q)
         if [ "$check" == "" ]; then
             echo "No container to remove"
             exit 1;
         else
             echo "Removing [$check]"
             sleep 2
-            fig rm --force -v
+            $figcom rm --force -v
             exit 0;
         fi
     ;;
@@ -110,7 +114,8 @@ case "$1" in
 esac
 
 ###########################################
-if [ ! -z `fig ps -q` ]; then
+check=($figcom ps -q)
+if [ "$check" == "" ]; then
     echo "Current status:"
-    fig ps
+    $figcom ps
 fi

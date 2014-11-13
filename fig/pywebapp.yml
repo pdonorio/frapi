@@ -3,21 +3,21 @@
 
 # Empty container which holds the data directory
 data:
-    build: ../docker/pybase
+    build: docker/pybase
     volumes:
         - ../data:/data:rw
 # Database server. Import data directory from storage container
 rdb:
-    build: ../docker/rethinkdb
+    build: docker/rethinkdb
     volumes_from:
          - data
 # Python api server connected to Rethink DB database
 web:
-    build: ../docker/webapp
+    build: docker/webapp
     #command: python -B app/main.py
-    command: sleep 10000
+    command: sleep 100000
     volumes:
-    - /Users/projects/greta/shared:/usr/local/shared
+    - app:/usr/local/shared
     working_dir: /usr/local/shared
     links:
     - rdb:db
