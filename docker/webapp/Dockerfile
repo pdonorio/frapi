@@ -1,5 +1,5 @@
 ##############################################
-FROM frapi_pybase
+FROM fig_data
 MAINTAINER "Paolo D'Onorio De Meo" p.donoriodemeo@gmail.com
 
 #Install curl if not exists - to query and test
