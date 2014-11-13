@@ -43,6 +43,6 @@ WORKDIR /usr/local/shared
 EXPOSE 5000
 
 # #USE SCREEN
-# RUN echo "screen" > /root/screen.sh
+RUN echo "screen" > /root/screen.sh
 # ENTRYPOINT ["bash"]
 # CMD ["/root/screen.sh"]

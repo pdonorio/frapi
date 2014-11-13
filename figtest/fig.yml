@@ -1,25 +1,32 @@
 # Create my cluster :)
 # Syntax: http://www.fig.sh/yml.html
+
+# Empty container which holds the data directory
+data:
+    build: ../docker/pybase
+    volumes:
+        - ../data:/data:rw
+# Database server. Import data directory from storage container
 rdb:
-  image: frapi_rethinkdb
-  environment:
-      KEYDBPASS: ""
+    build: ../docker/rethinkdb
+    volumes_from:
+         - data
+# Python api server connected to Rethink DB database
 web:
-  image: frapi_webapp
-  #build: ../docker/webapp
-  environment:
-      KEYDBPASS: ""
-  command: python -B app/main.py
-  volumes:
-   - /Users/projects/greta/shared:/usr/local/shared
-  working_dir: /usr/local/shared
-  links:
-   - rdb:db
-  ports:
-   - "5005:5000"
+    build: ../docker/webapp
+    #command: python -B app/main.py
+    command: sleep 10000
+    volumes:
+    - /Users/projects/greta/shared:/usr/local/shared
+    working_dir: /usr/local/shared
+    links:
+    - rdb:db
+    # Only if access from outside :)
+    ports:
+    - "5005:5000"
 
 # OTHER USEFULL OPTIONS
 # mem_limit: 1000000000
 # privileged: true
-# volumes_from:
-#  - container_name
+# environment:
+#   KEYDBPASS:
