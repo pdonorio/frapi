@@ -61,6 +61,9 @@ figcom="fig -f fig/pywebapp.yml"
 
 # Main switch
 case "$1" in
+    "build")
+        $figcom build
+    ;;
     "run")
         mkdir -p ../data
         $figcom up -d
@@ -98,7 +101,8 @@ case "$1" in
     ;;
     "cleanall")
         com="docker ps -a -q";
-        if [ ! -z `$com | tr "\n" " "` ]; then
+        list=`$com | tr "\n" " "`
+        if [ ! -z "$list" ]; then
             echo "Stop containers"; docker stop $($com);
             echo "Delete containers"; docker rm --volumes=false $($com)
         fi
@@ -108,7 +112,9 @@ case "$1" in
         fi
     ;;
     *)
-        echo "Usage: $0 [start|stop|dcheck|remove|cleanall]";
+        echo "Usage: $0 [start|stop|remove|dcheck|cleanall]";
+        echo ""
+        echo "This script must be executed from its base dir"
         exit 1;
     ;;
 esac
