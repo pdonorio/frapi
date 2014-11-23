@@ -20,41 +20,6 @@ elif [ `which boot2docker` != "" ]; then
     fi
 fi
 
-###########################################
-# key and security?
-function randword {
-    dim=32
-    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $dim | head -n 1
-}
-function generatekey {
-    # generate two random string of fixed val
-    rand1=`randword`
-    rand2=`randword`
-    # create random file name with random file content
-    file="/tmp/$rand2"
-    echo "$rand1" > $file
-    # generate hash from that file ^_^
-    key=`sha1sum $file | awk '{print $1}'`
-    # remove the file for security reason
-    rm $file
-    # return value for bash functions
-    echo $key
-}
-function secure_server {
-    # Apply security to Database: http://www.rethinkdb.com/docs/security
-    # Do it even if container already exists
-    echo "Setting up security for '$1'"
-
-    # Unset any authentication key
-    out=$(docker exec $1 rethinkdb admin unset auth 2>&1)
-    # Generate a secure key for db connection
-    key=$(generatekey)
-    echo "Security key for this session: *$key*"
-    sleep 2
-    # Set the new key
-    out=$(docker exec $1 rdbauth $key 2>&1)
-    echo "Security raised"
-}
 
 ###########################################
 figcom="fig -f fig/pywebapp.yml"
@@ -67,11 +32,10 @@ case "$1" in
     "run")
         mkdir -p ../data
         $figcom up -d
-        $figcom run --entrypoint bash web /root/screen.sh
 
-        # SECURITY
-        #secure_server xyz
         #$figcom run python secure
+        # Debug mode
+        $figcom run --entrypoint bash web /opt/init.sh
     ;;
     "stop")
         $figcom stop

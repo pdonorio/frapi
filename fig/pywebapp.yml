@@ -1,5 +1,10 @@
 # Create my cluster. Syntax: http://www.fig.sh/yml.html
 
+# Simple fs share
+fs:
+    image: busybox
+    volumes:
+        - ./tmp:/opt/fsshare
 # Empty container which holds the data directory
 data:
     build: ./docker/pybase
@@ -11,14 +16,16 @@ rdb:
     build: ./docker/rethinkdb
     volumes_from:
          - data # Import data directory from storage container
+         - fs
 
 # Python api server connected to Rethink DB database
 web:
     build: ./docker/webapp
     volumes:
-    - ./app:/opt
-    working_dir: /opt
-    command: sleep 100000
+    - ./app:/opt/app
+    working_dir: /opt/app
+    volumes_from:
+         - fs
     #command: python -B app/main.py
     links:
     - rdb:db
