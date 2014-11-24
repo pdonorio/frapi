@@ -74,6 +74,7 @@ class RethinkConnection(Connection):
             key = os.environ.get('KEYDBPASS') or None
             if key != None:
                 params["auth_key"] = key
+                #self.log.info("Key is " + key)
             else:
                 self.log.info("Using no authentication")
 

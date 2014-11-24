@@ -22,7 +22,7 @@ fi
 
 
 ###########################################
-figcom="fig -f fig/pywebapp.yml"
+figcom="fig -f apic/pywebapp.yml"
 
 # Main switch
 case "$1" in
@@ -35,7 +35,7 @@ case "$1" in
 
         #$figcom run python secure
         # Debug mode
-        $figcom run --entrypoint bash web /opt/init.sh
+        #$figcom run --entrypoint bash web /screen.sh
     ;;
     "stop")
         $figcom stop

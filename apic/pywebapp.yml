@@ -21,16 +21,16 @@ rdb:
 # Python api server connected to Rethink DB database
 web:
     build: ./docker/webapp
+    #command: sleep 66666
+    ports:
+        - "5005:5000" # Only if access from outside :)
     volumes:
-    - ./app:/opt/app
+        - ./app:/opt/app
     working_dir: /opt/app
     volumes_from:
          - fs
-    #command: python -B app/main.py
     links:
-    - rdb:db
-    ports:
-    - "5005:5000" # Only if access from outside :)
+        - rdb:db
 
 # OTHER USEFULL OPTIONS
 # mem_limit: 1000000000

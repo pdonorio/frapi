@@ -18,18 +18,6 @@ RUN pip install -r /src/requirements.txt
 ADD rethinkdb.patch /tmp/rethinkdb.patch
 RUN cd /usr/local/lib/python2.7/dist-packages && git apply /tmp/rethinkdb.patch
 
-# Create a script to do every move at init time
-RUN mkdir -p /opt && touch /opt/init.sh
-
-##############################################
-ADD security.sh /tmp/sec.sh
-RUN echo "bash /tmp/sec.sh" >> /opt/init.sh
-
-##############################################
-#Where i will work (mount from outside?)
-RUN mkdir -p /usr/local/shared
-WORKDIR /usr/local/shared
-
 ##############################################
 ##SETUP A NEW USER for development??
 # RUN adduser web --home /home/web --shell /bin/bash --disabled-password --gecos ""
@@ -40,12 +28,14 @@ WORKDIR /usr/local/shared
 # USER web
 # RUN ln -s /usr/local/shared app
 
-##############################################
-# ...put your own build instructions here...
+# #USE SCREEN?
+RUN echo "screen" >> /screen.sh
+
+# Put main script inside root directory
+ADD security.sh /root/security.sh
+
+# Open the port to other containers?
 EXPOSE 5000
 
-# #USE SCREEN?
-RUN echo "screen" >> /opt/init.sh
-
-# ENTRYPOINT ["bash"]
-# CMD ["/opt/init.sh", "Yo"]
+ENTRYPOINT ["bash"]
+CMD ["/root/security.sh"]
