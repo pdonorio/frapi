@@ -37,5 +37,6 @@ ADD security.sh /root/security.sh
 # Open the port to other containers?
 EXPOSE 5000
 
-ENTRYPOINT ["bash"]
-CMD ["/root/security.sh"]
+# DEBUG MODE FOR DEVELOPMENT
+# ENTRYPOINT ["bash"]
+# CMD ["/root/security.sh"]

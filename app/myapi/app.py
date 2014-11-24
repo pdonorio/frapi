@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 # init logger for flask
 log.setup_istance(None, app.logger)
-#Logger.static_setup(app.logger)
+
 
 # === What to do BEFORE handling a request ===
 @app.before_request
@@ -47,13 +47,13 @@ def before_request():
     app.logger.debug("Api connected")
 
 # === What to do AFTER a single request ===
-@app.teardown_request
-def teardown_request(exception):
-    """
-    I don't need to close the connection actually,
-    because the Borg mechanism gives me the same object every time
-    """
-    #app.logger.debug("Closing Api request")
-    empty = None
-    # what to do with eventual exception? Log?
-    #g.rdb.close()
+# @app.teardown_request
+# def teardown_request(exception):
+#     """
+#     I don't need to close the connection actually,
+#     because the Borg mechanism gives me the same object every time
+#     """
+#     #app.logger.debug("Closing Api request")
+#     empty = None
+#     # what to do with eventual exception? Log?
+#     #g.rdb.close()

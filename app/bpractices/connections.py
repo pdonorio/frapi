@@ -23,14 +23,14 @@ class Connection(Borg):
     """
     _connection = None      #main property
 
-    def __init__(self, connect=True):
+    def __init__(self, use_database=True, connect=True):
         """ This is were i want to make sure i connect """
         super(Connection, self).__init__()
 
         self.log = log.get_logger(self.__class__.__name__)
 
         if connect:
-            self.get_connection()
+            self.get_connection(use_database)
 
     @classmethod
     def __subclasshook__(cls, C):
@@ -44,14 +44,14 @@ class Connection(Borg):
         return NotImplemented
 
     @abc.abstractmethod
-    def make_connection(self):
+    def make_connection(self, use_database):
         """
         You have to implement this method to specify how your database
         can connect to an ORM or driver.
         """
         pass
 
-    def get_connection(self):
+    def get_connection(self, use_database):
         """
         Singleton: having only one _connection in your app
         """
@@ -62,7 +62,7 @@ class Connection(Borg):
 
         if self._connection is None:
             self.log.info("Making connection")
-            self._connection = self.make_connection()
+            self._connection = self.make_connection(use_database)
         else:
             self.log.debug("Already connected")
         return self._connection

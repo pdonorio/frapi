@@ -53,21 +53,25 @@ class RethinkConnection(Connection):
     _connection = None
     model = None
 
-    def __init__(self, load_setup=True):
+    def __init__(self, load_setup=False):
         """ My abstract method already connect by default """
         super(RethinkConnection, self).__init__(load_setup)
+
         #create and use DB? and table?
         if load_setup:
             self.setup()
 
     # === Connect ===
-    def make_connection(self):
+    def make_connection(self, use_database):
         """
         This method implements the abstract interface
         of the Connection class which makes use of a **Singleton Borg**
         design pattern.
         See it yourself at: [[connections.py]]
         You will connect only once, using the same object.
+
+        Note: authentication is provided with admin commands to server,
+        after starting it up. Do use ssh from app container.
         """
         try:
             params = {"host":RDB_HOST, "port":RDB_PORT}
@@ -75,11 +79,15 @@ class RethinkConnection(Connection):
             if key != None:
                 params["auth_key"] = key
                 #self.log.info("Key is " + key)
+                self.log.info("Connection is pw protected")
             else:
                 self.log.info("Using no authentication")
 
-            #repl() is necessary for ORM to work
+            if use_database:
+                self.log.info("Using directly database")
+            #IMPORTANT: repl() is necessary for ORM library to work
             self._connection = r.connect(**params).repl()
+
         except RqlDriverError, e:
             raise LoggedError("Failed to connect RDB", e)
 
@@ -87,21 +95,22 @@ class RethinkConnection(Connection):
         #print self._connection
         return self._connection
 
-#TO FIX - rethinkdb authentication???
-#with authkey randomly generated (in python?)
     def setup(self):
-        """ rethinkdb connection pattern """
+        """
+        Rethinkdb init. Should be called on an empty ReThinkDB server.
+        The idea is to create database and main table to work with.
+        API will give errors with void data.
+        """
 
-        # The connection should already been created by the Connection class
-        self.get_connection()
-        # p.s. at the present no way to check connection existence # in rethink
+        self.get_connection(False)
+        # Note: at the present no way to check connection existence # in rethink
 
-        #connect without db to create it if already exists
+        # Connect without db to create it if already exists
         try:
             r.db_create(APP_DB).run()
             self.log.debug("Creating Database '" + APP_DB + "'")
         except RqlRuntimeError:
-            self.log.debug("Database '" + APP_DB + "' already exists ")
+            self.log.debug("Database '" + APP_DB + "' exists ")
 
     # == This handler base its operation on ORM models ==
 
@@ -114,7 +123,11 @@ class RethinkConnection(Connection):
     def get_fields(self):
         """ Return alk we have inside the model + the id key """
         attributes = self.model.list_attributes()
+
+        # fake id type for dynamic use inside the api logic
+        # Trust me, it is alphanumeric ;)
         attributes["id"] = "alfa0123"
+
         return attributes
 
     # === Table ===
@@ -131,7 +144,8 @@ class RethinkConnection(Connection):
             if remove_existing:
                 r.table_drop(table).run()
                 self.log.info("Removed")
-        if table not in r.table_list().run():
+        else:
+        #if table not in r.table_list().run():
             r.table_create(table).run()
             self.log.info("Table '" + table + "' created")
 
@@ -144,6 +158,7 @@ class RethinkConnection(Connection):
         table = self.model.table
         self.log.debug("Searching rdb table '" + table + "'")
 
+#############################################################
 # TO FIX - should i cycle kwargs and use them directly??
     # Doesn't this expose too much of my db schema?
         key = kwargs.get("by_key")  # Get extra arguments
@@ -157,6 +172,7 @@ class RethinkConnection(Connection):
         # Case no arguments (all table)
         else:
             search = r.table(table).run()
+#############################################################
 
         # Need a list out of it
         #print search

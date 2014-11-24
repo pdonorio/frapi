@@ -21,7 +21,8 @@ rdb:
 # Python api server connected to Rethink DB database
 web:
     build: ./docker/webapp
-    #command: sleep 66666
+# DEBUG MODE FOR DEVELOPMENT
+    command: sleep 66666
     ports:
         - "5005:5000" # Only if access from outside :)
     volumes:

@@ -33,9 +33,13 @@ case "$1" in
         mkdir -p ../data
         $figcom up -d
 
-        #$figcom run python secure
-        # Debug mode
-        #$figcom run --entrypoint bash web /screen.sh
+        # DEBUG MODE FOR DEVELOPMENT
+        docker exec -it apic_web_1 bash # /screen.sh
+        # DEBUG MODE FOR DEVELOPMENT
+
+        #to check what is running:
+        #tailf /root/app.log
+
     ;;
     "stop")
         $figcom stop

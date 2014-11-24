@@ -63,44 +63,52 @@ class GenericDBResource(Resource):
     """
 
     #define
-    def __init__(self, ormModel=data_models.GenericORMModel):
+    def __init__(self, ormModel=data_models.GenericORMModel, db=None):
         """ Implement a parser for validating arguments of api """
-
-        self.log = log.get_logger(self.__class__.__name__)
 
         # how to get the model as parameter since its a resource?
         # subclass this instance and call super with model as arg
 
-        # Decide the model to use for this DB resource
-        g.rdb.define_model(ormModel)
-        # Use the model to configure parameters
-        self.parser = self.__configure_parsing()
+        if db == None:
+            self.log = log.get_logger(self.__class__.__name__)
+
+            # Decide the model to use for this DB resource
+            g.rdb.define_model(ormModel)
+            # Use the model to configure parameters
+            self.parser = self.__configure_parsing()
+        else:
+            db.define_model(ormModel)
 
     def __configure_parsing(self):
         """
         Define which data will be retrieved from this resource.
         The arguments are defined automatically from the selected ORM model.
+
+        *** Note to self: an API does not even check/get parameters
+        which were not added here as argument ***
         """
 
         parser = reqparse.RequestParser()
-        # The unique key of the record, could  be forced to an int
-        parser.add_argument('id', type=int,
-            help='The "id" parameter should be an integer')
-        # Warning: if the ID already exists, POST will UPDATE
-
         # Based on my datamodelled ORM class
         attributes = g.rdb.get_fields()
 
+########################################
 # TO FIX - base type on?
+
+# to check: flask restfull reqparse types
+
+        # # The unique key of the record, could  be forced to an int?
+        # parser.add_argument('id', type=int,
+        #     help='The "id" parameter should be an integer')
 
         # Cycle class attributes
         for key, value in attributes.iteritems():
-            #print "Attr:", key, value
+            print "Attr:", key, value
+            mytype = str
             # Decide type based on attribute?
-            parser.add_argument(key, type=str)
+            parser.add_argument(key, type=mytype)
 
-        # Note to self: an API does not even check/get parameters
-        # which were not added here as argument
+########################################
 
         return parser
 
@@ -181,8 +189,8 @@ class GenericDBResource(Resource):
 # Warning: due to restful plugin system, get and get(value)
 # require two different resources...
 class DataList(GenericDBResource):
-    def __init__(self):
-        super(DataList, self).__init__(data_models.DataDump)
+    def __init__(self, init=False):
+        super(DataList, self).__init__(data_models.DataDump, init)
 class DataSingle(GenericDBResource):
     def __init__(self):
         super(DataSingle, self).__init__(data_models.DataDump)
@@ -193,42 +201,42 @@ class DataSingle(GenericDBResource):
 
 
 
-################################################################
-# FOR FUTURE TESTING on AUTHENTICATION?
+# ################################################################
+# # FOR FUTURE TESTING on AUTHENTICATION?
 
-# Handle login and logout
-class LogUser(Resource):
-    """  Init authentication and give token """
-    def __init__(self):
-        self.parser = reqparse.RequestParser()
-        self.parser.add_argument('user', type=str)
-        # IN CHIARO??
-        self.parser.add_argument('password', type=str)
-            #help='The "id" parameter should be an integer')
+# # Handle login and logout
+# class LogUser(Resource):
+#     """  Init authentication and give token """
+#     def __init__(self):
+#         self.parser = reqparse.RequestParser()
+#         self.parser.add_argument('user', type=str)
+#         # IN CHIARO??
+#         self.parser.add_argument('password', type=str)
+#             #help='The "id" parameter should be an integer')
 
-    def post(self):
-        """ Get data as defined in init parser and push it to rdb """
-        data = self.parser.parse_args()
-        #print data
-        user = data["user"]
-        p = data["password"]
-        app.logger.info("API: Received login request for user '" + user + "'")
+#     def post(self):
+#         """ Get data as defined in init parser and push it to rdb """
+#         data = self.parser.parse_args()
+#         #print data
+#         user = data["user"]
+#         p = data["password"]
+#         app.logger.info("API: Received login request for user '" + user + "'")
 
-        ###############################
-        code = HTTP_BAD_UNAUTHORIZED
+#         ###############################
+#         code = HTTP_BAD_UNAUTHORIZED
 
-# TO FIX
-    #check if user is inside database?
-        if user in {}:
-            if p == "test":
-                # Authenticate and log in!
-                code = HTTP_OK_ACCEPTED
-                msg = "Logged in"
-            else:
-                msg = "Password is wrong"
-        else:
-            msg = "Failed to authenticate"
+# # DON'T LIKE
+#     #check if user is inside database?
+#         if user in {}:
+#             if p == "test":
+#                 # Authenticate and log in!
+#                 code = HTTP_OK_ACCEPTED
+#                 msg = "Logged in"
+#             else:
+#                 msg = "Password is wrong"
+#         else:
+#             msg = "Failed to authenticate"
 
-        # Server response
-        app.logger.info("API: " + msg + "\t[code " + code.__str__() + "]")
-        return msg, code
+#         # Server response
+#         app.logger.info("API: " + msg + "\t[code " + code.__str__() + "]")
+#         return msg, code
