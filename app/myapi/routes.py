@@ -14,30 +14,39 @@ from myapi.app import app
 from flask.ext.restful import Api
 # Load the resources that have been created
 from myapi import resources
+from rdb.rdb_handler import RethinkConnection as db
 
 # Create the api object
 api = Api(app)
-
-# === Init database if not exists ===
-from rdb.rdb_handler import RethinkConnection as db
-app.logger.info("Trying to setup database at run time")
-init_db = db(True)
 
 #############################################
 # === Setup the Api resource routing ===
 # 
 # This is where you tell the app what to do with requests
+# For this resources make sure you create the table
+# inside "before_first_request"
 #############################################
 
 #api.add_resource(resources.GenericDBResource, '/test')
 api.add_resource(resources.DataList, '/data')
 api.add_resource(resources.DataSingle, '/data/<string:data_key>')
 
-# === Init tables if not exist ===
-# DataList and DataSingle share the same table
-tmp = resources.DataList(init_db)
-init_db.create_table()
-del tmp
+#############################################
+# === App setup ===
+# Do db and tables setup only first time,
+# before the first request
 
-# Test AUTH
-#api.add_resource(resources.LogUser, '/login')
+@app.before_first_request
+def before_first_request():
+    # === Init database if not exists ===
+    app.logger.info("Trying to setup database at run time")
+    init_db = db(True)
+
+    # === Init tables if not exist ===
+    # DataList and DataSingle share the same table
+    tmp = resources.DataList(init_db)
+    init_db.create_table()
+    del tmp
+
+    # Test AUTH
+    #api.add_resource(resources.LogUser, '/login')
