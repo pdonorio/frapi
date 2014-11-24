@@ -9,7 +9,7 @@ i will need to create db and tables if they are not available yet!
 # Get the  flask server app
 # where i already added resources
 # routes are needed for them
-from myapi.app import app
+from myapi.app import app, log, g, try_to_connect
 # Use the flask plugin for a more complex yet powerful restful service
 from flask.ext.restful import Api
 # Load the resources that have been created
@@ -38,15 +38,22 @@ api.add_resource(resources.DataSingle, '/data/<string:data_key>')
 
 @app.before_first_request
 def before_first_request():
+
+    # init logger for flask
+    log.setup_istance(None, app.logger)
+    app.logger.info("ONE TIME SETUP!")
+
     # === Init database if not exists ===
-    app.logger.info("Trying to setup database at run time")
-    init_db = db(True)
+    try_to_connect(True)
 
     # === Init tables if not exist ===
+
     # DataList and DataSingle share the same table
-    tmp = resources.DataList(init_db)
-    init_db.create_table()
+    tmp = resources.DataList(g.rdb)
+    g.rdb.create_table()
     del tmp
+##############################################################
+##############################################################
 
     # Test AUTH
     #api.add_resource(resources.LogUser, '/login')

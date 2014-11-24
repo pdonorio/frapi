@@ -83,8 +83,10 @@ class RethinkConnection(Connection):
             else:
                 self.log.info("Using no authentication")
 
+# TO FIX - use the parameter "use_database"
             if use_database:
-                self.log.info("Using directly database")
+                self.log.info("Using directly database?? DO SOMETHING")
+
             #IMPORTANT: repl() is necessary for ORM library to work
             self._connection = r.connect(**params).repl()
 
@@ -102,10 +104,11 @@ class RethinkConnection(Connection):
         API will give errors with void data.
         """
 
-        self.get_connection(False)
         # Note: at the present no way to check connection existence # in rethink
+        # But using the Connection class database should be already connected
+        #self.get_connection(False)
 
-        # Connect without db to create it if already exists
+        # Connected without db to create it if already exists
         try:
             r.db_create(APP_DB).run()
             self.log.debug("Creating Database '" + APP_DB + "'")
@@ -199,7 +202,8 @@ class RethinkConnection(Connection):
         Make sure you pop that out as 'force_id' """
 
         table = self.model.table
-        self.create_table(table) #, True)
+        #self.create_table(table) #, True)
+
         # Skip if empty
         if data_dict.__len__() < 1:
             return self

@@ -14,9 +14,15 @@ from rdb.rdb_handler import RethinkConnection as db
 app = Flask(__name__)
 # config init
 app.config.from_object(__name__)
-# init logger for flask
-log.setup_istance(None, app.logger)
 
+# Need a pool of connections: http://j.mp/1yNP4p0
+def try_to_connect(create_db=False):
+    try:
+        app.logger.info("Creating the rdb object")
+        g.rdb = db(create_db)
+    except Exception:
+        app.logger.error("Cannot connect")
+        abort(503, "Problem: no database connection could be established.")
 
 # === What to do BEFORE handling a request ===
 @app.before_request
@@ -32,19 +38,9 @@ def before_request():
     app.logger.debug("Hello request")
 
     # === Connection ===
-    if "rdb" in g:
-        app.logger.debug("Already have a rdb object")
-    else:
-        try:
-            app.logger.debug("Creating the rdb object")
-            g.rdb = db(False)   #do not launch setup when creating the obj
-        except Exception:
-            app.logger.error("Cannot connect")
-            abort(503, "Problem: no database connection could be established.")
-
-    # Now i know i have the object. I can connect, once per request
-    g.rdb.setup()
-    app.logger.debug("Api connected")
+    # Database should be already connected in "before_first_request"
+    if not "rdb" in g:
+        try_to_connect()
 
 # === What to do AFTER a single request ===
 # @app.teardown_request

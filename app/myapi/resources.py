@@ -189,8 +189,8 @@ class GenericDBResource(Resource):
 # Warning: due to restful plugin system, get and get(value)
 # require two different resources...
 class DataList(GenericDBResource):
-    def __init__(self, init=False):
-        super(DataList, self).__init__(data_models.DataDump, init)
+    def __init__(self, db=None):
+        super(DataList, self).__init__(data_models.DataDump, db)
 class DataSingle(GenericDBResource):
     def __init__(self):
         super(DataSingle, self).__init__(data_models.DataDump)
