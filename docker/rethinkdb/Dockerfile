@@ -24,32 +24,34 @@ RUN echo "#!/bin/sh\necho set auth \$1 | rethinkdb admin\n" > /usr/bin/rdbauth
 RUN chmod +x /usr/bin/rdbauth
 
 # Create a script to do every move at init time
-RUN mkdir -p /opt && touch /opt/init.sh
+RUN touch /root/init.sh
 
 #########################################
 ## SSH SETUP
 # Let someone else do things here
 #RUN echo 'root:screencast' | chpasswd
-RUN echo "/etc/init.d/ssh start" >> /opt/init.sh
+RUN echo "/etc/init.d/ssh start" >> /root/init.sh
 EXPOSE 22
-#VOLUME /opt/fsshare
+#VOLUME /root/fsshare
 ADD keypairs.sh /tmp/keypairs.sh
-RUN echo "bash /tmp/keypairs.sh" >> /opt/init.sh
+RUN echo "bash /tmp/keypairs.sh" >> /root/init.sh
 #########################################
 
 # Define default command.
-RUN echo "echo 'Launching db server'" >> /opt/init.sh
-RUN echo "rethinkdb --bind all" >> /opt/init.sh
+RUN echo "echo 'Launching db server'" >> /root/init.sh
+
+RUN echo "rethinkdb --bind all" >> /root/init.sh
+#RUN echo "rethinkdb -d /data --bind all --canonical-address `curl icanhazip.com`" >> /root/init.sh
 #CMD ["rethinkdb", "--bind", "all"]
 
 # Expose ports.
-#   - 8080: web UI
+#   - 8080: web UI - only OUTSIDE WORLD
 EXPOSE 8080
 #   - 28015: process
 EXPOSE 28015
 #   - 29015: cluster
 EXPOSE 29015
 
-# Set the entry point and do init
-ENTRYPOINT ["/bin/bash"]
-CMD ["/opt/init.sh", "Hello", "World"]
+# # Set the entry point and do init
+# ENTRYPOINT ["/bin/bash"]
+# CMD ["/root/init.sh", "Hello", "World"]

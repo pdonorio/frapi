@@ -11,12 +11,25 @@ data:
     volumes:
         - ./data:/data:rw
 
-# Database server
+# Database server master
 rdb:
     build: ./docker/rethinkdb
+    command: bash /root/init.sh
     volumes_from:
          - data # Import data directory from storage container
          - fs
+    ports:
+        - "8080:8080" # Only if access from outside :)
+
+# virtualbox sync does not help on boot2docker
+
+# # Database slave
+# # http://www.rethinkdb.com/docs/start-a-cluster/
+# rdb2:
+#     build: ./docker/rethinkdb
+#     command: rethinkdb --join master:29015 --bind all
+#     links:
+#         - rdb:master
 
 # Python api server connected to Rethink DB database
 web:
