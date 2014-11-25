@@ -71,30 +71,34 @@ class RethinkConnection(Connection):
         You will connect only once, using the same object.
 
         Note: authentication is provided with admin commands to server,
-        after starting it up. Do use ssh from app container.
+        after starting it up, using ssh from app container.
+        Expecting the environment variable to contain a key.
         """
+        params = {"host":RDB_HOST, "port":RDB_PORT}
+        key = os.environ.get('KEYDBPASS') or None
+        if key != None:
+            params["auth_key"] = key
+            self.log.info("Connection is pw protected")
+        else:
+            self.log.warning("Using no authentication")
+
+        # Rethinkdb database connection
         try:
-            params = {"host":RDB_HOST, "port":RDB_PORT}
-            key = os.environ.get('KEYDBPASS') or None
-            if key != None:
-                params["auth_key"] = key
-                #self.log.info("Key is " + key)
-                self.log.info("Connection is pw protected")
-            else:
-                self.log.info("Using no authentication")
-
-# TO FIX - use the parameter "use_database"
-            if use_database:
-                self.log.info("Using directly database?? DO SOMETHING")
-
-            #IMPORTANT: repl() is necessary for ORM library to work
+            # IMPORTANT! The chosen ORM library does not work if missing repl()
+            # at connection time
             self._connection = r.connect(**params).repl()
-
         except RqlDriverError, e:
             raise LoggedError("Failed to connect RDB", e)
 
+        if use_database:
+            try:
+# TO FIX - the database should be a parameter
+                self.log.info("Using database " + APP_DB)
+                self._connection.use(APP_DB)
+            except RqlDriverError, e:
+                raise LoggedError("Database " + APP_DB + "doesn't exist", e)
+
         self.log.debug("Created Connection")
-        #print self._connection
         return self._connection
 
     def setup(self):
@@ -252,5 +256,8 @@ class RethinkConnection(Connection):
         self.log.info("Closing connection")
         return self._connection.close()
 
-    # === Exit? ===
+    # PAGINATION?
+    #r.table("posts").order_by("date").slice(11,21).run(conn)
+
+    # === Exit? === inside destructor?
     #self._connection.close()

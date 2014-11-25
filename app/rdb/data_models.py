@@ -24,6 +24,7 @@ class GenericORMModel(RethinkModel):
         # Here i decide which are the python types that will be
         # accepted in my API resources
         known_types = (NoneType, BooleanType, IntType, FloatType, LongType, StringType)
+        #https://docs.python.org/2/library/types.html
 
         for key in cls.__dict__.keys():
             # skip:
@@ -44,11 +45,11 @@ class DataDump(GenericORMModel):
     key = 'label'
     value = 'associatedtolabel'
 
-    test1 = 12
-    test2 = 13.12
-    test3 = True
-    test4 = False
-    test5 = None
+    # test1 = 12
+    # test2 = 13.12
+    # test3 = True
+    # test4 = False
+    # test5 = None
 
 class APIUser(GenericORMModel):
     """ Security model """

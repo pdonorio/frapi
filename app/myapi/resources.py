@@ -73,8 +73,16 @@ def check_type(obj=None):
 class GenericDBResource(Resource):
     """
     Generic Database API-Resource. Provide simple operations:
+
     1. List all data inside a noSQL table [GET method]
-    2. Add one element inside table [POST method]
+    2. List specific data inside a noSQL table [GET method + data_key]
+    3. Add one element inside table [POST method]
+    4. Add one element specifying the key inside table [PUT method + data_key]
+    5. Update one existing element inside table [POST-PUT method + data_key]
+    6. Delete one existing element inside table [DELETE method + data_key]
+
+    Note: PUT differs from POST because data_key is mandatory.
+
     Based on flask-restful plugin
     """
 
@@ -109,9 +117,7 @@ class GenericDBResource(Resource):
         # Based on my datamodelled ORM class
         attributes = g.rdb.get_fields()
 
-########################################
-# TO FIX - base type on?
-# to check: flask restfull reqparse types
+# TO FIX - check flask restfull reqparse types
 
         # Cycle class attributes
         for key, value in attributes.iteritems():
@@ -121,8 +127,6 @@ class GenericDBResource(Resource):
             parser.add_argument(key, type=mytype, \
                 # Add helper if type is wrong
                 help=key+' parameter must be of type '+mytype.__name__)
-
-########################################
 
         return parser
 
