@@ -4,6 +4,7 @@
 
 # My ORM library of choise with RethinkDB
 from rethinkORM import RethinkModel
+from types import NoneType, BooleanType, IntType, FloatType, LongType, StringType
 
 TESTING_TABLE = 'test'
 
@@ -20,6 +21,9 @@ class GenericORMModel(RethinkModel):
         """ Cycle class attributes to get a list.
         Usable on the class, rather then instance"""
         attributes = {}
+        # Here i decide which are the python types that will be
+        # accepted in my API resources
+        known_types = (NoneType, BooleanType, IntType, FloatType, LongType, StringType)
 
         for key in cls.__dict__.keys():
             # skip:
@@ -28,7 +32,7 @@ class GenericORMModel(RethinkModel):
             if key[0:2] != "__" and key != "table":
                 value = getattr(cls, key)
                 # skip methods (which are not strings and integer?)
-                if isinstance(value, str) or isinstance(value, int):
+                if isinstance(value, known_types):
                     #print "Attr:", key, value
                     attributes[key] = value
         return attributes
@@ -39,6 +43,12 @@ class DataDump(GenericORMModel):
     # Attributes:
     key = 'label'
     value = 'associatedtolabel'
+
+    test1 = 12
+    test2 = 13.12
+    test3 = True
+    test4 = False
+    test5 = None
 
 class APIUser(GenericORMModel):
     """ Security model """

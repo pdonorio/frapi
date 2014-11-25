@@ -8,9 +8,11 @@ from flask.ext.restful import reqparse, abort, Resource
 # Log is a good advice
 from bpractices.exceptions import log, LoggedError
 # The global data
-from myapi.app import app, g
+from myapi.app import g
 # Data models from DB ORM
 from rdb import data_models
+# Play with Python types, to handle request parameters
+from types import NoneType, BooleanType, IntType, FloatType, LongType, StringType
 
 # === HTTP status codes ===
 #http://www.w3.org/Protocols/HTTP/HTRESP.html
@@ -36,7 +38,7 @@ def check_empty_data(data):
     """ Make sure parser didn't get an empty request """
     counter = 0
     # check if all data is empty (None)
-    for key, value in data.iteritems():
+    for value in data.iteritems():
         if value == None or value == '':
             counter += 1
     if data.__len__() == counter:
@@ -51,6 +53,20 @@ def abort_on_db_fail(func):
         except LoggedError, e:
             abort(HTTP_BAD_NOTFOUND, message=e.__str__())
     return wrapper
+
+def check_type(obj=None):
+    """ Use builtin types in the right order """
+    #print obj, type(obj)
+
+    if isinstance(obj, NoneType) or isinstance(obj, BooleanType):
+        return BooleanType
+    if isinstance(obj, IntType):
+        return IntType
+    if isinstance(obj, LongType) or isinstance(obj, FloatType):
+        return FloatType
+
+    #if isinstance(obj, StringTypes):
+    return StringType
 
 # == Implement a generic Resource for RethinkDB ORM model ==
 
@@ -74,6 +90,7 @@ class GenericDBResource(Resource):
 
             # Decide the model to use for this DB resource
             g.rdb.define_model(ormModel)
+
             # Use the model to configure parameters
             self.parser = self.__configure_parsing()
         else:
@@ -94,19 +111,16 @@ class GenericDBResource(Resource):
 
 ########################################
 # TO FIX - base type on?
-
 # to check: flask restfull reqparse types
-
-        # # The unique key of the record, could  be forced to an int?
-        # parser.add_argument('id', type=int,
-        #     help='The "id" parameter should be an integer')
 
         # Cycle class attributes
         for key, value in attributes.iteritems():
-            print "Attr:", key, value
-            mytype = str
-            # Decide type based on attribute?
-            parser.add_argument(key, type=mytype)
+            mytype = check_type(value)
+            #print mytype
+            # Decide type based on attribute
+            parser.add_argument(key, type=mytype, \
+                # Add helper if type is wrong
+                help=key+' parameter must be of type '+mytype.__name__)
 
 ########################################
 
