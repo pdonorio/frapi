@@ -11,8 +11,6 @@ from bpractices.exceptions import log, LoggedError
 from myapi.app import g
 # Data models from DB ORM
 from rdb import data_models
-# Play with Python types, to handle request parameters
-from types import NoneType, BooleanType, IntType, FloatType, LongType, StringType
 
 # === HTTP status codes ===
 #http://www.w3.org/Protocols/HTTP/HTRESP.html
@@ -53,20 +51,6 @@ def abort_on_db_fail(func):
         except LoggedError, e:
             abort(HTTP_BAD_NOTFOUND, message=e.__str__())
     return wrapper
-
-def check_type(obj=None):
-    """ Use builtin types in the right order """
-    #print obj, type(obj)
-
-    if isinstance(obj, NoneType) or isinstance(obj, BooleanType):
-        return BooleanType
-    if isinstance(obj, IntType):
-        return IntType
-    if isinstance(obj, LongType) or isinstance(obj, FloatType):
-        return FloatType
-
-    #if isinstance(obj, StringTypes):
-    return StringType
 
 # == Implement a generic Resource for RethinkDB ORM model ==
 
@@ -112,21 +96,13 @@ class GenericDBResource(Resource):
         *** Note to self: an API does not even check/get parameters
         which were not added here as argument ***
         """
-
         parser = reqparse.RequestParser()
+
         # Based on my datamodelled ORM class
-        attributes = g.rdb.get_fields()
-
-# TO FIX - check flask restfull reqparse types
-
         # Cycle class attributes
-        for key, value in attributes.iteritems():
-            mytype = check_type(value)
-            #print mytype
+        for key, value in g.rdb.model.list_attributes().iteritems():
             # Decide type based on attribute
-            parser.add_argument(key, type=mytype, \
-                # Add helper if type is wrong
-                help=key+' parameter must be of type '+mytype.__name__)
+            parser.add_argument(key, type=value)
 
         return parser
 
@@ -155,17 +131,25 @@ class GenericDBResource(Resource):
         - add a new article, but do not have any idea where to store it
         - or to update existing resources? UHM LAST ONE MAYBE NOT
         """
+
+        # This call will raise errors if types are not as defined in the Model
         data = self.parser.parse_args()
+
         if check_empty_data(data):
             return "Received empty request", HTTP_BAD_REQUEST
 
-        # Check if PUT or POST - depends on data_key presence
-        data_key = data.pop("id")    #gives None if not exists
         self.log.debug("API: POST request open")
         self.log.debug(data)
 
+        #################
+        # Check if PUT or POST - depends on data_key presence
+        data_key = None
+        if "id" in data:
+            data_key = data.pop("id")
+
         key = g.rdb.insert(data, data_key)
         self.log.debug("API: Insert of key " + key.__str__())
+        #################
 
         return key, HTTP_OK_CREATED
 
@@ -184,7 +168,8 @@ class GenericDBResource(Resource):
             return "Received empty request", HTTP_BAD_REQUEST
 
         # always empty in put - or don't care.
-        data.pop("id")  #trash it
+        if "id" in data:
+            data.pop("id")  #trash it
         # in this case i use the data_key
 
         key = g.rdb.insert(data, data_key)

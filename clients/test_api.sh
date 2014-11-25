@@ -9,7 +9,8 @@ port=5005
 resource="data"
 #############################################
 
-values="keyp=user&valuesSZ=test"
+values="key=2&value=test"
+echo "Using values *$values*"
 $cmd $protocol://$host:$port/$resource -d "$values" -X POST
 
 exit 1

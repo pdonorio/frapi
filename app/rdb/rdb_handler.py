@@ -126,17 +126,6 @@ class RethinkConnection(Connection):
         for DB operations and also for API definition """
         self.model = model
 
-    @check_model
-    def get_fields(self):
-        """ Return alk we have inside the model + the id key """
-        attributes = self.model.list_attributes()
-
-        # fake id type for dynamic use inside the api logic
-        # Trust me, it is alphanumeric ;)
-        attributes["id"] = "alfa0123"
-
-        return attributes
-
     # === Table ===
     @check_model
     def create_table(self, table=None, remove_existing=False):
