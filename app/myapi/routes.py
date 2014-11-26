@@ -16,8 +16,19 @@ from flask.ext.restful import Api
 from myapi import resources
 from rdb.rdb_handler import RethinkConnection as db
 
+
+#############################################
 # Create the api object
-api = Api(app)
+api = Api(app, catch_all_404s=True)
+
+# You could define your error for the status code you prefer
+#http://flask-restful.readthedocs.org/en/latest/extending.html#define-custom-error-messages
+
+# Implement csv for download of tables purpose?
+#http://flask-restful.readthedocs.org/en/latest/extending.html#response-formats
+
+# Log to a different file or send email for errors or save it to db?
+# #http://flask-restful.readthedocs.org/en/latest/extending.html#custom-error-handlers
 
 #############################################
 # === Setup the Api resource routing ===
@@ -25,9 +36,9 @@ api = Api(app)
 # This is where you tell the app what to do with requests
 # For this resources make sure you create the table
 # inside "before_first_request"
-#############################################
 
 #api.add_resource(resources.GenericDBResource, '/test')
+
 api.add_resource(resources.DataList, '/data')
 api.add_resource(resources.DataSingle, '/data/<string:data_key>')
 
@@ -52,8 +63,7 @@ def before_first_request():
     tmp = resources.DataList(g.rdb)
     g.rdb.create_table()
     del tmp
-##############################################################
-##############################################################
 
-    # Test AUTH
+##############################################################
+# Test AUTH
     #api.add_resource(resources.LogUser, '/login')
