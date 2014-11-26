@@ -22,6 +22,13 @@ resource="data"
 # exit 1
 
 #############################################
+#ADD a new element
+echo "***\nINSERT"
+values="key=user&value=test"
+key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
+echo "received key '$key'"
+
+#############################################
 #ADD a new element forcing the key
 # WARNING: this works as an update if already exists
 values="key=food&value=c4ppucc1n0"
@@ -33,14 +40,6 @@ echo "***\nINSERT with key '$fix'"
 id=`$cmd $protocol://$host:$port/$resource -d "$values&id=$fix" -X POST `
 echo "received key '$id' ;) "
 
-exit
-
-#############################################
-#ADD a new element
-echo "***\nINSERT"
-values="key=user&value=test"
-key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
-echo "received key '$key'"
 
 #############################################
 #GET the full list
