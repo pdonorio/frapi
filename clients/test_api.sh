@@ -9,7 +9,23 @@ port=5005
 resource="data"
 #############################################
 
-values="key=2&value=test"
+values="value=2&key=test"
+echo "Using values *$values*"
+$cmd $protocol://$host:$port/$resource -d "$values" -X POST
+
+values="value=2.345&key=test"
+echo "Using values *$values*"
+$cmd $protocol://$host:$port/$resource -d "$values" -X POST
+
+values="value=3.01&key=test"
+echo "Using values *$values*"
+$cmd $protocol://$host:$port/$resource -d "$values" -X POST
+
+values="value=3.000&key=test"
+echo "Using values *$values*"
+$cmd $protocol://$host:$port/$resource -d "$values" -X POST
+
+values="value=ab3&key=test"
 echo "Using values *$values*"
 $cmd $protocol://$host:$port/$resource -d "$values" -X POST
 

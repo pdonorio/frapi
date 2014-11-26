@@ -39,6 +39,8 @@ class GenericORMModel(RethinkModel):
 # == Define the models you need ==
 # Implementing Restful types (with FUNCTIONS)
 
+from bpractices.utilities import get_original_pytype
+
 class DataDump(GenericORMModel):
     """ A simple container for data dumping """
     table = 'dump'
@@ -46,13 +48,6 @@ class DataDump(GenericORMModel):
     # Attributes as defined by static methods:
     @staticmethod
     def key(value, name):
-        """ Defining a key as i wanted """
-
-        print "Received: ", name, value, type(value)
-
-        # # Probably need to convert unicode
-        # if isinstance(value, types.UnicodeType):
-        #     print "GOTCHA!"
 
         m = "Parameter '"+name+"' is not a string. Received value: *"+value+"*"
         if not isinstance(value, types.StringTypes):
@@ -62,7 +57,15 @@ class DataDump(GenericORMModel):
 
     # No checks type
     @staticmethod
-    def value(value):
+    def value(value, name):
+        """ Defining a key as i wanted """
+        #print "Received: ", name, value, type(value), get_original_pytype(value)
+
+        # Try to convert numbers in original python types
+        tmp = get_original_pytype(value)
+        if tmp != None:
+            value = tmp
+        print "Received: ", name, value, type(value)
         return value
 
 # For authentication future use
