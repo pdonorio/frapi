@@ -70,6 +70,8 @@ class GenericDBResource(Resource):
     Based on flask-restful plugin
     """
 
+    parser = None
+
     #define
     def __init__(self, ormModel=data_models.GenericORMModel, db=None):
         """ Implement a parser for validating arguments of api """
@@ -84,7 +86,7 @@ class GenericDBResource(Resource):
             g.rdb.define_model(ormModel)
 
             # Use the model to configure parameters
-            self.parser = self.__configure_parsing()
+            self.__configure_parsing()
         else:
             db.define_model(ormModel)
 
@@ -96,15 +98,17 @@ class GenericDBResource(Resource):
         *** Note to self: an API does not even check/get parameters
         which were not added here as argument ***
         """
-        parser = reqparse.RequestParser()
+        self.parser = reqparse.RequestParser()
+        # Extra parameter id for POST updates or key forcing
+        self.parser.add_argument("id")
 
         # Based on my datamodelled ORM class
         # Cycle class attributes
         for key, value in g.rdb.model.list_attributes().iteritems():
             # Decide type based on attribute
-            parser.add_argument(key, type=value)
+            self.parser.add_argument(key, type=value)
 
-        return parser
+        return self.parser
 
     @abort_on_db_fail
     def get(self, data_key=None):
@@ -184,19 +188,22 @@ class GenericDBResource(Resource):
         g.rdb.remove(data_key)
         return '', HTTP_OK_NORESPONSE
 
-# === Implement resources ===
-
 ################################################################
+# === Implement Resources ===
+
 # Get instances of the generic resources
-# Based on a specific data_models
+# based on a specific data_models
+#
 # Warning: due to restful plugin system, get and get(value)
-# require two different resources...
+# require 2 different resources...
+
 class DataList(GenericDBResource):
     def __init__(self, db=None):
         super(DataList, self).__init__(data_models.DataDump, db)
 class DataSingle(GenericDBResource):
     def __init__(self):
         super(DataSingle, self).__init__(data_models.DataDump)
+
 ################################################################
 
 

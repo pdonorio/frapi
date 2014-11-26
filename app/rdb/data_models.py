@@ -65,7 +65,7 @@ class DataDump(GenericORMModel):
         tmp = get_original_pytype(value)
         if tmp != None:
             value = tmp
-        print "Received: ", name, value, type(value)
+        #print "Received: ", name, value, type(value)
         return value
 
 # For authentication future use
