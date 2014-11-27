@@ -20,12 +20,29 @@ elif [ `which boot2docker` != "" ]; then
     fi
 fi
 
+###########################################
+# Decide file configuration based on key "_with_guy"
+
+dir="apic"
+case "$1" in
+    *_with_gui)
+       echo "Full gui cluster"
+       param=`echo $1 | sed 's/_with_gui\$//'`;
+       file="$dir/pygui.yml"
+    ;;
+    *)
+       echo "Normal api cluster"
+       param=$1
+       file="$dir/pywebapp.yml"
+    ;;
+esac
+
+# command
+figcom="fig -f $file"
 
 ###########################################
-figcom="fig -f apic/pywebapp.yml"
-
-# Main switch
-case "$1" in
+# This is main command switch
+case "$param" in
     "build")
         $figcom build
     ;;
@@ -33,12 +50,11 @@ case "$1" in
         mkdir -p ../data
         $figcom up -d
 
-        # DEBUG MODE FOR DEVELOPMENT
-        docker exec -it apic_web_1 bash # /screen.sh
-        # DEBUG MODE FOR DEVELOPMENT
+        # DEBUG API MODE FOR DEVELOPMENT
+        #docker exec -it apic_api_1 bash
 
-        #to check what is running:
-        #tailf /root/app.log
+        # DEBUG ANGULAR MODE FOR DEVELOPMENT
+        docker exec -it apic_web_1 bash
 
     ;;
     "stop")
@@ -80,7 +96,8 @@ case "$1" in
         fi
     ;;
     *)
-        echo "Usage: $0 [start|stop|remove|dcheck|cleanall]";
+        echo "Unknown command *$param*"
+        echo "Usage: $0 [start|stop|build|remove|dcheck|cleanall]";
         echo ""
         echo "This script must be executed from its base dir"
         exit 1;
