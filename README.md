@@ -23,10 +23,7 @@ Those have been the main objectives:
 FRANGUI = flask restful api nginx Gui
 (this branch main objectives)
 
-* Create branch
-* New yml fig file
-* Option in cluster script if “run” or “run_with_gui”
-* Static index page
+* Static angular page (nginx docker)
 
 Run with:
 ```
@@ -39,7 +36,6 @@ http://<host>:80/app
 ====
 TODO:
 
-Static angular page (nginx docker)
 Two way bindings test (from json)
 FIrst example (python like)
 https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/

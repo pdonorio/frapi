@@ -1,3 +1,6 @@
+# Skip libraries for noe
+frangui/js/angular*
+
 # Data dir
 data/*
 tmp
