@@ -33,8 +33,6 @@ $ ./cluster.sh run_with_gui
 Page tests:
 http://<host>:80/app
 
-* Two way bindings test (from json)
-* app, controllers, services (factory)
 * http get/post
 
 ====
@@ -62,6 +60,32 @@ language in nosql database holding
 Fast development/prototype
 http://bahmutov.calepin.co/fast-prototyping-using-restangular-and-json-server.html
 http://jphoward.wordpress.com/2013/01/09/intermissionrest-api-in-python-with-flask-restless/
+
+Suggestions with ng-suggest
+http://journal.code4lib.org/articles/10023
+
+/////////////////////////////////////////////////////
+Some issues:
+
+Secure the api calls (only from some domains :) e.g. mydomain.com/ or localhost/)
+http://stackoverflow.com/a/2256312
+search for flask domain check?
+and/or
+add a secret key hashed with the browser key.
+if it matches from browser ok, otherwise kill it?
+
+ALSO:
+Maximum number of calls per second.
+Max per day.
+/////////////////////////////////////////////////////
+
+
+
+Dinamic loading and convenction names routing:
+http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single
+
+Tips for writing better angular code
+https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
 
 NEXT NEXT prototype (prototype-scheduler):
 Redis queue? COOL

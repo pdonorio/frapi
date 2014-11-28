@@ -1,26 +1,30 @@
-myModule.factory('Api', function() {
-
-    var empty = false;
+myModule.factory('Api', function($http) {
 
     return {
 
       //####################################
       // GET data from API
       get: function() {
+
+        var config = {
+           url: 'http://awesome.dev:5507/data',
+           method: 'GET',
+           //params: 'limit=10, sort_by=created:desc',
+           //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
+         };
+
         // Simple GET request example :
-        $http.get('/data').
+        $http(config).
           success(function(data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
+            // called asynchronously when the response is available
+            console.log(data);
             return data;
           }).
           error(function(data, status, headers, config) {
-            console.log(status);
-            console.log(data);
-            return data;
-
             // called asynchronously if an error occurs
-            // or server returns response with an error status.
+            console.log(status);
+            //console.log(data);
+            return ["empty"];
           });
       }
 
