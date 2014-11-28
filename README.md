@@ -33,18 +33,29 @@ $ ./cluster.sh run_with_gui
 Page tests:
 http://<host>:80/app
 
+* Two way bindings test (from json)
+* app, controllers, services (factory)
+* http get/post
+
 ====
 TODO:
 
-Two way bindings test (from json)
-FIrst example (python like)
-https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+resources usage
+routes and views
+
+FIrst example python like
+    https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
 Call to my python api (Restangular + promises)
-http://www.ng-newsletter.com/posts/restangular.html
-lodash or underscore?
+    http://www.ng-newsletter.com/posts/restangular.html
+    lodash or underscore?
+
 Bootstrap 3 wrapping + iconfonts (greta dir)
-Angular datatable (with pagination)
-this is the prototype branch which will forever exist
+Angular datatable like (with pagination)
+minify?
+
+[ Up to here: this is the prototype branch which will forever exist ]
+
+====
 
 NEXT prototype (prototype-language):
 language in nosql database holding

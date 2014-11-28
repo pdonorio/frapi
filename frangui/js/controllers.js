@@ -1,14 +1,21 @@
-angular.module('todoApp', [])
-  .controller('TodoController', ['$scope', function($scope) {
+//###########################################
+//controller
+myModule.controller('TodoController', function($scope, Api) {
+
+    //get data
     $scope.todos = [
       {text:'learn angular', done:true},
       {text:'build an angular app', done:false}];
 
+    $scope.test = Api.get();
+
+    //add data
     $scope.addTodo = function() {
       $scope.todos.push({text:$scope.todoText, done:false});
       $scope.todoText = '';
     };
 
+    //count actual data (marked as done)
     $scope.remaining = function() {
       var count = 0;
       angular.forEach($scope.todos, function(todo) {
@@ -17,6 +24,7 @@ angular.module('todoApp', [])
       return count;
     };
 
+    //archive = delete/push
     $scope.archive = function() {
       var oldTodos = $scope.todos;
       $scope.todos = [];
@@ -24,4 +32,6 @@ angular.module('todoApp', [])
         if (!todo.done) $scope.todos.push(todo);
       });
     };
-  }]);
+
+    //end
+});

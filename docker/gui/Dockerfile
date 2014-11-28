@@ -16,6 +16,11 @@ RUN \
 # Define mountable directories.
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
 
+# WARNING:
+# must turn "sendfile" in /etc/nginx/nginx.conf to "off"!!!!
+# it's a problem with nginx and virtualbox
+#http://stackoverflow.com/questions/6236078/how-to-clear-the-cache-of-nginx/13116771#13116771
+
 # Define working directory.
 #WORKDIR /etc/nginx
 RUN ln -s /opt/app /var/www/html/app
