@@ -31,6 +31,8 @@ api:
     working_dir: /opt/app
     volumes_from:
          - fs
+    ports:
+        - "5507:5000" # expose the api to the world!
     links:
         - rdb:db
 

@@ -21,6 +21,8 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 # it's a problem with nginx and virtualbox
 #http://stackoverflow.com/questions/6236078/how-to-clear-the-cache-of-nginx/13116771#13116771
 
+RUN cp /etc/nginx/nginx.conf /tmp/conf && cat /tmp/conf | sed 's/sendfile on;/sendfile off;/' > /etc/nginx/nginx.conf && rm /tmp/conf
+
 # Define working directory.
 #WORKDIR /etc/nginx
 RUN ln -s /opt/app /var/www/html/app

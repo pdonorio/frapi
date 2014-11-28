@@ -4,6 +4,7 @@ frangui/js/angular*
 # Data dir
 data/*
 tmp
+logs
 
 # Sublime stuff
 *sublime*
