@@ -2,6 +2,7 @@
 //controller
 myModule.controller('TableController', function($scope, Api, $timeout)
 {
+    $scope.headers = [ "", "Key", "Value" ];
 
     //make the call to Api get - use promises
     Api.get().then(function(data) {
@@ -9,7 +10,7 @@ myModule.controller('TableController', function($scope, Api, $timeout)
        $timeout( function() {
          $scope.test = data;
         //sleep one second
-       }, 1000);
+       }, 500);
        // console.log($scope.test);
     });
 

@@ -73,16 +73,22 @@
           </div>
 
           <div ng-show='test.length > 0'>
-<!--             <span ng-init="test.length='-'">
- -->
-              <span>Current list of {{test.length}} elements:</span>
-            <ul class="unstyled">
-              <!-- does not work: http://j.mp/1y2GxjV -->
-              <li ng-repeat="tmp in test track by tmp.id">
-                <span>{{tmp.value}}</span>
-                <span>{{tmp.key}}</span>
-              </li>
-            </ul>
+            <span>Current list of {{test.length}} elements:</span>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th ng-repeat="head in headers">{{head}}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr ng-repeat="tmp in test track by tmp.id">
+                  <td>{{tmp.id}}</td>
+                  <td>{{tmp.value}}</td>
+                  <td>{{tmp.key}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           </div>
