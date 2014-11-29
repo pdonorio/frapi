@@ -53,27 +53,30 @@
       </div>
     </div>
 
-    <div class="container">
 
+    <div class="container">
       <h2>MyApp</h2>
 
       <div ng-controller="TableController">
 
         <div class="panel panel-default">
           <div class="panel-body">
-
           <h4>Testing rethinkdb database</h4>
 
-          <div id='spinner' ng-hide='test.length > 0'>
+<!-- TO FIX - if data == 0 nothing changes... -->
+          <!-- Handle loading and zero data -->
+          <div id='spinner' ng-hide='data.length > 0'>
             Loading <i class="fa fa-refresh fa-spin"></i>
           </div>
 
-          <div id='spinner' ng-show='test.length == 0'>
+          <div id='nodata' ng-show='data.length == 0'>
             No data found.
           </div>
+<!-- TO FIX - if data == 0 nothing changes... -->
 
-          <div ng-show='test.length > 0'>
-            <span>Current list of {{test.length}} elements:</span>
+          <!-- data table -->
+          <div ng-show='data.length > 0'>
+            <span>Current list of {{data.length}} elements:</span>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -82,10 +85,10 @@
               </thead>
 
               <tbody>
-                <tr ng-repeat="tmp in test track by tmp.id">
-                  <td>{{tmp.id}}</td>
-                  <td>{{tmp.value}}</td>
-                  <td>{{tmp.key}}</td>
+                <tr ng-repeat="row in data track by row.id">
+                  <td>{{row.id}}</td>
+                  <td>{{row.value}}</td>
+                  <td>{{row.key}}</td>
                 </tr>
               </tbody>
             </table>

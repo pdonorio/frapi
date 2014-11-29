@@ -117,6 +117,10 @@ class GenericDBResource(Resource):
         restful docs in /quickstart.html#data-formatting
         """
         self.log.info("API: Received 'search'")
+
+# TO FIX - both cases should query a fixed size
+#e.g. limit on db
+
         if data_key == None:
             # Query ALL
             data = g.rdb.search()

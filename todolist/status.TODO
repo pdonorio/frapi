@@ -10,14 +10,24 @@ FRANGUI = flask restful api nginx Gui:
    ✘ recipes for loading spinner - http://j.mp/1FFK7AO @cancelled (14-11-29 15:23)
      ✔ http://stackoverflow.com/a/12602481 @done (14-11-29 15:38)
      ✔ added $timeout call to simulate the loading gif @done (14-11-29 15:39)
-   ☐ striped table
+   ✔ striped table @done (14-11-29 18:00)
+ ☐ Angular datatable like (with pagination)
+   ✔ pagination @done (14-11-29 19:56)
+     ✔ api side @done (14-11-29 19:56)
+       ☐ count and items (in json data) response
+       ✔ query slice (rethinkdb) @done (14-11-29 19:56)
+         ✔ query.slice((pageNumber - 1) * perPage, pageNumber * perPage) @done (14-11-29 19:56)
+     ☐ page buttons template
+       ☐ https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination
+   ☐ sort?
+   ☐ infinite scrolling??
+   ☐ simple search all fields?
+ ☐ routes and views
  ☐ Implement POST
     ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
- ☐ Angular datatable like (with pagination)
- ☐ routes and views
- ☐ resources usage?
+ ☐ resources usage instead of http?
     ☐ http://fdietz.github.io/recipes-with-angular-js/consuming-external-services/consuming-restful-apis.html
- ☐ or Seriouse call to my python api (Restangular + promises)?
+ ☐ or Seriouse call to my python api with Restangular
     ☐ http://www.ng-newsletter.com/posts/restangular.html [lodash or underscore?]
  ☐ navbar fixed and responsive with angular strap
  ☐ minify??

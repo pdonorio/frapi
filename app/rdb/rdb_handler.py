@@ -162,21 +162,36 @@ class RethinkConnection(Connection):
         # Case with arguments
         if key != None:
             # Note: 'get_all' works, don't know why 'get' doesn't
-            search = r.table(table).get_all(key, index='id').run()
-            if search == None:
-                raise LoggedError(key + " could not be found ")
+            query = r.table(table).get_all(key, index='id')
         # Case no arguments (all table)
         else:
-            search = r.table(table).run()
+            query = r.table(table)
 #############################################################
 
-        # Need a list out of it
-        #print search
-        data = list(search)
-        if data.__len__() < 1:
-            json_data = {}
-        else:
+        # Note: i should not check if i cannot find any data.
+        json_data = {}
+        # As Api i should just return empty json if nothing is there
+        # from my query
+        if not query.is_empty().run():
+
+# TO FIX - should be a parameter
+            page_number = 1
+            per_page = 10
+# TO FIX - should be a parameter
+
+            # Slice for pagination
+            start = (page_number - 1) * per_page
+            end = page_number * per_page
+            print start, end
+            out = query.slice(start, end).run()
+            #out = query.skip(start).limit(end).run() #this does not work
+
+            data = list(out)
             json_data = json.dumps(data)
+            print "TEST"
+            print data
+
+        # Need a list out of it
         return json_data
 
     # === Filter* ===
