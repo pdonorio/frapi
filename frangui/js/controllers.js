@@ -2,12 +2,17 @@
 //controller
 myModule.controller('TodoController', function($scope, Api) {
 
-    //get data
+    //Implement mock data
     $scope.todos = [
       {text:'learn angular', done:true},
       {text:'build an angular app', done:false}];
 
-    $scope.test = Api.get();
+    //make the call to Api get - use promises
+    Api.get().then(function(data) {
+       //this will execute when the AJAX call completes.
+       $scope.test = data;
+       // console.log($scope.test);
+    });
 
     //add data
     $scope.addTodo = function() {

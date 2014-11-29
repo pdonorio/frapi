@@ -31,21 +31,24 @@ $ ./cluster.sh run_with_gui
 ```
 
 Page tests:
-http://<host>:80/app
+http://*serverhost*:80/app
 
 * http get/post
+* ng-repeat and duplicates
 
 ====
 TODO:
 
-resources usage
+resources usage?
+
 routes and views
 
-FIrst example python like
+FIrst example python like?
     https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
-Call to my python api (Restangular + promises)
+
+Seriouse call to my python api (Restangular + promises)
     http://www.ng-newsletter.com/posts/restangular.html
-    lodash or underscore?
+lodash or underscore?
 
 Bootstrap 3 wrapping + iconfonts (greta dir)
 Angular datatable like (with pagination)
@@ -74,12 +77,13 @@ and/or
 add a secret key hashed with the browser key.
 if it matches from browser ok, otherwise kill it?
 
+What about CORS?
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+
 ALSO:
 Maximum number of calls per second.
 Max per day.
 /////////////////////////////////////////////////////
-
-
 
 Dinamic loading and convenction names routing:
 http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single
