@@ -1,5 +1,6 @@
-myModule.factory('Api', function($http) {
 
+myModule.factory('Api', function($http)
+{
     return {
 
       //####################################
@@ -10,7 +11,7 @@ myModule.factory('Api', function($http) {
         return $http.get('http://awesome.dev:5507/data')
           .then(function(result) {
               //http is serializing my data, so parse Json before giving it back
-             return JSON.parse(result.data);
+              return JSON.parse(result.data);
            });
 
           //WHAT ABOUT ERRORS?

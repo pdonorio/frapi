@@ -4,8 +4,12 @@ FRANGUI = flask restful api nginx Gui:
  ✔  Static angular page (nginx docker) @done (14-11-29 09:53)
  ✔  http get/post @done (14-11-29 09:53)
  ✔  ng-repeat and duplicates @done (14-11-29 09:53)
- ☐ Bootstrap 3 wrapping + iconfonts (greta dir)
-   ☐ angularstrap (NO JQUERY)
+ ✔ Bootstrap 3 wrapping + iconfonts  @done (14-11-29 15:23)
+   ✔ angularstrap (NO JQUERY) @done (14-11-29 14:15)
+   ✘ ng-init for loader? @cancelled (14-11-29 15:13)
+   ✘ recipes for loading spinner - http://j.mp/1FFK7AO @cancelled (14-11-29 15:23)
+     ✔ http://stackoverflow.com/a/12602481 @done (14-11-29 15:38)
+     ✔ added $timeout call to simulate the loading gif @done (14-11-29 15:39)
    ☐ striped table
  ☐ Implement POST
     ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
@@ -15,6 +19,7 @@ FRANGUI = flask restful api nginx Gui:
     ☐ http://fdietz.github.io/recipes-with-angular-js/consuming-external-services/consuming-restful-apis.html
  ☐ or Seriouse call to my python api (Restangular + promises)?
     ☐ http://www.ng-newsletter.com/posts/restangular.html [lodash or underscore?]
+ ☐ navbar fixed and responsive with angular strap
  ☐ minify??
 [ Up to here: this is the prototype branch which will forever exist ]
 

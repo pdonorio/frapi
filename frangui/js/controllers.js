@@ -1,11 +1,15 @@
 //###########################################
 //controller
-myModule.controller('TableController', function($scope, Api) {
+myModule.controller('TableController', function($scope, Api, $timeout)
+{
 
     //make the call to Api get - use promises
     Api.get().then(function(data) {
        //this will execute when the AJAX call completes.
-       $scope.test = data;
+       $timeout( function() {
+         $scope.test = data;
+        //sleep one second
+       }, 1000);
        // console.log($scope.test);
     });
 
