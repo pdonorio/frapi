@@ -21,9 +21,6 @@ Those have been the main objectives:
 ====
 
 FRANGUI = flask restful api nginx Gui
-(this branch main objectives)
-
-* Static angular page (nginx docker)
 
 Run with:
 ```
@@ -32,68 +29,3 @@ $ ./cluster.sh run_with_gui
 
 Page tests:
 http://*serverhost*:80/app
-
-* http get/post
-* ng-repeat and duplicates
-
-====
-TODO:
-
-Bootstrap 3 wrapping + iconfonts (greta dir)
-
-striped table
-
-Implement POST
-    https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
-
-Angular datatable like (with pagination)
-
-routes and views
-
-resources usage?
-    http://fdietz.github.io/recipes-with-angular-js/consuming-external-services/consuming-restful-apis.html
-or Seriouse call to my python api (Restangular + promises)?
-    http://www.ng-newsletter.com/posts/restangular.html [lodash or underscore?]
-
-minify?
-
-[ Up to here: this is the prototype branch which will forever exist ]
-
-====
-
-NEXT prototype (prototype-language):
-language in nosql database holding
-Fast development/prototype
-http://bahmutov.calepin.co/fast-prototyping-using-restangular-and-json-server.html
-http://jphoward.wordpress.com/2013/01/09/intermissionrest-api-in-python-with-flask-restless/
-
-Suggestions with ng-suggest
-http://journal.code4lib.org/articles/10023
-
-/////////////////////////////////////////////////////
-Some issues:
-
-Secure the api calls (only from some domains :) e.g. mydomain.com/ or localhost/)
-http://stackoverflow.com/a/2256312
-search for flask domain check?
-and/or
-add a secret key hashed with the browser key.
-if it matches from browser ok, otherwise kill it?
-
-What about CORS?
-https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-
-ALSO:
-Maximum number of calls per second.
-Max per day.
-/////////////////////////////////////////////////////
-
-Dinamic loading and convenction names routing:
-http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single
-
-Tips for writing better angular code
-https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
-
-NEXT NEXT prototype (prototype-scheduler):
-Redis queue? COOL
-https://realpython.com/blog/python/flask-by-example-implementing-a-redis-task-queue/

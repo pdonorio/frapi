@@ -1,5 +1,7 @@
 # Skip libraries for noe
 frangui/js/angular*
+frangui/css/boot*
+font*
 
 # Data dir
 data/*

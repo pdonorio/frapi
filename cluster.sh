@@ -54,7 +54,7 @@ case "$param" in
         #docker exec -it apic_api_1 bash
 
         # DEBUG ANGULAR MODE FOR DEVELOPMENT
-        docker exec -it apic_web_1 bash
+        #docker exec -it apic_web_1 bash
 
     ;;
     "stop")

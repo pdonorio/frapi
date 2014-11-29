@@ -39,7 +39,7 @@ api:
 # Web static angular pages
 web:
     build: ./docker/gui
-    command: sleep 98786576
+    command: nginx
     volumes:
         - ./frangui:/opt/app
     working_dir: /opt/app
