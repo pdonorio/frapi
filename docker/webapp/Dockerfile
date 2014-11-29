@@ -1,5 +1,5 @@
 ##############################################
-FROM fig_data
+FROM apic_data
 MAINTAINER "Paolo D'Onorio De Meo" p.donoriodemeo@gmail.com
 
 #Install curl if not exists - to query and test
