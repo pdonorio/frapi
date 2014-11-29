@@ -1,11 +1,6 @@
 //###########################################
 //controller
-myModule.controller('TodoController', function($scope, Api) {
-
-    //Implement mock data
-    $scope.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false}];
+myModule.controller('TableController', function($scope, Api) {
 
     //make the call to Api get - use promises
     Api.get().then(function(data) {
@@ -13,6 +8,12 @@ myModule.controller('TodoController', function($scope, Api) {
        $scope.test = data;
        // console.log($scope.test);
     });
+
+/*
+    //Implement mock data
+    $scope.todos = [
+      {text:'learn angular', done:true},
+      {text:'build an angular app', done:false}];
 
     //add data
     $scope.addTodo = function() {
@@ -37,6 +38,7 @@ myModule.controller('TodoController', function($scope, Api) {
         if (!todo.done) $scope.todos.push(todo);
       });
     };
+*/
 
     //end
 });

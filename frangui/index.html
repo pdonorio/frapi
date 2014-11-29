@@ -1,19 +1,44 @@
 <!doctype html>
-<html ng-app="todoApp">
+<html ng-app="myApp">
 
   <head>
+
+<!-- IF OFF-LINE -->
     <script src="js/angular/angular.min.js"></script>
+
+<!-- IF NOT OFF-LINE
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular-resource.min.js">
+    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular-route.min.js">
+   </script>
+-->
+
+    <!-- My actual App js code -->
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
+
     <link rel="stylesheet" href="css/todo.css">
   </head>
 
   <body>
 
-    <h2>Todo</h2>
+    <h2>MyApp</h2>
 
-    <div ng-controller="TodoController">
+    <div ng-controller="TableController">
+
+      <h4>Testing rethinkdb database</h4>
+      <span>Current list of {{test.length}} elements:</span>
+      <ul class="unstyled">
+        <!-- does not work: http://j.mp/1y2GxjV -->
+        <li ng-repeat="tmp in test track by tmp.id">
+          <span>{{tmp.value}}</span>
+          <span>{{tmp.key}}</span>
+        </li>
+      </ul>
+
+<!--
       <span>{{remaining()}} of {{todos.length}} remaining</span>
       [ <a href="" ng-click="archive()">archive</a> ]
       <ul class="unstyled">
@@ -28,14 +53,8 @@
                placeholder="add new todo here">
         <input class="btn-primary" type="submit" value="add">
       </form>
+-->
 
-      <h4>Testing rethinkdb database:</h4>
-      <ul class="unstyled">
-        <li ng-repeat="tmp in test track by $index">
-          <span>{{tmp.value}}</span>
-          <span>{{tmp.key}}</span>
-        </li>
-      </ul>
     </div>
 
   </body>

@@ -1,4 +1,4 @@
 
 //###########################################
 //The app
-var myModule = angular.module('todoApp', []);
+var myModule = angular.module('myApp', []);

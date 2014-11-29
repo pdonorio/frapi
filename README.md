@@ -39,19 +39,22 @@ http://*serverhost*:80/app
 ====
 TODO:
 
-resources usage?
+Bootstrap 3 wrapping + iconfonts (greta dir)
+
+striped table
+
+Implement POST
+    https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+
+Angular datatable like (with pagination)
 
 routes and views
 
-FIrst example python like?
-    https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+resources usage?
+    http://fdietz.github.io/recipes-with-angular-js/consuming-external-services/consuming-restful-apis.html
+or Seriouse call to my python api (Restangular + promises)?
+    http://www.ng-newsletter.com/posts/restangular.html [lodash or underscore?]
 
-Seriouse call to my python api (Restangular + promises)
-    http://www.ng-newsletter.com/posts/restangular.html
-lodash or underscore?
-
-Bootstrap 3 wrapping + iconfonts (greta dir)
-Angular datatable like (with pagination)
 minify?
 
 [ Up to here: this is the prototype branch which will forever exist ]
