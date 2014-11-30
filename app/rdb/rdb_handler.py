@@ -145,6 +145,26 @@ class RethinkConnection(Connection):
             r.table_create(table).run()
             self.log.info("Table '" + table + "' created")
 
+    @staticmethod
+    def get_parameters_with_defaults(params):
+
+        # Cycle kwargs and use them directly
+        # This helps the dynamic usage of api parameters
+        p = {}
+
+        # save parameters
+        for name in params:
+            p[name] = params.get(name)
+
+        # set defatuls
+        if p["perpage"] == None:
+            p["perpage"] = 10
+        if p["currentpage"] == None:
+            p["currentpage"] = 1
+
+        print p
+        return p
+
     # === Search ===
     @check_model
     @TryExcept("DB table does not exist yet", RqlRuntimeError)
@@ -153,45 +173,32 @@ class RethinkConnection(Connection):
 
         table = self.model.table
         self.log.debug("Searching rdb table '" + table + "'")
-
-#############################################################
-# TO FIX - should i cycle kwargs and use them directly??
-    # Doesn't this expose too much of my db schema?
-        key = kwargs.get("by_key")  # Get extra arguments
+        p = RethinkConnection.get_parameters_with_defaults(kwargs)
 
         # Case with arguments
-        if key != None:
+        if p["id"] != None:
             # Note: 'get_all' works, don't know why 'get' doesn't
-            query = r.table(table).get_all(key, index='id')
+            query = r.table(table).get_all(p["id"], index='id')
         # Case no arguments (all table)
         else:
             query = r.table(table)
-#############################################################
 
         # Note: i should not check if i cannot find any data.
-        json_data = {}
+        out = {}
         # As Api i should just return empty json if nothing is there
         # from my query
         if not query.is_empty().run():
 
-# TO FIX - should be a parameter
-            page_number = 1
-            per_page = 10
-# TO FIX - should be a parameter
-
             # Slice for pagination
-            start = (page_number - 1) * per_page
-            end = page_number * per_page
-            print start, end
+            start = (p["currentpage"] - 1) * p["perpage"]
+            end = p["currentpage"] * p["perpage"]
             out = query.slice(start, end).run()
             #out = query.skip(start).limit(end).run() #this does not work
 
-            data = list(out)
-            json_data = json.dumps(data)
-            print "TEST"
-            print data
-
-        # Need a list out of it
+        # Need a list to make this work
+        data = list(out)
+        # Serialize
+        json_data = json.dumps(data)
         return json_data
 
     # === Filter* ===

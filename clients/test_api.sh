@@ -5,7 +5,7 @@ protocol="http"
 #host="127.0.0.1" #from node
 host=$(boot2docker ip 2> /dev/null) #from host to local docker
 #host="80.240.138.39" #from host to digitalocean
-port=5005
+port=5507
 resource="data"
 
 #############################################
@@ -20,6 +20,14 @@ resource="data"
 # echo "received response '$key'"
 
 # exit 1
+
+#############################################
+#PAGING
+echo "***\nPaging"
+values="perpage=14&currentpage=5"
+key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
+echo "received '$key'"
+exit
 
 #############################################
 #ADD a new element

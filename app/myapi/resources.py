@@ -116,19 +116,19 @@ class GenericDBResource(Resource):
         Get all data. Note: could be an object serialized:
         restful docs in /quickstart.html#data-formatting
         """
+
         self.log.info("API: Received 'search'")
+        params = self.parser.parse_args()
+        for (name, value) in params.iteritems():
+            params[name] = value
 
-# TO FIX - both cases should query a fixed size
-#e.g. limit on db
-
-        if data_key == None:
-            # Query ALL
-            data = g.rdb.search()
-        else:
-            data_key = clean_parameter(data_key)
+        # Query RDB filtering on a single key
+        if data_key != None:
             self.log.info("API: Received 'search' for " + data_key)
-            #Query RDB filtering on a single key
-            data = g.rdb.search(by_key=data_key)
+            params["id"] = data_key
+
+        # Passing each parameters directly to rdb
+        data = g.rdb.search(**params)
         return data
 
     @abort_on_db_fail
