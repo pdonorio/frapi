@@ -3,6 +3,7 @@
 Impement restful Resources for flask
 """
 
+import json
 # Will use the restful plugin instead!
 from flask.ext.restful import reqparse, abort, Resource
 # Log is a good advice
@@ -128,8 +129,16 @@ class GenericDBResource(Resource):
             params["id"] = data_key
 
         # Passing each parameters directly to rdb
-        data = g.rdb.search(**params)
-        return data
+        (count,out) = g.rdb.search(**params)
+        print out
+        # Need a list to make this work
+        #data = list(out)
+        data = {"count":count, "items":list(out)}
+        # Serialize
+        json_data = json.dumps(data)
+
+        # Should build a better json array response
+        return json_data, HTTP_OK_ACCEPTED
 
     @abort_on_db_fail
     def post(self):
@@ -159,6 +168,7 @@ class GenericDBResource(Resource):
         self.log.debug("API: Insert of key " + key.__str__())
         #################
 
+        # Should build a better json array response
         return key, HTTP_OK_CREATED
 
     @abort_on_db_fail

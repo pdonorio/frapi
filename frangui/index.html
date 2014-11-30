@@ -49,19 +49,19 @@
         <h1>Fra-nguì!</h1>
         <p>Flask Restful api + Angular on Nginx static Gui.
         </br>
-        <a class="btn btn-primary" role="button">Learn more &raquo; </a> </p>
+        <a class="btn btn-default" role="button">Learn more &raquo; </a> </p>
       </div>
     </div>
 
-
     <div class="container">
-      <h2>MyApp</h2>
 
       <div ng-controller="TableController">
 
-        <div class="panel panel-default">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5>Testing rethinkdb database</h5>
+          </div>
           <div class="panel-body">
-          <h4>Testing rethinkdb database</h4>
 
 <!-- TO FIX - if data == 0 nothing changes... -->
           <!-- Handle loading and zero data -->
@@ -76,7 +76,7 @@
 
           <!-- data table -->
           <div ng-show='data.length > 0'>
-            <span>Current list of {{data.length}} elements:</span>
+            <span>Viewing {{data.length}} elements of {{datacount}}:</span>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -95,7 +95,10 @@
           </div>
 
           </div>
-          <div class="panel-footer">...a very cool prototype</div>
+
+          <div class="panel-footer">
+            This is a footer... in a very cool prototype!
+          </div>
         </div>
 
 

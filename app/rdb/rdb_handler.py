@@ -4,7 +4,7 @@ My python experiments with rethinkdb
 """
 
 # === Libraries ===
-import os, json
+import os
 
 # Connection structure and rethink libraries
 from bpractices.connections import Connection
@@ -162,7 +162,7 @@ class RethinkConnection(Connection):
         if p["currentpage"] == None:
             p["currentpage"] = 1
 
-        print p
+        #print p    #DEBUG?
         return p
 
     # === Search ===
@@ -183,8 +183,14 @@ class RethinkConnection(Connection):
         else:
             query = r.table(table)
 
+        # === Filter* ===
+        # filt = {"where":"silence"}
+        # collection = RethinkCollection(DataDump, filter=filt)
+        # result = collection.fetch()
+
         # Note: i should not check if i cannot find any data.
         out = {}
+        count = 0
         # As Api i should just return empty json if nothing is there
         # from my query
         if not query.is_empty().run():
@@ -192,23 +198,16 @@ class RethinkConnection(Connection):
             # Slice for pagination
             start = (p["currentpage"] - 1) * p["perpage"]
             end = p["currentpage"] * p["perpage"]
+            count = query.count().run()
             out = query.slice(start, end).run()
             #out = query.skip(start).limit(end).run() #this does not work
 
-        # Need a list to make this work
-        data = list(out)
-        # Serialize
-        json_data = json.dumps(data)
-        return json_data
-
-    # === Filter* ===
-        # filt = {"where":"silence"}
-        # collection = RethinkCollection(DataDump, filter=filt)
-        # result = collection.fetch()
+        # Warning: out is a cursor and can be used in two ways:
+        # 1. use the for cycle
+        # 2. use list(out) to get a vector
+        return (count, out)
 
     # === Insert ===
-# TO FIX - does not seem to work,
-# maybe one decorator catch the exception of the other?
     @check_model
     @TryExcept("DB table does not exist", RqlRuntimeError)
     def insert(self, data_dict, force_id=None):
@@ -216,7 +215,8 @@ class RethinkConnection(Connection):
         Note: rdb cannot take the id value inside the whole data.
         Make sure you pop that out as 'force_id' """
 
-        table = self.model.table
+        # Should create table if not exists? I think not
+        #table = self.model.table
         #self.create_table(table) #, True)
 
         # Skip if empty

@@ -23,11 +23,11 @@ resource="data"
 
 #############################################
 #PAGING
-echo "***\nPaging"
-values="perpage=14&currentpage=5"
-key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
-echo "received '$key'"
-exit
+# echo "***\nPaging"
+# values="perpage=7&currentpage=1"
+# key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
+# echo "received '$key'"
+# exit
 
 #############################################
 #ADD a new element
