@@ -67,6 +67,11 @@
           </div>
           <div class="panel-body">
 
+          <div>
+           Per page: <input type="text" name="input" value="10"
+            ng-model="perpage" ng-change="reloadTable(perpage)">
+          </div>
+
 <!-- TO FIX - if data == 0 nothing changes... -->
           <!-- Handle loading and zero data -->
           <div id='spinner' ng-hide='data.length > 0'>

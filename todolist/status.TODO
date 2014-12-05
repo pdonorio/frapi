@@ -18,7 +18,8 @@ FRANGUI = flask restful api nginx Gui:
        ✔ query slice (rethinkdb) @done (14-11-29 19:56)
          ✔ query.slice((pageNumber - 1) * perPage, pageNumber * perPage) @done (14-11-29 19:56)
      ✔ count and items (in json data) response @done (14-11-30 09:23)
-     ☐ call with parameters, perpage, currentpage
+     ✔ call with parameters, perpage, currentpage @done (14-12-05 13:18)
+     ✔ map parameters to html DOM via scope @done (14-12-05 16:54)
      ☐ page buttons template (angular)
        ☐ https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination
    ☐ sort?
