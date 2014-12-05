@@ -130,7 +130,7 @@ class GenericDBResource(Resource):
 
         # Passing each parameters directly to rdb
         (count,out) = g.rdb.search(**params)
-        print out
+
         # Need a list to make this work
         #data = list(out)
         data = {"count":count, "items":list(out)}

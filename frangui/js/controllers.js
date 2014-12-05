@@ -1,11 +1,25 @@
+
 //###########################################
 //controller
-myModule.controller('TableController', function($scope, Api) {
+myModule.controller('TableController', ['$scope', 'Restangular',
+  function($scope, Restangular) {
 
     //INIT
     $scope.datacount = 0;
     $scope.data = {};
     $scope.headers = [ "", "Key", "Value" ];
+
+    // All URLs on searches will use `http://google.com/` as the baseUrl
+    api = Restangular.allUrl('pyapi','http://awesome.dev:5507');
+    api.customGET("data").then(function(output) {
+      data = JSON.parse(output);
+      //console.log(data);
+      $scope.datacount = data.count;
+      $scope.data = data.items;
+    });
+
+
+/*
 
     //make the call to Api get - use promises
     Api.get().then(function(result) {
@@ -17,19 +31,16 @@ myModule.controller('TableController', function($scope, Api) {
         //what to do if status > 0 (== error)?
     });
 
-/*
-    //Implement mock data
-    $scope.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false}];
+*/
 
-    //add data
+/* FROM THE EXAMPLE.....
+
+    //add
     $scope.addTodo = function() {
       $scope.todos.push({text:$scope.todoText, done:false});
       $scope.todoText = '';
     };
-
-    //count actual data (marked as done)
+    //count
     $scope.remaining = function() {
       var count = 0;
       angular.forEach($scope.todos, function(todo) {
@@ -37,8 +48,7 @@ myModule.controller('TableController', function($scope, Api) {
       });
       return count;
     };
-
-    //archive = delete/push
+    //archive
     $scope.archive = function() {
       var oldTodos = $scope.todos;
       $scope.todos = [];
@@ -49,4 +59,4 @@ myModule.controller('TableController', function($scope, Api) {
 */
 
     //end
-});
+  }]);

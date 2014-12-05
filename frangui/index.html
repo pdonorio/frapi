@@ -46,16 +46,22 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container" id="content">
+      Home
+
+<!--
         <h1>Fra-nguì!</h1>
         <p>Flask Restful api + Angular on Nginx static Gui.
         </br>
         <a class="btn btn-default" role="button">Learn more &raquo; </a> </p>
+ -->
       </div>
     </div>
 
     <div class="container">
 
       <div ng-controller="TableController">
+
+      <span> {{tmp}} </span>
 
         <div class="panel panel-info">
           <div class="panel-heading">
@@ -124,8 +130,10 @@
     </div> <!-- bootstrap container -->
 
     <!-- Placed at the end of the document so the pages load faster -->
-
     <script src="js/angular/angular.min.js"></script>
+    <!-- Restangualr (js for calling apis) -->
+    <script src="js/restangular/lodash.min.js"></script>
+    <script src="js/restangular/restangular.min.js"></script>
     <!-- Angular strap (js for bootstrap operations) -->
     <script src="js/angular-strap/angular-strap.min.js"></script>
     <script src="js/angular-strap/angular-strap.tpl.min.js"></script>
