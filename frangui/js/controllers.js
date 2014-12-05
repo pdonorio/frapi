@@ -1,13 +1,13 @@
-
 //###########################################
-//controller
+//CONTROLLER
 myModule.controller('TableController', function($scope, DataResource) {
 
-    //INIT
+    // Init: Html scope data
     $scope.datacount = 0;
     $scope.data = {};
     $scope.headers = [ "", "Key", "Value" ];
 
+//params?
     promise = DataResource.get("data");
 
     promise

@@ -10,12 +10,23 @@ myModule.factory('DataResource', function(Restangular) {
 
     //###################################
     //GET DATA
-    Factory.get = function(resource) {
+    Factory.get = function(resource, ppage, cpage) {
 
+      if (!angular.isNumber(ppage)) {
+        ppage = 10;
+      }
+      if (!angular.isNumber(cpage)) {
+        cpage = 1;
+      }
+      // console.log(ppage);
+      // console.log(cpage);
       //console.log(resource);
 
+      // Set parameters for my Api filters
+      params = {perpage: ppage, currentpage: cpage};
+
       // Make a promise for data call
-      promise = api.customGET(resource)
+      promise = api.customGET(resource, params)
         .then(
           //Success
           function(output) {
