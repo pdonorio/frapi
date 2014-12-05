@@ -12,19 +12,6 @@ myModule.factory('DataResource', function(Restangular) {
     //GET DATA
     Factory.get = function(resource, ppage, cpage) {
 
-      console.log("Call " + ppage)
-
-      if (!angular.isNumber(ppage)) {
-        ppage = 10;
-      }
-      if (!angular.isNumber(cpage)) {
-        cpage = 1;
-      }
-      // console.log(ppage);
-      // console.log(cpage);
-      //console.log(resource);
-      console.log("Use " + ppage)
-
       // Set parameters for my Api filters
       params = {perpage: ppage, currentpage: cpage};
 

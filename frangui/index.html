@@ -47,7 +47,6 @@
     <div class="jumbotron">
       <div class="container" id="content">
       Home
-
 <!--
         <h1>Fra-nguì!</h1>
         <p>Flask Restful api + Angular on Nginx static Gui.
@@ -68,8 +67,12 @@
           <div class="panel-body">
 
           <div>
-           Per page: <input type="text" name="input" value="10"
-            ng-model="perpage" ng-change="reloadTable(perpage)">
+           Current page: <input type="text" name="input" value="1"
+            ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+          </div>
+          <div>
+           Elements per page: <input type="text" name="input" value="10"
+            ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
           </div>
 
 <!-- TO FIX - if data == 0 nothing changes... -->
@@ -85,7 +88,10 @@
 
           <!-- data table -->
           <div ng-show='data.length > 0'>
-            <span>Viewing {{data.length}} elements of {{datacount}}:</span>
+            <span>Viewing
+            from {{from}}
+            to {{from + data.length - 1}}
+            of {{datacount}}:</span>
             <table class="table table-striped">
               <thead>
                 <tr>
