@@ -28,19 +28,21 @@ myModule
       if (isNaN(currentpage)) {
         currentpage = currentpage_default;
       }
-     //console.log(perpage);
+      //console.log(perpage);
 
+      // Get the data (as a promise)
       promise = DataResource.get("data", perpage, currentpage);
 
+      // Use the data promise
       promise
         //Success
         .then(function(data) {
+
+          //assign data to scope
           $scope.datacount = data.count;
           $scope.data = data.items;
           from = (perpage * (currentpage-1)) +1;
-          if (from < 1) {
-            from = 1;
-          }
+          if (from < 1) { from = 1; }
           $scope.from = from;
         },
         //Error
@@ -52,8 +54,8 @@ myModule
 
     }
 
-    // First time call to get data
-    $scope.reloadTable($scope.perpage);
+    // First time call to get data - with defaults
+    $scope.reloadTable();
     /* HOW TO CACHE ?? */
 
     // DEBUG factory result
