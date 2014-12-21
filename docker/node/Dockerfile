@@ -26,16 +26,8 @@ ENV NODEV 0.10.13
 RUN source ~/.bashrc && nvm install $NODEV \
     && npm update -g npm \
     && npm install -g yo \
-    && npm install -g generator-angular
+    && npm install -g generator-angular \
+    && npm install -g bower grunt-cli
 
 RUN echo "nvm use v$NODEV" >> ~/.bashrc
-# RUN which node
-
-##YES
-# RUN npm update -g npm
-# RUN npm install -g yo
-# RUN npm install -g generator-angular
-
-##NO
-# #RUN npm install -g bower grunt-cli (comes with yo)
 # #RUN npm install -g grunt-bower-concat

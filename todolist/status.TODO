@@ -11,6 +11,17 @@ FRANGUI = flask restful api nginx Gui:
      ✔ http://stackoverflow.com/a/12602481 @done (14-11-29 15:38)
      ✔ added $timeout call to simulate the loading gif @done (14-11-29 15:39)
    ✔ striped table @done (14-11-29 18:00)
+
+ ☐ Scaffolding
+   ✔ Nodejs + npm @done (14-12-21 11:15)
+     ✘ Ubuntu is not the latest version!!! @cancelled (14-12-21 11:15)
+       ✘ Also ppa does not work @cancelled (14-12-21 11:15)
+       ✔ Need a local user and local installation via curl @done (14-12-21 11:16)
+   ☐ Bower packaging
+   ☐ Grunt tasks
+   ✔ Yoeman structure @done (14-12-21 11:16)
+     ✔ angular generator @done (14-12-21 11:16)
+
  ☐ Angular datatable like (with pagination)
    ✔ pagination @done (14-11-29 19:56)
      ✔ api side @done (14-11-29 19:56)
@@ -39,7 +50,6 @@ FRANGUI = flask restful api nginx Gui:
     ✔ http://www.ng-newsletter.com/posts/restangular.html [lodash or underscore?] @done (14-12-05 09:21)
     ✔ lodash @done (14-12-05 09:21)
  ☐ navbar fixed and responsive with angular strap
- ☐ minify??
 [ Up to here: this is the prototype branch which will forever exist ]
 
 WOW:
