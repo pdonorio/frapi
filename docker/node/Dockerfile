@@ -36,3 +36,5 @@ RUN source ~/.bashrc && nvm install $NODEV \
 #######################################
 # Get the environment ready
 RUN echo "nvm use v$NODEV" >> ~/.bashrc
+
+EXPOSE 9000

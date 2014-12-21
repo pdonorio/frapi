@@ -1,12 +1,16 @@
 # Node js
 .bash*
 .npm
-
-# Skip libraries for nodejs
-frangui/js
-frangui/css
-frangui/fonts
-src
+node_modules/
+bower_components/
+test/
+yoapp/.*
+yoapp/app/.*
+yoapp/app/404*
+yoapp/app/favico*
+yoapp/app/robots*
+yoapp/app/images
+yoapp/app/styles
 
 # Data dir
 data/*

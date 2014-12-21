@@ -17,10 +17,13 @@ FRANGUI = flask restful api nginx Gui:
      ✘ Ubuntu is not the latest version!!! @cancelled (14-12-21 11:15)
        ✘ Also ppa does not work @cancelled (14-12-21 11:15)
        ✔ Need a local user and local installation via curl @done (14-12-21 11:16)
-   ☐ Bower packaging
-   ☐ Grunt tasks
+   ✔ Bower packaging @done (14-12-21 13:39)
+   ✔ Grunt tasks @done (14-12-21 13:39)
    ✔ Yoeman structure @done (14-12-21 11:16)
      ✔ angular generator @done (14-12-21 11:16)
+     ☐ Test (and save) prototype
+     ☐ Learn how to put your code inside
+     ☐ add noty, fontawesome, others? (modernizr?)
 
  ☐ Angular datatable like (with pagination)
    ✔ pagination @done (14-11-29 19:56)
