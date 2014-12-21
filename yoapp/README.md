@@ -1,4 +1,12 @@
-##How to rebuild a new angular prototype from zero
+
+##Build
+
+```bash
+$ cd docker/node
+$ docker build -t node .
+```
+
+##How to create a new angular prototype from zero
 
 ```bash
 $ docker run -it -p 80:9000 -v yourapp:/opt/yourapp node
@@ -10,8 +18,12 @@ grunt build
 grunt serve
 ```
 
-##what else?
+##Deamonize
 
 ```bash
-Let's go
+$ docker run -d -p 80:9000 -v /Users/projects/frapi/yoapp:/opt/yo node /startup.sh
+# LOGS
+$ docker logs -f $(docker ps -q | head -1)
+# ACCESS WITH BASH
+$ docker -it $(docker ps -q | head -1) bash
 ```
