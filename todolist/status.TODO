@@ -21,9 +21,12 @@ FRANGUI = flask restful api nginx Gui:
    ✔ Grunt tasks @done (14-12-21 13:39)
    ✔ Yoeman structure @done (14-12-21 11:16)
      ✔ angular generator @done (14-12-21 11:16)
+       ✔ uglify? @done (14-12-21 17:30)
      ✔ Test (and save) prototype @done (14-12-21 14:45)
-     ☐ Learn how to put your code inside
-     ☐ add noty, fontawesome, others? (modernizr?)
+     ✔ Learn how to put your code inside @done (14-12-21 17:30)
+     ☐ add noty, fontawesome, Restangular (modernizr?)
+     ☐ docker fig integration
+       ☐ dist directory to ngix server on production?
 
  ☐ Angular datatable like (with pagination)
    ✔ pagination @done (14-11-29 19:56)
