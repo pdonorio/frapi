@@ -1,30 +1,41 @@
 FROM ubuntu:14.04
-
 RUN apt-get update
-RUN apt-get install -y ruby git nodejs npm
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN apt-get install -y ruby git curl
+# Force bash always
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# ##############################################
-RUN npm install -g bower coffee-script
-# karma grunt-cli
+#######################################
+# DEV USER
+ENV DIR /opt
 ENV NEWUSER developer
 ENV NEWPASS foobarbaz
-ENV DIR /opt
-
-RUN useradd -m $NEWUSER
-RUN adduser $NEWUSER sudo
+RUN useradd -m $NEWUSER -d $DIR
+RUN chown -R $NEWUSER $DIR
 USER $NEWUSER
 WORKDIR $DIR
-# ENV PROJECT afun
 
-### ACL???
-# useradd -u 3000 bob
-# usermod -R o=--- /usr/container/Databases/
-# setfacl -R -m u:bob:rwx /usr/container/Databases/
-# setfacl -R -d -m u:bob:rwx /usr/container/Databases/
+#######################################
+# Local latest Nodejs + yoeman (via nvm)
+# ...automatically incluedes bower and grunt...
+RUN touch .bashrc
+RUN curl \
+    https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh \
+    | bash
 
-# ##############################################
-# # USING A TEMPLATE
-# RUN git clone https://github.com/CaryLandholt/AngularFun.git $PROJECT
-# WORKDIR $UDIR/$PROJECT
-# RUN npm install
+ENV NODEV 0.10.13
+RUN source ~/.bashrc && nvm install $NODEV \
+    && npm update -g npm \
+    && npm install -g yo \
+    && npm install -g generator-angular
+
+RUN echo "nvm use v$NODEV" >> ~/.bashrc
+# RUN which node
+
+##YES
+# RUN npm update -g npm
+# RUN npm install -g yo
+# RUN npm install -g generator-angular
+
+##NO
+# #RUN npm install -g bower grunt-cli (comes with yo)
+# #RUN npm install -g grunt-bower-concat

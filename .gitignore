@@ -1,3 +1,7 @@
+# Node js
+.bash*
+.npm
+
 # Skip libraries for nodejs
 frangui/js
 frangui/css
@@ -15,9 +19,6 @@ logs
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
-# C extensions
-*.so
 
 # Distribution / packaging
 .Python
