@@ -37,28 +37,26 @@ api:
     links:
         - rdb:db
 
-# Web development angular pages running on a javascript server
-webdev:
-    build: ./docker/node
-    command: sleep 123456789
-    #command: /startup.sh
+# Web static angular pages
+web:
+    build: ./docker/gui
+    command: nginx
     volumes:
-        - ./yoapp:/opt/yo
-    working_dir: /opt/yo
+        - ./yoapp/dist:/opt/app
+    working_dir: /opt/app
     links:
         - api:api
     ports:
-        - "8080:9000" # Dev server
-        - "35729:35729" # Live reload
+        - "80:80" # Main server
 
-# # Web static angular pages
-# web:
-#     build: ./docker/gui
-#     command: nginx
+# # Web development angular pages running on a javascript server
+# webdev:
+#     build: ./docker/node
+#     command: /startup.sh
 #     volumes:
-#         - ./yoapp/dist:/opt/app
-#     working_dir: /opt/app
+#         - ./yoapp:/opt/yo
 #     links:
 #         - api:api
 #     ports:
-#         - "80:80" # Main server
+#         - "8080:9000" # Dev server
+#         - "35729:35729" # Live reload

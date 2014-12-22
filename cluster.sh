@@ -25,6 +25,11 @@ fi
 
 dir="apic"
 case "$1" in
+    *_prod)
+       echo "Going in production"
+       param=`echo $1 | sed 's/_with_prod\$//'`;
+       file="$dir/production.yml"
+    ;;
     *_with_gui)
        echo "Full gui cluster"
        param=`echo $1 | sed 's/_with_gui\$//'`;
