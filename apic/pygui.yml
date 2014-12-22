@@ -37,12 +37,24 @@ api:
     links:
         - rdb:db
 
+# Web development angular pages running on a javascript server
+webdev:
+    build: ./docker/node
+    command: /startup.sh
+    volumes:
+        - ./yoapp:/opt/yo
+    working_dir: /opt/app
+    links:
+        - api:api
+    ports:
+        - "8080:9000" # Dev server
+
 # Web static angular pages
 web:
     build: ./docker/gui
     command: nginx
     volumes:
-        - ./frangui:/opt/app
+        - ./yoapp/dist:/opt/app
     working_dir: /opt/app
     links:
         - api:api

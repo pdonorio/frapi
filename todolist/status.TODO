@@ -26,11 +26,13 @@ FRANGUI = flask restful api nginx Gui:
      ✔ Learn how to put your code inside @done (14-12-21 17:30)
      ✔ add noty, Restangular @done (14-12-22 07:19)
        ☐ add fontawesome
+         ☐ bower install --save fontawesome
      ☐ Integration of original javascript code
        ☐ missing promise library for angular?
      ☐ docker fig integration
-       ☐ dist directory to ngix server on production?
+       ✔ dist directory to ngix server on production? @done (14-12-22 07:25)
          ✘ or grunt dist serving (probably not) http://stackoverflow.com/a/21285745 @cancelled (14-12-22 07:19)
+       ☐ Test builing...
 
  ☐ Angular datatable like (with pagination)
    ✔ pagination @done (14-11-29 19:56)
