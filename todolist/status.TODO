@@ -49,6 +49,7 @@ FRANGUI = flask restful api nginx Gui:
      ✔ count and items (in json data) response @done (14-11-30 09:23)
      ✔ call with parameters, perpage, currentpage @done (14-12-05 13:18)
      ✔ map parameters to html DOM via scope @done (14-12-05 16:54)
+     ✔ ng-class @done (14-12-22 17:09)
      ☐ page buttons template (angular)
        ☐ https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination
    ☐ sort?

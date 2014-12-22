@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name yoApp.controller:MainCtrl
+ * @name yoApp.controller:ViewController
  * @description
- * # MainCtrl
+ * # ViewController
  * Controller of the yoApp
  */
 myModule
-  .controller('ViewCtrl', function ($scope,
+  .controller('ViewController', function ($scope,
     DataResource, perpageDefault, currentpageDefault)
 {
     // Init: Html scope data

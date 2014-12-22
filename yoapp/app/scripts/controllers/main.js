@@ -2,22 +2,33 @@
 
 /**
  * @ngdoc function
- * @name yoApp.controller:MainCtrl
+ * @name yoApp.controller:MainController
  * @description
- * # MainCtrl
+ * # MainController
  * Controller of the yoApp
  */
 myModule
-  .controller('MainCtrl', function ($scope) {
-
+  .controller('MainController', function ($scope, $location, $filter)
+  {
     $scope.menu = [
-        {'link':'', 'name':'home'},
-        {'link':'', 'name':'search'},
-        {'link':'', 'name':'about'},
+        {active:true, link:'', name:'home'},
+        {active:false, link:'search', name:'data'},
+        {active:false, link:'about', name:'about'},
     ];
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+    $scope.$on('$locationChangeStart', function(event) {
+        var p = $location.path();
+        p = p.substring(1, p.length);
+        //console.log(p);
+        for (var i = 0; i < $scope.menu.length; i++) {
+            if ($scope.menu[i]['link'] == p) {
+                $scope.menu[i]['active'] = true;
+            } else {
+                $scope.menu[i]['active'] = false;
+            }
+        };
+        //console.log($scope.menu);
+    });
+
+
   });

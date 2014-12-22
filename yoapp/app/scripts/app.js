@@ -10,11 +10,15 @@
  */
 var myModule = angular.module('yoApp',
   [
+
+  // DEPENCIES: external modules
     'ngAnimate', 'ngCookies',
     //'ngResource',
     'restangular',
     'ngRoute',
     'ngSanitize', 'ngTouch',
+  // DEPENCIES: own filters
+    'textOperations',
   ])
   // CONSTANTS
   .constant('apiaddress', 'http://awesome.dev:5507')
@@ -25,15 +29,15 @@ var myModule = angular.module('yoApp',
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        //controller: 'MainController'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        controller: 'AboutController'
       })
       .when('/search', {
         templateUrl: 'views/datatable.html',
-        controller: 'ViewCtrl',
+        controller: 'ViewController',
         factory: 'DataResource'
       })
       .otherwise({
