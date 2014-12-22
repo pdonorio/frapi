@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the yoApp
  */
-angular.module('yoApp')
+myModule
   .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

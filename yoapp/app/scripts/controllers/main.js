@@ -7,8 +7,14 @@
  * # MainCtrl
  * Controller of the yoApp
  */
-angular.module('yoApp')
+myModule
   .controller('MainCtrl', function ($scope) {
+
+    $scope.menu = [
+        {'link':'', 'name':'home'},
+        {'link':'', 'name':'search'},
+        {'link':'', 'name':'about'},
+    ];
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

@@ -22,9 +22,12 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
+    <div class="container" ng-controller="MainCtrl">
       <div class="header">
         <ul class="nav nav-pills pull-right">
+          <li ng-repeat='el in menu'>
+            <a href="#/{{el.link}}">{{el.name}}</a>
+          </li>
           <li class="active"><a ng-href="#/">Home</a></li>
           <li><a ng-href="#/search">Search</a></li>
           <li><a ng-href="#/about">About</a></li>
@@ -83,6 +86,7 @@
         <script src="scripts/controllers/search.js"></script>
         <script src="scripts/services/search.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/filters/ucfirst.js"></script>
         <!-- endbuild -->
 </body>
 </html>

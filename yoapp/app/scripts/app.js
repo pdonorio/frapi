@@ -8,21 +8,19 @@
  *
  * Main module of the application.
  */
-var myModule = angular
-  .module('yoApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
+var myModule = angular.module('yoApp',
+  [
+    'ngAnimate', 'ngCookies',
+    //'ngResource',
     'restangular',
+    'ngRoute',
+    'ngSanitize', 'ngTouch',
   ])
   // CONSTANTS
-  .constant("apiaddress", 'http://awesome.dev:5507')
-  .constant("perpage_default", 10)
-  .constant("currentpage_default", 1)
-
+  .constant('apiaddress', 'http://awesome.dev:5507')
+  .constant('perpageDefault', 10)
+  .constant('currentpageDefault', 1)
+  //ROUTING
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
