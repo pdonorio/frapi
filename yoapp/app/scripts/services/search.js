@@ -22,7 +22,7 @@ myModule
       var params = {perpage: ppage, currentpage: cpage};
 
       // Make a promise for data call
-      promise = api.customGET(resource, params)
+      var promise = api.customGET(resource, params)
         .then(
           //Success
           function(output) {

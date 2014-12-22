@@ -36,7 +36,7 @@ myModule
       //console.log(perpage);
 
       // Get the data (as a promise)
-      promise = DataResource.get("data", perpage, currentpage);
+      var promise = DataResource.get("data", perpage, currentpage);
 
       // Use the data promise
       promise
@@ -46,7 +46,7 @@ myModule
           //assign data to scope
           $scope.datacount = data.count;
           $scope.data = data.items;
-          from = (perpage * (currentpage-1)) +1;
+          var from = (perpage * (currentpage-1)) +1;
           if (from < 1) { from = 1; }
           $scope.from = from;
         },
