@@ -8,15 +8,21 @@
  *
  * Main module of the application.
  */
-angular
+var myModule = angular
   .module('yoApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'restangular',
   ])
+  // CONSTANTS
+  .constant("apiaddress", 'http://awesome.dev:5507')
+  .constant("perpage_default", 10)
+  .constant("currentpage_default", 1)
+
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -27,8 +33,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/test', {
-        templateUrl: 'views/test.html',
+      .when('/search', {
+        templateUrl: 'views/datatable.html',
+        controller: 'ViewCtrl',
+        factory: 'DataResource'
       })
       .otherwise({
         redirectTo: '/'
