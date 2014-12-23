@@ -34,6 +34,8 @@ FRANGUI = flask restful api nginx Gui:
        ✔ live reloading with open port @done (14-12-22 10:00)
          ✘ or grunt dist serving (probably not) http://stackoverflow.com/a/21285745 @cancelled (14-12-22 07:19)
        ✔ routes and views @done (14-12-22 17:10)
+     ✔ Disable jshint by default on grunt serve @done (14-12-23 11:35)
+       ✔ You can run it on your bash shell with $ grunt jshint:all > stricts_errors.log @done (14-12-23 11:35)
      ☐ Test adding factory with angular generator
        ☐ https://www.npmjs.com/package/generator-angular
      ☐ Test builing...
@@ -43,7 +45,10 @@ FRANGUI = flask restful api nginx Gui:
        ☐ A place where json data could be started in angularjs?
 
   PROFILING:
+  ☐ Click to edit @cool @important
    ☐ Edit an html element by clicking (if administrator)
+     ☐ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool
+       ☐ or normal http://jsfiddle.net/joshdmiller/NDFHg/
      ☐ login @important
      ☐ show a little edit link with mouse over on a div
      ☐ guessing: what a good marker for a div could be
@@ -59,15 +64,23 @@ FRANGUI = flask restful api nginx Gui:
      ✔ map parameters to html DOM via scope @done (14-12-05 16:54)
      ✔ ng-class @done (14-12-22 17:09)
    ☐ Study angular datatables
+   ☐ UNDERSCORE! http://underscorejs.org/ @cool
    ☐ simple search all fields?
      ☐ Fuzzy @important
        ☐ Initial focus to search bar
        ☐ RDB or python?
+         ☐ python http://www.quora.com/How-is-the-fuzzy-search-algorithm-in-Sublime-Text-designed/answer/Bulat-Bochkariov
+         ☐ python library https://github.com/seatgeek/fuzzywuzzy
+         ☐ difflib https://docs.python.org/2/library/difflib.html (get_close_matches)
+         ☐ rethinkdb match http://www.rethinkdb.com/api/python/match/
+         ☐ rethinkdb elastic http://rethinkdb.com/docs/elasticsearch/
    ☐ sort?
    ✔ promises @done (14-12-22 17:10)
    ☐ infinite scrolling @important
      ☐ page buttons template (angular) eventually
        ☐ https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination
+   ☐ Advanced search
+     ☐ off canvas bootstrap?
  ✘ Little fun with angular strap  2.1.4 (downgrade angular to 1.3.1? ) @cancelled (14-12-23 06:41)
    ✘ http://mgcrea.github.io/angular-strap/#/page-one#getting-started @cancelled (14-12-23 06:41)
    ✘ https://github.com/mgcrea/angular-strap/releases @cancelled (14-12-23 06:41)
@@ -81,6 +94,14 @@ FRANGUI = flask restful api nginx Gui:
     ✔ lodash @done (14-12-05 09:21)
  ✘ navbar fixed and responsive with angular strap @cancelled (14-12-23 06:42)
 [ Up to here: this is the prototype branch which will forever exist ]
+
+OPTIMIZIATION:
+ ☐ jshint:all to fix stricts on js code
+ ☐ Caching angularjs
+ ☐ Cookie save
+ ☐ Init progress bar
+   ☐ Home page separation from application
+   ☐ stay signed in
 
 WOW:
   ☐ A true new app in the new millennium
