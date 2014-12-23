@@ -10,7 +10,6 @@
  */
 var myModule = angular.module('yoApp',
   [
-
   // DEPENCIES: external modules
     'ngAnimate', 'ngCookies',
     //'ngResource',

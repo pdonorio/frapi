@@ -6,12 +6,29 @@
       </div>
       <div class="panel-body">
 
-      <div>
-       Current page: <input type="text" name="input" value="1"
-        ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+
+      <div class="container">
+        <form role="form" ng-submit="search()">
+          <div class="row">
+            <div class="input-group">
+              <input type="text" placeholder="Fuzzy search (try it!)"
+                class="form-control"
+                ng-value="{{fuzzy}}" ng-model="fuzzy" ng-change="search(fuzzy)">
+              <span class="input-group-btn">
+                <input type="submit" class="btn btn-info" value="Search">
+              </span>
+            </div>
+          </div>
+
+        </form>
       </div>
+
       <div>
-       Elements per page: <input type="text" name="input" value="10"
+       Current page:
+       <input type="text" ng-value="{{perpage}}" size=3
+        ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+       Elements per page:
+       <input type="text" ng-value="{{currentpage}}" size=3
         ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
       </div>
 
@@ -22,7 +39,7 @@
       </div>
 
       <div id='nodata' ng-show='data.length == 0'>
-        No data foundzy.
+        No data found.
       </div>
     <!-- TO FIX - if data == 0 nothing changes... -->
 

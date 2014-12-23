@@ -15,9 +15,16 @@ myModule
     $scope.datacount = 0;
     $scope.from = 0;
     $scope.data = {};
-    $scope.headers = [ "", "Key", "Value" ];
+    $scope.headers = [ "#", "Key", "Value" ];
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
+
+
+    $scope.fuzzy= '';
+    $scope.search = function(value)
+    {
+      console.log("Search value " + value)
+    }
 
     //Bind data in html to function
     $scope.reloadTable = function(perpage, currentpage)
