@@ -8,14 +8,14 @@
  *
  * Main module of the application.
  */
-var myModule = angular.module('yoApp',
+var myApp = angular.module('yoApp',
   [
-  // DEPENCIES: external modules
+  // DEPENCIES: base yeoman modules
     'ngAnimate', 'ngCookies',
-    //'ngResource',
+    'ngRoute', 'ngSanitize', 'ngTouch',
+  // DEPENCIES: external modules
     'restangular',
-    'ngRoute',
-    'ngSanitize', 'ngTouch',
+    'xeditable',
   // DEPENCIES: own filters
     'textOperations',
   ])

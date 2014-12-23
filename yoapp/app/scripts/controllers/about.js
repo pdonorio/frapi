@@ -7,7 +7,7 @@
  * # AboutController
  * Controller of the yoApp
  */
-myModule
+myApp
   .controller('AboutController', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

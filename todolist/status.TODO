@@ -47,8 +47,11 @@ FRANGUI = flask restful api nginx Gui:
   PROFILING:
   ☐ Click to edit @cool @important
    ☐ Edit an html element by clicking (if administrator)
-     ☐ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool
-       ☐ or normal http://jsfiddle.net/joshdmiller/NDFHg/
+     ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
+       ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
+       ☐ table row edit
+       ☐ validation (local)
+       ☐ Submit via onaftersave
      ☐ login @important
      ☐ show a little edit link with mouse over on a div
      ☐ guessing: what a good marker for a div could be

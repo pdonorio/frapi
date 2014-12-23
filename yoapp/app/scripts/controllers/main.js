@@ -7,7 +7,7 @@
  * # MainController
  * Controller of the yoApp
  */
-myModule
+myApp
   .controller('MainController', function ($scope, $location, $filter)
   {
     $scope.menu = [
@@ -15,6 +15,11 @@ myModule
         {active:false, link:'search', name:'data'},
         {active:false, link:'about', name:'about'},
     ];
+
+    // editable element via xeditable
+    $scope.user = {
+        name: 'awesome user'
+    };
 
     $scope.$on('$locationChangeStart', function(event) {
         var p = $location.path();

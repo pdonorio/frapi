@@ -3,7 +3,7 @@
 /**
 // Inject Restangular class to use Apis
  */
-myModule
+myApp
   .factory('DataResource', function(Restangular, apiaddress)
 {
 

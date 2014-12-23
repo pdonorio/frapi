@@ -7,7 +7,7 @@
  * # ViewController
  * Controller of the yoApp
  */
-myModule
+myApp
   .controller('ViewController', function ($scope,
     DataResource, perpageDefault, currentpageDefault)
 {
