@@ -36,24 +36,39 @@ FRANGUI = flask restful api nginx Gui:
        ✔ routes and views @done (14-12-22 17:10)
      ✔ Disable jshint by default on grunt serve @done (14-12-23 11:35)
        ✔ You can run it on your bash shell with $ grunt jshint:all > stricts_errors.log @done (14-12-23 11:35)
-     ☐ Test adding factory with angular generator
-       ☐ https://www.npmjs.com/package/generator-angular
+     ✔ Test adding factory with angular generator @done (14-12-27 19:02)
+       ✔ https://www.npmjs.com/package/generator-angular @done (14-12-27 19:02)
      ☐ Test builing...
        ☐ http://yeoman.io/codelab/write-unit-tests.html
-     ☐ MVC directory structure
+     ☐ MVC directory
+       ☐ BETTER structure
        ☐ https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
        ☐ A place where json data could be started in angularjs?
 
   PROFILING:
   ✔ Click to edit @cool @important @done (14-12-27 18:06)
    ✔ Edit an html element by clicking (if administrator) @done (14-12-27 18:06)
-     ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
-       ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
-       ☐ Submit via onaftersave?
-       ☐ use STEPS with accordion? http://angular-ui.github.io/bootstrap/#/accordion
      ✔ show a little edit link with mouse over on a div? @done (14-12-27 18:06)
        ✔ show hover @done (14-12-27 17:47)
-       ☐ a switch for edit (only for admin)
+       ✔ No anchors (use form instead) @done (14-12-27 20:51)
+       ☐ a switch for edit (only for admin) @cool
+         ☐ Template with directive
+           ☐ my own tag
+             ☐ on/off button...
+           ☐ if admin mode use template
+           ☐ if no admin use normal content from json
+         ☐ Switcher?
+           ☐ https://github.com/frapontillo/angular-bootstrap-switch @bootstrap
+           ☐ http://cgarvis.github.io/angular-toggle-switch @simple
+           ☐ https://github.com/xpepermint/angular-ui-switch @ios_like
+       ☐ click to edit tooltip? http://getbootstrap.com/javascript/#tooltips-examples
+     ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
+       ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
+       ☐ Read init via database
+       ☐ Submission via post api to database!!
+         ☐ Submit via onaftersave?
+       ☐ use STEPS with accordion?
+         ☐ http://angular-ui.github.io/bootstrap/#/accordion
      ☐ login @important
 
  ANGULARJS datatable like:
