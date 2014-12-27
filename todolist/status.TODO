@@ -45,13 +45,13 @@ FRANGUI = flask restful api nginx Gui:
        ☐ A place where json data could be started in angularjs?
 
   PROFILING:
-  ☐ Click to edit @cool @important
-   ☐ Edit an html element by clicking (if administrator)
+  ✔ Click to edit @cool @important @done (14-12-27 18:06)
+   ✔ Edit an html element by clicking (if administrator) @done (14-12-27 18:06)
      ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
        ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
        ☐ Submit via onaftersave?
        ☐ use STEPS with accordion? http://angular-ui.github.io/bootstrap/#/accordion
-     ☐ show a little edit link with mouse over on a div?
+     ✔ show a little edit link with mouse over on a div? @done (14-12-27 18:06)
        ✔ show hover @done (14-12-27 17:47)
        ☐ a switch for edit (only for admin)
      ☐ login @important

@@ -2,20 +2,13 @@
 <div class="jumbotron">
 
   <div ng-controller="MainController">
-    <div
-      >
+    <div ng-class="{highlight: hover}" ng-init="hover=false"
+      ng-mouseenter="hover=true" ng-mouseout="hover=false" >
       <a href="#" editable-textarea="hcontent" e-rows="7" e-cols="40">
-        <div
-      ng-class="{highlight: hover}" ng-init="hover=false"
-      ng-mouseenter="hover=true" ng-mouseout="hover=false"
-        >
-        {{ hcontent || 'no data yet found' }}
-        </div>
+        <div ng-bind-html="hcontent" > </div>
       </a>
+      <div ng-show="hover"><i>click to edit</i></div>
     </div>
-<!--         A TEST FOR FUTURE DEVELOPMENT
-<p ng-bind-html="htcontent"></p>
- -->
   </div>
 
 <!--   <p class="lead">
