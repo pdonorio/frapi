@@ -40,8 +40,8 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
               <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Messages  <span class="badge">4</span></a></li>
+              <li><a href="#">Another action <span class="label label-default">new</span></a></li>
+              <li><a href="#">Messages  <span class="badge alert-info">4</span></a></li>
               <li class="divider"></li>
               <li role="presentation" class="dropdown-header">Dropdown header</li>
               <li><a href="#">Log out</a></li>
@@ -49,10 +49,6 @@
           </li>
         </ul>
         <h3 class="text-muted">aapp</h3>
-      </div>
-
-      <div ng-controller="MainController">
-        <a href="#" editable-text="user.name">{{ user.name || "empty" }}</a>
       </div>
 
 <!--       MAIN VIEW (see views/ directory) -->

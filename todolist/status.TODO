@@ -49,12 +49,12 @@ FRANGUI = flask restful api nginx Gui:
    ☐ Edit an html element by clicking (if administrator)
      ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
        ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
-       ☐ table row edit
-       ☐ validation (local)
-       ☐ Submit via onaftersave
+       ☐ Submit via onaftersave?
+       ☐ use STEPS with accordion? http://angular-ui.github.io/bootstrap/#/accordion
+     ☐ show a little edit link with mouse over on a div?
+       ✔ show hover @done (14-12-27 17:47)
+       ☐ a switch for edit (only for admin)
      ☐ login @important
-     ☐ show a little edit link with mouse over on a div
-     ☐ guessing: what a good marker for a div could be
 
  ANGULARJS datatable like:
    ✔ pagination @done (14-11-29 19:56)
@@ -71,6 +71,8 @@ FRANGUI = flask restful api nginx Gui:
    ☐ simple search all fields?
      ☐ Fuzzy @important
        ☐ Initial focus to search bar
+       ☐ writing the autocompletion
+         ☐ typehead http://angular-ui.github.io/bootstrap/#/typeahead
        ☐ RDB or python?
          ☐ python http://www.quora.com/How-is-the-fuzzy-search-algorithm-in-Sublime-Text-designed/answer/Bulat-Bochkariov
          ☐ python library https://github.com/seatgeek/fuzzywuzzy

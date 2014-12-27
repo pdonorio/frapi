@@ -20,6 +20,7 @@ myApp
     $scope.user = {
         name: 'awesome user'
     };
+    $scope.hcontent = '<h1>Hello world :)</h1>';
 
     $scope.$on('$locationChangeStart', function(event) {
         var p = $location.path();

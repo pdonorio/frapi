@@ -1,10 +1,29 @@
+
 <div class="jumbotron">
-  <h1>Hello world :)</h1>
-  <p class="lead">
+
+  <div ng-controller="MainController">
+    <div
+      >
+      <a href="#" editable-textarea="hcontent" e-rows="7" e-cols="40">
+        <div
+      ng-class="{highlight: hover}" ng-init="hover=false"
+      ng-mouseenter="hover=true" ng-mouseout="hover=false"
+        >
+        {{ hcontent || 'no data yet found' }}
+        </div>
+      </a>
+    </div>
+<!--         A TEST FOR FUTURE DEVELOPMENT
+<p ng-bind-html="htcontent"></p>
+ -->
+  </div>
+
+<!--   <p class="lead">
     <img src="images/yeoman.png" alt="I'm Yeoman"><br>
     Always a pleasure scaffolding your apps.
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+ -->
+ <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
 <div class="row marketing">
