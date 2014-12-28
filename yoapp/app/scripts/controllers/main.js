@@ -36,9 +36,11 @@ myApp
     // editable element via xeditable
     $scope.edit = { switch: false };
     $scope.elements = {
-        a: { content : '<h1>Main name</h1>', highlight: false },
+        a: { content : '<h1>Main text</h1>', highlight: false },
         b: { content : '<h4>Title</h4>', highlight: false },
         c: { content : '<p> This is a description for my application. </p>', highlight: false },
+        d: { content : '<h4>Karma</h4>', highlight: false },
+        e: { content : '<p>Spectacular Test Runner for JavaScript. </p>', highlight: false },
     };
 
   });

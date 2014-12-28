@@ -51,9 +51,9 @@ FRANGUI = flask restful api nginx Gui:
      ✔ show a little edit link with mouse over on a div? @done (14-12-27 18:06)
        ✔ show hover @done (14-12-27 17:47)
        ✔ No anchors (use form instead) @done (14-12-27 20:51)
-       ☐ a switch for edit (only for admin) @cool
-         ☐ Template with directive
-           ☐ my own tag
+       ✔ a switch for edit (only for admin) @cool @done (14-12-28 17:48)
+         ✔ Template with directive @done (14-12-28 17:48)
+           ✔ my own tag @done (14-12-28 17:48)
              ✔ on/off button... @done (14-12-28 11:29)
          ✔ ng-if @done (14-12-28 11:30)
            ✔ if admin mode use template @done (14-12-28 17:18)
@@ -74,6 +74,16 @@ FRANGUI = flask restful api nginx Gui:
        ☐ use STEPS with accordion?
          ☐ http://angular-ui.github.io/bootstrap/#/accordion
      ☐ login @important
+
+OPTIMIZIATION:
+ ☐ jshint:all to fix stricts on js code
+ ☐ Caching angularjs
+   ☐ Use local storage
+     ☐ http://yeoman.io/codelab/local-storage.html
+     ☐ COOKIES!!
+ ☐ Init progress bar
+   ☐ Home page separation from application
+   ☐ stay signed in
 
  ANGULARJS datatable like:
    ✔ pagination @done (14-11-29 19:56)
@@ -120,14 +130,6 @@ FRANGUI = flask restful api nginx Gui:
     ✔ lodash @done (14-12-05 09:21)
  ✘ navbar fixed and responsive with angular strap @cancelled (14-12-23 06:42)
 [ Up to here: this is the prototype branch which will forever exist ]
-
-OPTIMIZIATION:
- ☐ jshint:all to fix stricts on js code
- ☐ Caching angularjs
- ☐ Cookie save
- ☐ Init progress bar
-   ☐ Home page separation from application
-   ☐ stay signed in
 
 WOW:
   ☐ A true new app in the new millennium

@@ -1,12 +1,13 @@
 
 <div class="jumbotron">
-  <div ng-init="item = elements.a" ng-include="'templates/editable.html'"></div>
+  <editable-content item='elements.a' editable='edit'></editable-content>
 </div>
 
 <div class="row marketing">
-  <div ng-init="item = elements.b" ng-include="'templates/editable.html'"></div>
-  <div ng-init="item = elements.c" ng-include="'templates/editable.html'"></div>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript. </p>
+  <!-- could be a ng-repeat -->
+  <editable-content item='elements.b' editable='edit'></editable-content>
+  <editable-content item='elements.c' editable='edit'></editable-content>
+  <editable-content item='elements.d' editable='edit'></editable-content>
+  <editable-content item='elements.e' editable='edit'></editable-content>
 </div>
