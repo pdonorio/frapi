@@ -27,7 +27,9 @@ myApp
         b: '<h4>Title</h4>',
         c: '<p> This is a description for my application. </p>',
     };
-    $scope.value1 = true;
+    $scope.edit = {
+        switch: false,
+    };
 
     $scope.$on('$locationChangeStart', function(event) {
         var p = $location.path();

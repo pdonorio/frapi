@@ -28,7 +28,7 @@ var myApp = angular.module('yoApp',
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainController'
+        //controller: 'MainController'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

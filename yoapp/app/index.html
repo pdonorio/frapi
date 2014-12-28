@@ -18,13 +18,13 @@
     <!-- endbuild -->
   </head>
   <body ng-app="yoApp">
+    <div class="container" ng-controller="MainController">
 
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-controller="MainController">
       <div class="header">
         <!-- Normal menu button -->
         <ul class="nav nav-pills pull-right">
@@ -49,14 +49,17 @@
           </li>
         </ul>
         <h3 class="text-muted">aapp</h3>
-      </div>
+        <!-- Button Switch for edit on/off -->
+        <div> Editable: <input type="checkbox" ng-model="edit.switch"> </div>
+        value: {{edit.switch}}
 
 <!--       MAIN VIEW (see views/ directory) -->
-      <div ng-view=""></div>
+        <div ng-view=""></div>
 
-      <div class="footer">
-        <p> Development is becoming real fun! </p>
-      </div>
+        <div class="footer">
+          <p> Development is becoming real fun! </p>
+        </div>
+<!--  END OF MAIN CONTROLLER -->
     </div>
 
 

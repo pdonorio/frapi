@@ -1,16 +1,9 @@
 
 <div class="jumbotron">
 
-  <div ng-controller="MainController">
-
-    <div>
-      <form name="myForm">
-        Button: <input type="checkbox" ng-model="value1"> <br/>
-      </form>
-      <tt>value1 = {{value1}}</tt><br/>
-    </div>
-
-    <div ng-if="value1">
+    value: {{edit.switch}}
+    <!-- EDIT ON -->
+    <div ng-if="edit.switch">
       <div ng-class="{highlight: hv.a}" ng-mouseenter="hv.a=true" ng-mouseout="hv.a=false" >
         <span editable-textarea="hcontent.a" e-rows="3" e-cols="40" e-form="edit1">
           <div ng-bind-html="hcontent.a"  ng-click="edit1.$show()"></div>
@@ -18,12 +11,10 @@
         </span>
       </div>
     </div>
-
-    <div ng-if="!value1">
-        <div ng-bind-html="hcontent.a"></div>
+    <!-- EDIT OFF -->
+    <div ng-if="!edit.switch">
+      <div ng-bind-html="hcontent.a"></div>
     </div>
-
-  </div>
 
 <!--
   <p class="lead">
@@ -43,8 +34,6 @@
 
 <div class="row marketing">
 
-  <div ng-controller="MainController">
-
     <div ng-class="{highlight: hover.b}" ng-init="hover.b=false"
       ng-mouseenter="hover.b=true" ng-mouseout="hover.b=false" >
       <a editable-textarea="hcontent.b" e-rows="7" e-cols="40">
@@ -60,8 +49,6 @@
       </a>
       <div ng-show="hover.c"><i>click to edit</i></div>
     </div>
-
-  </div>
 
   <h4>Karma</h4>
   <p>Spectacular Test Runner for JavaScript.
