@@ -1,57 +1,12 @@
 
 <div class="jumbotron">
-
-    value: {{edit.switch}}
-    <!-- EDIT ON -->
-    <div ng-if="edit.switch">
-      <div ng-class="{highlight: hv.a}" ng-mouseenter="hv.a=true" ng-mouseout="hv.a=false" >
-        <span editable-textarea="hcontent.a" e-rows="3" e-cols="40" e-form="edit1">
-          <div ng-bind-html="hcontent.a"  ng-click="edit1.$show()"></div>
-          <div ng-show="hv.a" class="edittip"> <b>ADMIN:</b> <i>click to edit</i> </div>
-        </span>
-      </div>
-    </div>
-    <!-- EDIT OFF -->
-    <div ng-if="!edit.switch">
-      <div ng-bind-html="hcontent.a"></div>
-    </div>
-
-<!--
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
- -->
-
-<!--
-  <p>
-    <a class="btn btn-lg btn-success" ng-href="#">Splendid!
-    <span class="glyphicon glyphicon-ok"></span></a>
-  </p>
- -->
-
+  <div ng-init="item = elements.a" ng-include="'templates/editable.html'"></div>
 </div>
 
 <div class="row marketing">
-
-    <div ng-class="{highlight: hover.b}" ng-init="hover.b=false"
-      ng-mouseenter="hover.b=true" ng-mouseout="hover.b=false" >
-      <a editable-textarea="hcontent.b" e-rows="7" e-cols="40">
-        <div ng-bind-html="hcontent.b"></div>
-      </a>
-      <div ng-show="hover.b"><i>click to edit</i></div>
-    </div>
-
-    <div ng-class="{highlight: hover.c}" ng-init="hover.c=false"
-      ng-mouseenter="hover.c=true" ng-mouseout="hover.c=false" >
-      <a editable-textarea="hcontent.c" e-rows="7" e-cols="40">
-        <div ng-bind-html="hcontent.c"></div>
-      </a>
-      <div ng-show="hover.c"><i>click to edit</i></div>
-    </div>
+  <div ng-init="item = elements.b" ng-include="'templates/editable.html'"></div>
+  <div ng-init="item = elements.c" ng-include="'templates/editable.html'"></div>
 
   <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.
-  <br><b>[To test!]</b>
-  </p>
+  <p>Spectacular Test Runner for JavaScript. </p>
 </div>

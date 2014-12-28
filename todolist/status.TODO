@@ -52,12 +52,15 @@ FRANGUI = flask restful api nginx Gui:
        ✔ show hover @done (14-12-27 17:47)
        ✔ No anchors (use form instead) @done (14-12-27 20:51)
        ☐ a switch for edit (only for admin) @cool
-         ✘ Template with directive @cancelled (14-12-28 11:29)
-           ✘ my own tag @cancelled (14-12-28 11:29)
+         ☐ Template with directive
+           ☐ my own tag
              ✔ on/off button... @done (14-12-28 11:29)
          ✔ ng-if @done (14-12-28 11:30)
-           ☐ if admin mode use template
-           ☐ if no admin use normal content from json
+           ✔ if admin mode use template @done (14-12-28 17:18)
+           ✘ if no admin use normal content from json @cancelled (14-12-28 17:18)
+             ✔ also inside the same template! @done (14-12-28 17:18)
+             ✔ test ng-include   @done (14-12-28 17:19)
+               ✔ use nesting controllers and scope just fine @done (14-12-28 17:19)
          ☐ Switcher?
            ☐ https://github.com/frapontillo/angular-bootstrap-switch @bootstrap
            ☐ http://cgarvis.github.io/angular-toggle-switch @simple
@@ -108,6 +111,8 @@ FRANGUI = flask restful api nginx Gui:
  ☐ API: Check post, put and delete for parameters
  ☐ Implement POST
     ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+  ☐ Interesting concept, Basket Service:
+    ☐ http://stackoverflow.com/a/11704413
  ✘ resources usage instead of http? @cancelled (14-12-05 09:21)
     ✔ http://fdietz.github.io/recipes-with-angular-js/consuming-external-services/consuming-restful-apis.html @done (14-12-05 09:21)
  ✔ or Seriouse call to my python api with Restangular @done (14-12-05 09:21)

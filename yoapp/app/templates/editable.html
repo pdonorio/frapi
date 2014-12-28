@@ -1,0 +1,18 @@
+
+  <!-- if based on checkbox switch -->
+  item {{item}}
+    <!-- EDIT ON -->
+    <div ng-if="edit.switch">
+      <div  ng-class="{highlight: item.highlight}"
+            ng-mouseenter="item.highlight=true" ng-mouseout="item.highligh=false" >
+        <span editable-textarea="item.content" e-rows="3" e-cols="40" e-form="edit1">
+          <div ng-bind-html="item.content"  ng-click="edit1.$show()"></div>
+          <div ng-show="item.highlight" class="edittip"> <b>ADMIN:</b> <i>click to edit</i> </div>
+        </span>
+      </div>
+    </div>
+    <!-- EDIT OFF -->
+    <div ng-if="!edit.switch">
+      <div ng-bind-html="item.content"></div>
+    </div>
+  <!-- if based on checkbox switch -->
