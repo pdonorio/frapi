@@ -2,12 +2,27 @@
 <div class="jumbotron">
 
   <div ng-controller="MainController">
-    <div ng-class="{highlight: hv.a}" ng-mouseenter="hv.a=true" ng-mouseout="hv.a=false" >
-      <span editable-textarea="hcontent.a" e-rows="3" e-cols="40" e-form="edit1">
-        <div ng-bind-html="hcontent.a"  ng-click="edit1.$show()"></div>
-        <div ng-show="hv.a" class="edittip"> <b>ADMIN:</b> <i>click to edit</i> </div>
-      </span>
+
+    <div>
+      <form name="myForm">
+        Button: <input type="checkbox" ng-model="value1"> <br/>
+      </form>
+      <tt>value1 = {{value1}}</tt><br/>
     </div>
+
+    <div ng-if="value1">
+      <div ng-class="{highlight: hv.a}" ng-mouseenter="hv.a=true" ng-mouseout="hv.a=false" >
+        <span editable-textarea="hcontent.a" e-rows="3" e-cols="40" e-form="edit1">
+          <div ng-bind-html="hcontent.a"  ng-click="edit1.$show()"></div>
+          <div ng-show="hv.a" class="edittip"> <b>ADMIN:</b> <i>click to edit</i> </div>
+        </span>
+      </div>
+    </div>
+
+    <div ng-if="!value1">
+        <div ng-bind-html="hcontent.a"></div>
+    </div>
+
   </div>
 
 <!--

@@ -52,9 +52,10 @@ FRANGUI = flask restful api nginx Gui:
        ✔ show hover @done (14-12-27 17:47)
        ✔ No anchors (use form instead) @done (14-12-27 20:51)
        ☐ a switch for edit (only for admin) @cool
-         ☐ Template with directive
-           ☐ my own tag
-             ☐ on/off button...
+         ✘ Template with directive @cancelled (14-12-28 11:29)
+           ✘ my own tag @cancelled (14-12-28 11:29)
+             ✔ on/off button... @done (14-12-28 11:29)
+         ✔ ng-if @done (14-12-28 11:30)
            ☐ if admin mode use template
            ☐ if no admin use normal content from json
          ☐ Switcher?
