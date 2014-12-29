@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-switch/angular-ui-switch.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -49,14 +50,15 @@
           </li>
         </ul>
         <h3 class="text-muted">aapp</h3>
-        <!-- Button Switch for edit on/off -->
-        <div> Editable: <input type="checkbox" ng-model="edit.switch"> </div>
-
 <!--       MAIN VIEW (see views/ directory) -->
         <div ng-view=""></div>
 
         <div class="footer">
-          <p> Development is becoming real fun! </p>
+          <!-- Button Switch for edit on/off -->
+          <table>
+            <tr> <td>Edit switch: </td>
+            <td> <switch ng-model="edit.switch" class="small">Edit</switch> </td>
+            </tr> </table>
         </div>
 <!--  END OF MAIN CONTROLLER -->
     </div>
@@ -95,6 +97,7 @@
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

@@ -16,6 +16,7 @@ var myApp = angular.module('yoApp',
   // DEPENCIES: external modules
     'restangular',
     'xeditable',
+    'uiSwitch',
   // DEPENCIES: own filters
     'textOperations',
   ])

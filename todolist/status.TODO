@@ -61,11 +61,11 @@ FRANGUI = flask restful api nginx Gui:
              ✔ also inside the same template! @done (14-12-28 17:18)
              ✔ test ng-include   @done (14-12-28 17:19)
                ✔ use nesting controllers and scope just fine @done (14-12-28 17:19)
-         ☐ Switcher?
-           ☐ https://github.com/frapontillo/angular-bootstrap-switch @bootstrap
-           ☐ http://cgarvis.github.io/angular-toggle-switch @simple
-           ☐ https://github.com/xpepermint/angular-ui-switch @ios_like
-       ☐ click to edit tooltip? http://getbootstrap.com/javascript/#tooltips-examples
+         ✔ Switcher? @done (14-12-29 11:18)
+           ✘ https://github.com/frapontillo/angular-bootstrap-switch @bootstrap @cancelled (14-12-28 18:53)
+           ✘ http://cgarvis.github.io/angular-toggle-switch @simple @cancelled (14-12-28 19:17)
+           ✔ https://github.com/xpepermint/angular-ui-switch @ios_like @done (14-12-29 11:18)
+       ✘ click to edit tooltip? http://getbootstrap.com/javascript/#tooltips-examples @cancelled (14-12-28 18:53)
      ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
        ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
        ☐ Read init via database
