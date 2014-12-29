@@ -106,6 +106,21 @@ class DataDump(GenericORMModel):
         #print "Received: ", name, value, type(value)
         return value
 
+class WebContent(GenericORMModel):
+    """ Html content of elements in web pages of my application """
+    table = 'webcontent'
+
+    # Attributes as defined by static methods:
+    @staticmethod
+    def page(value):
+        return value    #e.g. about.html
+    @staticmethod
+    def element(value):
+        return value    #e.g. a1
+    @staticmethod
+    def content(value):
+        return value    #e.g. "This is the content <b>here</b>"
+
 # For authentication future use
 #
 # class APIUser(GenericORMModel):

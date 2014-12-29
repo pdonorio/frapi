@@ -42,6 +42,9 @@ api = Api(app, catch_all_404s=True)
 api.add_resource(resources.DataList, '/data')
 api.add_resource(resources.DataSingle, '/data/<string:data_key>')
 
+api.add_resource(resources.HtmlContents, '/webcontent')
+api.add_resource(resources.HtmlContent, '/webcontent/<string:data_key>')
+
 #############################################
 # === App setup ===
 # Do db and tables setup only first time,

@@ -47,8 +47,11 @@ webdev:
     working_dir: /opt/yo
     links:
         - api:api
+        # REMOVE IN THE FUTURE?
+        - rdb:db
     ports:
         - "80:9000" # Dev server
+        - "8080:3000" # Chateau admin db
         - "35729:35729" # Live reload
 
 # # Web static angular pages

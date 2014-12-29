@@ -12,7 +12,7 @@ FRANGUI = flask restful api nginx Gui:
      ✔ added $timeout call to simulate the loading gif @done (14-11-29 15:39)
    ✔ striped table @done (14-11-29 18:00)
 
- ✔ Scaffolding @done (14-12-23 06:48)
+Scaffolding:
    ✔ Nodejs + npm @done (14-12-21 11:15)
      ✘ Ubuntu is not the latest version!!! @cancelled (14-12-21 11:15)
        ✘ Also ppa does not work @cancelled (14-12-21 11:15)
@@ -41,7 +41,7 @@ FRANGUI = flask restful api nginx Gui:
      ✘ Test builing... @cancelled (14-12-29 12:20)
        ✘ http://yeoman.io/codelab/write-unit-tests.html @cancelled (14-12-29 12:20)
 
-  PROFILING:
+PROFILING:
   ✔ Click to edit @cool @important @done (14-12-27 18:06)
    ✔ Edit an html element by clicking (if administrator) @done (14-12-27 18:06)
      ✔ show a little edit link with mouse over on a div? @done (14-12-27 18:06)
@@ -65,7 +65,8 @@ FRANGUI = flask restful api nginx Gui:
      ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
        ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
 
- SUBMISSION:
+SUBMISSION:
+✔ INSERT some data :) @done (14-12-29 22:38)
  ☐ Config for html data
    ☐ Read init via database
  ☐ use STEPS with accordion?
@@ -74,6 +75,11 @@ FRANGUI = flask restful api nginx Gui:
     ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ☐ Submission via post api to database!!
    ☐ Submit via onaftersave?
+ ☐ Admin db
+  ✔ via npm: chateau @done (14-12-29 22:47)
+  ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)
+     ☐ node_modules/chateau/bin/chateau
+       ☐ node_modules/chateau/config.js
 
  AUTHENTICATION:
    ☐ Login

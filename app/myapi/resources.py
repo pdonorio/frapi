@@ -211,12 +211,22 @@ class GenericDBResource(Resource):
 # Warning: due to restful plugin system, get and get(value)
 # require 2 different resources...
 
+
+## Data (generic)
 class DataList(GenericDBResource):
     def __init__(self, db=None):
         super(DataList, self).__init__(data_models.DataDump, db)
 class DataSingle(GenericDBResource):
     def __init__(self):
         super(DataSingle, self).__init__(data_models.DataDump)
+
+## HtmlContent (admin editable html content of web pages)
+class HtmlContents(GenericDBResource):
+    def __init__(self, db=None):
+        super(HtmlContents, self).__init__(data_models.WebContent, db)
+class HtmlContent(GenericDBResource):
+    def __init__(self):
+        super(HtmlContent, self).__init__(data_models.WebContent)
 
 ################################################################
 
