@@ -25,8 +25,8 @@ rdb:
 # Python api server connected to Rethink DB database
 api:
     build: ./docker/webapp
-    command: bash /root/security.sh
-    #command: sleep 876129876
+    #command: bash /root/security.sh
+    command: sleep 876129876
     volumes:
         - ./app:/opt/app
     working_dir: /opt/app
@@ -48,7 +48,7 @@ webdev:
     links:
         - api:api
     ports:
-        - "8080:9000" # Dev server
+        - "80:9000" # Dev server
         - "35729:35729" # Live reload
 
 # # Web static angular pages

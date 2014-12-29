@@ -38,12 +38,8 @@ FRANGUI = flask restful api nginx Gui:
        ✔ You can run it on your bash shell with $ grunt jshint:all > stricts_errors.log @done (14-12-23 11:35)
      ✔ Test adding factory with angular generator @done (14-12-27 19:02)
        ✔ https://www.npmjs.com/package/generator-angular @done (14-12-27 19:02)
-     ☐ Test builing...
-       ☐ http://yeoman.io/codelab/write-unit-tests.html
-     ☐ MVC directory
-       ☐ BETTER structure
-       ☐ https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
-       ☐ A place where json data could be started in angularjs?
+     ✘ Test builing... @cancelled (14-12-29 12:20)
+       ✘ http://yeoman.io/codelab/write-unit-tests.html @cancelled (14-12-29 12:20)
 
   PROFILING:
   ✔ Click to edit @cool @important @done (14-12-27 18:06)
@@ -68,15 +64,30 @@ FRANGUI = flask restful api nginx Gui:
        ✘ click to edit tooltip? http://getbootstrap.com/javascript/#tooltips-examples @cancelled (14-12-28 18:53)
      ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
        ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
-       ☐ Read init via database
-       ☐ Submission via post api to database!!
-         ☐ Submit via onaftersave?
-       ☐ use STEPS with accordion?
-         ☐ http://angular-ui.github.io/bootstrap/#/accordion
-     ☐ login @important
+
+ SUBMISSION:
+ ☐ Config for html data
+   ☐ Read init via database
+ ☐ use STEPS with accordion?
+   ☐ http://angular-ui.github.io/bootstrap/#/accordion
+ ☐ Implement POST
+    ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+ ☐ Submission via post api to database!!
+   ☐ Submit via onaftersave?
+
+ AUTHENTICATION:
+   ☐ Login
+     ☐ Frontend page (quick search and login)
+     ☐ api oauth?
+     ☐ roles
+     ☐ forgot password
 
 OPTIMIZIATION:
  ☐ jshint:all to fix stricts on js code
+ ☐ MVC directory
+   ☐ BETTER structure
+   ☐ https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
+   ☐ A place where json data could be started in angularjs?
  ☐ Caching angularjs
    ☐ Use local storage
      ☐ http://yeoman.io/codelab/local-storage.html
@@ -119,8 +130,6 @@ OPTIMIZIATION:
    ✘ http://mgcrea.github.io/angular-strap/#/page-one#getting-started @cancelled (14-12-23 06:41)
    ✘ https://github.com/mgcrea/angular-strap/releases @cancelled (14-12-23 06:41)
  ☐ API: Check post, put and delete for parameters
- ☐ Implement POST
-    ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
   ☐ Interesting concept, Basket Service:
     ☐ http://stackoverflow.com/a/11704413
  ✘ resources usage instead of http? @cancelled (14-12-05 09:21)
