@@ -11,9 +11,10 @@ port=5507
 resource="webcontent"
 
 #############################################
-echo "***\nFULL LIST"
-$cmd $protocol://$host:$port/$resource
-exit
+# BUILD TEST
+# echo "***\nFULL LIST"
+# $cmd $protocol://$host:$port/$resource
+# exit
 
 #############################################
 # TO CHECK later on:
