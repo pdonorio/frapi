@@ -8,8 +8,7 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('ViewController', function ($scope,
-    DataResource, perpageDefault, currentpageDefault)
+  .controller('ViewController', function ($scope, DataResource, perpageDefault, currentpageDefault)
 {
     // Init: Html scope data
     $scope.datacount = 0;

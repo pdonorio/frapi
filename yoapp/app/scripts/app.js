@@ -26,10 +26,13 @@ var myApp = angular.module('yoApp',
   .constant('currentpageDefault', 1)
   //ROUTING
   .config(function ($routeProvider) {
+
+//Note to self: the controller that has access to the whole page is
+  //'MainController'
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        //controller: 'MainController'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -38,7 +41,7 @@ var myApp = angular.module('yoApp',
       .when('/search', {
         templateUrl: 'views/datatable.html',
         controller: 'ViewController',
-        factory: 'DataResource'
+        //factory: 'DataResource' //?? it works without...
       })
       .otherwise({
         redirectTo: '/'

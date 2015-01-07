@@ -8,13 +8,25 @@ FRANGUI = flask restful api nginx Gui:
     ☐ Draft/Published
     ☐ Image uploader
   ☐ Document view page
+  ☐ "Loading" at the very beginning of beautifil webapp?
+  ☐ Favico
 
 --- ✄ -----------------------
 #How to create a new api resource
 1. Define a new model inside data_models.py
 2. Implement Rdb resource inside resources.py with data model of step 1
 3. Define route inside routes.py with resource created in the step 2
-
+--- ✄ -----------------------
+  // Angular query api
+  DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
+    .then(function(data) {  //Success
+        console.log(data);
+        //do modifications to $scope
+    }, function(object) {      //Error
+      console.log("Controller api call Error");
+      console.log(object);
+    }
+  );
 --- ✄ -----------------------
 
 INIT:
@@ -82,7 +94,7 @@ PROFILING:
        ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
 SUBMISSION:
 ✔ INSERT some data :) @done (14-12-29 22:38)
- ☐ Config for html data
+ ✔ Config for html data @done (14-12-30 16:29)
    ☐ Read init via database
  ☐ use STEPS with accordion?
    ☐ http://angular-ui.github.io/bootstrap/#/accordion
@@ -144,6 +156,21 @@ AUTHENTICATION:
      ☐ roles
      ☐ forgot password
 
+API AUTH:
+  ☐ Authentication
+   ☐ Flask set SSL
+   ☐ no clean passwords ;D
+   ☐ Encryption class in bpract
+     ☐ salt
+     ☐ backoff after 3 failed try
+   ☐ Token
+   ☐ User Model should extend also AuthUser
+   ☐ Flask-auth - some methods could be usefull
+     ☐ Try to use Flask session
+     ☐ set timeout to authenticated user
+     ☐ Roles and groups
+       ☐ from configuration file
+
 OPTIMIZIATION:
  ☐ jshint:all to fix stricts on js code
  ☐ MVC directory
@@ -159,15 +186,11 @@ OPTIMIZIATION:
    ☐ stay signed in
  ☐ UNDERSCORE! http://underscorejs.org/ @cool
 
-WOW:
-  ☐ A true new app in the new millennium
-    ☐ http://zurb.com/article/1356/there-s-life-beyond-the-app-store
-  ☐ A real portfolio
-    ☐ http://themeforest.net/user/Flatfull/portfolio
-   ☐ Animations
-    ☐ http://julian.com/research/velocity/
-  ☐ A real developer..
-    ☐ https://plus.google.com/+OlivierLouvignes/posts
+OFFLINE APP:
+  ☐ Offline web applications - REC
+    ☐ http://caniuse.com/#feat=offline-apps
+  ☐ Method of defining web page files to be cached using a cache manifest file,
+    ☐ allowing them to work offline on subsequent visits to the page
 
 NEXT prototype (prototype-language):
  ☐ language in nosql database holding
@@ -198,29 +221,19 @@ NEXT NEXT prototype (prototype-scheduler):
  ☐ Redis queue? COOL
    ☐ https://realpython.com/blog/python/flask-by-example-implementing-a-redis-task-queue/
 
-AUTH:
-  ☐ Authentication
-   ☐ Flask set SSL
-   ☐ no clean passwords ;D
-   ☐ Encryption class in bpract
-     ☐ salt
-     ☐ backoff after 3 failed try
-   ☐ Token
-   ☐ User Model should extend also AuthUser
-   ☐ Flask-auth - some methods could be usefull
-     ☐ Try to use Flask session
-     ☐ set timeout to authenticated user
-     ☐ Roles and groups
-       ☐ from configuration file
-
 FINAL stuff:
  ☐ Flask api code tree - see examples
    ☐ https://github.com/mitsuhiko/flask/wiki/Large-app-how-to
- ☐ A separate container for flask api which automatically reload :D
+ ✔ A separate container for flask api which automatically reload :D @done (14-12-30 12:37)
  ☐ snippets 4 sublime
      ☐ Cleaner docker startup script + requested dockerfile (only 2?)
 
-OFFLINE APP:
-  Offline web applications - REC
-  http://caniuse.com/#feat=offline-apps
-  ☐ Method of defining web page files to be cached using a cache manifest file, allowing them to work offline on subsequent visits to the page
+WOW:
+  ☐ A true new app in the new millennium
+    ☐ http://zurb.com/article/1356/there-s-life-beyond-the-app-store
+  ☐ A real portfolio
+    ☐ http://themeforest.net/user/Flatfull/portfolio
+   ☐ Animations
+    ☐ http://julian.com/research/velocity/
+  ☐ A real developer..
+    ☐ https://plus.google.com/+OlivierLouvignes/posts

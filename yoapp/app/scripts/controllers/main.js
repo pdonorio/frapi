@@ -8,7 +8,7 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('MainController', function ($scope, $location, $filter)
+  .controller('MainController', function ($scope, DataResource, $location, $filter)
   {
 
     // Build dynamic menu in header
@@ -35,6 +35,25 @@ myApp
 
     // editable element via xeditable
     $scope.edit = { switch: false };
+
+    // Query api
+    var perpage = 5;
+    var currentpage = 1;
+    DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
+      .then(function(data) {  //Success
+          console.log(data);
+
+//////////////////////////////////////
+          //BUILD $scope.elements
+          $scope.data = data.items;
+//////////////////////////////////////
+
+      }, function(object) {      //Error
+        console.log("Controller api call Error");
+        console.log(object);
+      }
+    );
+
     $scope.elements = {
         a: { content : '<h1>Main text</h1>', highlight: false },
         b: { content : '<h4>Title</h4>', highlight: false },
