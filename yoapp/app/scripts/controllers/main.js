@@ -38,9 +38,6 @@ myApp
     // editable element via xeditable
     $scope.edit = { switch: false };
     $scope.elements = {};
-    $scope.myupdate = function(item) {
-        console.log(item);
-    };
 
     //////////////////////////////////////
     // Query api - READ
@@ -62,22 +59,10 @@ myApp
 
     //////////////////////////////////////
     // Query api - WRITE
-    $scope.update = function() {
-        console.log("Update");
-        //use pos and data
-        console.log($scope.elements);
+    $scope.update = function(content, pos) {
+        console.log(content);
+        console.log(pos);
         //UPDATE data using Dataresource (restangular) to post
     };
-
-    //////////////////////////////////////
-/*
-    $scope.elements = {
-        a: { content : '<h1>Main text</h1>', highlight: false },
-        b: { content : '<h4>Title</h4>', highlight: false },
-        c: { content : '<p> This is a description for my application. </p>', highlight: false },
-        d: { content : '<h4>Karma</h4>', highlight: false },
-        e: { content : '<p>Spectacular Test Runner for JavaScript. </p>', highlight: false },
-    };
-    */
 
   });
