@@ -1,13 +1,17 @@
 
+<!-- Example of using my directive as a tag for editing data -->
+
 <div class="jumbotron">
-  <editable-content item='elements.a' editable='edit'></editable-content>
+  <editable-content data='elements' pos='0' flag='edit' action='update()'></editable-content>
 </div>
 
 <div class="row marketing">
 
-  <!-- could be a ng-repeat -->
-  <editable-content item='elements.b' editable='edit'></editable-content>
-  <editable-content item='elements.c' editable='edit'></editable-content>
-  <editable-content item='elements.d' editable='edit'></editable-content>
-  <editable-content item='elements.e' editable='edit'></editable-content>
+  <!-- Should this be a ng-repeat ?-->
+  <editable-content data='elements' pos='1' flag='edit' action='update()'></editable-content>
+  <editable-content data='elements' pos='5' flag='edit' action='update()'></editable-content>
+  <editable-content data='elements' pos='3' flag='edit' action='update()'></editable-content>
+  <editable-content data='elements' pos='2' flag='edit' action='update()'></editable-content>
+  <!-- Should this be a ng-repeat ?-->
+
 </div>

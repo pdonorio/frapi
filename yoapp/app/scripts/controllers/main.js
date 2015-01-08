@@ -11,6 +11,7 @@ myApp
   .controller('MainController', function ($scope, DataResource, $location, $filter)
   {
 
+    //////////////////////////////////////
     // Build dynamic menu in header
     $scope.menu = [
         {active:true, link:'', name:'home'},
@@ -33,27 +34,43 @@ myApp
         };
     });
 
+    //////////////////////////////////////
     // editable element via xeditable
     $scope.edit = { switch: false };
+    $scope.elements = {};
+    $scope.myupdate = function(item) {
+        console.log(item);
+    };
 
-    // Query api
+    //////////////////////////////////////
+    // Query api - READ
     var perpage = 5;
     var currentpage = 1;
     DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
       .then(function(data) {  //Success
-          console.log(data);
-
-//////////////////////////////////////
-          //BUILD $scope.elements
-          $scope.data = data.items;
-//////////////////////////////////////
-
+        console.log("Read");
+        var tmp = data.items;
+        for (var i = tmp.length - 1; i >= 0; i--) {
+            //Should define as empty what is missing
+            $scope.elements[i] = { content: tmp[i].content, highlight: false };
+        };
       }, function(object) {      //Error
         console.log("Controller api call Error");
         console.log(object);
       }
     );
 
+    //////////////////////////////////////
+    // Query api - WRITE
+    $scope.update = function() {
+        console.log("Update");
+        //use pos and data
+        console.log($scope.elements);
+        //UPDATE data using Dataresource (restangular) to post
+    };
+
+    //////////////////////////////////////
+/*
     $scope.elements = {
         a: { content : '<h1>Main text</h1>', highlight: false },
         b: { content : '<h4>Title</h4>', highlight: false },
@@ -61,5 +78,6 @@ myApp
         d: { content : '<h4>Karma</h4>', highlight: false },
         e: { content : '<p>Spectacular Test Runner for JavaScript. </p>', highlight: false },
     };
+    */
 
   });

@@ -11,23 +11,24 @@ FRANGUI = flask restful api nginx Gui:
   ☐ "Loading" at the very beginning of beautifil webapp?
   ☐ Favico
 
---- ✄ -----------------------
-#How to create a new api resource
-1. Define a new model inside data_models.py
-2. Implement Rdb resource inside resources.py with data model of step 1
-3. Define route inside routes.py with resource created in the step 2
---- ✄ -----------------------
-  // Angular query api
-  DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
-    .then(function(data) {  //Success
-        console.log(data);
-        //do modifications to $scope
-    }, function(object) {      //Error
-      console.log("Controller api call Error");
-      console.log(object);
-    }
-  );
---- ✄ -----------------------
+HOW TO: new resource (api python):
+  --- ✄ -----------------------
+  #How to create a new api resource
+  1. Define a new model inside data_models.py
+  2. Implement Rdb resource inside resources.py with data model of step 1
+  3. Define route inside routes.py with resource created in the step 2
+  --- ✄ -----------------------
+    // Angular query api
+    DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
+      .then(function(data) {  //Success
+          console.log(data);
+          //do modifications to $scope
+      }, function(object) {      //Error
+        console.log("Controller api call Error");
+        console.log(object);
+      }
+    );
+  --- ✄ -----------------------
 
 INIT:
 
@@ -95,13 +96,16 @@ PROFILING:
 SUBMISSION:
 ✔ INSERT some data :) @done (14-12-29 22:38)
  ✔ Config for html data @done (14-12-30 16:29)
-   ☐ Read init via database
+   ✔ Read init via database @done (15-01-07 07:15)
+     ✔ Define elements array, from data inside api @done (15-01-08 11:37)
+       ☐ use a counter in the table
+     ☐ Count how many elements should be written
+ ☐ Implement POST (js)
+    ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ☐ use STEPS with accordion?
    ☐ http://angular-ui.github.io/bootstrap/#/accordion
- ☐ Implement POST
-    ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ☐ Submission via post api to database!!
-   ☐ Submit via onaftersave?
+   ☐ Submit via xeditable api
  ☐ Admin db
   ✔ via npm: chateau @done (14-12-29 22:47)
   ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)

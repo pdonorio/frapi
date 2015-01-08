@@ -1,13 +1,15 @@
 
-  <!-- if based on checkbox switch -->
+  <!-- the main 'ng-if' is based on CHECKBOX SWITCH -->
 
     <!-- EDIT ON -->
     <div ng-if="editable.switch">
       <div  ng-class="{highlight: item.highlight}"
             ng-mouseenter="item.highlight=true" ng-mouseout="item.highlight=false" >
-        <span editable-textarea="item.content" e-rows="3" e-cols="40" e-form="eform">
+        <span editable-textarea="item.content"
+          onaftersave="action(item)"
+          e-rows="3" e-cols="40" e-form="eform">
           <div ng-bind-html="item.content"  ng-click="eform.$show()"></div>
-          <div ng-show="item.highlight" class="edittip"> <b>ADMIN:</b> <i>click to edit</i> </div>
+          <div ng-show="item.highlight" class="edittip"> <b>admin:</b> <i>click2edit</i> </div>
         </span>
       </div>
     </div>
@@ -16,5 +18,3 @@
     <div ng-if="!editable.switch">
       <div ng-bind-html="item.content"></div>
     </div>
-
-  <!-- if based on checkbox switch -->
