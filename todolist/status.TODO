@@ -113,6 +113,8 @@ SUBMISSION:
    ✔ Restangular custom/do  @done (15-01-08 17:43)
      ✔ doPost @done (15-01-08 17:43)
      ✘ Request header field Content-Type is not allowed by Access-Control-Allow-Headers  @cancelled (15-01-08 17:44)
+     ✔ Fix cors @done (15-01-08 22:04)
+       ✔ http://www.reddit.com/r/flask/comments/2mh7yn/af_sending_a_json_via_post_to_flask/cm4umic @done (15-01-08 22:04)
  ☐ ?
   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ☐ use STEPS with accordion?

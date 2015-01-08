@@ -56,17 +56,11 @@ myApp
       // Make a promise for data call
       var promise = api
         .withHttpConfig({timeout: apiTimeout*2})
-        .doPOST(null, resource, row)
-        .then(
-          //Success
-          function(output) {
-            console.log(output);
-          },
-          //Error (timeout?)
-          function(object) {
+        .doPOST({name: "Message"}, resource, row, {})
+        .then(function() {
+            console.log("Object saved OK");
+          }, function() {
             console.log("Factory/Service api call Error: POST");
-            console.log(object);
-            return object;
           }
         );
       return promise;
