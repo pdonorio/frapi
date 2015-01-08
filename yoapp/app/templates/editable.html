@@ -1,17 +1,11 @@
 
   <!-- the main 'ng-if' is based on CHECKBOX SWITCH -->
 
-<!--  Not very usefull
-ng-class="{highlight: item.highlight}"
- -->
-
     <!-- EDIT ON -->
-    <div ng-if="editable.switch"
-        ng-mouseover="item.highlight=true" ng-mouseout="item.highlight=false"
-    >
+    <div ng-if="editable.switch">
 
-      <div id='highlighter' class='highlight'
-        >
+      <div ng-mouseover="item.highlight=true" ng-mouseout="item.highlight=false"
+          class='highlight'>
         <span id='textmanipulate'
           editable-textarea="item.content" e-rows="3" e-cols="40" e-form="eform"
           onaftersave="action()(item.content, pos)" >
@@ -19,11 +13,10 @@ ng-class="{highlight: item.highlight}"
         </span>
       </div>
 
-      <div id='tooltip' ng-show="item.highlight"
-        class="alert alert-danger edittip" role="alert" >
+      <div class="edittip alert alert-danger" role="alert" ng-show="item.highlight">
         <table class="table">
           <tr> <th>Item</th> <td> <span class="badge">{{pos}}</span> </td> </tr>
-          <tr> <th>Content</th> <td> <i>{{item.content}}</i>" </td> </tr>
+          <tr> <th>Content</th> <td> "<i>{{item.content}}</i>" </td> </tr>
         </table>
         <span class="label label-danger">click to edit</span>
       </div>

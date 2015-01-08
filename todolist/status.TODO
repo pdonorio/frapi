@@ -99,6 +99,8 @@ SUBMISSION:
  ✔ Config for html data @done (14-12-30 16:29)
    ✔ Read init via database @done (15-01-07 07:15)
      ✔ Define elements array, from data inside api @done (15-01-08 11:37)
+       ✔ better define mouse enter /out /leave up angular  @done (15-01-08 15:25)
+         ✔ define css hover better than angular @done (15-01-08 15:25)
        ☐ use a counter in the table
      ☐ Count how many elements should be written
  ☐ Implement POST (js)

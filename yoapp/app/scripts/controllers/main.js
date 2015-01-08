@@ -45,7 +45,7 @@ myApp
     var currentpage = 1;
     DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
       .then(function(data) {  //Success
-        console.log("Read");
+        //console.log("Read");
         var tmp = data.items;
         for (var i = tmp.length - 1; i >= 0; i--) {
             //Should define as empty what is missing
@@ -60,6 +60,7 @@ myApp
     //////////////////////////////////////
     // Query api - WRITE
     $scope.update = function(content, pos) {
+        console.log("Update");
         console.log(content);
         console.log(pos);
         //UPDATE data using Dataresource (restangular) to post

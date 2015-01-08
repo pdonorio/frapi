@@ -78,20 +78,31 @@ body {
   }
 }
 
-/* My own extra */
-
-.highlight {
-  box-shadow: 0 0 5px rgb(174, 81, 76);
-  border: 1px solid rgb(174, 81, 76);
-  margin: 0.1em;
-}
-
-.edittip {
-/*  font-style: italic;
-*/  color: rgb(174, 81, 76);
-}
+/*
+****************
+Paulie @
+My own extra
+****************
+*/
 
 .myred {
   color: rgb(174, 81, 76);
   font-weight: bold;
+}
+
+.highlight {
+  box-shadow: 0;
+  box-shadow: 1px 1px 1px #777;
+}
+.highlight :hover {
+  transition: box-shadow 0.2s;
+  box-shadow: 2px 1px 5px #AA3939;
+}
+
+.edittip {
+  text-align: left;
+  position: fixed;
+  bottom: 0.5em;
+  left: 1.0em;
+  box-shadow: 1px 0 10px #AA3939;
 }
