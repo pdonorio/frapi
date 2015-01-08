@@ -1,7 +1,8 @@
 
 FRANGUI = flask restful api nginx Gui:
   ☐ Admin editable web content
-  ☐ Search with fuzzy search bar
+  ☐ Search with search bar
+    ☐ fuzzy?
     ☐ Infinite scrolling (with pages block on last search)
     ☐ Off canvas extra search
   ☐ Submission generic with steps
