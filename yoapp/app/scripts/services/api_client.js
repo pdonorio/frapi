@@ -6,7 +6,7 @@
 // Inject Restangular class to use Apis
  */
 myApp
-  .factory('DataResource', function(Restangular, apiaddress)
+  .factory('DataResource', function(Restangular, apiaddress, apiTimeout)
 {
 
     //###################################
@@ -24,7 +24,9 @@ myApp
       var params = {perpage: ppage, currentpage: cpage};
 
       // Make a promise for data call
-      var promise = api.customGET(resource, params)
+      var promise = api
+        .withHttpConfig({timeout: apiTimeout})
+        .doGET(resource, params)
         .then(
           //Success
           function(output) {
@@ -32,15 +34,45 @@ myApp
             //console.log(data);
             return data;
           },
-          //Error
+          //Error (timeout?)
           function(object) {
-            console.log("Factory/Service api call Error");
+            console.log("Factory/Service api call Error: GET");
             console.log(object);
+            return {};
           }
         );
       return promise;
-
     };
+
+    //###################################
+    //POST DATA
+    Factory.set = function(resource, data) {
+      console.log(resource);
+      console.log(data);
+
+      // Set parameters for my Api filters
+      var row = {content: "test", element: 7, page: ""};
+
+      // Make a promise for data call
+      var promise = api
+        .withHttpConfig({timeout: apiTimeout*2})
+        .doPOST(null, resource, row)
+        .then(
+          //Success
+          function(output) {
+            console.log(output);
+          },
+          //Error (timeout?)
+          function(object) {
+            console.log("Factory/Service api call Error: POST");
+            console.log(object);
+            return object;
+          }
+        );
+      return promise;
+    }
+
+
 
     //###################################
     return (Factory);

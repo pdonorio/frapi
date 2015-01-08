@@ -43,27 +43,48 @@ myApp
     // Query api - READ
     var perpage = 5;
     var currentpage = 1;
-    DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
-      .then(function(data) {  //Success
-        //console.log("Read");
-        var tmp = data.items;
-        for (var i = tmp.length - 1; i >= 0; i--) {
-            //Should define as empty what is missing
-            $scope.elements[i] = { content: tmp[i].content, highlight: false };
-        };
-      }, function(object) {      //Error
-        console.log("Controller api call Error");
-        console.log(object);
-      }
+    DataResource
+        .get("webcontent", perpage, currentpage)    // Use the data promise
+        //Clearly a Success, fail might be on the factory side,
+        //so: check data!!
+        .then(function(data) {
+
+            var tmp = data.items;
+            if (tmp) {
+                //Found correctly data
+                for (var i = tmp.length - 1; i >= 0; i--) {
+                    //Should define as empty what is missing
+                    $scope.elements[i] = { content: tmp[i].content, highlight: false };
+                };
+            } else {
+                //Could recover some sort of error from Factory api call?
+                console.log("No data from API");
+                //alert("There was an error on server side");
+            }
+        }, function(object) {      //Error
+            console.log("Controller api call Error???");
+            console.log(object);
+            alert("There was a BIG problem!!");
+        }
     );
 
     //////////////////////////////////////
     // Query api - WRITE
     $scope.update = function(content, pos) {
         console.log("Update");
-        console.log(content);
-        console.log(pos);
+        var data = {content: content, element: pos, page: "" };
+
         //UPDATE data using Dataresource (restangular) to post
+        DataResource
+            .set("webcontent", data)    // Use the data promise
+            .then(function(object) {
+                console.log("Success");
+                console.log(object);
+            }, function(object) {      //Error
+                console.log("Fail");
+                console.log(object);
+            }
+        );
     };
 
   });

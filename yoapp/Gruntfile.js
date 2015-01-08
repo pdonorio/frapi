@@ -150,6 +150,7 @@ module.exports = function (grunt) {
       options: {
         browsers: ['last 1 version']
       },
+//TO FIX -
 //uhm??
       dist: {
         files: [{

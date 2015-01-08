@@ -4,13 +4,14 @@ FRANGUI = flask restful api nginx Gui:
   ☐ Search with search bar
     ☐ fuzzy?
     ☐ Infinite scrolling (with pages block on last search)
-    ☐ Off canvas extra search
+    ☐ Off canvas extra search (just the template)
+  ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
   ☐ Submission generic with steps
     ☐ Draft/Published
     ☐ Image uploader
   ☐ Document view page
-  ☐ "Loading" at the very beginning of beautifil webapp?
-  ☐ Favico
+  ☐ "Loading" at the very beginning of beautiful webapp?
+  ☐ Favico ;)
 
 HOW TO: new resource (api python):
   --- ✄ -----------------------
@@ -101,19 +102,29 @@ SUBMISSION:
      ✔ Define elements array, from data inside api @done (15-01-08 11:37)
        ✔ better define mouse enter /out /leave up angular  @done (15-01-08 15:25)
          ✔ define css hover better than angular @done (15-01-08 15:25)
-       ☐ use a counter in the table
-     ☐ Count how many elements should be written
- ☐ Implement POST (js)
-    ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+     ☐ Sort elements by column
+       ☐ Uhm?
+         ☐ Api?
+         ☐ Javascript array sort on one element?
+     ✘ Count how many elements should be written @cancelled (15-01-08 16:54)
+ ✔ Restangular check error @done (15-01-08 17:13)
+   ✔ short timeout as a costant @done (15-01-08 17:13)
+ ✔ Implement POST (js) @done (15-01-08 17:43)
+   ✔ Restangular custom/do  @done (15-01-08 17:43)
+     ✔ doPost @done (15-01-08 17:43)
+     ✘ Request header field Content-Type is not allowed by Access-Control-Allow-Headers  @cancelled (15-01-08 17:44)
+ ☐ ?
+  ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ☐ use STEPS with accordion?
    ☐ http://angular-ui.github.io/bootstrap/#/accordion
  ☐ Submission via post api to database!!
    ☐ Submit via xeditable api
- ☐ Admin db
+ ☐ A different content per page (db column)
+ ✔ Admin db @done (15-01-08 16:53)
   ✔ via npm: chateau @done (14-12-29 22:47)
   ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)
-     ☐ node_modules/chateau/bin/chateau
-       ☐ node_modules/chateau/config.js
+     ✔ node_modules/chateau/bin/chateau @done (15-01-08 16:53)
+       ✔ node_modules/chateau/config.js @done (15-01-08 16:53)
  ANGULARJS datatable like:
    ✔ pagination @done (14-11-29 19:56)
      ✔ api side @done (14-11-29 19:56)

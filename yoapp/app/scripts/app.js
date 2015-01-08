@@ -22,6 +22,7 @@ var myApp = angular.module('yoApp',
   ])
   // CONSTANTS
   .constant('apiaddress', 'http://awesome.dev:5507')
+  .constant('apiTimeout', 500)
   .constant('perpageDefault', 10)
   .constant('currentpageDefault', 1)
   //ROUTING

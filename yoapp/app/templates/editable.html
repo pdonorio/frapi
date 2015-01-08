@@ -6,10 +6,10 @@
 
       <div ng-mouseover="item.highlight=true" ng-mouseout="item.highlight=false"
           class='highlight'>
-        <span id='textmanipulate'
-          editable-textarea="item.content" e-rows="3" e-cols="40" e-form="eform"
+        <span id='textmanipulate' editable-textarea="item.content"
+          e-rows="3" e-cols="40" e-form="eform"
           onaftersave="action()(item.content, pos)" >
-          <div id='clicable' ng-bind-html="item.content"  ng-click="eform.$show()"></div>
+          <div id='clicable' ng-bind-html="item.content" ng-click="eform.$show()"></div>
         </span>
       </div>
 
