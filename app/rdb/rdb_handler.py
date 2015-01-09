@@ -52,6 +52,7 @@ class RethinkConnection(Connection):
     # === Init ===
     _connection = None
     model = None
+    _options = {"currentpage", "perpage"}
 
     def __init__(self, load_setup=False):
         """ My abstract method already connect by default """
@@ -156,11 +157,12 @@ class RethinkConnection(Connection):
         for name in params:
             p[name] = params.get(name)
 
-        # set defatuls
-        if p["perpage"] == None:
-            p["perpage"] = 10
-        if p["currentpage"] == None:
-            p["currentpage"] = 1
+        # set defaults for paging
+        if "perpage" in p:
+            if p["perpage"] == None:
+                p["perpage"] = 10
+            if p["currentpage"] == None:
+                p["currentpage"] = 1
 
         #print p    #DEBUG?
         return p
@@ -195,17 +197,30 @@ class RethinkConnection(Connection):
         # from my query
         if not query.is_empty().run():
 
-            # Slice for pagination
-            start = (p["currentpage"] - 1) * p["perpage"]
-            end = p["currentpage"] * p["perpage"]
+            # Get total query count
             count = query.count().run()
-            out = query.slice(start, end).run()
-            #out = query.skip(start).limit(end).run() #this does not work
+
+            # Slice for pagination
+            if "currentpage" in p and "perpage" in p:
+                start = (p["currentpage"] - 1) * p["perpage"]
+                end = p["currentpage"] * p["perpage"]
+                #this does not work: WHY??
+                #out = query.skip(start).limit(end).run()
+                out = query.slice(start, end).run()
+            else:
+                out = query.run()
 
         # Warning: out is a cursor and can be used in two ways:
         # 1. use the for cycle
         # 2. use list(out) to get a vector
         return (count, out)
+
+    def remove_options(self, data_dict):
+
+        for i in self._options:
+            if i in data_dict:
+                del data_dict[i]
+        return data_dict
 
     # === Insert ===
     @check_model
@@ -219,12 +234,15 @@ class RethinkConnection(Connection):
         #table = self.model.table
         #self.create_table(table) #, True)
 
+        # Some options are used only as parameters and should not be saved
+        data = self.remove_options(data_dict)
+
         # Skip if empty
-        if data_dict.__len__() < 1:
+        if data.__len__() < 1:
             return self
 
         # Save data inside the choosed model
-        model_data = self.model(**data_dict)
+        model_data = self.model(**data)
 
         if force_id != None:
             # Force key of this data row. Usefull for updates?

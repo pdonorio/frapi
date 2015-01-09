@@ -113,10 +113,12 @@ SUBMISSION:
      ✘ Request header field Content-Type is not allowed by Access-Control-Allow-Headers  @cancelled (15-01-08 17:44)
      ✔ Fix cors @done (15-01-08 22:04)
        ✔ http://www.reddit.com/r/flask/comments/2mh7yn/af_sending_a_json_via_post_to_flask/cm4umic @done (15-01-08 22:04)
- ☐ use STEPS with accordion?
-   ☐ http://angular-ui.github.io/bootstrap/#/accordion
  ✔ Submission via post api to database!! @done (15-01-08 22:21)
-   ☐ Add id saving and passing through all cucuzzaro
+   ☐ Am i missing the update method in rethink db python class? @ohboy
+     ✔ rdb_handler.py @done (15-01-09 12:30)
+     ✔ remove currentpage,perpage from insert data inside rethink @done (15-01-09 12:30)
+       ✔ should this 2 property be threated as costants? @done (15-01-09 12:30)
+   ☐ Add id saving and passing through all cucuzzaro @important
    ☐ Strange adding columns currentpage,perpage to document ??
      ☐ Submit via xeditable api
  ☐ A different content per page (db column)
@@ -128,6 +130,12 @@ SUBMISSION:
   ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)
      ✔ node_modules/chateau/bin/chateau @done (15-01-08 16:53)
        ✔ node_modules/chateau/config.js @done (15-01-08 16:53)
+ ☐ use STEPS with accordion?
+   ☐ http://angular-ui.github.io/bootstrap/#/accordion
+ ☐ Noty and jquery
+   ☐ DOM manipulation should be done in a directive (not a controller)
+   ☐ http://stackoverflow.com/a/14005010
+
  ANGULARJS datatable like:
    ✔ pagination @done (14-11-29 19:56)
      ✔ api side @done (14-11-29 19:56)

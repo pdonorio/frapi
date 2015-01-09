@@ -29,6 +29,27 @@ class GenericORMModel(RethinkModel):
     #
     #############################################
 
+    @classmethod
+    def list_attributes(cls):
+        """ Cycle class attributes to get a list.
+        Usable on the class, rather then instance"""
+        attributes = {}
+        # Here i decide which are the python types that will be
+        # accepted in my API resources:
+        # I want only unbound method, which define the types i need
+        # See after this class ends
+
+        for key in cls.__dict__.keys():
+            value = getattr(cls, key)
+            if isinstance(value, types.FunctionType):
+                #print "PASS Attr:", key, value
+                attributes[key] = value
+
+        # Common standard parameters??
+        attributes["perpage"] = cls.perpage
+        attributes["currentpage"] = cls.currentpage
+        return attributes
+
     #############################################
     # Should add static functions for common parameters
     # e.g. per page, page, etc.
@@ -51,27 +72,6 @@ class GenericORMModel(RethinkModel):
         if isinstance(value, types.IntType):
             value = tmp
         return value
-
-    @classmethod
-    def list_attributes(cls):
-        """ Cycle class attributes to get a list.
-        Usable on the class, rather then instance"""
-        attributes = {}
-        # Here i decide which are the python types that will be
-        # accepted in my API resources:
-        # I want only unbound method, which define the types i need
-        # See after this class ends
-
-        for key in cls.__dict__.keys():
-            value = getattr(cls, key)
-            if isinstance(value, types.FunctionType):
-                #print "PASS Attr:", key, value
-                attributes[key] = value
-
-        # Common standard parameters
-        attributes["perpage"] = GenericORMModel.perpage
-        attributes["currentpage"] = GenericORMModel.currentpage
-        return attributes
 
 ################################################################
 # == Define the models you need ==

@@ -14,15 +14,15 @@ var myApp = angular.module('yoApp',
     'ngAnimate', 'ngCookies',
     'ngRoute', 'ngSanitize', 'ngTouch',
   // DEPENCIES: external modules
-    'restangular',
-    'xeditable',
-    'uiSwitch',
+    'restangular',  //api calls from js
+    'xeditable',    //make html content editable with click/switch
+    'uiSwitch',     //osx like switcher
   // DEPENCIES: own filters
-    'textOperations',
+    'textOperations', //my filters
   ])
   // CONSTANTS
   .constant('apiaddress', 'http://awesome.dev:5507')
-  .constant('apiTimeout', 500)
+  .constant('apiTimeout', 1250)
   .constant('perpageDefault', 10)
   .constant('currentpageDefault', 1)
   //ROUTING

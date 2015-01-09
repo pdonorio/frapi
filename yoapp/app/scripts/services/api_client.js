@@ -1,17 +1,19 @@
 'use strict';
 
-// Global Restangular configuration
-myApp.config(function(RestangularProvider, apiaddress) {
-  //i will use the same base url for all my api requests
-  RestangularProvider.setBaseUrl(apiaddress);
+// Restangular service definition
+myApp.factory('RestAPI', function(Restangular, apiaddress)
+{
+  return Restangular.withConfig(function(RestangularConfigurer) {
+
+    //i will use the same base url for all my api requests
+    RestangularConfigurer.setBaseUrl(apiaddress);
+
+  });
 });
 
-/**
-// Inject Restangular class to use Apis
- */
-myApp
-  .factory('DataResource', function(Restangular, apiTimeout)
-{
+// Inject my Restangular class to create a factory/service that uses my API
+myApp.factory('DataResource', function(RestAPI, apiTimeout) {
+
     //Empty factory
     var Factory = {};
 
@@ -20,7 +22,7 @@ myApp
     Factory.get = function(resource, ppage, cpage) {
 
       //set resource for promise calling
-      var api = Restangular.all(resource);
+      var api = RestAPI.all(resource);
 
       // Set parameters for my Api filters
       var params = {perpage: ppage, currentpage: cpage};
@@ -51,7 +53,7 @@ myApp
     Factory.set = function(resource, data) {
       console.log(data);
 
-      var api = Restangular.all(resource);
+      var api = RestAPI.all(resource);
       var route = '';
       var promise = api
         //double timeout for Write
