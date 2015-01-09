@@ -8,7 +8,7 @@
  */
 
 myApp
-  .directive('editableContent', function () {
+  .directive('editableContent', function (mixed) {
     return {
 
       //create my tab editable_content
@@ -25,28 +25,23 @@ myApp
         //should be the same for all replicated directives,
         //one switch for all page text data
         editable: '=flag',
-
         //referencing action attribute to pass a function from controller
         // see: https://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-2-isolate-scope
         action: '&',
-
       },
 
       /////////////////////////////////////
       //manage the local scope
       controller: function($scope) {
-
-        $scope.item = $scope.data[$scope.pos];
-
+        //An empty html block is:
         var empty = {
-          id: null,
+          id: null, highlight: false,
           content: '<span class="myred">Not defined yet</span>',
-          highlight: false,
         };
-
-        //default item value inside the directive
-        //http://stackoverflow.com/a/20708823
-        $scope.item = $scope.item || empty;
+        //check inside the array
+        $scope.item = $scope.data[$scope.pos];
+        //default item value if no consistent data or no text
+        $scope.item = mixed($scope.item, true);
 
       },
 

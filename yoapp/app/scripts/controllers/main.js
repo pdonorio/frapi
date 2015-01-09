@@ -7,9 +7,9 @@
  * # MainController
  * Controller of the yoApp
  */
-myApp
-  .controller('MainController', function ($scope, DataResource, $location, $filter)
-  {
+myApp.controller('MainController',
+    function ($scope, DataResource, $location, mixed)
+{
 
     //////////////////////////////////////
     // Build dynamic menu in header
@@ -41,24 +41,21 @@ myApp
 
     //////////////////////////////////////
     // Query api - READ
-    var perpage = 5;
-    var currentpage = 1;
+    var perpage = 1000;
     DataResource
-        .get("webcontent", perpage, currentpage)    // Use the data promise
+        .get("webcontent", perpage, 1)    // Use the data promise
         .then(function(data) {
 
             var tmp = data.items;
+
             //Check the data received
             if (tmp) {
-
-                //Sort items via 'element'
-                tmp.sort(function(a,b) { return parseFloat(a.element) - parseFloat(b.element) });
-
-                //Found correctly data
-                for (var i = tmp.length - 1; i >= 0; i--) {
-                    //Should define as empty what is missing
-                    $scope.elements[i] = { id: tmp[i].id, content: tmp[i].content, highlight: false };
+                //Set data based on database element position saved
+                for (var i = 0; i < tmp.length; i++) {
+                    var j = tmp[i].element;
+                    $scope.elements[j] = tmp[i];
                 };
+
             } else {
                 //Could recover some sort of error from Factory api call?
                 console.log("No data from API");
@@ -71,13 +68,22 @@ myApp
 
     //////////////////////////////////////
     // Query api - WRITE
-    $scope.update = function(id, content, pos) {
-        console.log("Update");
+
+    $scope.update = function(pos, newcontent) {
 //TO FIX - select page from somewhere
-        var data = {id: id, content: content, element: pos, page: "" };
+
+        var id = null;
+        if ($scope.elements[pos]) {
+            id = $scope.elements[pos].id;
+            //init data making use of shared Provider utility
+            $scope.elements[pos] = mixed($scope.elements[pos], false);
+        }
+        var data = {id: id, content: newcontent, element: pos, page: "" };
+        //console.log(data);
 
         //UPDATE data using Dataresource (restangular) to post
         DataResource.set("webcontent", data).then();
+
     };
 
-  });
+});

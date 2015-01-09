@@ -17,6 +17,11 @@ myApp.factory('DataResource', function(RestAPI, apiTimeout) {
     //Empty factory
     var Factory = {};
 
+//TO FIX-
+    //SHOULD DEFINE HERE the data as attribute of factory class...
+    //this.currentData = [];
+    //http://toddmotto.com/rethinking-angular-js-controllers/
+
     //###################################
     //A generic API GET
     Factory.get = function(resource, ppage, cpage) {
@@ -51,7 +56,6 @@ myApp.factory('DataResource', function(RestAPI, apiTimeout) {
     //###################################
     //POST DATA
     Factory.set = function(resource, data) {
-      console.log(data);
 
       var api = RestAPI.all(resource);
       var route = '';
@@ -60,7 +64,7 @@ myApp.factory('DataResource', function(RestAPI, apiTimeout) {
         .withHttpConfig({timeout: apiTimeout*2})
         .doPOST({}, route, data)  //put data
         .then(function() {
-            console.log("Object saved OK");
+            //console.log("Object saved OK");
           }, function() {
             console.log("Factory/Service api call Error: POST");
           }

@@ -116,6 +116,9 @@ class WebContent(GenericORMModel):
         return value    #e.g. about.html
     @staticmethod
     def element(value):
+        tmp = get_original_pytype(value)
+        if tmp != None:
+            value = tmp
         return value    #e.g. a1
     @staticmethod
     def content(value):
