@@ -171,6 +171,8 @@ SUBMISSION:
  ✘ navbar fixed and responsive with angular strap @cancelled (14-12-23 06:42)
 
 AUTHENTICATION:
+  ☐ SET api url to version, like:
+    ☐ http://api.example.com/api/v1.0
    ☐ Login
      ☐ Frontend page (quick search and login)
      ☐ api oauth?

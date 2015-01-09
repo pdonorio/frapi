@@ -45,11 +45,10 @@ myApp
     var currentpage = 1;
     DataResource
         .get("webcontent", perpage, currentpage)    // Use the data promise
-        //Clearly a Success, fail might be on the factory side,
-        //so: check data!!
         .then(function(data) {
 
             var tmp = data.items;
+            //Check the data received
             if (tmp) {
 
                 //Sort items via 'element'
@@ -63,11 +62,9 @@ myApp
             } else {
                 //Could recover some sort of error from Factory api call?
                 console.log("No data from API");
-                //alert("There was an error on server side");
             }
-        }, function(object) {      //Error
-            console.log("Controller api call Error???");
-            console.log(object);
+
+        }, function(object) {      //Error? Uhm
             alert("There was a BIG problem!!");
         }
     );
@@ -80,16 +77,7 @@ myApp
         var data = {content: content, element: pos, page: "" };
 
         //UPDATE data using Dataresource (restangular) to post
-        DataResource
-            .set("webcontent", data)    // Use the data promise
-            .then(function(object) {
-                console.log("Success");
-                console.log(object);
-            }, function(object) {      //Error
-                console.log("Fail");
-                console.log(object);
-            }
-        );
+        DataResource.set("webcontent", data).then();
     };
 
   });
