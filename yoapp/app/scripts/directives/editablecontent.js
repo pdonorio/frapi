@@ -37,7 +37,9 @@ myApp
       controller: function($scope) {
 
         $scope.item = $scope.data[$scope.pos];
+
         var empty = {
+          id: null,
           content: '<span class="myred">Not defined yet</span>',
           highlight: false,
         };

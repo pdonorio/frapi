@@ -260,7 +260,7 @@ class RethinkConnection(Connection):
     Both replace and update operations can be used to modify one or multiple rows. Their behavior is different:
 
     replace will completely replace the existing rows with new values
-    update will merge existing rows with the new values
+    update will merge existing rows with the new values [i think this is better]
     """
 
     # === Delete ===
