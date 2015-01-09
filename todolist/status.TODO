@@ -102,10 +102,8 @@ SUBMISSION:
      ✔ Define elements array, from data inside api @done (15-01-08 11:37)
        ✔ better define mouse enter /out /leave up angular  @done (15-01-08 15:25)
          ✔ define css hover better than angular @done (15-01-08 15:25)
-     ☐ Sort elements by column
-       ☐ Uhm?
-         ☐ Api?
-         ☐ Javascript array sort on one element?
+     ✔ Sort elements by column @done (15-01-09 06:39)
+         ✔ Javascript array sort on element @done (15-01-09 06:39)
      ✘ Count how many elements should be written @cancelled (15-01-08 16:54)
  ✔ Restangular check error @done (15-01-08 17:13)
    ✔ short timeout as a costant @done (15-01-08 17:13)
@@ -115,13 +113,16 @@ SUBMISSION:
      ✘ Request header field Content-Type is not allowed by Access-Control-Allow-Headers  @cancelled (15-01-08 17:44)
      ✔ Fix cors @done (15-01-08 22:04)
        ✔ http://www.reddit.com/r/flask/comments/2mh7yn/af_sending_a_json_via_post_to_flask/cm4umic @done (15-01-08 22:04)
- ☐ ?
-  ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ☐ use STEPS with accordion?
    ☐ http://angular-ui.github.io/bootstrap/#/accordion
- ☐ Submission via post api to database!!
-   ☐ Submit via xeditable api
+ ✔ Submission via post api to database!! @done (15-01-08 22:21)
+   ☐ Add id saving and passing through all cucuzzaro
+   ☐ Strange adding columns currentpage,perpage to document ??
+     ☐ Submit via xeditable api
  ☐ A different content per page (db column)
+ ☐ Api calling via @poller
+   ☐ Check until status is good with timeout
+   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ✔ Admin db @done (15-01-08 16:53)
   ✔ via npm: chateau @done (14-12-29 22:47)
   ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)

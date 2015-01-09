@@ -47,16 +47,12 @@ myApp
     //###################################
     //POST DATA
     Factory.set = function(resource, data) {
-      console.log(resource);
       console.log(data);
-
-      // Set parameters for my Api filters
-      var row = {content: "test", element: 7, page: ""};
 
       // Make a promise for data call
       var promise = api
         .withHttpConfig({timeout: apiTimeout*2})
-        .doPOST({name: "Message"}, resource, row, {})
+        .doPOST({name: "Message"}, resource, data, {})
         .then(function() {
             console.log("Object saved OK");
           }, function() {

@@ -51,6 +51,10 @@ myApp
 
             var tmp = data.items;
             if (tmp) {
+
+                //Sort items via 'element'
+                tmp.sort(function(a,b) { return parseFloat(a.element) - parseFloat(b.element) });
+
                 //Found correctly data
                 for (var i = tmp.length - 1; i >= 0; i--) {
                     //Should define as empty what is missing
@@ -72,6 +76,7 @@ myApp
     // Query api - WRITE
     $scope.update = function(content, pos) {
         console.log("Update");
+//TO FIX - select page from somewhere
         var data = {content: content, element: pos, page: "" };
 
         //UPDATE data using Dataresource (restangular) to post
