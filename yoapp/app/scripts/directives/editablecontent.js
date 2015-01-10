@@ -29,7 +29,7 @@ myApp
 
       /////////////////////////////////////
       //manage the local scope
-      controller: function($scope, DataResource) {
+      controller: function($scope, DataResource, $timeout, messageTimeout) {
 
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
@@ -65,7 +65,12 @@ myApp
               console.log("Factory/Service api call Error: POST");
               $scope.item.status = 2;
             }
-          );
+          ).finally(function() {
+              // Always execute this on both error and success
+              $timeout(function(){
+                $scope.item.status = 0;
+              }, messageTimeout);
+          });
 
         }
 

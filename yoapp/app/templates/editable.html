@@ -24,17 +24,17 @@
       </div>
 
       <!-- Show a panel for saving/LOADING on element -->
-      <div class="fix shad alert alert-info" role="alert" ng-show="item.status == 3">
+      <div class="fix animate-show animate-hide alert alert-info" role="alert" ng-show="item.status == 3">
         <i class="fa fa-refresh fa-spin"></i> loading...
       </div>
       <!-- Show a panel for ERROR on element -->
-      <div class="fix shad alert alert-danger" role="alert" ng-show="item.status == 2">
+      <div class="fix animate-show animate-hide alert alert-danger" role="alert" ng-show="item.status == 2">
        <b><i class="fa fa-ban"></i> Failed!</b>
        <br> Could not save new content:
        <br> "<i>{{item.content}}</i>"
       </div>
       <!-- Show a panel for SUCCESSFULLY saved element -->
-      <div class="fix shad alert alert-success" role="alert" ng-show="item.status == 1">
+      <div class="fix animate-show animate-hide alert alert-success" role="alert" ng-show="item.status == 1">
        <i class="fa fa-check-square-o"></i> Saved!
        <br> <b>{{item.content}}</b>
       </div>
