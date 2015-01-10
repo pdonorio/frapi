@@ -135,15 +135,16 @@ SUBMISSION:
            ☐ simple http://stackoverflow.com/a/19502646
            ☐ medium http://jsfiddle.net/uberspeck/j46Yh/light/
          ☐ Fade after timeout
- ☐ A different content per page (db column)
- ☐ Api calling via @poller
-   ☐ Check until status is good with timeout
-   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ✔ Admin db @done (15-01-08 16:53)
   ✔ via npm: chateau @done (14-12-29 22:47)
   ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)
      ✔ node_modules/chateau/bin/chateau @done (15-01-08 16:53)
        ✔ node_modules/chateau/config.js @done (15-01-08 16:53)
+
+ ☐ A different content per page (db column)
+ ☐ Api calling via @poller
+   ☐ Check until status is good with timeout
+   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
  ☐ use STEPS with accordion?
    ☐ http://angular-ui.github.io/bootstrap/#/accordion
  ☐ Understanding INJECTION @important
