@@ -99,10 +99,19 @@ My own extra
   box-shadow: 2px 1px 5px #AA3939;
 }
 
+.fix {
+  position: fixed;
+  top: 1.0em;
+  right: 1.0em;
+}
+
+.shad {
+  box-shadow: 1px 0 10px #999;
+}
+
 .edittip {
   text-align: left;
   position: fixed;
-  bottom: 0.5em;
+  bottom: 0.1em;
   left: 1.0em;
-  box-shadow: 1px 0 10px #999;
 }

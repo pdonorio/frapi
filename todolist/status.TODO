@@ -137,7 +137,8 @@ SUBMISSION:
            ✘ medium http://jsfiddle.net/uberspeck/j46Yh/light/ @cancelled (15-01-10 10:10)
          ✔ Understanding promises for real... @done (15-01-10 13:28)
            ✔ use a status value to show different messages with ng-show @done (15-01-10 13:28)
-        ☐ Fixed position
+         ✔ Switch hidden if api not available @done (15-01-10 14:46)
+        ✔ Fixed position @done (15-01-10 14:46)
          ☐ Fade after timeout
  ✔ Admin db @done (15-01-08 16:53)
   ✔ via npm: chateau @done (14-12-29 22:47)

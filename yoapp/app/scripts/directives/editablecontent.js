@@ -25,9 +25,6 @@ myApp
         //should be the same for all replicated directives,
         //one switch for all page text data
         editable: '=flag',
-        //referencing action attribute to pass a function from controller
-        // see: https://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-2-isolate-scope
-        action: '&',
       },
 
       /////////////////////////////////////

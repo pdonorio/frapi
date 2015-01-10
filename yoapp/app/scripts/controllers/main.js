@@ -40,7 +40,7 @@ myApp.controller('MainController',
 
     //////////////////////////////////////
     // editable element via xeditable
-    $scope.edit = { switch: true }; //false };
+    $scope.edit = { state: 1, switch: true }; //false };
     $scope.elements = {};
 
     //////////////////////////////////////
@@ -62,10 +62,13 @@ myApp.controller('MainController',
                     var j = tmp[i].element;
                     $scope.elements[j] = tmp[i];
                 };
+                var current = $scope.edit.switch;
+                $scope.edit = { state: 0, switch: current };
 
             } else {
                 //Could recover some sort of error from Factory api call?
                 console.log("No data from API");
+                $scope.edit = { switch: false, state: 1 };
             }
 
         }, function(object) {      //Error? Uhm

@@ -1,14 +1,10 @@
 
-<!-- Example of using my directive as a tag for editing data -->
-
 <div class="jumbotron">
-  <editable-content data='elements' pos='0' flag='edit' action='update'></editable-content>
+    <!-- Example of using my directive as a tag for editing data -->
+  <editable-content data='elements' pos='0' flag='edit'></editable-content>
 </div>
 
 <div class="row marketing">
-
-  <!-- An easy block of editable content :) via ng-repeat ?-->
-  <editable-content ng-repeat='x in range' pos='x'
-    data='elements' flag='edit' action='update' ></editable-content>
-
+  <!-- An easy block of editable content :) via ng-repeat -->
+  <editable-content ng-repeat='x in range' pos='x' data='elements' flag='edit'></editable-content>
 </div>

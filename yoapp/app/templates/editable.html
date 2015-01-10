@@ -7,11 +7,7 @@
       <div ng-mouseover="item.highlight=true" ng-mouseout="item.highlight=false"
           class='highlight'>
         <span id='textmanipulate' editable-textarea="item.content"
-          e-rows="3" e-cols="40" e-form="eform"
-          onaftersave="updateContent()"
-          >
-<!--           onaftersave="action()(pos, item.content)"
- -->
+          e-rows="3" e-cols="40" e-form="eform" onaftersave="updateContent()">
           <!-- DEBUG POS {{pos}}: -->
           <div id='clicable' ng-bind-html="item.content" ng-click="eform.$show()"></div>
 
@@ -19,7 +15,7 @@
       </div>
 
       <!-- Show a panel with informations about the current editable div -->
-      <div class="edittip alert alert-info" role="alert" ng-show="item.highlight">
+      <div class="edittip shad alert alert-info" role="alert" ng-show="item.highlight">
         <table class="table">
           <tr> <th>Item</th> <td> <span class="badge">{{pos}}</span> </td> </tr>
           <tr> <th>Content</th> <td> "<i>{{item.content}}</i>" </td> </tr>
@@ -28,16 +24,17 @@
       </div>
 
       <!-- Show a panel for saving/LOADING on element -->
-      <div class="message alert alert-info" role="alert" ng-show="item.status == 3">
+      <div class="fix shad alert alert-info" role="alert" ng-show="item.status == 3">
         <i class="fa fa-refresh fa-spin"></i> loading...
       </div>
       <!-- Show a panel for ERROR on element -->
-      <div class="message alert alert-danger" role="alert" ng-show="item.status == 2">
-       <i class="fa fa-minus-square-o"></i> Failed!
-       <br> <b>There was an error</b>
+      <div class="fix shad alert alert-danger" role="alert" ng-show="item.status == 2">
+       <b><i class="fa fa-ban"></i> Failed!</b>
+       <br> Could not save new content:
+       <br> "<i>{{item.content}}</i>"
       </div>
       <!-- Show a panel for SUCCESSFULLY saved element -->
-      <div class="message alert alert-success" role="alert" ng-show="item.status == 1">
+      <div class="fix shad alert alert-success" role="alert" ng-show="item.status == 1">
        <i class="fa fa-check-square-o"></i> Saved!
        <br> <b>{{item.content}}</b>
       </div>
