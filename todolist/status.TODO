@@ -1,17 +1,23 @@
 
 FRANGUI = flask restful api nginx Gui:
-  ☐ Admin editable web content
+  ✔ Admin editable web content @done (15-01-10 15:40)
+  ☐ Init/Login page
+    ☐ Favico
+    ✔ Separated page @done (15-01-10 22:43)
+      ✔ works only on nginx? @done (15-01-10 22:43)
+      ✔ background http://css-tricks.com/perfect-full-page-background-image/ @done (15-01-10 22:43)
+  ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
   ☐ Search with search bar
-    ☐ fuzzy?
     ☐ Infinite scrolling (with pages block on last search)
     ☐ Off canvas extra search (just the template)
-  ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
+      ☐ fuzzy?
   ☐ Submission generic with steps
-    ☐ Draft/Published
+    ☐ Draft with xeditable
+    ☐ Draft to published via API call
+      ☐ (it happens server side)
     ☐ Image uploader
   ☐ Document view page
   ☐ "Loading" at the very beginning of beautiful webapp?
-  ☐ Favico ;)
 
 Completed:
   HOW TO: new resource (api python):

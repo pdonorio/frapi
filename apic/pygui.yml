@@ -55,13 +55,14 @@ webdev:
         - "35729:35729" # Live reload
 
 # # Web static angular pages
-# web:
-#     build: ./docker/gui
-#     command: nginx
-#     volumes:
-#         - ./yoapp/dist:/opt/app
-#     working_dir: /opt/app
-#     links:
-#         - api:api
-#     ports:
-#         - "80:80" # Main server
+web:
+    build: ./docker/gui
+    command: nginx
+    volumes:
+        - ./staticroot:/var/www/html
+        - ./yoapp/dist:/var/www/html/app
+    working_dir: /opt/app
+    links:
+        - api:api
+    ports:
+        - "88:80" # Main server

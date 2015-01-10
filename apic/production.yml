@@ -42,7 +42,8 @@ web:
     build: ./docker/gui
     command: nginx
     volumes:
-        - ./yoapp/dist:/opt/app
+        - ./staticroot:/var/www/html
+        - ./yoapp/dist:/var/www/html/app
     working_dir: /opt/app
     links:
         - api:api
