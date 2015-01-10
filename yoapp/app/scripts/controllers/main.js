@@ -12,8 +12,8 @@ myApp.controller('MainController',
 {
     // Lo.dash | underscore
     $scope._ = _;
-    // Very easy to use
-    $scope.range = _.range(1, 11);
+    // Very easy to use: a range for my editable directive
+    $scope.range = _.range(1, 7);
 
     //////////////////////////////////////
     // Build dynamic menu in header
@@ -40,18 +40,21 @@ myApp.controller('MainController',
 
     //////////////////////////////////////
     // editable element via xeditable
-    $scope.edit = { switch: false };
+    $scope.edit = { switch: true }; //false };
     $scope.elements = {};
 
     //////////////////////////////////////
-    // Query api - READ
+    //API give me access to HTML content inside database
+    //////////////////////////////////////
+
+    //////////////////////////////////////
+    // Query api - READ the whole html content
     var perpage = 1000;
     DataResource
         .get("webcontent", perpage, 1)    // Use the data promise
         .then(function(data) {
 
             var tmp = data.items;
-
             //Check the data received
             if (tmp) {
                 //Set data based on database element position saved
@@ -70,24 +73,5 @@ myApp.controller('MainController',
         }
     );
 
-    //////////////////////////////////////
-    // Query api - WRITE
-
-    $scope.update = function(pos, newcontent) {
-//TO FIX - select page from somewhere
-
-        var id = null;
-        if ($scope.elements[pos]) {
-            id = $scope.elements[pos].id;
-            //init data making use of shared Provider utility
-            $scope.elements[pos] = mixed($scope.elements[pos], false);
-        }
-        var data = {id: id, content: newcontent, element: pos, page: "" };
-        //console.log(data);
-
-        //UPDATE data using Dataresource (restangular) to post
-        DataResource.set("webcontent", data).then();
-
-    };
 
 });

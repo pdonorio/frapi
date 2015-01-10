@@ -129,11 +129,15 @@ SUBMISSION:
          ✔ share provider function @done (15-01-09 22:14)
        ✔ editable directive via ng-repeat @done (15-01-10 09:10)
        ✔ Lodash @done (15-01-10 09:10)
-       ☐ a green V if update is successfull
-         ☐ jquery via directive?
-         ☐ pure angular?
-           ☐ simple http://stackoverflow.com/a/19502646
-           ☐ medium http://jsfiddle.net/uberspeck/j46Yh/light/
+       ✔ a green V if update is successfull @done (15-01-10 10:10)
+         ✘ jquery via directive? @cancelled (15-01-10 10:10)
+         ✔ pure angular? @done (15-01-10 10:10)
+           ✔ ng-show? @done (15-01-10 10:10)
+           ✘ simple http://stackoverflow.com/a/19502646 @cancelled (15-01-10 10:10)
+           ✘ medium http://jsfiddle.net/uberspeck/j46Yh/light/ @cancelled (15-01-10 10:10)
+         ✔ Understanding promises for real... @done (15-01-10 13:28)
+           ✔ use a status value to show different messages with ng-show @done (15-01-10 13:28)
+        ☐ Fixed position
          ☐ Fade after timeout
  ✔ Admin db @done (15-01-08 16:53)
   ✔ via npm: chateau @done (14-12-29 22:47)

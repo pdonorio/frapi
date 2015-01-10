@@ -32,12 +32,45 @@ myApp
 
       /////////////////////////////////////
       //manage the local scope
-      controller: function($scope) {
+      controller: function($scope, DataResource) {
 
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
         //default item value if no consistent data or no text
         $scope.item = mixed($scope.item, true);
+
+        /////////////////////////////////////
+        //Do everything on the current item
+        //Then send the new data to update via API
+        $scope.updateContent = function() {
+
+          // Signal that we are going to try to edit data
+          $scope.item.status = 3;
+
+  //TO FIX - select page from somewhere
+          var id = null;
+
+          if ($scope.data[$scope.pos]) {
+              id = $scope.data[$scope.pos].id;
+              //init data making use of shared Provider utility
+              $scope.data[$scope.pos] = mixed($scope.data[$scope.pos], false);
+          }
+          var data = {id: id,
+            content: $scope.data[$scope.pos].content,
+            element: $scope.pos, page: "" };
+
+          $scope.item.highlight = false;
+        // API UPDATE ^_^
+          DataResource.set("webcontent", data)
+          .then(function() {
+              $scope.item.status = 1;
+            }, function() {
+              console.log("Factory/Service api call Error: POST");
+              $scope.item.status = 2;
+            }
+          );
+
+        }
 
       },
 

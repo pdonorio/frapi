@@ -38,6 +38,8 @@ myApp.factory('DataResource', function(RestAPI, apiTimeout) {
         .withHttpConfig({timeout: apiTimeout})  //set timeout
         //Address will be: "base url / resource / route "
         .doGET(route, params)
+//TO FIX -
+//MOVE TO WHERE IT'S CALLED
         .then( function(output) { //Success
             data = JSON.parse(output);
             //console.log(data);
@@ -58,18 +60,10 @@ myApp.factory('DataResource', function(RestAPI, apiTimeout) {
     Factory.set = function(resource, data) {
 
       var api = RestAPI.all(resource);
-      var route = '';
-      var promise = api
-        //double timeout for Write
-        .withHttpConfig({timeout: apiTimeout*2})
-        .doPOST({}, route, data)  //put data
-        .then(function() {
-            //console.log("Object saved OK");
-          }, function() {
-            console.log("Factory/Service api call Error: POST");
-          }
-        );
-      return promise;
+      var route = ''; //no route
+      return api
+        .withHttpConfig({timeout: apiTimeout*2}) //double timeout for Write
+        .doPOST({}, route, data);  //put data
     }
 
     //###################################

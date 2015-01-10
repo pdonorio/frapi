@@ -14,6 +14,13 @@ myApp.provider('mixed', function ()
     var empty = {
       id: null,
       highlight: false,
+      status: 0,  //no real status
+      /* STATUS can be:
+      0 - nothing
+      1 - success
+      2 - error
+      3 - loading
+      */
       content: '<span class="myred">Not defined yet</span>',
     };
 
