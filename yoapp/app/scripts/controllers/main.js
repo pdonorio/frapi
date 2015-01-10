@@ -10,6 +10,10 @@
 myApp.controller('MainController',
     function ($scope, DataResource, $location, mixed)
 {
+    // Lo.dash | underscore
+    $scope._ = _;
+    // Very easy to use
+    $scope.range = _.range(1, 11);
 
     //////////////////////////////////////
     // Build dynamic menu in header

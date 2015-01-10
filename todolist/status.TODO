@@ -127,6 +127,8 @@ SUBMISSION:
        ✔ check type (int) via python api post type received @done (15-01-09 22:04)
        ✔ empty if string with no chars @done (15-01-09 22:04)
          ✔ share provider function @done (15-01-09 22:14)
+       ✔ editable directive via ng-repeat @done (15-01-10 09:10)
+       ✔ Lodash @done (15-01-10 09:10)
        ☐ a green V if update is successfull
          ☐ jquery via directive?
          ☐ pure angular?

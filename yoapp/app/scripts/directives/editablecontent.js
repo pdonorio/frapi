@@ -33,11 +33,7 @@ myApp
       /////////////////////////////////////
       //manage the local scope
       controller: function($scope) {
-        //An empty html block is:
-        var empty = {
-          id: null, highlight: false,
-          content: '<span class="myred">Not defined yet</span>',
-        };
+
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
         //default item value if no consistent data or no text

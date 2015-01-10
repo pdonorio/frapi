@@ -7,13 +7,8 @@
 
 <div class="row marketing">
 
-  <!-- Should this be a ng-repeat ?-->
-  <editable-content data='elements' pos='1' flag='edit' action='update'></editable-content>
-  <editable-content data='elements' pos='2' flag='edit' action='update'></editable-content>
-  <editable-content data='elements' pos='3' flag='edit' action='update'></editable-content>
-  <editable-content data='elements' pos='4' flag='edit' action='update'></editable-content>
-  <editable-content data='elements' pos='5' flag='edit' action='update'></editable-content>
-  <editable-content data='elements' pos='6' flag='edit' action='update'></editable-content>
-  <!-- Should this be a ng-repeat ?-->
+  <!-- An easy block of editable content :) via ng-repeat ?-->
+  <editable-content ng-repeat='x in range' pos='x'
+    data='elements' flag='edit' action='update' ></editable-content>
 
 </div>
