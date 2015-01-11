@@ -1,7 +1,8 @@
 
-FRANGUI = flask restful api nginx Gui:
+RiCORD.a:
+  REST Isolated Containers Oriented to Record Data Analysis
   ✔ Admin editable web content @done (15-01-10 15:40)
-  ✔ Droplet digitalocean @done (15-01-11 10:57)
+  ✔ Droplet digitalocean @done (15-01-11 12:44)
   ☐ Init/Login page
     ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
   ☐ Favico
@@ -20,6 +21,13 @@ FRANGUI = flask restful api nginx Gui:
     ☐ Image uploader
   ☐ Document view page
   ☐ "Loading" at the very beginning of beautiful webapp?
+
+DROPLET:
+  ✔ Fix use of base url of API @done (15-01-11 12:44)
+    ✔ Provider @done (15-01-11 12:44)
+      ✔ inject location @done (15-01-11 12:44)
+    ✔ Conf @done (15-01-11 12:44)
+  ✔ Instruction for installing and build @done (15-01-11 12:44)
 
 Completed:
   HOW TO: new resource (api python):
