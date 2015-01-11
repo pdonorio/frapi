@@ -48,13 +48,16 @@ myApp
           var id = null;
 
           if ($scope.data[$scope.pos]) {
-              id = $scope.data[$scope.pos].id;
+              var tmp = $scope.data[$scope.pos];
+              id = tmp.id;
               //init data making use of shared Provider utility
-              $scope.data[$scope.pos] = mixed($scope.data[$scope.pos], false);
+              $scope.data[$scope.pos] = mixed(tmp, false);
           }
-          var data = {id: id,
-            content: $scope.data[$scope.pos].content,
-            element: $scope.pos, page: "" };
+          var data = {
+            id: id,
+            content: $scope.item.content,
+            element: $scope.pos, page: ""
+          };
 
           $scope.item.highlight = false;
         // API UPDATE ^_^

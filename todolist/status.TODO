@@ -9,6 +9,8 @@ RiCORD.a:
     ✔ Separated page @done (15-01-10 22:43)
       ✔ works only on nginx? @done (15-01-10 22:43)
       ✔ background http://css-tricks.com/perfect-full-page-background-image/ @done (15-01-10 22:43)
+  ☐ Admin content
+    ☐ use 'page' db attribute for different pages
   ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
   ☐ Search with search bar
     ☐ Infinite scrolling (with pages block on last search)
@@ -28,6 +30,7 @@ DROPLET:
       ✔ inject location @done (15-01-11 12:44)
     ✔ Conf @done (15-01-11 12:44)
   ✔ Instruction for installing and build @done (15-01-11 12:44)
+  ☐ Fix the copy of init value if have no data set in the rdb table
 
 Completed:
   HOW TO: new resource (api python):

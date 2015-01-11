@@ -116,6 +116,10 @@ My own extra
   left: 1.0em;
 }
 
+.switch small {
+  width: 20px;
+  height: 20px;
+}
 
 /* Most simple animation (fade)
 with angularjs, css3 on ng-show/ng-hide
