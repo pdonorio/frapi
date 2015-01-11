@@ -4,7 +4,7 @@ My python experiments with rethinkdb
 """
 
 # === Libraries ===
-import os, json
+import os
 
 # Connection structure and rethink libraries
 from bpractices.connections import Connection
@@ -52,6 +52,7 @@ class RethinkConnection(Connection):
     # === Init ===
     _connection = None
     model = None
+    _options = {"currentpage", "perpage"}
 
     def __init__(self, load_setup=False):
         """ My abstract method already connect by default """
@@ -145,6 +146,27 @@ class RethinkConnection(Connection):
             r.table_create(table).run()
             self.log.info("Table '" + table + "' created")
 
+    @staticmethod
+    def get_parameters_with_defaults(params):
+
+        # Cycle kwargs and use them directly
+        # This helps the dynamic usage of api parameters
+        p = {}
+
+        # save parameters
+        for name in params:
+            p[name] = params.get(name)
+
+        # set defaults for paging
+        if "perpage" in p:
+            if p["perpage"] == None:
+                p["perpage"] = 10
+            if p["currentpage"] == None:
+                p["currentpage"] = 1
+
+        #print p    #DEBUG?
+        return p
+
     # === Search ===
     @check_model
     @TryExcept("DB table does not exist yet", RqlRuntimeError)
@@ -153,40 +175,54 @@ class RethinkConnection(Connection):
 
         table = self.model.table
         self.log.debug("Searching rdb table '" + table + "'")
-
-#############################################################
-# TO FIX - should i cycle kwargs and use them directly??
-    # Doesn't this expose too much of my db schema?
-        key = kwargs.get("by_key")  # Get extra arguments
+        p = RethinkConnection.get_parameters_with_defaults(kwargs)
 
         # Case with arguments
-        if key != None:
+        if p["id"] != None:
             # Note: 'get_all' works, don't know why 'get' doesn't
-            search = r.table(table).get_all(key, index='id').run()
-            if search == None:
-                raise LoggedError(key + " could not be found ")
+            query = r.table(table).get_all(p["id"], index='id')
         # Case no arguments (all table)
         else:
-            search = r.table(table).run()
-#############################################################
+            query = r.table(table)
 
-        # Need a list out of it
-        #print search
-        data = list(search)
-        if data.__len__() < 1:
-            json_data = {}
-        else:
-            json_data = json.dumps(data)
-        return json_data
-
-    # === Filter* ===
+        # === Filter* ===
         # filt = {"where":"silence"}
         # collection = RethinkCollection(DataDump, filter=filt)
         # result = collection.fetch()
 
+        # Note: i should not check if i cannot find any data.
+        out = {}
+        count = 0
+        # As Api i should just return empty json if nothing is there
+        # from my query
+        if not query.is_empty().run():
+
+            # Get total query count
+            count = query.count().run()
+
+            # Slice for pagination
+            if "currentpage" in p and "perpage" in p:
+                start = (p["currentpage"] - 1) * p["perpage"]
+                end = p["currentpage"] * p["perpage"]
+                #this does not work: WHY??
+                #out = query.skip(start).limit(end).run()
+                out = query.slice(start, end).run()
+            else:
+                out = query.run()
+
+        # Warning: out is a cursor and can be used in two ways:
+        # 1. use the for cycle
+        # 2. use list(out) to get a vector
+        return (count, out)
+
+    def remove_options(self, data_dict):
+
+        for i in self._options:
+            if i in data_dict:
+                del data_dict[i]
+        return data_dict
+
     # === Insert ===
-# TO FIX - does not seem to work,
-# maybe one decorator catch the exception of the other?
     @check_model
     @TryExcept("DB table does not exist", RqlRuntimeError)
     def insert(self, data_dict, force_id=None):
@@ -194,15 +230,19 @@ class RethinkConnection(Connection):
         Note: rdb cannot take the id value inside the whole data.
         Make sure you pop that out as 'force_id' """
 
-        table = self.model.table
+        # Should create table if not exists? I think not
+        #table = self.model.table
         #self.create_table(table) #, True)
 
+        # Some options are used only as parameters and should not be saved
+        data = self.remove_options(data_dict)
+
         # Skip if empty
-        if data_dict.__len__() < 1:
+        if data.__len__() < 1:
             return self
 
         # Save data inside the choosed model
-        model_data = self.model(**data_dict)
+        model_data = self.model(**data)
 
         if force_id != None:
             # Force key of this data row. Usefull for updates?
@@ -220,7 +260,7 @@ class RethinkConnection(Connection):
     Both replace and update operations can be used to modify one or multiple rows. Their behavior is different:
 
     replace will completely replace the existing rows with new values
-    update will merge existing rows with the new values
+    update will merge existing rows with the new values [i think this is better]
     """
 
     # === Delete ===

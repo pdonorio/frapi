@@ -1,6 +1,20 @@
+# Node js
+.bash*
+.npm
+node_modules/
+bower_components/
+test/
+yoapp/.*
+yoapp/app/.*
+yoapp/app/404*
+yoapp/app/favico*
+yoapp/app/robots*
+yoapp/app/images
+
 # Data dir
 data/*
 tmp
+logs
 
 # Sublime stuff
 *sublime*
@@ -8,9 +22,6 @@ tmp
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
-# C extensions
-*.so
 
 # Distribution / packaging
 .Python

@@ -3,6 +3,7 @@
 Impement restful Resources for flask
 """
 
+import json
 # Will use the restful plugin instead!
 from flask.ext.restful import reqparse, abort, Resource
 # Log is a good advice
@@ -116,16 +117,28 @@ class GenericDBResource(Resource):
         Get all data. Note: could be an object serialized:
         restful docs in /quickstart.html#data-formatting
         """
+
         self.log.info("API: Received 'search'")
-        if data_key == None:
-            # Query ALL
-            data = g.rdb.search()
-        else:
-            data_key = clean_parameter(data_key)
+        params = self.parser.parse_args()
+        for (name, value) in params.iteritems():
+            params[name] = value
+
+        # Query RDB filtering on a single key
+        if data_key != None:
             self.log.info("API: Received 'search' for " + data_key)
-            #Query RDB filtering on a single key
-            data = g.rdb.search(by_key=data_key)
-        return data
+            params["id"] = data_key
+
+        # Passing each parameters directly to rdb
+        (count,out) = g.rdb.search(**params)
+
+        # Need a list to make this work
+        #data = list(out)
+        data = {"count":count, "items":list(out)}
+        # Serialize
+        json_data = json.dumps(data)
+
+        # Should build a better json array response
+        return json_data, HTTP_OK_ACCEPTED
 
     @abort_on_db_fail
     def post(self):
@@ -155,6 +168,7 @@ class GenericDBResource(Resource):
         self.log.debug("API: Insert of key " + key.__str__())
         #################
 
+        # Should build a better json array response
         return key, HTTP_OK_CREATED
 
     @abort_on_db_fail
@@ -197,12 +211,22 @@ class GenericDBResource(Resource):
 # Warning: due to restful plugin system, get and get(value)
 # require 2 different resources...
 
+
+## Data (generic)
 class DataList(GenericDBResource):
     def __init__(self, db=None):
         super(DataList, self).__init__(data_models.DataDump, db)
 class DataSingle(GenericDBResource):
     def __init__(self):
         super(DataSingle, self).__init__(data_models.DataDump)
+
+## HtmlContent (admin editable html content of web pages)
+class HtmlContents(GenericDBResource):
+    def __init__(self, db=None):
+        super(HtmlContents, self).__init__(data_models.WebContent, db)
+class HtmlContent(GenericDBResource):
+    def __init__(self):
+        super(HtmlContent, self).__init__(data_models.WebContent)
 
 ################################################################
 

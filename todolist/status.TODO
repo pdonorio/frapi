@@ -1,0 +1,306 @@
+
+FRANGUI = flask restful api nginx Gui:
+  ✔ Admin editable web content @done (15-01-10 15:40)
+  ✔ Droplet digitalocean @done (15-01-11 10:57)
+  ☐ Init/Login page
+    ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
+  ☐ Favico
+    ✔ Separated page @done (15-01-10 22:43)
+      ✔ works only on nginx? @done (15-01-10 22:43)
+      ✔ background http://css-tricks.com/perfect-full-page-background-image/ @done (15-01-10 22:43)
+  ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
+  ☐ Search with search bar
+    ☐ Infinite scrolling (with pages block on last search)
+    ☐ Off canvas extra search (just the template)
+      ☐ fuzzy?
+  ☐ Submission generic with steps
+    ☐ Draft with xeditable
+    ☐ Draft to published via API call
+      ☐ (it happens server side)
+    ☐ Image uploader
+  ☐ Document view page
+  ☐ "Loading" at the very beginning of beautiful webapp?
+
+Completed:
+  HOW TO: new resource (api python):
+    --- ✄ -----------------------
+    #How to create a new api resource
+    1. Define a new model inside data_models.py
+    2. Implement Rdb resource inside resources.py with data model of step 1
+    3. Define route inside routes.py with resource created in the step 2
+    --- ✄ -----------------------
+      // Angular query api
+      DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
+        .then(function(data) {  //Success
+            console.log(data);
+            //do modifications to $scope
+        }, function(object) {      //Error
+          console.log("Controller api call Error");
+          console.log(object);
+        }
+      );
+    --- ✄ -----------------------
+  INIT:
+
+   ✔  Static angular page (nginx docker) @done (14-11-29 09:53)
+   ✔  http get/post @done (14-11-29 09:53)
+   ✔  ng-repeat and duplicates @done (14-11-29 09:53)
+   ✔ Bootstrap 3 wrapping + iconfonts  @done (14-11-29 15:23)
+     ✔ angularstrap (NO JQUERY) @done (14-11-29 14:15)
+     ✘ ng-init for loader? @cancelled (14-11-29 15:13)
+     ✘ recipes for loading spinner - http://j.mp/1FFK7AO @cancelled (14-11-29 15:23)
+       ✔ http://stackoverflow.com/a/12602481 @done (14-11-29 15:38)
+       ✔ added $timeout call to simulate the loading gif @done (14-11-29 15:39)
+     ✔ striped table @done (14-11-29 18:00)
+  Scaffolding:
+     ✔ Nodejs + npm @done (14-12-21 11:15)
+       ✘ Ubuntu is not the latest version!!! @cancelled (14-12-21 11:15)
+         ✘ Also ppa does not work @cancelled (14-12-21 11:15)
+         ✔ Need a local user and local installation via curl @done (14-12-21 11:16)
+     ✔ Bower packaging @done (14-12-21 13:39)
+     ✔ Grunt tasks @done (14-12-21 13:39)
+     ✔ Yoeman structure @done (14-12-21 11:16)
+       ✔ angular generator @done (14-12-21 11:16)
+         ✔ uglify? @done (14-12-21 17:30)
+       ✔ Test (and save) prototype @done (14-12-21 14:45)
+       ✔ Learn how to put your code inside @done (14-12-21 17:30)
+       ✔ add noty, Restangular @done (14-12-22 07:19)
+         ✔ add fontawesome @done (14-12-22 10:32)
+           ✔ bower install --save fontawesome @done (14-12-22 10:32)
+       ✔ Integration of original javascript code @done (14-12-22 10:00)
+         ✘ missing promise library for angular? @cancelled (14-12-22 10:00)
+       ✔ docker fig integration @done (14-12-22 10:00)
+         ✔ dist directory to ngix server on production? @done (14-12-22 07:25)
+         ✔ live reloading with open port @done (14-12-22 10:00)
+           ✘ or grunt dist serving (probably not) http://stackoverflow.com/a/21285745 @cancelled (14-12-22 07:19)
+         ✔ routes and views @done (14-12-22 17:10)
+       ✔ Disable jshint by default on grunt serve @done (14-12-23 11:35)
+         ✔ You can run it on your bash shell with $ grunt jshint:all > stricts_errors.log @done (14-12-23 11:35)
+       ✔ Test adding factory with angular generator @done (14-12-27 19:02)
+         ✔ https://www.npmjs.com/package/generator-angular @done (14-12-27 19:02)
+       ✘ Test builing... @cancelled (14-12-29 12:20)
+         ✘ http://yeoman.io/codelab/write-unit-tests.html @cancelled (14-12-29 12:20)
+  PROFILING:
+    ✔ Click to edit @cool @important @done (14-12-27 18:06)
+     ✔ Edit an html element by clicking (if administrator) @done (14-12-27 18:06)
+       ✔ show a little edit link with mouse over on a div? @done (14-12-27 18:06)
+         ✔ show hover @done (14-12-27 17:47)
+         ✔ No anchors (use form instead) @done (14-12-27 20:51)
+         ✔ a switch for edit (only for admin) @cool @done (14-12-28 17:48)
+           ✔ Template with directive @done (14-12-28 17:48)
+             ✔ my own tag @done (14-12-28 17:48)
+               ✔ on/off button... @done (14-12-28 11:29)
+           ✔ ng-if @done (14-12-28 11:30)
+             ✔ if admin mode use template @done (14-12-28 17:18)
+             ✘ if no admin use normal content from json @cancelled (14-12-28 17:18)
+               ✔ also inside the same template! @done (14-12-28 17:18)
+               ✔ test ng-include   @done (14-12-28 17:19)
+                 ✔ use nesting controllers and scope just fine @done (14-12-28 17:19)
+           ✔ Switcher? @done (14-12-29 11:18)
+             ✘ https://github.com/frapontillo/angular-bootstrap-switch @bootstrap @cancelled (14-12-28 18:53)
+             ✘ http://cgarvis.github.io/angular-toggle-switch @simple @cancelled (14-12-28 19:17)
+             ✔ https://github.com/xpepermint/angular-ui-switch @ios_like @done (14-12-29 11:18)
+         ✘ click to edit tooltip? http://getbootstrap.com/javascript/#tooltips-examples @cancelled (14-12-28 18:53)
+       ✔ YEAH http://vitalets.github.io/angular-xeditable/ @super @cool @done (14-12-23 11:51)
+         ✘ or normal http://jsfiddle.net/joshdmiller/NDFHg/ @cancelled (14-12-23 11:51)
+  SUBMISSION:
+  ✔ INSERT some data :) @done (14-12-29 22:38)
+   ✔ Config for html data @done (14-12-30 16:29)
+     ✔ Read init via database @done (15-01-07 07:15)
+       ✔ Define elements array, from data inside api @done (15-01-08 11:37)
+         ✔ better define mouse enter /out /leave up angular  @done (15-01-08 15:25)
+           ✔ define css hover better than angular @done (15-01-08 15:25)
+       ✔ Sort elements by column @done (15-01-09 06:39)
+           ✔ Javascript array sort on element @done (15-01-09 06:39)
+       ✘ Count how many elements should be written @cancelled (15-01-08 16:54)
+   ✔ Restangular check error @done (15-01-08 17:13)
+     ✔ short timeout as a costant @done (15-01-08 17:13)
+   ✔ Implement POST (js) @done (15-01-08 17:43)
+     ✔ Restangular custom/do  @done (15-01-08 17:43)
+       ✔ doPost @done (15-01-08 17:43)
+       ✘ Request header field Content-Type is not allowed by Access-Control-Allow-Headers  @cancelled (15-01-08 17:44)
+       ✔ Fix cors @done (15-01-08 22:04)
+         ✔ http://www.reddit.com/r/flask/comments/2mh7yn/af_sending_a_json_via_post_to_flask/cm4umic @done (15-01-08 22:04)
+   ✔ Submission via post api to database!! @done (15-01-08 22:21)
+     ✘ Am i missing the update method in rethink db python class? @ohboy @cancelled (15-01-09 14:23)
+       ✔ rdb_handler.py @done (15-01-09 12:30)
+       ✔ remove currentpage,perpage from insert data inside rethink @done (15-01-09 12:30)
+         ✔ should this 2 property be threated as costants? @done (15-01-09 12:30)
+     ✔ Add id saving and passing through all cucuzzaro @important @done (15-01-09 14:23)
+     ✔ Strange adding columns currentpage,perpage to document ?? @done (15-01-09 14:23)
+       ✔ Submit via xeditable api @done (15-01-09 14:24)
+         ✔ check insert instead of update via post @done (15-01-09 14:57)
+           ✔ Works using null with ID @done (15-01-09 14:58)
+         ✔ check type (int) via python api post type received @done (15-01-09 22:04)
+         ✔ empty if string with no chars @done (15-01-09 22:04)
+           ✔ share provider function @done (15-01-09 22:14)
+         ✔ editable directive via ng-repeat @done (15-01-10 09:10)
+         ✔ Lodash @done (15-01-10 09:10)
+         ✔ a green V if update is successfull @done (15-01-10 10:10)
+           ✘ jquery via directive? @cancelled (15-01-10 10:10)
+           ✔ pure angular? @done (15-01-10 10:10)
+             ✔ ng-show? @done (15-01-10 10:10)
+             ✘ simple http://stackoverflow.com/a/19502646 @cancelled (15-01-10 10:10)
+             ✘ medium http://jsfiddle.net/uberspeck/j46Yh/light/ @cancelled (15-01-10 10:10)
+           ✔ Understanding promises for real... @done (15-01-10 13:28)
+             ✔ use a status value to show different messages with ng-show @done (15-01-10 13:28)
+           ✔ Switch hidden if api not available @done (15-01-10 14:46)
+          ✔ Fixed position @done (15-01-10 14:46)
+           ✔ Fade after timeout @done (15-01-10 15:20)
+             ✔ finally http://stackoverflow.com/a/16716483 @done (15-01-10 15:20)
+               ✔ Animate @done (15-01-10 15:34)
+                 ✔ http://stackoverflow.com/a/27438743 @done (15-01-10 15:35)
+   ✔ Admin db @done (15-01-08 16:53)
+    ✔ via npm: chateau @done (14-12-29 22:47)
+    ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)
+       ✔ node_modules/chateau/bin/chateau @done (15-01-08 16:53)
+       ✔ node_modules/chateau/config.js @done (15-01-08 16:53)
+
+
+ ☐ A different content per page (db column)
+ ☐ Api calling via @poller
+   ☐ Check until status is good with timeout
+   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+ ☐ use STEPS with accordion?
+   ☐ http://angular-ui.github.io/bootstrap/#/accordion
+ ☐ Understanding INJECTION @important
+   ☐ https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
+ ☐ Noty and jquery
+   ☐ DOM manipulation should be done in a directive (not a controller)
+   ☐ http://stackoverflow.com/a/14005010
+
+AUTHENTICATION:
+   ☐ Login
+     ☐ Frontend page (quick search and login)
+     ☐ api oauth?
+       ☐ QUICK???
+     ☐ roles @important @difficult
+     ☐ forgot password
+  ☐ SET api url to version, like:
+    ☐ http://api.example.com/api/v1.0
+
+ ANGULARJS datatable like:
+   ✔ pagination @done (14-11-29 19:56)
+     ✔ api side @done (14-11-29 19:56)
+       ✔ pagination default parameters @done (14-11-30 08:55)
+       ✔ query slice (rethinkdb) @done (14-11-29 19:56)
+         ✔ query.slice((pageNumber - 1) * perPage, pageNumber * perPage) @done (14-11-29 19:56)
+     ✔ count and items (in json data) response @done (14-11-30 09:23)
+     ✔ call with parameters, perpage, currentpage @done (14-12-05 13:18)
+     ✔ map parameters to html DOM via scope @done (14-12-05 16:54)
+     ✔ ng-class @done (14-12-22 17:09)
+   ☐ Study angular datatables
+   ☐ simple search all fields? @important
+     ☐ Initial focus to search bar
+     ☐ writing the autocompletion
+       ☐ typehead http://angular-ui.github.io/bootstrap/#/typeahead
+   ☐ infinite scrolling @important
+   ☐ sort
+   ☐ Fuzzy @cool
+     ☐ RDB or python?
+       ☐ python http://www.quora.com/How-is-the-fuzzy-search-algorithm-in-Sublime-Text-designed/answer/Bulat-Bochkariov
+       ☐ python library https://github.com/seatgeek/fuzzywuzzy
+       ☐ difflib https://docs.python.org/2/library/difflib.html (get_close_matches)
+       ☐ rethinkdb match http://www.rethinkdb.com/api/python/match/
+       ☐ rethinkdb elastic http://rethinkdb.com/docs/elasticsearch/
+   ✔ promises @done (14-12-22 17:10)
+     ☐ page buttons template (angular) eventually
+       ☐ https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination
+   ☐ Advanced search
+     ☐ off canvas bootstrap?
+ ✘ Little fun with angular strap  2.1.4 (downgrade angular to 1.3.1? ) @cancelled (14-12-23 06:41)
+   ✘ http://mgcrea.github.io/angular-strap/#/page-one#getting-started @cancelled (14-12-23 06:41)
+   ✘ https://github.com/mgcrea/angular-strap/releases @cancelled (14-12-23 06:41)
+ ☐ API: Check post, put and delete for parameters
+  ☐ Interesting concept, Basket Service:
+    ☐ http://stackoverflow.com/a/11704413
+ ✘ resources usage instead of http? @cancelled (14-12-05 09:21)
+    ✔ http://fdietz.github.io/recipes-with-angular-js/consuming-external-services/consuming-restful-apis.html @done (14-12-05 09:21)
+ ✔ or Seriouse call to my python api with Restangular @done (14-12-05 09:21)
+    ✔ http://www.ng-newsletter.com/posts/restangular.html [lodash or underscore?] @done (14-12-05 09:21)
+    ✔ lodash @done (14-12-05 09:21)
+ ✘ navbar fixed and responsive with angular strap @cancelled (14-12-23 06:42)
+
+API AUTH:
+  ☐ Authentication
+   ☐ Flask set SSL
+   ☐ no clean passwords ;D
+   ☐ Encryption class in bpract
+     ☐ salt
+     ☐ backoff after 3 failed try
+   ☐ Token
+   ☐ User Model should extend also AuthUser
+   ☐ Flask-auth - some methods could be usefull
+     ☐ Try to use Flask session
+     ☐ set timeout to authenticated user
+     ☐ Roles and groups
+       ☐ from configuration file
+
+OPTIMIZIATION:
+ ☐ Advanced promises
+   ☐ chaining http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/#advancedpromiseschaining
+ ☐ jshint:all to fix stricts on js code
+ ☐ MVC directory
+   ☐ BETTER structure
+   ☐ https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
+   ☐ A place where json data could be started in angularjs?
+ ☐ Caching angularjs
+   ☐ Use local storage
+     ☐ http://yeoman.io/codelab/local-storage.html
+     ☐ COOKIES!!
+ ☐ Init progress bar
+   ☐ Home page separation from application
+   ☐ stay signed in
+ ☐ UNDERSCORE! http://underscorejs.org/ @cool
+
+OFFLINE APP:
+  ☐ Offline web applications - REC
+    ☐ http://caniuse.com/#feat=offline-apps
+  ☐ Method of defining web page files to be cached using a cache manifest file,
+    ☐ allowing them to work offline on subsequent visits to the page
+
+NEXT prototype (prototype-language):
+ ☐ language in nosql database holding
+ ☐ Fast development/prototype
+   ☐ http://bahmutov.calepin.co/fast-prototyping-using-restangular-and-json-server.html
+   ☐ http://jphoward.wordpress.com/2013/01/09/intermissionrest-api-in-python-with-flask-restless/
+ ☐ Suggestions with ng-suggest
+   ☐ http://journal.code4lib.org/articles/10023
+
+Some issues:
+ ☐ Secure the api calls (only from some domains :) e.g. mydomain.com/ or localhost/)
+   ☐ http://stackoverflow.com/a/2256312
+ ☐ search for flask domain check?
+ ☐ add a secret key hashed with the browser key.
+   ☐ if it matches from browser ok, otherwise kill it?
+ ☐ What about CORS?
+   ☐ https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+  ☐ Maximum number of calls per second.
+  ☐ Max per day.
+
+TIPS:
+ ☐ Dinamic loading and convenction names routing
+   ☐ http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single
+ ☐ Tips for writing better angular code
+   ☐ https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
+
+NEXT NEXT prototype (prototype-scheduler):
+ ☐ Redis queue? COOL
+   ☐ https://realpython.com/blog/python/flask-by-example-implementing-a-redis-task-queue/
+
+FINAL stuff:
+ ☐ Flask api code tree - see examples
+   ☐ https://github.com/mitsuhiko/flask/wiki/Large-app-how-to
+ ✔ A separate container for flask api which automatically reload :D @done (14-12-30 12:37)
+ ☐ snippets 4 sublime
+     ☐ Cleaner docker startup script + requested dockerfile (only 2?)
+
+WOW:
+  ☐ A true new app in the new millennium
+    ☐ http://zurb.com/article/1356/there-s-life-beyond-the-app-store
+  ☐ A real portfolio
+    ☐ http://themeforest.net/user/Flatfull/portfolio
+   ☐ Animations
+    ☐ http://julian.com/research/velocity/
+  ☐ A real developer..
+    ☐ https://plus.google.com/+OlivierLouvignes/posts

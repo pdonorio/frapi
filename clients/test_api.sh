@@ -5,8 +5,16 @@ protocol="http"
 #host="127.0.0.1" #from node
 host=$(boot2docker ip 2> /dev/null) #from host to local docker
 #host="80.240.138.39" #from host to digitalocean
-port=5005
-resource="data"
+port=5507
+
+#resource="data"
+resource="webcontent"
+
+#############################################
+# BUILD TEST
+# echo "***\nFULL LIST"
+# $cmd $protocol://$host:$port/$resource
+# exit
 
 #############################################
 # TO CHECK later on:
@@ -20,6 +28,14 @@ resource="data"
 # echo "received response '$key'"
 
 # exit 1
+
+#############################################
+#PAGING
+# echo "***\nPaging"
+# values="perpage=7&currentpage=1"
+# key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
+# echo "received '$key'"
+# exit
 
 #############################################
 #ADD a new element

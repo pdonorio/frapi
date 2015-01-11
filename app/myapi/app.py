@@ -14,6 +14,10 @@ from rdb.rdb_handler import RethinkConnection as db
 app = Flask(__name__)
 # config init
 app.config.from_object(__name__)
+# Allow cross-domain request for DEBUG?
+from flask.ext.cors import CORS
+CORS(app, headers=['Content-Type'])
+#cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Need a pool of connections: http://j.mp/1yNP4p0
 def try_to_connect(create_db=False):

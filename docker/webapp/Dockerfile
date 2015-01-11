@@ -13,6 +13,9 @@ RUN pip install rethinkdb
 ADD requirements.txt /src/requirements.txt
 #Install flask and rethinkdb driver
 RUN pip install -r /src/requirements.txt
+#Install crossdomain add-on
+#http://flask-cors.readthedocs.org/en/latest/
+RUN pip install -U flask-cors
 
 #apply patch to ORM!! rethinkdb driver has a new option...
 ADD rethinkdb.patch /tmp/rethinkdb.patch

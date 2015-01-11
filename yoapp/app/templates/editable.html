@@ -1,0 +1,48 @@
+
+  <!-- the main 'ng-if' is based on CHECKBOX SWITCH -->
+
+    <!-- EDIT ON -->
+    <div ng-if="editable.switch">
+
+      <div ng-mouseover="item.highlight=true" ng-mouseout="item.highlight=false"
+          class='highlight'>
+        <span id='textmanipulate' editable-textarea="item.content"
+          e-rows="3" e-cols="40" e-form="eform" onaftersave="updateContent()">
+          <!-- DEBUG POS {{pos}}: -->
+          <div id='clicable' ng-bind-html="item.content" ng-click="eform.$show()"></div>
+
+        </span>
+      </div>
+
+      <!-- Show a panel with informations about the current editable div -->
+      <div class="edittip shad alert alert-info" role="alert" ng-show="item.highlight">
+        <table class="table">
+          <tr> <th>Item</th> <td> <span class="badge">{{pos}}</span> </td> </tr>
+          <tr> <th>Content</th> <td> "<i>{{item.content}}</i>" </td> </tr>
+        </table>
+        <span class="label label-danger">click to edit</span>
+      </div>
+
+      <!-- Show a panel for saving/LOADING on element -->
+      <div class="fix animate-show animate-hide alert alert-info" role="alert" ng-show="item.status == 3">
+        <i class="fa fa-refresh fa-spin"></i> loading...
+      </div>
+      <!-- Show a panel for ERROR on element -->
+      <div class="fix animate-show animate-hide alert alert-danger" role="alert" ng-show="item.status == 2">
+       <b><i class="fa fa-ban"></i> Failed!</b>
+       <br> Could not save new content:
+       <br> "<i>{{item.content}}</i>"
+      </div>
+      <!-- Show a panel for SUCCESSFULLY saved element -->
+      <div class="fix animate-show animate-hide alert alert-success" role="alert" ng-show="item.status == 1">
+       <i class="fa fa-check-square-o"></i> Saved!
+       <br> <b>{{item.content}}</b>
+      </div>
+
+
+    </div>
+
+    <!-- EDIT OFF -->
+    <div ng-if="!editable.switch">
+      <div ng-bind-html="item.content"></div>
+    </div>
