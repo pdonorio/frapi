@@ -1,12 +1,12 @@
 'use strict';
 
 // Restangular service definition
-myApp.factory('RestAPI', function(Restangular, apiaddress)
+myApp.factory('RestAPI', function(Restangular, AppConfig)
 {
   return Restangular.withConfig(function(RestangularConfigurer) {
 
     //i will use the same base url for all my api requests
-    RestangularConfigurer.setBaseUrl(apiaddress);
+    RestangularConfigurer.setBaseUrl(AppConfig.apiBase);
 
   });
 });
