@@ -9,8 +9,6 @@ RiCORD.a:
     ✔ Separated page @done (15-01-10 22:43)
       ✔ works only on nginx? @done (15-01-10 22:43)
       ✔ background http://css-tricks.com/perfect-full-page-background-image/ @done (15-01-10 22:43)
-  ☐ Admin content
-    ☐ use 'page' db attribute for different pages
   ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
   ☐ Search with search bar
     ☐ Infinite scrolling (with pages block on last search)
@@ -20,8 +18,13 @@ RiCORD.a:
     ☐ Draft with xeditable
     ☐ Draft to published via API call
       ☐ (it happens server side)
-    ☐ Image uploader
+    ☐ File (only images?) uploader
+      ☐ Share file folder between api and nodejs/nginx!
+  ☐ Admin content
+    ☐ use 'page' db attribute for different pages
   ☐ Document view page
+  ☐ Some serious profile/user Menu
+    ☐ Profile picture?
   ☐ "Loading" at the very beginning of beautiful webapp?
 
 DROPLET:
