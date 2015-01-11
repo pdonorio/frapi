@@ -42,3 +42,4 @@ RUN echo "nvm use v$NODEV" >> ~/.bashrc
 
 ADD startup.sh /
 EXPOSE 9000
+ENV TERM xterm

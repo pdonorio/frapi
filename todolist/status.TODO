@@ -1,8 +1,10 @@
 
 FRANGUI = flask restful api nginx Gui:
   ✔ Admin editable web content @done (15-01-10 15:40)
+  ✔ Droplet digitalocean @done (15-01-11 10:57)
   ☐ Init/Login page
-    ☐ Favico
+    ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
+  ☐ Favico
     ✔ Separated page @done (15-01-10 22:43)
       ✔ works only on nginx? @done (15-01-10 22:43)
       ✔ background http://css-tricks.com/perfect-full-page-background-image/ @done (15-01-10 22:43)

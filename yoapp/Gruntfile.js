@@ -323,7 +323,16 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
-        }]
+        } , {
+//for font-awesome
+//http://stackoverflow.com/questions/21310382/fontawesome-is-not-working-when-project-is-built-with-grunt
+          expand: true,
+          //dot: true,
+          cwd: 'bower_components/fontawesome',
+          src: ['fonts/*.*'],
+          dest: '<%= yeoman.dist %>'
+        }
+        ]
       },
       styles: {
         expand: true,

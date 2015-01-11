@@ -12,7 +12,9 @@ $ docker build -t node .
 $ docker run -it -p 80:9000 -v yourapp:/opt/yourapp node
 
 cd yourapp
-yo  #follow instructions for angular generator
+npm install?
+#yo  #follow instructions for angular generator
+bower install
 grunt build
 # Modify Gruntfile.js, localhost to 0.0.0.0 for outside access
 grunt serve
