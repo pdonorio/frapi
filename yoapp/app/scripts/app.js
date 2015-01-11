@@ -10,6 +10,8 @@
  */
 var myApp = angular.module('yoApp',
   [
+  // CONFIGURATION and DYNAMIC CONSTANTS
+    'AppConfig',
   // DEPENCIES: base yeoman modules
     'ngAnimate', 'ngCookies',
     'ngRoute', 'ngSanitize', 'ngTouch',
@@ -20,8 +22,8 @@ var myApp = angular.module('yoApp',
   // DEPENCIES: own filters
     'textOperations', //my filters
   ])
+
   // CONSTANTS
-  .constant('apiaddress', 'http://awesome.dev:5507')
   .constant('apiTimeout', 1250)
   .constant('messageTimeout', 4000)
   .constant('perpageDefault', 10)

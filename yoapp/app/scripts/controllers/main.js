@@ -10,6 +10,7 @@
 myApp.controller('MainController',
     function ($scope, DataResource, $location, mixed)
 {
+
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
