@@ -159,11 +159,9 @@ My own extra
 .barshad {
   box-shadow: 0 0 10px black;
 }
-.barsize {
-/*
-  background: #9C96AE;
-  background: #403075;
-*/}
+.headcolor {
+  color: #002C42;
+}
 .nopad {
   padding: 0;
   margin: 0;
@@ -171,6 +169,14 @@ My own extra
   padding-left: 12px;
 }
 
+/*input[type="text"], textarea .icolor {
+  background-color : #0887C4;
+  border-color: #ddd;
+}
+#mysearch{
+  color:#fff;
+}
+*/
 .edittip {
   text-align: left;
   position: fixed;

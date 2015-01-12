@@ -22,8 +22,7 @@ myApp.controller('MainController',
         {active:true, link:'', name:'home'},
         {active:false, link:'submit', name:'add'},
         {active:false, link:'search', name:'search'},
-        {active:false, link:'change', name:'changelog'},
-        {active:false, link:'about', name:'about'},
+        {active:false, link:'change', name:'about'},
     ];
     // Fix menu in the header.
     // Make active only the button which leads to current path.

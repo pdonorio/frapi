@@ -53,10 +53,6 @@ var myApp = angular.module('yoApp',
         templateUrl: 'views/change.html',
         //controller: 'AboutController'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutController'
-      })
       .otherwise({
         redirectTo: '/'
       });
