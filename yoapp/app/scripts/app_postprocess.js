@@ -1,3 +1,4 @@
+'use strict';
 
 // Do something with the app about to run
 // Need for configuration for some of my libraries

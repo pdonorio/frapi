@@ -24,7 +24,7 @@ SUBMISSION:
   ✔ 4 columns @done (15-01-12 15:23)
     ✔ sidebar steps list @done (15-01-12 15:23)
       ✔ Lot of css/bootstrap effort @done (15-01-12 15:23)
-      ☐ Topbar http://twitterbootstrap3navbars.w3masters.nl
+      ✔ Topbar http://twitterbootstrap3navbars.w3masters.nl @done (15-01-12 16:06)
     ☐ preview before, if exists (disappear in mobile view)
     ☐ current step editable
     ☐ next view after, if exists (disappear in mobile view)

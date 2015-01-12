@@ -2,40 +2,68 @@
 
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-md-3 col-xs-3">
-                <div class="well">
-                    <h4><span class="label label-default">Steps</span></h4>
-                    <br>
-                    <ul class="nav nav-pills nav-pills nav-stacked">
-                      <li role="presentation" class="active">
-                        <a href="#">
-                            <span class="badge">1</span>
-                            Estratto
-                        </a>
-                      </li>
-                        <hr>
-                      <li role="presentation">
-                        <a href="#">
-                            <span class="badge">2</span>
-                            Fonte
-                        </a>
-                      </li>
-                      <li role="presentation">
-                        <a href="#">
-                            <span class="badge">3</span>
-                            Festa
-                        </a>
-                      </li>
-                    </ul>
-                </div>
+              <div class="well">
+              <h4><span class="label label-default">Steps</span></h4>
+              <br>
+
+              <ul class="nav nav-pills nav-pills nav-stacked">
+                <li ng-repeat='step in steps' role="presentation"
+                  ng-click="setStep(step.step)"
+                  ng-class="{'active': step.step == current}">
+                  <a href="">
+                      <span class="badge">{{step.step}}</span>
+                      {{step.name | ucFirst}}
+                  </a>
+                  <hr ng-show="step.step == current">
+                </li>
+              </ul>
+              </div>
             </div>
+
             <div class="col-md-9 col-xs-9">
+
+                <!-- Step before if exists -->
                 <div class="col-md-4 col-xs-4">
                     <div class="well"> Pre </div>
                 </div>
+
+                <!-- CURRENT step -->
                 <div class="col-md-4 col-xs-4">
-                    <div class="well"> Current </div>
+                 <div class="well">
+                  <h4> Step {{current}} </h4>
+                  <br>
+                  {{steps[current-1].form}}
+
+                  <form editable-form name="editableForm" onaftersave="saveUser()">
+                    <div>
+                      <!-- editable username (text with validation) -->
+                      <span class="title">User name: </span>
+                      <span editable-text="user.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ user.name || 'empty' }}</span>
+                    </div>
+
+                    <div class="buttons">
+                      <!-- button to show form -->
+                      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                        Edit
+                      </button>
+                      <!-- buttons to submit / cancel form -->
+                      <span ng-show="editableForm.$visible">
+                        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                          Save
+                        </button>
+                        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                          Cancel
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+
+                 </div> <!-- well -->
                 </div>
+
+                <!-- Step after, if exists -->
                 <div class="col-md-4 col-xs-4">
                     <div class="well"> Post </div>
                 </div>

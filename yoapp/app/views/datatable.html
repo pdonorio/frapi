@@ -22,35 +22,45 @@
             </div>
           </div>
         </form>
+        <br>
       </div>
 
-      <br>
-      <div>
-       Current page:
-       <input type="text" ng-value="{{perpage}}" size=3
-        ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
-       Elements per page:
-       <input type="text" ng-value="{{currentpage}}" size=3
-        ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
-      </div>
+      <div class="container">
 
-    <!-- TO FIX - if data == 0 nothing changes... -->
-      <!-- Handle loading and zero data -->
-      <div id='spinner' ng-hide='data.length >= 0'>
-        Loading <i class="fa fa-refresh fa-spin"></i>
-      </div>
+          <!-- LOADING -->
+          <div id='spinner' ng-hide='data.length >= 0'>
+            Loading <i class="fa fa-refresh fa-spin"></i>
+          </div>
 
-      <div id='nodata' ng-show='data.length == 0'>
-        No data found.
+          <!-- NO DATA -->
+          <div id='nodata' ng-show='data.length == 0'> No data found. </div>
+
+          <!-- DATA stats and paging -->
+          <div ng-show='data.length > 0'>
+            <div class="row">
+              <div class="col-md-6 col-xs-6">
+               Current page:
+               <input type="text" ng-value="{{perpage}}" size=3
+                ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+               Elements per page:
+               <input type="text" ng-value="{{currentpage}}" size=3
+                ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
+              </div>
+              <div class="col-md-6 col-xs-6">
+                <span  class="label label-default">
+                  Viewing
+                  from {{from}}
+                  to {{from + data.length - 1}}
+                  of {{datacount}} elements
+                </span>
+              </div>
+            </div>
+          </div>
       </div>
-    <!-- TO FIX - if data == 0 nothing changes... -->
 
       <!-- data table -->
       <div ng-show='data.length > 0'>
-        <span>Viewing
-        from {{from}}
-        to {{from + data.length - 1}}
-        of {{datacount}}:</span>
+
         <table class="table table-striped">
           <thead>
             <tr>
@@ -66,6 +76,7 @@
             </tr>
           </tbody>
         </table>
+
       </div>
 </div>
 

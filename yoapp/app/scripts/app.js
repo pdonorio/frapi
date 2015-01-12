@@ -26,7 +26,7 @@ var myApp = angular.module('yoApp',
   // CONSTANTS
   .constant('apiTimeout', 1250)
   .constant('messageTimeout', 4000)
-  .constant('perpageDefault', 10)
+  .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
   //ROUTING
   .config(function ($routeProvider) {
@@ -42,7 +42,7 @@ var myApp = angular.module('yoApp',
       })
       .when('/submit', {
         templateUrl: 'views/submit.html',
-        controller: 'SubmissionController'
+        controller: 'SubmissionController',
       })
       .when('/search', {
         templateUrl: 'views/datatable.html',

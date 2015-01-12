@@ -10,10 +10,22 @@
 myApp
   .controller('SubmissionController', function ($scope) {
 
-    $scope.test = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+    $scope.current = 1;
+    $scope.steps = [
+        {step: 1, name: "estratto",
+            form: {
+                val: "data",
+                test: "pippo",
+                prova: "ancora",
+            }
+        },
+        {step: 2, name: "fonte"},
+        {step: 3, name: "festa"},
     ];
+
+    //define step on click
+    $scope.setStep = function(step) {
+        $scope.current = step;
+    }
 
   });
