@@ -44,12 +44,12 @@ body {
 
 /* Space out content a bit */
 body {
-  padding-bottom: 10px;
-  padding-top: 70px;
+  padding-top: 80px;
 }
 
 .logo {
   padding-left: 10px;
+  color: white;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -160,15 +160,16 @@ My own extra
   box-shadow: 0 0 10px black;
 }
 .barsize {
-  height: 55px;
 /*
   background: #9C96AE;
   background: #403075;
 */}
-.tpad {
-  padding-top: 8px;
+.nopad {
+  padding: 0;
+  margin: 0;
+  padding-top: 10px;
+  padding-left: 12px;
 }
-
 
 .edittip {
   text-align: left;
