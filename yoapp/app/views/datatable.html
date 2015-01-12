@@ -1,4 +1,4 @@
-<div ng-controller="ViewController">
+<div ng-controller="ViewController" class="container">
 
     <div class="panel panel-info">
       <div class="panel-heading">
@@ -10,19 +10,21 @@
       <div class="container">
         <form role="form" ng-submit="search()">
           <div class="row">
-            <div class="input-group">
-              <input type="text" placeholder="Fuzzy search (try it!)"
-                class="form-control"
-                ng-value="{{fuzzy}}" ng-model="fuzzy" ng-change="search(fuzzy)">
-              <span class="input-group-btn">
-                <input type="submit" class="btn btn-info" value="Search">
-              </span>
+            <div class="col-xs-10 col-md-10">
+              <div class="input-group">
+                <input type="text" placeholder="Fuzzy search (try it!)"
+                  class="form-control"
+                  ng-value="{{fuzzy}}" ng-model="fuzzy" ng-change="search(fuzzy)">
+                <span class="input-group-btn">
+                  <input type="submit" class="btn btn-info" value="Search">
+                </span>
+              </div>
             </div>
           </div>
-
         </form>
       </div>
 
+      <br>
       <div>
        Current page:
        <input type="text" ng-value="{{perpage}}" size=3

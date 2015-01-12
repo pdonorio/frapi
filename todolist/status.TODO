@@ -6,34 +6,42 @@ RiCORD.a:
   ☐ Init/Login page
     ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
   ☐ Favico
-    ✔ Separated page @done (15-01-10 22:43)
-      ✔ works only on nginx? @done (15-01-10 22:43)
-      ✔ background http://css-tricks.com/perfect-full-page-background-image/ @done (15-01-10 22:43)
   ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
   ☐ Search with search bar
     ☐ Infinite scrolling (with pages block on last search)
     ☐ Off canvas extra search (just the template)
       ☐ fuzzy?
-  ☐ Submission generic with steps
-    ☐ Draft with xeditable
-    ☐ Draft to published via API call
-      ☐ (it happens server side)
-    ☐ File (only images?) uploader
-      ☐ Share file folder between api and nodejs/nginx!
-  ☐ Admin content
-    ☐ use 'page' db attribute for different pages
+  ☐ Submission generic with steps @inprogress
+  ☐ Admin content: use 'page' db attribute for different pages
+    ☐ Html editor
+      ☐ Sanitize content (e.g. open tags)
+    ☐ Use counter to make edit switch disappear inside footer if no editable content
   ☐ Document view page
   ☐ Some serious profile/user Menu
-    ☐ Profile picture?
   ☐ "Loading" at the very beginning of beautiful webapp?
 
-DROPLET:
-  ✔ Fix use of base url of API @done (15-01-11 12:44)
-    ✔ Provider @done (15-01-11 12:44)
-      ✔ inject location @done (15-01-11 12:44)
-    ✔ Conf @done (15-01-11 12:44)
-  ✔ Instruction for installing and build @done (15-01-11 12:44)
-  ☐ Fix the copy of init value if have no data set in the rdb table
+SUBMISSION:
+  ✔ 4 columns @done (15-01-12 15:23)
+    ✔ sidebar steps list @done (15-01-12 15:23)
+      ✔ Lot of css/bootstrap effort @done (15-01-12 15:23)
+    ☐ preview before, if exists (disappear in mobile view)
+    ☐ current step editable
+    ☐ next view after, if exists (disappear in mobile view)
+  ☐ Draft with xeditable
+    ☐ http://vitalets.github.io/angular-xeditable/#editable-form
+  ☐ A step is probably a new directive
+    ☐ ng-show based on step names
+      ☐ ng-repeat based on db step list
+      ☐ also show out of focus step before and after
+      ☐ start in edit mode if no data inside that step
+        ☐ otherwise it's a DRAFT ;D
+  ☐ File (only images?) uploader
+    ☐ Share file folder between api and nodejs/nginx!
+  ☐ Draft to published via API call
+    ☐ (it happens server side)
+  ☐ root scope
+    ☐ // It's very handy to add references to $state and $stateParams to the $rootScope
+    ☐ // so that you can access them from any scope within your applications.For example,
 
 Completed:
   HOW TO: new resource (api python):
@@ -169,7 +177,15 @@ Completed:
     ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)
        ✔ node_modules/chateau/bin/chateau @done (15-01-08 16:53)
        ✔ node_modules/chateau/config.js @done (15-01-08 16:53)
+  ROPLET:
+    ✔ Fix use of base url of API @done (15-01-11 12:44)
+      ✔ Provider @done (15-01-11 12:44)
+        ✔ inject location @done (15-01-11 12:44)
+      ✔ Conf @done (15-01-11 12:44)
+    ✔ Instruction for installing and build @done (15-01-11 12:44)
+    ✔ Fix the copy of init value if have no data set in the rdb table @done (15-01-12 07:36)
 
+API:
 
  ☐ A different content per page (db column)
  ☐ Api calling via @poller

@@ -37,10 +37,12 @@ var myApp = angular.module('yoApp',
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
+        //using main controller here
+        directive: 'directives/editablecontent.js',
       })
       .when('/submit', {
         templateUrl: 'views/submit.html',
-        //controller: 'AboutController'
+        controller: 'SubmissionController'
       })
       .when('/search', {
         templateUrl: 'views/datatable.html',
