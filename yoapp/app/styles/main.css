@@ -122,6 +122,7 @@ My own extra
 }
 .switch small {
   width: 20px;
+  height: 20px;
 }
 
 /* Most simple animation (fade)

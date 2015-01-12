@@ -38,14 +38,22 @@ var myApp = angular.module('yoApp',
       .when('/', {
         templateUrl: 'views/main.html',
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutController'
+      .when('/submit', {
+        templateUrl: 'views/submit.html',
+        //controller: 'AboutController'
       })
       .when('/search', {
         templateUrl: 'views/datatable.html',
         controller: 'ViewController',
-        //factory: 'DataResource' //?? it works without...
+        factory: 'DataResource'
+      })
+      .when('/change', {
+        templateUrl: 'views/change.html',
+        //controller: 'AboutController'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutController'
       })
       .otherwise({
         redirectTo: '/'
