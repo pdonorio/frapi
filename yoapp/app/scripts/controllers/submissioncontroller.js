@@ -13,11 +13,11 @@ myApp
     $scope.current = 1;
     $scope.steps = [
         {step: 1, name: "estratto",
-            form: {
-                val: "data",
-                test: "pippo",
-                prova: "ancora",
-            }
+            form: [
+                {pos:1, key: "titolo", value: "altro"},
+                {pos:2, key: "pippo", value: "test"},
+                {pos:3, key: "ancora", value: "prova"},
+            ]
         },
         {step: 2, name: "fonte"},
         {step: 3, name: "festa"},

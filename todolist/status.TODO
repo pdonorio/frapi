@@ -25,19 +25,21 @@ SUBMISSION:
     ✔ sidebar steps list @done (15-01-12 15:23)
       ✔ Lot of css/bootstrap effort @done (15-01-12 15:23)
       ✔ Topbar http://twitterbootstrap3navbars.w3masters.nl @done (15-01-12 16:06)
-    ☐ preview before, if exists (disappear in mobile view)
-    ☐ current step editable
-    ☐ next view after, if exists (disappear in mobile view)
-  ☐ Draft with xeditable
-    ☐ http://vitalets.github.io/angular-xeditable/#editable-form
-  ☐ A step is probably a new directive
-    ☐ ng-show based on step names
-      ☐ ng-repeat based on db step list
-      ☐ also show out of focus step before and after
-      ☐ start in edit mode if no data inside that step
-        ☐ otherwise it's a DRAFT ;D
+    ✔ preview before, if exists (disappear in mobile view) @done (15-01-13 07:03)
+    ✔ current step editable @done (15-01-13 07:03)
+    ✔ next view after, if exists (disappear in mobile view) @done (15-01-13 07:03)
+  ✔ Draft with xeditable @done (15-01-13 07:03)
+    ✔ http://vitalets.github.io/angular-xeditable/#editable-form @done (15-01-13 07:25)
+    ☐ A step is probably a new directive ?
+    ✔ ng-show based on step names @done (15-01-13 07:04)
+      ✔ ng-repeat based on db step list @done (15-01-13 07:04)
+      ✔ also show out of focus step before and after @done (15-01-13 07:04)
+      ✔ start in edit mode if no data inside that step @done (15-01-13 07:04)
+        ✔ otherwise it's a DRAFT ;D @done (15-01-13 07:04)
   ☐ File (only images?) uploader
     ☐ Share file folder between api and nodejs/nginx!
+  ☐ Edit mode can add, edit and remove step @cool
+    ☐ only edit via xeditable?
   ☐ Draft to published via API call
     ☐ (it happens server side)
   ☐ root scope
