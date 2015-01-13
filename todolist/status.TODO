@@ -6,19 +6,19 @@ RiCORD.a:
   ☐ Init/Login page
     ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
   ☐ Favico
-  ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
   ☐ Search with search bar
-    ☐ Infinite scrolling (with pages block on last search)
-    ☐ Off canvas extra search (just the template)
+    ☐ Infinite scrolling (with pages block on last search)  @important
+    ☐ Off canvas extra search (just the template) @important
       ☐ fuzzy?
   ☐ Submission generic with steps @inprogress
+  ☐ Document view page
+  ☐ A fixed div if first api call/init fails to signal error/maintenance @errorcheck
+    ☐ "Loading" at the very beginning of beautiful webapp?
   ☐ Admin content: use 'page' db attribute for different pages
     ☐ Html editor
       ☐ Sanitize content (e.g. open tags)
     ☐ Use counter to make edit switch disappear inside footer if no editable content
-  ☐ Document view page
   ☐ Some serious profile/user Menu
-  ☐ "Loading" at the very beginning of beautiful webapp?
 
 SUBMISSION:
   ✔ 4 columns @done (15-01-12 15:23)
@@ -30,7 +30,13 @@ SUBMISSION:
     ✔ next view after, if exists (disappear in mobile view) @done (15-01-13 07:03)
   ✔ Draft with xeditable @done (15-01-13 07:03)
     ✔ http://vitalets.github.io/angular-xeditable/#editable-form @done (15-01-13 07:25)
-    ☐ A step is probably a new directive ?
+    ☐ A step is a @directive
+      ✔ Handling position and other things for current != step @done (15-01-13 11:28)
+      ✔ Blur effect pure css3 @done (15-01-13 11:28)
+      ☐ animation?
+      ☐ more and more
+    ☐ Edit mode can add, edit and remove step @cool
+      ☐ only edit via xeditable?
     ✔ ng-show based on step names @done (15-01-13 07:04)
       ✔ ng-repeat based on db step list @done (15-01-13 07:04)
       ✔ also show out of focus step before and after @done (15-01-13 07:04)
@@ -38,8 +44,6 @@ SUBMISSION:
         ✔ otherwise it's a DRAFT ;D @done (15-01-13 07:04)
   ☐ File (only images?) uploader
     ☐ Share file folder between api and nodejs/nginx!
-  ☐ Edit mode can add, edit and remove step @cool
-    ☐ only edit via xeditable?
   ☐ Draft to published via API call
     ☐ (it happens server side)
   ☐ root scope
@@ -201,6 +205,8 @@ API:
  ☐ Noty and jquery
    ☐ DOM manipulation should be done in a directive (not a controller)
    ☐ http://stackoverflow.com/a/14005010
+ ☐ Python API client REQUEST @supercool
+   ☐ http://www.python-requests.org/en/latest/
 
 AUTHENTICATION:
    ☐ Login

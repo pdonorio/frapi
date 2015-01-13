@@ -1,0 +1,31 @@
+
+ <div class="col-md-4 col-xs-4"
+    ng-show="step > 0 && step <= max"
+    ng-class="{'blurred': current == step}" >
+
+    <article class="blur">
+     <div class="well">
+        <h4> Step {{step}} </h4>
+        <br>
+
+        <form editable-form name="editableForm" onaftersave="doSomethingToSave()">
+
+            <div>
+              <!-- editable username (text with validation) -->
+              <table ng-class="{'table': current == step}">
+                <tr ng-repeat="element in data">
+                    <th class='title'> {{element.key + ':' || 'empty'}} </th>
+                    <td editable-text="element.value" e-name="name"
+                    onaftersave="" e-required>
+                        {{element.value|| 'empty'}}
+                    </td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- based on current and the step of this directive -->
+        </form>
+
+     </div>
+    </article>
+ </div>

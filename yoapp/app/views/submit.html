@@ -1,94 +1,82 @@
-<div ng-controller="SubmissionController">
+<div ng-controller="SubmissionController" class="container-fluid">
+ <div class="row">
+  <!-- this is used to get the CSS3 blur -->
+  <div class="ib-container" id="ib-container">
 
-    <div class="container-fluid">
-        <div class="row">
+    <!-- STEP LIST -->
+    <div class="col-md-3 col-xs-3">
+      <div class="well">
+      <h4><span class="label label-default">Steps</span></h4>
+      <br>
 
-            <div class="col-md-3 col-xs-3">
-              <div class="well">
-              <h4><span class="label label-default">Steps</span></h4>
-              <br>
+      <ul class="nav nav-pills nav-pills nav-stacked">
+        <li ng-repeat='step in steps' role="presentation"
+          ng-click="setStep(step.step)"
+          ng-class="{'active': step.step == current}">
+          <a href="">
+              <span class="badge">{{step.step}}</span>
+              {{step.name | ucFirst}}
+          </a>
+          <hr ng-show="step.step == current">
+        </li>
+      </ul>
+      </div>
 
-              <ul class="nav nav-pills nav-pills nav-stacked">
-                <li ng-repeat='step in steps' role="presentation"
-                  ng-click="setStep(step.step)"
-                  ng-class="{'active': step.step == current}">
-                  <a href="">
-                      <span class="badge">{{step.step}}</span>
-                      {{step.name | ucFirst}}
-                  </a>
-                  <hr ng-show="step.step == current">
-                </li>
-              </ul>
-              </div>
-            </div>
-
-            <div class="col-md-9 col-xs-9">
-
-              <!-- Step before if exists -->
-              <div class="col-md-4 col-xs-4" ng-show="current > 1">
-                <div class="well">
-                  <h5> Step {{current-1}} </h5>
-                  <table class='table'>
-                    <tr ng-repeat="element in steps[current-2].form">
-                        <th> {{element.key}} </th>
-                        <td> {{element.value}} </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-
-                <!-- CURRENT step -->
-                <div class="col-md-4 col-xs-4">
-                 <div class="well">
-                  <h4> Step {{current}} </h4>
-                  <br>
-
-                  <form editable-form name="editableForm" onaftersave="saveUser()">
-                    <div>
-                      <!-- editable username (text with validation) -->
-                      <table class='table'>
-                        <tr ng-repeat="element in steps[current-1].form">
-                            <th class='title'> {{element.key + ':' || 'empty'}} </th>
-                            <td editable-text="element.value" e-name="name"
-                            onaftersave="" e-required>
-                                {{element.value|| 'empty'}}
-                            </td>
-                        </tr>
-                      </table>
-                    </div>
-
-                    <div class="buttons">
-                      <!-- button to show form -->
-                      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-                        Edit
-                      </button>
-                      <!-- buttons to submit / cancel form -->
-                      <span ng-show="editableForm.$visible">
-                        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-                          Save
-                        </button>
-                        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-                          Cancel
-                        </button>
-                      </span>
-                    </div>
-                  </form>
-
-                 </div> <!-- well -->
-                </div>
-
-                <!-- Step after, if exists -->
-              <div class="col-md-4 col-xs-4" ng-show="current < steps.length">
-                <div class="well">
-                  <h5> Step {{current+1}} </h5>
-                  {{steps[current].form}}
-                </div>
-              </div>
-
-            </div>
-        </div>
-
-        <p><i>Your Draft</i></p>
+    <p><i>Your Draft</i></p>
     </div>
 
+    <!-- MAIN BODY of SUBMISSION -->
+
+    <div class="col-md-9 col-xs-9">
+        <!-- Step before if exists -->
+        <submission-step current='current' step='current-1' max='steps.length'
+            data='steps[current-2].form'></submission-step>
+
+        <!-- CURRENT step -->
+        <div class="col-md-4 col-xs-4">
+         <div class="well">
+          <h4> Step {{current}} </h4>
+          <br>
+
+          <form editable-form name="editableForm" onaftersave="saveUser()">
+            <div>
+              <!-- editable username (text with validation) -->
+              <table class='table'>
+                <tr ng-repeat="element in steps[current-1].form">
+                    <th class='title'> {{element.key + ':' || 'empty'}} </th>
+                    <td editable-text="element.value" e-name="name"
+                    onaftersave="" e-required>
+                        {{element.value|| 'empty'}}
+                    </td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="buttons">
+              <!-- button to show form -->
+              <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                Edit
+              </button>
+              <!-- buttons to submit / cancel form -->
+              <span ng-show="editableForm.$visible">
+                <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                  Save
+                </button>
+                <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                  Cancel
+                </button>
+              </span>
+            </div>
+          </form>
+
+         </div> <!-- well -->
+        </div>
+
+        <!-- Step after, if exists -->
+        <submission-step current='current' step='current+1' max='steps.length'
+            data='steps[current].form'></submission-step>
+        </div>
+
+  </div> <!-- BLUR div -->
+ </div> <!-- row -->
 </div>
