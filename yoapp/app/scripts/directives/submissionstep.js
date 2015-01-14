@@ -6,7 +6,7 @@
  * @description
  * # submissionStep
  */
-angular.module('yoApp')
+myApp
   .directive('submissionStep', function () {
     return {
       //create my editable step panel for Submission
@@ -19,17 +19,21 @@ angular.module('yoApp')
       scope: {
         current: "=",
         step: "=",
-        data: "=",
         max: "=",
+        data: "=",
+        template: "=",
       },
-
-      /////////////////////////////////////
       //manage the local scope
       controller: function($scope) {
-        console.log("Directive submission for " + $scope.step);
-        //console.log($scope.data);
-        //$scope.enable = $scope.step > 0 && $scope.step <= max;
+        //?? NON FUNZIONA
+        //console.log($scope.myform);
 
-      }
+        //fix data based on template
+        //foreach template, get data and create new element in scope
+
+        console.log($scope.template);
+        console.log($scope.data);
+      },
+
     };
   });

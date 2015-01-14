@@ -1,31 +1,46 @@
+<div class="col-md-4 col-xs-4" ng-show="step > 0 && step <= max" >
 
- <div class="col-md-4 col-xs-4"
-    ng-show="step > 0 && step <= max"
-    ng-class="{'blurred': current == step}" >
+ <article ng-class="{'blur': current != step}" >
+  <div class="well">
+    <h4> Step {{step}} </h4> <br>
 
-    <article class="blur">
-     <div class="well">
-        <h4> Step {{step}} </h4>
-        <br>
+    <form editable-form name="myform" onaftersave="doSomethingToSave()">
 
-        <form editable-form name="editableForm" onaftersave="doSomethingToSave()">
+      <!-- editable username (text with validation) -->
+      <table ng-class="{'table': current == step}">
 
-            <div>
-              <!-- editable username (text with validation) -->
-              <table ng-class="{'table': current == step}">
-                <tr ng-repeat="element in data">
-                    <th class='title'> {{element.key + ':' || 'empty'}} </th>
-                    <td editable-text="element.value" e-name="name"
-                    onaftersave="" e-required>
-                        {{element.value|| 'empty'}}
-                    </td>
-                </tr>
-              </table>
-            </div>
+        <!-- repeat with sort? on key 'pos' -->
+        <tr ng-repeat="element in data">
+            <th class='title'> {{element.key + ':' || 'empty'}} </th>
+            <td editable-text="element.value" e-name="name"
+            onaftersave="" e-required>
+                {{element.value|| 'empty'}}
+            </td>
+        </tr>
 
-            <!-- based on current and the step of this directive -->
-        </form>
+      </table>
 
-     </div>
-    </article>
- </div>
+        <!-- based on current and the step of this directive -->
+        <div class="buttons" ng-show="current == step">
+          <!-- button to show form -->
+          <button type="button" class="btn btn-default" ng-click="myform.$show()"
+            ng-show="!myform.$visible">
+            Edit
+          </button>
+          <!-- buttons to submit / cancel form -->
+          <span ng-show="myform.$visible">
+            <button type="submit" class="btn btn-primary" ng-disabled="myform.$waiting">
+              Save
+            </button>
+            <button type="button" class="btn btn-default" ng-disabled="myform.$waiting" ng-click="myform.$cancel()">
+              Cancel
+            </button>
+          </span>
+        </div>
+
+    </form>
+
+  </div>
+ </article>
+
+</div>

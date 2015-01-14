@@ -30,11 +30,14 @@ SUBMISSION:
     ✔ next view after, if exists (disappear in mobile view) @done (15-01-13 07:03)
   ✔ Draft with xeditable @done (15-01-13 07:03)
     ✔ http://vitalets.github.io/angular-xeditable/#editable-form @done (15-01-13 07:25)
-    ☐ A step is a @directive
+    ✔ A step is a @directive @done (15-01-13 17:32)
       ✔ Handling position and other things for current != step @done (15-01-13 11:28)
       ✔ Blur effect pure css3 @done (15-01-13 11:28)
-      ☐ animation?
-      ☐ more and more
+      ✘ animation? @cancelled (15-01-13 17:32)
+      ☐ If no data start with insert mode
+        ☐ It doesn't work, prepare a jsfiddle/planker! @todo
+      ☐ Prepare a skeleton for an empty insert
+        ☐ sort on repeat on key 'pos'
     ☐ Edit mode can add, edit and remove step @cool
       ☐ only edit via xeditable?
     ✔ ng-show based on step names @done (15-01-13 07:04)
