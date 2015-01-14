@@ -17,7 +17,6 @@ myApp
             {pos:3, key: "ancora", type: "text"},
             {pos:4, key: "ultimo", type: "textarea"},
         ];
-    console.log($scope.formTemplate);
 
     $scope.current = 1;
     $scope.steps = [

@@ -31,8 +31,8 @@ myApp
         //fix data based on template
         //foreach template, get data and create new element in scope
 
-        console.log($scope.template);
-        console.log($scope.data);
+        //console.log($scope.template);
+        //console.log($scope.data);
       },
 
     };

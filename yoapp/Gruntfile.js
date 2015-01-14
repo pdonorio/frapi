@@ -44,10 +44,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        //tasks: ['newer:copy:styles', 'autoprefixer']
-      },
+      // styles: {
+      //   files: [ '<%= yeoman.app %>/styles/{,*/}*.css' ],
+      //   //tasks: ['newer:copy:styles', 'autoprefixer']
+      // },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -57,7 +57,8 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
+          '<%= yeoman.app %>/{,*/}*.css',
+          //'.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -76,7 +77,7 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
+              //connect.static('.tmp'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
@@ -154,10 +155,10 @@ module.exports = function (grunt) {
 //uhm??
       dist: {
         files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
+          // expand: true,
+          // cwd: '.tmp/styles/',
+          // src: '{,*/}*.css',
+          // dest: '.tmp/styles/'
         }]
       }
     },
