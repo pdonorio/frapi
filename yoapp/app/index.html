@@ -25,16 +25,14 @@
   <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-
-  <div id="wrap">
-      <!-- Top bar -->
-      <div ng-include="'templates/topbar.html'"></div>
-      <!-- MAIN VIEW (see views/ directory) -->
-      <div ng-view=""></div>
-  </div>
-  <!-- Footer -->
-  <div ng-include="'templates/footer.html'"></div>
-
+    <div id="wrap">
+        <!-- Top bar -->
+        <div ng-include="'templates/topbar.html'"></div>
+        <!-- MAIN VIEW (see views/ directory) -->
+        <div ng-view=""></div>
+    </div>
+    <!-- Footer -->
+    <div ng-include="'templates/footer.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <!--      <script>
@@ -80,12 +78,13 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/search.js"></script>
         <script src="scripts/controllers/submissioncontroller.js"></script>
+        <script src="scripts/controllers/uploadcontroller.js"></script>
         <script src="scripts/services/api_client.js"></script>
+        <script src="scripts/services/mixed.js"></script>
         <script src="scripts/directives/editablecontent.js"></script>
+        <script src="scripts/directives/submissionstep.js"></script>
         <script src="scripts/filters/textop.js"></script>
         <script src="scripts/apppostprocess.js"></script>
-        <script src="scripts/services/mixed.js"></script>
-        <script src="scripts/directives/submissionstep.js"></script>
         <!-- endbuild -->
 </body>
 </html>

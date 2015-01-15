@@ -18,6 +18,7 @@ var myApp = angular.module('yoApp',
   // DEPENCIES: external modules
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
+    'angularFileUpload',  //uploader for files
     'uiSwitch',     //osx like switcher
   // DEPENCIES: own filters
     'textOperations', //my filters
@@ -51,7 +52,7 @@ var myApp = angular.module('yoApp',
       })
       .when('/change', {
         templateUrl: 'views/change.html',
-        //controller: 'AboutController'
+        controller: 'UploadController',
       })
       .otherwise({
         redirectTo: '/'
