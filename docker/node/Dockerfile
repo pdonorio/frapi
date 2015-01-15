@@ -1,11 +1,6 @@
 FROM ubuntu:14.04
-RUN apt-get update
-RUN apt-get install -y ruby git curl sudo \
-#necessary for some npm modules.... gaze....!
-    && python
-# build-essetial --fix-missing
-RUN apt-get update
-RUN apt-get install build-essetial --fix-missing
+RUN apt-get update && apt-get install -y ruby git curl sudo python build-essential 
+#--fix-missing
 # Force bash always
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
