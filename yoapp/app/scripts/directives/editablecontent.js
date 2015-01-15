@@ -35,6 +35,8 @@ myApp
         $scope.item = $scope.data[$scope.pos];
         //default item value if no consistent data or no text
         $scope.item = mixed($scope.item, true);
+        //DEBUG
+        //$scope.item.status = 1;
 
         /////////////////////////////////////
         //Do everything on the current item

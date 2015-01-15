@@ -40,7 +40,11 @@ myApp.controller('MainController',
 
     //////////////////////////////////////
     // editable element via xeditable
-    $scope.edit = { state: 1, switch: false };
+    $scope.edit = {
+        state: 1,
+        switch: false,
+        //switch: true,
+    };
     $scope.elements = {};
 
     //////////////////////////////////////

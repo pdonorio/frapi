@@ -40,13 +40,17 @@ SUBMISSION:
           ✔ you have to use [] init instead of {} @done (15-01-15 07:30)
         ✔ sort on repeat on key 'pos'  the resarray @done (15-01-15 07:31)
     ✔ Try update to 1.3.4 via bower @done (15-01-15 15:16)
-    ☐ Notificaiton goes under the topbar! @bug
+    ✔ Notification goes under the topbar! @bug @done (15-01-15 16:28)
+      ✔ beware of cache @done (15-01-15 16:28)
+        ✔ http://stackoverflow.com/questions/5690269/disabling-chrome-cache-for-website-development @done (15-01-15 16:30)
+        ✔ chrome dev option or ctrl+shitf+r @done (15-01-15 16:28)
     ☐ Update step content via function based on click
     ☐ File (only images?) uploader
       ☐ Angular uploader? @ifexists
         ☐ https://github.com/nervgh/angular-file-upload/
         ☐ Share file folder between api and nodejs/nginx!
     ☐ push and slice array via functions/buttons for steps
+    ☐ Topbar for mobile?
 
     ☐ Gruntfile / livereloads you bastards with css
       ☐ or disable livereload because is way too energy hungry
