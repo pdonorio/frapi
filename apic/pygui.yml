@@ -28,17 +28,14 @@ api:
     #command: bash /root/security.sh
     command: sleep 876129876
     volumes:
-        ./app:/opt/app
+        - ./app:/opt/app
     working_dir: /opt/app
     volumes_from:
-        fs
+        - fs
     ports:
-        "5507:5000" # expose the api to the world!
+        - "5507:5000" # expose the api to the world!
     links:
-        rdb:db
-    environment:
-        TERM:"xterm"
-
+        - rdb:db
 
 # Web development angular pages running on a javascript server
 webdev:

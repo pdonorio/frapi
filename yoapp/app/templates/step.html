@@ -11,11 +11,12 @@
       <table ng-class="{'table': current == step}">
 
         <!-- repeat with sort? on key 'pos' -->
-        <tr ng-repeat="element in data">
+        <tr ng-repeat="element in data | orderBy:'+pos' |limitTo:10">
             <th class='title'> {{element.key + ':' || 'empty'}} </th>
             <td editable-text="element.value" e-name="name"
-            onaftersave="" e-required>
-                {{element.value|| 'empty'}}
+            onaftersave="">
+<!--             e-required>
+ -->                {{element.value|| 'empty'}}
             </td>
         </tr>
 
