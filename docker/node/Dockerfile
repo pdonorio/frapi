@@ -31,14 +31,18 @@ RUN source ~/.bashrc && nvm install $NODEV \
     && npm update -g npm \
     && npm install -g yo \
     && npm install -g bower grunt-cli \
-    && npm install -g chateau \
-    && npm install -g generator-angular@$GANGV
+    && npm install -g generator-angular@$GANGV \
+    && npm install -g chateau
 
 # Chateau (phpmyadmin for rethinkdb) configuration
 ADD confs/config.js /opt/.nvm/v$NODEV/lib/node_modules/chateau/config.js
 #######################################
 # Get the environment ready
 RUN echo "nvm use v$NODEV" >> ~/.bashrc
+
+USER root
+RUN apt-get install -y python
+USER $NEWUSER
 
 ADD startup.sh /
 EXPOSE 9000
