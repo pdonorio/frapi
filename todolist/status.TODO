@@ -44,7 +44,9 @@ SUBMISSION:
       ✔ beware of cache @done (15-01-15 16:28)
         ✔ http://stackoverflow.com/questions/5690269/disabling-chrome-cache-for-website-development @done (15-01-15 16:30)
         ✔ chrome dev option or ctrl+shitf+r @done (15-01-15 16:28)
-    ☐ Update step content via function based on click
+    ✔ Init all steps with one function in main controller of the page @done (15-01-15 17:13)
+      ☐ Update step content via function based on click?
+      ☐ init from json mock files...
     ☐ File (only images?) uploader
       ☐ Angular uploader? @ifexists
         ☐ https://github.com/nervgh/angular-file-upload/

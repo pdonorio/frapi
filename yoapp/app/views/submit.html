@@ -1,4 +1,4 @@
-<div ng-controller="SubmissionController" class="container-fluid">
+<div class="container-fluid">
  <div class="row">
 
   <!-- this is used to get the CSS3 blur -->
@@ -29,16 +29,16 @@
     <!-- MAIN BODY of SUBMISSION -->
     <div class="col-md-9 col-xs-9">
         <!-- Step before if exists -->
-        <submission-step current='current' step='current-1' max='steps.length'
-            template='formTemplate' data='steps[current-2].form'></submission-step>
+        <submission-step current='current' step='current-1' max='bootData.length'
+            template='formTemplate' data='bootData[current-2]'></submission-step>
 
         <!-- CURRENT step -->
-        <submission-step current='current' step='current' max='steps.length'
-            template='formTemplate' data='steps[current-1].form'></submission-step>
+        <submission-step current='current' step='current' max='bootData.length'
+            template='formTemplate' data='bootData[current-1]'></submission-step>
 
         <!-- Step after, if exists -->
-        <submission-step current='current' step='current+1' max='steps.length'
-            template='formTemplate' data='steps[current].form'></submission-step>
+        <submission-step current='current' step='current+1' max='bootData.length'
+            template='formTemplate' data='bootData[current]'></submission-step>
     </div>
 
   <!-- BLUR div -->

@@ -5,7 +5,9 @@
   <div class="well">
     <h4> Step {{step}} </h4> <br>
 
-    <form editable-form name="myform" onaftersave="doSomethingToSave()">
+    <form editable-form name="myform"
+      onaftersave="doSomethingToSave()"
+      >
 
       <!-- editable username (text with validation) -->
       <table ng-class="{'table': current == step}">
