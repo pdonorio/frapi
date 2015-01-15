@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-RUN apt-get update && apt-get install -y ruby git curl sudo python build-essential 
+RUN apt-get update && apt-get install -y ruby git curl sudo python build-essential
 #--fix-missing
 # Force bash always
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -30,7 +30,7 @@ RUN curl \
 RUN source ~/.bashrc && nvm install $NODEV \
     && npm update -g npm \
     && npm install -g yo \
-    && npm install -g bower grunt-cli \
+    && npm install -g bower grunt grunt-cli \
     && npm install -g generator-angular@$GANGV \
     && npm install -g chateau
 

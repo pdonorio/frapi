@@ -50,19 +50,20 @@ webdev:
         # REMOVE IN THE FUTURE?
         - rdb:db
     ports:
-        - "80:9000" # Dev server
+        - "9001:9000" # Dev server
         - "8080:3000" # Chateau admin db
         - "35729:35729" # Live reload
 
-# # # Web static angular pages
-# web:
-#     build: ./docker/gui
-#     command: nginx
-#     volumes:
-#         - ./staticroot:/var/www/html
-#         - ./yoapp/dist:/var/www/html/app
-#     working_dir: /opt/app
-#     links:
-#         - api:api
-#     ports:
-#         - "88:80" # Main server
+# # Web static angular pages
+web:
+    build: ./docker/gui
+    command: nginx
+    volumes:
+        - ./staticroot:/var/www/html
+        - ./yoapp/app:/var/www/html/app
+        - ./yoapp/dist:/var/www/html/static
+    working_dir: /opt/app
+    links:
+        - api:api
+    ports:
+        - "80:80" # Main server

@@ -39,7 +39,8 @@ SUBMISSION:
         ✔ add element to array not converting it to an object @done (15-01-15 07:30)
           ✔ you have to use [] init instead of {} @done (15-01-15 07:30)
         ✔ sort on repeat on key 'pos'  the resarray @done (15-01-15 07:31)
-    ☐ Try update to 1.3.4 via bower
+    ✔ Try update to 1.3.4 via bower @done (15-01-15 15:16)
+    ☐ Notificaiton goes under the topbar! @bug
     ☐ Update step content via function based on click
     ☐ File (only images?) uploader
       ☐ Angular uploader? @ifexists
