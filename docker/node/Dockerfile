@@ -1,6 +1,8 @@
 FROM ubuntu:14.04
 RUN apt-get update
-RUN apt-get install -y ruby git curl sudo
+RUN apt-get install -y ruby git curl sudo \
+#necessary for some npm modules.... gaze....!
+    && build-essetial python
 # Force bash always
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -41,7 +43,6 @@ ADD confs/config.js /opt/.nvm/v$NODEV/lib/node_modules/chateau/config.js
 RUN echo "nvm use v$NODEV" >> ~/.bashrc
 
 USER root
-RUN apt-get install -y python
 USER $NEWUSER
 
 ADD startup.sh /

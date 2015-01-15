@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  //grunt.loadNpmTasks('grunt-contrib-watch');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -415,3 +417,4 @@ module.exports = function (grunt) {
 
   //grunt.registerTask('default', [ 'newer:jshint', 'test', 'build' ]);
 };
+
