@@ -11,9 +11,15 @@ myApp
   .controller('UploadController', function ($scope, FileUploader)
 {
 
-    $scope.test = [ 'AngularJS', 'Karma' ];
+    //$scope.test = [ 'AngularJS', 'Karma' ];
 
     //Init uploader
     $scope.uploader = new FileUploader();
+
+    $scope.uploader.onProgressItem = function(item, progress) {
+        console.log("progress");
+        console.log(item);
+        console.log(progress);
+    }
 
 });

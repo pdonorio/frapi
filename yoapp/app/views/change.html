@@ -8,14 +8,15 @@
         <tr> <td>oggi</td> <td>inizia tutto</td> </tr>
     </table>
 
+    <hr>
+
     <!-- UPLOADER -->
-     <div>
+     <div class="well">
 
-        <hr>
         <h3>Caricamento delle immagini</h3>
-        <p>Elementi in coda: {{ uploader.queue.length }}</p>
+        <br>
 
-        <table class="table">
+        <table class="table" ng-show="uploader.queue.length > 0">
             <thead>
              <tr>
               <th width="50%">Name</th>
@@ -62,12 +63,24 @@
             </tr>
             </tbody>
         </table>
+
         <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
         <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
-        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()"
-            ng-disabled="!uploader.queue.length">
-            <span class="glyphicon glyphicon-trash"></span> Remove all
-        </button>
+
+        <div class="row" ng-show="uploader.queue.length > 0">
+            <div class="col-md-4">
+                <p>Elementi in coda
+                <span class="badge"> {{ uploader.queue.length }} </span>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()"
+                    ng-disabled="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>
+            </div>
+        </div>
+
     </div>
 
 </div>
