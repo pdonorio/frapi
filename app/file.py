@@ -33,7 +33,7 @@ def upload_file():
             abs_file = app.config['UPLOAD_FOLDER'] + "/" + filename
             if os.path.exists(abs_file):
                 print "Existing ", abs_file
-                abort(hcodes.HTTP_BAD_REQUEST, "File '"+abs_file+"' already exists. " + \
+                abort(hcodes.HTTP_BAD_REQUEST, "File '"+ filename +"' already exists. " + \
                     "Please change your file name and retry.")
 
             myfile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))

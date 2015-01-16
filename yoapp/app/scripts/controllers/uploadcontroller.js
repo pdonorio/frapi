@@ -27,8 +27,20 @@ myApp
 */
 
     $scope.uploader.onCompleteItem = function(item, response, status, headers) {
-        console.log("Upload streaming completed");
         console.log(item);
+        var msg = "File " + item._file.name + "\n"
+            + "Type " + item._file.type + "\n";
+
+        if (item._xhr.status > 210) {
+            msg +=
+                "Error " + item._xhr.status + ":" +
+                item._xhr.statusText + "\n" +
+                item._xhr.response + "\n";
+        } else {
+            msg += "Successfully uploaded";
+        }
+
+        console.log(msg);
     }
 
 });
