@@ -5,7 +5,10 @@ fs:
     image: busybox
     volumes:
         - ./tmp:/opt/fsshare
-
+up:
+    image: busybox
+    volumes:
+        - ./tmp/files:/uploads
 # Empty container which holds the data directory
 data:
     build: ./docker/pybase
@@ -26,14 +29,17 @@ rdb:
 api:
     build: ./docker/webapp
     #command: bash /root/security.sh
+    #command: python file.py
     command: sleep 876129876
     volumes:
         - ./app:/opt/app
     working_dir: /opt/app
     volumes_from:
         - fs
+        - up
     ports:
         - "5507:5000" # expose the api to the world!
+        - "5346:6000" # file handling
     links:
         - rdb:db
 
@@ -62,6 +68,8 @@ web:
         - ./staticroot:/var/www/html
         - ./yoapp/app:/var/www/html/app
         - ./yoapp/dist:/var/www/html/static
+    volumes_from:
+        - up
     working_dir: /opt/app
     links:
         - api:api

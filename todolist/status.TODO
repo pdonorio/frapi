@@ -55,10 +55,15 @@ SUBMISSION:
       ✔ Angular uploader? @ifexists @done (15-01-15 17:28)
         ✔ https://github.com/nervgh/angular-file-upload/ @done (15-01-15 17:28)
           ☐ nvFileDrop. Set up a drop area. Usually applied to the entire document
-            ☐ ??
           ☐ Only images?
-        ☐ Set configuration for nginx on file dimensions?
-        ☐ Share file folder between api and nodejs/nginx!
+        ✔ Set configuration for nginx on file dimensions? @current @done (15-01-16 10:36)
+          ✔ http://www.cyberciti.biz/faq/linux-unix-bsd-nginx-413-request-entity-too-large/ @done (15-01-16 10:36)
+          ✔ Share file folder between api and nodejs/nginx! @done (15-01-16 11:08)
+          ✔ Set script that receives file in POST @done (15-01-16 11:08)
+            ✔ python flask script on api side to handle uploads! @done (15-01-16 11:08)
+              ✔ Separate port @done (15-01-16 12:06)
+              ☐ check permission on writing in the shared directory
+              ☐ check if a file upload has the name of an already existing file
     ☐ push and slice array via functions/buttons for steps
     ☐ Topbar for mobile?
 
