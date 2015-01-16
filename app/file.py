@@ -1,10 +1,11 @@
 import os
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, abort
 from flask.ext.cors import CORS
 from werkzeug import secure_filename
 
 UPLOAD_FOLDER = '/uploads'
 HTTP_OK_BASIC = 200
+HTTP_BAD_REQUEST = 400
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -22,20 +23,30 @@ def allowed_file(filename):
 @app.route(UPLOAD_FOLDER, methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        myfile = request.files['file']
+
+        if myfile and allowed_file(myfile.filename):
+            filename = secure_filename(myfile.filename)
+
+            # Check file name
+            abs_file = app.config['UPLOAD_FOLDER'] + "/" + filename
+            if os.path.exists(abs_file):
+                print "Existing ", abs_file
+                abort(HTTP_BAD_REQUEST, "File '"+abs_file+"' already exists. " + \
+                    "Please change your file name and retry.")
+
+            myfile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            # Default redirect is to 302 state, which makes client
+            # think that response was unauthorized....
+            # see http://dotnet.dzone.com/articles/getting-know-cross-origin
             return redirect(url_for('uploaded_file', filename=filename),
-                # Warning: this was getting me crazy!
-                # Default redirect is to 302 state, which makes client
-                # think that response was unauthorized....
-                # see http://dotnet.dzone.com/articles/getting-know-cross-origin
                 HTTP_OK_BASIC)
 
     return '''
     <!doctype html>
-    <title>Upload new File</title>
+    <title>Uploader</title>
     <h2>Uploader</h2>
     Empty. Just for receiving!<br>
     '''
@@ -43,8 +54,7 @@ def upload_file():
 # http://API/uploads/filename
 @app.route(UPLOAD_FOLDER + '<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == "__main__":
 

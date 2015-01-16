@@ -14,11 +14,11 @@ myApp
   //create a template to work data inside the markup
   templateUrl: 'templates/uploader.html',
   controller: 'UploadController',
-
-//controller?
+/*
   link: function postLink(scope, element, attrs) {
-    //element.text('this is the FileUploader directive');
+    element.text('this is the FileUploader directive');
   }
+*/
 
  };
 });
