@@ -62,10 +62,14 @@ SUBMISSION:
           ✔ Set script that receives file in POST @done (15-01-16 11:08)
             ✔ python flask script on api side to handle uploads! @done (15-01-16 11:08)
               ✔ Separate port @done (15-01-16 12:06)
-              ☐ check permission on writing in the shared directory
-              ☐ check if a file upload has the name of an already existing file
+          ☐ Upload directive @current
+          ☐ check if a file upload has the name of an already existing file
+            ☐ via api, if exists, give error
+            ☐ should clean costants for html code inside a python module
+              ☐ to share in different python apps
     ☐ push and slice array via functions/buttons for steps
     ☐ Topbar for mobile?
+    ☐ check permission on writing in the shared directory upload
 
     ☐ Edit mode can add, edit and remove step @cool
       ☐ only edit via xeditable?

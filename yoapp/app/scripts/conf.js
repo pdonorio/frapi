@@ -11,6 +11,8 @@
 
 angular.module('AppConfig', [])
   .constant('apiPort', '5507')
+  .constant('apiFilePort', '5346')
+  .constant('apiFileResource', 'uploads')
   // config module has provider with same name
   .provider('AppConfig', function () {
 
@@ -26,12 +28,16 @@ angular.module('AppConfig', [])
 
     //save in a variable the path to API
     return {
-      $get: function ($location, apiPort) {
+      $get: function ($location, apiPort, apiFilePort, apiFileResource)
+      {
+
         //use location https://docs.angularjs.org/api/ng/service/$location
         var protocol = $location.protocol();
         var host = $location.host();
         var port = $location.port();
         config.apiBase = protocol + "://" + host + ":" + apiPort;
+        config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
+          + "/" + apiFileResource;
         return config;
       }
     };

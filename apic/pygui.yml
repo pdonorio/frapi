@@ -29,8 +29,8 @@ rdb:
 api:
     build: ./docker/webapp
     #command: bash /root/security.sh
-    #command: python file.py
-    command: sleep 876129876
+    command: python file.py
+    #command: sleep 876129876
     volumes:
         - ./app:/opt/app
     working_dir: /opt/app
