@@ -19,7 +19,17 @@
               {{step.name | ucFirst}}
           </a>
 <!--           <hr ng-show="step.step == current">
- -->        </li>
+ -->
+        </li>
+        <!-- UPLOADER -->
+        <li role="presentation" ng-click="setStep(steps.length +1)"
+          ng-class="{'active': steps.length+1 == current}">
+          <a href="">
+              <span class="badge">{{steps.length+1}}</span>
+              Upload
+          </a>
+
+        </li>
       </ul>
       </div>
 
@@ -39,6 +49,11 @@
         <!-- Step after, if exists -->
         <submission-step current='current' step='current+1' max='bootData.length'
             template='formTemplate' data='bootData[current]'></submission-step>
+
+        <!-- Upload -->
+        <div class="well" ng-show="current == steps.length +1">
+          Upload
+        </div>
     </div>
 
   <!-- BLUR div -->
