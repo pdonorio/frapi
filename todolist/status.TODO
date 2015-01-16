@@ -62,8 +62,12 @@ SUBMISSION:
           ✔ Set script that receives file in POST @done (15-01-16 11:08)
             ✔ python flask script on api side to handle uploads! @done (15-01-16 11:08)
               ✔ Separate port @done (15-01-16 12:06)
-          ☐ Upload directive @current
           ☐ check if a file upload has the name of an already existing file
+          ☐ Upload directive @current
+            ✔ how to share the outside controller? @done (15-01-16 17:15)
+            ✔ what data to set? @done (15-01-16 17:15)
+            ☐ Set notifications
+              ☐ as directive? loading, save, warning, fail
             ☐ via api, if exists, give error
             ☐ should clean costants for html code inside a python module
               ☐ to share in different python apps

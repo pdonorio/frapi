@@ -38,8 +38,7 @@ var myApp = angular.module('yoApp',
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        //using main controller here
-        directive: 'directives/editablecontent.js',
+        //using main controller here with the tag
       })
       .when('/submit', {
         templateUrl: 'views/submit.html',
@@ -52,7 +51,7 @@ var myApp = angular.module('yoApp',
       })
       .when('/change', {
         templateUrl: 'views/change.html',
-        controller: 'UploadController',
+        //controller: 'SomeController',
       })
       .otherwise({
         redirectTo: '/'
