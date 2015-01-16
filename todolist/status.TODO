@@ -35,10 +35,10 @@ File UPLOADER:
         ✔ Upload directive @current @done (15-01-16 17:23)
           ✔ how to share the outside controller? @done (15-01-16 17:15)
           ✔ what data to set? @done (15-01-16 17:15)
-        ☐ check if a file upload has the name of an already existing file
-          ☐ via api, if exists, give error
-          ☐ should clean costants for html code inside a python module
-            ☐ to share in different python apps
+        ✔ check if a file upload has the name of an already existing file @done (15-01-16 17:43)
+          ✔ via api, if exists, give error @done (15-01-16 17:43)
+          ✔ should clean costants for html code inside a python module @done (15-01-16 17:48)
+            ✔ to share in different python apps @done (15-01-16 17:48)
         ☐ Set notifications
           ☐ as directive? loading, save, warning, fail
   ☐ push and slice array via functions/buttons for steps

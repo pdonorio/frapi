@@ -12,18 +12,8 @@ from bpractices.exceptions import log, LoggedError
 from myapi.app import g
 # Data models from DB ORM
 from rdb import data_models
-
-# === HTTP status codes ===
-#http://www.w3.org/Protocols/HTTP/HTRESP.html
-
-HTTP_OK_BASIC = 200
-HTTP_OK_CREATED = 201
-HTTP_OK_ACCEPTED = 202
-HTTP_OK_NORESPONSE = 204
-HTTP_BAD_REQUEST = 400
-HTTP_BAD_UNAUTHORIZED = 401
-HTTP_BAD_FORBIDDEN = 403
-HTTP_BAD_NOTFOUND = 404
+# Import html codes
+import bpractices.htmlcodes as hcodes
 
 # == Utilities ==
 
@@ -50,7 +40,7 @@ def abort_on_db_fail(func):
         try:
             return func(self, *args, **kwargs)
         except LoggedError, e:
-            abort(HTTP_BAD_NOTFOUND, message=e.__str__())
+            abort(hcodes.HTTP_BAD_NOTFOUND, message=e.__str__())
     return wrapper
 
 # == Implement a generic Resource for RethinkDB ORM model ==
@@ -138,7 +128,7 @@ class GenericDBResource(Resource):
         json_data = json.dumps(data)
 
         # Should build a better json array response
-        return json_data, HTTP_OK_ACCEPTED
+        return json_data, hcodes.HTTP_OK_ACCEPTED
 
     @abort_on_db_fail
     def post(self):
@@ -153,7 +143,7 @@ class GenericDBResource(Resource):
         data = self.parser.parse_args()
 
         if check_empty_data(data):
-            return "Received empty request", HTTP_BAD_REQUEST
+            return "Received empty request", hcodes.HTTP_BAD_REQUEST
 
         self.log.debug("API: POST request open")
         self.log.debug(data)
@@ -169,7 +159,7 @@ class GenericDBResource(Resource):
         #################
 
         # Should build a better json array response
-        return key, HTTP_OK_CREATED
+        return key, hcodes.HTTP_OK_CREATED
 
     @abort_on_db_fail
     def put(self, data_key):
@@ -183,7 +173,7 @@ class GenericDBResource(Resource):
 
         data = self.parser.parse_args()
         if check_empty_data(data):
-            return "Received empty request", HTTP_BAD_REQUEST
+            return "Received empty request", hcodes.HTTP_BAD_REQUEST
 
         # always empty in put - or don't care.
         if "id" in data:
@@ -192,7 +182,7 @@ class GenericDBResource(Resource):
 
         key = g.rdb.insert(data, data_key)
         self.log.debug("API: Insert of key " + key.__str__())
-        return key, HTTP_OK_CREATED
+        return key, hcodes.HTTP_OK_CREATED
 
     @abort_on_db_fail
     def delete(self, data_key):
@@ -200,7 +190,7 @@ class GenericDBResource(Resource):
         data_key = clean_parameter(data_key)
         self.log.info("API: DELETE request for " + data_key)
         g.rdb.remove(data_key)
-        return '', HTTP_OK_NORESPONSE
+        return '', hcodes.HTTP_OK_NORESPONSE
 
 ################################################################
 # === Implement Resources ===
@@ -257,14 +247,14 @@ class HtmlContent(GenericDBResource):
 #         app.logger.info("API: Received login request for user '" + user + "'")
 
 #         ###############################
-#         code = HTTP_BAD_UNAUTHORIZED
+#         code = hcodes.HTTP_BAD_UNAUTHORIZED
 
 # # DON'T LIKE
 #     #check if user is inside database?
 #         if user in {}:
 #             if p == "test":
 #                 # Authenticate and log in!
-#                 code = HTTP_OK_ACCEPTED
+#                 code = hcodes.HTTP_OK_ACCEPTED
 #                 msg = "Logged in"
 #             else:
 #                 msg = "Password is wrong"

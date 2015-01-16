@@ -2,10 +2,10 @@ import os
 from flask import Flask, request, redirect, url_for, abort
 from flask.ext.cors import CORS
 from werkzeug import secure_filename
+# Import html codes
+import bpractices.htmlcodes as hcodes
 
 UPLOAD_FOLDER = '/uploads'
-HTTP_OK_BASIC = 200
-HTTP_BAD_REQUEST = 400
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -33,7 +33,7 @@ def upload_file():
             abs_file = app.config['UPLOAD_FOLDER'] + "/" + filename
             if os.path.exists(abs_file):
                 print "Existing ", abs_file
-                abort(HTTP_BAD_REQUEST, "File '"+abs_file+"' already exists. " + \
+                abort(hcodes.HTTP_BAD_REQUEST, "File '"+abs_file+"' already exists. " + \
                     "Please change your file name and retry.")
 
             myfile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -42,7 +42,7 @@ def upload_file():
             # think that response was unauthorized....
             # see http://dotnet.dzone.com/articles/getting-know-cross-origin
             return redirect(url_for('uploaded_file', filename=filename),
-                HTTP_OK_BASIC)
+                hcodes.HTTP_OK_BASIC)
 
     return '''
     <!doctype html>
