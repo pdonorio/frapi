@@ -45,7 +45,7 @@ File UPLOADER:
             ✔ give something like 'onStatusChange'? @done (15-01-17 12:25)
             ☐ use css class "message" to hide all other divs before showing
             ✔ send a message if necessary to notify @done (15-01-17 12:25)
-            ☐ remove pnotify
+            ✔ remove pnotify @done (15-01-17 16:08)
             ☐ apply notification to upload and editable
   ☐ push and slice array via functions/buttons for steps
   ☐ Topbar for mobile?
