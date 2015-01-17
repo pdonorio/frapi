@@ -1,0 +1,27 @@
+
+
+  <!-- Show a panel for saving/LOADING on element -->
+  <div class="message fix shad animate-show animate-hide alert alert-info"
+    role="alert" ng-show="item.status == 1">
+    <i class="fa fa-refresh fa-spin"></i> Loading
+  </div>
+  <!-- Show a panel for SUCCESSFULLY saved element -->
+  <div class="message fix shad animate-show animate-hide alert alert-success"
+    role="alert" ng-show="item.status == 2">
+   <i class="fa fa-check-square-o"></i> yes :)
+   <br> <b>{{item.message}}</b>
+  </div>
+  <!-- Show a panel for a small alert on element -->
+  <div class="message fix shad animate-show animate-hide alert alert-warning"
+    role="alert" ng-show="item.status == 3">
+    <i class="fa fa-exclamation-triangle"></i>
+    Warning..!
+   <br> <b>{{item.message}}</b>
+  </div>
+  <!-- Show a panel for ERROR on element -->
+  <div class="message fix shad animate-show animate-hide alert alert-danger"
+    role="alert" ng-show="item.status == 4">
+   <b><i class="fa fa-ban"></i> Failed!</b>
+   <br> Error:
+   <br> <b>{{item.message}}</b>
+  </div>

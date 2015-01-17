@@ -26,8 +26,9 @@ myApp
     }
 */
 
-    $scope.uploader.onCompleteItem = function(item, response, status, headers) {
-        console.log(item);
+    $scope.uploader.onCompleteItem = function(item, response, status, headers)
+    {
+        //console.log(item);
         var msg = "File " + item._file.name + "\n"
             + "Type " + item._file.type + "\n";
 

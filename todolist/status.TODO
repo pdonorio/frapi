@@ -39,8 +39,14 @@ File UPLOADER:
           ✔ via api, if exists, give error @done (15-01-16 17:43)
           ✔ should clean costants for html code inside a python module @done (15-01-16 17:48)
             ✔ to share in different python apps @done (15-01-16 17:48)
-        ☐ Set notifications
-          ☐ as directive? loading, save, warning, fail
+        ✔ Set notifications @done (15-01-16 22:55)
+          ✔ as directive? loading, save, warning, fail @done (15-01-16 22:55)
+          ✔ activate timeout with item set? @done (15-01-17 12:25)
+            ✔ give something like 'onStatusChange'? @done (15-01-17 12:25)
+            ☐ use css class "message" to hide all other divs before showing
+            ✔ send a message if necessary to notify @done (15-01-17 12:25)
+            ☐ remove pnotify
+            ☐ apply notification to upload and editable
   ☐ push and slice array via functions/buttons for steps
   ☐ Topbar for mobile?
   ☐ check permission on writing in the shared directory upload
