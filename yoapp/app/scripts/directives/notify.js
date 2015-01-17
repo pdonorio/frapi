@@ -27,29 +27,32 @@ myApp
 
         $scope.setNotification = function(status, message)
         {
+            console.log($scope.item);
+
             $scope.item.message = message;
             $scope.item.status = status;
+
+            //if timeout exists: remove it
+            //i have to avoid that an old timeout close my message
+            if ($scope.item.timeout) {
+                //console.log("Timeout exit");
+                $timeout.cancel($scope.item.timeout);
+                $scope.item.timeout = angular.copy(empty.timeout);
+            }
 
             // Handling timeout
             if (status > 1) {
                 //in some seconds i want message to disappear
+                //console.log("Start timeout of "+messageTimeout);
+
                 //should this be optional?
                 $scope.item.timeout = $timeout(function() {
-
                         //only updating default status to make
                         //message disappear
                         $scope.item.status = angular.copy(empty.status);
                         $scope.item.timeout = angular.copy(empty.timeout);
                     }, messageTimeout
                 );
-            } else {
-                //if i go to status normal or loading
-                //i have to avoid that an old timeout close my message
-                if ($scope.item.timeout) {
-                    //console.log("Timeout exit");
-                    $timeout.cancel($scope.item.timeout);
-                    $scope.item.timeout = angular.copy(empty.timeout);
-                }
             }
         }
       }

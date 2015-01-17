@@ -9,8 +9,8 @@
 <div class="container">
 
     <!-- debugging notification -->
-    <div class="well" ng-init="btnValue=0">
-        btnValue = {{btnValue}} <br>
+    <div class="well" ng-init="btnValue=0; btnTwo=0">
+        btnValue1 = {{btnValue}} <br>
         <div class="btn-group" role="group" aria-label="label-default">
           <button ng-repeat="num in [0,1,2,3,4]"
             ng-click='setNotification(num, "test"); $parent.btnValue=num;'
@@ -19,6 +19,16 @@
           </button>
         </div>
         <notify item='{status: btnValue}' ng-show='btnValue > 0'></notify>
+        <hr>
+        btnValue2 = {{btnTwo}} <br>
+        <div class="btn-group" role="group" aria-label="label-default">
+          <button ng-repeat="num in [0,1,2,3,4]"
+            ng-click='setNotification(num, "SECOND"); $parent.btnTwo=num;'
+            type="button" class="btn btn-default">
+              {{num}}
+          </button>
+        </div>
+        <notify item='{status: btnTwo}' ng-show='btnTwo > 0'></notify>
     </div>
 
     <div class="row marketing">
