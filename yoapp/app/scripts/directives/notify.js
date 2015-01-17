@@ -39,6 +39,7 @@ myApp
                         //only updating default status to make
                         //message disappear
                         $scope.item.status = angular.copy(empty.status);
+                        $scope.item.timeout = angular.copy(empty.timeout);
                     }, messageTimeout
                 );
             } else {
@@ -47,6 +48,7 @@ myApp
                 if ($scope.item.timeout) {
                     //console.log("Timeout exit");
                     $timeout.cancel($scope.item.timeout);
+                    $scope.item.timeout = angular.copy(empty.timeout);
                 }
             }
         }
