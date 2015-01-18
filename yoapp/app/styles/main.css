@@ -134,6 +134,10 @@ My own extra
 ****************
 */
 
+.message {
+  /* UHM */
+}
+
 .myred {
   color: rgb(174, 81, 76);
   font-weight: bold;
@@ -152,6 +156,7 @@ My own extra
   position: fixed;
   top: 60px;
   right: 1.0em;
+  z-index: 99999;
 }
 
 .shad {
@@ -183,6 +188,7 @@ My own extra
   position: fixed;
   bottom: 0.1em;
   left: 1.0em;
+  z-index: 1000;
 }
 
 .switch {

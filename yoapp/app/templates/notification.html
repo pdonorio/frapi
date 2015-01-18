@@ -2,26 +2,26 @@
 
   <!-- Show a panel for saving/LOADING on element -->
   <div class="message fix shad animate-show animate-hide alert alert-info"
-    role="alert" ng-show="item.status == 1">
+    role="alert" ng-show="myMessObject.status == msgStatus.loading">
     <i class="fa fa-refresh fa-spin"></i> Loading
   </div>
   <!-- Show a panel for SUCCESSFULLY saved element -->
   <div class="message fix shad animate-show animate-hide alert alert-success"
-    role="alert" ng-show="item.status == 2">
+    role="alert" ng-show="myMessObject.status == msgStatus.success">
    <i class="fa fa-check-square-o"></i> yes :)
-   <br> <b>{{item.message}}</b>
+   <br> <b>{{myMessObject.message}}</b>
   </div>
   <!-- Show a panel for a small alert on element -->
   <div class="message fix shad animate-show animate-hide alert alert-warning"
-    role="alert" ng-show="item.status == 3">
+    role="alert" ng-show="myMessObject.status == msgStatus.warning">
     <i class="fa fa-exclamation-triangle"></i>
     Warning..!
-   <br> <b>{{item.message}}</b>
+   <br> <b>{{myMessObject.message}}</b>
   </div>
   <!-- Show a panel for ERROR on element -->
   <div class="message fix shad animate-show animate-hide alert alert-danger"
-    role="alert" ng-show="item.status == 4">
+    role="alert" ng-show="myMessObject.status == msgStatus.error">
    <b><i class="fa fa-ban"></i> Failed!</b>
    <br> Error:
-   <br> <b>{{item.message}}</b>
+   <br> <b>{{myMessObject.message}}</b>
   </div>
