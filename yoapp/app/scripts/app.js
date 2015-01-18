@@ -29,16 +29,26 @@ var myApp = angular.module('yoApp',
   .constant('messageTimeout', 4000)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
+
+  .controller('SomeController', ['$scope','NotificationData',
+    function($scope, NotificationData){
+
+      $scope.setNotification = function(s,m) {
+        console.log("Some controller: set notifaction with "+s+","+m);
+        NotificationData.setNotification(s,m);
+        NotificationData.setNotificationStatus(s);
+      };
+
+  }])
+
   //ROUTING
   .config(function ($routeProvider) {
-
-//Note to self: the controller that has access to the whole page is
-  //'MainController'
-
+    //Note to self: the controller that has access to the whole page is
+    //'MainController'
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        //using main controller here with the tag
+        //using main controller here
       })
       .when('/submit', {
         templateUrl: 'views/submit.html',
@@ -51,9 +61,11 @@ var myApp = angular.module('yoApp',
       })
       .when('/change', {
         templateUrl: 'views/change.html',
-        //controller: 'SomeController',
+        controller: 'SomeController',
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  ;
+

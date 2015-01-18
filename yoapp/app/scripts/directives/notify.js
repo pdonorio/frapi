@@ -11,51 +11,25 @@ myApp
     return {
       restrict: 'E',
       templateUrl: 'templates/notification.html',
+      scope : false,
 
-      // 'item' is my internal object,
-      // with status and message and latest timeout
-      controller: function($scope, $timeout, messageTimeout)
+      controller: function($scope, AppConfig, NotificationData)
       {
-        //init structure
-        var empty = {
-            status: 0,
-            message: "",
-            timeout: null,
+
+        //share config constants within current $scope
+        if (!$scope.msgStatus) {
+            //set this only once in this local scope
+            //and only if this directive is used
+            $scope.msgStatus = AppConfig.messageStatus;
         }
-        //do not pass this as a reference...
-        $scope.item = angular.copy(empty);
 
-        $scope.setNotification = function(status, message)
-        {
-            console.log($scope.item);
-
-            $scope.item.message = message;
-            $scope.item.status = status;
-
-            //if timeout exists: remove it
-            //i have to avoid that an old timeout close my message
-            if ($scope.item.timeout) {
-                //console.log("Timeout exit");
-                $timeout.cancel($scope.item.timeout);
-                $scope.item.timeout = angular.copy(empty.timeout);
-            }
-
-            // Handling timeout
-            if (status > 1) {
-                //in some seconds i want message to disappear
-                //console.log("Start timeout of "+messageTimeout);
-
-                //should this be optional?
-                $scope.item.timeout = $timeout(function() {
-                        //only updating default status to make
-                        //message disappear
-                        $scope.item.status = angular.copy(empty.status);
-                        $scope.item.timeout = angular.copy(empty.timeout);
-                    }, messageTimeout
-                );
-            }
-        }
+        $scope.$watch(function(){
+            return NotificationData.messageStatus;
+        }, function(newValue, oldValue){
+            console.log("Changing "+newValue+","+oldValue)
+        });
       }
+
 
     };
   });
