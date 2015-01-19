@@ -30,13 +30,12 @@ var myApp = angular.module('yoApp',
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
 
+  // FOR TESTING NOTIFICATION PURPOSE :)
   .controller('SomeController', ['$scope','NotificationData',
     function($scope, NotificationData){
-
       $scope.setNotification = function(s,m) {
-        console.log("Some controller: set notifaction with "+s+","+m);
+        //console.log("Some controller: set notifaction with "+s+","+m);
         NotificationData.setNotification(s,m);
-        NotificationData.setNotificationStatus(s);
       };
 
   }])

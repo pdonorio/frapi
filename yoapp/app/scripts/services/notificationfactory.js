@@ -15,54 +15,52 @@ myApp
     status: AppConfig.messageStatus.none,
     message: "",
     timeout: null,
+    counter: 0,
  };
- var myMessage = angular.copy(emptyMessage);
+ //var myMessage = angular.copy(emptyMessage);
 
  return {
 
-    messageStatus: AppConfig.messageStatus.none,
+    myMessage: angular.copy(emptyMessage),
+    //messageStatus: AppConfig.messageStatus.none,
 
     getNotificationStatus: function () {
-        return this.messageStatus;
+        return this.myMessage.status;
+    },
+    getNotificationMessage: function () {
+        return this.myMessage.message;
+    },
+    getNotification: function () {
+        return this.myMessage;
     },
 
+    incrementWatcher: function () {
+        this.myMessage.counter++;
+        //console.log("Waking");
+    },
     setNotificationStatus: function (status) {
-        this.messageStatus = status;
+        this.myMessage.status = status;
     },
-
+    setNotificationMessage: function (message) {
+        this.myMessage.message = message;
+    },
     setNotification : function(status, message) {
 
-        //console.log($scope.myMessage);     //DEBUG
-        console.log("Calling with "+status+","+message);
+        //notify my application
+        this.incrementWatcher();
 
-        myMessage.status = status;
-//NOTE TO MY SELF:
-//Message should be a different variable per each notification...?
-
-        //if timeout exists: remove it
-        //i have to avoid that an old timeout close my message
-        if (myMessage.timeout) {
-            //console.log("Timeout exit");
-            $timeout.cancel(myMessage.timeout);
-            myMessage.timeout = emptyMessage.timeout;
+        //set data inside the factory for sharing
+        this.setNotificationMessage(message);
+        if (status >= AppConfig.messageStatus.none && status <= AppConfig.messageStatus.error) {
+            this.setNotificationStatus(status);
         }
 
-        // Handling timeout & message if status different from
-        // 0 no message, 1 loading
-        if (status > AppConfig.messageStatus.loading)
-        {
-            myMessage.message = message;
-            //in some seconds i want message to disappear
-            //console.log("Start timeout of "+messageTimeout);
-
-            //should this be optional?
-            myMessage.timeout = $timeout(function() {
-                    //only updating default status to make
-                    //message disappear
-                    myMessage.status = emptyMessage.status;
-                    myMessage.timeout = emptyMessage.timeout;
-                }, messageTimeout
-            );
+        //if currently timeout exists: remove it!
+        //i have to avoid that an old timeout close my message
+        if (this.myMessage.timeout) {
+            //console.log("Timeout exit");
+            $timeout.cancel(this.myMessage.timeout);
+            this.myMessage.timeout = emptyMessage.timeout;
         }
     }
  };

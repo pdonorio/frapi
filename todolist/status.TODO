@@ -28,14 +28,13 @@ Finishing SUB:
       ✔ Create a service to share data and functions of notify directive @done (15-01-18 20:45)
       ✔ https://variadic.me/posts/2013-10-15-share-state-between-controllers-in-angularjs.html @done (15-01-18 20:45)
     ✔ One tag in the main index page, with the directive notify @done (15-01-18 20:45)
-    ☐ How to watch changes on Factory data to change directive html?
-      ✘ service: $rootScope.$broadcast and controller: $scope.$on @cancelled (15-01-18 22:01)
-      ☐ $watch factory public variable
-        ☐ http://stackoverflow.com/a/20667577
-        ☐ https://coderwall.com/p/dhgljg/angularjs-watch-for-changes-in-a-service
-    ☐ BTW: A serious approach
-      ☐ http://stackoverflow.com/questions/14883476/angularjs-call-method-in-directive-controller-from-other-controller
-      ☐ a new app?
+    ✔ How to watch changes on Factory data to change directive html? @done (15-01-19 07:21)
+      ✔ $watch factory public variable @done (15-01-19 07:21)
+        ✔ http://stackoverflow.com/a/20667577 @done (15-01-19 07:21)
+        ✔ https://coderwall.com/p/dhgljg/angularjs-watch-for-changes-in-a-service @done (15-01-19 07:21)
+        ☐ Handling timeout
+    ☐ upload
+    ☐ editable
 
   ☐ PLEASE DO PULL REQUEST!!
 
@@ -51,6 +50,9 @@ Finishing SUB:
       ☐ http://stackoverflow.com/a/12570008
       ☐ link compile?
       ☐ What is $watch? Where should be used?
+      ☐ Alternative? service: $rootScope.$broadcast and controller: $scope.$on
+    ☐ A serious approach: a new app to 'house' a different logic
+      ☐ http://stackoverflow.com/a/14884646
 
   ☐ push and slice array via functions/buttons for steps
   ☐ check permission on writing in the shared directory upload

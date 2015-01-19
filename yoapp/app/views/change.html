@@ -19,8 +19,8 @@
     <h4> Notification testers </h4>
     <!-- debugging notification -->
     <div class="well" ng-init="btnValue=0; btnTwo=0; tmp = {message:''};">
-        btnValue1 = {{btnValue}} <br>
-        <input type="text" name="test" ng-model="tmp.message"> <br>
+        btnValue1: {{btnValue}} <br>
+        Message: <input type="text" name="test" ng-model="tmp.message"> <br>
 
         <div class="btn-group" role="group" aria-label="label-default">
           <button ng-repeat="num in [0,1,2,3,4]"
