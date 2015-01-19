@@ -8,42 +8,46 @@
  * Service in the yoApp.
  */
 myApp
- .service('NotificationData', function ($timeout, AppConfig, messageTimeout) {
+.service('NotificationData', function ($timeout, AppConfig, messageTimeout) {
 
-//init structure
+ //init structure
  var emptyMessage = {
     status: AppConfig.messageStatus.none,
     message: "",
     timeout: null,
-    counter: 0,
  };
- //var myMessage = angular.copy(emptyMessage);
+
+ var myMessage = angular.copy(emptyMessage);
 
  return {
 
-    myMessage: angular.copy(emptyMessage),
-    //messageStatus: AppConfig.messageStatus.none,
+    //myMessage: angular.copy(emptyMessage),
+    counter: 0,
 
     getNotificationStatus: function () {
-        return this.myMessage.status;
+        return myMessage.status;
     },
     getNotificationMessage: function () {
-        return this.myMessage.message;
+        return myMessage.message;
     },
     getNotification: function () {
-        return this.myMessage;
+        return myMessage;
     },
 
     incrementWatcher: function () {
-        this.myMessage.counter++;
+        this.counter++;
         //console.log("Waking");
     },
     setNotificationStatus: function (status) {
-        this.myMessage.status = status;
+        myMessage.status = status;
     },
     setNotificationMessage: function (message) {
-        this.myMessage.message = message;
+        myMessage.message = message;
     },
+    setNotificationTimeout: function (timer) {
+        myMessage.timeout = timer;
+    },
+
     setNotification : function(status, message) {
 
         //notify my application
@@ -57,12 +61,12 @@ myApp
 
         //if currently timeout exists: remove it!
         //i have to avoid that an old timeout close my message
-        if (this.myMessage.timeout) {
+        if (myMessage.timeout) {
             //console.log("Timeout exit");
-            $timeout.cancel(this.myMessage.timeout);
-            this.myMessage.timeout = emptyMessage.timeout;
+            $timeout.cancel(myMessage.timeout);
+            myMessage.timeout = emptyMessage.timeout;
         }
     }
- };
 
+  };
  });

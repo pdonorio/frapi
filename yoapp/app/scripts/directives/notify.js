@@ -13,7 +13,7 @@ myApp
       templateUrl: 'templates/notification.html',
       scope : false,
 
-      controller: function($scope, AppConfig, NotificationData)
+      controller: function($scope, $timeout, AppConfig, NotificationData, messageTimeout)
       {
         $scope.notification = {
             status: AppConfig.messageStatus.none,
@@ -35,7 +35,7 @@ myApp
             //What to watch?
             //do not watch the whole object, or angular will not notice
             //if you change only some inside propery...
-            return NotificationData.myMessage.counter;
+            return NotificationData.counter;
         }, function(newValue, oldValue){
             //What to do if the value changes?
 
@@ -60,24 +60,24 @@ myApp
                 console.log("Unknown status: ",status);
             }
 
-            //set new status for div changing. It happens here.
-            $scope.notification.status = status;
-
-/*
             // Handling timeout & message if status different from
             // 0 no message, 1 loading
             if (status > AppConfig.messageStatus.loading)
             {
+
                 //should this be optional?
-                this.myMessage.timeout = $timeout(function() {
+                var timeout = $timeout(function() {
                         //only updating default status to make
                         //message disappear
-                        this.myMessage.status = emptyMessage.status;
-                        this.myMessage.timeout = emptyMessage.timeout;
+                        $scope.notification.status = AppConfig.messageStatus.none;
+                        NotificationData.setNotificationTimeout(null);
                     }, messageTimeout
                 );
+                NotificationData.setNotificationTimeout(timeout);
             }
-*/
+
+            //set new status for div changing. It happens here.
+            $scope.notification.status = status;
 
         });
       }
