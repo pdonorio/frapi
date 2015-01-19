@@ -26,7 +26,7 @@ var myApp = angular.module('yoApp',
 
   // CONSTANTS
   .constant('apiTimeout', 1250)
-  .constant('messageTimeout', 4000)
+  .constant('messageTimeout', 3000)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
 

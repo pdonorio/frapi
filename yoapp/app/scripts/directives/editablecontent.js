@@ -39,17 +39,10 @@ myApp
       //manage the local scope
       controller: function($scope, DataResource, $timeout, AppConfig, messageTimeout, NotificationData)
       {
-        //console.log($scope.notify);
-        //$scope.notify.setNotification(2,"test me");
-
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
         //default item value if no consistent data or no text
         $scope.item = mixed($scope.item, true);
-        //DEBUG
-        //$scope.item.status = 1;
-        console.log("Editable Controller");
-        console.log(NotificationData.getNotificationStatus());
 
         /////////////////////////////////////
         //Do everything on the current item
@@ -57,13 +50,7 @@ myApp
         $scope.updateContent = function() {
 
           // Signal that we are going to try to edit data
-          $scope.item.status = 3;
-
-          console.log("TEST 1");
-          console.log(NotificationData.getNotificationStatus());
-          //LOADING
-          //$scope.msgFn(1, "prova");
-          console.log("TEST 2");
+          NotificationData.setNotification(AppConfig.messageStatus.loading, "");
 
   //TO FIX - select page from somewhere
           var id = null;
@@ -81,24 +68,23 @@ myApp
           };
 
           $scope.item.highlight = false;
+          var msg = "";
         // API UPDATE ^_^
           DataResource.set("webcontent", data)
           .then(function() {
-              $scope.item.status = AppConfig.messageStatus.loading;
+
+//TO FIX - this should be inside link function?
+              msg = "Saved content<br> <b>\""+ $scope.item.content +"\"</b>";
+              NotificationData.setNotification(AppConfig.messageStatus.success, msg);
             }, function() {
               console.log("Factory/Service api call Error: POST");
-              $scope.item.status = AppConfig.messageStatus.error;
+              msg = "Could not save the new content<br> " +
+                "<b>\""+ $scope.item.content +"\"</b>" +
+                "<br> <br> Please try again in a few minutes." +
+                "";
+              NotificationData.setNotification(AppConfig.messageStatus.error, msg);
             }
           );
-          /* NOT NEEDED because i implemented timeout inside a directive.
-          Should put timeout as optional
-          .finally(function() {
-              // Always execute this on both error and success
-              $timeout(function(){
-                $scope.item.status = AppConfig.messageStatus.none;
-              }, messageTimeout);
-          });
-          */
 
         }
 

@@ -23,7 +23,7 @@ RiCORD.a - prototyping:
   ☐ Some serious profile/user Menu
 
 Finishing SUB:
-  ☐ apply notification to upload and editable
+  ☐ Notification: a separate concept
     ✔ Factory service to handle the message data/status and timer @done (15-01-18 20:45)
       ✔ Create a service to share data and functions of notify directive @done (15-01-18 20:45)
       ✔ https://variadic.me/posts/2013-10-15-share-state-between-controllers-in-angularjs.html @done (15-01-18 20:45)
@@ -32,9 +32,9 @@ Finishing SUB:
       ✔ $watch factory public variable @done (15-01-19 07:21)
         ✔ http://stackoverflow.com/a/20667577 @done (15-01-19 07:21)
         ✔ https://coderwall.com/p/dhgljg/angularjs-watch-for-changes-in-a-service @done (15-01-19 07:21)
-        ☐ Handling timeout
+        ✔ Handling timeout @done (15-01-19 08:27)
     ☐ upload
-    ☐ editable
+    ✔ editable @done (15-01-19 17:31)
 
   ☐ PLEASE DO PULL REQUEST!!
 
@@ -378,6 +378,10 @@ OPTIMIZIATION:
  ☐ Init progress bar
    ☐ Home page separation from application
    ☐ stay signed in
+ ☐ Web Accessibility Checker
+   ☐ http://achecker.ca/checker/index.php
+   ☐ ngAria
+     ☐ https://docs.angularjs.org/guide/accessibility
  ☐ UNDERSCORE! http://underscorejs.org/ @cool
 
 OFFLINE APP:

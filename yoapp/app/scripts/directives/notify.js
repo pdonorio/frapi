@@ -43,6 +43,24 @@ myApp
             var status = NotificationData.getNotificationStatus();
             var message = NotificationData.getNotificationMessage();
 
+            // Handling timeout & message if status different from
+            // 0 no message, 1 loading
+            if (status > AppConfig.messageStatus.loading) {
+                var time = messageTimeout  * (status - 1);
+
+                //should this be optional?
+                var timeout = $timeout(function() {
+                        //only updating default status to make
+                        //message disappear
+                        $scope.notification.status = AppConfig.messageStatus.none;
+                        NotificationData.setNotificationTimeout(null);
+                    }, time );
+
+                NotificationData.setNotificationTimeout(timeout);
+                message += "<br><br> <i>Timer</i> set to <i>" + (time / 1000) + "''</i>."
+            }
+
+
             //If changing to 0 - don't do anything
             if (status == AppConfig.messageStatus.none) {
                 //nothing
@@ -57,23 +75,7 @@ myApp
             } else if (status == AppConfig.messageStatus.error) {
                 $scope.notification.errorMessage = message;
             } else {
-                console.log("Unknown status: ",status);
-            }
-
-            // Handling timeout & message if status different from
-            // 0 no message, 1 loading
-            if (status > AppConfig.messageStatus.loading)
-            {
-
-                //should this be optional?
-                var timeout = $timeout(function() {
-                        //only updating default status to make
-                        //message disappear
-                        $scope.notification.status = AppConfig.messageStatus.none;
-                        NotificationData.setNotificationTimeout(null);
-                    }, messageTimeout
-                );
-                NotificationData.setNotificationTimeout(timeout);
+                console.log("Unknown status: ", status);
             }
 
             //set new status for div changing. It happens here.
