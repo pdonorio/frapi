@@ -5,6 +5,7 @@ RiCORD.a - prototyping:
   ✔ Droplet digitalocean @done (15-01-11 12:44)
   ✔ Submission generic with steps @done (15-01-16 17:41)
     ✔ Uploader @done (15-01-18 14:56)
+    ☐ keep track with fontawesome list icons
   ☐ A fixed div if first api call/init fails to signal error/maintenance @errorcheck
     ☐ "Loading" at the very beginning of beautiful webapp?
   ☐ Search with search bar
@@ -23,7 +24,7 @@ RiCORD.a - prototyping:
   ☐ Some serious profile/user Menu
 
 Finishing SUB:
-  ☐ Notification: a separate concept
+  ✔ Notification: a separate concept @done (15-01-21 07:45)
     ✔ Factory service to handle the message data/status and timer @done (15-01-18 20:45)
       ✔ Create a service to share data and functions of notify directive @done (15-01-18 20:45)
       ✔ https://variadic.me/posts/2013-10-15-share-state-between-controllers-in-angularjs.html @done (15-01-18 20:45)
@@ -33,7 +34,12 @@ Finishing SUB:
         ✔ http://stackoverflow.com/a/20667577 @done (15-01-19 07:21)
         ✔ https://coderwall.com/p/dhgljg/angularjs-watch-for-changes-in-a-service @done (15-01-19 07:21)
         ✔ Handling timeout @done (15-01-19 08:27)
-    ☐ upload
+    ✔ upload @done (15-01-21 07:45)
+      ✔ fix div responsive @done (15-01-20 20:19)
+      ✘ fix table responsive @cancelled (15-01-20 20:19)
+      ✔ using fontawesome and column disappear for mobile @done (15-01-20 20:19)
+      ✔ set all the necessary actions @done (15-01-21 07:45)
+        ✔ set better timer with parameter... @done (15-01-21 07:45)
     ✔ editable @done (15-01-19 17:31)
 
   ☐ PLEASE DO PULL REQUEST!!

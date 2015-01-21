@@ -23,21 +23,7 @@ myApp
         data: "=",
         template: "=",
       },
-      //manage the local scope
-      controller: function($scope)
-      {
-        //console.log($scope.data);
-        console.log("Remove this controller " + ($scope.step + 1) + " ?");
-//TO FIX -
-        //?? NON FUNZIONA - chiedere a autore di xeditable
-        //console.log($scope.myform);
-      },
-/*
-      //manipulate DOM
-      link : function(scope, element, attrs, ctrl) {
-        console.log("Link");
-      }
-*/
+      //controller: function($scope) {}
 
     };
   });

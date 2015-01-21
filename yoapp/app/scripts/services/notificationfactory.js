@@ -15,6 +15,7 @@ myApp
     status: AppConfig.messageStatus.none,
     message: "",
     timeout: null,
+    time: 0,
  };
 
  var myMessage = angular.copy(emptyMessage);
@@ -30,6 +31,10 @@ myApp
     getNotificationMessage: function () {
         return myMessage.message;
     },
+    //time requested for message duration
+    getNotificationTime: function () {
+        return myMessage.time;
+    },
     getNotification: function () {
         return myMessage;
     },
@@ -38,17 +43,28 @@ myApp
         this.counter++;
         //console.log("Waking");
     },
+
     setNotificationStatus: function (status) {
         myMessage.status = status;
     },
     setNotificationMessage: function (message) {
         myMessage.message = message;
     },
+    //save reference to timeout object, to stop it if necessary
     setNotificationTimeout: function (timer) {
         myMessage.timeout = timer;
     },
+    //seconds to set timeout to
+    setNotificationTime: function (timeout) {
+        timeout = typeof timeout !== 'undefined' ? timeout : messageTimeout;
+        var time = timeout  * (this.getNotificationStatus() - 1);
+        if (time < 0) {
+            time = 0;
+        }
+        myMessage.time = time;
+    },
 
-    setNotification : function(status, message) {
+    setNotification : function(status, message, timeout) {
 
         //notify my application
         this.incrementWatcher();
@@ -58,6 +74,7 @@ myApp
         if (status >= AppConfig.messageStatus.none && status <= AppConfig.messageStatus.error) {
             this.setNotificationStatus(status);
         }
+        this.setNotificationTime(timeout);
 
         //if currently timeout exists: remove it!
         //i have to avoid that an old timeout close my message

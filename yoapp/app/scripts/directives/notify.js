@@ -46,7 +46,7 @@ myApp
             // Handling timeout & message if status different from
             // 0 no message, 1 loading
             if (status > AppConfig.messageStatus.loading) {
-                var time = messageTimeout  * (status - 1);
+                var time = NotificationData.getNotificationTime();
 
                 //should this be optional?
                 var timeout = $timeout(function() {
@@ -57,7 +57,7 @@ myApp
                     }, time );
 
                 NotificationData.setNotificationTimeout(timeout);
-                message += "<br><br> <i>Timer</i> set to <i>" + (time / 1000) + "''</i>."
+                //message += "<br><br> <i>Timer</i> set to <i>" + (time / 1000) + "''</i>."
             }
 
 

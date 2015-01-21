@@ -1,17 +1,17 @@
 <!-- UPLOADER -->
 <div>
 
- <h4>Caricamento delle immagini</h4> <br>
+ <h4>Elaborazione immagini</h4> <br>
 
 <!--  File list -->
  <table class="table" ng-show="uploader.queue.length > 0">
     <thead>
      <tr>
-      <th width="50%">Name</th>
-      <th ng-show="uploader.isHTML5">Size</th>
-      <th ng-show="uploader.isHTML5">Progress</th>
-      <th>Status</th>
-      <th>Actions</th>
+      <th>Nome</th>
+      <th class='hidden-xs' ng-show="uploader.isHTML5">Dim</th>
+      <th ng-show="uploader.isHTML5">Progresso</th>
+      <th></th> <!--status-->
+      <th></th> <!--action-->
      </tr>
     </thead>
     <tbody>
@@ -26,7 +26,8 @@
         <!--fixed width and height -->
         <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
     </td>
-    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+    <td class='hidden-xs' ng-show="uploader.isHTML5"
+        nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
     <td ng-show="uploader.isHTML5">
         <div class="progress" style="margin-bottom: 0;">
             <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
@@ -38,35 +39,62 @@
         <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
     </td>
     <td nowrap>
-        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-            <span class="glyphicon glyphicon-upload"></span> Upload
-        </button>
-        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-        </button>
-        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-            <span class="glyphicon glyphicon-trash"></span> Remove
-        </button>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()"
+                data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"
+                ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+<!--                 <span class="glyphicon glyphicon-upload"></span> -->
+                <i class="fa fa-upload fa-fw"></i>
+            </button>
+<!--
+            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                <span class="glyphicon glyphicon-ban-circle"></span>
+            </button>
+ -->
+            <button type="button" class="btn btn-danger btn-xs" ng-click="myRemoveItem(item)">
+                <!-- <span class="glyphicon glyphicon-trash"></span> -->
+                <i class="fa fa-times fa-fw"></i>
+            </button>
+        </div>
     </td>
     </tr>
     </tbody>
 </table>
 
-<!--  File selection -->
-<input type="file" nv-file-select="" uploader="uploader" multiple /><br/>
-
- <div class="row" ng-show="uploader.queue.length > 0">
-    <div class="col-md-4">
-        <p>Elementi in coda
-        <span class="badge"> {{ uploader.queue.length }} </span>
-        </p>
-    </div>
-    <div class="col-md-4">
-        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()"
-            ng-disabled="!uploader.queue.length">
-            <span class="glyphicon glyphicon-trash"></span> Remove all
-        </button>
-    </div>
- </div>
+<div ng-class="{'panel panel-default': uploader.queue.length>0}">
+  <div class="panel-body" ng-show="uploader.queue.length>0">
+    Elementi in coda
+    <span class="badge"> {{ uploader.queue.length }} </span>
+  </div>
+  <div ng-class="{'panel-footer': uploader.queue.length>0}">
+     <div class="row">
+        <div class="col-md-3 col-xs-3">
+            <!--  File selection -->
+            <span class="btn btn-default btn-file btn-s">
+                <i class="fa fa-file-image-o"></i>
+                Aggiungi
+                <input type="file" nv-file-select="" uploader="uploader" multiple />
+            </span>
+            <br>
+            <br>
+        </div>
+        <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
+            <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()">
+                <i class="fa fa-trash"></i> Avvia
+            </button>
+        </div>
+        <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
+            <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()">
+                <i class="fa fa-trash"></i> Annulla
+            </button>
+        </div>
+        <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
+            <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()">
+                <i class="fa fa-trash"></i> Azzera
+            </button>
+        </div>
+     </div>
+  </div>
+</div>
 
 </div>
