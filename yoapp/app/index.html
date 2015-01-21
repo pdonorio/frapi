@@ -23,9 +23,28 @@
 
   <body ng-app="yoApp" ng-controller="MainController">
   <!--[if lt IE 7]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser.<br>
+    Please <a href="http://browsehappy.com/">upgrade your browser</a><br>
+    to improve your experience.</p>
   <![endif]-->
-    <div id="wrap">
+
+    <div class='container' ng-if="!init.startup">
+        <!-- SHOULD BE CENTERED -->
+        <div class="row">
+         <div class='col-md-3 col-xs-3'></div>
+         <div class='col-md-6 col-xs-6'>
+          <div class="panel panel-default">
+            <div class="panel-header"> <h3>Launching app...</h3> </div>
+            <div class="panel-body">
+                <i class="fa fa-refresh fa-spin"></i> Loading
+            </div>
+          </div>
+         </div>
+         <div class='col-md-3 col-xs-3'></div>
+        </div>
+    </div>
+
+    <div ng-if="init.startup" id="wrap">
         <!-- Top bar -->
         <div ng-include="'templates/topbar.html'"></div>
         <!-- Notification message Directive -->
@@ -34,7 +53,7 @@
         <div ng-view=""></div>
     </div>
     <!-- Footer -->
-    <div ng-include="'templates/footer.html'"></div>
+    <div ng-if="init.startup" ng-include="'templates/footer.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <!--      <script>

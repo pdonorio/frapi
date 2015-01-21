@@ -8,8 +8,15 @@
  * Controller of the yoApp
  */
 myApp.controller('MainController',
-    function ($scope, DataResource, $location, mixed)
+    [ '$scope', '$location', '$timeout', 'DataResource', 'mixed',
+        function ($scope, $location, $timeout, DataResource, mixed)
 {
+    $scope.init = {
+        //startup : true,
+        startup: false,
+        status: 0,
+    };
+    $timeout(function() { $scope.init.startup = true; }, 2200 );
 
     // Lo.dash | underscore
     $scope._ = _;
@@ -24,6 +31,7 @@ myApp.controller('MainController',
         {active:false, link:'search', name:'search'},
         {active:false, link:'change', name:'about'},
     ];
+
     // Fix menu in the header.
     // Make active only the button which leads to current path.
     $scope.$on('$locationChangeStart', function(event) {
@@ -80,4 +88,4 @@ myApp.controller('MainController',
         }
     );
 
-});
+}]);

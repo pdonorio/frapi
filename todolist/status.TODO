@@ -5,9 +5,9 @@ RiCORD.a - prototyping:
   ✔ Droplet digitalocean @done (15-01-11 12:44)
   ✔ Submission generic with steps @done (15-01-16 17:41)
     ✔ Uploader @done (15-01-18 14:56)
-    ☐ keep track with fontawesome list icons
   ☐ A fixed div if first api call/init fails to signal error/maintenance @errorcheck
-    ☐ "Loading" at the very beginning of beautiful webapp?
+    ☐ panel fix...
+  ☐ Topbar for tablet/smartphone
   ☐ Search with search bar
     ☐ Infinite scrolling (with pages block on last search)  @important
     ☐ Off canvas extra search (just the template) @important
@@ -45,6 +45,7 @@ Finishing SUB:
   ✔ Tooltips @done (15-01-21 16:43)
     ✔ http://www.bootply.com/cskelly/H4Zii7Mb6l @done (15-01-21 16:43)
   ☐ push and slice array via functions/buttons for steps
+  ☐ steps LISTING: keep track with fontawesome list icons
   ☐ check permission on writing in the shared directory upload
   ☐ nvFileDrop. Set up a drop area. Usually applied to the entire document
     ☐ Only images?
@@ -60,8 +61,7 @@ Finishing SUB:
   ☐ Draft to published via API call
     ☐ (it happens server side)
   ☐ Better notification
-    ☐ toaster?
-      ☐ http://plnkr.co/edit/mVR4P4?p=preview
+    ✘ toaster? http://plnkr.co/edit/mVR4P4?p=preview @cancelled (15-01-21 16:44)
     ☐ Can close
     ✔ Optional timeout @done (15-01-21 08:33)
 

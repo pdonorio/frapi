@@ -46,6 +46,15 @@ var myApp = angular.module('yoApp',
     };
   })
 
+  // FOR TESTING NOTIFICATION PURPOSE :)
+  .controller('SomeController', ['$scope','NotificationData',
+    function($scope, NotificationData){
+      $scope.setNotification = function(s,m) {
+        //console.log("Some controller: set notifaction with "+s+","+m);
+        NotificationData.setNotification(s,m);
+      };
+  }])
+
   //ROUTING
   .config(function ($routeProvider) {
     //Note to self: the controller that has access to the whole page is
