@@ -13,7 +13,8 @@ RiCORD.a - prototyping:
     ☐ Off canvas extra search (just the template) @important
       ☐ fuzzy?
   ☐ Document view page
-  ☐ CSS & Favico
+  ☐ Html5rocks - adjustements
+    ☐ CSS & Favico
     ☐ Topbar for mobile?
     ☐ Init/Login page
       ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
@@ -41,25 +42,8 @@ Finishing SUB:
       ✔ set all the necessary actions @done (15-01-21 07:45)
         ✔ set better timer with parameter... @done (15-01-21 07:45)
     ✔ editable @done (15-01-19 17:31)
-
-  ☐ PLEASE DO PULL REQUEST!!
-
-  ☐ Some angular understanding @cool @study
-    ☐ Controller as
-      ☐ http://toddmotto.com/digging-into-angulars-controller-as-syntax/
-      ☐ access any nested controller
-    ☐ Difference in ng-if and ng-show??
-    ☐ Nested directives
-      ☐ producing many directives from a root directive
-      ☐ http://www.jvandemo.com/the-nitty-gritty-of-compile-and-link-functions-inside-angularjs-directives/
-    ☐ Understand difference: Link and Controller inside directive!!!! @HELP
-      ☐ http://stackoverflow.com/a/12570008
-      ☐ link compile?
-      ☐ What is $watch? Where should be used?
-      ☐ Alternative? service: $rootScope.$broadcast and controller: $scope.$on
-    ☐ A serious approach: a new app to 'house' a different logic
-      ☐ http://stackoverflow.com/a/14884646
-
+  ✔ Tooltips @done (15-01-21 16:43)
+    ✔ http://www.bootply.com/cskelly/H4Zii7Mb6l @done (15-01-21 16:43)
   ☐ push and slice array via functions/buttons for steps
   ☐ check permission on writing in the shared directory upload
   ☐ nvFileDrop. Set up a drop area. Usually applied to the entire document
@@ -79,7 +63,7 @@ Finishing SUB:
     ☐ toaster?
       ☐ http://plnkr.co/edit/mVR4P4?p=preview
     ☐ Can close
-    ☐ Optional timeout
+    ✔ Optional timeout @done (15-01-21 08:33)
 
 Completed:
   HOW TO: new resource (api python):
@@ -389,6 +373,21 @@ OPTIMIZIATION:
    ☐ ngAria
      ☐ https://docs.angularjs.org/guide/accessibility
  ☐ UNDERSCORE! http://underscorejs.org/ @cool
+☐ Some angular understanding @study
+  ☐ Controller as
+    ☐ http://toddmotto.com/digging-into-angulars-controller-as-syntax/
+    ☐ access any nested controller
+  ☐ Difference in ng-if and ng-show??
+  ☐ Nested directives
+    ☐ producing many directives from a root directive
+    ☐ http://www.jvandemo.com/the-nitty-gritty-of-compile-and-link-functions-inside-angularjs-directives/
+  ☐ Understand difference: Link and Controller inside directive!!!! @HELP
+    ☐ http://stackoverflow.com/a/12570008
+    ☐ link compile?
+    ☐ What is $watch? Where should be used?
+    ☐ Alternative? service: $rootScope.$broadcast and controller: $scope.$on
+  ☐ A serious approach: a new app to 'house' a different logic
+    ☐ http://stackoverflow.com/a/14884646
 
 OFFLINE APP:
   ☐ Offline web applications - REC
