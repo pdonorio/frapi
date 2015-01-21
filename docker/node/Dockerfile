@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
-RUN apt-get update
-RUN apt-get install -y ruby git curl sudo
+RUN apt-get update && apt-get install -y ruby git curl sudo python build-essential
+#--fix-missing
 # Force bash always
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -30,15 +30,18 @@ RUN curl \
 RUN source ~/.bashrc && nvm install $NODEV \
     && npm update -g npm \
     && npm install -g yo \
-    && npm install -g bower grunt-cli \
-    && npm install -g chateau \
-    && npm install -g generator-angular@$GANGV
+    && npm install -g bower grunt grunt-cli \
+    && npm install -g generator-angular@$GANGV \
+    && npm install -g chateau
 
 # Chateau (phpmyadmin for rethinkdb) configuration
 ADD confs/config.js /opt/.nvm/v$NODEV/lib/node_modules/chateau/config.js
 #######################################
 # Get the environment ready
 RUN echo "nvm use v$NODEV" >> ~/.bashrc
+
+USER root
+USER $NEWUSER
 
 ADD startup.sh /
 EXPOSE 9000

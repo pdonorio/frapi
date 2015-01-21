@@ -27,10 +27,18 @@ myApp
         editable: '=flag',
       },
 
+/*
+      link: function (scope, iElement, iAttrs, NotificationController) {
+        // Allow the controller here to access the document controller
+        scope.notify = NotificationController;
+        //NotificationController.setNotification(2,"test me");
+      },
+*/
+
       /////////////////////////////////////
       //manage the local scope
-      controller: function($scope, DataResource, $timeout, messageTimeout) {
-
+      controller: function($scope, DataResource, $timeout, AppConfig, messageTimeout, NotificationData)
+      {
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
         //default item value if no consistent data or no text
@@ -42,35 +50,41 @@ myApp
         $scope.updateContent = function() {
 
           // Signal that we are going to try to edit data
-          $scope.item.status = 3;
+          NotificationData.setNotification(AppConfig.messageStatus.loading, "");
 
   //TO FIX - select page from somewhere
           var id = null;
 
           if ($scope.data[$scope.pos]) {
-              id = $scope.data[$scope.pos].id;
+              var tmp = $scope.data[$scope.pos];
+              id = tmp.id;
               //init data making use of shared Provider utility
-              $scope.data[$scope.pos] = mixed($scope.data[$scope.pos], false);
+              $scope.data[$scope.pos] = mixed(tmp, false);
           }
-          var data = {id: id,
-            content: $scope.data[$scope.pos].content,
-            element: $scope.pos, page: "" };
+          var data = {
+            id: id,
+            content: $scope.item.content,
+            element: $scope.pos, page: ""
+          };
 
           $scope.item.highlight = false;
+          var msg = "";
         // API UPDATE ^_^
           DataResource.set("webcontent", data)
           .then(function() {
-              $scope.item.status = 1;
+
+//TO FIX - this should be inside link function?
+              msg = "Saved content<br> <b>\""+ $scope.item.content +"\"</b>";
+              NotificationData.setNotification(AppConfig.messageStatus.success, msg);
             }, function() {
               console.log("Factory/Service api call Error: POST");
-              $scope.item.status = 2;
+              msg = "Could not save the new content<br> " +
+                "<b>\""+ $scope.item.content +"\"</b>" +
+                "<br> <br> Please try again in a few minutes." +
+                "";
+              NotificationData.setNotification(AppConfig.messageStatus.error, msg);
             }
-          ).finally(function() {
-              // Always execute this on both error and success
-              $timeout(function(){
-                $scope.item.status = 0;
-              }, messageTimeout);
-          });
+          );
 
         }
 

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
@@ -16,53 +16,25 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/topbar.css">
+    <link rel="stylesheet" href="styles/blur.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="yoApp">
-    <div class="container" ng-controller="MainController">
 
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
-      <div class="header">
-        <!-- Normal menu button -->
-        <ul class="nav nav-pills pull-right">
-          <li ng-repeat='el in menu'
-            ng-class="{'active': el.active}">
-            <a ng-href="#/{{el.link}}">{{el.name | ucFirst}}</a>
-          </li>
-          <!-- Profile button -->
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown"
-            role="button" aria-expanded="false">
-              Profile <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-              <li role="presentation" class="dropdown-header"> Role: <b>adminer</b> </li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action <span class="label label-default">new</span></a></li>
-              <li><a href="#">Messages  <span class="badge alert-info">4</span></a></li>
-              <li class="divider"></li>
-              <li><a href="#">Log out</a></li>
-            </ul>
-          </li>
-        </ul>
-        <h3 class="text-muted">aapp</h3>
-<!--       MAIN VIEW (see views/ directory) -->
+  <body ng-app="yoApp" ng-controller="MainController">
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+    <div id="wrap">
+        <!-- Top bar -->
+        <div ng-include="'templates/topbar.html'"></div>
+        <!-- Notification message Directive -->
+        <notify></notify>
+        <!-- MAIN VIEW (see views/ directory) -->
         <div ng-view=""></div>
-
-        <div class="footer">
-          <!-- Button Switch for edit on/off -->
-          <table ng-show="edit.state==0">
-            <tr> <td>Edit switch: </td>
-            <td> <switch ng-model="edit.switch" class="small">Edit</switch> </td>
-            </tr> </table>
-        </div>
-<!--  END OF MAIN CONTROLLER -->
     </div>
-
+    <!-- Footer -->
+    <div ng-include="'templates/footer.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <!--      <script>
@@ -87,7 +59,6 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/noty/js/noty/packaged/jquery.noty.packaged.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -98,6 +69,7 @@
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
     <script src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -106,12 +78,18 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/search.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/submissioncontroller.js"></script>
+        <script src="scripts/controllers/uploadcontroller.js"></script>
+        <script src="scripts/services/notificationfactory.js"></script>
         <script src="scripts/services/api_client.js"></script>
-        <script src="scripts/directives/editablecontent.js"></script>
-        <script src="scripts/filters/textop.js"></script>
-        <script src="scripts/app_postprocess.js"></script>
         <script src="scripts/services/mixed.js"></script>
+        <script src="scripts/directives/notify.js"></script>
+        <script src="scripts/directives/editablecontent.js"></script>
+        <script src="scripts/directives/submissionstep.js"></script>
+        <script src="scripts/directives/fileuploader.js"></script>
+        <script src="scripts/filters/textop.js"></script>
+        <script src="scripts/apppostprocess.js"></script>
         <!-- endbuild -->
+
 </body>
 </html>

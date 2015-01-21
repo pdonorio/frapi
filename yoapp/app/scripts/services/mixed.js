@@ -30,8 +30,9 @@ myApp.provider('mixed', function ()
 
       return function(item, flag)
       {
-        if (flag) {
-          item = item || empty;
+        if (flag && !item) {
+          //make sure it's a deep copy and not a reference!
+          item = angular.copy(empty);
         }
         item.content = item.content || empty.content;
         return item;
@@ -39,18 +40,4 @@ myApp.provider('mixed', function ()
 
     };
 
-/*  STANDARD DEFINITIONS in Provider
-    var salutation = 'Hello';
-
-    // Private constructor
-    function Ingnition() {
-      this.init = function () {
-        return salutation;
-      };
-    }
-    // Public API for configuration
-    this.setSalutation = function (s) {
-      salutation = s;
-    };
-*/
   });

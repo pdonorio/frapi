@@ -1,33 +1,85 @@
 
-RiCORD.a:
+RiCORD.a - prototyping:
   REST Isolated Containers Oriented to Record Data Analysis
   ✔ Admin editable web content @done (15-01-10 15:40)
   ✔ Droplet digitalocean @done (15-01-11 12:44)
-  ☐ Init/Login page
-    ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
-  ☐ Favico
-    ✔ Separated page @done (15-01-10 22:43)
-      ✔ works only on nginx? @done (15-01-10 22:43)
-      ✔ background http://css-tricks.com/perfect-full-page-background-image/ @done (15-01-10 22:43)
-  ☐ A fixed div if first api call/init fails to signal error/maintenance @important @errorcheck
+  ✔ Submission generic with steps @done (15-01-16 17:41)
+    ✔ Uploader @done (15-01-18 14:56)
+    ☐ keep track with fontawesome list icons
+  ☐ A fixed div if first api call/init fails to signal error/maintenance @errorcheck
+    ☐ "Loading" at the very beginning of beautiful webapp?
   ☐ Search with search bar
-    ☐ Infinite scrolling (with pages block on last search)
-    ☐ Off canvas extra search (just the template)
+    ☐ Infinite scrolling (with pages block on last search)  @important
+    ☐ Off canvas extra search (just the template) @important
       ☐ fuzzy?
-  ☐ Submission generic with steps
-    ☐ Draft with xeditable
-    ☐ Draft to published via API call
-      ☐ (it happens server side)
-    ☐ Image uploader
   ☐ Document view page
-  ☐ "Loading" at the very beginning of beautiful webapp?
+  ☐ CSS & Favico
+    ☐ Topbar for mobile?
+    ☐ Init/Login page
+      ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
+  ☐ Admin content: use 'page' db attribute for different pages
+    ☐ Html editor
+      ☐ Sanitize content (e.g. open tags)
+    ☐ Use counter to make edit switch disappear inside footer if no editable content
+  ☐ Some serious profile/user Menu
 
-DROPLET:
-  ✔ Fix use of base url of API @done (15-01-11 12:44)
-    ✔ Provider @done (15-01-11 12:44)
-      ✔ inject location @done (15-01-11 12:44)
-    ✔ Conf @done (15-01-11 12:44)
-  ✔ Instruction for installing and build @done (15-01-11 12:44)
+Finishing SUB:
+  ✔ Notification: a separate concept @done (15-01-21 07:45)
+    ✔ Factory service to handle the message data/status and timer @done (15-01-18 20:45)
+      ✔ Create a service to share data and functions of notify directive @done (15-01-18 20:45)
+      ✔ https://variadic.me/posts/2013-10-15-share-state-between-controllers-in-angularjs.html @done (15-01-18 20:45)
+    ✔ One tag in the main index page, with the directive notify @done (15-01-18 20:45)
+    ✔ How to watch changes on Factory data to change directive html? @done (15-01-19 07:21)
+      ✔ $watch factory public variable @done (15-01-19 07:21)
+        ✔ http://stackoverflow.com/a/20667577 @done (15-01-19 07:21)
+        ✔ https://coderwall.com/p/dhgljg/angularjs-watch-for-changes-in-a-service @done (15-01-19 07:21)
+        ✔ Handling timeout @done (15-01-19 08:27)
+    ✔ upload @done (15-01-21 07:45)
+      ✔ fix div responsive @done (15-01-20 20:19)
+      ✘ fix table responsive @cancelled (15-01-20 20:19)
+      ✔ using fontawesome and column disappear for mobile @done (15-01-20 20:19)
+      ✔ set all the necessary actions @done (15-01-21 07:45)
+        ✔ set better timer with parameter... @done (15-01-21 07:45)
+    ✔ editable @done (15-01-19 17:31)
+
+  ☐ PLEASE DO PULL REQUEST!!
+
+  ☐ Some angular understanding @cool @study
+    ☐ Controller as
+      ☐ http://toddmotto.com/digging-into-angulars-controller-as-syntax/
+      ☐ access any nested controller
+    ☐ Difference in ng-if and ng-show??
+    ☐ Nested directives
+      ☐ producing many directives from a root directive
+      ☐ http://www.jvandemo.com/the-nitty-gritty-of-compile-and-link-functions-inside-angularjs-directives/
+    ☐ Understand difference: Link and Controller inside directive!!!! @HELP
+      ☐ http://stackoverflow.com/a/12570008
+      ☐ link compile?
+      ☐ What is $watch? Where should be used?
+      ☐ Alternative? service: $rootScope.$broadcast and controller: $scope.$on
+    ☐ A serious approach: a new app to 'house' a different logic
+      ☐ http://stackoverflow.com/a/14884646
+
+  ☐ push and slice array via functions/buttons for steps
+  ☐ check permission on writing in the shared directory upload
+  ☐ nvFileDrop. Set up a drop area. Usually applied to the entire document
+    ☐ Only images?
+    ☐ Also on API side?
+      ☐ Only API SIDE??
+  ☐ Edit mode can add, edit and remove step @cool
+    ☐ only edit via xeditable?
+  ☐ Div "loading" with ng-if / ng-show coupled with views
+    ☐ based on some variable after initial api calling
+    ☐ Update step content via function based on click?
+  ☐ If no data start with insert mode
+    ☐ It doesn't work, prepare a jsfiddle/planker! @todo
+  ☐ Draft to published via API call
+    ☐ (it happens server side)
+  ☐ Better notification
+    ☐ toaster?
+      ☐ http://plnkr.co/edit/mVR4P4?p=preview
+    ☐ Can close
+    ☐ Optional timeout
 
 Completed:
   HOW TO: new resource (api python):
@@ -163,8 +215,73 @@ Completed:
     ✔ https://github.com/neumino/chateau @done (14-12-29 22:47)
        ✔ node_modules/chateau/bin/chateau @done (15-01-08 16:53)
        ✔ node_modules/chateau/config.js @done (15-01-08 16:53)
+  DROPLET:
+    ✔ Fix use of base url of API @done (15-01-11 12:44)
+      ✔ Provider @done (15-01-11 12:44)
+        ✔ inject location @done (15-01-11 12:44)
+      ✔ Conf @done (15-01-11 12:44)
+    ✔ Instruction for installing and build @done (15-01-11 12:44)
+    ✔ Fix the copy of init value if have no data set in the rdb table @done (15-01-12 07:36)
+  SUBMISSION:
+    ✔ 4 columns @done (15-01-12 15:23)
+      ✔ sidebar steps list @done (15-01-12 15:23)
+        ✔ Lot of css/bootstrap effort @done (15-01-12 15:23)
+        ✔ Topbar http://twitterbootstrap3navbars.w3masters.nl @done (15-01-12 16:06)
+      ✔ preview before, if exists (disappear in mobile view) @done (15-01-13 07:03)
+      ✔ current step editable @done (15-01-13 07:03)
+      ✔ next view after, if exists (disappear in mobile view) @done (15-01-13 07:03)
+    ✔ Draft with xeditable @done (15-01-13 07:03)
+      ✔ http://vitalets.github.io/angular-xeditable/#editable-form @done (15-01-13 07:25)
+      ✔ A step is a @directive @done (15-01-13 17:32)
+        ✔ Handling position and other things for current != step @done (15-01-13 11:28)
+        ✔ Blur effect pure css3 @done (15-01-13 11:28)
+        ✘ animation? @cancelled (15-01-13 17:32)
+        ✔ Prepare a skeleton for an empty insert @done (15-01-15 06:27)
+          ✔ merge template and data inside directive in a resarray @done (15-01-15 06:27)
+          ✔ add element to array not converting it to an object @done (15-01-15 07:30)
+            ✔ you have to use [] init instead of {} @done (15-01-15 07:30)
+          ✔ sort on repeat on key 'pos'  the resarray @done (15-01-15 07:31)
+      ✔ Try update to 1.3.4 via bower @done (15-01-15 15:16)
+      ✔ Notification goes under the topbar! @bug @done (15-01-15 16:28)
+        ✔ beware of cache @done (15-01-15 16:28)
+          ✔ http://stackoverflow.com/questions/5690269/disabling-chrome-cache-for-website-development @done (15-01-15 16:30)
+          ✔ chrome dev option or ctrl+shitf+r @done (15-01-15 16:28)
+      ✔ Init all steps with one function in main controller of the page @done (15-01-15 17:13)
+      ✘ Gruntfile / livereloads you bastards with css @cancelled (15-01-15 17:29)
+        ✔ or disable livereload because is way too energy hungry @done (15-01-15 17:29)
+        ✘ any node.js lightweight server? @cancelled (15-01-16 17:39)
+          ✘ express? @cancelled (15-01-16 17:39)
 
+  File UPLOADER:
+    ✔ File uploader @current @done (15-01-15 18:36)
+      ✔ Angular uploader? @ifexists @done (15-01-15 17:28)
+        ✔ https://github.com/nervgh/angular-file-upload/ @done (15-01-15 17:28)
+        ✔ Set configuration for nginx on file dimensions? @current @done (15-01-16 10:36)
+          ✔ http://www.cyberciti.biz/faq/linux-unix-bsd-nginx-413-request-entity-too-large/ @done (15-01-16 10:36)
+          ✔ Share file folder between api and nodejs/nginx! @done (15-01-16 11:08)
+          ✔ Set script that receives file in POST @done (15-01-16 11:08)
+            ✔ python flask script on api side to handle uploads! @done (15-01-16 11:08)
+              ✔ Separate port @done (15-01-16 12:06)
+          ✔ Upload directive @current @done (15-01-16 17:23)
+            ✔ how to share the outside controller? @done (15-01-16 17:15)
+            ✔ what data to set? @done (15-01-16 17:15)
+          ✔ check if a file upload has the name of an already existing file @done (15-01-16 17:43)
+            ✔ via api, if exists, give error @done (15-01-16 17:43)
+            ✔ should clean costants for html code inside a python module @done (15-01-16 17:48)
+              ✔ to share in different python apps @done (15-01-16 17:48)
+          ✔ Set notifications @done (15-01-16 22:55)
+            ✔ as directive? loading, save, warning, fail @done (15-01-16 22:55)
+            ✔ activate timeout with item set? @done (15-01-17 12:25)
+              ✔ give something like 'onStatusChange'? @done (15-01-17 12:25)
+              ✘ use css class "message" to hide all other divs before showing @cancelled (15-01-17 18:14)
+              ✔ send a message if necessary to notify @done (15-01-17 12:25)
+              ✔ remove pnotify @done (15-01-17 16:08)
+                ✔ create costants for different values @done (15-01-18 12:20)
+                ✔ bring with css div notification to front  @done (15-01-18 11:19)
 
+API:
+
+ ☐ File API with logging...
  ☐ A different content per page (db column)
  ☐ Api calling via @poller
    ☐ Check until status is good with timeout
@@ -176,6 +293,8 @@ Completed:
  ☐ Noty and jquery
    ☐ DOM manipulation should be done in a directive (not a controller)
    ☐ http://stackoverflow.com/a/14005010
+ ☐ Python API client REQUEST @supercool
+   ☐ http://www.python-requests.org/en/latest/
 
 AUTHENTICATION:
    ☐ Login
@@ -228,6 +347,12 @@ AUTHENTICATION:
     ✔ http://www.ng-newsletter.com/posts/restangular.html [lodash or underscore?] @done (14-12-05 09:21)
     ✔ lodash @done (14-12-05 09:21)
  ✘ navbar fixed and responsive with angular strap @cancelled (14-12-23 06:42)
+  ☐ root scope
+    ☐ // It's very handy to add references to $state and $stateParams t
+    ☐  If you're tempted to put a function on $rootScope, it's almost always better to put it in a service that can be injected where it's needed, and more easily tested.
+  ☐ ng-strict.di...
+    ☐ use objects injections before using it into controller function!
+    ☐ http://stackoverflow.com/a/27765074
 
 API AUTH:
   ☐ Authentication
@@ -259,6 +384,10 @@ OPTIMIZIATION:
  ☐ Init progress bar
    ☐ Home page separation from application
    ☐ stay signed in
+ ☐ Web Accessibility Checker
+   ☐ http://achecker.ca/checker/index.php
+   ☐ ngAria
+     ☐ https://docs.angularjs.org/guide/accessibility
  ☐ UNDERSCORE! http://underscorejs.org/ @cool
 
 OFFLINE APP:

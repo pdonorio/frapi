@@ -10,7 +10,21 @@
  */
 
 angular.module('AppConfig', [])
+
+  //API ?
   .constant('apiPort', '5507')
+  .constant('apiFilePort', '5346')
+  .constant('apiFileResource', 'uploads')
+
+  //Notification status
+  .constant('messageStatus', {
+    none: 0,
+    loading: 1,
+    success: 2,
+    warning: 3,
+    error: 4
+  })
+
   // config module has provider with same name
   .provider('AppConfig', function () {
 
@@ -26,12 +40,20 @@ angular.module('AppConfig', [])
 
     //save in a variable the path to API
     return {
-      $get: function ($location, apiPort) {
+      $get: function ($location, apiPort, apiFilePort, apiFileResource, messageStatus)
+      {
+
         //use location https://docs.angularjs.org/api/ng/service/$location
         var protocol = $location.protocol();
         var host = $location.host();
         var port = $location.port();
         config.apiBase = protocol + "://" + host + ":" + apiPort;
+        config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
+          + "/" + apiFileResource;
+
+        //notification messages status
+        config.messageStatus = messageStatus;
+
         return config;
       }
     };

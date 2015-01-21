@@ -1,0 +1,44 @@
+<div class="container">
+ <div class="row">
+  <div class="col-md-8 col-xs-6" >
+
+    Quanto fatto da @me
+
+    <!-- should be an API resource -->
+    <!-- with ADD, REMOVE, EDIT and so on -->
+
+    <h3>Lista delle novità</h3>
+    <table class="table">
+        <tr> <th>Data</th> <th>Cambiamento</th> </tr>
+        <tr> <td>oggi</td> <td>inizia tutto</td> </tr>
+    </table>
+
+  </div>
+ </div>
+
+    <h4> Notification testers </h4>
+    <!-- debugging notification -->
+    <div class="well" ng-init="btnValue=0; btnTwo=0; tmp = {message:''};">
+        btnValue1: {{btnValue}} <br>
+        Message: <input type="text" name="test" ng-model="tmp.message"> <br>
+
+        <div class="btn-group" role="group" aria-label="label-default">
+          <button ng-repeat="num in [0,1,2,3,4]"
+            ng-click='setNotification(num, $parent.tmp.message); $parent.btnValue=num;'
+            type="button" class="btn btn-default">
+              {{num}}
+          </button>
+        </div>
+    <!-- debugging notification AGAIN -->
+        <hr>
+        btnValue2 = {{btnTwo}} <br>
+        <div class="btn-group" role="group" aria-label="label-default">
+          <button ng-repeat="num in [0,1,2,3,4]"
+            ng-click='setNotification(num, "SECOND"); $parent.btnTwo=num;'
+            type="button" class="btn btn-default">
+              {{num}}
+          </button>
+        </div>
+    </div>
+
+</div>

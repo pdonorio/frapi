@@ -18,6 +18,7 @@ var myApp = angular.module('yoApp',
   // DEPENCIES: external modules
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
+    'angularFileUpload',  //uploader for files
     'uiSwitch',     //osx like switcher
   // DEPENCIES: own filters
     'textOperations', //my filters
@@ -25,29 +26,45 @@ var myApp = angular.module('yoApp',
 
   // CONSTANTS
   .constant('apiTimeout', 1250)
-  .constant('messageTimeout', 4000)
-  .constant('perpageDefault', 10)
+  .constant('messageTimeout', 3000)
+  .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
+
+  // FOR TESTING NOTIFICATION PURPOSE :)
+  .controller('SomeController', ['$scope','NotificationData',
+    function($scope, NotificationData){
+      $scope.setNotification = function(s,m) {
+        //console.log("Some controller: set notifaction with "+s+","+m);
+        NotificationData.setNotification(s,m);
+      };
+
+  }])
+
   //ROUTING
   .config(function ($routeProvider) {
-
-//Note to self: the controller that has access to the whole page is
-  //'MainController'
-
+    //Note to self: the controller that has access to the whole page is
+    //'MainController'
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
+        //using main controller here
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutController'
+      .when('/submit', {
+        templateUrl: 'views/submit.html',
+        controller: 'SubmissionController',
       })
       .when('/search', {
         templateUrl: 'views/datatable.html',
         controller: 'ViewController',
-        //factory: 'DataResource' //?? it works without...
+        factory: 'DataResource'
+      })
+      .when('/change', {
+        templateUrl: 'views/change.html',
+        controller: 'SomeController',
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  ;
+

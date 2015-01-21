@@ -20,10 +20,9 @@ myApp.controller('MainController',
     // Build dynamic menu in header
     $scope.menu = [
         {active:true, link:'', name:'home'},
-        {active:false, link:'about', name:'submit'},
+        {active:false, link:'submit', name:'add'},
         {active:false, link:'search', name:'search'},
-        {active:false, link:'about', name:'changelog'},
-        {active:false, link:'about', name:'about'},
+        {active:false, link:'change', name:'about'},
     ];
     // Fix menu in the header.
     // Make active only the button which leads to current path.
@@ -41,7 +40,11 @@ myApp.controller('MainController',
 
     //////////////////////////////////////
     // editable element via xeditable
-    $scope.edit = { state: 1, switch: false };
+    $scope.edit = {
+        state: 1,
+        switch: false,
+        //switch: true,
+    };
     $scope.elements = {};
 
     //////////////////////////////////////
@@ -76,6 +79,5 @@ myApp.controller('MainController',
             alert("There was a BIG problem!!");
         }
     );
-
 
 });

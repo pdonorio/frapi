@@ -19,6 +19,9 @@ from flask.ext.cors import CORS
 CORS(app, headers=['Content-Type'])
 #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+# Import html codes
+import bpractices.htmlcodes as hcodes
+
 # Need a pool of connections: http://j.mp/1yNP4p0
 def try_to_connect(create_db=False):
     try:
@@ -26,7 +29,8 @@ def try_to_connect(create_db=False):
         g.rdb = db(create_db)
     except Exception:
         app.logger.error("Cannot connect")
-        abort(503, "Problem: no database connection could be established.")
+        abort(hcodes.HTTP_INTERNAL_TIMEOUT,
+            "Problem: no database connection could be established.")
 
 # === What to do BEFORE handling a request ===
 @app.before_request

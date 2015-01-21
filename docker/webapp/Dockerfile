@@ -43,3 +43,6 @@ EXPOSE 5000
 # DEBUG MODE FOR DEVELOPMENT
 # ENTRYPOINT ["bash"]
 # CMD ["/root/security.sh"]
+# If needed in production use fig config file
+
+ENV TERM xterm

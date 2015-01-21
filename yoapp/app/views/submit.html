@@ -1,0 +1,62 @@
+<div class="container-fluid">
+ <div class="row">
+
+  <!-- this is used to get the CSS3 blur -->
+  <div class="ib-container" id="ib-container">
+
+    <!-- STEP LIST -->
+    <div class="col-md-3 col-xs-3">
+      <div class="well">
+      <h4><span class="label label-default">Steps</span></h4>
+      <br>
+
+      <ul class="nav nav-pills nav-pills nav-stacked">
+        <li ng-repeat='step in steps' role="presentation"
+          ng-click="setStep(step.step)"
+          ng-class="{'active': step.step == current}">
+          <a href="">
+              <span class="badge">{{step.step}}</span>
+              {{step.name | ucFirst}}
+          </a>
+        </li>
+        <!-- UPLOADER -->
+        <li role="presentation" ng-click="setStep(steps.length +1)"
+          ng-class="{'active': steps.length+1 == current}">
+          <a href="">
+              <span class="badge">{{steps.length+1}}</span>
+              Upload
+          </a>
+        </li>
+
+      </ul>
+      </div>
+
+    <p><i>Your Draft</i></p>
+    </div>
+
+    <!-- MAIN BODY of SUBMISSION -->
+    <div class="col-md-9 col-xs-9">
+        <!-- Step before if exists -->
+        <submission-step current='current' step='current-1' max='bootData.length'
+            template='formTemplate' data='bootData[current-2]'></submission-step>
+
+        <!-- CURRENT step -->
+        <submission-step current='current' step='current' max='bootData.length'
+            template='formTemplate' data='bootData[current-1]'></submission-step>
+
+        <!-- Step after, if exists -->
+        <submission-step current='current' step='current+1' max='bootData.length'
+            template='formTemplate' data='bootData[current]'></submission-step>
+
+        <!-- Upload - This will be last step, so take double the necessary space-->
+        <div class="col-md-8" ng-show="current == steps.length +1">
+          <div class="well table-responsive">
+            <file-uploader></file-uploader>
+          </div>
+        </div>
+    </div>
+
+  <!-- BLUR div -->
+  </div>
+ </div> <!-- row -->
+</div>

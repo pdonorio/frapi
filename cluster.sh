@@ -12,7 +12,7 @@ elif [ `which fig` == "" ]; then
     echo "Error: 'fig' could not be found"
     exit 1;
 # check if boot2docker exists, if it's running!
-elif [ `which boot2docker` != "" ]; then
+elif [ ! `which boot2docker` == "" ]; then
     #verify VM status
     if [ `boot2docker status` != "running" ]; then
         echo "Error: Please start your boot2docker vm...";

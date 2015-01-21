@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  //grunt.loadNpmTasks('grunt-contrib-watch');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -29,10 +31,13 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
+      options: {
+        interval: 5007
       },
+      // bower: {
+      //   files: ['bower.json'],
+      //   tasks: ['wiredep']
+      // },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         //tasks: ['newer:jshint:all'],
@@ -40,24 +45,25 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      jsTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        //tasks: ['newer:copy:styles', 'autoprefixer']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
-      },
+      // jsTest: {
+      //   files: ['test/spec/{,*/}*.js'],
+      //   tasks: ['newer:jshint:test', 'karma']
+      // },
+      // styles: {
+      //   files: [ '<%= yeoman.app %>/styles/{,*/}*.css' ],
+      //   //tasks: ['newer:copy:styles', 'autoprefixer']
+      // },
+      // gruntfile: {
+      //   files: ['Gruntfile.js']
+      // },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
+          '<%= yeoman.app %>/{,*/}*.css',
+          //'.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -76,7 +82,7 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
+              //connect.static('.tmp'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
@@ -154,10 +160,10 @@ module.exports = function (grunt) {
 //uhm??
       dist: {
         files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
+          // expand: true,
+          // cwd: '.tmp/styles/',
+          // src: '{,*/}*.css',
+          // dest: '.tmp/styles/'
         }]
       }
     },
@@ -414,3 +420,4 @@ module.exports = function (grunt) {
 
   //grunt.registerTask('default', [ 'newer:jshint', 'test', 'build' ]);
 };
+

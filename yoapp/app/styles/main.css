@@ -1,7 +1,56 @@
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 60px;
+}
+#footer {
+  background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.container .credit {
+  margin: 20px 0;
+}
+
+
+/* Sticky footer styles - END
+-------------------------------------------------- */
+
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 80px;
+}
+
+.logo {
+  padding-left: 10px;
+  color: white;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -85,6 +134,10 @@ My own extra
 ****************
 */
 
+.message {
+  /* UHM */
+}
+
 .myred {
   color: rgb(174, 81, 76);
   font-weight: bold;
@@ -101,21 +154,51 @@ My own extra
 
 .fix {
   position: fixed;
-  top: 1.0em;
+  top: 60px;
   right: 1.0em;
+  z-index: 99999;
 }
 
 .shad {
   box-shadow: 1px 0 10px #999;
 }
+.barshad {
+  box-shadow: 0 0 10px black;
+}
+.headcolor {
+  color: #002C42;
+}
+.nopad {
+  padding: 0;
+  margin: 0;
+  padding-top: 10px;
+  padding-left: 12px;
+}
 
+/*input[type="text"], textarea .icolor {
+  background-color : #0887C4;
+  border-color: #ddd;
+}
+#mysearch{
+  color:#fff;
+}
+*/
 .edittip {
   text-align: left;
   position: fixed;
   bottom: 0.1em;
   left: 1.0em;
+  z-index: 1000;
 }
 
+.switch {
+  width: 32px;
+  height: 20px;
+}
+.switch small {
+  width: 20px;
+  height: 20px;
+}
 
 /* Most simple animation (fade)
 with angularjs, css3 on ng-show/ng-hide
@@ -129,15 +212,45 @@ http://stackoverflow.com/a/27438743 */
    -o-transition:all linear 0.5s;
    transition:all linear 0.5s;
 }
-
 .animate-show.ng-hide-remove,
     .animate-hide.ng-hide-add.ng-hide-add-active {
     opacity: 0;
     display: block !important;
 }
-
 .animate-hide.ng-hide-add,
 .animate-show.ng-hide-remove.ng-hide-remove-active {
      opacity: 1;
      display: block !important;
  }
+
+/* Cool brand image wrapper
+http://webdesignerwall.com/tutorials/css3-image-styles
+*/
+.circle {
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+}
+
+/* Fixing file selection as bootstrap button */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+/* The end */

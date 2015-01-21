@@ -49,7 +49,10 @@ secure_server "db"
 # echo $SECRETKEYAUTH
 bash /root/app.sh
 
-# Ulteriore sicurezza docker:
+# File upload server
+nohup python file.py > /root/fileupload.log
+
+# Note to my self:
 #
 # utente root con password e ssh disabilitato
 # utente normale (no privilegi) con ssh in chiave
