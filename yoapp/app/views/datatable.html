@@ -45,28 +45,18 @@
 
           <tbody>
             <tr ng-repeat="row in data track by row.id">
-<!--               <td>{{row.id}}</td> -->
-              <td>{{row.key}}</td>
               <td>{{row.value}}</td>
+              <td>{{row.key}}</td>
+              <!--buttons-->
               <td>
-                <div class="btn-group btn-group-xs" role="group" aria-label="actions">
-                  <button type="button" class="btn btn-default">
-                    <a href=""
-                      data-toggle="popover" data-trigger="hover"
-                      data-container="body"
-                      title="Vista documenti" data-content="Elemento: {{row.key}}" >
-                      <i class="fa fa-eye fa-fix"></i>
+                <button type="button" class="btn btn-xs btn-default">
+                    <a href="#/view/{{row.id}}">
+                      <i class="fa fa-eye fa-fix"> </i>
                     </a>
-                  </button>
-                  <button type="button" class="btn btn-info">
-                    <a href=""
-                      data-toggle="popover" data-trigger="hover"
-                      data-container="body"
-                      title="Modifica documento" data-content="Elemento: {{row.key}}" >
-                      <i class="fa fa-edit fa-fix"></i>
-                    </a>
-                  </button>
-                </div>
+                </button>
+                <button type="button" class="btn btn-xs btn-primary">
+                  <i class="fa fa-edit fa-fix"></i>
+                </button>
               </td>
             </tr>
           </tbody>

@@ -25,12 +25,12 @@ var myApp = angular.module('yoApp',
   ])
 
   // CONSTANTS
-  .constant('apiTimeout', 10750) //remember: a refused connection waits no time
+  .constant('apiTimeout', 15750) //remember: a refused connection waits no time
   .constant('messageTimeout', 3000)
-  .constant('someInitTime', 1500)
-  .constant('warningInitTime', 6500)
+  .constant('warningInitTime', 7500)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
+  .constant('someInitTime', 1500)
 
   //BOOTSTRAP TOOLTIP/POPOVER
   //http://www.bootply.com/cskelly/H4Zii7Mb6l
@@ -66,9 +66,16 @@ var myApp = angular.module('yoApp',
         templateUrl: 'views/main.html',
         //using main controller here
       })
+      .when('/notfound', {
+        templateUrl: 'views/oops.html',
+      })
       .when('/submit', {
         templateUrl: 'views/submit.html',
         controller: 'SubmissionController',
+      })
+      .when('/view/:viewid', {
+        templateUrl: 'views/viewer.html',
+        controller: 'ViewerController',
       })
       .when('/search', {
         templateUrl: 'views/datatable.html',
@@ -80,7 +87,7 @@ var myApp = angular.module('yoApp',
         controller: 'SomeController',
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/notfound'
       });
   })
   ;

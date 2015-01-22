@@ -7,10 +7,10 @@ RiCORD.a - prototyping:
     ✔ Uploader @done (15-01-18 14:56)
   ✔ A fixed div if first api call/init fails to signal error/maintenance @errorcheck @done (15-01-22 06:51)
     ☐ progress bar endless loading?
-  ☐ Document view page
+  ✔ Document view page @done (15-01-22 20:41)
+    ☐ Define a layout for images list and data list
   ☐ Search bar working
     ☐ http://getbootstrap.com/components/#panels-heading
-      ☐ fuzzy?
     ☐ Off canvas extra search (just the template) @important
   ☐ Paging
     ☐ Infinite scrolling (with pages block on last search)  @important
