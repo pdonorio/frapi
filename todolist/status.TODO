@@ -21,6 +21,8 @@ RiCORD.a - prototyping:
     ☐ javascript necessary, warning?
     ☐ Init/Login page
       ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
+    ☐ 404 page not found
+        ☐ http://stackoverflow.com/questions/16677528/location-switching-between-html5-and-hashbang-mode-link-rewriting
     ☐ Block page reloading
   ☐ Admin content: use 'page' db attribute for different pages
     ☐ Html editor

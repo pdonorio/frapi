@@ -58,7 +58,7 @@ var myApp = angular.module('yoApp',
   }])
 
   //ROUTING
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     //Note to self: the controller that has access to the whole page is
     //'MainController'
     $routeProvider
@@ -89,6 +89,8 @@ var myApp = angular.module('yoApp',
       .otherwise({
         redirectTo: '/notfound'
       });
+
+      // enable html5Mode for pushstate ('#'-less URLs)
+      //$locationProvider.html5Mode(true);
   })
   ;
-
