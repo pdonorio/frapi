@@ -7,29 +7,27 @@
     <!-- STEP LIST -->
     <div class="col-md-3 col-xs-3">
 
-      <div class="well">
-      <h4> <i class="fa fa-database fa-1x"></i> Inserimento </h4>
-      <br>
-      <ul class="nav nav-pills nav-pills nav-stacked">
-        <li ng-repeat='step in steps' role="presentation"
-          ng-click="setStep(step.step)" ng-class="{'active': step.step == current}">
-          <a href="">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-info">
+          <h4> <i class="fa fa-database fa-1x"></i> Inserimento </h4>
+        </a>
+        <a href="" class="list-group-item"
+          ng-repeat='step in steps' ng-click="setStep(step.step)"
+          ng-class="{'active': step.step == current}">
               <span class="badge">{{step.step}}</span>
               {{step.name | ucFirst}}
-          </a>
-        </li>
+        </a>
         <!-- UPLOADER -->
-        <li role="presentation" ng-click="setStep(steps.length +1)"
-          ng-class="{'active': steps.length+1 == current}">
-          <a href="">
-              <span class="badge">{{steps.length+1}}</span>
-              Upload
-          </a>
-        </li>
-      </ul>
+        <a href="" class="list-group-item"
+          ng-click="setStep(steps.length +1)" ng-class="{'active': steps.length+1 == current}">
+              <span class="badge">{{steps.length+1}}</span> Upload
+        </a>
       </div>
 
-    <p><i>Your Draft</i></p>
+    <div class="alert alert-warning" role="alert">
+      <i>Bozza in corso</i>
+    </div>
+
     </div>
 
     <!-- MAIN BODY of SUBMISSION -->
