@@ -8,9 +8,10 @@
  * Controller of the yoApp
  */
 myApp.controller('MainController',
-    [ '$scope', '$location', '$timeout', 'DataResource', 'mixed','warningInitTime', 'someInitTime',
-        function ($scope, $location, $timeout, DataResource, mixed, warningInitTime, someInitTime)
+    [ '$rootScope', '$scope', '$location', '$timeout', 'DataResource', 'mixed','warningInitTime', 'someInitTime',
+        function ($rootScope, $scope, $location, $timeout, DataResource, mixed, warningInitTime, someInitTime)
 {
+
     // INIT for loading
     $scope.init = {
         //startup : true,
@@ -20,6 +21,17 @@ myApp.controller('MainController',
     // If taking too long show a little warning
     var longerThanUsual =
         $timeout(function() { $scope.init.status = 2; }, warningInitTime );
+
+    // Handle grey background from broadcasts of views
+    $scope.bg = false;
+    $rootScope.$on('rootScope:emit', function (event, data) {
+        //console.log(data);
+        if (data == "gbg") {
+            $scope.bg = true;
+        } else {
+            $scope.bg = false;
+        }
+    });
 
 /*
     //debug INIT

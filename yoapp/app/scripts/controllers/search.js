@@ -8,8 +8,10 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('ViewController', function ($scope, DataResource, perpageDefault, currentpageDefault)
+  .controller('ViewController', function ($rootScope, $scope, DataResource, perpageDefault, currentpageDefault)
 {
+    $rootScope.$emit('rootScope:emit', 'gbg');
+
     // Init: Html scope data
     $scope.datacount = 0;
     $scope.from = 0;

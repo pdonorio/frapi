@@ -8,10 +8,9 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('SubmissionController',
-    ['$scope', '$filter',
-    function ($scope, $filter)
+  .controller('SubmissionController', ['$rootScope', '$scope', '$filter', function ($rootScope, $scope, $filter)
   {
+    $rootScope.$emit('rootScope:emit', 'aaa');
 
     //First step
     $scope.current = 1;

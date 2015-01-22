@@ -8,6 +8,7 @@ RiCORD.a - prototyping:
   ✔ A fixed div if first api call/init fails to signal error/maintenance @errorcheck @done (15-01-22 06:51)
     ☐ progress bar endless loading?
   ✔ Document view page @done (15-01-22 20:41)
+    ✔ layout bg changed via $rootscope broadcast @done (15-01-22 22:00)
     ☐ Define a layout for images list and data list
   ☐ Search bar working
     ☐ http://getbootstrap.com/components/#panels-heading
