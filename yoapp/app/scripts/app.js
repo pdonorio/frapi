@@ -25,8 +25,10 @@ var myApp = angular.module('yoApp',
   ])
 
   // CONSTANTS
-  .constant('apiTimeout', 3250) //remember: a refused connection waits no time
+  .constant('apiTimeout', 10750) //remember: a refused connection waits no time
   .constant('messageTimeout', 3000)
+  .constant('someInitTime', 1500)
+  .constant('warningInitTime', 6500)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
 

@@ -8,15 +8,25 @@
  * Controller of the yoApp
  */
 myApp.controller('MainController',
-    [ '$scope', '$location', '$timeout', 'DataResource', 'mixed',
-        function ($scope, $location, $timeout, DataResource, mixed)
+    [ '$scope', '$location', '$timeout', 'DataResource', 'mixed','warningInitTime', 'someInitTime',
+        function ($scope, $location, $timeout, DataResource, mixed, warningInitTime, someInitTime)
 {
+    // INIT for loading
     $scope.init = {
         //startup : true,
         startup: false,
         status: 0,
     };
-    $timeout(function() { $scope.init.startup = true; }, 2200 );
+    // If taking too long show a little warning
+    $timeout(function() { $scope.init.status = 2; }, warningInitTime );
+
+/*
+    //debug INIT
+    $timeout(function() {
+        $scope.init.startup = true;
+        $scope.init.status = 0;
+    }, warningInitTime + 3000 );
+*/
 
     // Lo.dash | underscore
     $scope._ = _;
@@ -26,7 +36,7 @@ myApp.controller('MainController',
     //////////////////////////////////////
     // Build dynamic menu in header
     $scope.menu = [
-        {active:true, link:'', name:'home'},
+        {active:true,  link:'',       name:'home'},
         {active:false, link:'submit', name:'add'},
         {active:false, link:'search', name:'search'},
         {active:false, link:'change', name:'about'},
@@ -77,9 +87,17 @@ myApp.controller('MainController',
                 var current = $scope.edit.switch;
                 $scope.edit = { state: 0, switch: current };
 
+                //Let the page appear, after some init time
+                $timeout(function() {
+                    $scope.init.startup = true;
+                }, someInitTime );
+
             } else {
                 //Could recover some sort of error from Factory api call?
                 console.log("No data from API");
+                //Signal init error
+                $scope.init.status = 1;
+                //disable any admin edit if page loads
                 $scope.edit = { switch: false, state: 1 };
             }
 

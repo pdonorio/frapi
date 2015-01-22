@@ -7,7 +7,7 @@
       <div class="panel-body">
 
 
-      <div class="container">
+      <div class="container" ng-show='data.length > 0'>
         <form role="form" ng-submit="search()">
           <div class="row">
             <div class="col-xs-10 col-md-10">
@@ -16,7 +16,7 @@
                   class="form-control"
                   ng-value="{{fuzzy}}" ng-model="fuzzy" ng-change="search(fuzzy)">
                 <span class="input-group-btn">
-                  <input type="submit" class="btn btn-info" value="Search">
+                  <input type="submit" class="btn btn-info" value="Cerca">
                 </span>
               </div>
             </div>
@@ -25,8 +25,33 @@
         <br>
       </div>
 
-      <div class="container">
+      <!-- data table -->
+      <div ng-show='data.length > 0'>
+       <div class='row'>
+       <div class='col-md-10 col-xs-10'>
 
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th ng-repeat="head in headers">{{head}}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="row in data track by row.id">
+<!--               <td>{{row.id}}</td> -->
+              <td>{{row.value}}</td>
+              <td>{{row.key}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+       </div>
+       </div>
+      </div>
+
+      <hr>
+      <div class="container">
           <!-- LOADING -->
           <div id='spinner' ng-hide='data.length >= 0'>
             Loading <i class="fa fa-refresh fa-spin"></i>
@@ -39,44 +64,24 @@
           <div ng-show='data.length > 0'>
             <div class="row">
               <div class="col-md-6 col-xs-6">
-               Current page:
+                <span  class="label label-default"> Pagina corrente:</span> &nbsp;
                <input type="text" ng-value="{{perpage}}" size=3
                 ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
-               Elements per page:
+                <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
                <input type="text" ng-value="{{currentpage}}" size=3
                 ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
               </div>
               <div class="col-md-6 col-xs-6">
-                <span  class="label label-default">
-                  Viewing
-                  from {{from}}
-                  to {{from + data.length - 1}}
-                  of {{datacount}} elements
+                <span  class="label label-primary">
+                  Elementi da {{from}} a {{from + data.length - 1}}
+                </span>
+                &nbsp;
+                <span  class="label label-success">
+                  Totale: {{datacount}}
                 </span>
               </div>
             </div>
           </div>
       </div>
 
-      <!-- data table -->
-      <div ng-show='data.length > 0'>
-
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th ng-repeat="head in headers">{{head}}</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr ng-repeat="row in data track by row.id">
-              <td>{{row.id}}</td>
-              <td>{{row.value}}</td>
-              <td>{{row.key}}</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
 </div>
-

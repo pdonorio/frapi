@@ -14,7 +14,9 @@ myApp
     $scope.datacount = 0;
     $scope.from = 0;
     $scope.data = {};
-    $scope.headers = [ "Id", "Key", "Value" ];
+    $scope.headers = [
+      //"Id",
+      "Key", "Value" ];
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
 
