@@ -2,10 +2,13 @@
 
  <article ng-class="{'blur': current != step}" >
 
-  <div class="panel panel-default">
+  <div class="panel"
+    ng-class="{'panel-primary': current == step, 'panel-default': current != step}" >
 
     <div class="panel-heading">
-      <h4> Step {{step}} </h4>
+      <h4 ng-if='current > step'> Step precedente [{{step}}] </h4>
+      <h4 ng-if='current == step'> Step {{step}} </h4>
+      <h4 ng-if='current < step'> Step successivo [{{step}}] </h4>
     </div>
 
     <form editable-form name="myform" onaftersave="doSomethingToSave()">
