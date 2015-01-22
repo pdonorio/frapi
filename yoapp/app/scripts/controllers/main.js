@@ -18,7 +18,8 @@ myApp.controller('MainController',
         status: 0,
     };
     // If taking too long show a little warning
-    $timeout(function() { $scope.init.status = 2; }, warningInitTime );
+    var longerThanUsual =
+        $timeout(function() { $scope.init.status = 2; }, warningInitTime );
 
 /*
     //debug INIT
@@ -97,6 +98,8 @@ myApp.controller('MainController',
                 console.log("No data from API");
                 //Signal init error
                 $scope.init.status = 1;
+                //Don't let the warning appear if this happened at the very beginning
+                $timeout.cancel(longerThanUsual);
                 //disable any admin edit if page loads
                 $scope.edit = { switch: false, state: 1 };
             }

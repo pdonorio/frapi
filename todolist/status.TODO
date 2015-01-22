@@ -48,6 +48,11 @@ Finishing SUB:
     ✔ editable @done (15-01-19 17:31)
   ✔ Tooltips @done (15-01-21 16:43)
     ✔ http://www.bootply.com/cskelly/H4Zii7Mb6l @done (15-01-21 16:43)
+  ☐ Make panel color appear based on status
+    ☐ info = empty
+    ☐ warning = not saved? problem
+    ☐ error = not valid
+    ☐ success = compiled
   ☐ push and slice array via functions/buttons for steps
   ☐ steps LISTING: keep track with fontawesome list icons
   ☐ check permission on writing in the shared directory upload

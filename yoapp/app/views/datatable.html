@@ -1,8 +1,8 @@
 <div ng-controller="ViewController" class="container">
 
-    <div class="panel panel-info">
+    <div class="panel panel-default">
       <div class="panel-heading">
-        <h5>Testing rethinkdb database</h5>
+        <h3>Ricerca l'archivio</h3>
       </div>
       <div class="panel-body">
 
@@ -12,11 +12,17 @@
           <div class="row">
             <div class="col-xs-10 col-md-10">
               <div class="input-group">
-                <input type="text" placeholder="Fuzzy search (try it!)"
+                <input type="text" placeholder="Cerca"
                   class="form-control"
                   ng-value="{{fuzzy}}" ng-model="fuzzy" ng-change="search(fuzzy)">
                 <span class="input-group-btn">
-                  <input type="submit" class="btn btn-info" value="Cerca">
+
+                  <button type="button" class="btn btn-info">
+                    <i class="fa fa-search fa-1x"></i>
+                  </button>
+
+<!--                   <input type="submit" class="btn btn-info" value="Cerca">
+ -->
                 </span>
               </div>
             </div>
@@ -76,7 +82,7 @@
                   Elementi da {{from}} a {{from + data.length - 1}}
                 </span>
                 &nbsp;
-                <span  class="label label-success">
+                <span  class="label label-info">
                   Totale: {{datacount}}
                 </span>
               </div>

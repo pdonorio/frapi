@@ -2,13 +2,15 @@
 
  <article ng-class="{'blur': current != step}" >
 
-  <div class="well">
-    <h4> Step {{step}} </h4> <br>
+  <div class="panel panel-info">
 
-    <form editable-form name="myform"
-      onaftersave="doSomethingToSave()"
-      >
+    <div class="panel-heading">
+      <h4> Step {{step}} </h4>
+    </div>
 
+    <form editable-form name="myform" onaftersave="doSomethingToSave()">
+
+    <div class="panel-body">
       <!-- editable username (text with validation) -->
       <table ng-class="{'table': current == step}">
 
@@ -41,6 +43,7 @@
           </span>
         </div>
 
+    </div>
     </form>
 
   </div>
