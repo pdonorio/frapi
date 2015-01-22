@@ -74,12 +74,12 @@ myApp
           .then(function() {
 
 //TO FIX - this should be inside link function?
-              msg = "Saved content<br> <b>\""+ $scope.item.content +"\"</b>";
+              msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
               NotificationData.setNotification(AppConfig.messageStatus.success, msg);
             }, function() {
               console.log("Factory/Service api call Error: POST");
               msg = "Could not save the new content<br> " +
-                "<b>\""+ $scope.item.content +"\"</b>" +
+                "<div class='well'>"+ $scope.item.content +"</div>" +
                 "<br> <br> Please try again in a few minutes." +
                 "";
               NotificationData.setNotification(AppConfig.messageStatus.error, msg);

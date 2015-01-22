@@ -53,6 +53,7 @@ Finishing SUB:
     ☐ warning = not saved? problem
     ☐ error = not valid
     ☐ success = compiled
+  ☐ Uploader example on disabling buttons?
   ☐ push and slice array via functions/buttons for steps
   ☐ steps LISTING: keep track with fontawesome list icons
   ☐ check permission on writing in the shared directory upload
@@ -272,23 +273,6 @@ Completed:
                 ✔ create costants for different values @done (15-01-18 12:20)
                 ✔ bring with css div notification to front  @done (15-01-18 11:19)
 
-API:
-
- ☐ File API with logging...
- ☐ A different content per page (db column)
- ☐ Api calling via @poller
-   ☐ Check until status is good with timeout
-   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
- ☐ use STEPS with accordion?
-   ☐ http://angular-ui.github.io/bootstrap/#/accordion
- ☐ Understanding INJECTION @important
-   ☐ https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
- ☐ Noty and jquery
-   ☐ DOM manipulation should be done in a directive (not a controller)
-   ☐ http://stackoverflow.com/a/14005010
- ☐ Python API client REQUEST @supercool
-   ☐ http://www.python-requests.org/en/latest/
-
 AUTHENTICATION:
    ☐ Login
      ☐ Frontend page (quick search and login)
@@ -298,6 +282,15 @@ AUTHENTICATION:
      ☐ forgot password
   ☐ SET api url to version, like:
     ☐ http://api.example.com/api/v1.0
+
+API:
+ ☐ A different content per page (db column)
+ ☐ Api calling via @poller
+   ☐ Check until status is good with timeout
+   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+ ☐ File API with logging...
+ ☐ Python API client REQUEST @supercool
+   ☐ http://www.python-requests.org/en/latest/
 
  ANGULARJS datatable like:
    ✔ pagination @done (14-11-29 19:56)
@@ -309,6 +302,8 @@ AUTHENTICATION:
      ✔ call with parameters, perpage, currentpage @done (14-12-05 13:18)
      ✔ map parameters to html DOM via scope @done (14-12-05 16:54)
      ✔ ng-class @done (14-12-22 17:09)
+   ☐ Understanding INJECTION @important
+     ☐ https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
    ☐ Study angular datatables
    ☐ simple search all fields? @important
      ☐ Initial focus to search bar

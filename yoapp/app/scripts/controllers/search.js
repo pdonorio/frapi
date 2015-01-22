@@ -16,7 +16,7 @@ myApp
     $scope.data = {};
     $scope.headers = [
       //"Id",
-      "Key", "Value" ];
+      "Chiave", "Valore", "Azioni" ];
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
 
