@@ -9,16 +9,10 @@ RiCORD.a - prototyping:
     ☐ progress bar endless loading?
   ✔ Document view page @done (15-01-22 20:41)
     ✔ layout bg changed via $rootscope broadcast @done (15-01-22 22:00)
-    ☐ Define a layout for images list and data list
-  ☐ Search bar working
-    ☐ http://getbootstrap.com/components/#panels-heading
-    ☐ Off canvas extra search (just the template) @important
-  ☐ Paging
-    ☐ Infinite scrolling (with pages block on last search)  @important
+    ✔ Define a layout for images list and data list @done (15-01-23 09:06)
   ☐ Topbar for tablet/smartphone
   ☐ Html5rocks - adjustements
     ☐ CSS & Favico
-    ☐ Topbar for mobile?
     ☐ javascript necessary, warning?
     ☐ Init/Login page
       ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
@@ -30,6 +24,19 @@ RiCORD.a - prototyping:
       ☐ Sanitize content (e.g. open tags)
     ☐ Use counter to make edit switch disappear inside footer if no editable content
   ☐ Some serious profile/user Menu
+
+Prototype:
+  ✔ thumbnail column @done (15-01-23 09:37)
+  ☐ footer on/off
+  ☐ Zoomify integration
+  ☐ page zoom with side text
+  ☐ Topbar for mobile
+  ☐ Search bar working
+    ☐ http://getbootstrap.com/components/#panels-heading
+    ☐ Off canvas extra search (just the template) @important
+    ☐ Paging
+      ☐ Infinite scrolling (with pages block on last search)  @important
+  ☐ Database (json) backup daily
 
 Finishing SUB:
   ✔ Notification: a separate concept @done (15-01-21 07:45)

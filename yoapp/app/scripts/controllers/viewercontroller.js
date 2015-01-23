@@ -12,10 +12,12 @@ myApp
 
     // send broadcast signal to who is listening:
     // i want the grey background (gbg)
-    $rootScope.$emit('rootScope:emit', 'gbg');
+    $rootScope.$emit('rootScope:emit', 'gbgon');
+    $rootScope.$emit('rootScope:emit', 'foooff');
 
     $scope.data = {};
     var id = $routeParams.viewid;
+    $scope.id = id;
 
     // Get the data (as a promise)
     var promise = DataResource.get("data/" + id);

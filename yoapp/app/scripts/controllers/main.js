@@ -8,10 +8,16 @@
  * Controller of the yoApp
  */
 myApp.controller('MainController',
-    [ '$rootScope', '$scope', '$location', '$timeout', 'DataResource', 'mixed','warningInitTime', 'someInitTime',
-        function ($rootScope, $scope, $location, $timeout, DataResource, mixed, warningInitTime, someInitTime)
+    [ '$rootScope', '$scope', '$location', '$timeout',
+        'DataResource', 'mixed','warningInitTime', 'someInitTime',
+        function ($rootScope, $scope, $location, $timeout,
+            DataResource, mixed, warningInitTime, someInitTime)
 {
 
+    // Lo.dash | underscore
+    $scope._ = _;
+    // Very easy to use: a range for my editable directive
+    $scope.range = _.range(1, 7);
     // INIT for loading
     $scope.init = {
         //startup : true,
@@ -19,34 +25,37 @@ myApp.controller('MainController',
         status: 0,
     };
     // If taking too long show a little warning
-    var longerThanUsual =
-        $timeout(function() { $scope.init.status = 2; }, warningInitTime );
+    var longerThanUsual = $timeout(function() { $scope.init.status = 2; }, warningInitTime );
 
-    // Handle grey background from broadcasts of views
-    $scope.bg = false;
+    /*  ******************************************
+        ******************************************
+        *** BROADCAST of messages across the application
+        ******************************************
+        ******************************************/
+
+    //from broadcasts of views
+    $scope.onOff= {
+        // Handle grey background
+        bg : false,
+        // Footer on off
+        footer : true,
+    };
     $rootScope.$on('rootScope:emit', function (event, data) {
         //console.log(data);
-        if (data == "gbg") {
-            $scope.bg = true;
+        if (data == "gbgon") {
+            $scope.onOff.bg = true;
+        } else if (data == "gbgoff") {
+            $scope.onOff.bg = false;
+        } else if (data == "fooon") {
+            $scope.onOff.footer = true;
+        } else if (data == "foooff") {
+            $scope.onOff.footer = false;
         } else {
-            $scope.bg = false;
+            console.log("Unknown broadcast: " + data);
         }
     });
 
-/*
-    //debug INIT
-    $timeout(function() {
-        $scope.init.startup = true;
-        $scope.init.status = 0;
-    }, warningInitTime + 3000 );
-*/
-
-    // Lo.dash | underscore
-    $scope._ = _;
-    // Very easy to use: a range for my editable directive
-    $scope.range = _.range(1, 7);
-
-    //////////////////////////////////////
+    /*  ****************************************** */
     // Build dynamic menu in header
     $scope.menu = [
         {active:true,  link:'',       name:'home'},
@@ -69,7 +78,7 @@ myApp.controller('MainController',
         };
     });
 
-    //////////////////////////////////////
+    /*  ****************************************** */
     // editable element via xeditable
     $scope.edit = {
         state: 1,

@@ -10,7 +10,8 @@
 myApp
   .controller('SubmissionController', ['$rootScope', '$scope', '$filter', function ($rootScope, $scope, $filter)
   {
-    $rootScope.$emit('rootScope:emit', 'aaa');
+    $rootScope.$emit('rootScope:emit', 'gbgoff');
+    $rootScope.$emit('rootScope:emit', 'fooon');
 
     //First step
     $scope.current = 1;

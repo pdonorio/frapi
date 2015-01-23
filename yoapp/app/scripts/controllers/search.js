@@ -10,7 +10,8 @@
 myApp
   .controller('ViewController', function ($rootScope, $scope, DataResource, perpageDefault, currentpageDefault)
 {
-    $rootScope.$emit('rootScope:emit', 'gbg');
+    $rootScope.$emit('rootScope:emit', 'gbgon');
+    $rootScope.$emit('rootScope:emit', 'fooon');
 
     // Init: Html scope data
     $scope.datacount = 0;
