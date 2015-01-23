@@ -6,19 +6,11 @@ RiCORD.a - prototyping:
   ✔ Submission generic with steps @done (15-01-16 17:41)
     ✔ Uploader @done (15-01-18 14:56)
   ✔ A fixed div if first api call/init fails to signal error/maintenance @errorcheck @done (15-01-22 06:51)
-    ☐ progress bar endless loading?
   ✔ Document view page @done (15-01-22 20:41)
     ✔ layout bg changed via $rootscope broadcast @done (15-01-22 22:00)
     ✔ Define a layout for images list and data list @done (15-01-23 09:06)
-  ☐ Topbar for tablet/smartphone
-  ☐ Html5rocks - adjustements
-    ☐ CSS & Favico
-    ☐ javascript necessary, warning?
-    ☐ Init/Login page
-      ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
-    ☐ 404 page not found
-        ☐ http://stackoverflow.com/questions/16677528/location-switching-between-html5-and-hashbang-mode-link-rewriting
-    ☐ Block page reloading
+  ☐ Init/Login page
+    ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
   ☐ Admin content: use 'page' db attribute for different pages
     ☐ Html editor
       ☐ Sanitize content (e.g. open tags)
@@ -28,17 +20,24 @@ RiCORD.a - prototyping:
 Prototype:
   ✔ thumbnail column @done (15-01-23 09:37)
   ✔ footer on/off @done (15-01-23 11:19)
-  ☐ Zoomify integration
-    ✔ Add directory @done (15-01-23 11:47)
-    ☐ Check php actions in old project
-  ☐ page zoom with side text
-  ☐ Topbar for mobile
+  ✔ Favicon http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh @done (15-01-23 12:37)
+    ✔ generate: http://favico.com/ @done (15-01-23 12:37)
   ☐ Search bar working
     ☐ http://getbootstrap.com/components/#panels-heading
     ☐ Off canvas extra search (just the template) @important
     ☐ Paging
       ☐ Infinite scrolling (with pages block on last search)  @important
+  ☐ Topbar for mobile
+  ☐ Document view click: page zoom with side text
+    ☐ Zoomify integration
+      ✔ Add directory @done (15-01-23 11:47)
+      ☐ Check php actions in old project
+      ☐ docker installations of libs
   ☐ Database (json) backup daily
+  ☐ INIT html check: javascript necessary, warning?
+    ☐ Block page reloading
+  ☐ 404 page not found
+      ☐ http://stackoverflow.com/questions/16677528/location-switching-between-html5-and-hashbang-mode-link-rewriting
 
 Finishing SUB:
   ✔ Notification: a separate concept @done (15-01-21 07:45)
