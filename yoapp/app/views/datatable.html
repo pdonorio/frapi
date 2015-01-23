@@ -12,18 +12,18 @@
           <div class="row">
             <div class="col-xs-10 col-md-10">
               <div class="input-group">
-                <input type="text" placeholder="Cerca"
-                  class="form-control"
-                  ng-value="{{fuzzy}}" ng-model="fuzzy" ng-change="search(fuzzy)">
-                <span class="input-group-btn">
 
-                  <button type="button" class="btn btn-info">
+                <input type="text" placeholder="Cerca" class="form-control"
+                  typeahead="element for element in typeahead.data | filter:$viewValue | limitTo:9"
+                  typeahead-wait-ms="0" typeahead-on-select="onTypeaheadSelect($item, $model, $label)"
+                  ng-value="{{selected}}" ng-model="selected" ng-change="search()">
+
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-info" ng-click="search()">
                     <i class="fa fa-search fa-1x"></i>
                   </button>
-
-<!--                   <input type="submit" class="btn btn-info" value="Cerca">
- -->
                 </span>
+
               </div>
             </div>
           </div>

@@ -23,12 +23,41 @@ myApp
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
 
+  /* ************************************
+  ***************************************
+   TYPEAHEAD
+  ***************************************
+  ************************************* */
 
-    $scope.fuzzy= '';
-    $scope.search = function(value)
+    $scope.selected = undefined;
+    $scope.search = function()
     {
-      console.log("Search value " + value)
+      console.log("Searching: " + $scope.selected);
+
+// TO FIX -
+      //should check if this value has already been requested
+
+      //1. Skip if equal to latest
+      //2. Cache?
     }
+    $scope.onTypeaheadSelect = function (item, model, label)
+    {
+      $scope.search(item);
+      // console.log("Item "+item);
+      // console.log("Model "+model);
+      // console.log("Label "+label);
+    }
+
+    $scope.typeahead = {
+      data: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+    };
+
+
+  /* ************************************
+  ***************************************
+   Refresh datatable from API call
+  ***************************************
+  ************************************* */
 
     //Bind data in html to function
     $scope.reloadTable = function(perpage, currentpage)

@@ -27,9 +27,12 @@ Prototype:
       ✔ install bootstrap ui angular @done (15-01-23 14:42)
         ☐ via bower...?
       ✔ http://angular-ui.github.io/bootstrap/#/typeahead @done (15-01-23 14:41)
-    ☐ Off canvas extra search (just the template)
-      ☐ http://codepen.io/gumetis/pen/tjxgI
-      ☐ http://jasny.github.io/bootstrap/getting-started/
+    ☐ Advanced search menu
+      ☐ Carousel?  http://angular-ui.github.io/bootstrap/#/collapse
+      ☐ A better damn footer
+      ☐ Off canvas extra search (just the template)
+        ☐ http://codepen.io/gumetis/pen/tjxgI
+        ✘ http://jasny.github.io/bootstrap/getting-started/ @cancelled (15-01-23 14:44)
     ☐ Modern paging
       ☐ Infinite scrolling (with pages block on last search)  @important
   ☐ Topbar for mobile
