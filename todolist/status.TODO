@@ -27,8 +27,10 @@ RiCORD.a - prototyping:
 
 Prototype:
   ✔ thumbnail column @done (15-01-23 09:37)
-  ☐ footer on/off
+  ✔ footer on/off @done (15-01-23 11:19)
   ☐ Zoomify integration
+    ✔ Add directory @done (15-01-23 11:47)
+    ☐ Check php actions in old project
   ☐ page zoom with side text
   ☐ Topbar for mobile
   ☐ Search bar working
