@@ -23,9 +23,14 @@ Prototype:
   ✔ Favicon http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh @done (15-01-23 12:37)
     ✔ generate: http://favico.com/ @done (15-01-23 12:37)
   ☐ Search bar working
-    ☐ http://getbootstrap.com/components/#panels-heading
-    ☐ Off canvas extra search (just the template) @important
-    ☐ Paging
+    ✔ typeahead native @done (15-01-23 14:41)
+      ✔ install bootstrap ui angular @done (15-01-23 14:42)
+        ☐ via bower...?
+      ✔ http://angular-ui.github.io/bootstrap/#/typeahead @done (15-01-23 14:41)
+    ☐ Off canvas extra search (just the template)
+      ☐ http://codepen.io/gumetis/pen/tjxgI
+      ☐ http://jasny.github.io/bootstrap/getting-started/
+    ☐ Modern paging
       ☐ Infinite scrolling (with pages block on last search)  @important
   ☐ Topbar for mobile
   ☐ Document view click: page zoom with side text

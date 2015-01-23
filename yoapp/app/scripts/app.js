@@ -16,6 +16,7 @@ var myApp = angular.module('yoApp',
     'ngAnimate', 'ngCookies',
     'ngRoute', 'ngSanitize', 'ngTouch',
   // DEPENCIES: external modules
+    'ui.bootstrap',   //https://github.com/angular-ui/bootstrap
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
     'angularFileUpload',  //uploader for files
@@ -58,7 +59,13 @@ var myApp = angular.module('yoApp',
       $scope.setNotification = function(s,m) {
         //console.log("Some controller: set notifaction with "+s+","+m);
         NotificationData.setNotification(s,m);
+
       };
+
+      $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+
+
   }])
 
   //ROUTING
