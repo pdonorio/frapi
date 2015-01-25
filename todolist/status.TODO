@@ -25,11 +25,11 @@ Prototype:
   ☐ Search bar working
     ✔ typeahead native @done (15-01-23 14:41)
       ✔ install bootstrap ui angular @done (15-01-23 14:42)
-        ☐ via bower...?
+        ✔ via bower...? @done (15-01-25 20:34)
       ✔ http://angular-ui.github.io/bootstrap/#/typeahead @done (15-01-23 14:41)
     ✔ Advanced search menu @done (15-01-25 10:06)
       ✔ Carousel?  http://angular-ui.github.io/bootstrap/#/collapse @done (15-01-25 10:06)
-      ☐ A better damn footer
+      ✔ Init progress bar via angular-ui @done (15-01-25 22:15)
       ☐ Focus???
         ☐ http://stackoverflow.com/a/23920706
       ✘ Off canvas extra search (just the template) @cancelled (15-01-25 10:06)
@@ -44,6 +44,7 @@ Prototype:
       ☐ Check php actions in old project
       ☐ docker installations of libs
   ☐ Database (json) backup daily
+  ☐ A better damn footer
   ☐ INIT html check: javascript necessary, warning?
     ☐ Block page reloading
   ☐ 404 page not found
@@ -390,8 +391,7 @@ OPTIMIZIATION:
    ☐ Use local storage
      ☐ http://yeoman.io/codelab/local-storage.html
      ☐ COOKIES!!
- ☐ Init progress bar
-   ☐ Home page separation from application
+ ☐ Home page separation from application
    ☐ stay signed in
  ☐ Web Accessibility Checker
    ☐ http://achecker.ca/checker/index.php

@@ -8,16 +8,17 @@
  * Controller of the yoApp
  */
 myApp.controller('MainController',
-    [ '$rootScope', '$scope', '$location', '$timeout',
-        'DataResource', 'mixed','warningInitTime', 'someInitTime',
-        function ($rootScope, $scope, $location, $timeout,
-            DataResource, mixed, warningInitTime, someInitTime)
+    [ '$rootScope', '$scope', '$location', '$timeout', '$interval',
+        'DataResource', 'mixed','warningInitTime', 'someInitTime', 'apiTimeout',
+        function ($rootScope, $scope, $location, $timeout, $interval,
+            DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
 
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
+
     // INIT for loading
     $scope.init = {
         //startup : true,
@@ -26,6 +27,16 @@ myApp.controller('MainController',
     };
     // If taking too long show a little warning
     var longerThanUsual = $timeout(function() { $scope.init.status = 2; }, warningInitTime );
+    // Progress bar
+    $scope.progress = {
+        type: "warning",
+        value: 0, //percent
+    }
+    var secondsStep = 3;
+    var maxStep = 100;
+    var intervalStep = maxStep / secondsStep;
+    var timeStep = apiTimeout / intervalStep;
+    var progressInterval = $interval(function() { $scope.progress.value += secondsStep; }, timeStep);
 
     /*  ******************************************
         ******************************************
@@ -109,9 +120,14 @@ myApp.controller('MainController',
                 var current = $scope.edit.switch;
                 $scope.edit = { state: 0, switch: current };
 
+                //Getting progress closer
+                $timeout(function() { $scope.progress.value += ((maxStep - $scope.progress.value) / 2); }, someInitTime / 2 );
+                $timeout(function() { $scope.progress.value = 99;  }, someInitTime - 100 );
                 //Let the page appear, after some init time
                 $timeout(function() {
                     $scope.init.startup = true;
+                    //$scope.progress.value=99;
+                    $interval.cancel(progressInterval);
                 }, someInitTime );
 
             } else {
@@ -121,6 +137,7 @@ myApp.controller('MainController',
                 $scope.init.status = 1;
                 //Don't let the warning appear if this happened at the very beginning
                 $timeout.cancel(longerThanUsual);
+                $interval.cancel(progressInterval);
                 //disable any admin edit if page loads
                 $scope.edit = { switch: false, state: 1 };
             }

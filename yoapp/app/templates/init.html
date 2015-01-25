@@ -20,6 +20,12 @@
             <h5> Now loading... </h5>
         </div>
         <hr>
+        <div class="panel-body text-center">
+          <small><em>Progress</em></small>
+          <progressbar class="progress-striped active" value="progress.value" type="info">
+            {{progress.value}}%
+          </progressbar>
+        </div>
         <div class="panel-body text-right">
             <i>Please wait</i>
         </div>
@@ -46,6 +52,11 @@
         <div class="panel-body text-center">
             <h5> This is taking longer than usual. </h5>
             <hr>
+            <small><em>Connection slow</em></small>
+            <progressbar class="progress-striped active" value="progress.value" type="warning">
+              {{progress.value}}%
+            </progressbar>
+            <br>
             <i>Please make sure <br>
             your internet connection is available,<br>
             or wait a few seconds more.</i>
@@ -73,6 +84,11 @@
         <div class="panel-body text-center">
             <h5> Failed to connect to remote resources. </h5>
             <hr>
+            <small><em>Stopped</em></small>
+            <progressbar class="progress-striped" value="progress.value" type="danger">
+              {{progress.value}}%
+            </progressbar>
+            <br>
             <i>Please make sure <br>
             your internet connection is available,<br>
             then try again.</i>
