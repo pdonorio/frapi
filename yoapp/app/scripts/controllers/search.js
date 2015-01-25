@@ -7,11 +7,14 @@
  * # ViewController
  * Controller of the yoApp
  */
+
 myApp
-  .controller('ViewController', function ($rootScope, $scope, DataResource, perpageDefault, currentpageDefault)
+ .controller('ViewController', function ($rootScope, $scope, DataResource, perpageDefault, currentpageDefault)
 {
+    $scope.isCollapsed = true;
+
     $rootScope.$emit('rootScope:emit', 'gbgon');
-    $rootScope.$emit('rootScope:emit', 'fooon');
+    $rootScope.$emit('rootScope:emit', 'foooff');
 
     // Init: Html scope data
     $scope.datacount = 0;
