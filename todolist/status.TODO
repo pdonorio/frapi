@@ -23,6 +23,7 @@ Prototype:
   ✔ Favicon http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh @done (15-01-23 12:37)
     ✔ generate: http://favico.com/ @done (15-01-23 12:37)
   ☐ Search bar working
+    ☐ Quick search
     ✔ typeahead native @done (15-01-23 14:41)
       ✔ install bootstrap ui angular @done (15-01-23 14:42)
         ✔ via bower...? @done (15-01-25 20:34)
