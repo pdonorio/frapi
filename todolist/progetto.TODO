@@ -11,13 +11,15 @@ Feb:
   ☐ Going HOME
     ✔ Routing & states @done (15-01-29 06:59)
     ✔ ui router? @done (15-01-29 06:59)
+      ✔ Remove old static directory @done (15-01-29 07:33)
       ✔ Notification/Welcome page with french text (default) @done (15-01-29 07:24)
         ☐ waiting for french text
-      ☐ Login page (if button)
-        ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
-      ☐ Normal page loading (always check if logged)
-        ☐ add login check timeout?
-      ☐ Remove old static directory
+      ✔ Login page (if button) @done (15-01-29 07:32)
+        ☐ Study best angular login form example
+        ✘ https://www.linkedin.com/uas/login?goback=&trk=hb_signin @cancelled (15-01-29 07:32)
+      ☐ Remove the /app subdirectory in docker server
+      ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
+        ☐ add login checker in cron/repeat?
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

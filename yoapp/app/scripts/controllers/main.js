@@ -13,17 +13,17 @@ myApp.controller('MainController',
         function ($rootScope, $scope, $location, $timeout, $interval,
             DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+    $rootScope.$emit('rootScope:emit', 'padon');
 
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
 
-    // INIT for loading
+    // INIT for loading the app based on API status
     $scope.init = {
-//DEBUG
-        startup : true,
-        //startup: false,
+        //startup : true, //DEBUG
+        startup: false,
         status: 0,
     };
     // If taking too long show a little warning
@@ -38,34 +38,6 @@ myApp.controller('MainController',
     var intervalStep = maxStep / secondsStep;
     var timeStep = apiTimeout / intervalStep;
     var progressInterval = $interval(function() { $scope.progress.value += secondsStep; }, timeStep);
-
-    /*  ******************************************
-        ******************************************
-        *** BROADCAST of messages across the application
-        ******************************************
-        ******************************************/
-
-    //from broadcasts of views
-    $scope.onOff= {
-        // Handle grey background
-        bg : false,
-        // Footer on off
-        footer : true,
-    };
-    $rootScope.$on('rootScope:emit', function (event, data) {
-        //console.log(data);
-        if (data == "gbgon") {
-            $scope.onOff.bg = true;
-        } else if (data == "gbgoff") {
-            $scope.onOff.bg = false;
-        } else if (data == "fooon") {
-            $scope.onOff.footer = true;
-        } else if (data == "foooff") {
-            $scope.onOff.footer = false;
-        } else {
-            console.log("Unknown broadcast: " + data);
-        }
-    });
 
     /*  ****************************************** */
     // Build dynamic menu in header

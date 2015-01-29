@@ -67,9 +67,6 @@ var myApp = angular.module('yoApp',
         NotificationData.setNotification(s,m);
       };
   }])
-  .controller('TestController', function($scope) {
-    $scope.test = "test";
-  })
 /************************************************/
 /************************************************/
 
@@ -83,13 +80,16 @@ var myApp = angular.module('yoApp',
   $stateProvider
     .state('welcome', {
       url: "/static",
-      //template: '<h1>Testing</h1><div class="well">ui router works!</div>',
-      templateUrl: "templates/welcome.html",
+      templateUrl: "views/welcome.html",
+    })
+    .state('logged', {
+      url: "/",
+      templateUrl: "views/app.html",
     })
     .state('dologin', {
       url: "/login",
-      template: '<h1>Testing</h1><div class="well">Login page!</div>',
-      //templateUrl: "templates/welcome.html",
+      //template: '<h1>Testing</h1><div class="well">Login page!</div>',
+      templateUrl: "views/login.html",
     });
 })
 
