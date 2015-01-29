@@ -9,13 +9,15 @@ Feb:
     ☐ check dropdowns
 
   ☐ Going HOME
-    ☐ Routing & states
-    ☐ ui router?
-      ☐ Notification/Welcome page with france text (default)
+    ✔ Routing & states @done (15-01-29 06:59)
+    ✔ ui router? @done (15-01-29 06:59)
+      ✔ Notification/Welcome page with french text (default) @done (15-01-29 07:24)
+        ☐ waiting for french text
       ☐ Login page (if button)
         ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
       ☐ Normal page loading (always check if logged)
         ☐ add login check timeout?
+      ☐ Remove old static directory
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

@@ -77,14 +77,19 @@ var myApp = angular.module('yoApp',
 //myApp
 .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/state1");
+  $urlRouterProvider.otherwise("/static");
 
   // Now set up the states
   $stateProvider
-    .state('state1', {
-      url: "/state1",
-      template: '<h1>Testing</h1><div class="well">ui router works!</div>',
-      //templateUrl: "partials/state1.html",
+    .state('welcome', {
+      url: "/static",
+      //template: '<h1>Testing</h1><div class="well">ui router works!</div>',
+      templateUrl: "templates/welcome.html",
+    })
+    .state('dologin', {
+      url: "/login",
+      template: '<h1>Testing</h1><div class="well">Login page!</div>',
+      //templateUrl: "templates/welcome.html",
     });
 })
 
