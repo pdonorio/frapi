@@ -17,7 +17,7 @@ Feb:
       ✔ Login page (if button) @done (15-01-29 07:32)
         ☐ Study best angular login form example
         ✘ https://www.linkedin.com/uas/login?goback=&trk=hb_signin @cancelled (15-01-29 07:32)
-      ☐ Remove the /app subdirectory in docker server
+      ✔ Remove the /app subdirectory in docker server @done (15-01-29 08:00)
       ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
         ☐ add login checker in cron/repeat?
 
@@ -32,6 +32,7 @@ Feb:
 
   ☐ Steps
     ☐ Admin add, edit, remove
+    ☐ Rdb backup every hour, then @send
     ☐ API fix
       ☐ create table if not exist (at search time?)
 
