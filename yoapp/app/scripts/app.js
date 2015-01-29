@@ -10,19 +10,23 @@
  */
 var myApp = angular.module('yoApp',
   [
-  // CONFIGURATION and DYNAMIC CONSTANTS
+  // CONFIGURATION and DYNAMIC CONSTANTS - made by me
     'AppConfig',
   // DEPENCIES: base yeoman modules
-    'ngAnimate', 'ngCookies',
-    'ngRoute', 'ngSanitize', 'ngTouch',
+    'ngAnimate',
+    //'ngRoute',
+    'ngCookies',
+    'ngSanitize',
+    'ngTouch',
   // DEPENCIES: external modules
+    'ui.router',      //some serious and nested views (instead of ngRoute)
     'ui.bootstrap',   //https://github.com/angular-ui/bootstrap
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
     'angularFileUpload',  //uploader for files
     'uiSwitch',     //osx like switcher
   // DEPENCIES: own filters
-    'textOperations', //my filters
+    'textOperations', //my filters on strings
   ])
 
   // CONSTANTS
@@ -49,6 +53,8 @@ var myApp = angular.module('yoApp',
     };
   })
 
+/************************************************/
+/************************************************/
   // FOR TESTING NOTIFICATION PURPOSE :)
   .controller('SomeController', ['$rootScope', '$scope','NotificationData',
     function($rootScope, $scope, NotificationData){
@@ -60,8 +66,29 @@ var myApp = angular.module('yoApp',
         //console.log("Some controller: set notifaction with "+s+","+m);
         NotificationData.setNotification(s,m);
       };
-
   }])
+  .controller('TestController', function($scope) {
+    $scope.test = "test";
+  })
+/************************************************/
+/************************************************/
+
+//ROUTING new
+//myApp
+.config(function($stateProvider, $urlRouterProvider) {
+  // For any unmatched url, redirect to /state1
+  $urlRouterProvider.otherwise("/state1");
+
+  // Now set up the states
+  $stateProvider
+    .state('state1', {
+      url: "/state1",
+      template: '<h1>Testing</h1><div class="well">ui router works!</div>',
+      //templateUrl: "partials/state1.html",
+    });
+})
+
+/*
 
   //ROUTING
   .config(function ($routeProvider, $locationProvider) {
@@ -99,4 +126,8 @@ var myApp = angular.module('yoApp',
       // enable html5Mode for pushstate ('#'-less URLs)
       //$locationProvider.html5Mode(true);
   })
+
+*/
+
+//END OF THE APPLICATION
   ;

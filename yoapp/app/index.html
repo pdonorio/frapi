@@ -23,7 +23,14 @@
     <!-- endbuild -->
   </head>
 
-  <body ng-app="yoApp" ng-controller="MainController" ng-class="{'gbg': onOff.bg}">
+  <body ng-app="yoApp"
+ng-controller="TestController"
+  >
+<!--   DEBUG
+ng-controller="MainController" ng-class="{'gbg': onOff.bg}">
+ -->
+    <ui-view></ui-view>
+
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser.<br>
     Please <a href="http://browsehappy.com/">upgrade your browser</a><br>
@@ -35,19 +42,27 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Loader until app is ready -->
+    <!-- Loader until app is ready
+    DEBUG
     <ng-include src="'templates/init.html'"></ng-include>
-    <!-- MAIN BODY -->
+    -->
+
+    <!-- MAIN BODY
     <div ng-if="init.startup" id="wrap">
-        <!-- Top bar -->
+    -->
+        <!-- Top bar
         <div ng-include="'templates/topbar.html'"></div>
-        <!-- Notification message Directive -->
+    -->
+        <!-- Notification message Directive
         <notify></notify>
-        <!-- MAIN VIEW (see views/ directory) -->
+    -->
+        <!-- MAIN VIEW (see views/ directory)
         <div ng-view=""></div>
     </div>
-    <!-- Footer -->
+    -->
+    <!-- Footer
     <div ng-if="init.startup" ng-include="'templates/footer.html'"></div>
+    -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <!--      <script>
@@ -72,11 +87,12 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- <script src="bower_components/angular-route/angular-route.js"></script> -->
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>

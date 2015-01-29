@@ -21,8 +21,9 @@ myApp.controller('MainController',
 
     // INIT for loading
     $scope.init = {
-        //startup : true,
-        startup: false,
+//DEBUG
+        startup : true,
+        //startup: false,
         status: 0,
     };
     // If taking too long show a little warning

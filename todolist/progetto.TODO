@@ -1,15 +1,43 @@
 
---- ✄ -----------------------
-Febbraio:
-  ☐ Inserimento contenuti
-  ☐ Test inserimento dati
-  ☐ Test upload
-  ☐ Test visualizzazione
-  ☐ Lingue?
+Language??
 
 --- ✄ -----------------------
-Marzo:
+Feb:
 
- ☐ Autenticazione
-   ☐ Profili
- ☐ Ritocchi di grafica & Testing
+  ☐ Jquery
+    ☐ Get rid
+    ☐ check dropdowns
+
+  ☐ Going HOME
+    ☐ Routing & states
+    ☐ ui router?
+      ☐ Notification/Welcome page with france text (default)
+      ☐ Login page (if button)
+        ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
+      ☐ Normal page loading (always check if logged)
+        ☐ add login check timeout?
+
+  ☐ Upload and transcriptions
+    ☐ Create a new upload folder for any new draft
+    ☐ Zoomify image via API
+    ☐ share folder of uploaded files for thumbnails
+    ☐ Last step is transciptions
+      ☐ list the images
+      ☐ associate one or more transcriptions
+      ☐ choose page
+
+  ☐ Steps
+    ☐ Admin add, edit, remove
+    ☐ API fix
+      ☐ create table if not exist (at search time?)
+
+  ☐ Admin content: use 'page' db attribute for different pages
+    ☐ Html editor
+    ☐ Edit switch only if page element counter > 0
+      ☐ Sanitize content (e.g. open tags)
+
+--- ✄ -----------------------
+Mar:
+ ☐ Advanced search
+ ☐ Profiles
+ ☐ Testing

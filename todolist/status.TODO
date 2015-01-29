@@ -9,12 +9,6 @@ RiCORD.a - prototyping:
   ✔ Document view page @done (15-01-22 20:41)
     ✔ layout bg changed via $rootscope broadcast @done (15-01-22 22:00)
     ✔ Define a layout for images list and data list @done (15-01-23 09:06)
-  ☐ Init/Login page
-    ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
-  ☐ Admin content: use 'page' db attribute for different pages
-    ☐ Html editor
-      ☐ Sanitize content (e.g. open tags)
-    ☐ Use counter to make edit switch disappear inside footer if no editable content
   ☐ Some serious profile/user Menu
 
 Prototype:
