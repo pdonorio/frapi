@@ -18,13 +18,6 @@
 
   </div>
  </div>
-
-<!--  <hr>
- <h4> Typeahead notifier</h4>
- <pre>Model: {{selected | json}}</pre>
- <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
- -->
-
  <hr>
 
  <!-- Notification tester
@@ -54,19 +47,22 @@
 
 -->
 
-<!-- TESTING tooltip
-  <h4> Tooltips </h4>
-  <div class="row">
-    <div class="col-md-6">
-      <a href="" title="Wow. Looky Here." data-toggle="tooltip">I have a Tooltip</a>
-    </div>
-    <div class="col-md-6">
-      <a href="" data-toggle="popover" data-trigger="hover"
-        title="Wow. Looky Here."
-        data-content="More stuff here.."
-        >I have a Popover</a>
-    </div>
+<!-- TESTING tooltip -->
+<h4> Tooltips </h4>
+<div class="row">
+  <div class="col-md-6" ng-init='dynamicTooltip = "test"'>
+     <a href="#" tooltip-placement="right" tooltip="{{dynamicTooltip}}">I have Tooltip</a>
+     <br>
+     <a href="#" tooltip-placement="bottom" tooltip="Fixed">..me too!</a>
+  </div>
+<!--
+  <div class="col-md-6">
+    <a href="" data-toggle="popover" data-trigger="hover"
+      title="Wow. Looky Here."
+      data-content="More stuff here.."
+      >I have a Popover</a>
   </div>
 -->
+</div>
 
 </div>

@@ -22,10 +22,13 @@ Feb:
 
   ☐ Mixed
     ☐ FIX FOOTER
+      ☐ Edit button inside topbar
+      ☐ also remove ui-switch and use fontawesome instead
     ☐ Language
     ✔ Jquery: Get rid @done (15-01-30 19:34)
       ✔ check dropdowns @done (15-01-30 19:34)
-      ☐ tooltip and popover
+      ✔ tooltip @done (15-01-30 20:14)
+      ☐ popover
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
