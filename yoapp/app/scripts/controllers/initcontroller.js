@@ -10,6 +10,11 @@
 myApp
 .controller('InitController', function($scope, $rootScope) {
 
+    //if redirection goes wrong
+    $rootScope.$on('$stateChangeError', function(event) {
+      $state.go('notfound');
+    });
+
     /*  ******************************************
         *** BROADCAST of messages across the application
         ******************************************/
@@ -29,6 +34,8 @@ myApp
             $scope.onOff.bg = true;
         } else if (data == "gbgoff") {
             $scope.onOff.bg = false;
+        } else if (data == "padoff") {
+            $scope.onOff.pad = false;
         } else if (data == "padon") {
             $scope.onOff.pad = true;
         } else if (data == "fooon") {

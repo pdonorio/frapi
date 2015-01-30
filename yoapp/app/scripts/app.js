@@ -73,44 +73,74 @@ var myApp = angular.module('yoApp',
 //ROUTING new
 //myApp
 .config(function($stateProvider, $urlRouterProvider) {
-  // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/static");
 
-  // Now set up the states
+  // The usual code to catch any url but instead of a string ("/ntofound") we use a function
+  // which receives $injector and $location.
+  // We could check which URL the user wanted using $location but in this case we are going
+  // to simply send them to the error state.
+  // We then tell the provider that we handled the request.
+
+  $urlRouterProvider.otherwise(function ($injector, $location) {
+    $injector.invoke(['$state', function ($state) {
+      $state.go('notfound');
+    }]);
+    return true;
+  });
+  //Alias for no url?
+  $urlRouterProvider.when('', '/static');
+/*
+  // For any unmatched url, redirect to
+  $urlRouterProvider.otherwise("/static");
+*/
+
+  // Set up the states
   $stateProvider
+
+    .state('notfound', {
+      url: "/404",
+      views: { "main": { templateUrl: "views/oops.html", }, },
+      onEnter: function($rootScope){
+        $rootScope.$emit('rootScope:emit', 'padoff');
+      },
+    })
     .state('welcome', {
       url: "/static",
-      templateUrl: "views/welcome.html",
-    })
-    .state('logged', {
-      url: "/",
-      templateUrl: "views/app.html",
+      views: { "main": { templateUrl: "views/welcome.html", }, },
+      onEnter: function($rootScope){
+        $rootScope.$emit('rootScope:emit', 'padoff');
+      },
     })
     .state('dologin', {
       url: "/login",
-      //template: '<h1>Testing</h1><div class="well">Login page!</div>',
-      templateUrl: "views/login.html",
-    });
-})
+      views: { "main": { templateUrl: "views/login.html", }, },
+    })
+
+    //LOGGED MAIN SKELETON (parent view)
+    .state('logged', {
+      url: "/app",
+      views: {
+        "main": { templateUrl: "views/app.html", },
+        //reminder: this line below will not work as the 'contain' view is nested!
+        //"contain": { templateUrl: "views/main.html", },
+      },
+    })
+    // LOGGED Child routes (sub view, nested inside parent)
+      .state('logged.home', {
+        url: "/home",
+        views: { "contain": { templateUrl: "views/main.html", }, },
+      })
+      .state('logged.submission', {
+        url: "/add",
+        views: { "contain": {
+          templateUrl: "views/submit.html",
+          controller: 'SubmissionController',
+        }, },
+      })
+    ;
+
+});
 
 /*
-
-  //ROUTING
-  .config(function ($routeProvider, $locationProvider) {
-    //Note to self: the controller that has access to the whole page is
-    //'MainController'
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        //using main controller here
-      })
-      .when('/notfound', {
-        templateUrl: 'views/oops.html',
-      })
-      .when('/submit', {
-        templateUrl: 'views/submit.html',
-        controller: 'SubmissionController',
-      })
       .when('/view/:viewid', {
         templateUrl: 'views/viewer.html',
         controller: 'ViewerController',
@@ -134,5 +164,3 @@ var myApp = angular.module('yoApp',
 
 */
 
-//END OF THE APPLICATION
-  ;

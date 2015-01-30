@@ -30,6 +30,12 @@ Feb:
       ☐ associate one or more transcriptions
       ☐ choose page
 
+  ☐ Update RethinkDB on docker image? what the hell?
+  ☐ DB backup
+    ☐ via docker container launch every hour/day
+      ☐ volumes from
+      ☐ checks
+
   ☐ Steps
     ☐ Admin add, edit, remove
     ☐ Rdb backup every hour, then @send

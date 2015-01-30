@@ -9,12 +9,8 @@
         <div ng-include="'templates/topbar.html'"></div>
         <!-- Notification message Directive -->
         <notify></notify>
-
-        <div class="container" > Testing </div>
-        <!-- MAIN VIEW (see views/ directory)
-        Change me in a UI-ROUTER SUB VIEW
-        <div ng-view=""></div>
-        -->
+        <!-- MAIN VIEW (see views/ directory) -->
+        <div ui-view="contain"></div>
     </div>
     <!-- Footer
     <div ng-if="init.startup" ng-include="'templates/footer.html'"></div>

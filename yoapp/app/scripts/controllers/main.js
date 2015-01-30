@@ -13,6 +13,7 @@ myApp.controller('MainController',
         function ($rootScope, $scope, $location, $timeout, $interval,
             DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+    // Signal to remove background and add body pad for the topbar
     $rootScope.$emit('rootScope:emit', 'padon');
 
     // Lo.dash | underscore
