@@ -1,19 +1,13 @@
-<div>
-
-    <!-- Loader until app is ready -->
-    <ng-include src="'templates/init.html'"></ng-include>
-
-    <!-- MAIN BODY -->
-    <div ng-if="init.startup" id="wrap">
-        <!-- Top bar -->
-        <div ng-include="'templates/topbar.html'"></div>
-        <!-- Notification message Directive -->
-        <notify></notify>
-        <!-- MAIN VIEW (see views/ directory) -->
-        <div ui-view="contain"></div>
-    </div>
-    <!-- Footer
-    <div ng-if="init.startup" ng-include="'templates/footer.html'"></div>
-    -->
-
+<!-- Loader until app is ready -->
+<ng-include src="'templates/init.html'"></ng-include>
+<!-- the REAL app -->
+<div ng-if="init.startup" id="wrap">
+    <!-- Top bar -->
+    <div ng-include="'templates/topbar.html'"></div>
+    <!-- Notification message Directive -->
+    <notify></notify>
+    <!-- MAIN VIEW (see views/ directory) -->
+    <div ui-view="contain"></div>
 </div>
+<!-- Footer -->
+<div ng-if="init.startup" ng-include="'templates/footer.html'"></div>
