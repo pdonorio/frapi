@@ -8,60 +8,54 @@
  * Controller of the yoApp
  */
 myApp
-.controller('MainController', function ($scope, $rootScope, $timeout, $interval,
-    tester,
+.controller('MainController', function ($scope, $rootScope, $timeout, $interval, $location,
+    //tester,
     DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
-    console.log(tester);
-
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
 
-        /*  ****************************************** */
-        // Build dynamic menu in header
-        $rootScope.menu = [
-            {active:true,  link:'logged.home', name:'home'},
-            {active:false, link:'logged.submission', name:'add'},
-            {active:false, link:'logged.search', name:'search'},
-            {active:false, link:'logged.about', name:'about'},
-        ];
+    /*  ****************************************** */
+    // Build dynamic menu in header
+    $rootScope.menu = [
+        {active:true,  link:'logged.home', name:'home'},
+        {active:false, link:'logged.submission', name:'add'},
+        {active:false, link:'logged.search', name:'search'},
+        {active:false, link:'logged.about', name:'about'},
+    ];
 
-        $rootScope.setActiveMenu = function(current) {
-          for (var i = 0; i < $rootScope.menu.length; i++) {
-            if ($rootScope.menu[i]['name'] == current) {
-                $rootScope.menu[i]['active'] = true;
-            } else {
-                $rootScope.menu[i]['active'] = false;
-            }
-          };
-
+    $rootScope.setActiveMenu = function(current) {
+      for (var i = 0; i < $rootScope.menu.length; i++) {
+        if ($rootScope.menu[i]['name'] == current) {
+            $rootScope.menu[i]['active'] = true;
+        } else {
+            $rootScope.menu[i]['active'] = false;
         }
-
-        //Uhm
-        $rootScope.$on('$stateChangeStart', function (event, nextState, currentState) {
-          var p = nextState.url;
-          var p = p.substring(1, p.length);
-          $rootScope.setActiveMenu(p);
-          console.log("Changed");
-
+      };
+    }
+    /******** SET ACIVE ELEMENT - FIRST TIME *****************/
+    //getting current location
+    var tmp = $location.url().split('/');
+    // coming from /app/some, so 0 = "", 1 = "app", 2 = "some"
+    if (tmp[2]) {
+      $rootScope.setActiveMenu(tmp[2]);
+    }
+    /******** SET ACIVE ELEMENT - ANY OTHER TIME *****************/
+    $rootScope.$on('$stateChangeStart', function (event, nextState, currentState) {
+      var p = nextState.url;
+      var p = p.substring(1, p.length);
+      $rootScope.setActiveMenu(p);
 /*      AUTH?
-            if (!isAuthenticated(nextState)) {
-                console.debug('Could not change route! Not authenticated!');
-                $rootScope.$broadcast('$stateChangeError');
-                e.preventDefault();
-                $state.go('login');
-            }
+        if (!isAuthenticated(nextState)) {
+            console.debug('Could not change route! Not authenticated!');
+            $rootScope.$broadcast('$stateChangeError');
+            e.preventDefault();
+            $state.go('login');
+        }
 */
-        });
-
-/*
-    // Fix menu in the header.
-    // Make active only the button which leads to current path.
-    $scope.$on('$locationChangeStart', function() {
-
-*/
+    });
 
     // INIT for loading the app based on API status
     $scope.init = {
