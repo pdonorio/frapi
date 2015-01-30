@@ -7,19 +7,61 @@
  * # MainController
  * Controller of the yoApp
  */
-myApp.controller('MainController',
-    [ '$rootScope', '$scope', '$location', '$timeout', '$interval',
-        'DataResource', 'mixed','warningInitTime', 'someInitTime', 'apiTimeout',
-        function ($rootScope, $scope, $location, $timeout, $interval,
-            DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
+myApp
+.controller('MainController', function ($scope, $rootScope, $timeout, $interval,
+    tester,
+    DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
-    // Signal to remove background and add body pad for the topbar
-    $rootScope.$emit('rootScope:emit', 'padon');
+    console.log(tester);
 
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
+
+        /*  ****************************************** */
+        // Build dynamic menu in header
+        $rootScope.menu = [
+            {active:true,  link:'logged.home', name:'home'},
+            {active:false, link:'logged.submission', name:'add'},
+            {active:false, link:'logged.search', name:'search'},
+            {active:false, link:'logged.about', name:'about'},
+        ];
+
+        $rootScope.setActiveMenu = function(current) {
+          for (var i = 0; i < $rootScope.menu.length; i++) {
+            if ($rootScope.menu[i]['name'] == current) {
+                $rootScope.menu[i]['active'] = true;
+            } else {
+                $rootScope.menu[i]['active'] = false;
+            }
+          };
+
+        }
+
+        //Uhm
+        $rootScope.$on('$stateChangeStart', function (event, nextState, currentState) {
+          var p = nextState.url;
+          var p = p.substring(1, p.length);
+          $rootScope.setActiveMenu(p);
+          console.log("Changed");
+
+/*      AUTH?
+            if (!isAuthenticated(nextState)) {
+                console.debug('Could not change route! Not authenticated!');
+                $rootScope.$broadcast('$stateChangeError');
+                e.preventDefault();
+                $state.go('login');
+            }
+*/
+        });
+
+/*
+    // Fix menu in the header.
+    // Make active only the button which leads to current path.
+    $scope.$on('$locationChangeStart', function() {
+
+*/
 
     // INIT for loading the app based on API status
     $scope.init = {
@@ -40,28 +82,24 @@ myApp.controller('MainController',
     var timeStep = apiTimeout / intervalStep;
     var progressInterval = $interval(function() { $scope.progress.value += secondsStep; }, timeStep);
 
-    /*  ****************************************** */
-    // Build dynamic menu in header
-    $scope.menu = [
-        {active:true,  link:'',       name:'home'},
-        {active:false, link:'submit', name:'add'},
-        {active:false, link:'search', name:'search'},
-        {active:false, link:'change', name:'about'},
-    ];
-
+/*
     // Fix menu in the header.
     // Make active only the button which leads to current path.
-    $scope.$on('$locationChangeStart', function(event) {
+    $scope.$on('$locationChangeStart', function() {
         var p = $location.path();
-        p = p.substring(1, p.length);
+        //p = p.substring(1, p.length);
+        var data = p.split('/');
         for (var i = 0; i < $scope.menu.length; i++) {
-            if ($scope.menu[i]['link'] == p) {
+            console.log("TEST link "+$scope.menu[i]['name']);
+            console.log("Compare to "+data[2]);
+            if ($scope.menu[i]['name'] == data[2]) {
                 $scope.menu[i]['active'] = true;
             } else {
                 $scope.menu[i]['active'] = false;
             }
         };
     });
+*/
 
     /*  ****************************************** */
     // editable element via xeditable
@@ -121,4 +159,4 @@ myApp.controller('MainController',
         }
     );
 
-}]);
+});

@@ -4,9 +4,9 @@ Language??
 --- ✄ -----------------------
 Feb:
 
-  ☐ Jquery
-    ☐ Get rid
+  ☐ Jquery: Get rid
     ☐ check dropdowns
+    ☐ tooltip and popover
 
   ☐ Going HOME
     ✔ Routing & states @done (15-01-29 06:59)
@@ -19,6 +19,10 @@ Feb:
         ✘ https://www.linkedin.com/uas/login?goback=&trk=hb_signin @cancelled (15-01-29 07:32)
       ✔ Remove the /app subdirectory in docker server @done (15-01-29 08:00)
       ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
+      ✔ Separate file for routing @done (15-01-30 17:56)
+      ☐ Move $rootScope.menu inside resolve?
+      ☐ Home page with words, search, add cards
+      ☐ ui resolve for API login
         ☐ add login checker in cron/repeat?
 
   ☐ Upload and transcriptions
@@ -46,6 +50,8 @@ Feb:
     ☐ Html editor
     ☐ Edit switch only if page element counter > 0
       ☐ Sanitize content (e.g. open tags)
+
+  ☐ Search bar history when focus (cookie)?
 
 --- ✄ -----------------------
 Mar:
