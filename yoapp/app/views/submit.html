@@ -9,13 +9,13 @@
 
       <div class="list-group">
         <!-- HEADER -->
-        <a class="list-group-item list-group-item-info">
-          <h4> Inserimento </h4>
+        <a class="list-group-item disabled orange">
+          <h4 class='dtext'> Inserimento </h4>
         </a>
         <!-- STEPS -->
         <a href="" class="list-group-item"
           ng-repeat='step in steps' ng-click="setStep(step.step)"
-          ng-class="{'active': step.step == current}">
+          ng-class="{'orange': step.step == current}">
               <span class="badge">{{step.step}}</span>
               {{step.name | ucFirst}}
         </a>
@@ -24,11 +24,12 @@
           ng-click="setStep(steps.length +1)" ng-class="{'active': steps.length+1 == current}">
               <span class="badge">{{steps.length+1}}</span> Upload
         </a>
-        <!-- SPACE -->
+        <!-- SPACE
         <div class="alert alert-warning" role="alert">
           <i class="fa fa-pencil-square-o fa-2x"></i>
           <i>in corso</i>
         </div>
+        -->
       </div>
 
 

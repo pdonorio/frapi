@@ -10,8 +10,11 @@
 myApp
 .controller('MainController', function ($scope, $rootScope, $timeout, $interval, $location,
     //tester,
+    projectName,
     DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+    $scope.projectName = projectName;
+
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive

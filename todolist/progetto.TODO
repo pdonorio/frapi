@@ -16,21 +16,27 @@ Feb ALPHA:
       ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
       ✔ Separate file for routing @done (15-01-30 17:56)
       ✔ Problem of first button active at load time (not working with stateChange function) @done (15-01-30 19:35)
+      ✔ Colors and topbar style @done (15-01-31 12:07)
+        ✔ http://bootstrapdesigntools.com/tools/bootstrap-menu-builder/ @done (15-01-31 12:07)
       ☐ Home page with words, search, add cards @current
+        ☐ Add button disappears
+          ☐ Draft section for profile
+        ☐ Search is just the bar, shows results when you focus
+        ☐ Main text up
       ☐ Move $rootScope.menu inside resolve?
       ☐ ui resolve for API login
         ☐ add login checker in cron/repeat?
 
   ☐ Mixed
-    ☐ FIX FOOTER
+    ☐ Remove footer
       ☐ Edit button inside topbar
       ☐ also remove ui-switch and use fontawesome instead
-    ☐ Language
     ✔ Jquery: Get rid @done (15-01-30 19:34)
       ✔ check dropdowns @done (15-01-30 19:34)
       ✔ tooltip @done (15-01-30 20:14)
       ☐ popover http://angular-ui.github.io/bootstrap/#/popover
       ☐ modal http://angular-ui.github.io/bootstrap/#/modal
+    ☐ Language?
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
