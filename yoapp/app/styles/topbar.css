@@ -11,7 +11,10 @@ dark green #142F30
     background-color: #FAAD8E;
     color: #142F30;
 }
-.orange { background-color: #FFD6A3; }
+.orange, a.orange:focus {
+    background-color: #FFD6A3;
+    color: #142F30;
+}
 .dgreen {
     background-color: #142F30;
     color: #FAAD8E;

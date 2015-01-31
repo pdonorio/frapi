@@ -38,23 +38,6 @@ var myApp = angular.module('yoApp',
   .constant('currentpageDefault', 1)
   .constant('someInitTime', 1500)
 
-//TO FIX
-  //TO REMOVE with ui bootstrap //BOOTSTRAP TOOLTIP/POPOVER
-  //http://www.bootply.com/cskelly/H4Zii7Mb6l
-  .directive('toggle', function(){
-    return {
-      restrict: 'A',
-      link: function(scope, element, attrs){
-        if (attrs.toggle=="tooltip"){
-          $(element).tooltip();
-        }
-        if (attrs.toggle=="popover"){
-          $(element).popover();
-        }
-      }
-    };
-  })
-
 /************************************************/
   // FOR TESTING NOTIFICATION PURPOSE :)
   .controller('SomeController', ['$rootScope', '$scope','NotificationData',
@@ -67,4 +50,3 @@ var myApp = angular.module('yoApp',
 
       //console.log("Testing controller");
   }])
-/************************************************/

@@ -19,6 +19,9 @@ Feb ALPHA:
       ✔ Colors and topbar style @done (15-01-31 12:07)
         ✔ http://bootstrapdesigntools.com/tools/bootstrap-menu-builder/ @done (15-01-31 12:07)
       ☐ Home page with words, search, add cards @current
+        ☐ Remove footer
+          ☐ Edit button inside topbar
+          ☐ also remove ui-switch and use fontawesome instead
         ☐ Add button disappears
           ☐ Draft section for profile
         ☐ Search is just the bar, shows results when you focus
@@ -28,9 +31,6 @@ Feb ALPHA:
         ☐ add login checker in cron/repeat?
 
   ☐ Mixed
-    ☐ Remove footer
-      ☐ Edit button inside topbar
-      ☐ also remove ui-switch and use fontawesome instead
     ✔ Jquery: Get rid @done (15-01-30 19:34)
       ✔ check dropdowns @done (15-01-30 19:34)
       ✔ tooltip @done (15-01-30 20:14)
@@ -41,7 +41,10 @@ Feb ALPHA:
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
     ☐ Zoomify image via API
-    ☐ share folder of uploaded files for thumbnails
+    ☐ Upload only images
+    ☐ If already exists go to error via notify
+      ☐ if goes to already exists, disable upload button
+    ☐ share folder of uploaded files for thumbnails?
     ☐ Last step is transciptions
       ☐ list the images
       ☐ associate one or more transcriptions
