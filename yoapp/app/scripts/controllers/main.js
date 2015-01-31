@@ -15,16 +15,27 @@ myApp
 {
     $scope.projectName = projectName;
 
+    //////////////////////////////////////
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
 
-    /*  ****************************************** */
+    //////////////////////////////////////
+    // editable element via xeditable: init?
+    $scope.edit = {
+        available: true, //ONLY IF ADMIN!!
+        switch: false,
+        state: 1
+    };
+    $scope.elements = {};
+    //API give me access to HTML content inside database
+
+    //////////////////////////////////////
     // Build dynamic menu in header
     $rootScope.menu = [
-        {active:true,  link:'logged.home', name:'home'},
-        {active:false, link:'logged.submission', name:'add'},
+        {active:true,  link:'logged.main', name:'main'},
+        //{active:false, link:'logged.submission', name:'add'},
         {active:false, link:'logged.search', name:'search'},
         {active:false, link:'logged.about', name:'about'},
     ];
@@ -60,6 +71,7 @@ myApp
 */
     });
 
+    //////////////////////////////////////
     // INIT for loading the app based on API status
     $scope.init = {
         //startup : true, //DEBUG
@@ -79,38 +91,6 @@ myApp
     var timeStep = apiTimeout / intervalStep;
     var progressInterval = $interval(function() { $scope.progress.value += secondsStep; }, timeStep);
 
-/*
-    // Fix menu in the header.
-    // Make active only the button which leads to current path.
-    $scope.$on('$locationChangeStart', function() {
-        var p = $location.path();
-        //p = p.substring(1, p.length);
-        var data = p.split('/');
-        for (var i = 0; i < $scope.menu.length; i++) {
-            console.log("TEST link "+$scope.menu[i]['name']);
-            console.log("Compare to "+data[2]);
-            if ($scope.menu[i]['name'] == data[2]) {
-                $scope.menu[i]['active'] = true;
-            } else {
-                $scope.menu[i]['active'] = false;
-            }
-        };
-    });
-*/
-
-    /*  ****************************************** */
-    // editable element via xeditable
-    $scope.edit = {
-        state: 1,
-        switch: false,
-        //switch: true,
-    };
-    $scope.elements = {};
-
-    //////////////////////////////////////
-    //API give me access to HTML content inside database
-    //////////////////////////////////////
-
     //////////////////////////////////////
     // Query api - READ the whole html content
     var perpage = 1000;
@@ -126,8 +106,11 @@ myApp
                     var j = tmp[i].element;
                     $scope.elements[j] = tmp[i];
                 };
-                var current = $scope.edit.switch;
-                $scope.edit = { state: 0, switch: current };
+                $scope.edit = {
+                    state: 0,
+                    switch: $scope.edit.switch,
+                    available: $scope.edit.available,
+                };
 
                 //Getting progress closer
                 $timeout(function() { $scope.progress.value += ((maxStep - $scope.progress.value) / 2); }, someInitTime / 2 );

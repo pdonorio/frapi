@@ -24,7 +24,6 @@ var myApp = angular.module('yoApp',
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
     'angularFileUpload',  //uploader for files
-    'uiSwitch',     //osx like switcher
   // DEPENCIES: own filters
     'textOperations', //my filters on strings
   ])

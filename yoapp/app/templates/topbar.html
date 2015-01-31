@@ -9,10 +9,16 @@
         <div id='navbar' class="collapse navbar-collapse navbar-menubuilder">
 
           <!-- Edit MODE button / ONLY FOR ADMIN! -->
-          <ul class="nav navbar-nav navbar-left">
+          <ul class="nav navbar-nav navbar-left" ng-hide="!edit.available">
           <li>
-            <switch ng-model="edit.switch" class="small">Edit</switch>
-            edit_mode
+            <a href="" ng-click="edit.switch = true" ng-if="!edit.switch">
+              <i class="fa fa-toggle-off fa-lg fa-fw"></i>
+              edit-off
+            </a>
+            <a href="" ng-click="edit.switch = false" ng-if="edit.switch">
+              <i class="fa fa-toggle-on fa-lg fa-fw"></i>
+              edit-on
+            </a>
           </li>
           </ul>
 

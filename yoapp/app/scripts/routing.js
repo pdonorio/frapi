@@ -50,23 +50,23 @@ myApp
       },
     })
     // LOGGED Child routes (sub view, nested inside parent)
-      .state('logged.home', {
-        url: "/home",
+      .state('logged.main', {
+        url: "/main",
         views: { "contain": { templateUrl: "views/main.html", }, },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          $rootScope.$emit('rootScope:emit', 'fooon');
+          //$rootScope.$emit('rootScope:emit', 'fooon');
         },
       })
       .state('logged.submission', {
-        url: "/add",
+        url: "/add/{editId:[0-9\-a-z]*}",
         views: { "contain": {
           templateUrl: "views/submit.html",
           controller: 'SubmissionController',
         }, },
         onEnter: function($rootScope) {
             $rootScope.$emit('rootScope:emit', 'gbgoff');
-            $rootScope.$emit('rootScope:emit', 'fooon');
+            //$rootScope.$emit('rootScope:emit', 'fooon');
         },
 
       })
@@ -78,7 +78,7 @@ myApp
         }, },
         onEnter: function($rootScope) {
             $rootScope.$emit('rootScope:emit', 'gbgon');
-            $rootScope.$emit('rootScope:emit', 'foooff');
+            //$rootScope.$emit('rootScope:emit', 'foooff');
         },
       })
       .state('logged.view', {
@@ -91,7 +91,7 @@ myApp
             // send broadcast signal to who is listening:
             // i want the grey background (gbg)
             $rootScope.$emit('rootScope:emit', 'gbgon');
-            $rootScope.$emit('rootScope:emit', 'foooff');
+            //$rootScope.$emit('rootScope:emit', 'foooff');
         },
       })
       .state('logged.about', {
@@ -102,7 +102,7 @@ myApp
         }, },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          $rootScope.$emit('rootScope:emit', 'fooon');
+          //$rootScope.$emit('rootScope:emit', 'fooon');
         },
       })
 // Once Logged
