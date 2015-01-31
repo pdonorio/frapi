@@ -1,36 +1,47 @@
 
 <div id="navbar-custom" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header"><a class="navbar-brand" href="#">{{projectName}}</a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-            </button>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">{{projectName}}</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
         </div>
         <div id='navbar' class="collapse navbar-collapse navbar-menubuilder">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Menu buttons -->
-                <li ng-repeat='el in menu' ng-class="{'active': el.active}">
-                  <a ui-sref='{{el.link}}'>
-                    {{el.name | ucFirst}}
+
+          <!-- Edit MODE button / ONLY FOR ADMIN! -->
+          <ul class="nav navbar-nav navbar-left">
+          <li>
+            <switch ng-model="edit.switch" class="small">Edit</switch>
+            edit_mode
+          </li>
+          </ul>
+
+          <!-- Main menu -->
+          <ul class="nav navbar-nav navbar-right">
+              <!-- Menu buttons -->
+              <li ng-repeat='el in menu' ng-class="{'active': el.active}">
+                <a ui-sref='{{el.link}}'>
+                  {{el.name | ucFirst}}
+                </a>
+              </li>
+
+              <!-- Profile button -->
+              <li class="dropdown" dropdown>
+
+                  <a href dropdown-toggle>
+                    Profile <span class="caret"></span>
                   </a>
-                </li>
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li role="presentation" class="dropdown-header"> Role: <b>adminer</b> </li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action <span class="label label-default">new</span></a></li>
+                    <li><a href="#">Messages  <span class="badge alert-info">4</span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Log out</a></li>
+                  </ul>
 
-                <!-- Profile button -->
-                <li class="dropdown" dropdown>
-
-                    <a href dropdown-toggle>
-                      Profile <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                      <li role="presentation" class="dropdown-header"> Role: <b>adminer</b> </li>
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action <span class="label label-default">new</span></a></li>
-                      <li><a href="#">Messages  <span class="badge alert-info">4</span></a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Log out</a></li>
-                    </ul>
-
-                </li>
-            </ul>
+              </li>
+          </ul>
         </div>
     </div>
 </div>

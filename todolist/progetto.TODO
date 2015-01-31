@@ -19,12 +19,13 @@ Feb ALPHA:
       ✔ Colors and topbar style @done (15-01-31 12:07)
         ✔ http://bootstrapdesigntools.com/tools/bootstrap-menu-builder/ @done (15-01-31 12:07)
       ☐ Home page with words, search, add cards @current
-        ☐ Remove footer
-          ☐ Edit button inside topbar
+        ✔ Search compressed when init page, open on search focus @done (15-01-31 15:25)
+        ✔ Remove footer @done (15-01-31 15:41)
+          ✔ Edit button inside topbar @done (15-01-31 15:41)
           ☐ also remove ui-switch and use fontawesome instead
-        ☐ Add button disappears
-          ☐ Draft section for profile
-        ☐ Search is just the bar, shows results when you focus
+          ☐ Icons inside the topbar buttons
+        ✔ Add button disappears @done (15-01-31 15:27)
+          ☐ Draft section inside profile @cool
         ☐ Main text up
       ☐ Move $rootScope.menu inside resolve?
       ☐ ui resolve for API login
