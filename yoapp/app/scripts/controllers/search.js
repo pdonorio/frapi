@@ -11,7 +11,6 @@
 myApp
  .controller('ViewController', function ($rootScope, $scope, DataResource, perpageDefault, currentpageDefault)
 {
-
     // Init: Html scope data
     $scope.datacount = 0;
     $scope.from = 0;

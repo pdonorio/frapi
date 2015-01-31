@@ -1,4 +1,4 @@
-<div ng-controller="ViewController" class="container">
+<div class="container" ng-init="mytable = {show:false}">
 
   <div class="panel panel-default shad">
     <div class="panel-heading">
@@ -21,6 +21,7 @@
           <input type="text" placeholder="Cerca" class="form-control"
             typeahead="element for element in typeahead.data | filter:$viewValue | limitTo:9"
             typeahead-wait-ms="0" typeahead-on-select="onTypeaheadSelect($item, $model, $label)"
+            ng-focus="mytable.show = true"
             ng-value="{{selected}}" ng-model="selected" ng-change="search()">
           <span class="input-group-btn">
             <button type="button" class="btn btn-info" ng-click="search()">
@@ -40,70 +41,75 @@
 
     </div>
 
-    <!-- data table -->
-    <div ng-show='data.length > 0'>
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th ng-repeat="head in headers">{{head}}</th>
-          </tr>
-        </thead>
+    <div ng-show='mytable.show'>
 
-        <tbody>
-          <tr ng-repeat="row in data track by row.id">
-            <td>{{row.value}}</td>
-            <td>{{row.key}}</td>
-            <!--buttons-->
-            <td>
-              <button type="button" class="btn btn-xs btn-default">
-                  <a href="#/app/view/{{row.id}}">
-                    <i class="fa fa-eye fa-fix"> </i>
-                  </a>
-              </button>
-              <button type="button" class="btn btn-xs btn-primary">
-                <i class="fa fa-edit fa-fix"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- data table -->
+      <div ng-show='data.length > 0'>
 
-    </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th ng-repeat="head in headers">{{head}}</th>
+            </tr>
+          </thead>
 
-    <hr>
-    <div>
-        <!-- LOADING -->
-        <div id='spinner' ng-hide='data.length >= 0'>
-          Loading <i class="fa fa-refresh fa-spin"></i>
-        </div>
+          <tbody>
+            <tr ng-repeat="row in data track by row.id">
+              <td>{{row.value}}</td>
+              <td>{{row.key}}</td>
+              <!--buttons-->
+              <td>
+                <button type="button" class="btn btn-xs btn-default">
+                    <a href="#/app/view/{{row.id}}">
+                      <i class="fa fa-eye fa-fix"> </i>
+                    </a>
+                </button>
+                <button type="button" class="btn btn-xs btn-primary">
+                  <i class="fa fa-edit fa-fix"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-        <!-- NO DATA -->
-        <div id='nodata' ng-show='data.length == 0'> Nessun risultato. </div>
+      </div>
 
-        <!-- DATA stats and paging -->
-        <div ng-show='data.length >= 0'>
-          <div class="row">
-            <div class="col-md-6 col-xs-6">
-              <span  class="label label-default"> Pagina corrente:</span> &nbsp;
-             <input type="text" ng-value="{{perpage}}" size=3
-              ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
-              <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
-             <input type="text" ng-value="{{currentpage}}" size=3
-              ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
-            </div>
-            <div class="col-md-6 col-xs-6">
-              <span  class="label label-primary">
-                Elementi da {{from}} a {{from + data.length - 1}}
-              </span>
-              &nbsp;
-              <span  class="label label-info">
-                Totale: {{datacount}}
-              </span>
+      <hr>
+      <div>
+          <!-- LOADING -->
+          <div id='spinner' ng-hide='data.length >= 0'>
+            Loading <i class="fa fa-refresh fa-spin"></i>
+          </div>
+
+          <!-- NO DATA -->
+          <div id='nodata' ng-show='data.length == 0'> Nessun risultato. </div>
+
+          <!-- DATA stats and paging -->
+          <div ng-show='data.length >= 0'>
+            <div class="row">
+              <div class="col-md-6 col-xs-6">
+                <span  class="label label-default"> Pagina corrente:</span> &nbsp;
+               <input type="text" ng-value="{{perpage}}" size=3
+                ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+                <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
+               <input type="text" ng-value="{{currentpage}}" size=3
+                ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
+              </div>
+              <div class="col-md-6 col-xs-6">
+                <span  class="label label-primary">
+                  Elementi da {{from}} a {{from + data.length - 1}}
+                </span>
+                &nbsp;
+                <span  class="label label-info">
+                  Totale: {{datacount}}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
+
+    </div> <!--results hiding-->
 
    </div> <!--panel body-->
   </div> <!-- panel -->
