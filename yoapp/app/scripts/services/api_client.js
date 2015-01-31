@@ -46,7 +46,7 @@ myApp.factory('DataResource', function(RestAPI, apiTimeout) {
             return data;
           }, function(object) { //Error (timeout?)
             console.log("Factory/Service api call Error: GET");
-            console.log(object);
+            //console.log(object);
             return {};
           }
         );

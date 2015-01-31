@@ -1,82 +1,111 @@
 <div ng-controller="ViewController" class="container">
 
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h5>Testing rethinkdb database</h5>
-      </div>
-      <div class="panel-body">
+  <div class="panel panel-default shad">
+    <div class="panel-heading">
+      <h3>Ricerca l'archivio</h3>
+    </div>
 
+    <div class="panel-body">
+     <div ng-show='data.length > 0'>
 
-      <div class="container">
-        <form role="form" ng-submit="search()">
+      <!-- FORM -->
+      <form role="form" ng-submit="search()">
+
+        <!-- SEARCH BAR -->
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">
+              <i class="fa fa-plus-square-o fa-1x"></i>
+            </button>
+          </span>
+          <input type="text" placeholder="Cerca" class="form-control"
+            typeahead="element for element in typeahead.data | filter:$viewValue | limitTo:9"
+            typeahead-wait-ms="0" typeahead-on-select="onTypeaheadSelect($item, $model, $label)"
+            ng-value="{{selected}}" ng-model="selected" ng-change="search()">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-info" ng-click="search()">
+              <i class="fa fa-search fa-1x"></i>
+            </button>
+          </span>
+        </div>
+
+        <!-- ADVANCED SEARCH -->
+        <div collapse="isCollapsed">
+          <div class="well well-lg">
+            Advanced search options
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+    <!-- data table -->
+    <div ng-show='data.length > 0'>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th ng-repeat="head in headers">{{head}}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="row in data track by row.id">
+            <td>{{row.value}}</td>
+            <td>{{row.key}}</td>
+            <!--buttons-->
+            <td>
+              <button type="button" class="btn btn-xs btn-default">
+                  <a href="#/app/view/{{row.id}}">
+                    <i class="fa fa-eye fa-fix"> </i>
+                  </a>
+              </button>
+              <button type="button" class="btn btn-xs btn-primary">
+                <i class="fa fa-edit fa-fix"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <hr>
+    <div>
+        <!-- LOADING -->
+        <div id='spinner' ng-hide='data.length >= 0'>
+          Loading <i class="fa fa-refresh fa-spin"></i>
+        </div>
+
+        <!-- NO DATA -->
+        <div id='nodata' ng-show='data.length == 0'> Nessun risultato. </div>
+
+        <!-- DATA stats and paging -->
+        <div ng-show='data.length >= 0'>
           <div class="row">
-            <div class="col-xs-10 col-md-10">
-              <div class="input-group">
-                <input type="text" placeholder="Fuzzy search (try it!)"
-                  class="form-control"
-                  ng-value="{{fuzzy}}" ng-model="fuzzy" ng-change="search(fuzzy)">
-                <span class="input-group-btn">
-                  <input type="submit" class="btn btn-info" value="Search">
-                </span>
-              </div>
+            <div class="col-md-6 col-xs-6">
+              <span  class="label label-default"> Pagina corrente:</span> &nbsp;
+             <input type="text" ng-value="{{perpage}}" size=3
+              ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+              <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
+             <input type="text" ng-value="{{currentpage}}" size=3
+              ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <span  class="label label-primary">
+                Elementi da {{from}} a {{from + data.length - 1}}
+              </span>
+              &nbsp;
+              <span  class="label label-info">
+                Totale: {{datacount}}
+              </span>
             </div>
           </div>
-        </form>
-        <br>
-      </div>
+        </div>
+    </div>
 
-      <div class="container">
+   </div> <!--panel body-->
+  </div> <!-- panel -->
 
-          <!-- LOADING -->
-          <div id='spinner' ng-hide='data.length >= 0'>
-            Loading <i class="fa fa-refresh fa-spin"></i>
-          </div>
-
-          <!-- NO DATA -->
-          <div id='nodata' ng-show='data.length == 0'> No data found. </div>
-
-          <!-- DATA stats and paging -->
-          <div ng-show='data.length > 0'>
-            <div class="row">
-              <div class="col-md-6 col-xs-6">
-               Current page:
-               <input type="text" ng-value="{{perpage}}" size=3
-                ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
-               Elements per page:
-               <input type="text" ng-value="{{currentpage}}" size=3
-                ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
-              </div>
-              <div class="col-md-6 col-xs-6">
-                <span  class="label label-default">
-                  Viewing
-                  from {{from}}
-                  to {{from + data.length - 1}}
-                  of {{datacount}} elements
-                </span>
-              </div>
-            </div>
-          </div>
-      </div>
-
-      <!-- data table -->
-      <div ng-show='data.length > 0'>
-
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th ng-repeat="head in headers">{{head}}</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr ng-repeat="row in data track by row.id">
-              <td>{{row.id}}</td>
-              <td>{{row.value}}</td>
-              <td>{{row.key}}</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
 </div>
-

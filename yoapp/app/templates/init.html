@@ -1,0 +1,101 @@
+
+<div class='container' ng-if="!init.startup">
+
+    <!-- LOADING -->
+    <div class="row" ng-if='init.status == 0'>
+     <div class='col-md-3 col-xs-3'></div>
+     <div class='col-md-6 col-xs-6'>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-9 col-xs-9">
+                    <h4> Launching web app </h4>
+                </div>
+                <div class="col-md-3 col-xs-3">
+                    <i class="fa fa-cog fa-spin fa-3x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body text-center">
+            <h5> Now loading... </h5>
+        </div>
+        <hr>
+        <div class="panel-body text-center">
+          <small><em>Progress</em></small>
+          <progressbar class="progress-striped active" value="progress.value" type="info">
+            {{progress.value}}%
+          </progressbar>
+        </div>
+        <div class="panel-body text-right">
+            <i>Please wait</i>
+        </div>
+      </div>
+     </div>
+     <div class='col-md-3 col-xs-3'></div>
+    </div>
+
+    <!-- Warning -->
+    <div class="row" ng-if='init.status == 2'>
+     <div class='col-md-3 col-xs-3'></div>
+     <div class='col-md-6 col-xs-6'>
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-9 col-xs-9">
+                    <h3> Loading </h3>
+                </div>
+                <div class="col-md-3 col-xs-3">
+                    <i class="fa fa-cog fa-spin fa-3x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body text-center">
+            <h5> This is taking longer than usual. </h5>
+            <hr>
+            <small><em>Connection slow</em></small>
+            <progressbar class="progress-striped active" value="progress.value" type="warning">
+              {{progress.value}}%
+            </progressbar>
+            <br>
+            <i>Please make sure <br>
+            your internet connection is available,<br>
+            or wait a few seconds more.</i>
+        </div>
+      </div>
+     </div>
+     <div class='col-md-3 col-xs-3'></div>
+    </div>
+
+    <!-- ERROR -->
+    <div class="row" ng-if='init.status == 1'>
+     <div class='col-md-3 col-xs-3'></div>
+     <div class='col-md-6 col-xs-6'>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <i class="fa fa-exclamation-triangle fa-4x"></i>
+                </div>
+                <div class="col-md-9 col-xs-9">
+                    <h3> An error occurred </h3>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body text-center">
+            <h5> Failed to connect to remote resources. </h5>
+            <hr>
+            <small><em>Stopped</em></small>
+            <progressbar class="progress-striped" value="progress.value" type="danger">
+              {{progress.value}}%
+            </progressbar>
+            <br>
+            <i>Please make sure <br>
+            your internet connection is available,<br>
+            then try again.</i>
+        </div>
+      </div>
+     </div>
+     <div class='col-md-3 col-xs-3'></div>
+    </div>
+
+</div>

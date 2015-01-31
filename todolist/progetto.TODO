@@ -1,0 +1,67 @@
+
+--- ✄ -----------------------
+Feb:
+
+  ☐ Going HOME
+    ✔ Routing & states @done (15-01-29 06:59)
+    ✔ ui router? @done (15-01-29 06:59)
+      ✔ Remove old static directory @done (15-01-29 07:33)
+      ✔ Notification/Welcome page with french text (default) @done (15-01-29 07:24)
+        ☐ waiting for french text
+      ✔ Sub div view with parameter inside url @current @done (15-01-31 10:09)
+      ✔ Login page (if button) @done (15-01-29 07:32)
+        ✘ https://www.linkedin.com/uas/login?goback=&trk=hb_signin @cancelled (15-01-29 07:32)
+        ☐ Study best angular login form example
+      ✔ Remove the /app subdirectory in docker server @done (15-01-29 08:00)
+      ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
+      ✔ Separate file for routing @done (15-01-30 17:56)
+      ✔ Problem of first button active at load time (not working with stateChange function) @done (15-01-30 19:35)
+      ☐ Home page with words, search, add cards @current
+      ☐ Move $rootScope.menu inside resolve?
+      ☐ ui resolve for API login
+        ☐ add login checker in cron/repeat?
+
+  ☐ Mixed
+    ☐ FIX FOOTER
+      ☐ Edit button inside topbar
+      ☐ also remove ui-switch and use fontawesome instead
+    ☐ Language
+    ✔ Jquery: Get rid @done (15-01-30 19:34)
+      ✔ check dropdowns @done (15-01-30 19:34)
+      ✔ tooltip @done (15-01-30 20:14)
+      ☐ popover http://angular-ui.github.io/bootstrap/#/popover
+      ☐ modal http://angular-ui.github.io/bootstrap/#/modal
+
+  ☐ Upload and transcriptions
+    ☐ Create a new upload folder for any new draft
+    ☐ Zoomify image via API
+    ☐ share folder of uploaded files for thumbnails
+    ☐ Last step is transciptions
+      ☐ list the images
+      ☐ associate one or more transcriptions
+      ☐ choose page
+
+  ☐ Update RethinkDB on docker image? what the hell?
+  ☐ DB backup
+    ☐ via docker container launch every hour/day
+      ☐ volumes from
+      ☐ checks
+
+  ☐ Steps
+    ☐ Admin add, edit, remove
+    ☐ Rdb backup every hour, then @send
+    ☐ API fix
+      ☐ create table if not exist (at search time?)
+
+  ☐ Admin content: use 'page' db attribute for different pages
+    ☐ Html editor
+    ☐ Edit switch only if page element counter > 0
+      ☐ Sanitize content (e.g. open tags)
+
+  ☐ Search bar history when focus (cookie)?
+
+--- ✄ -----------------------
+Mar:
+ ☐ Advanced search
+ ☐ Profiles
+ ☐ Testing

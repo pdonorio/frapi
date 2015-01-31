@@ -65,8 +65,9 @@ web:
     build: ./docker/gui
     command: nginx
     volumes:
-        - ./staticroot:/var/www/html
-        - ./yoapp/app:/var/www/html/app
+        #- ./staticroot:/var/www/html
+        - ./yoapp/app:/var/www/html
+        #- ./yoapp/app:/var/www/html/app
         - ./yoapp/dist:/var/www/html/static
     volumes_from:
         - up

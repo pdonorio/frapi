@@ -48,7 +48,6 @@ myApp
             if (status > AppConfig.messageStatus.loading) {
                 var time = NotificationData.getNotificationTime();
 
-                //should this be optional?
                 var timeout = $timeout(function() {
                         //only updating default status to make
                         //message disappear

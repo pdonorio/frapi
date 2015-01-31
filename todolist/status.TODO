@@ -5,23 +5,45 @@ RiCORD.a - prototyping:
   ✔ Droplet digitalocean @done (15-01-11 12:44)
   ✔ Submission generic with steps @done (15-01-16 17:41)
     ✔ Uploader @done (15-01-18 14:56)
-    ☐ keep track with fontawesome list icons
-  ☐ A fixed div if first api call/init fails to signal error/maintenance @errorcheck
-    ☐ "Loading" at the very beginning of beautiful webapp?
-  ☐ Search with search bar
-    ☐ Infinite scrolling (with pages block on last search)  @important
-    ☐ Off canvas extra search (just the template) @important
-      ☐ fuzzy?
-  ☐ Document view page
-  ☐ CSS & Favico
-    ☐ Topbar for mobile?
-    ☐ Init/Login page
-      ☐ https://www.linkedin.com/uas/login?goback=&trk=hb_signin
-  ☐ Admin content: use 'page' db attribute for different pages
-    ☐ Html editor
-      ☐ Sanitize content (e.g. open tags)
-    ☐ Use counter to make edit switch disappear inside footer if no editable content
+  ✔ A fixed div if first api call/init fails to signal error/maintenance @errorcheck @done (15-01-22 06:51)
+  ✔ Document view page @done (15-01-22 20:41)
+    ✔ layout bg changed via $rootscope broadcast @done (15-01-22 22:00)
+    ✔ Define a layout for images list and data list @done (15-01-23 09:06)
   ☐ Some serious profile/user Menu
+
+Prototype:
+  ✔ thumbnail column @done (15-01-23 09:37)
+  ✔ footer on/off @done (15-01-23 11:19)
+  ✔ Favicon http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh @done (15-01-23 12:37)
+    ✔ generate: http://favico.com/ @done (15-01-23 12:37)
+  ☐ Search bar working
+    ☐ Quick search
+    ✔ typeahead native @done (15-01-23 14:41)
+      ✔ install bootstrap ui angular @done (15-01-23 14:42)
+        ✔ via bower...? @done (15-01-25 20:34)
+      ✔ http://angular-ui.github.io/bootstrap/#/typeahead @done (15-01-23 14:41)
+    ✔ Advanced search menu @done (15-01-25 10:06)
+      ✔ Carousel?  http://angular-ui.github.io/bootstrap/#/collapse @done (15-01-25 10:06)
+      ✔ Init progress bar via angular-ui @done (15-01-25 22:15)
+      ☐ Focus???
+        ☐ http://stackoverflow.com/a/23920706
+      ✘ Off canvas extra search (just the template) @cancelled (15-01-25 10:06)
+        ✘ http://codepen.io/gumetis/pen/tjxgI @cancelled (15-01-25 10:06)
+        ✘ http://jasny.github.io/bootstrap/getting-started/ @cancelled (15-01-23 14:44)
+    ☐ Modern paging
+      ☐ Infinite scrolling (with pages block on last search)  @important
+  ☐ Topbar for mobile
+  ☐ Document view click: page zoom with side text
+    ☐ Zoomify integration
+      ✔ Add directory @done (15-01-23 11:47)
+      ☐ Check php actions in old project
+      ☐ docker installations of libs
+  ☐ Database (json) backup daily
+  ☐ A better damn footer
+  ☐ INIT html check: javascript necessary, warning?
+    ☐ Block page reloading
+  ☐ 404 page not found
+      ☐ http://stackoverflow.com/questions/16677528/location-switching-between-html5-and-hashbang-mode-link-rewriting
 
 Finishing SUB:
   ✔ Notification: a separate concept @done (15-01-21 07:45)
@@ -41,26 +63,16 @@ Finishing SUB:
       ✔ set all the necessary actions @done (15-01-21 07:45)
         ✔ set better timer with parameter... @done (15-01-21 07:45)
     ✔ editable @done (15-01-19 17:31)
-
-  ☐ PLEASE DO PULL REQUEST!!
-
-  ☐ Some angular understanding @cool @study
-    ☐ Controller as
-      ☐ http://toddmotto.com/digging-into-angulars-controller-as-syntax/
-      ☐ access any nested controller
-    ☐ Difference in ng-if and ng-show??
-    ☐ Nested directives
-      ☐ producing many directives from a root directive
-      ☐ http://www.jvandemo.com/the-nitty-gritty-of-compile-and-link-functions-inside-angularjs-directives/
-    ☐ Understand difference: Link and Controller inside directive!!!! @HELP
-      ☐ http://stackoverflow.com/a/12570008
-      ☐ link compile?
-      ☐ What is $watch? Where should be used?
-      ☐ Alternative? service: $rootScope.$broadcast and controller: $scope.$on
-    ☐ A serious approach: a new app to 'house' a different logic
-      ☐ http://stackoverflow.com/a/14884646
-
+  ✔ Tooltips @done (15-01-21 16:43)
+    ✔ http://www.bootply.com/cskelly/H4Zii7Mb6l @done (15-01-21 16:43)
+  ☐ Make panel color appear based on status
+    ☐ info = empty
+    ☐ warning = not saved? problem
+    ☐ error = not valid
+    ☐ success = compiled
+  ☐ Uploader example on disabling buttons?
   ☐ push and slice array via functions/buttons for steps
+  ☐ steps LISTING: keep track with fontawesome list icons
   ☐ check permission on writing in the shared directory upload
   ☐ nvFileDrop. Set up a drop area. Usually applied to the entire document
     ☐ Only images?
@@ -76,10 +88,9 @@ Finishing SUB:
   ☐ Draft to published via API call
     ☐ (it happens server side)
   ☐ Better notification
-    ☐ toaster?
-      ☐ http://plnkr.co/edit/mVR4P4?p=preview
+    ✘ toaster? http://plnkr.co/edit/mVR4P4?p=preview @cancelled (15-01-21 16:44)
     ☐ Can close
-    ☐ Optional timeout
+    ✔ Optional timeout @done (15-01-21 08:33)
 
 Completed:
   HOW TO: new resource (api python):
@@ -279,23 +290,6 @@ Completed:
                 ✔ create costants for different values @done (15-01-18 12:20)
                 ✔ bring with css div notification to front  @done (15-01-18 11:19)
 
-API:
-
- ☐ File API with logging...
- ☐ A different content per page (db column)
- ☐ Api calling via @poller
-   ☐ Check until status is good with timeout
-   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
- ☐ use STEPS with accordion?
-   ☐ http://angular-ui.github.io/bootstrap/#/accordion
- ☐ Understanding INJECTION @important
-   ☐ https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
- ☐ Noty and jquery
-   ☐ DOM manipulation should be done in a directive (not a controller)
-   ☐ http://stackoverflow.com/a/14005010
- ☐ Python API client REQUEST @supercool
-   ☐ http://www.python-requests.org/en/latest/
-
 AUTHENTICATION:
    ☐ Login
      ☐ Frontend page (quick search and login)
@@ -305,6 +299,15 @@ AUTHENTICATION:
      ☐ forgot password
   ☐ SET api url to version, like:
     ☐ http://api.example.com/api/v1.0
+
+API:
+ ☐ A different content per page (db column)
+ ☐ Api calling via @poller
+   ☐ Check until status is good with timeout
+   ☐ https://realpython.com/blog/python/flask-by-example-integrating-flask-and-angularjs/
+ ☐ File API with logging...
+ ☐ Python API client REQUEST @supercool
+   ☐ http://www.python-requests.org/en/latest/
 
  ANGULARJS datatable like:
    ✔ pagination @done (14-11-29 19:56)
@@ -316,6 +319,8 @@ AUTHENTICATION:
      ✔ call with parameters, perpage, currentpage @done (14-12-05 13:18)
      ✔ map parameters to html DOM via scope @done (14-12-05 16:54)
      ✔ ng-class @done (14-12-22 17:09)
+   ☐ Understanding INJECTION @important
+     ☐ https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
    ☐ Study angular datatables
    ☐ simple search all fields? @important
      ☐ Initial focus to search bar
@@ -381,14 +386,28 @@ OPTIMIZIATION:
    ☐ Use local storage
      ☐ http://yeoman.io/codelab/local-storage.html
      ☐ COOKIES!!
- ☐ Init progress bar
-   ☐ Home page separation from application
+ ☐ Home page separation from application
    ☐ stay signed in
  ☐ Web Accessibility Checker
    ☐ http://achecker.ca/checker/index.php
    ☐ ngAria
      ☐ https://docs.angularjs.org/guide/accessibility
  ☐ UNDERSCORE! http://underscorejs.org/ @cool
+☐ Some angular understanding @study
+  ☐ Controller as
+    ☐ http://toddmotto.com/digging-into-angulars-controller-as-syntax/
+    ☐ access any nested controller
+  ☐ Difference in ng-if and ng-show??
+  ☐ Nested directives
+    ☐ producing many directives from a root directive
+    ☐ http://www.jvandemo.com/the-nitty-gritty-of-compile-and-link-functions-inside-angularjs-directives/
+  ☐ Understand difference: Link and Controller inside directive!!!! @HELP
+    ☐ http://stackoverflow.com/a/12570008
+    ☐ link compile?
+    ☐ What is $watch? Where should be used?
+    ☐ Alternative? service: $rootScope.$broadcast and controller: $scope.$on
+  ☐ A serious approach: a new app to 'house' a different logic
+    ☐ http://stackoverflow.com/a/14884646
 
 OFFLINE APP:
   ☐ Offline web applications - REC

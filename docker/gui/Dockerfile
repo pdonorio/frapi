@@ -28,7 +28,7 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
 
 # Define working directory.
 #WORKDIR /etc/nginx
-RUN ln -s /opt/app /var/www/html/app
+#RUN ln -s /opt/app /var/www/html/app
 
 # Expose ports.
 EXPOSE 80

@@ -30,12 +30,12 @@ resource="webcontent"
 # exit 1
 
 #############################################
-#PAGING
-# echo "***\nPaging"
-# values="perpage=7&currentpage=1"
-# key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
-# echo "received '$key'"
-# exit
+#PAGING and simple test
+echo "***\nPaging"
+values="perpage=7&currentpage=1"
+key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
+echo "received '$key'"
+exit
 
 #############################################
 #ADD a new element

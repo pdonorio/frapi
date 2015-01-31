@@ -1,0 +1,22 @@
+Zoomify Image Viewer Source
+
+This folder contains the ZoomifyImageViewer.js source file in full editable form. 
+
+The version typically used on a production (non-development) web site is 'minified' - that is, it has been 'compiled' to remove all white space, comments, unused functions (if any), and other text that is not required for browsers to run the JavaScript. These elements can be helpful when editing the JavaScript but are unnecessary when using it on a website. 
+
+Minifying typically reduces the size of the JS file significantly - without changing how it functions.  In the case of ZoomifyImageViewer.js the size can be reduced by more than half, from over 200k in editable form to well under 100k in minified form.
+
+Zoomify uses UglifyJS to minify the Zoomify Image Viewer.  UglifyJS can be found here:
+http://www.marijnhaverbeke.nl/uglifyjs
+
+Other popular minification tools exist which produce results that vary in terms of minification speed as well as size of resulting code, and safety (possibility of breaking code logic):
+	Google Closure Compiler: http://closure-compiler.appspot.com/home
+	JSMin from Douglas Crockford: http://www.crockford.com/javascript/jsmin.html
+	YUI Compressor from Yahoo: http://developer.yahoo.com/yui/compressor/
+	Packer from Dean Edwards: http://dean.edwards.name/packer/
+
+Minifying can also provide some small measure of protection for source code by making it less convenient to download and use without purchasing a license.  While unscrupulous web developers can work around this to convert the minified code to an editable form, they cannot do so without intentionally violating the copyright and use rights retained by Zoomify.  For this reason, please always use the minified form of the ZoomifyImageViewer.js file on your production web sites, and if you customize the full source version in this folder to suit your own needs, please minify it prior to using it on your web site.  Your effort helps us preserve the value of the product you have purchased and thereby assists us in continued development and support of Zoomify HTML5.
+
+Please note: Zoomify also 'obfuscates' the ZoomifyImageViewer.js file prior to minifying it.  This means that Zoomify performs batch search and replace operations on function and variable names in the JavaScript code in order to provide additional protection of the value that our customers pay for. For this reason, your minified ZoomifyImageViewer.js file will look different than the obfuscated and minified ZoomifyImageViewer.js file included in the product.
+
+
