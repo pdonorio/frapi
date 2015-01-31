@@ -53,6 +53,10 @@ myApp
       .state('logged.home', {
         url: "/home",
         views: { "contain": { templateUrl: "views/main.html", }, },
+        onEnter: function($rootScope) {
+          $rootScope.$emit('rootScope:emit', 'gbgoff');
+          $rootScope.$emit('rootScope:emit', 'fooon');
+        },
       })
       .state('logged.submission', {
         url: "/add",
@@ -60,6 +64,11 @@ myApp
           templateUrl: "views/submit.html",
           controller: 'SubmissionController',
         }, },
+        onEnter: function($rootScope) {
+            $rootScope.$emit('rootScope:emit', 'gbgoff');
+            $rootScope.$emit('rootScope:emit', 'fooon');
+        },
+
       })
       .state('logged.search', {
         url: "/search",
@@ -67,6 +76,23 @@ myApp
           templateUrl: "views/datatable.html",
           controller: 'ViewController',
         }, },
+        onEnter: function($rootScope) {
+            $rootScope.$emit('rootScope:emit', 'gbgon');
+            $rootScope.$emit('rootScope:emit', 'foooff');
+        },
+      })
+      .state('logged.view', {
+        url: "/view/{viewId:[0-9\-a-z]+}",
+        views: { "contain": {
+          templateUrl: 'views/viewer.html',
+          controller: 'ViewerController',
+        }, },
+        onEnter: function($rootScope) {
+            // send broadcast signal to who is listening:
+            // i want the grey background (gbg)
+            $rootScope.$emit('rootScope:emit', 'gbgon');
+            $rootScope.$emit('rootScope:emit', 'foooff');
+        },
       })
       .state('logged.about', {
         url: "/about",
@@ -74,6 +100,10 @@ myApp
           templateUrl: "views/change.html",
           controller: 'SomeController',
         }, },
+        onEnter: function($rootScope) {
+          $rootScope.$emit('rootScope:emit', 'gbgoff');
+          $rootScope.$emit('rootScope:emit', 'fooon');
+        },
       })
 // Once Logged
 // Once Logged
@@ -92,15 +122,5 @@ myApp
 
 });
 
-/*
-      .when('/view/:viewid', {
-        templateUrl: 'views/viewer.html',
-        controller: 'ViewerController',
-      })
-
-  })
-
-*/
-      // enable html5Mode for pushstate ('#'-less URLs)
-      //$locationProvider.html5Mode(true);
-
+// enable html5Mode for pushstate ('#'-less URLs)
+//$locationProvider.html5Mode(true);

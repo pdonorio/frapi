@@ -11,10 +11,6 @@
 myApp
  .controller('ViewController', function ($rootScope, $scope, DataResource, perpageDefault, currentpageDefault)
 {
-    $scope.isCollapsed = true;
-
-    $rootScope.$emit('rootScope:emit', 'gbgon');
-    $rootScope.$emit('rootScope:emit', 'foooff');
 
     // Init: Html scope data
     $scope.datacount = 0;
@@ -25,6 +21,9 @@ myApp
       "Chiave", "Valore", "Azioni" ];
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
+
+    // Closed advanced search
+    $scope.isCollapsed = true;
 
   /* ************************************
   ***************************************

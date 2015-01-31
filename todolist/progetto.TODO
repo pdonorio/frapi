@@ -8,6 +8,7 @@ Feb:
       ✔ Remove old static directory @done (15-01-29 07:33)
       ✔ Notification/Welcome page with french text (default) @done (15-01-29 07:24)
         ☐ waiting for french text
+      ✔ Sub div view with parameter inside url @current @done (15-01-31 10:09)
       ✔ Login page (if button) @done (15-01-29 07:32)
         ✘ https://www.linkedin.com/uas/login?goback=&trk=hb_signin @cancelled (15-01-29 07:32)
         ☐ Study best angular login form example
@@ -15,8 +16,8 @@ Feb:
       ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
       ✔ Separate file for routing @done (15-01-30 17:56)
       ✔ Problem of first button active at load time (not working with stateChange function) @done (15-01-30 19:35)
+      ☐ Home page with words, search, add cards @current
       ☐ Move $rootScope.menu inside resolve?
-      ☐ Home page with words, search, add cards
       ☐ ui resolve for API login
         ☐ add login checker in cron/repeat?
 
@@ -28,7 +29,8 @@ Feb:
     ✔ Jquery: Get rid @done (15-01-30 19:34)
       ✔ check dropdowns @done (15-01-30 19:34)
       ✔ tooltip @done (15-01-30 20:14)
-      ☐ popover
+      ☐ popover http://angular-ui.github.io/bootstrap/#/popover
+      ☐ modal http://angular-ui.github.io/bootstrap/#/modal
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

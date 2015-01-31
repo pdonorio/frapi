@@ -59,9 +59,6 @@ var myApp = angular.module('yoApp',
   .controller('SomeController', ['$rootScope', '$scope','NotificationData',
     function($rootScope, $scope, NotificationData){
 
-      $rootScope.$emit('rootScope:emit', 'gbgoff');
-      $rootScope.$emit('rootScope:emit', 'fooon');
-
       $scope.setNotification = function(s,m) {
         //console.log("Some controller: set notifaction with "+s+","+m);
         NotificationData.setNotification(s,m);

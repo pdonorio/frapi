@@ -8,15 +8,10 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('ViewerController', function ($rootScope, $scope, $routeParams, DataResource) {
-
-    // send broadcast signal to who is listening:
-    // i want the grey background (gbg)
-    $rootScope.$emit('rootScope:emit', 'gbgon');
-    $rootScope.$emit('rootScope:emit', 'foooff');
+  .controller('ViewerController', function ($rootScope, $scope, $stateParams, DataResource) {
 
     $scope.data = {};
-    var id = $routeParams.viewid;
+    var id = $stateParams.viewId;
     $scope.id = id;
 
     // Get the data (as a promise)
@@ -38,4 +33,4 @@ myApp
         }
     );
 
-  });
+});
