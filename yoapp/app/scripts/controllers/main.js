@@ -41,10 +41,10 @@ myApp
     //////////////////////////////////////
     // Build dynamic menu in header
     $rootScope.menu = [
-        {active:true,  link:'logged.main', name:'main'},
+        {active:true,  link:'logged.main', name:'main', icon:'home', },
         //{active:false, link:'logged.submission', name:'add'},
         //{active:false, link:'logged.search', name:'search'},
-        {active:false, link:'logged.about', name:'about'},
+        {active:false, link:'logged.about', name:'about', icon:'info-circle', },
     ];
 
     $rootScope.setActiveMenu = function(current) {

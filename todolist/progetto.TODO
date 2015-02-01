@@ -2,45 +2,41 @@
 --- ✄ -----------------------
 Feb ALPHA:
 
-  ☐ Going HOME
+  ✔ Going HOME @done (15-02-01 17:30)
     ✔ Routing & states @done (15-01-29 06:59)
     ✔ ui router? @done (15-01-29 06:59)
       ✔ Remove old static directory @done (15-01-29 07:33)
       ✔ Notification/Welcome page with french text (default) @done (15-01-29 07:24)
-        ☐ waiting for french text
       ✔ Sub div view with parameter inside url @current @done (15-01-31 10:09)
       ✔ Login page (if button) @done (15-01-29 07:32)
         ✘ https://www.linkedin.com/uas/login?goback=&trk=hb_signin @cancelled (15-01-29 07:32)
-        ☐ Study best angular login form example
       ✔ Remove the /app subdirectory in docker server @done (15-01-29 08:00)
       ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
       ✔ Separate file for routing @done (15-01-30 17:56)
       ✔ Problem of first button active at load time (not working with stateChange function) @done (15-01-30 19:35)
       ✔ Colors and topbar style @done (15-01-31 12:07)
         ✔ http://bootstrapdesigntools.com/tools/bootstrap-menu-builder/ @done (15-01-31 12:07)
-      ☐ Home page with words, search, add cards @current
+      ✔ Home page with words, search, add cards @current @done (15-02-01 17:21)
         ✔ Search compressed when init page, open on search focus @done (15-01-31 15:25)
         ✔ Remove footer @done (15-01-31 15:41)
           ✔ Edit button inside topbar @done (15-01-31 15:41)
           ✔ also remove ui-switch and use fontawesome instead @done (15-01-31 16:01)
-          ☐ Icons inside the topbar buttons
-          ☐ Remix templates and views in one page
+          ✔ Icons inside the topbar buttons @done (15-02-01 17:30)
+          ✔ Remix templates and views in one page @done (15-02-01 17:21)
         ✔ Add button disappears @done (15-01-31 15:27)
           ✔ Add button inside search @done (15-02-01 15:24)
           ✔ Edit sends to add with id @done (15-02-01 16:23)
-          ☐ Draft section inside profile @cool
+      ☐ Welcome
+        ☐ waiting for french text
       ☐ Move $rootScope.menu inside resolve?
-      ☐ ui resolve for API login
-        ☐ add login checker in cron/repeat?
+      ☐ Study best angular login form example
+        ☐ ui resolve for API login
+          ☐ add login checker in cron/repeat?
 
   ☐ Mixed
     ☐ Google analytics
       ☐ only in production mode, via angular variable
-    ✔ Jquery: Get rid @done (15-01-30 19:34)
-      ✔ check dropdowns @done (15-01-30 19:34)
-      ✔ tooltip @done (15-01-30 20:14)
-      ☐ popover http://angular-ui.github.io/bootstrap/#/popover
-      ☐ modal http://angular-ui.github.io/bootstrap/#/modal
+    ☐ Draft section inside profile @cool
     ☐ Language?
     ✔ Update database @done (15-02-01 12:37)
     ☐ Backups?
@@ -48,6 +44,11 @@ Feb ALPHA:
       ☐ rethinkdb dump + restore (via api?)
     ☐ Material update
       ☐ http://codepen.io/zavoloklom/
+    ✔ Jquery: Get rid @done (15-01-30 19:34)
+      ✔ check dropdowns @done (15-01-30 19:34)
+      ✔ tooltip @done (15-01-30 20:14)
+      ☐ popover http://angular-ui.github.io/bootstrap/#/popover
+      ☐ modal http://angular-ui.github.io/bootstrap/#/modal
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

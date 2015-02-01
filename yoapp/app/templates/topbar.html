@@ -13,11 +13,11 @@
           <li>
             <a href="" ng-click="edit.switch = true" ng-if="!edit.switch">
               <i class="fa fa-toggle-off fa-lg fa-fw"></i>
-              edit-off
+              Edit-off
             </a>
             <a href="" ng-click="edit.switch = false" ng-if="edit.switch">
               <i class="fa fa-toggle-on fa-lg fa-fw"></i>
-              edit-on
+              Edit-on
             </a>
           </li>
           </ul>
@@ -27,6 +27,7 @@
               <!-- Menu buttons -->
               <li ng-repeat='el in menu' ng-class="{'active': el.active}">
                 <a ui-sref='{{el.link}}'>
+                  <i class="fa fa-{{el.icon}}"></i>
                   {{el.name | ucFirst}}
                 </a>
               </li>
@@ -35,6 +36,7 @@
               <li class="dropdown" dropdown>
 
                   <a href dropdown-toggle>
+                    <i class="fa fa-user fa-1x"></i>
                     Profile <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-right" role="menu">
