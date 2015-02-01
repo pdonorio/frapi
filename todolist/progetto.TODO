@@ -27,13 +27,15 @@ Feb ALPHA:
           ☐ Remix templates and views in one page
         ✔ Add button disappears @done (15-01-31 15:27)
           ✔ Add button inside search @done (15-02-01 15:24)
+          ✔ Edit sends to add with id @done (15-02-01 16:23)
           ☐ Draft section inside profile @cool
-        ☐ Main text up
       ☐ Move $rootScope.menu inside resolve?
       ☐ ui resolve for API login
         ☐ add login checker in cron/repeat?
 
   ☐ Mixed
+    ☐ Google analytics
+      ☐ only in production mode, via angular variable
     ✔ Jquery: Get rid @done (15-01-30 19:34)
       ✔ check dropdowns @done (15-01-30 19:34)
       ✔ tooltip @done (15-01-30 20:14)

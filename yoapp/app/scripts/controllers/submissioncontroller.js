@@ -8,8 +8,14 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('SubmissionController', ['$rootScope', '$scope', '$filter', function ($rootScope, $scope, $filter)
+  .controller('SubmissionController',
+    ['$rootScope', '$scope', '$stateParams', '$filter', function ($rootScope, $scope, $stateParams, $filter)
   {
+
+    //get url param
+    var id = $stateParams.editId;
+    $scope.id = id;
+
     //First step
     $scope.current = 1;
 

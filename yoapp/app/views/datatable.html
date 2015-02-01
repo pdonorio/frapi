@@ -60,12 +60,10 @@
               <td>{{row.key}}</td>
               <!--buttons-->
               <td>
-                <button type="button" class="btn btn-xs btn-default">
-                    <a href="#/app/view/{{row.id}}">
-                      <i class="fa fa-eye fa-fix"> </i>
-                    </a>
+                <button type="button" class="btn btn-xs btn-default" ng-click="go('app/view/{{row.id}}')">
+                  <i class="fa fa-eye fa-fix"> </i>
                 </button>
-                <button type="button" class="btn btn-xs btn-primary">
+                <button type="button" class="btn btn-xs btn-info" ng-click="go('app/add/{{row.id}}')">
                   <i class="fa fa-edit fa-fix"></i>
                 </button>
               </td>
