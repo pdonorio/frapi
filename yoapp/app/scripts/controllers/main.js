@@ -15,6 +15,11 @@ myApp
 {
     $scope.projectName = projectName;
 
+    // Function to simplify href on buttons via Angular
+    $scope.go = function ( path ) {
+      $location.path( path );
+    };
+
     //////////////////////////////////////
     // Lo.dash | underscore
     $scope._ = _;

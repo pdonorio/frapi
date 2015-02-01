@@ -289,6 +289,11 @@ http://webdesignerwall.com/tutorials/css3-image-styles
   border-radius: 50em;
 }
 
+/* Bootstrap button aligned with heading
+http://stackoverflow.com/a/20209432
+*/
+.text-center h3 { margin: 0; }
+
 /* Fixing file selection as bootstrap button */
 .btn-file {
     position: relative;

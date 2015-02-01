@@ -26,6 +26,7 @@ Feb ALPHA:
           ☐ Icons inside the topbar buttons
           ☐ Remix templates and views in one page
         ✔ Add button disappears @done (15-01-31 15:27)
+          ✔ Add button inside search @done (15-02-01 15:24)
           ☐ Draft section inside profile @cool
         ☐ Main text up
       ☐ Move $rootScope.menu inside resolve?
@@ -43,6 +44,8 @@ Feb ALPHA:
     ☐ Backups?
       ☐ http://rethinkdb.com/docs/backup/
       ☐ rethinkdb dump + restore (via api?)
+    ☐ Material update
+      ☐ http://codepen.io/zavoloklom/
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
