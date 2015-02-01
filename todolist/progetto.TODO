@@ -24,6 +24,7 @@ Feb ALPHA:
           ✔ Edit button inside topbar @done (15-01-31 15:41)
           ✔ also remove ui-switch and use fontawesome instead @done (15-01-31 16:01)
           ☐ Icons inside the topbar buttons
+          ☐ Remix templates and views in one page
         ✔ Add button disappears @done (15-01-31 15:27)
           ☐ Draft section inside profile @cool
         ☐ Main text up
@@ -38,6 +39,10 @@ Feb ALPHA:
       ☐ popover http://angular-ui.github.io/bootstrap/#/popover
       ☐ modal http://angular-ui.github.io/bootstrap/#/modal
     ☐ Language?
+    ✔ Update database @done (15-02-01 12:37)
+    ☐ Backups?
+      ☐ http://rethinkdb.com/docs/backup/
+      ☐ rethinkdb dump + restore (via api?)
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

@@ -8,7 +8,7 @@ RUN \
   wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
   apt-get update
 RUN apt-get install -y openssh-server rethinkdb \
-    echo "not removing tmp data"
+    && echo "not removing tmp data"
     #&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
 
 # Define mountable directories.
