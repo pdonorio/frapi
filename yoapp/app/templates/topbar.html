@@ -24,6 +24,11 @@
 
           <!-- Main menu -->
           <ul class="nav navbar-nav navbar-right">
+              <li class='active'>
+                <a href=''>
+                  <i class="fa fa-step-backward fa-1x"></i> Back
+                </a>
+              </li>
               <!-- Menu buttons -->
               <li ng-repeat='el in menu' ng-class="{'active': el.active}">
                 <a ui-sref='{{el.link}}'>
