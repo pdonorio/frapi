@@ -20,11 +20,13 @@ myApp
       $location.path( path );
     };
 
+/*
     //////////////////////////////////////
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
+*/
 
     //////////////////////////////////////
     // editable element via xeditable: init?
@@ -41,7 +43,7 @@ myApp
     $rootScope.menu = [
         {active:true,  link:'logged.main', name:'main'},
         //{active:false, link:'logged.submission', name:'add'},
-        {active:false, link:'logged.search', name:'search'},
+        //{active:false, link:'logged.search', name:'search'},
         {active:false, link:'logged.about', name:'about'},
     ];
 

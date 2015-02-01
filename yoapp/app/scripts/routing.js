@@ -52,10 +52,19 @@ myApp
     // LOGGED Child routes (sub view, nested inside parent)
       .state('logged.main', {
         url: "/main",
-        views: { "contain": { templateUrl: "views/main.html", }, },
+        views: {
+          "contain": {
+            templateUrl: "views/main.html",
+          },
+          "extra": {
+            templateUrl: "views/datatable.html",
+            controller: 'ViewController',
+          },
+        },
         onEnter: function($rootScope) {
+          //make project text appear
+          $rootScope.searching = false;
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          //$rootScope.$emit('rootScope:emit', 'fooon');
         },
       })
       .state('logged.submission', {
@@ -72,10 +81,12 @@ myApp
       })
       .state('logged.search', {
         url: "/search",
-        views: { "contain": {
-          templateUrl: "views/datatable.html",
-          controller: 'ViewController',
-        }, },
+        views: {
+          "contain": {
+            templateUrl: "views/datatable.html",
+            controller: 'ViewController',
+          },
+        },
         onEnter: function($rootScope) {
             $rootScope.$emit('rootScope:emit', 'gbgon');
             //$rootScope.$emit('rootScope:emit', 'foooff');
