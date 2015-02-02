@@ -32,28 +32,32 @@ Feb ALPHA:
         ✔ Make button appear only if there is at least one url back @done (15-02-02 06:54)
       ☐ Welcome
         ☐ waiting for french text
-      ☐ Move $rootScope.menu inside resolve?
       ☐ Study best angular login form example
         ☐ isAuthenticated(nextState) ui router?
         ☐ ui resolve for API login ?
         ☐ add login checker in cron/repeat
 
   ☐ Mixed
+    ☐ Rebuild with grunt
+      ☐ Grunt not working! @gush
     ☐ Google analytics
       ☐ only in production mode, via angular variable
-    ☐ Draft section inside profile @cool
-    ☐ Language?
     ✔ Update database @done (15-02-01 12:37)
     ☐ Backups?
       ☐ http://rethinkdb.com/docs/backup/
       ☐ rethinkdb dump + restore (via api?)
+    ☐ Draft section inside profile @cool
+    ☐ Language?
+      ☐ Fixed for now
     ☐ Material update
       ☐ http://codepen.io/zavoloklom/
     ✔ Jquery: Get rid @done (15-01-30 19:34)
       ✔ check dropdowns @done (15-01-30 19:34)
       ✔ tooltip @done (15-01-30 20:14)
+    ☐ Add functions via ui bootstrap
       ☐ popover http://angular-ui.github.io/bootstrap/#/popover
       ☐ modal http://angular-ui.github.io/bootstrap/#/modal
+    ☐ Move $rootScope.menu inside resolve?
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
@@ -67,11 +71,10 @@ Feb ALPHA:
       ☐ associate one or more transcriptions
       ☐ choose page
 
-  ☐ Update RethinkDB on docker image? what the hell?
-  ☐ DB backup
+  ✔ Update RethinkDB on docker image? what the hell? @done (15-02-02 07:19)
+  ☐ Directories backup (e.g. images)
     ☐ via docker container launch every hour/day
       ☐ volumes from
-      ☐ checks
 
   ☐ Steps
     ☐ Admin add, edit, remove

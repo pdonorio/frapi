@@ -48,7 +48,7 @@ myApp
         //{active:false, link:'logged.search', name:'search'},
         {active:false, link:'logged.about', name:'about', icon:'info-circle', },
     ];
-
+    // Function to set active element
     $rootScope.setActiveMenu = function(current) {
       for (var i = 0; i < $rootScope.menu.length; i++) {
         if ($rootScope.menu[i]['name'] == current) {
@@ -58,14 +58,14 @@ myApp
         }
       };
     }
-    /******** SET ACIVE ELEMENT - FIRST TIME *****************/
+    // SET ACTIVE ELEMENT - FIRST TIME
     //getting current location
     var tmp = $location.url().split('/');
     // coming from /app/some, so 0 = "", 1 = "app", 2 = "some"
     if (tmp[2]) {
       $rootScope.setActiveMenu(tmp[2]);
     }
-    /******** SET ACIVE ELEMENT - ANY OTHER TIME *****************/
+    // SET ACIVE ELEMENT - ANY OTHER TIME
     $rootScope.$on('$stateChangeStart', function (event, nextState, npar, currentState, cpar) {
 
       var p = nextState.url;
@@ -73,6 +73,7 @@ myApp
       $rootScope.setActiveMenu(p);
 
 //TO FIX - not very straightforward...
+      // BACK BUTTON inside TOPBAR
       // Work on latest states
       var tmp = currentState.url;
       if (cpar.myId) {
@@ -84,7 +85,7 @@ myApp
           // Use latest visited URL
           $rootScope.lastVisited = 'app' + tmp;
       }
-      console.log($rootScope.lastVisited);
+      //console.log($rootScope.lastVisited);
 
 /*      AUTH?
         if (!isAuthenticated(nextState)) {
