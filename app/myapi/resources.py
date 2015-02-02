@@ -218,6 +218,15 @@ class HtmlContent(GenericDBResource):
     def __init__(self):
         super(HtmlContent, self).__init__(data_models.WebContent)
 
+## News (informations about the data)
+class NewsFeeds(GenericDBResource):
+    def __init__(self, db=None):
+        super(NewsFeeds, self).__init__(data_models.News, db)
+class NewsFeed(GenericDBResource):
+    def __init__(self):
+        super(NewsFeed, self).__init__(data_models.News)
+
+
 ################################################################
 
 

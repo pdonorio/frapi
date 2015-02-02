@@ -8,7 +8,8 @@ host=$(boot2docker ip 2> /dev/null) #from host to local docker
 port=5507
 
 #resource="data"
-resource="webcontent"
+#resource="webcontent"
+resource="news"
 
 #############################################
 # BUILD TEST
@@ -40,7 +41,7 @@ exit
 #############################################
 #ADD a new element
 echo "***\nINSERT"
-values="key=user&value=test"
+values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
 

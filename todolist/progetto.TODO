@@ -40,8 +40,8 @@ Feb ALPHA:
     ✔ Google analytics @done (15-02-02 07:34)
       ✔ only in production mode, via angular variable @done (15-02-02 07:38)
       ✔ how to ng-if on 'script' tag? @done (15-02-02 11:26)
-    ☐ News
-      ☐ New resource api
+    ✔ News @done (15-02-02 11:46)
+      ✔ New resource api @done (15-02-02 11:57)
       ☐ Add button only in admin mode
       ☐ also quick/dirty xeditable table?
       ☐ RSS feed
@@ -69,8 +69,14 @@ Feb ALPHA:
       ☐ popover http://angular-ui.github.io/bootstrap/#/popover
       ☐ modal http://angular-ui.github.io/bootstrap/#/modal
     ☐ Move $rootScope.menu inside resolve?
+    ☐ OFFLINE checking
+      ☐ http://stackoverflow.com/a/16242703
+      ☐ Some nice indications from this library:
+        ☐ http://github.hubspot.com/offline/docs/welcome/
     ☐ Load local script if no connection?
       ☐ http://bahmutov.calepin.co/cdn-with-local-fallback.html
+    ☐ Fix resource creation... api,
+      ☐ see instructions md
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
