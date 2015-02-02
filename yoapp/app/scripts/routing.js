@@ -68,7 +68,7 @@ myApp
         },
       })
       .state('logged.submission', {
-        url: "/add/{editId:[0-9\-a-z]*}",
+        url: "/add/{myId:[0-9\-a-z]*}",
         views: { "contain": {
           templateUrl: "views/submit.html",
           controller: 'SubmissionController',
@@ -93,7 +93,7 @@ myApp
         },
       })
       .state('logged.view', {
-        url: "/view/{viewId:[0-9\-a-z]+}",
+        url: "/view/{myId:[0-9\-a-z]+}",
         views: { "contain": {
           templateUrl: 'views/viewer.html',
           controller: 'ViewerController',
@@ -126,11 +126,12 @@ myApp
   // Redirect if unknown state
   $urlRouterProvider.otherwise(function ($injector, $location) {
     $injector.invoke(['$state', function ($state) {
+      console.log("Unknown");
+      console.log($location);
       $state.go('notfound');
     }]);
     return true;
   });
-
 });
 
 // enable html5Mode for pushstate ('#'-less URLs)

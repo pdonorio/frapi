@@ -14,10 +14,12 @@ myApp
     DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
     $scope.projectName = projectName;
+    $rootScope.lastVisited = undefined;
 
     // Function to simplify href on buttons via Angular
     $scope.go = function ( path ) {
       $location.path( path );
+      $rootScope.lastVisited = undefined;
     };
 
 /*
@@ -64,10 +66,26 @@ myApp
       $rootScope.setActiveMenu(tmp[2]);
     }
     /******** SET ACIVE ELEMENT - ANY OTHER TIME *****************/
-    $rootScope.$on('$stateChangeStart', function (event, nextState, currentState) {
+    $rootScope.$on('$stateChangeStart', function (event, nextState, npar, currentState, cpar) {
+
       var p = nextState.url;
       var p = p.substring(1, p.length);
       $rootScope.setActiveMenu(p);
+
+//TO FIX - not very straightforward...
+      // Work on latest states
+      var tmp = currentState.url;
+      if (cpar.myId) {
+          var x = currentState.url.split("/");
+          tmp = '/' + x[1] + '/' + cpar.myId;
+      }
+      // don't wanto to go back from main views
+      if (npar.myId) {
+          // Use latest visited URL
+          $rootScope.lastVisited = 'app' + tmp;
+      }
+      console.log($rootScope.lastVisited);
+
 /*      AUTH?
         if (!isAuthenticated(nextState)) {
             console.debug('Could not change route! Not authenticated!');

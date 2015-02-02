@@ -13,7 +13,7 @@ myApp
   {
 
     //get url param
-    var id = $stateParams.editId;
+    var id = $stateParams.myId;
     $scope.id = id;
 
     //First step
