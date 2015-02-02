@@ -6,19 +6,63 @@
     <!-- should be an API resource -->
     <!-- with ADD, REMOVE, EDIT and so on -->
 
-    <h3>Lista delle novità
-    <i class="fa fa-rss fa-1x"></i>
-    </h3>
-    <table class="table">
-        <tr> <th>Data</th> <th>Cambiamento</th> </tr>
-        <tr> <td>oggi</td> <td>inizia tutto</td> </tr>
-        <tr> <td>domani</td> <td>prova</td> </tr>
-        <tr> <td>dopodomani</td> <td>rilascio</td> </tr>
+    <h3>Lista delle novità <i class="fa fa-rss fa-1x"></i> </h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Descrizione</th>
+          <th ng-if='edit.available' >Modifiche</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr ng-repeat="el in news">
+
+          <!-- editable (text with validation) -->
+          <td>
+            <span editable-text="el.description" e-name="desc" e-form="rowform"
+              onbeforesave="checkName($data, el.id)" e-required>
+              {{ el.description || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="el.date" e-name="desc" e-form="rowform"
+              onbeforesave="checkName($data, el.id)" e-required>
+              {{ el.date || 'empty' }}
+            </span>
+          </td>
+
+          <!-- Edit buttons and form -->
+          <td style="white-space: nowrap">
+            <!-- form -->
+            <form editable-form name="rowform" onbeforesave="saveNews($data, el.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == el">
+              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                save
+              </button>
+              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                cancel
+              </button>
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+              <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+              <button class="btn btn-danger" ng-click="removeNews($index)">del</button>
+            </div>
+          </td>
+
+        </tr>
+
+      </tbody>
     </table>
+
+    <br>
+    <button class="btn btn-default" ng-click="addNews()">Add row</button>
 
   </div>
  </div>
+
  <hr>
+ Oggi è il <b>{{date | date:'dd-MM-yyyy'}}</b>
 
  <!-- Notification tester
 

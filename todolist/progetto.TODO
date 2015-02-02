@@ -42,9 +42,12 @@ Feb ALPHA:
       ✔ how to ng-if on 'script' tag? @done (15-02-02 11:26)
     ✔ News @done (15-02-02 11:46)
       ✔ New resource api @done (15-02-02 11:57)
-      ☐ Add button only in admin mode
-      ☐ also quick/dirty xeditable table?
-      ☐ RSS feed
+      ✔ Show resources in change page @done (15-02-02 12:41)
+      ☐ Add button only in admin mode @current
+      ✔ also quick/dirty xeditable table? @done (15-02-02 12:41)
+      ☐ RSS feed?
+        ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
+      ☐ Connect with apis
     ☐ ASK FOR Welcome page french text @last
 
     ☐ Development pages for now
@@ -77,6 +80,8 @@ Feb ALPHA:
       ☐ http://bahmutov.calepin.co/cdn-with-local-fallback.html
     ☐ Fix resource creation... api,
       ☐ see instructions md
+      ☐ one python file?
+      ☐ Dynamic resource building with names? It could be!
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

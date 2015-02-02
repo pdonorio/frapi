@@ -24,6 +24,9 @@ myApp
     }
     //console.log("Analytics? " + $rootScope.analytics);
 
+    // Today
+    $rootScope.date = new Date();
+
     /*  ******************************************
         *** BROADCAST of messages across the application
         ******************************************/
