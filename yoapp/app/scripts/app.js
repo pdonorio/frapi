@@ -30,6 +30,7 @@ var myApp = angular.module('yoApp',
 
   // CONSTANTS
   .constant('projectName', 'SpectaleBaroque')
+  .constant('devHost', 'awesome.dev')
   .constant('apiTimeout', 15750) //remember: a refused connection waits no time
   .constant('messageTimeout', 3000)
   .constant('warningInitTime', 7500)

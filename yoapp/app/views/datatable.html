@@ -56,14 +56,18 @@
 
           <tbody>
             <tr ng-repeat="row in data track by row.id">
-              <td>{{row.value}}</td>
               <td>{{row.key}}</td>
+              <td>{{row.value}}</td>
               <!--buttons-->
               <td>
-                <button type="button" class="btn btn-xs btn-default" ng-click="go('app/view/{{row.id}}')">
+                <button type="button" class="btn btn-xs btn-default"
+                  tooltip-placement="left" tooltip="Guarda il record {{row.key}}"
+                  ng-click="go('app/view/{{row.id}}')">
                   <i class="fa fa-eye fa-fix"> </i>
                 </button>
-                <button type="button" class="btn btn-xs btn-info" ng-click="go('app/add/{{row.id}}')">
+                <button type="button" class="btn btn-xs btn-info"
+                  tooltip-placement="right" tooltip="Modifica il record {{row.key}}"
+                  ng-click="go('app/add/{{row.id}}')">
                   <i class="fa fa-edit fa-fix"></i>
                 </button>
               </td>

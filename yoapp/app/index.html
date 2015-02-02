@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" ng-app="yoApp" ng-controller="InitController">
   <head>
     <!-- <base href="/app/" /> -->
     <meta charset="utf-8">
@@ -19,12 +19,12 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/topbar.css">
     <link rel="stylesheet" href="styles/blur.css">
-    <link href='http://fonts.googleapis.com/css?family=Mr+De+Haviland' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Mr+De+Haviland'
+        ng-if='analytics' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
   </head>
 
-  <body ng-app="yoApp" ng-controller="InitController"
-    ng-class="{'gbg': onOff.bg, 'bodypadtop': onOff.pad, 'staticbg': !onOff.pad}">
+  <body ng-class="{'gbg': onOff.bg, 'bodypadtop': onOff.pad, 'staticbg': !onOff.pad}">
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser.<br>
     Please <a href="http://browsehappy.com/">upgrade your browser</a><br>
@@ -36,19 +36,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <div ui-view="main"></div>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<!--
-    <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
- -->
+    <ng-include src="'templates/analytics.html'" ng-if='analytics'></ng-include>
 
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
