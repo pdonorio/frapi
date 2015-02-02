@@ -1,18 +1,31 @@
 <div class="container">
 
  <div class="row">
-  <div class="col-md-8 col-xs-6" >
+  <div class="col-md-9 col-xs-6" >
 
     <!-- should be an API resource -->
     <!-- with ADD, REMOVE, EDIT and so on -->
 
-    <h3>Lista delle novità <i class="fa fa-rss fa-1x"></i> </h3>
+    <h3>
+      Lista delle novità
+      <i class="fa fa-rss fa-fw fa-1x"></i>
+
+      <!-- add news button -->
+      <div ng-show='edit.switch'>
+        <br>
+        <button class="btn btn-default" ng-click="addNews()">
+          <i class='fa fa-plus' tooltip-placement="right" tooltip="Aggiungi una news" ></i>
+        </button>
+      </div>
+
+    </h3>
+
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
           <th>Data</th>
           <th>Descrizione</th>
-          <th ng-if='edit.available' >Modifiche</th>
+          <th ng-show="edit.switch">Modifiche</th>
         </tr>
       </thead>
       <tbody>
@@ -21,32 +34,36 @@
 
           <!-- editable (text with validation) -->
           <td>
-            <span editable-text="el.description" e-name="desc" e-form="rowform"
-              onbeforesave="checkName($data, el.id)" e-required>
-              {{ el.description || 'empty' }}
-            </span>
-          </td>
-          <td>
             <span editable-text="el.date" e-name="desc" e-form="rowform"
               onbeforesave="checkName($data, el.id)" e-required>
               {{ el.date || 'empty' }}
             </span>
           </td>
+          <td>
+            <span editable-text="el.description" e-name="desc" e-form="rowform"
+              onbeforesave="checkName($data, el.id)" e-required>
+              {{ el.description || 'empty' }}
+            </span>
+          </td>
 
           <!-- Edit buttons and form -->
-          <td style="white-space: nowrap">
+          <td style="white-space: nowrap" ng-show="edit.switch">
             <!-- form -->
             <form editable-form name="rowform" onbeforesave="saveNews($data, el.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == el">
-              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                save
+              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-info">
+                <i class='fa fa-check-square-o' tooltip-placement="Left" tooltip="Salva"></i>
               </button>
               <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-                cancel
+                <i class='fa fa-remove' tooltip-placement="right" tooltip="Annulla"></i>
               </button>
             </form>
             <div class="buttons" ng-show="!rowform.$visible">
-              <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-              <button class="btn btn-danger" ng-click="removeNews($index)">del</button>
+              <button class="btn btn-primary" ng-click="rowform.$show()">
+                <i class='fa fa-edit' tooltip-placement="left" tooltip="Modifica"></i>
+              </button>
+              <button class="btn btn-danger" ng-click="removeNews($index)">
+                <i class='fa fa-remove' tooltip-placement="right" tooltip="Cancella"></i>
+              </button>
             </div>
           </td>
 
@@ -54,9 +71,6 @@
 
       </tbody>
     </table>
-
-    <br>
-    <button class="btn btn-default" ng-click="addNews()">Add row</button>
 
   </div>
  </div>

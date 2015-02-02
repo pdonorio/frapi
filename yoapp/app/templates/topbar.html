@@ -11,11 +11,11 @@
           <!-- Edit MODE button / ONLY FOR ADMIN! -->
           <ul class="nav navbar-nav navbar-left" ng-hide="!edit.available">
           <li>
-            <a href="" ng-click="edit.switch = true" ng-if="!edit.switch">
+            <a href="" ng-click="edit.switch = true" ng-hide="edit.switch">
               <i class="fa fa-toggle-off fa-lg fa-fw"></i>
               Edit-off
             </a>
-            <a href="" ng-click="edit.switch = false" ng-if="edit.switch">
+            <a href="" ng-click="edit.switch = false" ng-show="edit.switch">
               <i class="fa fa-toggle-on fa-lg fa-fw"></i>
               Edit-on
             </a>

@@ -43,7 +43,7 @@ Feb ALPHA:
     ✔ News @done (15-02-02 11:46)
       ✔ New resource api @done (15-02-02 11:57)
       ✔ Show resources in change page @done (15-02-02 12:41)
-      ☐ Add button only in admin mode @current
+      ✔ Add button only in admin mode @current @done (15-02-02 16:12)
       ✔ also quick/dirty xeditable table? @done (15-02-02 12:41)
       ☐ RSS feed?
         ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
