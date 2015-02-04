@@ -49,11 +49,20 @@ Feb ALPHA:
         ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
       ☐ Connect with apis
     ☐ ASK FOR Welcome page french text @last
+    ☐ Progress page & resource
+      ☐ to keep track of what we are doing
+      ☐ with comments on the side?
 
     ☐ Development pages for now
       ☐ not minified....
       ☐ Rebuild with grunt
         ☐ Grunt not working! @gush
+     ☐ SECURITY rethinkdb updated... does not work anymore
+       ☐ Using the RethinkDB authentication system
+         ☐ http://www.rethinkdb.com/docs/security/
+         ☐ Build a python query on the system table
+           ☐ an api resource with some password to secure the server?
+
 
   ☐ Mixed
     ✔ Update database @done (15-02-01 12:37)

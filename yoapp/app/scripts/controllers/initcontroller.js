@@ -17,12 +17,12 @@ myApp
     });
 
     // Google analytics only if on production site
-    $rootScope.analytics = false;
+    $rootScope.analytics = true;
     // Development should not be studied with analytics
-    if ($location.host() != devHost) {
-        $rootScope.analytics = true;
+    if ($location.host() == devHost) {
+        $rootScope.analytics = false;
     }
-    //console.log("Analytics? " + $rootScope.analytics);
+    console.log("Analytics? " + $rootScope.analytics);
 
     // Today
     $rootScope.date = new Date();
