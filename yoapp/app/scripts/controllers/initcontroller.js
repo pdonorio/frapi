@@ -27,11 +27,11 @@ myApp
     // Google analytics only if on production site
     $rootScope.analytics = false;
     // Development should not be studied with analytics
-    if ($location.host() == devHost) {
+    if ($location.host() != devHost) {
         $rootScope.analytics = true;
         $rootScope.css.push(cssFont);
     }
-    console.log("Analytics? " + $rootScope.analytics);
+    //console.log("Analytics? " + $rootScope.analytics);
 
     // Today
     $rootScope.date = new Date();
