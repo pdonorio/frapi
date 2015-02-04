@@ -16,10 +16,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/topbar.css">
-    <link rel="stylesheet" href="styles/blur.css">
-    <ng-include src='templates/imports.html' ng-if='analytics'></ng-include>
+    <link ng-repeat="ref in css" rel='stylesheet' type='text/css' ng-href="{{ref}}" />
     <!-- endbuild -->
   </head>
 

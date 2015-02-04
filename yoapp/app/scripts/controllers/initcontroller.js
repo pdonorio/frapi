@@ -16,11 +16,20 @@ myApp
       $state.go('notfound');
     });
 
+    // Personal css to include
+    $rootScope.css = [
+        "styles/main.css",
+        "styles/topbar.css",
+        "styles/blur.css",
+    ];
+    var cssFont = 'http://fonts.googleapis.com/css?family=Mr+De+Haviland';
+
     // Google analytics only if on production site
-    $rootScope.analytics = true;
+    $rootScope.analytics = false;
     // Development should not be studied with analytics
     if ($location.host() == devHost) {
-        $rootScope.analytics = false;
+        $rootScope.analytics = true;
+        $rootScope.css.push(cssFont);
     }
     console.log("Analytics? " + $rootScope.analytics);
 
