@@ -1,5 +1,5 @@
+##############################################
 # RethinkDB Dockerfile
-# https://github.com/dockerfile/rethinkdb
 FROM dockerfile/ubuntu
 
 # Install RethinkDB.
@@ -10,6 +10,10 @@ RUN \
 RUN apt-get install -y openssh-server rethinkdb \
     && echo "not removing tmp data"
     #&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
+
+# Python driver for import export
+RUN apt-get install -y python-setuptools && easy_install pip
+RUN pip install rethinkdb
 
 # Define mountable directories.
 VOLUME ["/data"]

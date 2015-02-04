@@ -63,12 +63,12 @@ Feb ALPHA:
          ☐ Build a python query on the system table
            ☐ an api resource with some password to secure the server?
 
-
   ☐ Mixed
     ✔ Update database @done (15-02-01 12:37)
     ☐ Backups?
       ☐ http://rethinkdb.com/docs/backup/
       ☐ rethinkdb dump + restore (via api?)
+      ☐ export/import? http://rethinkdb.com/docs/importing/
     ☐ Draft section inside profile @cool
     ☐ Language?
       ☐ Fixed for now
