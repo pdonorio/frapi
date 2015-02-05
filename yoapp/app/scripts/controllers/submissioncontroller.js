@@ -8,9 +8,8 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('SubmissionController',
-    ['$rootScope', '$scope', '$stateParams', '$filter', 'DataResource', 'currentpageDefault', function ($rootScope, $scope, $stateParams, $filter, DataResource, currentpageDefault)
-  {
+.controller('SubmissionController', function ($rootScope, $scope, $stateParams, $filter, DataResource)
+{
 
     //get url param
     var id = $stateParams.myId;
@@ -28,7 +27,7 @@ myApp
     // SETUP data - read from API
 
     ////////////// READ STEPS
-    DataResource.get("steps", 0, currentpageDefault )    // Use the data promise
+    DataResource.get("steps")    // Use the data promise
         .then(function(data) {  //Success
             console.log(data);
             //do modifications to $scope
@@ -129,5 +128,4 @@ myApp
         $scope.bootData[x] = angular.copy(results);
     }
     //console.log($scope.bootData);
-
- }]);
+ });

@@ -119,9 +119,7 @@ myApp
 
     //////////////////////////////////////
     // Query api - READ the whole html content
-    var perpage = 1000;
-    DataResource
-        .get("webcontent", perpage, 1)    // Use the data promise
+    DataResource.get("webcontent")
         .then(function(data) {
 
             var tmp = data.items;

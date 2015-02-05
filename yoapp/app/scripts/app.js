@@ -40,16 +40,15 @@ var myApp = angular.module('yoApp',
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY
-.controller('SomeController', function($rootScope, $scope, NotificationData, DataResource, currentpageDefault)
+.controller('SomeController', function($rootScope, $scope, NotificationData, DataResource)
 {
     $scope.setNotification = function(s,m) {
       //console.log("Some controller: set notifaction with "+s+","+m);
       NotificationData.setNotification(s,m);
     };
 
-
     // Angular query api
-    DataResource.get("news", 500, currentpageDefault)    // Use the data promise
+    DataResource.get("news")    // Use the data promise
       .then(function(data) {  //Success
           //console.log(data);
           //do modifications to $scope

@@ -49,8 +49,10 @@ grunt build
 
 Angular code to use it:
 ```
-  // Angular query api
-  DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
+  // Angular query api: promise
+  DataResource.get("webcontent"
+    //, perpage, currentpage  //optional
+    )
     .then(function(data) {  //Success
         console.log(data);
         //do modifications to $scope

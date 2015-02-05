@@ -201,7 +201,8 @@ class RethinkConnection(Connection):
             count = query.count().run()
 
             # Slice for pagination
-            if "currentpage" in p and "perpage" in p:
+            if "currentpage" in p and "perpage" in p \
+                and p["perpage"] > 0: # If per page == 0 then give everything you have
                 start = (p["currentpage"] - 1) * p["perpage"]
                 end = p["currentpage"] * p["perpage"]
                 #this does not work: WHY??

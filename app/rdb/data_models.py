@@ -147,7 +147,7 @@ class News(GenericORMModel):
 ##############################
 class StepList(GenericORMModel):
     """ Html content of elements in web pages of my application """
-    table = 'news'
+    table = 'steps'
 
     # Attributes as defined by static methods:
     @staticmethod
