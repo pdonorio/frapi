@@ -79,6 +79,7 @@ class GenericORMModel(RethinkModel):
 
 from bpractices.utilities import get_original_pytype
 
+##############################
 class DataDump(GenericORMModel):
     """ A simple container for data dumping """
     table = 'dump'
@@ -90,7 +91,6 @@ class DataDump(GenericORMModel):
         m = "Parameter '"+name+"' is not a string. Received value: *"+value+"*"
         if not isinstance(value, types.StringTypes):
             raise ValueError(m)
-
         return value
 
     # No checks type
@@ -106,6 +106,7 @@ class DataDump(GenericORMModel):
         #print "Received: ", name, value, type(value)
         return value
 
+##############################
 class WebContent(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'webcontent'
@@ -127,6 +128,7 @@ class WebContent(GenericORMModel):
     def content(value):
         return value    #e.g. "This is the content <b>here</b>"
 
+##############################
 class News(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'news'
@@ -141,6 +143,25 @@ class News(GenericORMModel):
     @staticmethod
     def user(value):
         return value    #e.g. paulie
+
+##############################
+class StepList(GenericORMModel):
+    """ Html content of elements in web pages of my application """
+    table = 'news'
+
+    # Attributes as defined by static methods:
+    @staticmethod
+    def step(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        if not isinstance(value, types.IntType):
+            raise ValueError(m)
+        return value    #e.g. 1
+    @staticmethod
+    def label(value):
+        return value    #e.g. "Estratto"
+    @staticmethod
+    def description(value):
+        return value    #e.g. "Commento!"
 
 # For authentication future use
 #

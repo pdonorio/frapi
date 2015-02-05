@@ -9,7 +9,7 @@
  */
 myApp
   .controller('SubmissionController',
-    ['$rootScope', '$scope', '$stateParams', '$filter', function ($rootScope, $scope, $stateParams, $filter)
+    ['$rootScope', '$scope', '$stateParams', '$filter', 'DataResource', 'currentpageDefault', function ($rootScope, $scope, $stateParams, $filter, DataResource, currentpageDefault)
   {
 
     //get url param
@@ -26,19 +26,37 @@ myApp
 
     //////////////////////////////////////////////
     // SETUP data - read from API
+
+    ////////////// READ STEPS
+    DataResource.get("steps", 0, currentpageDefault )    // Use the data promise
+        .then(function(data) {  //Success
+            console.log(data);
+            //do modifications to $scope
+        }, function(object) {      //Error
+          console.log("Controller api call Error");
+          console.log(object);
+        }
+    );
+
+    ////////////// STEP template (inside code as i will always use this)
+    $scope.formTemplate = [
+        {pos:1, key: "titolo", type: "number"},
+        {pos:2, key: "pippo", type: "select"},
+        {pos:3, key: "ancora", type: "text"},
+        {pos:4, key: "ultimo", type: "textarea"},
+    ];
+
+    ////////////// READ STEP CONTENT / TYPE
+
+    // Missing for now
+
 /*
 //TO FIX:
 * 1 - there should be one template per each step
 * 2 - read from api: /step_template/#STEP_NUM
 */
-    $scope.formTemplate =
-        //step: 1, template:
-        [
-            {pos:1, key: "titolo", type: "number"},
-            {pos:2, key: "pippo", type: "select"},
-            {pos:3, key: "ancora", type: "text"},
-            {pos:4, key: "ultimo", type: "textarea"},
-        ];
+
+    // Remove this very soon...
 
     $scope.steps = [
         {step: 1, name: "estratto",

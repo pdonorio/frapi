@@ -208,6 +208,7 @@ class GenericDBResource(Resource):
 # require 2 different resources...
 
 
+##################
 ## Data (generic)
 class DataList(GenericDBResource):
     def __init__(self, db=None):
@@ -216,6 +217,7 @@ class DataSingle(GenericDBResource):
     def __init__(self):
         super(DataSingle, self).__init__(data_models.DataDump)
 
+##################
 ## HtmlContent (admin editable html content of web pages)
 class HtmlContents(GenericDBResource):
     def __init__(self, db=None):
@@ -224,7 +226,8 @@ class HtmlContent(GenericDBResource):
     def __init__(self):
         super(HtmlContent, self).__init__(data_models.WebContent)
 
-## News (informations about the data)
+##################
+## News (informations about new features)
 class NewsFeeds(GenericDBResource):
     def __init__(self, db=None):
         super(NewsFeeds, self).__init__(data_models.News, db)
@@ -232,8 +235,14 @@ class NewsFeed(GenericDBResource):
     def __init__(self):
         super(NewsFeed, self).__init__(data_models.News)
 
-
-################################################################
+##################
+## Steps (List of available steps for the user)
+class Steps(GenericDBResource):
+    def __init__(self, db=None):
+        super(Steps, self).__init__(data_models.StepList, db)
+class Step(GenericDBResource):
+    def __init__(self):
+        super(Step, self).__init__(data_models.StepList)
 
 
 

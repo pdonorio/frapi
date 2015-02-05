@@ -38,14 +38,25 @@ api = Api(app, catch_all_404s=True)
 
 #api.add_resource(resources.GenericDBResource, '/test')
 
-api.add_resource(resources.DataList, '/data')
-api.add_resource(resources.DataSingle, '/data/<string:data_key>')
+############
+res = 'data'
+api.add_resource(resources.DataList, '/' + res)
+api.add_resource(resources.DataSingle, '/' + res + '/<string:data_key>')
 
-api.add_resource(resources.HtmlContents, '/webcontent')
-api.add_resource(resources.HtmlContent, '/webcontent/<string:data_key>')
+############
+res = 'webcontent'
+api.add_resource(resources.HtmlContents, '/' + res)
+api.add_resource(resources.HtmlContent, '/' + res + '/<string:data_key>')
 
-api.add_resource(resources.NewsFeeds, '/news')
-api.add_resource(resources.NewsFeed, '/news/<string:data_key>')
+############
+res = 'news'
+api.add_resource(resources.NewsFeeds, '/' + res)
+api.add_resource(resources.NewsFeed, '/' + res + '/<string:data_key>')
+
+############
+res = 'steps'
+api.add_resource(resources.Steps, '/' + res)
+api.add_resource(resources.Step, '/' + res + '/<string:data_key>')
 
 #############################################
 # === App setup ===
