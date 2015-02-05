@@ -1,6 +1,6 @@
 """
 ### HTTP status codes ===
-es. http://www.w3.org/Protocols/HTTP/HTRESP.html
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 """
 
 HTTP_OK_BASIC = 200
@@ -11,5 +11,6 @@ HTTP_BAD_REQUEST = 400
 HTTP_BAD_UNAUTHORIZED = 401
 HTTP_BAD_FORBIDDEN = 403
 HTTP_BAD_NOTFOUND = 404
+HTTP_BAD_CONFLICT = 409
 #Gateway timeout 503 protocol code...
 HTTP_INTERNAL_TIMEOUT = 503

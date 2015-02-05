@@ -40,7 +40,13 @@ def abort_on_db_fail(func):
         try:
             return func(self, *args, **kwargs)
         except LoggedError, e:
-            abort(hcodes.HTTP_BAD_NOTFOUND, message=e.__str__())
+            print e
+            if e.__str__() == "DB table does not exist yet":
+                # Empty table
+                abort(hcodes.HTTP_BAD_CONFLICT, message=e.__str__())
+            else:
+                # Very bad
+                abort(hcodes.HTTP_BAD_NOTFOUND, message=e.__str__())
     return wrapper
 
 # == Implement a generic Resource for RethinkDB ORM model ==

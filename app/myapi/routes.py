@@ -14,7 +14,6 @@ from myapi.app import app, log, g, try_to_connect
 from flask.ext.restful import Api
 # Load the resources that have been created
 from myapi import resources
-from rdb.rdb_handler import RethinkConnection as db
 
 
 #############################################
@@ -70,6 +69,6 @@ def before_first_request():
     g.rdb.create_table()
     del tmp
 
-##############################################################
+#############################################
 # Test AUTH
     #api.add_resource(resources.LogUser, '/login')

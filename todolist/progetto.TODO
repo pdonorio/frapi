@@ -33,14 +33,14 @@ Feb ALPHA:
         ✔ Buttons tooltip @done (15-02-02 11:32)
 
   Dev Release:
-    ☐ Login (angular?)
-      ☐ isAuthenticated(nextState) ui router?
-      ☐ ui resolve for API login ?
-      ☐ add login checker in cron/repeat
+    ☐ ASK FOR Welcome page french text @last
+    ☐ Progress page & resource
+      ☐ to keep track of what we are doing
+      ☐ with comments on the side?
     ✔ Google analytics @done (15-02-02 07:34)
       ✔ only in production mode, via angular variable @done (15-02-02 07:38)
       ✔ how to ng-if on 'script' tag? @done (15-02-02 11:26)
-    ✔ News @done (15-02-02 11:46)
+    ☐ News
       ✔ New resource api @done (15-02-02 11:57)
       ✔ Show resources in change page @done (15-02-02 12:41)
       ✔ Add button only in admin mode @current @done (15-02-02 16:12)
@@ -48,10 +48,10 @@ Feb ALPHA:
       ☐ RSS feed?
         ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
       ☐ Connect with apis
-    ☐ ASK FOR Welcome page french text @last
-    ☐ Progress page & resource
-      ☐ to keep track of what we are doing
-      ☐ with comments on the side?
+    ☐ Login (angular?)
+      ☐ isAuthenticated(nextState) ui router?
+      ☐ ui resolve for API login ?
+      ☐ add login checker in cron/repeat
 
     ☐ Development pages for now
       ☐ not minified....
