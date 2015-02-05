@@ -8,12 +8,33 @@
  * Controller of the yoApp
  */
 myApp
-.controller('InitController', function($scope, $rootScope) {
+.controller('InitController', function($scope, $rootScope, $location, devHost)
+{
 
-    //if redirection goes wrong
+    // If redirection goes wrong
     $rootScope.$on('$stateChangeError', function(event) {
       $state.go('notfound');
     });
+
+    // Personal css to include
+    $rootScope.css = [
+        "styles/main.css",
+        "styles/topbar.css",
+        "styles/blur.css",
+    ];
+    var cssFont = 'http://fonts.googleapis.com/css?family=Mr+De+Haviland';
+
+    // Google analytics only if on production site
+    $rootScope.analytics = false;
+    // Development should not be studied with analytics
+    if ($location.host() != devHost) {
+        $rootScope.analytics = true;
+        $rootScope.css.push(cssFont);
+    }
+    //console.log("Analytics? " + $rootScope.analytics);
+
+    // Today
+    $rootScope.date = new Date();
 
     /*  ******************************************
         *** BROADCAST of messages across the application

@@ -115,6 +115,9 @@ class WebContent(GenericORMModel):
     def page(value):
         return value    #e.g. about.html
     @staticmethod
+    def language(value):
+        return value    #e.g. italian
+    @staticmethod
     def element(value):
         tmp = get_original_pytype(value)
         if tmp != None:
@@ -123,6 +126,21 @@ class WebContent(GenericORMModel):
     @staticmethod
     def content(value):
         return value    #e.g. "This is the content <b>here</b>"
+
+class News(GenericORMModel):
+    """ Html content of elements in web pages of my application """
+    table = 'news'
+
+    # Attributes as defined by static methods:
+    @staticmethod
+    def date(value):
+        return value    #e.g. 01/01/2015
+    @staticmethod
+    def description(value):
+        return value    #e.g. "La mia news in italiano"
+    @staticmethod
+    def user(value):
+        return value    #e.g. paulie
 
 # For authentication future use
 #

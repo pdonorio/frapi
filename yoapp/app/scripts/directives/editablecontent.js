@@ -37,7 +37,7 @@ myApp
 
       /////////////////////////////////////
       //manage the local scope
-      controller: function($scope, DataResource, $timeout, AppConfig, messageTimeout, NotificationData)
+      controller: function($scope, $timeout, $location, DataResource, AppConfig, messageTimeout, NotificationData)
       {
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
@@ -52,9 +52,7 @@ myApp
           // Signal that we are going to try to edit data
           NotificationData.setNotification(AppConfig.messageStatus.loading, "");
 
-  //TO FIX - select page from somewhere
           var id = null;
-
           if ($scope.data[$scope.pos]) {
               var tmp = $scope.data[$scope.pos];
               id = tmp.id;
@@ -64,7 +62,12 @@ myApp
           var data = {
             id: id,
             content: $scope.item.content,
-            element: $scope.pos, page: ""
+            element: $scope.pos,
+  //TO FIX - select page from ui router, also dynamic language
+            // this is wrong, because it contains params inside the url...
+            page: $location.path(),
+            // fixed for now
+            language: "french",
           };
 
           $scope.item.highlight = false;
@@ -73,7 +76,8 @@ myApp
           DataResource.set("webcontent", data)
           .then(function() {
 
-//TO FIX - this should be inside link function?
+//TO FIX - should this stay inside link function?
+// it works on HTML and DOM
               msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
               NotificationData.setNotification(AppConfig.messageStatus.success, msg);
             }, function() {

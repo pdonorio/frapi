@@ -18,9 +18,10 @@ data:
 # Database server master
 rdb:
     build: ./docker/rethinkdb
-    command: bash /root/init.sh
+    #command: bash /root/init.sh
+    command: rethinkdb --bind all   #No security
     volumes_from:
-         - data # Import data directory from storage container
+         - data     # Import data directory from storage container
          - fs
     ports:
         - "8888:8080" # Rdb monitoring cluster - DEBUG
@@ -31,6 +32,7 @@ api:
     #command: bash /root/security.sh
     command: python file.py
     #command: sleep 876129876
+    #command: python main.py
     volumes:
         - ./app:/opt/app
     working_dir: /opt/app

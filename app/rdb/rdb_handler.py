@@ -230,6 +230,7 @@ class RethinkConnection(Connection):
         Note: rdb cannot take the id value inside the whole data.
         Make sure you pop that out as 'force_id' """
 
+# TO FIX - there might be a problem when creating a new resource...
         # Should create table if not exists? I think not
         #table = self.model.table
         #self.create_table(table) #, True)

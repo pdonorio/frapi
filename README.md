@@ -20,12 +20,13 @@ Those have been the main objectives:
 
 ====
 
+This started as a test, and it has become the real project:
 FRANGUI = flask restful api nginx Gui
 
-Run with:
+Run with
 ```
 $ ./cluster.sh run_with_gui
 ```
 
 Page tests:
-http://*serverhost*:80/app
+http://*serverhost*/

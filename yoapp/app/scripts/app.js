@@ -24,12 +24,13 @@ var myApp = angular.module('yoApp',
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
     'angularFileUpload',  //uploader for files
-    'uiSwitch',     //osx like switcher
   // DEPENCIES: own filters
     'textOperations', //my filters on strings
   ])
 
   // CONSTANTS
+  .constant('projectName', 'SpectaleBaroque')
+  .constant('devHost', 'awesome.dev')
   .constant('apiTimeout', 15750) //remember: a refused connection waits no time
   .constant('messageTimeout', 3000)
   .constant('warningInitTime', 7500)
@@ -37,33 +38,60 @@ var myApp = angular.module('yoApp',
   .constant('currentpageDefault', 1)
   .constant('someInitTime', 1500)
 
-//TO FIX
-  //TO REMOVE with ui bootstrap //BOOTSTRAP TOOLTIP/POPOVER
-  //http://www.bootply.com/cskelly/H4Zii7Mb6l
-  .directive('toggle', function(){
-    return {
-      restrict: 'A',
-      link: function(scope, element, attrs){
-        if (attrs.toggle=="tooltip"){
-          $(element).tooltip();
-        }
-        if (attrs.toggle=="popover"){
-          $(element).popover();
-        }
+/////////////////////////////////////////
+// FOR TESTING PURPOSE ONLY
+.controller('SomeController', function($rootScope, $scope, NotificationData, DataResource, currentpageDefault)
+{
+    $scope.setNotification = function(s,m) {
+      //console.log("Some controller: set notifaction with "+s+","+m);
+      NotificationData.setNotification(s,m);
+    };
+
+
+    // Angular query api
+    DataResource.get("news", 500, currentpageDefault)    // Use the data promise
+      .then(function(data) {  //Success
+          //console.log(data);
+          //do modifications to $scope
+          $scope.news = data.items;
+          $scope.newsNum = data.count;
+      }, function(object) {      //Error
+        console.log("Controller NEWS api call Error");
+        console.log(object);
+      }
+    );
+
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    // Manage news
+    $scope.saveNews = function(data, id) {
+      //$scope.user not updated yet
+      angular.extend(data, {id: id});
+      //API save
+      //return $http.post('/saveUser', data);
+    };
+    // remove user
+    $scope.removeNews = function(index) {
+      $scope.news.splice(index, 1);
+      //API remove
+    };
+    // add user
+    $scope.addNews = function() {
+      $scope.inserted = {
+        id: null, //$scope.news.length+1,
+        date: '',
+        description: '',
+        user: 'paulie',
+      };
+      $scope.news.push($scope.inserted);
+      //API add
+    };
+    // Validate text
+    $scope.checkName = function(data, id) {
+      if (id === 2 && data !== 'awesome') {
+        return "Username 2 should be `awesome`";
       }
     };
-  })
+    ///////////////////////////////////////////
 
-/************************************************/
-  // FOR TESTING NOTIFICATION PURPOSE :)
-  .controller('SomeController', ['$rootScope', '$scope','NotificationData',
-    function($rootScope, $scope, NotificationData){
-
-      $scope.setNotification = function(s,m) {
-        //console.log("Some controller: set notifaction with "+s+","+m);
-        NotificationData.setNotification(s,m);
-      };
-
-      //console.log("Testing controller");
-  }])
-/************************************************/
+})

@@ -50,39 +50,50 @@ myApp
       },
     })
     // LOGGED Child routes (sub view, nested inside parent)
-      .state('logged.home', {
-        url: "/home",
-        views: { "contain": { templateUrl: "views/main.html", }, },
+      .state('logged.main', {
+        url: "/main",
+        views: {
+          "contain": {
+            templateUrl: "views/main.html",
+          },
+          "extra": {
+            templateUrl: "views/datatable.html",
+            controller: 'ViewController',
+          },
+        },
         onEnter: function($rootScope) {
+          //make project text appear
+          $rootScope.searching = false;
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          $rootScope.$emit('rootScope:emit', 'fooon');
         },
       })
       .state('logged.submission', {
-        url: "/add",
+        url: "/add/{myId:[0-9\-a-z]*}",
         views: { "contain": {
           templateUrl: "views/submit.html",
           controller: 'SubmissionController',
         }, },
         onEnter: function($rootScope) {
             $rootScope.$emit('rootScope:emit', 'gbgoff');
-            $rootScope.$emit('rootScope:emit', 'fooon');
+            //$rootScope.$emit('rootScope:emit', 'fooon');
         },
 
       })
       .state('logged.search', {
         url: "/search",
-        views: { "contain": {
-          templateUrl: "views/datatable.html",
-          controller: 'ViewController',
-        }, },
+        views: {
+          "contain": {
+            templateUrl: "views/datatable.html",
+            controller: 'ViewController',
+          },
+        },
         onEnter: function($rootScope) {
             $rootScope.$emit('rootScope:emit', 'gbgon');
-            $rootScope.$emit('rootScope:emit', 'foooff');
+            //$rootScope.$emit('rootScope:emit', 'foooff');
         },
       })
       .state('logged.view', {
-        url: "/view/{viewId:[0-9\-a-z]+}",
+        url: "/view/{myId:[0-9\-a-z]+}",
         views: { "contain": {
           templateUrl: 'views/viewer.html',
           controller: 'ViewerController',
@@ -91,7 +102,7 @@ myApp
             // send broadcast signal to who is listening:
             // i want the grey background (gbg)
             $rootScope.$emit('rootScope:emit', 'gbgon');
-            $rootScope.$emit('rootScope:emit', 'foooff');
+            //$rootScope.$emit('rootScope:emit', 'foooff');
         },
       })
       .state('logged.about', {
@@ -102,7 +113,7 @@ myApp
         }, },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          $rootScope.$emit('rootScope:emit', 'fooon');
+          //$rootScope.$emit('rootScope:emit', 'fooon');
         },
       })
 // Once Logged
@@ -115,11 +126,12 @@ myApp
   // Redirect if unknown state
   $urlRouterProvider.otherwise(function ($injector, $location) {
     $injector.invoke(['$state', function ($state) {
+      console.log("Unknown");
+      console.log($location);
       $state.go('notfound');
     }]);
     return true;
   });
-
 });
 
 // enable html5Mode for pushstate ('#'-less URLs)

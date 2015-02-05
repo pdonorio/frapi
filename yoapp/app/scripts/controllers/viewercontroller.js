@@ -11,7 +11,7 @@ myApp
   .controller('ViewerController', function ($rootScope, $scope, $stateParams, DataResource) {
 
     $scope.data = {};
-    var id = $stateParams.viewId;
+    var id = $stateParams.myId;
     $scope.id = id;
 
     // Get the data (as a promise)

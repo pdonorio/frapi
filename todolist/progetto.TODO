@@ -1,51 +1,116 @@
 
 --- ✄ -----------------------
-Feb:
+Feb ALPHA:
 
-  ☐ Going HOME
+  ✔ Going HOME @done (15-02-01 17:30)
     ✔ Routing & states @done (15-01-29 06:59)
     ✔ ui router? @done (15-01-29 06:59)
       ✔ Remove old static directory @done (15-01-29 07:33)
       ✔ Notification/Welcome page with french text (default) @done (15-01-29 07:24)
-        ☐ waiting for french text
       ✔ Sub div view with parameter inside url @current @done (15-01-31 10:09)
       ✔ Login page (if button) @done (15-01-29 07:32)
         ✘ https://www.linkedin.com/uas/login?goback=&trk=hb_signin @cancelled (15-01-29 07:32)
-        ☐ Study best angular login form example
       ✔ Remove the /app subdirectory in docker server @done (15-01-29 08:00)
       ✔ Normal page loading (always check if logged) @done (15-01-29 07:49)
       ✔ Separate file for routing @done (15-01-30 17:56)
       ✔ Problem of first button active at load time (not working with stateChange function) @done (15-01-30 19:35)
-      ☐ Home page with words, search, add cards @current
-      ☐ Move $rootScope.menu inside resolve?
-      ☐ ui resolve for API login
-        ☐ add login checker in cron/repeat?
+      ✔ Colors and topbar style @done (15-01-31 12:07)
+        ✔ http://bootstrapdesigntools.com/tools/bootstrap-menu-builder/ @done (15-01-31 12:07)
+      ✔ Home page with words, search, add cards @current @done (15-02-01 17:21)
+        ✔ Search compressed when init page, open on search focus @done (15-01-31 15:25)
+        ✔ Remove footer @done (15-01-31 15:41)
+          ✔ Edit button inside topbar @done (15-01-31 15:41)
+          ✔ also remove ui-switch and use fontawesome instead @done (15-01-31 16:01)
+          ✔ Icons inside the topbar buttons @done (15-02-01 17:30)
+          ✔ Remix templates and views in one page @done (15-02-01 17:21)
+        ✔ Add button disappears @done (15-01-31 15:27)
+          ✔ Add button inside search @done (15-02-01 15:24)
+          ✔ Edit sends to add with id @done (15-02-01 16:23)
+      ✔ Back button if not main view @done (15-02-02 06:54)
+        ✔ Add button @done (15-02-01 17:40)
+        ✔ Main.js Implement back with $rootScope.$on('$stateChangeStart' @done (15-02-02 06:54)
+        ✔ Make button appear only if there is at least one url back @done (15-02-02 06:54)
+        ✔ Buttons tooltip @done (15-02-02 11:32)
+
+  Dev Release:
+    ☐ Login (angular?)
+      ☐ isAuthenticated(nextState) ui router?
+      ☐ ui resolve for API login ?
+      ☐ add login checker in cron/repeat
+    ✔ Google analytics @done (15-02-02 07:34)
+      ✔ only in production mode, via angular variable @done (15-02-02 07:38)
+      ✔ how to ng-if on 'script' tag? @done (15-02-02 11:26)
+    ✔ News @done (15-02-02 11:46)
+      ✔ New resource api @done (15-02-02 11:57)
+      ✔ Show resources in change page @done (15-02-02 12:41)
+      ✔ Add button only in admin mode @current @done (15-02-02 16:12)
+      ✔ also quick/dirty xeditable table? @done (15-02-02 12:41)
+      ☐ RSS feed?
+        ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
+      ☐ Connect with apis
+    ☐ ASK FOR Welcome page french text @last
+    ☐ Progress page & resource
+      ☐ to keep track of what we are doing
+      ☐ with comments on the side?
+
+    ☐ Development pages for now
+      ☐ not minified....
+      ☐ Rebuild with grunt
+        ☐ Grunt not working! @gush
+     ☐ SECURITY rethinkdb updated... does not work anymore
+       ☐ Using the RethinkDB authentication system
+         ☐ http://www.rethinkdb.com/docs/security/
+         ☐ Build a python query on the system table
+           ☐ an api resource with some password to secure the server?
 
   ☐ Mixed
-    ☐ FIX FOOTER
-      ☐ Edit button inside topbar
-      ☐ also remove ui-switch and use fontawesome instead
-    ☐ Language
+    ✔ Update database @done (15-02-01 12:37)
+    ☐ Backups?
+      ☐ http://rethinkdb.com/docs/backup/
+      ☐ rethinkdb dump + restore (via api?)
+      ☐ Cron
+        ☐ export/import? http://rethinkdb.com/docs/importing/
+          ☐ rethinkdb export
+          ☐ rethinkdb import -d rethinkdb_export_DIR/ --force
+    ☐ Draft section inside profile @cool
+    ☐ Language?
+      ☐ Fixed for now
+    ☐ Material update
+      ☐ http://codepen.io/zavoloklom/
     ✔ Jquery: Get rid @done (15-01-30 19:34)
       ✔ check dropdowns @done (15-01-30 19:34)
       ✔ tooltip @done (15-01-30 20:14)
+    ☐ Add functions via ui bootstrap
       ☐ popover http://angular-ui.github.io/bootstrap/#/popover
       ☐ modal http://angular-ui.github.io/bootstrap/#/modal
+    ☐ Move $rootScope.menu inside resolve?
+    ☐ OFFLINE checking
+      ☐ http://stackoverflow.com/a/16242703
+      ☐ Some nice indications from this library:
+        ☐ http://github.hubspot.com/offline/docs/welcome/
+    ☐ Load local script if no connection?
+      ☐ http://bahmutov.calepin.co/cdn-with-local-fallback.html
+    ☐ Fix resource creation... api,
+      ☐ see instructions md
+      ☐ one python file?
+      ☐ Dynamic resource building with names? It could be!
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
     ☐ Zoomify image via API
-    ☐ share folder of uploaded files for thumbnails
+    ☐ Upload only images
+    ☐ If already exists go to error via notify
+      ☐ if goes to already exists, disable upload button
+    ☐ share folder of uploaded files for thumbnails?
     ☐ Last step is transciptions
       ☐ list the images
       ☐ associate one or more transcriptions
       ☐ choose page
 
-  ☐ Update RethinkDB on docker image? what the hell?
-  ☐ DB backup
+  ✔ Update RethinkDB on docker image? what the hell? @done (15-02-02 07:19)
+  ☐ Directories backup (e.g. images)
     ☐ via docker container launch every hour/day
       ☐ volumes from
-      ☐ checks
 
   ☐ Steps
     ☐ Admin add, edit, remove
@@ -65,3 +130,6 @@ Mar:
  ☐ Advanced search
  ☐ Profiles
  ☐ Testing
+
+ ☐ CSS on demand!
+   ☐ https://github.com/door3/angular-css

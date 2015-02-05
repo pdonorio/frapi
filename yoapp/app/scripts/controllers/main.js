@@ -10,22 +10,45 @@
 myApp
 .controller('MainController', function ($scope, $rootScope, $timeout, $interval, $location,
     //tester,
+    projectName,
     DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+    $scope.projectName = projectName;
+    $rootScope.lastVisited = undefined;
+
+    // Function to simplify href on buttons via Angular
+    $scope.go = function ( path ) {
+      $location.path( path );
+      $rootScope.lastVisited = undefined;
+    };
+
+/*
+    //////////////////////////////////////
     // Lo.dash | underscore
     $scope._ = _;
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
+*/
 
-    /*  ****************************************** */
+    //////////////////////////////////////
+    // editable element via xeditable: init?
+    $scope.edit = {
+        available: true, //ONLY IF ADMIN!!
+        switch: false,
+        state: 1
+    };
+    $scope.elements = {};
+    //API give me access to HTML content inside database
+
+    //////////////////////////////////////
     // Build dynamic menu in header
     $rootScope.menu = [
-        {active:true,  link:'logged.home', name:'home'},
-        {active:false, link:'logged.submission', name:'add'},
-        {active:false, link:'logged.search', name:'search'},
-        {active:false, link:'logged.about', name:'about'},
+        {active:true,  link:'logged.main', name:'main', icon:'home', },
+        //{active:false, link:'logged.submission', name:'add'},
+        //{active:false, link:'logged.search', name:'search'},
+        {active:false, link:'logged.about', name:'about', icon:'info-circle', },
     ];
-
+    // Function to set active element
     $rootScope.setActiveMenu = function(current) {
       for (var i = 0; i < $rootScope.menu.length; i++) {
         if ($rootScope.menu[i]['name'] == current) {
@@ -35,18 +58,35 @@ myApp
         }
       };
     }
-    /******** SET ACIVE ELEMENT - FIRST TIME *****************/
+    // SET ACTIVE ELEMENT - FIRST TIME
     //getting current location
     var tmp = $location.url().split('/');
     // coming from /app/some, so 0 = "", 1 = "app", 2 = "some"
     if (tmp[2]) {
       $rootScope.setActiveMenu(tmp[2]);
     }
-    /******** SET ACIVE ELEMENT - ANY OTHER TIME *****************/
-    $rootScope.$on('$stateChangeStart', function (event, nextState, currentState) {
+    // SET ACIVE ELEMENT - ANY OTHER TIME
+    $rootScope.$on('$stateChangeStart', function (event, nextState, npar, currentState, cpar) {
+
       var p = nextState.url;
       var p = p.substring(1, p.length);
       $rootScope.setActiveMenu(p);
+
+//TO FIX - not very straightforward...
+      // BACK BUTTON inside TOPBAR
+      // Work on latest states
+      var tmp = currentState.url;
+      if (cpar.myId) {
+          var x = currentState.url.split("/");
+          tmp = '/' + x[1] + '/' + cpar.myId;
+      }
+      // don't wanto to go back from main views
+      if (npar.myId) {
+          // Use latest visited URL
+          $rootScope.lastVisited = 'app' + tmp;
+      }
+      //console.log($rootScope.lastVisited);
+
 /*      AUTH?
         if (!isAuthenticated(nextState)) {
             console.debug('Could not change route! Not authenticated!');
@@ -57,6 +97,7 @@ myApp
 */
     });
 
+    //////////////////////////////////////
     // INIT for loading the app based on API status
     $scope.init = {
         //startup : true, //DEBUG
@@ -76,38 +117,6 @@ myApp
     var timeStep = apiTimeout / intervalStep;
     var progressInterval = $interval(function() { $scope.progress.value += secondsStep; }, timeStep);
 
-/*
-    // Fix menu in the header.
-    // Make active only the button which leads to current path.
-    $scope.$on('$locationChangeStart', function() {
-        var p = $location.path();
-        //p = p.substring(1, p.length);
-        var data = p.split('/');
-        for (var i = 0; i < $scope.menu.length; i++) {
-            console.log("TEST link "+$scope.menu[i]['name']);
-            console.log("Compare to "+data[2]);
-            if ($scope.menu[i]['name'] == data[2]) {
-                $scope.menu[i]['active'] = true;
-            } else {
-                $scope.menu[i]['active'] = false;
-            }
-        };
-    });
-*/
-
-    /*  ****************************************** */
-    // editable element via xeditable
-    $scope.edit = {
-        state: 1,
-        switch: false,
-        //switch: true,
-    };
-    $scope.elements = {};
-
-    //////////////////////////////////////
-    //API give me access to HTML content inside database
-    //////////////////////////////////////
-
     //////////////////////////////////////
     // Query api - READ the whole html content
     var perpage = 1000;
@@ -123,8 +132,11 @@ myApp
                     var j = tmp[i].element;
                     $scope.elements[j] = tmp[i];
                 };
-                var current = $scope.edit.switch;
-                $scope.edit = { state: 0, switch: current };
+                $scope.edit = {
+                    state: 0,
+                    switch: $scope.edit.switch,
+                    available: $scope.edit.available,
+                };
 
                 //Getting progress closer
                 $timeout(function() { $scope.progress.value += ((maxStep - $scope.progress.value) / 2); }, someInitTime / 2 );

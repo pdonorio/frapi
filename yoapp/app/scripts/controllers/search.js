@@ -9,9 +9,8 @@
  */
 
 myApp
- .controller('ViewController', function ($rootScope, $scope, DataResource, perpageDefault, currentpageDefault)
+ .controller('ViewController', function ($scope, $rootScope, DataResource, perpageDefault, currentpageDefault)
 {
-
     // Init: Html scope data
     $scope.datacount = 0;
     $scope.from = 0;
@@ -24,6 +23,12 @@ myApp
 
     // Closed advanced search
     $scope.isCollapsed = true;
+
+    // What to do on focus
+    $scope.doFocus = function () {
+      $scope.mytable.show = true;
+      $rootScope.searching = true;
+    }
 
   /* ************************************
   ***************************************

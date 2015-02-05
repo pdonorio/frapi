@@ -1,12 +1,27 @@
-
+<!--
 <div class="jumbotron">
-    <!-- Example of using my directive as a tag for editing data -->
-  <editable-content data='elements' pos='0' flag='edit'></editable-content>
+    <editable-content data='elements' pos='0' flag='edit'></editable-content>
 </div>
+-->
+<div class="container" ng-if='!searching'>
+    <div class="panel panel-default shad">
+        <div class="panel-body">
+         <editable-content data='elements' pos='1' flag='edit'></editable-content>
+         <hr>
 
-<div class="container">
-    <div class="row marketing">
-      <!-- An easy block of editable content :) via ng-repeat -->
-      <editable-content ng-repeat='x in range' pos='x' data='elements' flag='edit'></editable-content>
+         <div class='row'>
+          <div class='col-md-7 col-xs-7'>
+            <!-- An easy block of editable content :) via ng-repeat -->
+            <editable-content ng-repeat='x in [2,3,4,5]' pos='x'
+                data='elements' flag='edit'></editable-content>
+            <!-- Example of using my directive as a tag for editing data -->
+          </div>
+          <div class='col-md-5 col-xs-5'>
+            <img src="http://j.mp/1EzWbYj" width="260px" class="shad">
+          </div>
+         </div>
+        </div>
     </div>
 </div>
+
+<div class='row'><p></p></div>
