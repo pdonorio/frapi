@@ -68,7 +68,10 @@ Feb ALPHA:
     ☐ Backups?
       ☐ http://rethinkdb.com/docs/backup/
       ☐ rethinkdb dump + restore (via api?)
-      ☐ export/import? http://rethinkdb.com/docs/importing/
+      ☐ Cron
+        ☐ export/import? http://rethinkdb.com/docs/importing/
+          ☐ rethinkdb export
+          ☐ rethinkdb import -d rethinkdb_export_DIR/ --force
     ☐ Draft section inside profile @cool
     ☐ Language?
       ☐ Fixed for now
