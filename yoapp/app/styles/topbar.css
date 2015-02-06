@@ -7,11 +7,11 @@ dark green #142F30
 
 */
 .dtext { color: #142F30; }
-.peach {
+.peach, a.peach:focus, a.peach:hover {
     background-color: #FAAD8E;
     color: #142F30;
 }
-.orange, a.orange:focus {
+.orange, a.orange:focus, a.orange:hover {
     background-color: #FFD6A3;
     color: #142F30;
 }

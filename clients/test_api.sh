@@ -9,7 +9,8 @@ port=5507
 
 #resource="data"
 #resource="webcontent"
-resource="news"
+#resource="news"
+resource="steps"
 
 #############################################
 # BUILD TEST
@@ -36,12 +37,13 @@ echo "***\nPaging"
 values="perpage=7&currentpage=1"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
 echo "received '$key'"
-exit
+exit;
 
 #############################################
 #ADD a new element
 echo "***\nINSERT"
-values="date=12-01-2014&description=test&user=paulie"
+values="step=1&label=estratto"
+#values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
 

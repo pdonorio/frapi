@@ -200,6 +200,13 @@ class RethinkConnection(Connection):
             # Get total query count
             count = query.count().run()
 
+            # Order if necessary (as defined in the model)
+            #.order_by("date")
+            order = 'id'
+
+            if self.model._order != None:
+                order = self.model._order
+
             # Slice for pagination
             if "currentpage" in p and "perpage" in p \
                 and p["perpage"] > 0: # If per page == 0 then give everything you have
@@ -207,9 +214,9 @@ class RethinkConnection(Connection):
                 end = p["currentpage"] * p["perpage"]
                 #this does not work: WHY??
                 #out = query.skip(start).limit(end).run()
-                out = query.slice(start, end).run()
+                out = query.slice(start, end).order_by(order).run()
             else:
-                out = query.run()
+                out = query.order_by(order).run()
 
         # Warning: out is a cursor and can be used in two ways:
         # 1. use the for cycle

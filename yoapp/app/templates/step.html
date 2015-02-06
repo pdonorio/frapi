@@ -6,7 +6,11 @@
 
     <div class="panel-heading">
       <h4 ng-if='current > step'> Step precedente [{{step}}] </h4>
+
+    <!-- change to step name -->
       <h4 ng-if='current == step'> Step {{step}} </h4>
+    <!-- change to step name -->
+
       <h4 ng-if='current < step'> Step successivo [{{step}}] </h4>
     </div>
 

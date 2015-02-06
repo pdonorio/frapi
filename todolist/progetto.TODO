@@ -127,9 +127,13 @@ Feb ALPHA:
 
 --- ✄ -----------------------
 Mar:
+ ☐ https://leanpub.com/web-component-development-with-angularjs/read
  ☐ Advanced search
  ☐ Profiles
  ☐ Testing
+
+ ☐ Swarm test?
+   ☐ https://github.com/docker/swarm/
 
  ☐ CSS on demand!
    ☐ https://github.com/door3/angular-css
