@@ -97,6 +97,7 @@ myApp
             $scope.steps.push(tmp);
         };
 
+        // Use the data since it is finally available
         fillStepData();
 
      }, function(object) {      //Error

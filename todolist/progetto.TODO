@@ -32,6 +32,24 @@ Feb ALPHA:
         ✔ Make button appear only if there is at least one url back @done (15-02-02 06:54)
         ✔ Buttons tooltip @done (15-02-02 11:32)
 
+ Stable:
+  ☐ Steps
+    ☐ Admin add, edit, remove
+      ✔ Load from API @done (15-02-06 17:23)
+      ☐ A div for no data loaded?
+        ☐ datetime(2015, 2, 3, 17, 32, 12, tzinfo=<rethinkdb.ast.RqlTzinfo object at 0x7f2e85066810>) is not JSON serializable
+  ☐ Upload and transcriptions
+    ☐ Create a new upload folder for any new draft
+    ☐ Zoomify image via API
+    ☐ Upload only images
+    ☐ If already exists go to error via notify
+      ☐ if goes to already exists, disable upload button
+    ☐ share folder of uploaded files for thumbnails?
+    ☐ Last step is transciptions
+      ☐ list the images
+      ☐ associate one or more transcriptions
+      ☐ choose page
+
   Dev Release:
     ☐ ASK FOR Welcome page french text @last
     ☐ Progress page & resource
@@ -95,28 +113,10 @@ Feb ALPHA:
       ☐ one python file?
       ☐ Dynamic resource building with names? It could be!
 
-  ☐ Upload and transcriptions
-    ☐ Create a new upload folder for any new draft
-    ☐ Zoomify image via API
-    ☐ Upload only images
-    ☐ If already exists go to error via notify
-      ☐ if goes to already exists, disable upload button
-    ☐ share folder of uploaded files for thumbnails?
-    ☐ Last step is transciptions
-      ☐ list the images
-      ☐ associate one or more transcriptions
-      ☐ choose page
-
   ✔ Update RethinkDB on docker image? what the hell? @done (15-02-02 07:19)
   ☐ Directories backup (e.g. images)
     ☐ via docker container launch every hour/day
       ☐ volumes from
-
-  ☐ Steps
-    ☐ Admin add, edit, remove
-    ☐ Rdb backup every hour, then @send
-    ☐ API fix
-      ☐ create table if not exist (at search time?)
 
   ☐ Admin content: use 'page' db attribute for different pages
     ☐ Html editor

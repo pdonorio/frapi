@@ -42,6 +42,14 @@
 
     <!-- MAIN BODY of SUBMISSION -->
     <div class="col-md-9 col-xs-9">
+
+      <div ng-hide='bootData.length > 0'>
+        No steps configured yet! <br>
+        Please contact administrator.
+      </div>
+
+      <div ng-show='bootData.length > 0'>
+
         <!-- Step before if exists -->
         <submission-step current='current' step='current-1' max='bootData.length'
             template='formTemplate' data='bootData[current-2]'></submission-step>
@@ -63,6 +71,9 @@
             </div>
            </article>
         </div>
+
+    </div>
+
     </div>
 
   <!-- BLUR div -->
