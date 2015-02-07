@@ -43,8 +43,8 @@ Feb ALPHA:
         ✔ Steps add, remove, undo  @done (15-02-07 13:33)
           ✔ url checking... @done (15-02-07 13:33)
         ✔ No edit mode if not a new step @done (15-02-07 14:47)
+        ✔ Steps with form open if no data in form/template @done (15-02-07 15:56)
         ☐ Steps API saving
-        ☐ Steps with form open if no data in form/template
 
   ☐ Bugs
     ✔ New news not working for Date @done (15-02-07 14:59)

@@ -66,6 +66,8 @@ myApp
     $scope.current = 1;
     //define step on click
     $scope.setStep = function(step) {
+        //console.log("Entering step ", step);
+        $scope.$broadcast('formActivation', false);
         $scope.current = step;
     }
 
@@ -132,7 +134,9 @@ myApp
             var x = data.items[i];
             var tmp = { step: x.step, name: x.label, form: null};
             // Check on template and type?
-            if ($scope.id != 'new') {
+            if ($scope.id == 'new') {
+                //console.log("New");
+            } else {
                 tmp.form = [
                     {pos:1, key: "titolo", value: 3},
                     {pos:4, key: "ultimo", value: "test"},
@@ -146,6 +150,12 @@ myApp
 
         // Use the data since it is finally available
         fillStepData();
+
+        // If working on empty step as first, show already the form
+        if ($scope.id == 'new') {
+            // Send the same event to every child controller/scope listening
+            $scope.$broadcast('formActivation', true);
+        }
 
      }, function(object) {      //Error
       console.log("Controller api 'steps' call Error");

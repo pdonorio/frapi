@@ -23,7 +23,23 @@ myApp
         data: "=",
         template: "=",
       },
-      //controller: function($scope) {}
+      controller: function($scope) {
+
+        // On broadcast from submissioncontroller
+        // this is launched when we open o switch step from the side menu
+        $scope.$on('formActivation', function(event, active) {
+
+          if (active && $scope.step == $scope.current) {
+            console.log("Open form " + $scope.step);
+            $scope.myform.$show();
+          }
+
+          if (!active) {
+            //$scope.myform.$hide();
+          }
+
+        });
+      }
 
     };
   });
