@@ -113,7 +113,7 @@ myApp
         url: "/about",
         views: { "contain": {
           templateUrl: "views/change.html",
-          controller: 'SomeController',
+          controller: 'NewsController',
         }, },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');

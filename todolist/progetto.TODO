@@ -45,6 +45,13 @@ Feb ALPHA:
         ✔ No edit mode if not a new step @done (15-02-07 14:47)
         ☐ Steps API saving
         ☐ Steps with form open if no data in form/template
+
+  ☐ Bugs
+    ✔ New news not working for Date @done (15-02-07 14:59)
+    ☐ Move editoff inside routing
+    ☐ move edit swtich inside init controller?
+      ☐ Move edit switch inside a factory or service
+
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
     ☐ Zoomify image via API

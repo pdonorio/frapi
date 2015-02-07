@@ -40,71 +40,8 @@ var myApp = angular.module('yoApp',
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY
-.controller('SomeController', function($rootScope, $scope, NotificationData, DataResource)
+.controller('SomeController', function($scope)
 {
-    $scope.setNotification = function(s,m) {
-      //console.log("Some controller: set notifaction with "+s+","+m);
-      NotificationData.setNotification(s,m);
-    };
-
-    $scope.news = [];
-
-    // Angular query api
-    DataResource.get("news")    // Use the data promise
-      .then(function(data) {  //Success
-          //console.log(data);
-
-          //do modifications to $scope
-          for (var i = 0; i < data.items.length; i++) {
-            var x = data.items[i];
-            //console.log(x);
-
-            // Fix date and push
-            var tmp = new Date(x.date);
-            x.date = tmp;
-            $scope.news.push(x);
-          };
-
-          //$scope.news = data.items;
-
-          $scope.newsNum = data.count;
-      }, function(object) {      //Error
-        console.log("Controller NEWS api call Error");
-        console.log(object);
-      }
-    );
-
-    ///////////////////////////////////////////
-    ///////////////////////////////////////////
-    // Manage news
-    $scope.saveNews = function(data, id) {
-      //$scope.user not updated yet
-      angular.extend(data, {id: id});
-      //API save
-      //return $http.post('/saveUser', data);
-    };
-    // remove user
-    $scope.removeNews = function(index) {
-      $scope.news.splice(index, 1);
-      //API remove
-    };
-    // add user
-    $scope.addNews = function() {
-      $scope.inserted = {
-        id: null, //$scope.news.length+1,
-        date: newDate,
-        description: '',
-        user: 'paulie',
-      };
-      $scope.news.push($scope.inserted);
-      //API add
-    };
-    // Validate text
-    $scope.checkName = function(data, id) {
-      // Checking
-      console.log(id);
-      console.log(data);
-    };
-    ///////////////////////////////////////////
-
+  $scope.test = 1;
 })
+;
