@@ -8,25 +8,61 @@
  * Controller of the yoApp
  */
 myApp
-.controller('SubmissionController', function ($rootScope, $scope, $stateParams, $filter, DataResource)
+.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter, DataResource)
 {
+    ////////////////////////////////
+    // get variable inside url as param
+    var id = $stateParams.myId;
+    $scope.id = id;
+    if (id != 'new') {
+        $rootScope.edit.available = false;
+        console.log("NOT ADMIN");
+    }
+
+    ////////////////////////////////
+    // STEPS EDITABLE
+
+    // Init
+    $scope.steps = [];
+    $scope.stepsCopy = [];
     // Manage switch to enable edit form (for ADMIN)
     $scope.$on('switch', function(event, mass) {
         //console.log("Received " + mass);
         if (mass) {
+            $scope.stepsCopy = angular.copy($scope.steps);
             $scope.stepsForm.$show();
         } else {
             $scope.stepsForm.$hide();
         }
     });
-
+    // undo
+    $scope.undoSteps = function() {
+        $scope.steps = {};
+        $scope.steps = angular.copy($scope.stepsCopy);
+        $scope.stepsForm.$cancel();
+        $state.go('logged.submission');
+    };
+    // save
     $scope.saveSteps = function() {
         console.log($scope.steps);
+        //API CALL
+        // Note to self:
+        // i should reload the view which shows the step contents!
+        $state.go('logged.submission');
     }
-
-    // get url param
-    var id = $stateParams.myId;
-    $scope.id = id;
+    // remove
+    $scope.removeStep = function(index) {
+        $scope.steps.splice(index, 1);
+    };
+    // add
+    $scope.addStep = function() {
+        var newStep = {
+          id: null,
+          step: $scope.steps.length + 1,
+          label: 'nuovo',
+        };
+        $scope.steps.push(newStep);
+    };
 
 // TO FIX - should get the step from url/routing
     //First step
@@ -35,8 +71,6 @@ myApp
     $scope.setStep = function(step) {
         $scope.current = step;
     }
-
-    $scope.steps = [];
 
     ////////////// READ STEP CONTENT / TYPE
     // Missing for now?
@@ -99,13 +133,16 @@ myApp
      .then(function(data) {  //Success
         for (var i = 0; i < data.count; i++) {
             var x = data.items[i];
-            var tmp = { step: x.step, name: x.label, form: [
-                        {pos:1, key: "titolo", value: 3},
-                        {pos:4, key: "ultimo", value: "test"},
-                        {pos:3, key: "ancora", value: "<i>html</i>"},
-                        {pos:2, key: "pippo", value: "se moi"},
-                    ]
-                };
+            var tmp = { step: x.step, name: x.label, form: null};
+            // Check on template and type?
+            if ($scope.id != 'new') {
+                tmp.form = [
+                    {pos:1, key: "titolo", value: 3},
+                    {pos:4, key: "ultimo", value: "test"},
+                    {pos:3, key: "ancora", value: "<i>html</i>"},
+                    {pos:2, key: "pippo", value: "se moi"},
+                ];
+            }
             //do modifications to $scope
             $scope.steps.push(tmp);
         };
@@ -119,5 +156,4 @@ myApp
      }
     );
 
-    //////////////////////////////////////////////
  });

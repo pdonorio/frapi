@@ -11,8 +11,11 @@
 angular.module('textOperations', [])
   .filter('ucFirst', function () {
     return function (input) {
-        if (input != null)
+        //console.log("For ", input)
+        if (input && input != null) {
             input = input.toLowerCase();
-        return input.substring(0,1).toUpperCase()+input.substring(1);
+            return input.substring(0,1).toUpperCase()+input.substring(1);
+        }
+        return input;
     };
   });

@@ -12,7 +12,6 @@ myApp
     //tester,
     projectName, DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
-
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
 
@@ -33,16 +32,17 @@ myApp
     //////////////////////////////////////
     // editable element via xeditable: init?
     $scope.elements = {};
-    $scope.edit = {
+    $rootScope.edit = {
         available: true, //ONLY IF ADMIN!!
         switch: false,
         state: 1
     };
-    $scope.switchEdit = function(state) {
-        $scope.edit.switch = state;
-        // Send the same switched event to every child scope listening
+    $rootScope.switchEdit = function(state) {
+        $rootScope.edit.switch = state;
+        // Send the same switched event to every child controller/scope listening
         $scope.$broadcast('switch', state);
-    }
+    };
+
     //API give me access to HTML content inside database
 
     //////////////////////////////////////
@@ -135,10 +135,10 @@ myApp
                     var j = tmp[i].element;
                     $scope.elements[j] = tmp[i];
                 };
-                $scope.edit = {
+                $rootScope.edit = {
                     state: 0,
-                    switch: $scope.edit.switch,
-                    available: $scope.edit.available,
+                    switch: $rootScope.edit.switch,
+                    available: $rootScope.edit.available,
                 };
 
                 //Getting progress closer
@@ -160,7 +160,7 @@ myApp
                 $timeout.cancel(longerThanUsual);
                 $interval.cancel(progressInterval);
                 //disable any admin edit if page loads
-                $scope.edit = { switch: false, state: 1, available: false };
+                $rootScope.edit = { switch: false, state: 1, available: false };
             }
 
         }, function(object) {      //Error? Uhm

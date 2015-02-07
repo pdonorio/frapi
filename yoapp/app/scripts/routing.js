@@ -74,8 +74,12 @@ myApp
           controller: 'SubmissionController',
         }, },
         onEnter: function($rootScope) {
-            $rootScope.$emit('rootScope:emit', 'gbgoff');
-            //$rootScope.$emit('rootScope:emit', 'fooon');
+          $rootScope.$emit('rootScope:emit', 'gbgoff');
+        }, onExit: function($rootScope, $stateParams){
+          if ($stateParams.myId != 'new') {
+            $rootScope.$emit('rootScope:emit', 'editon');
+            //$rootScope.broadcast('edit',false);
+          }
         },
 
       })

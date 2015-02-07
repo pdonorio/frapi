@@ -63,6 +63,8 @@ myApp
             $scope.onOff.footer = true;
         } else if (data == "foooff") {
             $scope.onOff.footer = false;
+        } else if (data == "editon") {
+            $rootScope.edit.available = true;
         } else {
             console.log("Unknown broadcast: " + data);
         }

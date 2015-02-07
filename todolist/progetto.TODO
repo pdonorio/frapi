@@ -39,6 +39,12 @@ Feb ALPHA:
       ✔ A div for no data loaded? @done (15-02-07 09:49)
         ✔ datetime js handling @done (15-02-07 09:49)
         ☐ datetime saving in api?
+        ✔ Steps editing @done (15-02-07 12:15)
+        ✔ Steps add, remove, undo  @done (15-02-07 13:33)
+          ✔ url checking... @done (15-02-07 13:33)
+        ✔ No edit mode if not a new step @done (15-02-07 14:47)
+        ☐ Steps API saving
+        ☐ Steps with form open if no data in form/template
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
     ☐ Zoomify image via API
