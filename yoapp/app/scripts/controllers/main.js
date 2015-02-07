@@ -28,21 +28,7 @@ myApp
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
 */
-
-    //////////////////////////////////////
-    // editable element via xeditable: init?
     $scope.elements = {};
-    $rootScope.edit = {
-        available: true, //ONLY IF ADMIN!!
-        switch: false,
-        state: 1
-    };
-    $rootScope.switchEdit = function(state) {
-        $rootScope.edit.switch = state;
-        // Send the same switched event to every child controller/scope listening
-        $scope.$broadcast('switch', state);
-    };
-
     //API give me access to HTML content inside database
 
     //////////////////////////////////////

@@ -13,11 +13,8 @@ myApp
     ////////////////////////////////
     // get variable inside url as param
     var id = $stateParams.myId;
+    // Inject for DOM
     $scope.id = id;
-    if (id != 'new') {
-        $rootScope.edit.available = false;
-        console.log("NOT ADMIN");
-    }
 
     ////////////////////////////////
     // STEPS EDITABLE

@@ -27,11 +27,6 @@ myApp
     //LOGGED ROOT
     .state('logged', {
       url: "/app",
-      resolve: {
-        tester: function($stateParams) {
-          return $stateParams;
-        },
-      },
       views: {
         "main": {
             templateUrl: "views/app.html",
@@ -73,12 +68,14 @@ myApp
           templateUrl: "views/submit.html",
           controller: 'SubmissionController',
         }, },
-        onEnter: function($rootScope) {
+        onEnter: function($rootScope, $stateParams) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
+          if ($stateParams.myId != 'new') {
+            $rootScope.$emit('rootScope:emit', 'editoff');
+          }
         }, onExit: function($rootScope, $stateParams){
           if ($stateParams.myId != 'new') {
             $rootScope.$emit('rootScope:emit', 'editon');
-            //$rootScope.broadcast('edit',false);
           }
         },
 

@@ -36,6 +36,21 @@ myApp
     // Today, for any scope of my app
     $rootScope.date = new Date();
 
+    //////////////////////////////////////
+    // editable element via xeditable: init?
+    $rootScope.edit = {
+// TO FIX -
+        available: true, //ONLY IF ADMIN!!
+        switch: false,
+        state: 1
+    };
+    $rootScope.switchEdit = function(state) {
+        $rootScope.edit.switch = state;
+        // Send the same switched event to every child controller/scope listening
+        $scope.$broadcast('switch', state);
+    };
+
+
     /*  ******************************************
         *** BROADCAST of messages across the application
         ******************************************/
@@ -63,6 +78,8 @@ myApp
             $scope.onOff.footer = true;
         } else if (data == "foooff") {
             $scope.onOff.footer = false;
+        } else if (data == "editoff") {
+            $rootScope.edit.available = false;
         } else if (data == "editon") {
             $rootScope.edit.available = true;
         } else {

@@ -48,9 +48,9 @@ Feb ALPHA:
 
   ☐ Bugs
     ✔ New news not working for Date @done (15-02-07 14:59)
-    ☐ Move editoff inside routing
-    ☐ move edit swtich inside init controller?
-      ☐ Move edit switch inside a factory or service
+    ✔ Move editoff inside routing @done (15-02-07 15:17)
+    ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
+    ☐ Move edit switch inside a factory or service @thatistherightway
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
