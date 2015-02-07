@@ -10,9 +10,9 @@
 myApp
 .controller('MainController', function ($scope, $rootScope, $timeout, $interval, $location,
     //tester,
-    projectName,
-    DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
+    projectName, DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
 
@@ -32,12 +32,17 @@ myApp
 
     //////////////////////////////////////
     // editable element via xeditable: init?
+    $scope.elements = {};
     $scope.edit = {
         available: true, //ONLY IF ADMIN!!
         switch: false,
         state: 1
     };
-    $scope.elements = {};
+    $scope.switchEdit = function(state) {
+        $scope.edit.switch = state;
+        // Send the same switched event to every child scope listening
+        $scope.$broadcast('switch', state);
+    }
     //API give me access to HTML content inside database
 
     //////////////////////////////////////
@@ -155,7 +160,7 @@ myApp
                 $timeout.cancel(longerThanUsual);
                 $interval.cancel(progressInterval);
                 //disable any admin edit if page loads
-                $scope.edit = { switch: false, state: 1 };
+                $scope.edit = { switch: false, state: 1, available: false };
             }
 
         }, function(object) {      //Error? Uhm

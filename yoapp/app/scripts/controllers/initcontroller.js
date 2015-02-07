@@ -33,7 +33,7 @@ myApp
     }
     //console.log("Analytics? " + $rootScope.analytics);
 
-    // Today
+    // Today, for any scope of my app
     $rootScope.date = new Date();
 
     /*  ******************************************

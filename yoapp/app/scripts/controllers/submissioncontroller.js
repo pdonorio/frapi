@@ -10,8 +10,21 @@
 myApp
 .controller('SubmissionController', function ($rootScope, $scope, $stateParams, $filter, DataResource)
 {
+    // Manage switch to enable edit form (for ADMIN)
+    $scope.$on('switch', function(event, mass) {
+        //console.log("Received " + mass);
+        if (mass) {
+            $scope.stepsForm.$show();
+        } else {
+            $scope.stepsForm.$hide();
+        }
+    });
 
-    //get url param
+    $scope.saveSteps = function() {
+        console.log($scope.steps);
+    }
+
+    // get url param
     var id = $stateParams.myId;
     $scope.id = id;
 
