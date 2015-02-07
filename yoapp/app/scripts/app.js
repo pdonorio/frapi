@@ -47,12 +47,26 @@ var myApp = angular.module('yoApp',
       NotificationData.setNotification(s,m);
     };
 
+    $scope.news = [];
+
     // Angular query api
     DataResource.get("news")    // Use the data promise
       .then(function(data) {  //Success
           //console.log(data);
+
           //do modifications to $scope
-          $scope.news = data.items;
+          for (var i = 0; i < data.items.length; i++) {
+            var x = data.items[i];
+            //console.log(x);
+
+            // Fix date and push
+            var tmp = new Date(x.date);
+            x.date = tmp;
+            $scope.news.push(x);
+          };
+
+          //$scope.news = data.items;
+
           $scope.newsNum = data.count;
       }, function(object) {      //Error
         console.log("Controller NEWS api call Error");
@@ -78,7 +92,7 @@ var myApp = angular.module('yoApp',
     $scope.addNews = function() {
       $scope.inserted = {
         id: null, //$scope.news.length+1,
-        date: '',
+        date: newDate,
         description: '',
         user: 'paulie',
       };
@@ -87,9 +101,9 @@ var myApp = angular.module('yoApp',
     };
     // Validate text
     $scope.checkName = function(data, id) {
-      if (id === 2 && data !== 'awesome') {
-        return "Username 2 should be `awesome`";
-      }
+      // Checking
+      console.log(id);
+      console.log(data);
     };
     ///////////////////////////////////////////
 

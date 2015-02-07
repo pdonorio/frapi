@@ -36,8 +36,9 @@ Feb ALPHA:
   ☐ Steps
     ☐ Admin add, edit, remove
       ✔ Load from API @done (15-02-06 17:23)
-      ☐ A div for no data loaded?
-        ☐ datetime(2015, 2, 3, 17, 32, 12, tzinfo=<rethinkdb.ast.RqlTzinfo object at 0x7f2e85066810>) is not JSON serializable
+      ✔ A div for no data loaded? @done (15-02-07 09:49)
+        ✔ datetime js handling @done (15-02-07 09:49)
+        ☐ datetime saving in api?
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
     ☐ Zoomify image via API

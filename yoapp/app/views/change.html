@@ -36,12 +36,10 @@
           <td>
             <span editable-date="el.date" e-name="desc" e-form="rowform"
               onbeforesave="checkName($data, el.id)" e-required>
-              {{ el.date || 'empty' }}
+              {{ el.date | date :'MMM dd yyyy' || 'empty' }}
             </span>
-          </td>
-          <td>
-            <span editable-text="el.description" e-name="desc" e-form="rowform"
-              onbeforesave="checkName($data, el.id)" e-required>
+          </td> <td>
+            <span editable-text="el.description" e-name="desc" e-form="rowform" e-required>
               {{ el.description || 'empty' }}
             </span>
           </td>

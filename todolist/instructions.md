@@ -54,8 +54,12 @@ Angular code to use it:
     //, perpage, currentpage  //optional
     )
     .then(function(data) {  //Success
-        console.log(data);
         //do modifications to $scope
+        for (var i = 0; i < data.items.length; i++) {
+          var x = data.items[i];
+          console.log(x);
+        };
+        //console.log(data);
     }, function(object) {      //Error
       console.log("Controller api call Error");
       console.log(object);

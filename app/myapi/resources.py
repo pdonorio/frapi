@@ -14,8 +14,16 @@ from myapi.app import g
 from rdb import data_models
 # Import html codes
 import bpractices.htmlcodes as hcodes
+# Handling time
+import datetime as dt
 
 # == Utilities ==
+
+# Handling time format for json_dumps
+dthandler = lambda obj: ( obj.isoformat()
+    if isinstance(obj, dt.datetime) or isinstance(obj, dt.date) else None)
+# This one above could/should be a class
+# http://stackoverflow.com/a/23287543
 
 def clean_parameter(param=""):
     """ I get parameters already with '"' quotes from curl? """
@@ -125,13 +133,14 @@ class GenericDBResource(Resource):
             params["id"] = data_key
 
         # Passing each parameters directly to rdb
-        (count,out) = g.rdb.search(**params)
+        (count, out) = g.rdb.search(**params)
 
         # Need a list to make this work
         #data = list(out)
         data = {"count":count, "items":list(out)}
-        # Serialize
-        json_data = json.dumps(data)
+
+        # Serialize (using dthandler to avoid problems with date)
+        json_data = json.dumps(data, default=dthandler)
 
         # Should build a better json array response
         return json_data, hcodes.HTTP_OK_ACCEPTED
