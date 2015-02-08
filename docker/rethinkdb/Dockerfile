@@ -58,4 +58,9 @@ EXPOSE 29015
 # ENTRYPOINT ["/bin/bash"]
 # CMD ["/root/init.sh", "Hello", "World"]
 
+# Backup with cron hourly. Do not put extension or it will not work
+RUN echo -e "#\!/bin/bash\ncd /data\n/usr/bin/rethinkdb export\n" > /etc/cron.hourly/backup
+# Change it to executable to make it work
+RUN chmod +x /etc/cron.hourly/backup
+
 ENV TERM xterm
