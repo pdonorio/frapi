@@ -17,11 +17,15 @@ myApp
       /////////////////////////////////////
       //Directives isolated scope (cleaner and better)
       scope: {
+
+        // I must rearrange all of this data...
         current: "=",
         step: "=",
+        name: "=",
         max: "=",
         data: "=",
         template: "=",
+        edit: "=",
       },
       controller: function($scope) {
 

@@ -45,8 +45,14 @@ Feb ALPHA:
         ✔ No edit mode if not a new step @done (15-02-07 14:47)
         ✔ Steps with form open if no data in form/template @done (15-02-07 15:56)
         ☐ Steps API saving
+          ☐ Learning to find the differences in two objects
+          ☐ Should apply to news also @paroparo
 
   ☐ Bugs
+    ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
+      ☐ testing
+    ☐ An api resource only to check if api and db are available?
+      ☐ Testing inside the step saving @important
     ✔ New news not working for Date @done (15-02-07 14:59)
     ✔ Move editoff inside routing @done (15-02-07 15:17)
     ✔ move edit swtich inside init controller? @done (15-02-07 15:17)

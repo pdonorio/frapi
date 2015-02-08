@@ -4,7 +4,6 @@
 myApp.factory('RestAPI', function(Restangular, AppConfig)
 {
   return Restangular.withConfig(function(RestangularConfigurer) {
-
     //i will use the same base url for all my api requests
     RestangularConfigurer.setBaseUrl(AppConfig.apiBase);
 

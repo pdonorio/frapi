@@ -8,7 +8,7 @@
  * Controller of the yoApp
  */
 myApp
-.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter, DataResource)
+.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter, DataResource, NotificationData, AppConfig)
 {
     ////////////////////////////////
     // get variable inside url as param
@@ -22,27 +22,96 @@ myApp
     // Init
     $scope.steps = [];
     $scope.stepsCopy = [];
+
     // Manage switch to enable edit form (for ADMIN)
-    $scope.$on('switch', function(event, mass) {
-        //console.log("Received " + mass);
-        if (mass) {
+    $scope.$on('switch', function(event, enabled) {
+        // Copy data when enabling changes
+        if (enabled) {
             $scope.stepsCopy = angular.copy($scope.steps);
+            // Show the form for changes
             $scope.stepsForm.$show();
         } else {
+            // Close the form for changes
             $scope.stepsForm.$hide();
         }
     });
+    // closing actions
+    var closingAction = function() {
+        $state.go('logged.submission');
+        return true;
+    }
     // undo
     $scope.undoSteps = function() {
-        $scope.steps = {};
+        // Recover the array copied
         $scope.steps = angular.copy($scope.stepsCopy);
+        // Abort the current form
         $scope.stepsForm.$cancel();
-        $state.go('logged.submission');
+        return closingAction();
     };
     // save
     $scope.saveSteps = function() {
-        console.log($scope.steps);
-        //API CALL
+
+        // Did anything change?
+        if (angular.equals($scope.steps, $scope.stepsCopy))
+            return closingAction(); //if not
+
+// TO FIX -
+        // Check api online and db working
+        //DataResource.get("verify").then(function() {}
+
+        console.log("Something is changed");
+
+        var difference = _.omit($scope.steps, _.keys($scope.stepsCopy));
+        console.log(difference);
+
+        /*  ******************************************
+         *  For each new step
+         *      find the old with same step number
+         *          YES
+         *              if changed save it
+         *               remove from old step that position
+         *          NO
+         *              add / save
+         *  For each remaining old step
+         *      delete from api
+        /*  ******************************************/
+/*
+        for (var j = 0; j < $scope.steps.length; j++) {
+
+            var neww = $scope.steps[j];
+            var current = neww.step;
+            var tmp = $filter('filter')($scope.stepsCopy, {step: current});
+            console.log("step " + current + " - Found");
+            console.log(tmp);
+
+            var oldd = null;
+            if ($scope.stepsCopy[j]) {
+                oldd = $scope.stepsCopy[j];
+                //console.log(oldd);
+            }
+
+/*
+            if (!angular.equals(neww, oldd)) {
+                console.log("Should save step ", j);
+                console.log(neww);
+                console.log(oldd);
+                console.log("Uhm");
+            }
+
+/*
+            //API CALL
+            DataResource.set("steps", data).then(function() {
+                msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
+                NotificationData.setNotification(AppConfig.messageStatus.success, msg);
+            }, function() {
+                msg = "Could not save steps editing<br> " +
+                "<br> <br> Please try again in a few minutes." + "";
+                NotificationData.setNotification(AppConfig.messageStatus.error, msg);
+            });
+*/
+
+        //};
+
         // Note to self:
         // i should reload the view which shows the step contents!
         $state.go('logged.submission');
@@ -86,6 +155,7 @@ myApp
 
     // INIT EACH STEP
     $scope.bootData = [];
+    $scope.stepNames = [];
 
     function fillStepData() {
 
@@ -121,8 +191,10 @@ myApp
 
             //save step x
             $scope.bootData[x] = angular.copy(results);
+            $scope.stepNames[x] = step.name;
         }
         //console.log($scope.bootData);
+        //console.log($scope.stepNames);
 
     }
 

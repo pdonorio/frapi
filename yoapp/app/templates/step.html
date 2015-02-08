@@ -5,21 +5,42 @@
   <div class="panel" ng-class="{'shad': current == step, 'panel-default': current != step}">
 
     <div class="panel-heading">
+
+      <h3 ng-show='edit.switch'>
+        <i class="fa  fa-exclamation-triangle fa-2x"></i> &nbsp;
+      <span class="label label-warning">
+        Admin editing
+      </span>
+      </h3>
+
       <h4 ng-if='current > step'> Step precedente [{{step}}] </h4>
 
     <!-- change to step name -->
-      <h4 ng-if='current == step'> Step {{step}} </h4>
+      <h4 ng-if='current == step'> Step {{step}}: <i>{{name | ucFirst}}</i> </h4>
     <!-- change to step name -->
 
       <h4 ng-if='current < step'> Step successivo [{{step}}] </h4>
     </div>
 
-    <form editable-form name="myform" onaftersave="doSomethingToSave()">
-
     <div class="panel-body">
-      <!-- editable username (text with validation) -->
-      <table ng-class="{'table': current == step}">
 
+     <!-- Form for ADMIN USER -->
+     <div ng-show='edit.switch'>
+      <form editable-form name="myform" onaftersave="doSomethingToSave()">
+
+        Work in progress:
+        <br>
+        There will be fields edit in here.
+
+      </form>
+     </div>
+
+     <!-- Form for Normal insert user (OPERATOR)-->
+     <div ng-hide='edit.switch'>
+      <form editable-form name="myform" onaftersave="doSomethingToSave()">
+
+       <!-- editable username (text with validation) -->
+       <table ng-class="{'table': current == step}">
         <!-- repeat with sort? on key 'pos' -->
         <tr ng-repeat="element in data | orderBy:'+pos' |limitTo:10">
             <th class='title'> {{element.key + ':' || 'empty'}} </th>
@@ -28,8 +49,7 @@
               {{element.value|| 'empty'}}
             </td>
         </tr>
-
-      </table>
+       </table>
 
         <!-- based on current and the step of this directive -->
         <div class="buttons" ng-show="current == step">
@@ -49,8 +69,10 @@
           </span>
         </div>
 
-    </div>
-    </form>
+      </form>
+     </div>
+
+    </div>  <!-- end of panel body -->
 
   </div>
  </article>
