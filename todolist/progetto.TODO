@@ -48,6 +48,15 @@ Feb ALPHA:
           ☐ Learning to find the differences in two objects
           ☐ Should apply to news also @paroparo
 
+  ☐ A new view when edit on
+    ☐ dark background
+    ☐ step list on the side
+    ☐ step editing on the other side
+    ☐ Edit step name on one line
+    ☐ Edit step contents
+      ☐ one piece at the time
+    ☐ A factory for handling the global form?
+
   ☐ Bugs
     ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
       ☐ testing

@@ -8,8 +8,11 @@
  * Controller of the yoApp
  */
 myApp
-.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter, DataResource, NotificationData, AppConfig)
+.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter, DataResource, NotificationData, AppConfig, DataUpdate)
 {
+    var x = DataUpdate.getInstance("test");
+    x.foo();
+
     ////////////////////////////////
     // get variable inside url as param
     var id = $stateParams.myId;

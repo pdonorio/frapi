@@ -34,7 +34,7 @@ myApp
         $scope.$on('formActivation', function(event, active) {
 
           if (active && $scope.step == $scope.current) {
-            console.log("Open form " + $scope.step);
+            //console.log("Open form " + $scope.step);
             $scope.myform.$show();
           }
 

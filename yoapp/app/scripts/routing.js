@@ -70,7 +70,9 @@ myApp
         }, },
         onEnter: function($rootScope, $stateParams) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          if ($stateParams.myId != 'new') {
+          if ($stateParams.myId == 'new') {
+            $rootScope.$emit('rootScope:emit', 'switchoff');
+          } else {
             $rootScope.$emit('rootScope:emit', 'editoff');
           }
         }, onExit: function($rootScope, $stateParams){
