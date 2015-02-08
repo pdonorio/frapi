@@ -60,6 +60,7 @@ myApp
           //make project text appear
           $rootScope.searching = false;
           $rootScope.$emit('rootScope:emit', 'gbgoff');
+          $rootScope.lastVisited = undefined;
         },
       })
       .state('logged.submission', {
@@ -119,6 +120,7 @@ myApp
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
           //$rootScope.$emit('rootScope:emit', 'fooon');
+          $rootScope.lastVisited = undefined;
         },
       })
 // Once Logged
