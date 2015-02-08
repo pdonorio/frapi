@@ -51,8 +51,15 @@ myApp
     // save
     $scope.saveSteps = function() {
 
+        // Using again angular copy here. This strips away that $$hashKey
+        var o1 = angular.copy($scope.steps);
+        //console.log(o1);
+        // This was my previous copy
+        var o2 = $scope.stepsCopy;
+        //console.log(o2);
+
         // Did anything change?
-        if (angular.equals($scope.steps, $scope.stepsCopy))
+        if (angular.equals(o1,o2))
             return closingAction(); //if not
 
 // TO FIX -
@@ -61,8 +68,13 @@ myApp
 
         console.log("Something is changed");
 
-        var difference = _.omit($scope.steps, _.keys($scope.stepsCopy));
-        console.log(difference);
+        var difference1 = _.omit(o1, function(v,k) { return o2[k] === v; })
+        console.log(difference1);
+/*
+        var difference2 = _.omit(o2, function(v,k) { return o1[k] === v; })
+        console.log(difference2);
+*/
+        //http://underscorejs.org/#difference
 
         /*  ******************************************
          *  For each new step
