@@ -74,7 +74,9 @@ myApp
             $rootScope.$emit('rootScope:emit', 'editoff');
           }
         }, onExit: function($rootScope, $stateParams){
-          if ($stateParams.myId != 'new') {
+          if ($stateParams.myId == 'new') {
+            $rootScope.$emit('rootScope:emit', 'switchoff');
+          } else {
             $rootScope.$emit('rootScope:emit', 'editon');
           }
         },

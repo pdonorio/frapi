@@ -78,10 +78,14 @@ myApp
             $scope.onOff.footer = true;
         } else if (data == "foooff") {
             $scope.onOff.footer = false;
-        } else if (data == "editoff") {
-            $rootScope.edit.available = false;
         } else if (data == "editon") {
             $rootScope.edit.available = true;
+        } else if (data == "editoff") {
+            $rootScope.edit.available = false;
+        } else if (data == "switchon") {
+            $rootScope.edit.switch = true;
+        } else if (data == "switchoff") {
+            $rootScope.edit.switch = false;
         } else {
             console.log("Unknown broadcast: " + data);
         }

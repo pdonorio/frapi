@@ -51,11 +51,11 @@ myApp
     // save
     $scope.saveSteps = function() {
 
-        // Using again angular copy here. This strips away that $$hashKey
-        var o1 = angular.copy($scope.steps);
+        // Note to self: remeber to strip away that $$hashKey (with angular: copy or toJson)
+        var o1 = angular.toJson($scope.steps, true);
         //console.log(o1);
         // This was my previous copy
-        var o2 = $scope.stepsCopy;
+        var o2 = angular.toJson($scope.stepsCopy, true);
         //console.log(o2);
 
         // Did anything change?
@@ -67,14 +67,6 @@ myApp
         //DataResource.get("verify").then(function() {}
 
         console.log("Something is changed");
-
-        var difference1 = _.omit(o1, function(v,k) { return o2[k] === v; })
-        console.log(difference1);
-/*
-        var difference2 = _.omit(o2, function(v,k) { return o1[k] === v; })
-        console.log(difference2);
-*/
-        //http://underscorejs.org/#difference
 
         /*  ******************************************
          *  For each new step
