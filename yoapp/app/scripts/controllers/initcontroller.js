@@ -48,8 +48,12 @@ myApp
         $rootScope.edit.switch = state;
         // Send the same switched event to every child controller/scope listening
         $scope.$broadcast('switch', state);
+        if (state) {
+            $rootScope.$emit('rootScope:emit', 'dbgon');
+        } else {
+            $rootScope.$emit('rootScope:emit', 'dbgoff');
+        }
     };
-
 
     /*  ******************************************
         *** BROADCAST of messages across the application
@@ -61,8 +65,8 @@ myApp
         pad : false,
         // Handle grey background
         bg : false,
-        // Footer on off
-        footer : true,
+        // Dark background for edit mode
+        dark : false,
     };
     $rootScope.$on('rootScope:emit', function (event, data) {
         //console.log(data);
@@ -74,18 +78,14 @@ myApp
             $scope.onOff.pad = false;
         } else if (data == "padon") {
             $scope.onOff.pad = true;
-        } else if (data == "fooon") {
-            $scope.onOff.footer = true;
-        } else if (data == "foooff") {
-            $scope.onOff.footer = false;
+        } else if (data == "dbgon") {
+            $scope.onOff.dark = true;
+        } else if (data == "dbgoff") {
+            $scope.onOff.dark = false;
         } else if (data == "editon") {
             $rootScope.edit.available = true;
         } else if (data == "editoff") {
             $rootScope.edit.available = false;
-        } else if (data == "switchon") {
-            $rootScope.edit.switch = true;
-        } else if (data == "switchoff") {
-            $rootScope.edit.switch = false;
         } else {
             console.log("Unknown broadcast: " + data);
         }

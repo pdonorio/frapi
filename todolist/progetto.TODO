@@ -47,8 +47,7 @@ Feb ALPHA:
         ☐ Steps API saving
           ☐ Learning to find the differences in two objects
           ☐ Should apply to news also @paroparo
-
-  ☐ Rebuild ONLINE
+  ✔ Rebuild ONLINE @done (15-02-09 11:13)
 
   ☐ A new view when edit on
     ☐ dark background
@@ -60,6 +59,9 @@ Feb ALPHA:
     ☐ A factory for handling the global form?
 
   ☐ Bugs
+    ☐ If focus on search
+        ✔ make the bg gray @done (15-02-09 11:13)
+        ☐ take the switch for edit out
     ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
       ☐ testing
     ☐ An api resource only to check if api and db are available?
@@ -98,6 +100,8 @@ Feb ALPHA:
         ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
       ☐ Connect with apis
     ☐ Login (angular?)
+      ☐ https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f @easy
+      ☐ https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec @serious
       ☐ isAuthenticated(nextState) ui router?
       ☐ ui resolve for API login ?
       ☐ add login checker in cron/repeat

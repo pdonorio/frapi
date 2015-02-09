@@ -10,6 +10,9 @@
 .centering {
     text-align: center;
 }
+.wbg {
+    background: #fff;
+}
 .titleWritings a {
     color: #ccc;
     text-decoration: none;
@@ -46,6 +49,13 @@
 /* grey background for body in card views */
 .gbg {
   background-color: #f3f3f3;
+}
+.darkbg {
+  background-color: #343434;
+/*
+    background: -webkit-linear-gradient(top, rgba(255, 214, 163, 1) 0%, rgba(250, 173, 142, 1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 214, 163, 1) 0%, rgba(250, 173, 142, 1) 100%);
+*/
 }
 
 /* Sticky footer styles

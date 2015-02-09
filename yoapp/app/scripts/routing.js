@@ -72,13 +72,13 @@ myApp
         onEnter: function($rootScope, $stateParams) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
           if ($stateParams.myId == 'new') {
-            $rootScope.$emit('rootScope:emit', 'switchoff');
+            if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
           } else {
             $rootScope.$emit('rootScope:emit', 'editoff');
           }
         }, onExit: function($rootScope, $stateParams){
           if ($stateParams.myId == 'new') {
-            $rootScope.$emit('rootScope:emit', 'switchoff');
+            if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
           } else {
             $rootScope.$emit('rootScope:emit', 'editon');
           }
@@ -95,7 +95,6 @@ myApp
         },
         onEnter: function($rootScope) {
             $rootScope.$emit('rootScope:emit', 'gbgon');
-            //$rootScope.$emit('rootScope:emit', 'foooff');
         },
       })
       .state('logged.view', {
@@ -108,7 +107,6 @@ myApp
             // send broadcast signal to who is listening:
             // i want the grey background (gbg)
             $rootScope.$emit('rootScope:emit', 'gbgon');
-            //$rootScope.$emit('rootScope:emit', 'foooff');
         },
       })
       .state('logged.about', {
@@ -119,7 +117,6 @@ myApp
         }, },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          //$rootScope.$emit('rootScope:emit', 'fooon');
           $rootScope.lastVisited = undefined;
         },
       })
