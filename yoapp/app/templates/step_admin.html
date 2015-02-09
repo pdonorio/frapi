@@ -1,0 +1,40 @@
+<div class="col-md-3 col-xs-3">
+  <div class="list-group">
+    <!-- STEPS -->
+    <a href class="list-group-item" ng-repeat='step in steps' ng-click="setStep(step.step)"
+      ng-class="{'orange': step.step == current}">
+      <!-- step edit -->
+      <span editable-number="step.step" e-min="1" ng-show="stepsForm.$visible" e-required>
+        Step
+        {{step.step}}
+      </span>
+      <!-- editable label -->
+      <span editable-text="step.name" e-form="stepsForm">
+        {{ (step.name | ucFirst) || 'empty'}}
+      </span>
+      <!-- remove button -->
+      <button ng-show="stepsForm.$visible" class="btn btn-danger" ng-click="removeStep($index)">
+        <i class="fa fa-trash-o"></i>
+      </button>
+    </a>
+
+    <a href="" class="list-group-item"
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="stepsForm.$visible">
+        <br>
+        <button type='button' class="btn btn-default" ng-click="addStep()" ng-disabled="stepsForm.$waiting">
+          <i class="fa fa-plus"></i>
+        </button>
+        <button type="submit" class="btn btn-success" ng-disabled="stepsForm.$waiting"
+          ng-click='edit.switch = false;'>
+          <i class="fa fa-floppy-o"></i>
+        </button>
+        <button type="button" class="btn btn-warning" ng-disabled="stepsForm.$waiting"
+          ng-click="undoSteps(); edit.switch = false;">
+          <i class="fa fa-times"></i>
+        </button>
+      </span>
+    </a>
+
+  </div>
+</div>
