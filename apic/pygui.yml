@@ -19,7 +19,8 @@ data:
 rdb:
     build: ./docker/rethinkdb
     #command: bash /root/init.sh
-    command: rethinkdb --bind all   #No security
+    command: sleep 123456789
+    #command: rethinkdb --bind all   #No security
     volumes_from:
          - data     # Import data directory from storage container
          - fs

@@ -31,6 +31,11 @@ Feb ALPHA:
         ✔ Main.js Implement back with $rootScope.$on('$stateChangeStart' @done (15-02-02 06:54)
         ✔ Make button appear only if there is at least one url back @done (15-02-02 06:54)
         ✔ Buttons tooltip @done (15-02-02 11:32)
+  ✔ Update RethinkDB on docker image? what the hell? @done (15-02-02 07:19)
+  ✔ Directories backup (e.g. images) @done (15-02-10 07:06)
+    ✔ via docker container launch every hour/day @done (15-02-10 07:06)
+      ✘ volumes from @cancelled (15-02-10 07:06)
+  ✔ Rebuild ONLINE @done (15-02-09 11:13)
 
  Stable:
   ☐ Steps
@@ -44,19 +49,15 @@ Feb ALPHA:
           ✔ url checking... @done (15-02-07 13:33)
         ✔ No edit mode if not a new step @done (15-02-07 14:47)
         ✔ Steps with form open if no data in form/template @done (15-02-07 15:56)
-        ☐ Steps API saving
-          ☐ Learning to find the differences in two objects
-          ☐ Should apply to news also @paroparo
-  ✔ Rebuild ONLINE @done (15-02-09 11:13)
-
-  ☐ A new view when edit on
-    ☐ dark background
-    ☐ step list on the side
-    ☐ step editing on the other side
-    ☐ Edit step name on one line
-    ☐ Edit step contents
-      ☐ one piece at the time
-    ☐ A factory for handling the global form?
+      ☐ A new view when edit on
+        ☐ dark background
+        ☐ step list on the side
+        ☐ step editing on the other side
+        ☐ Edit step name on one line
+        ☐ Edit step contents
+          ☐ one piece at the time
+    ✘ A factory for handling the global form? @cancelled (15-02-10 07:08)
+        ✘ Learning to find the differences in two objects @cancelled (15-02-10 07:08)
 
   ☐ Bugs
     ☐ If focus on search
@@ -64,6 +65,8 @@ Feb ALPHA:
         ☐ take the switch for edit out
     ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
       ☐ testing
+    ☐ RENAME
+      ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
     ☐ An api resource only to check if api and db are available?
       ☐ Testing inside the step saving @important
     ✔ New news not working for Date @done (15-02-07 14:59)
@@ -148,17 +151,15 @@ Feb ALPHA:
       ☐ one python file?
       ☐ Dynamic resource building with names? It could be!
 
-  ✔ Update RethinkDB on docker image? what the hell? @done (15-02-02 07:19)
-  ☐ Directories backup (e.g. images)
-    ☐ via docker container launch every hour/day
-      ☐ volumes from
-
   ☐ Admin content: use 'page' db attribute for different pages
     ☐ Html editor
     ☐ Edit switch only if page element counter > 0
       ☐ Sanitize content (e.g. open tags)
 
-  ☐ Search bar history when focus (cookie)?
+  ☐ Search bar history when focus
+    ☐ cookie
+  ☐ Optimization for angular
+    ☐ http://blog.scalyr.com/2013/10/angularjs-1200ms-to-35ms/
 
 --- ✄ -----------------------
 Mar:

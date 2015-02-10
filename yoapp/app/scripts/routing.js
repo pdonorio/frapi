@@ -61,7 +61,9 @@ myApp
           $rootScope.searching = false;
           $rootScope.$emit('rootScope:emit', 'gbgoff');
           $rootScope.lastVisited = undefined;
-        },
+        }, onExit: function($rootScope) {
+          $rootScope.edit.available = true;
+        }
       })
       .state('logged.submission', {
         url: "/add/{myId:[0-9\-a-z]*}",

@@ -28,6 +28,7 @@ myApp
     $scope.doFocus = function () {
       $scope.mytable.show = true;
       $rootScope.searching = true;
+      $rootScope.edit.available = false;
     }
 
   /* ************************************
