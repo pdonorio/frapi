@@ -17,6 +17,8 @@ myApp
     NotificationData, AppConfig)
 {
 
+    Submission.build();
+
     ////////////////////////////////
     // get variable inside url as param
     var id = $stateParams.myId;
