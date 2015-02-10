@@ -11,7 +11,7 @@ myApp.factory('RestAPI', function(Restangular, AppConfig)
 });
 
 // Inject my Restangular class to create a factory/service that uses my API
-myApp.factory('DataResource', function(RestAPI, apiTimeout) {
+myApp.factory('API', function(RestAPI, apiTimeout) {
 
     //Empty factory
     var Factory = {};

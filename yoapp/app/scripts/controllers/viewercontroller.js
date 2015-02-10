@@ -8,14 +8,14 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('ViewerController', function ($rootScope, $scope, $stateParams, DataResource) {
+  .controller('ViewerController', function ($rootScope, $scope, $stateParams, API) {
 
     $scope.data = {};
     var id = $stateParams.myId;
     $scope.id = id;
 
     // Get the data (as a promise)
-    var promise = DataResource.get("data/" + id);
+    var promise = API.get("data/" + id);
 
     promise
         .then(function(data) { //Success

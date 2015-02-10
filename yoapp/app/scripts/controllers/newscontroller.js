@@ -8,7 +8,7 @@
  * Controller of the yoApp
  */
 myApp
-.controller('NewsController', function($rootScope, $scope, NotificationData, DataResource)
+.controller('NewsController', function($rootScope, $scope, NotificationData, API)
 {
     $scope.setNotification = function(s,m) {
       NotificationData.setNotification(s,m);
@@ -17,7 +17,7 @@ myApp
     $scope.news = [];
 
     // Angular query api
-    DataResource.get("news")    // Use the data promise
+    API.get("news")    // Use the data promise
       .then(function(data) {  //Success
           //console.log(data);
 

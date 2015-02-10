@@ -8,10 +8,14 @@
  * Controller of the yoApp
  */
 myApp
-.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter, DataResource, NotificationData, AppConfig, DataUpdate)
+.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter,
+    // Factory/Service with models
+    Submission,
+    // Should not stay here...
+    API,
+    // Notification service
+    NotificationData, AppConfig)
 {
-    var x = DataUpdate.getInstance("test");
-    x.foo();
 
     ////////////////////////////////
     // get variable inside url as param
@@ -67,7 +71,7 @@ myApp
 
 // TO FIX -
         // Check api online and db working
-        //DataResource.get("verify").then(function() {}
+        //API.get("verify").then(function() {}
 
         console.log("Something is changed");
 
@@ -107,7 +111,7 @@ myApp
 
 /*
             //API CALL
-            DataResource.set("steps", data).then(function() {
+            API.set("steps", data).then(function() {
                 msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
                 NotificationData.setNotification(AppConfig.messageStatus.success, msg);
             }, function() {
@@ -207,7 +211,7 @@ myApp
 
     //////////////////////////////////////////////
     // SETUP data - read from API
-    DataResource.get("steps")    // Use the data promise
+    API.get("steps")    // Use the data promise
      .then(function(data) {  //Success
         for (var i = 0; i < data.count; i++) {
             var x = data.items[i];

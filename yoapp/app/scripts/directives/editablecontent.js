@@ -37,7 +37,7 @@ myApp
 
       /////////////////////////////////////
       //manage the local scope
-      controller: function($scope, $timeout, $location, DataResource, AppConfig, messageTimeout, NotificationData)
+      controller: function($scope, $timeout, $location, API, AppConfig, messageTimeout, NotificationData)
       {
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
@@ -73,7 +73,7 @@ myApp
           $scope.item.highlight = false;
           var msg = "";
         // API UPDATE ^_^
-          DataResource.set("webcontent", data)
+          API.set("webcontent", data)
           .then(function() {
 
 //TO FIX - should this stay inside link function?

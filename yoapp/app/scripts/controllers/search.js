@@ -9,7 +9,7 @@
  */
 
 myApp
- .controller('ViewController', function ($scope, $rootScope, DataResource, perpageDefault, currentpageDefault)
+ .controller('ViewController', function ($scope, $rootScope, API, perpageDefault, currentpageDefault)
 {
     // Init: Html scope data
     $scope.datacount = 0;
@@ -84,7 +84,7 @@ myApp
       //console.log(perpage);
 
       // Get the data (as a promise)
-      var promise = DataResource.get("data", perpage, currentpage);
+      var promise = API.get("data", perpage, currentpage);
 
       // Use the data promise
       promise

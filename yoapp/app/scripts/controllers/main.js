@@ -10,7 +10,7 @@
 myApp
 .controller('MainController', function ($scope, $rootScope, $timeout, $interval, $location,
     //tester,
-    projectName, DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
+    projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
@@ -110,7 +110,7 @@ myApp
 
     //////////////////////////////////////
     // Query api - READ the whole html content
-    DataResource.get("webcontent")
+    API.get("webcontent")
         .then(function(data) {
 
             var tmp = data.items;
