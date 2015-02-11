@@ -29,12 +29,13 @@
         </a>
 
         <!-- STEPS -->
-        <a href class="list-group-item" ng-repeat='step in steps' ng-click="setStep(step.step)"
-          ng-class="{'orange': step.step == current}">
+        <a href class="list-group-item" ng-repeat='(step,name) in steps'
+          ng-if='name != null'
+          ng-click="setStep(step)" ng-class="{'orange': step == current}">
           <!-- name -->
-          {{step.label | ucFirst}}
+          {{name | ucFirst}}
           <!-- badge -->
-          <span class="badge"> {{step.step}} </span>
+          <span class="badge"> {{step}} </span>
         </a>
 
         <!-- UPLOADER -->

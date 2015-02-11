@@ -25,18 +25,9 @@ myApp
     // Init
     $scope.steps = [];
     $scope.stepsCopy = [];
-
-    // Manage switch to enable edit form (for ADMIN)
+    // Manage switch?
     $scope.$on('switch', function(event, enabled) {
-        // Copy data when enabling changes
-        if (enabled) {
-            $scope.stepsCopy = angular.copy($scope.steps);
-            // Show the form for changes
-            $scope.stepsForm.$show();
-        } else {
-            // Close the form for changes
-            $scope.stepsForm.$hide();
-        }
+        // Something?
     });
     // closing actions
     var closingAction = function() {
@@ -73,7 +64,7 @@ myApp
         $scope.steps.push(newStep);
     };
 
-// TO FIX - should get the step from url/routing
+// TO FIX - should get the step from url with ui routing
     //First step
     $scope.current = 1;
     //define step on click
@@ -103,12 +94,11 @@ myApp
     ];
 
     //////////////////////////////////////////////
-    // NEW WAY
-    //var obj = Submission.build(); $scope.tmp = obj.get();
+    // Getting data from my Models
+
+    // StepList (side navbar)
     var steps = StepList.build();
     steps.getData().then(function(out){
-        console.log("Controller");
-        console.log(out);
         $scope.steps = out;
     });
 

@@ -11,23 +11,23 @@ myApp
 
   var resource = 'steps';
 
+// No, you can transform the result just fine by using a .then() handler inside the service. That's how promises are supposed to be used.
+
   // API resolve data
   function loadData() {
     return API.get(resource)
-        .then(function(response) {
-            // No, you can transform the result just fine by using
-            // a .then() handler inside the service.
-            // That's how promises are supposed to be used.
+      .then(function(response) {
+          var data = [];
+          if (response.count > 0) {
+              var tmp = response.items; //tmp.sort();
 
-            // Solve bad status code?
-            var tmp = {};
-            if (response.count > 0)
-                tmp = response.items;
-            return tmp;
-        }, function() {
-            // error
-        }
-    );
+              // Js foreach cycle: to create my array out of RDB json
+              tmp.forEach(function(element, index) {
+                data[element.step] = element.label;
+              });
+          }
+          return data;
+      });
   }
 
   // API try to save data

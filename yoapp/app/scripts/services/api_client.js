@@ -45,8 +45,8 @@ myApp.factory('API', function(RestAPI, apiTimeout) {
             return data;
           }, function(object) { //Error (timeout?)
             console.log("Factory/Service api call Error: GET");
-            //console.log(object);
-            return {};
+            console.log(object);
+            return {whoami: 'api error message', status: 'failed', msg: null};
           }
         );
 
