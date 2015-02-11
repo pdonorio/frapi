@@ -165,6 +165,35 @@ class StepList(GenericORMModel):
     def description(value):
         return value    #e.g. "Commento!"
 
+##############################
+class StepContent(GenericORMModel):
+    """ Html content of elements in web pages of my application """
+    table = 'stepscontent'
+    #_order = 'step'
+
+    # Attributes as defined by static methods:
+    @staticmethod
+    def step(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 1
+    @staticmethod
+    def element(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 1
+    @staticmethod
+    def type(value):
+        return value    #e.g. "Commento!"
+    @staticmethod
+    def content(value):
+        return value    #e.g. "Commento!"
+
+
 # For authentication future use
 #
 # class APIUser(GenericORMModel):

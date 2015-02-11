@@ -58,6 +58,15 @@ res = 'steps'
 api.add_resource(resources.Steps, '/' + res)
 api.add_resource(resources.Step, '/' + res + '/<string:data_key>')
 
+############
+res = 'stepscontent'
+api.add_resource(resources.StepsContent, '/' + res)
+api.add_resource(resources.StepContent, '/' + res + '/<string:data_key>')
+
+# TO FIX -
+    # Could this above be just a cycle on the list of resources?
+
+
 #############################################
 # === App setup ===
 # Do db and tables setup only first time,

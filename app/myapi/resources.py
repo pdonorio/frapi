@@ -253,10 +253,17 @@ class Step(GenericDBResource):
     def __init__(self):
         super(Step, self).__init__(data_models.StepList)
 
+##################
+## Steps (List of available steps for the user)
+class StepsContent(GenericDBResource):
+    def __init__(self, db=None):
+        super(StepsContent, self).__init__(data_models.StepContent, db)
+class StepContent(GenericDBResource):
+    def __init__(self):
+        super(StepContent, self).__init__(data_models.StepContent)
 
-
-
-
+# TO FIX -
+    # Could this above be just a cycle on the list of datamodels?
 
 # ################################################################
 # # FOR FUTURE TESTING on AUTHENTICATION?

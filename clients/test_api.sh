@@ -10,7 +10,8 @@ port=5507
 #resource="data"
 #resource="webcontent"
 #resource="news"
-resource="steps"
+#resource="steps"
+resource="stepscontent"
 
 #############################################
 # BUILD TEST
@@ -42,10 +43,11 @@ exit;
 #############################################
 #ADD a new element
 echo "***\nINSERT"
-values="step=1&label=estratto"
+values="step=1&element=2&type=number&content=checkingMyTests!"
 #values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
+exit;
 
 #############################################
 #ADD a new element forcing the key

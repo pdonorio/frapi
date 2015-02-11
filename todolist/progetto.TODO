@@ -43,23 +43,29 @@ Feb ALPHA:
       ✔ Load from API @done (15-02-06 17:23)
       ✔ A div for no data loaded? @done (15-02-07 09:49)
         ✔ datetime js handling @done (15-02-07 09:49)
-        ☐ datetime saving in api?
         ✔ Steps editing @done (15-02-07 12:15)
         ✔ Steps add, remove, undo  @done (15-02-07 13:33)
           ✔ url checking... @done (15-02-07 13:33)
         ✔ No edit mode if not a new step @done (15-02-07 14:47)
         ✔ Steps with form open if no data in form/template @done (15-02-07 15:56)
-      ☐ Understanding angular
-        ☐ Model with nesting promise
-        ☐ Using 'then' inside service to modify data before sending it to the controller
-        ☐ Using 'then' again inside controller
-      ☐ A new view when edit on
-        ✔ dark background @done (15-02-11 07:46)
-        ☐ step list on the side
-        ☐ step editing on the other side
-        ☐ Edit step name on one line
-        ☐ Edit step contents
-          ☐ one piece at the time
+      ✔ Understanding angular @done (15-02-11 17:09)
+        ✔ Model with nesting promise @done (15-02-11 17:09)
+        ✔ Using 'then' inside service to modify data before sending it to the controller @done (15-02-11 17:09)
+        ✔ Using 'then' again inside controller @done (15-02-11 17:09)
+      ☐ Transformation
+        ✔ Convert StepList @done (15-02-11 17:30)
+        ✔ Convert StepContent @done (15-02-11 17:30)
+          ✔ StepContent API? @done (15-02-11 17:30)
+          ☐ JS side
+        ☐ Admin
+          ☐ Make StepTemplate API
+        ☐ A new view when edit on
+          ✔ dark background @done (15-02-11 07:46)
+          ☐ step list on the side
+          ☐ step editing on the other side
+          ☐ Edit step name on one line
+          ☐ Edit step contents
+            ☐ one piece at the time
     ✘ A factory for handling the global form? @cancelled (15-02-10 07:08)
         ✘ Learning to find the differences in two objects @cancelled (15-02-10 07:08)
 
@@ -78,6 +84,8 @@ Feb ALPHA:
     ✔ New news not working for Date @done (15-02-07 14:59)
     ✔ Move editoff inside routing @done (15-02-07 15:17)
     ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
+    ☐ News
+        ☐ datetime saving in api?
     ☐ Google
       ☐ designhttps://www.dropbox.com/s/pneoe206w8wn2kd/Screenshot%202015-02-11%2010.19.59.png?dl=0
     ☐ Move edit switch inside a factory or service @thatistherightway
