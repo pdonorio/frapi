@@ -49,8 +49,12 @@ Feb ALPHA:
           ✔ url checking... @done (15-02-07 13:33)
         ✔ No edit mode if not a new step @done (15-02-07 14:47)
         ✔ Steps with form open if no data in form/template @done (15-02-07 15:56)
+      ☐ Understanding angular
+        ☐ Model with nesting promise
+        ☐ Using 'then' inside service to modify data before sending it to the controller
+        ☐ Using 'then' again inside controller
       ☐ A new view when edit on
-        ☐ dark background
+        ✔ dark background @done (15-02-11 07:46)
         ☐ step list on the side
         ☐ step editing on the other side
         ☐ Edit step name on one line
@@ -60,11 +64,13 @@ Feb ALPHA:
         ✘ Learning to find the differences in two objects @cancelled (15-02-10 07:08)
 
   ☐ Bugs
-    ☐ If focus on search
+    ✔ If focus on search @done (15-02-11 06:36)
         ✔ make the bg gray @done (15-02-09 11:13)
-        ☐ take the switch for edit out
+        ✔ take the switch for edit out @done (15-02-11 06:36)
     ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
-      ☐ testing
+      ☐ testing @help
+    ☐ Loading div pendig to a proimse when changing routes
+      ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
     ☐ RENAME
       ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
     ☐ An api resource only to check if api and db are available?
@@ -73,6 +79,10 @@ Feb ALPHA:
     ✔ Move editoff inside routing @done (15-02-07 15:17)
     ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
     ☐ Move edit switch inside a factory or service @thatistherightway
+    ☐ the best promise
+      ☐ http://andyshora.com/promises-angularjs-explained-as-cartoon.html
+    ☐ promise cache
+      ☐ https://github.com/chrisronline/angular-promise-cache
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
@@ -102,11 +112,13 @@ Feb ALPHA:
       ☐ RSS feed?
         ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
       ☐ Connect with apis
-    ☐ Login (angular?)
-      ☐ https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f @easy
-      ☐ https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec @serious
+    ☐ Angular.js Login
       ☐ isAuthenticated(nextState) ui router?
       ☐ ui resolve for API login ?
+      ☐ https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f @easy
+      ☐ https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec @serious
+        ☐ http headers?
+        ☐ http://blog.brunoscopelliti.com/authentication-to-a-restful-web-service-in-an-angularjs-web-app
       ☐ add login checker in cron/repeat
 
     ☐ Development pages for now

@@ -1,46 +1,67 @@
 'use strict';
 
-myApp
-.factory('StepService', function (API, StepList) {
-  return {
-    getList: function () {
-      return API.get('steps').then(StepList.apiResponseTransformer);
-    }
-  };
-})
 /*
 * A StepList - editable by Admin
 * A sets of StepTemplate - editable by Admin
 * A sets of StepContent - editable by Editor
 */
 
-.factory('StepList', function ()
-{
+myApp
+.factory('StepList', function (API) {
 
-  /** * Constructor, with class name */
+  var resource = 'steps';
+
+  // API resolve data
+  function loadData() {
+    return API.get(resource)
+        .then(function(response) {
+            // No, you can transform the result just fine by using
+            // a .then() handler inside the service.
+            // That's how promises are supposed to be used.
+
+            // Solve bad status code?
+            var tmp = {};
+            if (response.count > 0)
+                tmp = response.items;
+            return tmp;
+        }, function() {
+            // error
+        }
+    );
+  }
+
+  // API try to save data
+  function saveData(data) {
+/*
+    //API CALL
+    API.set(resource, data).then(function() {
+        msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
+        NotificationData.setNotification(AppConfig.messageStatus.success, msg);
+    }, function() {
+        msg = "Could not save steps editing<br> " +
+        "<br> <br> Please try again in a few minutes." + "";
+        NotificationData.setNotification(AppConfig.messageStatus.error, msg);
+    });
+*/
+  }
+
+  // Constructor, with class name
   function StepList(data) {
     this.tmp = data;
-    console.log(this.tmp);
   }
-  /** * Static method, assigned to class
-   * Instance ('this') is not available in static context */
+  // Public methods, assigned to prototype
+  StepList.prototype.getData = function () {
+    return this.tmp;
+  };
+  // Static method, assigned to class
+  // p.s. Instance ('this') is not available in static context
   StepList.build = function (data) {
-    //if (!checkList(data.items)) { return; }
+    // API call
+    var data = loadData();
+    // Create object
     return new StepList(data);
   }
 
-  /** * Use api response to enable data */
-  StepList.apiResponseTransformer = function (responseData) {
-    console.log("Transformer StepList");
-    if (angular.isArray(responseData)) {
-      return responseData
-        .map(StepList.build)
-        //.filter(Boolean)
-        ;
-    }
-    return StepList.build(responseData);
-  };
-
+  // Give this service to someone
   return StepList;
-
-});
+})

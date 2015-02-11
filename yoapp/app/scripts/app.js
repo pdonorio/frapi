@@ -36,7 +36,7 @@ var myApp = angular.module('yoApp',
   .constant('warningInitTime', 7500)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
-  .constant('someInitTime', 1500)
+  .constant('someInitTime', 1000)
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY

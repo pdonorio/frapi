@@ -1,5 +1,7 @@
 <div class="container-fluid">
 
+  <div>{{tmp}}</div>
+
  <!-- ADMIN USER - EDIT MODE -->
  <div class="row" ng-show='edit.switch'>
     <form editable-form name="stepsForm" onaftersave="saveSteps()">
@@ -30,7 +32,7 @@
         <a href class="list-group-item" ng-repeat='step in steps' ng-click="setStep(step.step)"
           ng-class="{'orange': step.step == current}">
           <!-- name -->
-          {{step.name | ucFirst}}
+          {{step.label | ucFirst}}
           <!-- badge -->
           <span class="badge"> {{step.step}} </span>
         </a>
@@ -49,25 +51,27 @@
     <!-- MAIN BODY of SUBMISSION -->
     <div class="col-md-9 col-xs-9">
 
-      <div ng-hide='bootData.length > 0'>
+      <div ng-hide='steps.length > 0'>
         No steps configured yet! <br>
         Please contact administrator.
       </div>
 
-      <div ng-show='bootData.length > 0'>
+      <div ng-show='steps.length > 0'>
 
-        <!-- Step before if exists -->
+        <!-- Step before if exists
         <submission-step current='current' step='current-1' max='bootData.length'
           template='formTemplate' data='bootData[current-2]'></submission-step>
-
-        <!-- CURRENT step -->
+-->
+        <!-- CURRENT step
         <submission-step current='current' step='current' max='bootData.length'
           edit='edit' name='stepNames[current-1]'
           template='formTemplate' data='bootData[current-1]'></submission-step>
-
-        <!-- Step after, if exists -->
+-->
+        <!-- Step after, if exists
         <submission-step current='current' step='current+1' max='bootData.length'
           template='formTemplate' data='bootData[current]'></submission-step>
+-->
+        <div> Working out of it </div>
 
         <!-- Upload - This will be last step, so take double the necessary space-->
         <div class="col-md-8" ng-show="current == steps.length +1 || current == steps.length">
