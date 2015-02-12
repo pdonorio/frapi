@@ -179,6 +179,7 @@ class StepContent(GenericORMModel):
         if not isinstance(tmp, types.IntType):
             raise ValueError(m)
         return tmp    #e.g. 1
+# TO REMOVE
     @staticmethod
     def element(value, name):
         m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
@@ -186,8 +187,12 @@ class StepContent(GenericORMModel):
         if not isinstance(tmp, types.IntType):
             raise ValueError(m)
         return tmp    #e.g. 1
+# TO REMOVE
     @staticmethod
     def type(value):
+        return value    #e.g. "Commento!"
+    @staticmethod
+    def label(value):
         return value    #e.g. "Commento!"
     @staticmethod
     def content(value):

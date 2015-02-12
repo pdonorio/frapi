@@ -56,7 +56,9 @@ Feb ALPHA:
         ✔ Convert StepList @done (15-02-11 17:30)
         ✔ Convert StepContent @done (15-02-11 17:30)
           ✔ StepContent API? @done (15-02-11 17:30)
-          ☐ JS side
+          ✔ JS side @done (15-02-12 10:13)
+        ☐ Move files inside new folder
+        ☐ Fill data inside db and export
         ☐ Admin
           ☐ Make StepTemplate API
         ☐ A new view when edit on
@@ -70,6 +72,7 @@ Feb ALPHA:
         ✘ Learning to find the differences in two objects @cancelled (15-02-10 07:08)
 
   ☐ Bugs
+  ☐ CRON HOURLY!!!
     ✔ If focus on search @done (15-02-11 06:36)
         ✔ make the bg gray @done (15-02-09 11:13)
         ✔ take the switch for edit out @done (15-02-11 06:36)

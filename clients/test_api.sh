@@ -43,7 +43,7 @@ exit;
 #############################################
 #ADD a new element
 echo "***\nINSERT"
-values="step=1&element=2&type=number&content=checkingMyTests!"
+values="step=1&element=1&type=number&content=checkingMyTests!&label=titolo"
 #values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
