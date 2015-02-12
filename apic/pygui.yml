@@ -18,8 +18,6 @@ data:
 # Database server master
 rdb:
     build: ./docker/rethinkdb
-    #command: bash /root/init.sh
-    command: sleep 123456789
     #command: rethinkdb --bind all   #No security
     volumes_from:
          - data     # Import data directory from storage container

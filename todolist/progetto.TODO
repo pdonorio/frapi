@@ -57,7 +57,7 @@ Feb ALPHA:
         ✔ Convert StepContent @done (15-02-11 17:30)
           ✔ StepContent API? @done (15-02-11 17:30)
           ✔ JS side @done (15-02-12 10:13)
-        ☐ Move files inside new folder
+        ✔ Move files inside new folder @done (15-02-12 17:26)
         ☐ Fill data inside db and export
         ☐ Admin
           ☐ Make StepTemplate API
@@ -72,12 +72,13 @@ Feb ALPHA:
         ✘ Learning to find the differences in two objects @cancelled (15-02-10 07:08)
 
   ☐ Bugs
-  ☐ CRON HOURLY!!!
     ✔ If focus on search @done (15-02-11 06:36)
         ✔ make the bg gray @done (15-02-09 11:13)
         ✔ take the switch for edit out @done (15-02-11 06:36)
     ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
-      ☐ testing @help
+      ✔ testing @help @done (15-02-12 18:39)
+        ✔ Update of rethinkdb base image @done (15-02-12 18:39)
+        ✔ baseimage-docker @done (15-02-12 18:39)
     ☐ Loading div pendig to a proimse when changing routes
       ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
     ☐ RENAME

@@ -1,51 +1,67 @@
 ##############################################
 # RethinkDB Dockerfile
-FROM dockerfile/ubuntu
+#FROM dockerfile/ubuntu
 
+# Use phusion/baseimage as base image.
+FROM phusion/baseimage:0.9.16
+
+ENV TERM xterm
+#########################################
 # Install RethinkDB.
-RUN \
-  echo "deb http://download.rethinkdb.com/apt `lsb_release -cs` main" > /etc/apt/sources.list.d/rethinkdb.list && \
-  wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
-  apt-get update
-RUN apt-get install -y openssh-server rethinkdb \
-    && echo "not removing tmp data"
-    #&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
+RUN apt-get update && apt-get install -y wget
+RUN echo "deb http://download.rethinkdb.com/apt `lsb_release -cs` main" \
+    > /etc/apt/sources.list.d/rethinkdb.list && \
+    wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
+    apt-get update
+RUN apt-get install -y rethinkdb
 
-# Python driver for import export
-RUN apt-get install -y python-setuptools && easy_install pip
-RUN pip install rethinkdb
+#########################################
+# Python driver for DB import AND export
+RUN apt-get install -y python-setuptools && easy_install pip && pip install rethinkdb
 
-# Define mountable directories.
-VOLUME ["/data"]
-
-# Define working directory.
-WORKDIR /data
-
+#########################################
+## WARNING: Does this still work?
 # Script for setting authentication
 RUN echo "#!/bin/sh\necho set auth \$1 | rethinkdb admin\n" > /usr/bin/rdbauth
 RUN chmod +x /usr/bin/rdbauth
 
-# Create a script to do every move at init time
-RUN touch /root/init.sh
-
 #########################################
-## SSH SETUP
+## SSH SETUP - My OLD BAD WAY
 # Let someone else do things here
-#RUN echo 'root:screencast' | chpasswd
-RUN echo "/etc/init.d/ssh start" >> /root/init.sh
-EXPOSE 22
-#VOLUME /root/fsshare
-ADD keypairs.sh /tmp/keypairs.sh
-RUN echo "bash /tmp/keypairs.sh" >> /root/init.sh
+#WRONG #RUN echo 'root:screencast' | chpasswd
+#RUN echo "/etc/init.d/ssh start" >> /root/init.sh
+#EXPOSE 22
+#WRONG #VOLUME /root/fsshare
+#ADD keypairs.sh /tmp/keypairs.sh
+#RUN echo "bash /tmp/keypairs.sh" >> /root/init.sh
 #########################################
+## SSH SETUP - The NEW GOLD WAY
+# https://github.com/phusion/baseimage-docker#enabling_ssh
+RUN rm -f /etc/service/sshd/down
+RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
-# Define default command.
-RUN echo "echo 'Launching db server'" >> /root/init.sh
+#########################################
+# Define default server db init command
+ENV SERVICE 'rethinkdb'
+RUN mkdir /etc/service/$SERVICE
+# Example:
+#exec /sbin/setuser memcache /usr/bin/memcached >>/var/log/memcached.log 2>&1
+RUN echo "#!/bin/sh\n/usr/bin/rethinkdb --bind all" > /etc/service/$SERVICE/run
+RUN chmod a+x /etc/service/$SERVICE/run
 
-RUN echo "rethinkdb --bind all" >> /root/init.sh
-#RUN echo "rethinkdb -d /data --bind all --canonical-address `curl icanhazip.com`" >> /root/init.sh
-#CMD ["rethinkdb", "--bind", "all"]
+#########################################
+# Backup with cron hourly. Do not put extension to file or it will not work
+RUN echo "#\!/bin/bash\ncd /data\n/usr/bin/rethinkdb export\n" > /etc/cron.hourly/backup
+# Change it to executable to make it work
+RUN chmod a+x /etc/cron.hourly/backup
 
+#########################################
+# Define mountable directories.
+VOLUME ["/data"]
+# Define working directory.
+WORKDIR /data
+
+#########################################
 # Expose ports.
 #   - 8080: web UI - only OUTSIDE WORLD
 EXPOSE 8080
@@ -53,14 +69,3 @@ EXPOSE 8080
 EXPOSE 28015
 #   - 29015: cluster
 EXPOSE 29015
-
-# # Set the entry point and do init
-# ENTRYPOINT ["/bin/bash"]
-# CMD ["/root/init.sh", "Hello", "World"]
-
-# Backup with cron hourly. Do not put extension or it will not work
-RUN echo -e "#\!/bin/bash\ncd /data\n/usr/bin/rethinkdb export\n" > /etc/cron.hourly/backup
-# Change it to executable to make it work
-RUN chmod +x /etc/cron.hourly/backup
-
-ENV TERM xterm
