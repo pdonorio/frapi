@@ -12,7 +12,7 @@ myApp
       //create my editable step panel for Submission
       restrict: 'E',
       //HTML template to work data inside the markup
-      templateUrl: 'templates/step.html',
+      templateUrl: 'submission/singlestep_view.html',
 
       /////////////////////////////////////
       //Directives isolated scope (cleaner and better)

@@ -68,7 +68,7 @@ myApp
       .state('logged.submission', {
         url: "/add/{myId:[0-9\-a-z]*}",
         views: { "contain": {
-          templateUrl: "views/submit.html",
+          templateUrl: "submission/submission_view.html",
           controller: 'SubmissionController',
         }, },
         onEnter: function($rootScope, $stateParams) {
