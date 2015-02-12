@@ -19,13 +19,15 @@ myApp
       .then(function(response) {
           var data = [];
           if (response.count > 0) {
-              var tmp = response.items; //tmp.sort();
+            var tmp = response.items; //tmp.sort();
 
-              // Js foreach cycle: to create my array out of RDB json
-              tmp.forEach(function(element, index) {
-                data[element.step] = element.label;
-              });
+            // Js foreach cycle: to create my array out of RDB json
+            tmp.forEach(function(element, index) {
+              data[element.step] = element.label;
+            });
           }
+
+
           return data;
       });
   }
@@ -47,11 +49,11 @@ myApp
 
   // Constructor, with class name
   function StepList(data) {
-    this.tmp = data;
+    this.stepList = data;
   }
   // Public methods, assigned to prototype
   StepList.prototype.getData = function () {
-    return this.tmp;
+    return this.stepList;
   };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context

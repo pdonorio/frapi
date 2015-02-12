@@ -6,9 +6,59 @@
 */
 
 myApp
-.factory('StepContent', function ()
+.factory('StepContent', function (API)
 {
-    var empty = null;
 
-    return empty;
+  var resource = 'stepscontent';
+
+  function loadData() {
+    return API.get(resource)
+      .then(function(response) {
+          var data = [];
+          if (response.count > 0) {
+            var tmp = response.items; //tmp.sort();
+
+            // Js foreach cycle: to create my array out of RDB json
+            tmp.forEach(function(obj, index) {
+                var j = obj.step;
+                if (!data[j])
+                    data[j] = [];
+                data[j][obj.element] = {key: obj.label, value: obj.content};
+            });
+
+            // Filling holes?
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]) {
+                    for (var j = 0; j < data[i].length; j++) {
+                        if (!data[i][j])
+                            data[i][j] = [];
+                    };
+                } else {
+                    data[i] = [];
+                }
+            };
+          }
+          return data;
+      });
+  }
+
+  // Constructor, with class name
+  function StepContent(data) {
+    this.StepContent = data;
+  }
+  // Public methods, assigned to prototype
+  StepContent.prototype.getData = function () {
+    return this.StepContent;
+  };
+  // Static method, assigned to class
+  // p.s. Instance ('this') is not available in static context
+  StepContent.build = function (data) {
+    // API call
+    var data = loadData();
+    // Create object
+    return new StepContent(data);
+  }
+
+  // Give this service to someone
+  return StepContent;
 });
