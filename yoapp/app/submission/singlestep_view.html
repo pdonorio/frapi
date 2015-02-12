@@ -5,14 +5,12 @@
   <div class="panel" ng-class="{'shad': current == step, 'panel-default': current != step}">
 
     <div class="panel-heading">
-
-      <h4 ng-if='current > step'> Step precedente [{{step}}] </h4>
-
-    <!-- change to step name -->
-      <h4 ng-if='current == step'> Step {{step}}: <i>{{name | ucFirst}}</i> </h4>
-    <!-- change to step name -->
-
-      <h4 ng-if='current < step'> Step successivo [{{step}}] </h4>
+      <h4> Step
+        <span ng-if='current > step'>precedente</span>
+        <span ng-if='current < step'>successivo</span>
+        [{{step}}]:
+        <i>{{name | ucFirst}}</i>
+      </h4>
     </div>
 
     <div class="panel-body">

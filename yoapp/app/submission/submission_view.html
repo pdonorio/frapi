@@ -1,7 +1,5 @@
 <div class="container-fluid">
 
-  <div>{{tmp}}</div>
-
  <!-- ADMIN USER - EDIT MODE -->
  <div class="row" ng-show='edit.switch'>
     <form editable-form name="stepsForm" onaftersave="saveSteps()">
@@ -54,13 +52,14 @@
 
       <div ng-hide='steps.length > 0'>
         No steps configured yet! <br>
-        Please contact administrator.
+        Please <a href>contact administrator</a>.
       </div>
 
       <div ng-show='steps.length > 0'>
 
         <!-- Step before if exists-->
         <submission-step current='current' step='current-1' max='stepsData.length'
+          name='steps[current-1]'
           template='formTemplate' data='stepsData[current-2]'></submission-step>
         <!-- CURRENT step -->
         <submission-step current='current' step='current' max='stepsData.length'
@@ -68,6 +67,7 @@
           template='formTemplate' data='stepsData[current]'></submission-step>
         <!-- Step after, if exists -->
         <submission-step current='current' step='current+1' max='stepsData.length'
+          name='steps[current+1]'
           template='formTemplate' data='stepsData[current]'></submission-step>
 
         <!-- Upload - This will be last step, so take double the necessary space -->
