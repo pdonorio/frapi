@@ -13,7 +13,8 @@ up:
 data:
     build: ./docker/pybase
     volumes:
-        - ./data:/data:rw
+        - ./data/py:/data:rw
+        - ./data:/rethinkdb:rw
 
 # Database server master
 rdb:

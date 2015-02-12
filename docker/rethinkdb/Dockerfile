@@ -42,24 +42,24 @@ RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 #########################################
 # Define default server db init command
-ENV SERVICE 'rethinkdb'
+ENV SERVICE rethinkdb
 RUN mkdir /etc/service/$SERVICE
 # Example:
 #exec /sbin/setuser memcache /usr/bin/memcached >>/var/log/memcached.log 2>&1
-RUN echo '#!/bin/sh\n/usr/bin/rethinkdb --bind all' > /etc/service/$SERVICE/run
+RUN echo "#!/bin/sh\ncd /$SERVICE\n/usr/bin/$SERVICE --bind all" > /etc/service/$SERVICE/run
 RUN chmod a+x /etc/service/$SERVICE/run
 
 #########################################
 # Backup with cron hourly. Do not put extension to file or it will not work
-RUN echo '#!/bin/bash\ncd /data\n/usr/bin/rethinkdb export\n' > /etc/cron.hourly/backup
+RUN echo "#!/bin/bash\ncd /$SERVICE\n/usr/bin/$SERVICE export\n" > /etc/cron.hourly/backup
 # Change it to executable to make it work
 RUN chmod a+x /etc/cron.hourly/backup
 
 #########################################
 # Define mountable directories.
-VOLUME ["/data"]
+VOLUME /$SERVICE
 # Define working directory.
-WORKDIR /data
+WORKDIR /$SERVICE
 
 #########################################
 # Expose ports.
