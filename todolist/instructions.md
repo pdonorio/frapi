@@ -39,13 +39,11 @@ grunt build
 ```
 
 # HOW TO: new resource (api python)
-**to be fixed...**
 
-0. Create new table (inside rethinkdb database, via chateau)
+0. Create new table
+(inside rethinkdb database, e.g. via chateau)
 1. Define a new model inside data_models.py, with table of step 0
-2. Implement Rdb resource inside resources.py with data model of step 1
-3. Define route inside routes.py with resource created in the step 2
-4. Test modifying clients/test_api.sh
+2. Test modifying the script clients/test_api.sh
 
 Angular code to use it:
 ```

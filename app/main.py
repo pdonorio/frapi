@@ -7,9 +7,8 @@ Public main has to be somewhere.
 Someone has to do the dirty work (LOL).
 
 """
-
 # Log is a good advice
-from bpractices.logger import log
+#from bpractices.logger import log
 
 # Load the pre-configured api with all services
 from myapi.routes import app
@@ -20,6 +19,7 @@ if __name__ == "__main__":
     # Make a flask app for my API
     app.run(host="0.0.0.0", debug=True)
     # Note: host tells you who can access. 0.0.0.0 = all
+    #
     # debug tells the app to restart when code changes
     # and should be off on production
 

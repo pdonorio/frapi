@@ -76,24 +76,25 @@ class GenericDBResource(Resource):
     """
 
     parser = None
+    model = None
 
     #define
-    def __init__(self, ormModel=data_models.GenericORMModel, db=None):
+    def __init__(self):
         """ Implement a parser for validating arguments of api """
 
+        ############################
         # how to get the model as parameter since its a resource?
-        # subclass this instance and call super with model as arg
+        # use a factory which sets attribute 'model' as a Data ORM Class
+        ############################
 
-        if db == None:
-            self.log = log.get_logger(self.__class__.__name__)
+        # IMPORTANT!
+        # This model will be defined inside the resource factory
+        g.rdb.define_model(self.model)
 
-            # Decide the model to use for this DB resource
-            g.rdb.define_model(ormModel)
-
-            # Use the model to configure parameters
-            self.__configure_parsing()
-        else:
-            db.define_model(ormModel)
+        # Init self logger
+        self.log = log.get_logger(self.__class__.__name__)
+        # Read all the properties that will be used from API methods
+        self.__configure_parsing()
 
     def __configure_parsing(self):
         """
@@ -213,94 +214,31 @@ class GenericDBResource(Resource):
 # Get instances of the generic resources
 # based on a specific data_models
 #
-# Warning: due to restful plugin system, get and get(value)
-# require 2 different resources...
-
-
-##################
-## Data (generic)
-class DataList(GenericDBResource):
-    def __init__(self, db=None):
-        super(DataList, self).__init__(data_models.DataDump, db)
-class DataSingle(GenericDBResource):
-    def __init__(self):
-        super(DataSingle, self).__init__(data_models.DataDump)
+# Warning: due to restful plugin system,
+# methods get and get(value) require 2 different resources...
 
 ##################
-## HtmlContent (admin editable html content of web pages)
-class HtmlContents(GenericDBResource):
-    def __init__(self, db=None):
-        super(HtmlContents, self).__init__(data_models.WebContent, db)
-class HtmlContent(GenericDBResource):
-    def __init__(self):
-        super(HtmlContent, self).__init__(data_models.WebContent)
-
-##################
-## News (informations about new features)
-class NewsFeeds(GenericDBResource):
-    def __init__(self, db=None):
-        super(NewsFeeds, self).__init__(data_models.News, db)
-class NewsFeed(GenericDBResource):
-    def __init__(self):
-        super(NewsFeed, self).__init__(data_models.News)
-
-##################
-## Steps (List of available steps for the user)
-class Steps(GenericDBResource):
-    def __init__(self, db=None):
-        super(Steps, self).__init__(data_models.StepList, db)
-class Step(GenericDBResource):
-    def __init__(self):
-        super(Step, self).__init__(data_models.StepList)
-
-##################
-## Steps (List of available steps for the user)
-class StepsContent(GenericDBResource):
-    def __init__(self, db=None):
-        super(StepsContent, self).__init__(data_models.StepContent, db)
-class StepContent(GenericDBResource):
-    def __init__(self):
-        super(StepContent, self).__init__(data_models.StepContent)
-
 # TO FIX -
     # Could this above be just a cycle on the list of datamodels?
 
-# ################################################################
-# # FOR FUTURE TESTING on AUTHENTICATION?
+# Recover info from a module inspect
+from bpractices.utilities import get_classes_from_module
+# Get the list of classes
+clss = get_classes_from_module(data_models)
 
-# # Handle login and logout
-# class LogUser(Resource):
-#     """  Init authentication and give token """
-#     def __init__(self):
-#         self.parser = reqparse.RequestParser()
-#         self.parser.add_argument('user', type=str)
-#         # IN CHIARO??
-#         self.parser.add_argument('password', type=str)
-#             #help='The "id" parameter should be an integer')
+# The Factory method for my resources classes
+def resource_builder(label, model):
+    methods = dict(GenericDBResource.__dict__)
+    methods.update({'model': model})
+    return type(label, (GenericDBResource,), methods)
 
-#     def post(self):
-#         """ Get data as defined in init parser and push it to rdb """
-#         data = self.parser.parse_args()
-#         #print data
-#         user = data["user"]
-#         p = data["password"]
-#         app.logger.info("API: Received login request for user '" + user + "'")
+# Resources factory
+resources = {}
+for (name, data_model) in clss.iteritems():
+    if name == "RethinkModel" or name == "GenericORMModel":
+        continue
+    #print name
 
-#         ###############################
-#         code = hcodes.HTTP_BAD_UNAUTHORIZED
+    new_class = resource_builder(name + "Resource", data_model)
+    resources[name] = (new_class, data_model.table)
 
-# # DON'T LIKE
-#     #check if user is inside database?
-#         if user in {}:
-#             if p == "test":
-#                 # Authenticate and log in!
-#                 code = hcodes.HTTP_OK_ACCEPTED
-#                 msg = "Logged in"
-#             else:
-#                 msg = "Password is wrong"
-#         else:
-#             msg = "Failed to authenticate"
-
-#         # Server response
-#         app.logger.info("API: " + msg + "\t[code " + code.__str__() + "]")
-#         return msg, code

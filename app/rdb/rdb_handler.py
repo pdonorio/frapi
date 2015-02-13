@@ -120,6 +120,9 @@ class RethinkConnection(Connection):
         except RqlRuntimeError:
             self.log.debug("Database '" + APP_DB + "' exists ")
 
+    def default_database(self):
+        self._connection.use(APP_DB)
+
     # == This handler base its operation on ORM models ==
 
     def define_model(self, model=DEFAULT_COLLECTION):

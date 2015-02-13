@@ -1,5 +1,9 @@
 import unicodedata, types
 
+def get_classes_from_module(mod):
+    return dict([(name, cls) \
+        for name, cls in mod.__dict__.items() if isinstance(cls, type)])
+
 def get_original_pytype(s):
     """
     Try to check if string or unicode api input
