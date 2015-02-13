@@ -18,16 +18,22 @@ myApp
           if (response.count > 0) {
             var tmp = response.items; //tmp.sort();
 
+            //console.log(tmp);
+            data[0] = null;
+
             // Js foreach cycle: to create my array out of RDB json
             tmp.forEach(function(obj, index) {
                 var j = obj.step;
                 if (!data[j])
                     data[j] = [];
-                data[j][obj.element] = {key: obj.label, value: obj.content};
+                if (data[j][obj.element])
+                  console.log("Warning: found duplicate in "+j+":"+obj.element)
+                else
+                  data[j][obj.element] = {key: obj.label, value: obj.content};
             });
 
             // Filling holes?
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 1; i < data.length; i++) {
                 if (data[i]) {
                     for (var j = 0; j < data[i].length; j++) {
                         if (!data[i][j])

@@ -38,8 +38,8 @@
 
         <!-- UPLOADER -->
         <a href="" class="list-group-item"
-          ng-click="setStep(steps.length +1)" ng-class="{'orange': steps.length+1 == current}">
-          <span class="badge">{{steps.length+1}}</span> Upload
+          ng-click="setStep(steps.length)" ng-class="{'orange': steps.length == current}">
+          <span class="badge">{{steps.length}}</span> Upload
         </a>
 
       </div>
@@ -60,7 +60,7 @@
         <!-- Step before if exists-->
         <submission-step current='current' step='current-1' max='stepsData.length'
           name='steps[current-1]'
-          template='formTemplate' data='stepsData[current-2]'></submission-step>
+          template='formTemplate' data='stepsData[current-1]'></submission-step>
         <!-- CURRENT step -->
         <submission-step current='current' step='current' max='stepsData.length'
           edit='edit' name='steps[current]'
@@ -68,13 +68,13 @@
         <!-- Step after, if exists -->
         <submission-step current='current' step='current+1' max='stepsData.length'
           name='steps[current+1]'
-          template='formTemplate' data='stepsData[current]'></submission-step>
+          template='formTemplate' data='stepsData[current+1]'></submission-step>
 
         <!-- Upload - This will be last step, so take double the necessary space -->
-        <div class="col-md-8" ng-show="current == steps.length +1 || current == steps.length">
-           <article ng-class="{'blur': current == steps.length}" >
+        <div class="col-md-8" ng-show="current == steps.length-1 || current == steps.length">
+           <article ng-class="{'blur': current < steps.length}" >
             <div class="well">
-              <h4 ng-if='current == steps.length'>Successivo:</h4>
+              <h4 ng-if='current == steps.length-1'>Successivo:</h4>
               <file-uploader></file-uploader>
             </div>
            </article>
