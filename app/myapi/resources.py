@@ -11,7 +11,7 @@ from bpractices.exceptions import log, LoggedError
 # The global data
 from myapi.app import g
 # Data models from DB ORM
-from rdb import data_models
+from rdb.get_models import models
 # Import html codes
 import bpractices.htmlcodes as hcodes
 # Handling time
@@ -214,9 +214,6 @@ class GenericDBResource(Resource):
 # Get instances of the generic resources
 # based on a specific data_models
 
-# Recover info from a module inspect
-from bpractices.utilities import get_classes_from_module
-
 # The Factory method for my resources classes (SUPER COOL!)
 def resource_builder(label, model):
     # My new resource class have to inherict everything from the Generic Resource
@@ -228,16 +225,9 @@ def resource_builder(label, model):
     # Use 'type' standard python to dynamically create a new Class on the fly
     return type(label, (GenericDBResource,), methods)
 
-# Get the list of ORM classes/models
-clss = get_classes_from_module(data_models)
 # Resources factory: create as many as there are ORM models
 resources = {}
-for (name, data_model) in clss.iteritems():
-    # Skip the basic models
-    if name == "RethinkModel" or name == "GenericORMModel":
-        continue
-    #print name
-
+for (name, data_model) in models.iteritems():
     # Create the new class using the factory
     new_class = resource_builder(name + "Resource", data_model)
     # Save it for restful routing inside an array

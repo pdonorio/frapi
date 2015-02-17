@@ -34,19 +34,35 @@ def try_to_connect(create_db=False):
         abort(hcodes.HTTP_INTERNAL_TIMEOUT,
             "Problem: no database connection could be established.")
 
-# Setup only first time,
-# before the first request
-@app.before_first_request
-def before_first_request():
-    # === Init logger for flask ===
-    app.logger.info("ONE TIME SETUP!")
-    # === Init database if not exists ===
-    #try_to_connect(True)
-    # === Init tables if not exist? ===
-    ## DataList and DataSingle share the same table
-    # tmp = resources.DataList(g.rdb)
-    # g.rdb.create_table()
-    # del tmp
+# Data models from DB ORM
+from rdb.get_models import models
+tmp = db(True)
+tmp.default_database()
+for (name, model) in models.iteritems():
+    print "Indexing: ", name
+    tmp.define_model(model)
+    # a = tmp.search()
+    # print a
+    # break
+    #tmp.indexing()
+    print "DEBUG: NOT AVAILABLE FOR NOW"
+    break
+
+# # Setup only first time,
+# # before the first request
+# @app.before_first_request
+# def before_first_request():
+#     # === Init logger for flask ===
+#     app.logger.info("ONE TIME SETUP!")
+#     # === Init database if not exists ===
+#     try_to_connect(True)
+#     g.rdb.indexing()
+
+#     # === Init tables if not exist? ===
+#     ## DataList and DataSingle share the same table
+#     # tmp = resources.DataList(g.rdb)
+#     # g.rdb.create_table()
+#     # del tmp
 
 # WHAT ELSE?
 

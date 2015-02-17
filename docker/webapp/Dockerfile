@@ -13,7 +13,8 @@ RUN apt-get install -y curl apache2-utils git \
     #&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #PIP installs
-RUN pip install rethinkdb
+RUN pip install --upgrade pip
+RUN pip install rethinkdb==1.16.0-2
 ADD requirements.txt /src/requirements.txt
 #Install flask and rethinkdb driver
 RUN pip install -r /src/requirements.txt

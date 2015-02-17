@@ -4,8 +4,8 @@
 
 # Use phusion/baseimage as base image.
 FROM phusion/baseimage:0.9.16
+#ENV TERM xterm
 
-ENV TERM xterm
 #########################################
 # Install RethinkDB.
 RUN apt-get update && apt-get install -y wget

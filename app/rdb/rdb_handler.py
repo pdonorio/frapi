@@ -149,6 +149,19 @@ class RethinkConnection(Connection):
             r.table_create(table).run()
             self.log.info("Table '" + table + "' created")
 
+    @check_model
+    def indexing(self):
+        table = self.model.table
+        # list indexes on table "users"
+        index_list = r.table(table).index_list().run()
+        # check indexes or create
+        for i in self.model.indexes:
+            if i not in index_list:
+                print "Index '" + i + "' missing in table " + table
+                r.table(table).index_create(i).run()
+                print "Waiting"
+                r.table(table).index_wait(i).run()
+
     @staticmethod
     def get_parameters_with_defaults(params):
 
@@ -181,7 +194,7 @@ class RethinkConnection(Connection):
         p = RethinkConnection.get_parameters_with_defaults(kwargs)
 
         # Case with arguments
-        if p["id"] != None:
+        if "id" in p and p["id"] != None:
             # Note: 'get_all' works, don't know why 'get' doesn't
             query = r.table(table).get_all(p["id"], index='id')
         # Case no arguments (all table)
