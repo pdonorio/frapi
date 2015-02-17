@@ -51,7 +51,7 @@ Bugs:
     ✔ New news not working for Date @done (15-02-07 14:59)
     ✔ Move editoff inside routing @done (15-02-07 15:17)
     ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
-    ☐ Loading div pendig to a proimse when changing routes
+    ☐ Loading div pendig to a promise when changing routes
       ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
     ☐ RENAME @inprogress
       ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
@@ -97,7 +97,8 @@ Bugs:
         ✔ Move files inside new folder @done (15-02-12 17:26)
         ✔ Fill data inside db and export @done (15-02-13 07:47)
         ☐ Admin
-          ☐ Make StepTemplate API
+          ✔ Make StepTemplate API @done (15-02-13 22:01)
+          ☐ Merge Template and content
         ☐ A new view when edit on
           ✔ dark background @done (15-02-11 07:46)
           ☐ step list on the side
