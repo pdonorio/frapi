@@ -213,6 +213,10 @@ class RethinkConnection(Connection):
                 end = p["currentpage"] * p["perpage"]
                 #this does not work: WHY??
                 #out = query.skip(start).limit(end).run()
+
+# TO FIX:
+                # What if i have multiple orders?
+
                 if order == None:
                     out = query.slice(start, end).run()
                 else:

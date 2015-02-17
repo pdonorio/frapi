@@ -203,7 +203,7 @@ class StepContent(GenericORMModel):
 class StepTemplate(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepstemplate'
-    #_order = 'step'
+    _order = 'step,position'
 
     # Attributes as defined by static methods:
     @staticmethod

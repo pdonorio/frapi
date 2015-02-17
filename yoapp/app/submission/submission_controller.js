@@ -10,7 +10,7 @@
 myApp
 .controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter,
     // Factory/Service with models
-    StepList, StepContent
+    StepTemplate, StepList, StepContent
 ){
 
     ////////////////////////////////
@@ -96,6 +96,14 @@ myApp
     //////////////////////////////////////////////
     // Getting data from my Models
 
+    // StepTemplate (admin structure)
+    var steptemp = StepTemplate.build();
+    steptemp.getData().then(function(out){
+        console.log("Template");
+        console.log(out);
+        $scope.stepTemplate = out;
+    });
+
     // StepList (side navbar)
     var steps = StepList.build();
     steps.getData().then(function(out){
@@ -103,8 +111,9 @@ myApp
     });
 
     // StepContent (center data)
-    var steps = StepContent.build();
-    steps.getData().then(function(out){
+    var stepc = StepContent.build();
+    stepc.getData().then(function(out){
+        console.log("Content");
         console.log(out);
         $scope.stepsData = out;
     });
