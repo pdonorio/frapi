@@ -45,12 +45,15 @@ def resources_init(myresources):
         (resource_class, resource_name) = content
         #print resource_name, resource_class.__dict__
 
-        # Add resource obtained for two addresses:
+        # Add resource from ORM class
         api.add_resource(resource_class, \
         # 1. /resource      #GET
             '/' + resource_name, \
         # 2. /resource/:id  #POST
             '/' + resource_name + '/<string:data_key>')
+        # Warning: due to restful plugin system,
+        # methods get and get(value) require 2 different resources.
+        # This is why we provide two times the same resource
 
         app.logger.info("Resource '" + resource_name + "' ["+name+"]: loaded")
 

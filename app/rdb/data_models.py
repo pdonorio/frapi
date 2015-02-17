@@ -4,7 +4,7 @@
 
 # My ORM library of choise with RethinkDB
 from rethinkORM import RethinkModel
-# Import types to allow inside the model
+# Import types to allow checks inside the model
 import types
 from bpractices.utilities import get_original_pytype
 # A table to use only for test ;)
@@ -199,7 +199,6 @@ class StepContent(GenericORMModel):
     def content(value):
         return value    #e.g. "Commento!"
 
-
 ##############################
 class StepTemplate(GenericORMModel):
     """ Html content of elements in web pages of my application """
@@ -215,12 +214,18 @@ class StepTemplate(GenericORMModel):
             raise ValueError(m)
         return tmp    #e.g. 1
     @staticmethod
+    def position(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 2
+    @staticmethod
     def type(value):
-        return value    #e.g. "Commento!"
+        return value    #e.g. "Select"
     @staticmethod
     def field(value):
-        return value    #e.g. "Commento!"
+        return value    #e.g. "Estratto"
     @staticmethod
     def extra(value):
         return value    #e.g. "Commento!"
-

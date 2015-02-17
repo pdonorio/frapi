@@ -213,32 +213,32 @@ class GenericDBResource(Resource):
 
 # Get instances of the generic resources
 # based on a specific data_models
-#
-# Warning: due to restful plugin system,
-# methods get and get(value) require 2 different resources...
-
-##################
-# TO FIX -
-    # Could this above be just a cycle on the list of datamodels?
 
 # Recover info from a module inspect
 from bpractices.utilities import get_classes_from_module
-# Get the list of classes
-clss = get_classes_from_module(data_models)
 
-# The Factory method for my resources classes
+# The Factory method for my resources classes (SUPER COOL!)
 def resource_builder(label, model):
+    # My new resource class have to inherict everything from the Generic Resource
     methods = dict(GenericDBResource.__dict__)
+    # Here is the trick:
+    # I set a property in the new class, and it's the ORM model
+    # This way every action will dinamically change based on this content
     methods.update({'model': model})
+    # Use 'type' standard python to dynamically create a new Class on the fly
     return type(label, (GenericDBResource,), methods)
 
-# Resources factory
+# Get the list of ORM classes/models
+clss = get_classes_from_module(data_models)
+# Resources factory: create as many as there are ORM models
 resources = {}
 for (name, data_model) in clss.iteritems():
+    # Skip the basic models
     if name == "RethinkModel" or name == "GenericORMModel":
         continue
     #print name
 
+    # Create the new class using the factory
     new_class = resource_builder(name + "Resource", data_model)
+    # Save it for restful routing inside an array
     resources[name] = (new_class, data_model.table)
-
