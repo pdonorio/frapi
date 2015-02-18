@@ -79,30 +79,36 @@ myApp
     // StepList (side navbar)
     $scope.stepObj.list = StepList.build();
     $scope.stepObj.list.getData().then(function(out){
-        console.log("List");
-        $scope.steps = out;
+      console.log("List");
+      $scope.steps = out;
 
     // StepTemplate (admin structure)
-        $scope.stepObj.template = StepTemplate.build();
-        $scope.stepObj.template.getData().then(function(out){
-            console.log("Template");
-            $scope.stepTemplate = out;
+      $scope.stepObj.template = StepTemplate.build();
+      $scope.stepObj.template.getData().then(function(out){
+          console.log("Template");
+          $scope.stepTemplate = out;
 
     // StepContent (center data)
-            $scope.stepObj.content = StepContent.build();
-            $scope.stepObj.content.getData().then(function(out){
-                console.log("Content");
-                //console.log(out);
-                $scope.stepsData = out;
+          $scope.stepObj.content = StepContent.build();
+          $scope.stepObj.content.getData().then(function(out){
+            console.log("Content");
+            //console.log(out);
+            $scope.stepsData = out;
 
-    // TO FIX - should mix template and content here
-
-                ;
-
+//////////////////////////////////////////////////
+// TO FIX - should mix template and content here
+            $scope.stepTemplate.forEach(function(element, index) {
+              if (element) {
+                  console.log("key "+ index);
+                  console.log("value "+ element);
+              }
             });
+// TO FIX - should mix template and content here
+//////////////////////////////////////////////////
 
-        });
-    });
+          });   //content end
+        });     //template end
+    });         //list end
+    // END OF DATA WORKING
 
-
- });
+ }); //end of controller
