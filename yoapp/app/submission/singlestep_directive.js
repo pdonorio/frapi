@@ -25,7 +25,7 @@ myApp
         max: "=",
         data: "=",
         template: "=",
-        edit: "=",
+        //edit: "=",
       },
       controller: function($scope) {
 

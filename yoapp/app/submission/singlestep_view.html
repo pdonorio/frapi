@@ -15,19 +15,7 @@
 
     <div class="panel-body">
 
-     <!-- Form for ADMIN USER -->
-     <div ng-show='edit.switch'>
-      <form editable-form name="myform" onaftersave="doSomethingToSave()">
-
-        Work in progress:
-        <br>
-        There will be fields edit in here.
-
-      </form>
-     </div>
-
      <!-- Form for Normal insert user (OPERATOR)-->
-     <div ng-hide='edit.switch'>
       <form editable-form name="myform" onaftersave="doSomethingToSave()">
 
        <!-- editable username (text with validation) -->
@@ -41,6 +29,8 @@
             </td>
         </tr>
        </table>
+
+       {{template}}
 
         <!-- based on current and the step of this directive -->
         <div class="buttons" ng-show="current == step">
@@ -61,7 +51,6 @@
         </div>
 
       </form>
-     </div>
 
     </div>  <!-- end of panel body -->
 

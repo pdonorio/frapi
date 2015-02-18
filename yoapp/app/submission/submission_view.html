@@ -64,8 +64,9 @@
           -->
         <submission-step
           ng-repeat='i in [current-1,current,current+1]'
-          edit='edit' name='steps[i]' data='stepsData[i]' step='i'
-          current='current' max='stepsData.length' template='formTemplate'>
+          step='i' name='steps[i]' data='stepsData[i]' template='stepTemplate[i]'
+          current='current' max='stepsData.length'
+          >
         </submission-step>
 
         <!-- Upload - This will be last step, so take double the necessary space -->

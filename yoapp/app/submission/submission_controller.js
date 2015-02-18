@@ -100,8 +100,11 @@ myApp
     var steptemp = StepTemplate.build();
     steptemp.getData().then(function(out){
         console.log("Template");
-        console.log(out);
         $scope.stepTemplate = out;
+        for (var j = 0; j < $scope.stepTemplate.length; j++) {
+            console.log("step "+j);
+            console.log($scope.stepTemplate[j]);
+        };
     });
 
     // StepList (side navbar)

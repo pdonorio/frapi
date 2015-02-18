@@ -232,6 +232,13 @@ My own extra
 .barshad {
   box-shadow: 0 0 10px black;
 }
+.whitecard {
+  box-shadow: 1px 3px 8px #ddd;
+  background: #fff;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+}
 .headcolor {
   color: #002C42;
 }
