@@ -75,34 +75,54 @@ myApp
     //////////////////////////////////////////////
     // Getting data from my Models
     $scope.stepObj = {};
+    $scope.stepsData = {};
 
     // StepList (side navbar)
     $scope.stepObj.list = StepList.build();
     $scope.stepObj.list.getData().then(function(out){
-      console.log("List");
+      //console.log("List");
       $scope.steps = out;
 
     // StepTemplate (admin structure)
       $scope.stepObj.template = StepTemplate.build();
       $scope.stepObj.template.getData().then(function(out){
-          console.log("Template");
-          $scope.stepTemplate = out;
+          //console.log("Template");
+          var template = out;
+          // For future ADMIN
+          $scope.templateData = out;
 
     // StepContent (center data)
           $scope.stepObj.content = StepContent.build();
           $scope.stepObj.content.getData().then(function(out){
-            console.log("Content");
-            //console.log(out);
-            $scope.stepsData = out;
+            //console.log("Content");
+            var content = out;
 
 //////////////////////////////////////////////////
 // TO FIX - should mix template and content here
-            $scope.stepTemplate.forEach(function(element, index) {
-              if (element) {
-                  console.log("key "+ index);
-                  console.log("value "+ element);
-              }
+            template.forEach(function(obj, step) {
+              if (!obj) return;
+              var data = {};
+
+              obj.forEach(function(tmpl, position) {
+                if (tmpl.length < 1) return;
+                var value = null;
+
+                //console.log("Step "+step+" Position "+position);
+                //console.log(tmpl);
+                //console.log(content[step][position])
+
+// Modify data to make this MATCH
+                if (content[step][position].key == tmpl.key)
+                    if (content[step][position].value)
+                        value = content[step][position].value;
+
+                data[tmpl.key] = value;
+              });
+
+              $scope.stepsData[step] = data;
             });
+
+            console.log($scope.stepsData);
 // TO FIX - should mix template and content here
 //////////////////////////////////////////////////
 
