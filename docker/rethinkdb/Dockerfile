@@ -4,7 +4,6 @@
 
 # Use phusion/baseimage as base image.
 FROM phusion/baseimage:0.9.16
-#ENV TERM xterm
 
 #########################################
 # Install RethinkDB.
@@ -69,3 +68,5 @@ EXPOSE 8080
 EXPOSE 28015
 #   - 29015: cluster
 EXPOSE 29015
+
+ENV TERM xterm

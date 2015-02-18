@@ -57,18 +57,16 @@
 
       <div ng-show='steps.length > 0'>
 
-        <!-- Step before if exists-->
-        <submission-step current='current' step='current-1' max='stepsData.length'
-          name='steps[current-1]'
-          template='formTemplate' data='stepsData[current-1]'></submission-step>
-        <!-- CURRENT step -->
-        <submission-step current='current' step='current' max='stepsData.length'
-          edit='edit' name='steps[current]'
-          template='formTemplate' data='stepsData[current]'></submission-step>
-        <!-- Step after, if exists -->
-        <submission-step current='current' step='current+1' max='stepsData.length'
-          name='steps[current+1]'
-          template='formTemplate' data='stepsData[current+1]'></submission-step>
+        <!-- Repeat on a list of steps i need:
+          a. Step before if exists
+          b. CURRENT step
+          c. Step after, if exists
+          -->
+        <submission-step
+          ng-repeat='i in [current-1,current,current+1]'
+          edit='edit' name='steps[i]' data='stepsData[i]' step='i'
+          current='current' max='stepsData.length' template='formTemplate'>
+        </submission-step>
 
         <!-- Upload - This will be last step, so take double the necessary space -->
         <div class="col-md-8" ng-show="current == steps.length-1 || current == steps.length">
