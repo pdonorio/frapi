@@ -49,7 +49,7 @@ secure_server "db"
 # echo $SECRETKEYAUTH
 bash /root/app.sh
 
-# File upload server
+# File upload server - not for now
 nohup python file.py > /root/fileupload.log
 
 # Note to my self:
