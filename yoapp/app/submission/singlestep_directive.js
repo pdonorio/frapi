@@ -29,6 +29,8 @@ myApp
       },
       controller: function($scope) {
 
+        //$scope.stepLimits = $scope.step > 0 && $scope.step < $scope.max;
+
         // On broadcast from submissioncontroller
         // this is launched when we open o switch step from the side menu
         $scope.$on('formActivation', function(event, active) {

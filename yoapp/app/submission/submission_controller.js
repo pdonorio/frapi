@@ -29,32 +29,25 @@ myApp
     $scope.$on('switch', function(event, enabled) {
         // Something?
     });
-    // closing actions
     var closingAction = function() {
         $state.go('logged.submission');
-        return true;
     }
-    // undo
     $scope.undoSteps = function() {
         // Recover the array copied
         $scope.steps = angular.copy($scope.stepsCopy);
         // Abort the current form
         $scope.stepsForm.$cancel();
-        return closingAction();
+        closingAction();
     };
-    // save
     $scope.saveSteps = function() {
-
         console.log("Call me to save");
         // Note to self:
         // i should reload the view which shows the step contents!
         $state.go('logged.submission');
     }
-    // remove
     $scope.removeStep = function(index) {
         $scope.steps.splice(index, 1);
     };
-    // add
     $scope.addStep = function() {
         var newStep = {
           id: null,
@@ -64,9 +57,8 @@ myApp
         $scope.steps.push(newStep);
     };
 
-// TO FIX - should get the step from url with ui routing
-    //First step
-    $scope.current = 1;
+// TO FIX - should get the step number from url with ui routing
+    $scope.current = 1; //Start from First step
     //define step on click
     $scope.setStep = function(step) {
         //console.log("Entering step ", step);
@@ -80,45 +72,37 @@ myApp
         $scope.$broadcast('formActivation', true);
     }
 
-    ////////////// READ STEP CONTENT / TYPE
-    // Missing for now?
-    // Should also build template based on type per each step....
-
-    //////////////////////////////////////////////
-    // STEP template
-    $scope.formTemplate = [
-        {pos:1, key: "titolo", type: "number", value: 3},
-        {pos:2, key: "pippo", type: "select", value: ['first','second']},
-        {pos:3, key: "ancora", type: "text", value: 'string'},
-        {pos:4, key: "ultimo", type: "textarea", value: 'alongerstring'},
-    ];
-
     //////////////////////////////////////////////
     // Getting data from my Models
-
-    // StepTemplate (admin structure)
-    var steptemp = StepTemplate.build();
-    steptemp.getData().then(function(out){
-        console.log("Template");
-        $scope.stepTemplate = out;
-        for (var j = 0; j < $scope.stepTemplate.length; j++) {
-            console.log("step "+j);
-            console.log($scope.stepTemplate[j]);
-        };
-    });
+    $scope.stepObj = {};
 
     // StepList (side navbar)
-    var steps = StepList.build();
-    steps.getData().then(function(out){
+    $scope.stepObj.list = StepList.build();
+    $scope.stepObj.list.getData().then(function(out){
+        console.log("List");
         $scope.steps = out;
-    });
+
+    // StepTemplate (admin structure)
+        $scope.stepObj.template = StepTemplate.build();
+        $scope.stepObj.template.getData().then(function(out){
+            console.log("Template");
+            $scope.stepTemplate = out;
 
     // StepContent (center data)
-    var stepc = StepContent.build();
-    stepc.getData().then(function(out){
-        console.log("Content");
-        console.log(out);
-        $scope.stepsData = out;
+            $scope.stepObj.content = StepContent.build();
+            $scope.stepObj.content.getData().then(function(out){
+                console.log("Content");
+                //console.log(out);
+                $scope.stepsData = out;
+
+    // TO FIX - should mix template and content here
+
+                ;
+
+            });
+
+        });
     });
+
 
  });
