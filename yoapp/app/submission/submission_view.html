@@ -50,12 +50,12 @@
     <!-- MAIN BODY of SUBMISSION -->
     <div class="col-md-9 col-xs-9">
 
-      <div ng-hide='stepsData.length > 0'>
-        No stepsData configured yet! <br>
+      <div ng-hide='stepsNum > 0'>
+        No stepsData configured yet. <br>
         Please <a href>contact administrator</a>.
       </div>
 
-      <div ng-show='stepsData.length > 0'>
+      <div ng-show='stepsNum > 0'>
 
         <!-- Repeat on a list of steps i need:
           a. Step before if exists
@@ -64,9 +64,8 @@
           -->
         <submission-step
           ng-repeat='i in [current-1,current,current+1]'
-          step='i' name='steps[i]' data='stepsData[i]' template='stepTemplate[i]'
-          current='current' max='stepsData.length'
-          >
+          step='i' name='steps[i]' data='stepsData[i]'
+          current='current' max='steps.length'>
         </submission-step>
 
         <!-- Upload - This will be last step, so take double the necessary space -->

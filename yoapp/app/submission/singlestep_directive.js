@@ -17,19 +17,13 @@ myApp
       /////////////////////////////////////
       //Directives isolated scope (cleaner and better)
       scope: {
-
-        // I must rearrange all of this data...
         current: "=",
         step: "=",
         name: "=",
         max: "=",
         data: "=",
-        template: "=",
-        //edit: "=",
       },
       controller: function($scope) {
-
-        //$scope.stepLimits = $scope.step > 0 && $scope.step < $scope.max;
 
         // On broadcast from submissioncontroller
         // this is launched when we open o switch step from the side menu
@@ -38,10 +32,6 @@ myApp
           if (active && $scope.step == $scope.current) {
             //console.log("Open form " + $scope.step);
             $scope.myform.$show();
-          }
-
-          if (!active) {
-            //$scope.myform.$hide();
           }
 
         });

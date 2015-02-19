@@ -1,4 +1,4 @@
-<div class="col-md-4" ng-show="step > 0 && step < max" >
+<div ng-show="step > 0 && step < max" >
 
  <article ng-class="{'blur': current != step}" >
 
@@ -15,8 +15,14 @@
 
     <div class="panel-body">
 
+      <div ng-hide='data'>
+        <b>Missing step template. <br><i>(add a new one)</i> </b>
+      </div>
+
      <!-- Form for Normal insert user (OPERATOR)-->
-      <form editable-form name="myform" onaftersave="doSomethingToSave()">
+      <form editable-form name="myform" ng-show='data' onaftersave="doSomethingToSave()">
+
+       {{data}}
 
        <!-- editable username (text with validation) -->
        <table ng-class="{'table': current == step}">
@@ -29,8 +35,6 @@
             </td>
         </tr>
        </table>
-
-       {{template}}
 
         <!-- based on current and the step of this directive -->
         <div class="buttons" ng-show="current == step">
