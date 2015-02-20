@@ -51,7 +51,7 @@
   background-color: #f3f3f3;
 }
 .darkbg {
-  background-color: #343434;
+  background-color: #676767;
 /*
     background: -webkit-linear-gradient(top, rgba(255, 214, 163, 1) 0%, rgba(250, 173, 142, 1) 100%);
     background: linear-gradient(to bottom, rgba(255, 214, 163, 1) 0%, rgba(250, 173, 142, 1) 100%);
@@ -71,6 +71,13 @@ body {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
+
+.modal-backdrop {
+    bottom: 0;
+    /* some fixes appear to use this, too: */
+    position: fixed;
+}
+
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;

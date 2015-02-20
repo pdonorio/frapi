@@ -98,9 +98,12 @@ Bugs:
         ✔ Fill data inside db and export @done (15-02-13 07:47)
         ☐ Admin
           ✔ Make StepTemplate API @done (15-02-13 22:01)
-          ☐ Merge Template and content
+          ✔ Merge Template and content @done (15-02-19 17:17)
+          ☐ Edit for for existing
+          ☐ Open form for steps with no data
         ☐ A new view when edit on
           ✔ dark background @done (15-02-11 07:46)
+          ☐ modal?
           ☐ step list on the side
           ☐ step editing on the other side
           ☐ Edit step name on one line
