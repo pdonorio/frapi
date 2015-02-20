@@ -10,8 +10,8 @@
 myApp
 .controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter,
     // Factory/Service with models
-    StepTemplate, StepList, StepContent
-){
+    StepTemplate, StepList, StepContent)
+{
 
     ////////////////////////////////
     // get variable inside url as param

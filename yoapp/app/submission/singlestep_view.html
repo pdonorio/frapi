@@ -20,20 +20,21 @@
       </div>
 
      <!-- Form for Normal insert user (OPERATOR)-->
-      <form editable-form name="myform" ng-show='data' onaftersave="doSomethingToSave()">
-
-       {{data}}
+      <form editable-form name="myform" ng-show='data'>
 
        <!-- editable username (text with validation) -->
        <table ng-class="{'table': current == step}">
-        <!-- repeat with sort? on key 'pos' -->
-        <tr ng-if='element.key' ng-repeat="element in data | orderBy:'+pos' |limitTo:10">
-            <th class='title'> {{element.key + ':' || 'empty'}} </th>
-            <td editable-text="element.value" e-name="name"
-            onaftersave="">
-              {{element.value|| 'empty'}}
-            </td>
-        </tr>
+        <!-- <thead> <tr> <th>Colonna</th> <th>Valore</th> </tr> </thead> -->
+        <tbody>
+          <!-- repeat with sort on key 'pos' -->
+          <tr ng-if='key' ng-repeat="(key,value) in data | orderBy:'+pos' | limitTo:15">
+              <th class='title'> {{ (key | ucFirst) || 'empty'}} </th>
+              <td ng-show='current != step'>&nbsp;</td>
+              <td editable-text="value" e-name="name" onaftersave="doSomethingToSave()">
+                {{value|| 'empty'}}
+              </td>
+          </tr>
+        </tbody>
        </table>
 
         <!-- based on current and the step of this directive -->
@@ -48,7 +49,8 @@
             <button type="submit" class="btn btn-primary" ng-disabled="myform.$waiting">
               Save
             </button>
-            <button type="button" class="btn btn-default" ng-disabled="myform.$waiting" ng-click="myform.$cancel()">
+            <button type="button" class="btn btn-default" ng-disabled="myform.$waiting"
+              ng-click="myform.$cancel()">
               Cancel
             </button>
           </span>
