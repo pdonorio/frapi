@@ -94,7 +94,7 @@ Bugs:
         ✔ Fill data inside db and export @done (15-02-13 07:47)
         ☐ Admin
           ✔ Step via url: the new ajax @current pre @done (15-02-21 13:44)
-            ☐ Rearrange a new standard for names and directory!
+            ✔ Rearrange a new standard for names and directory! @done (15-02-21 17:52)
           ✔ Make StepTemplate API @done (15-02-13 22:01)
           ✔ Merge Template and content @done (15-02-19 17:17)
           ☐ Open form for steps with no data @current

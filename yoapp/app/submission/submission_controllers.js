@@ -18,6 +18,7 @@ myApp
     var id = $stateParams.myId;
     // Inject for DOM
     $scope.id = id;
+    $scope.current = null;
 
     ////////////////////////////////
     // STEPS EDITABLE
