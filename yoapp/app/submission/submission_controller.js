@@ -12,7 +12,6 @@ myApp
     // Factory/Service with models
     StepTemplate, StepList, StepContent)
 {
-
     ////////////////////////////////
     // get variable inside url as param
     var id = $stateParams.myId;
@@ -57,15 +56,18 @@ myApp
         $scope.steps.push(newStep);
     };
 
-// TO FIX - should get the step number from url with ui routing
-    $scope.current = 1; //Start from First step
+    ////////////////////////////////
+    // STEPS as a parameter for the whole view
     //define step on click
-    $scope.setStep = function(step) {
-        //console.log("Entering step ", step);
-        $scope.$broadcast('formActivation', false);
-        $scope.current = step;
+    $scope.broadcastStep = function(step) {
+        $state.go('logged.submission.step', {stepId: step});
     }
-
+    // A function for the child to update the main step
+    $scope.setStep = function(step) {
+        $scope.$broadcast('formActivation', false);
+        // Coming as an url parameter i have to make sure is not a string
+        $scope.current = parseInt(step);
+    }
     // If working on empty step as first, show already the form
     if ($scope.id == 'new') {
         // Send the same event to every child controller/scope listening

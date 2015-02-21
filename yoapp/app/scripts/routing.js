@@ -33,7 +33,7 @@ myApp
             //VERY IMPORTANT: controller have to be associated inside views
             //when using multiple views, NOT OUTSIDE
             controller: 'MainController',
-            //this controller scope will be inherited from every child
+            //this controller scope will be inherited from every nested child view
         },
         //reminder: this line below will not work as the 'contain' view is nested!
         //"contain": { templateUrl: "views/main.html", },
@@ -65,12 +65,16 @@ myApp
           $rootScope.edit.available = true;
         }
       })
+
+      ///////////////////////////////////
       .state('logged.submission', {
         url: "/add/{myId:[0-9\-a-z]*}",
-        views: { "contain": {
-          templateUrl: "submission/submission_view.html",
-          controller: 'SubmissionController',
-        }, },
+        views: {
+          "contain": {
+            templateUrl: "submission/submission_view.html",
+            controller: 'SubmissionController',
+          },
+        },
         onEnter: function($rootScope, $stateParams) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
           if ($stateParams.myId == 'new') {
@@ -85,8 +89,26 @@ myApp
             $rootScope.$emit('rootScope:emit', 'editon');
           }
         },
-
       })
+
+      .state('logged.submission.step', {
+        url: "/step/:stepId",
+        views: {
+          "singlestep": {
+            templateUrl: 'submission/submission_step_view.html',
+            controller: function($scope, $stateParams) {
+              //console.log($stateParams);
+              $scope.setStep($stateParams.stepId);
+
+              // this does not work for the parent!
+              //$scope.current = $stateParams.stepId;
+            },
+          },
+        },
+        //onEnter: function() { console.log("Entered step"); },
+      })
+
+      ///////////////////////////////////
       .state('logged.search', {
         url: "/search",
         views: {

@@ -29,7 +29,7 @@
         <!-- STEPS -->
         <a href class="list-group-item" ng-repeat='(step,name) in steps'
           ng-if='name != null'
-          ng-click="setStep(step)" ng-class="{'orange': step == current}">
+          ng-click="broadcastStep(step)" ng-class="{'orange': step == current}">
           <!-- name -->
           {{name | ucFirst}}
           <!-- badge -->
@@ -38,49 +38,14 @@
 
         <!-- UPLOADER -->
         <a href="" class="list-group-item"
-          ng-click="setStep(steps.length)" ng-class="{'orange': steps.length == current}">
+          ng-click="broadcastStep(steps.length)" ng-class="{'orange': steps.length == current}">
           <span class="badge">{{steps.length}}</span> Upload
         </a>
 
       </div>
-
-
     </div>
 
-    <!-- MAIN BODY of SUBMISSION -->
-    <div class="col-md-9 col-xs-9">
-
-      <div ng-hide='stepsNum > 0'>
-        No stepsData configured yet. <br>
-        Please <a href>contact administrator</a>.
-      </div>
-
-      <div ng-show='stepsNum > 0'>
-
-        <!-- Repeat on a list of steps i need:
-          a. Step before if exists
-          b. CURRENT step
-          c. Step after, if exists
-          -->
-        <submission-step
-          ng-repeat='i in [current-1,current,current+1]'
-          step='i' name='steps[i]' data='stepsData[i]'
-          current='current' max='steps.length'>
-        </submission-step>
-
-        <!-- Upload - This will be last step, so take double the necessary space -->
-        <div class="col-md-8" ng-show="current == steps.length-1 || current == steps.length">
-           <article ng-class="{'blur': current < steps.length}" >
-            <div class="well">
-              <h4 ng-if='current == steps.length-1'>Successivo:</h4>
-              <file-uploader></file-uploader>
-            </div>
-           </article>
-        </div>
-
-    </div>
-
-    </div>
+    <div ui-view="singlestep"></div>
 
   <!-- BLUR div -->
   </div>

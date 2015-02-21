@@ -38,9 +38,9 @@ Feb ALPHA:
   ✔ Rebuild ONLINE @done (15-02-09 11:13)
 
 Bugs:
- ☐ http://getawesomeness.com/get/docker
- ☐ http://blog.evernote.com/blog/2015/02/06/paperless-productivity-evernote-pocket
- ☐ https://github.com/aziz/PlainNotes
+ ✔ http://getawesomeness.com/get/docker @done (15-02-21 12:54)
+ ✔ http://blog.evernote.com/blog/2015/02/06/paperless-productivity-evernote-pocket @done (15-02-21 12:54)
+ ✔ https://github.com/aziz/PlainNotes @done (15-02-21 12:54)
     ✔ If focus on search @done (15-02-11 06:36)
         ✔ make the bg gray @done (15-02-09 11:13)
         ✔ take the switch for edit out @done (15-02-11 06:36)
@@ -70,10 +70,6 @@ Bugs:
       ☐ via baseimage
         ☐ https://github.com/phusion/baseimage-docker#login_ssh
 
- Slides:
-  ☐ Best schema
-   ☐ https://mscblogs.blob.core.windows.net/media/dwahlin/Media/image_thumb_3DE5D87B.png
-
  Stable:
   ☐ Steps
     ☐ Admin add, edit, remove
@@ -97,13 +93,18 @@ Bugs:
         ✔ Move files inside new folder @done (15-02-12 17:26)
         ✔ Fill data inside db and export @done (15-02-13 07:47)
         ☐ Admin
+          ✔ Step via url: the new ajax @current pre @done (15-02-21 13:44)
+            ☐ Rearrange a new standard for names and directory!
           ✔ Make StepTemplate API @done (15-02-13 22:01)
           ✔ Merge Template and content @done (15-02-19 17:17)
-          ☐ Edit for for existing
-          ☐ Open form for steps with no data
+          ☐ Open form for steps with no data @current
+          ☐ Edit for for existing @current post
+            ☐ Each edit should work on one single row
+              ☐ change stepcontent table: one row per step (per element)
+
         ☐ A new view when edit on
           ✔ dark background @done (15-02-11 07:46)
-          ☐ modal?
+          ☐ modal? i have an example
           ☐ step list on the side
           ☐ step editing on the other side
           ☐ Edit step name on one line
