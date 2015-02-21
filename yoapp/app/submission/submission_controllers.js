@@ -8,6 +8,7 @@
  * Controller of the yoApp
  */
 myApp
+
 .controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter,
     // Factory/Service with models
     StepTemplate, StepList, StepContent)
@@ -130,4 +131,43 @@ myApp
     });         //list end
     // END OF DATA WORKING
 
- }); //end of controller
+ }) //end SubmissionController
+
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+.controller('StepController', function ($scope, $stateParams)
+{
+    $scope.setStep($stateParams.stepId);
+    // this does not work for the parent!
+    //$scope.current = $stateParams.stepId;
+
+}) //end StepController
+
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+.controller('StepDirectiveController', function ($scope)
+{
+
+    // Should be defined outside and passed here as reference?
+    $scope.doSomethingToSave = function() {
+        console.log("Saving user edit");
+    }
+
+    // On broadcast from submissioncontroller
+    // this is launched when we open o switch step from the side menu
+    $scope.$on('formActivation', function(event, active) {
+
+      if (active && $scope.step == $scope.current) {
+        //console.log("Open form " + $scope.step);
+        $scope.myform.$show();
+      }
+
+    });
+
+}) //end StepController
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+; //end of controllers

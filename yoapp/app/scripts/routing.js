@@ -71,7 +71,7 @@ myApp
         url: "/add/{myId:[0-9\-a-z]*}",
         views: {
           "contain": {
-            templateUrl: "submission/submission_view.html",
+            templateUrl: 'submission/submission_user_view.html',
             controller: 'SubmissionController',
           },
         },
@@ -95,14 +95,8 @@ myApp
         url: "/step/:stepId",
         views: {
           "singlestep": {
-            templateUrl: 'submission/submission_step_view.html',
-            controller: function($scope, $stateParams) {
-              //console.log($stateParams);
-              $scope.setStep($stateParams.stepId);
-
-              // this does not work for the parent!
-              //$scope.current = $stateParams.stepId;
-            },
+            templateUrl: 'submission/submission_allsteps_view.html',
+            controller: 'StepController',
           },
         },
         //onEnter: function() { console.log("Entered step"); },

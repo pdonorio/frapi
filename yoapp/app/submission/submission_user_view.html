@@ -1,11 +1,15 @@
 <div class="container-fluid">
 
  <!-- ADMIN USER - EDIT MODE -->
+ <!-- ADMIN USER - EDIT MODE -->
  <div class="row" ng-show='edit.switch'>
     <form editable-form name="stepsForm" onaftersave="saveSteps()">
-     <div ng-include="'submission/singlestep_admin_view.html'"></div>
+     <div ng-include="'submission/submission_admin_view.html'"></div>
     </form>
  </div>
+<!-- CHANGE ME -->
+ <!-- ADMIN USER - EDIT MODE -->
+ <!-- ADMIN USER - EDIT MODE -->
 
  <!-- NORMAL USER - INSERT MODE -->
  <div class="row" ng-hide='edit.switch'>
