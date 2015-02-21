@@ -22,6 +22,7 @@ myApp
         name: "=",
         max: "=",
         data: "=",
+        id: "=",
       },
 
       controller: 'StepDirectiveController',

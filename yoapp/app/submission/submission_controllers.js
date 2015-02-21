@@ -9,7 +9,8 @@
  */
 myApp
 
-.controller('SubmissionController', function ($rootScope, $scope, $state, $stateParams, $filter,
+.controller('SubmissionController', function (
+    $rootScope, $scope, $state, $stateParams, $filter,
     // Factory/Service with models
     StepTemplate, StepList, StepContent)
 {
@@ -66,14 +67,8 @@ myApp
     }
     // A function for the child to update the main step
     $scope.setStep = function(step) {
-        $scope.$broadcast('formActivation', false);
         // Coming as an url parameter i have to make sure is not a string
         $scope.current = parseInt(step);
-    }
-    // If working on empty step as first, show already the form
-    if ($scope.id == 'new') {
-        // Send the same event to every child controller/scope listening
-        $scope.$broadcast('formActivation', true);
     }
 
     //////////////////////////////////////////////
@@ -139,7 +134,9 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('StepController', function ($scope, $stateParams)
 {
+
     $scope.setStep($stateParams.stepId);
+
     // this does not work for the parent!
     //$scope.current = $stateParams.stepId;
 
@@ -148,24 +145,29 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('StepDirectiveController', function ($scope)
+.controller('StepDirectiveController', function ($scope, $timeout, directiveTimeout)
 {
+
+    // If working on empty step as first, show already the form
+    if ($scope.id == 'new' && $scope.step == $scope.current) {
+
+        // When the timeout is defined, it returns a promise object.
+        var timer = $timeout( function() {
+            if ($scope.myform) $scope.myform.$show();
+        }, directiveTimeout);
+        // Let's bind to the resolve/reject handlers
+        timer.then( function() { ; }, function() {
+            console.log( "Timer rejected!", Date.now() );
+        });
+        // When the DOM element is removed from the page
+        $scope.$on( "$destroy", function( event ) { $timeout.cancel( timer ); });
+
+    }
 
     // Should be defined outside and passed here as reference?
     $scope.doSomethingToSave = function() {
         console.log("Saving user edit");
     }
-
-    // On broadcast from submissioncontroller
-    // this is launched when we open o switch step from the side menu
-    $scope.$on('formActivation', function(event, active) {
-
-      if (active && $scope.step == $scope.current) {
-        //console.log("Open form " + $scope.step);
-        $scope.myform.$show();
-      }
-
-    });
 
 }) //end StepController
 

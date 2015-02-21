@@ -66,7 +66,6 @@ myApp
         }
       })
 
-      ///////////////////////////////////
       .state('logged.submission', {
         url: "/add/{myId:[0-9\-a-z]*}",
         views: {
@@ -102,7 +101,6 @@ myApp
         //onEnter: function() { console.log("Entered step"); },
       })
 
-      ///////////////////////////////////
       .state('logged.search', {
         url: "/search",
         views: {

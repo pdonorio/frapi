@@ -30,7 +30,8 @@
           <tr ng-if='key' ng-repeat="(key,value) in data | orderBy:'+pos' | limitTo:15">
               <th class='title'> {{ (key | ucFirst) || 'empty'}} </th>
               <td ng-show='current != step'>&nbsp;</td>
-              <td editable-text="value" e-name="name" onaftersave="doSomethingToSave()">
+              <td editable-text="value" e-name="name" e-size='40'
+                e-placeholder='Inserisci un valore' onaftersave="doSomethingToSave()">
                 {{value|| 'empty'}}
               </td>
           </tr>

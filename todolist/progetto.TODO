@@ -97,8 +97,8 @@ Bugs:
             ✔ Rearrange a new standard for names and directory! @done (15-02-21 17:52)
           ✔ Make StepTemplate API @done (15-02-13 22:01)
           ✔ Merge Template and content @done (15-02-19 17:17)
-          ☐ Open form for steps with no data @current
-          ☐ Edit for for existing @current post
+          ✔ Open form for steps with no data @current @done (15-02-21 20:35)
+          ☐ Edit for existing @current post
             ☐ Each edit should work on one single row
               ☐ change stepcontent table: one row per step (per element)
 
@@ -233,3 +233,31 @@ Mar:
 
  ☐ Go mobile
    ☐ http://ccoenraets.github.io/ionic-tutorial/install-ionic.html
+
+--- ✄ -----------------------
+
+Timer TIMEOUT how to:
+
+// When the timeout is defined, it returns a promise object.
+var timer = $timeout( function() {
+    if ($scope.myform)
+        $scope.myform.$show();
+}, directiveTimeout);
+
+// Let's bind to the resolve/reject handlers of
+// the timer promise so that we can make sure our
+// cancel approach is actually working.
+timer.then( function() {
+    console.log( "Timer resolved!", Date.now() );
+}, function() {
+    console.log( "Timer rejected!", Date.now() );
+});
+
+// When the DOM element is removed from the page,
+// AngularJS will trigger the $destroy event on
+// the scope. This gives us a chance to cancel any
+// pending timer that we may have.
+$scope.$on( "$destroy", function( event ) {
+    console.log("Destroy");
+    $timeout.cancel( timer );
+});
