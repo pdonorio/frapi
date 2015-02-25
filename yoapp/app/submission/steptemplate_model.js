@@ -10,8 +10,11 @@ myApp
 {
   var resource = 'stepstemplate';
 
-  function loadData() {
-    return API.get(resource)
+  function loadData(step) {
+
+    var parameters = {step: step, perpage: 100};
+
+    return API.get(resource, parameters)
       .then(function(response) {
           var data = [];
           if (response.count > 0) {
@@ -61,9 +64,9 @@ myApp
   };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
-  StepTemplate.build = function (data) {
+  StepTemplate.build = function (step) {
     // API call
-    var data = loadData();
+    var data = loadData(step);
     // Create object
     return new StepTemplate(data);
   }

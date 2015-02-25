@@ -92,14 +92,20 @@ Bugs:
           ✔ JS side @done (15-02-12 10:13)
         ✔ Move files inside new folder @done (15-02-12 17:26)
         ✔ Fill data inside db and export @done (15-02-13 07:47)
-        ☐ Admin
+        ✔ Admin @done (15-02-24 18:26)
           ✔ Step via url: the new ajax @current pre @done (15-02-21 13:44)
             ✔ Rearrange a new standard for names and directory! @done (15-02-21 17:52)
           ✔ Make StepTemplate API @done (15-02-13 22:01)
           ✔ Merge Template and content @done (15-02-19 17:17)
           ✔ Open form for steps with no data @current @done (15-02-21 20:35)
-          ☐ Edit for existing @current post
+          ✔ Problems with parameters on API @done (15-02-25 07:08)
+            ✔ Change the factory in JS @done (15-02-25 07:08)
+            ☐ Check what happens on API with the parameter
+            ☐ no test unit :/
+          ☐ Edit for existing
             ☐ Each edit should work on one single row
+              ☐ Cleaned table
+            ☐ Move load single step data inside its controller @current HARD
               ☐ change stepcontent table: one row per step (per element)
 
         ☐ A new view when edit on

@@ -71,20 +71,9 @@ myApp
     $scope.reloadTable = function(perpage, currentpage)
     {
 
-      //Warning: if data is coming from input
-      //we must convert string to integer (just in case)
-      perpage = parseInt(perpage);
-      if (isNaN(perpage)) {
-        perpage = perpageDefault;
-      }
-      currentpage = parseInt(currentpage);
-      if (isNaN(currentpage)) {
-        currentpage = currentpageDefault;
-      }
-      //console.log(perpage);
-
       // Get the data (as a promise)
-      var promise = API.get("data", perpage, currentpage);
+      var params = {perpage: perpage, currentpage: currentpage};
+      var promise = API.get("data", params);
 
       // Use the data promise
       promise

@@ -11,7 +11,8 @@ myApp.factory('RestAPI', function(Restangular, AppConfig)
 });
 
 // Inject my Restangular class to create a factory/service that uses my API
-myApp.factory('API', function(RestAPI, apiTimeout) {
+myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDefault)
+{
 
     //Empty factory
     var Factory = {};
@@ -23,22 +24,41 @@ myApp.factory('API', function(RestAPI, apiTimeout) {
 
     //###################################
     //A generic API GET
-    Factory.get = function(resource, ppage, cpage) {
+    Factory.get = function(resource, parameters) {
 
       //set resource for promise calling
       var api = RestAPI.all(resource);
 
-      // Set parameters for my Api filters
-      var params = {perpage: ppage, currentpage: cpage};
+      if (!parameters)
+        parameters = {}
+
+      /////////////////////////////////////////
+      //Warning: if data is coming from input
+      //we must convert string to integer (just in case)
+      if (parameters.perpage)
+        parameters.perpage = parseInt(parameters.perpage);
+      else parameters.perpage = NaN;
+      if (isNaN(parameters.perpage))
+        parameters.perpage = perpageDefault;
+
+      if (parameters.currentpage)
+          parameters.currentpage = parseInt(parameters.currentpage);
+      else parameters.currentpage = NaN;
+      if (isNaN(parameters.currentpage))
+        parameters.currentpage = currentpageDefault;
+      //console.log(perpage);
+
+      // Check other parameters??
+      // foreach parameters
+
+
       var route = ''; //no sub routing as this is a "get all"
 
       // Make a promise for data call
       var promise = api
         .withHttpConfig({timeout: apiTimeout})  //set timeout
         //Address will be: "base url / resource / route "
-        .doGET(route, params)
-//TO FIX -
-//MOVE TO WHERE IT'S CALLED
+        .doGET(route, parameters)
         .then( function(output) { //Success
             data = JSON.parse(output);
             //console.log(data);
