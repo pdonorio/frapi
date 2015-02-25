@@ -78,7 +78,7 @@ class News(GenericORMModel):
 class StepList(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'steps'
-    _order = 'step'
+    order = 'step'
 
     # Attributes as defined by static methods:
     @staticmethod
@@ -99,7 +99,6 @@ class StepList(GenericORMModel):
 class StepContent(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepscontent'
-    #_order = 'step'
 
     # Attributes as defined by static methods:
     @staticmethod
@@ -132,7 +131,7 @@ class StepContent(GenericORMModel):
 class StepTemplate(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepstemplate'
-    _order = 'step,position'
+    order = 'step,position'
 
     # Attributes as defined by static methods:
     @staticmethod
