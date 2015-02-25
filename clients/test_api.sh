@@ -37,7 +37,7 @@ resource="stepstemplate"
 #############################################
 #PAGING and simple test
 echo "***\nPaging"
-values="perpage=7&currentpage=1"
+values="perpage=6&currentpage=1&step=2"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
 echo "received '$key'"
 exit;

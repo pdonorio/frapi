@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 # === Models for NoSQL db ===
 My python experiments with rethinkdb
@@ -171,7 +173,9 @@ class RethinkConnection(Connection):
 
         # save parameters
         for name in params:
-            p[name] = params.get(name)
+            tmp = params.get(name)
+            if tmp != None:
+                p[name] = tmp
 
         # set defaults for paging
         if "perpage" in p:
@@ -193,18 +197,12 @@ class RethinkConnection(Connection):
         self.log.debug("Searching rdb table '" + table + "'")
         p = RethinkConnection.get_parameters_with_defaults(kwargs)
 
+        query = r.table(table)
+
         # Case with arguments
         if "id" in p and p["id"] != None:
             # Note: 'get_all' works, don't know why 'get' doesn't
-            query = r.table(table).get_all(p["id"], index='id')
-        # Case no arguments (all table)
-        else:
-            query = r.table(table)
-
-        # === Filter* ===
-        # filt = {"where":"silence"}
-        # collection = RethinkCollection(DataDump, filter=filt)
-        # result = collection.fetch()
+            query = query.get_all(p["id"], index='id')
 
         # Note: i should not check if i cannot find any data.
         out = {}
@@ -216,29 +214,35 @@ class RethinkConnection(Connection):
             # Get total query count
             count = query.count().run()
 
-            # Order if necessary (as defined in the model)
-            order = self.model._order
+            # === Filter* ===
+            for key, value in p.iteritems():
+                if key == 'currentpage' or key == 'perpage':
+                    continue
+                # Apply simple equality
+                query = query.filter(r.row[key] == value)
+                # What about subquery?
 
             # Slice for pagination
             if "currentpage" in p and "perpage" in p \
-                and p["perpage"] > 0: # If per page == 0 then give everything you have
+                and p["perpage"] > 0:
+                # If per page == 0 then give everything you have
                 start = (p["currentpage"] - 1) * p["perpage"]
                 end = p["currentpage"] * p["perpage"]
+                # Limit elements
+                query = query.slice(start, end)
                 #this does not work: WHY??
                 #out = query.skip(start).limit(end).run()
 
+            # Order by if necessary (as defined in the model)
+            if self.model.order != None:
+                query = query.order_by(self.model.order)
 # TO FIX:
-                # What if i have multiple orders?
+            # What if i have multiple orders?
+            # Bug! Rethinkdb needs indexes for multiple order
+            # but indexes are not created on a virtualbox machine...
 
-                if order == None:
-                    out = query.slice(start, end).run()
-                else:
-                    out = query.slice(start, end).order_by(order).run()
-            else:
-                if order == None:
-                    out = query.run()
-                else:
-                    out = query.order_by(order).run()
+            # Final result
+            out = query.run()
 
         # Warning: out is a cursor and can be used in two ways:
         # 1. use the for cycle
