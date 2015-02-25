@@ -17,14 +17,12 @@ myApp
       /////////////////////////////////////
       //Directives isolated scope (cleaner and better)
       scope: {
-        current: "=",
-        step: "=",
+        step: "=",  // This is the reason of the isolated scope
         name: "=",
+        current: "=",
         max: "=",
-        data: "=",
         id: "=",
       },
-
       controller: 'StepDirectiveController',
 
     };

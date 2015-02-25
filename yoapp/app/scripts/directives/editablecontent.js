@@ -71,13 +71,12 @@ myApp
           };
 
           $scope.item.highlight = false;
+
+          /////////////////////
+          // API UPDATE
           var msg = "";
-        // API UPDATE ^_^
           API.set("webcontent", data)
           .then(function() {
-
-//TO FIX - should this stay inside link function?
-// it works on HTML and DOM
               msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
               NotificationData.setNotification(AppConfig.messageStatus.success, msg);
             }, function() {
@@ -89,6 +88,7 @@ myApp
               NotificationData.setNotification(AppConfig.messageStatus.error, msg);
             }
           );
+          /////////////////////
 
         }
 

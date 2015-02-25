@@ -11,6 +11,7 @@ myApp
 
 .controller('SubmissionController', function (
     $rootScope, $scope, $state, $stateParams, $filter,
+    NotificationData, AppConfig,
     // Factory/Service with models
     StepTemplate, StepList, StepContent)
 {
@@ -22,15 +23,11 @@ myApp
     $scope.current = null;
 
     ////////////////////////////////
-    // STEPS EDITABLE
+    // STEPS (list) EDITABLE
 
     // Init
     $scope.steps = [];
     $scope.stepsCopy = [];
-    // Manage switch?
-    $scope.$on('switch', function(event, enabled) {
-        // Something?
-    });
     var closingAction = function() {
         $state.go('logged.submission');
     }
@@ -78,54 +75,10 @@ myApp
 
     // StepList (side navbar)
     $scope.stepObj.list = StepList.build();
-    $scope.stepObj.list.getData().then(function(out){
-      //console.log("List");
-      $scope.steps = out;
-
-    // StepTemplate (admin structure)
-      $scope.stepObj.template = StepTemplate.build();
-      $scope.stepObj.template.getData().then(function(out){
-          //console.log("Template");
-          var template = out;
-          // For future ADMIN
-          $scope.templateData = out;
-
-    // StepContent (center data)
-          $scope.stepObj.content = StepContent.build();
-          $scope.stepObj.content.getData().then(function(out){
-            //console.log("Content");
-            var content = out;
-
-            //////////////////////////////////////////////////
-            // Mixing template and content here
-            template.forEach(function(obj, step) {
-              if (!obj) return;
-              var data = {};
-
-              obj.forEach(function(tmpl, position) {
-                if (tmpl.length < 1) return;
-                var value = null;
-
-                // The main part
-                if (content[step][position])
-                    if (content[step][position].key == tmpl.key)
-                        if (content[step][position].value)
-                            value = content[step][position].value;
-                // The main part
-
-                data[tmpl.key] = value;
-              });
-
-              $scope.stepsData[step] = data;
-            });
-            //console.log($scope.stepsData);
-            $scope.stepsNum = Object.keys($scope.stepsData).length;
-            //////////////////////////////////////////////////
-
-          });   //content end
-        });     //template end
+    $scope.stepObj.list.getData().then(function(out) {
+        //console.log("List");
+        $scope.steps = out;
     });         //list end
-    // END OF DATA WORKING
 
  }) //end SubmissionController
 
@@ -145,7 +98,10 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('StepDirectiveController', function ($scope, $timeout, directiveTimeout)
+.controller('StepDirectiveController', function (
+    $scope, $timeout, directiveTimeout,
+    StepTemplate
+    )
 {
 
     // If working on empty step as first, show already the form
@@ -164,10 +120,74 @@ myApp
 
     }
 
-    // Should be defined outside and passed here as reference?
-    $scope.doSomethingToSave = function() {
-        console.log("Saving user edit");
+    $scope.stepContent = [];
+    $scope.stepCopy = [];
+    $scope.undoStep = function() {
+        // Recover the array copied
+        $scope.stepContent = angular.copy($scope.stepCopy);
+        // Abort the current form
+        $scope.myForm.$cancel();
+    };
+    $scope.saveStep = function() {
+        // Signal that we are going to try to edit data
+        //NotificationData.setNotification(AppConfig.messageStatus.loading, "");
+        console.log("TEST");
     }
+
+    // StepTemplate (admin structure)
+    $scope.templateModel = StepTemplate.build($scope.step);
+    $scope.templateModel.getData().then(function(out){
+
+        // TO GET DATA PER EACH OBJECT (when activated)
+        console.log("Load step ", $scope.step)
+        var template = out;
+        $scope.templateData = out;
+        //console.log("Template");
+
+        if ($scope.step == $scope.current) {
+            console.log("Activated step ", $scope.step)
+        }
+        console.log(out);
+/*
+    // StepContent (center data)
+          $scope.stepObj.content = StepContent.build();
+          $scope.stepObj.content.getData().then(function(out){
+            //console.log("Content");
+            var content = out;
+            // Mixing template and content here
+            template.forEach(function(obj, step) {
+              if (!obj) return;
+              var data = {};
+
+              obj.forEach(function(tmpl, position) {
+                if (tmpl.length < 1) return;
+                var value = null;
+
+                // The main part
+                if (content[step] && content[step][position]) {
+                    //CHANGE ME
+                    // if (content[step][position].key == tmpl.key)
+                    //     if (content[step][position].value)
+                    //         value = content[step][position].value;
+                    //CHANGE ME
+                    console.log("Define what to do with content");
+                }
+
+                // The main part
+
+                data[tmpl.key] = value;
+              });
+
+              $scope.stepsData[step] = data;
+
+            });
+            //console.log($scope.stepsData);
+            $scope.stepsNum = Object.keys($scope.stepsData).length;
+            //////////////////////////////////////////////////
+
+          });   //content end
+*/
+        });     //template end
 
 }) //end StepController
 
