@@ -153,6 +153,7 @@ class RethinkConnection(Connection):
 
     @check_model
     def indexing(self):
+# NOT WORKING AT THE MOMENT
         table = self.model.table
         # list indexes on table "users"
         index_list = r.table(table).index_list().run()
@@ -211,16 +212,19 @@ class RethinkConnection(Connection):
         # from my query
         if not query.is_empty().run():
 
-            # Get total query count
-            count = query.count().run()
-
             # === Filter* ===
             for key, value in p.iteritems():
                 if key == 'currentpage' or key == 'perpage':
                     continue
                 # Apply simple equality
+                self.log.info("Filtering on key '" + key + \
+                    "' with value '" + value.__str__() + "'")
                 query = query.filter(r.row[key] == value)
                 # What about subquery?
+
+            # Get total query count
+            # ...just before slicing and order
+            count = query.count().run()
 
             # Slice for pagination
             if "currentpage" in p and "perpage" in p \
