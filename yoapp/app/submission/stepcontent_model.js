@@ -11,10 +11,15 @@ myApp
 
   var resource = 'stepscontent';
 
-  function loadData() {
+  function loadData(step) {
+
+    console.log("Please add step " + step);
+
     return API.get(resource)
       .then(function(response) {
           var data = [];
+
+/*
           if (response.count > 0) {
             var tmp = response.items; //tmp.sort();
 
@@ -44,6 +49,9 @@ myApp
                 }
             };
           }
+
+*/
+
           return data;
       });
   }
@@ -58,9 +66,9 @@ myApp
   };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
-  StepContent.build = function (data) {
+  StepContent.build = function (step) {
     // API call
-    var data = loadData();
+    var data = loadData(step);
     // Create object
     return new StepContent(data);
   }

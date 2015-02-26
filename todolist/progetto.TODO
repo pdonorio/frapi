@@ -100,13 +100,16 @@ Bugs:
           ✔ Open form for steps with no data @current @done (15-02-21 20:35)
           ✔ Problems with parameters on API @done (15-02-25 07:08)
             ✔ Change the factory in JS @done (15-02-25 07:08)
-            ☐ Check what happens on API with the parameter
-            ☐ no test unit :/
+            ✔ Check what happens on API with the parameter @done (15-02-26 16:46)
+              ✔ Fix by understanding rethinkdb filter @done (15-02-26 16:46)
+            ✘ no test unit :/ @cancelled (15-02-26 16:46)
           ☐ Edit for existing
-            ☐ Each edit should work on one single row
-              ☐ Cleaned table
+            ✔ Each edit should work on one single row @done (15-02-26 16:47)
+              ✔ Cleaned table @done (15-02-26 16:47)
             ☐ Move load single step data inside its controller @current HARD
+              ✔ change steptemplate loading and saving in JS @done (15-02-26 17:26)
               ☐ change stepcontent table: one row per step (per element)
+                ☐ change stepcontent loading and saving in JS
 
         ☐ A new view when edit on
           ✔ dark background @done (15-02-11 07:46)

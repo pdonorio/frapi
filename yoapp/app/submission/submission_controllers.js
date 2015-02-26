@@ -13,7 +13,9 @@ myApp
     $rootScope, $scope, $state, $stateParams, $filter,
     NotificationData, AppConfig,
     // Factory/Service with models
-    StepTemplate, StepList, StepContent)
+    StepList
+    //,StepContent, StepTemplate
+    )
 {
     ////////////////////////////////
     // get variable inside url as param
@@ -78,7 +80,9 @@ myApp
     $scope.stepObj.list.getData().then(function(out) {
         //console.log("List");
         $scope.steps = out;
-    });         //list end
+        //$scope.stepsNum = Object.keys($scope.stepsData).length;
+        $scope.stepsNum = $scope.steps.length;
+    });
 
  }) //end SubmissionController
 
@@ -100,7 +104,7 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
     $scope, $timeout, directiveTimeout,
-    StepTemplate
+    StepTemplate, StepContent
     )
 {
 
@@ -136,7 +140,7 @@ myApp
 
     // StepTemplate (admin structure)
     $scope.templateModel = StepTemplate.build($scope.step);
-    $scope.templateModel.getData().then(function(out){
+    $scope.templateModel.getData().then(function(out) {
 
         // TO GET DATA PER EACH OBJECT (when activated)
         console.log("Load step ", $scope.step)
@@ -148,12 +152,13 @@ myApp
             console.log("Activated step ", $scope.step)
         }
         console.log(out);
-/*
     // StepContent (center data)
-          $scope.stepObj.content = StepContent.build();
-          $scope.stepObj.content.getData().then(function(out){
-            //console.log("Content");
+          $scope.contentData = StepContent.build($scope.step);
+          $scope.contentData.getData().then(function(out) {
+            console.log("Content");
             var content = out;
+            console.log(out);
+/*
             // Mixing template and content here
             template.forEach(function(obj, step) {
               if (!obj) return;
@@ -182,11 +187,11 @@ myApp
 
             });
             //console.log($scope.stepsData);
-            $scope.stepsNum = Object.keys($scope.stepsData).length;
             //////////////////////////////////////////////////
+*/
+
 
           });   //content end
-*/
         });     //template end
 
 }) //end StepController

@@ -20,31 +20,24 @@ myApp
           if (response.count > 0) {
             var tmp = response.items; //tmp.sort();
 
+            // WARNING: i need only one step!!!
             //console.log(tmp);
-            data[0] = null;
 
             // Js foreach cycle: to create my array out of RDB json
             tmp.forEach(function(obj, index) {
-                var j = obj.step;
-                if (!data[j])
-                    data[j] = [];
-                if (data[j][obj.element])
-                  console.log("Warning: found duplicate in "+j+":"+obj.element)
-                else
-                  data[j][obj.position] = {key: obj.field, value: obj.type};
+                if (obj.step != step) {
+                    console.log("Received wrong template!??");
+                } else {
+                    if (!obj.field || obj.field == '')
+                        console.log("Failed field for template on step" + step)
+                    else if (!obj.type || obj.type == '')
+                        console.log("Failed type for template on step" + step)
+                    else
+                        data[obj.field] = obj.type;
+                }
+                //console.log("Warning: found duplicate in "+j+":"+obj.element)
             });
 
-            // Filling holes?
-            for (var i = 1; i < data.length; i++) {
-                if (data[i]) {
-                    for (var j = 0; j < data[i].length; j++) {
-                        if (!data[i][j])
-                            data[i][j] = [];
-                    };
-                } else {
-                    data[i] = [];
-                }
-            };
           }
           return data;
       });
