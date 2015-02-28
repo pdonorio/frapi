@@ -115,10 +115,12 @@ Bugs:
               ✔ Mix template and content inside directive @done (15-02-28 16:21)
               ✔ Save data at insert time @done (15-02-28 16:56)
                 ☐ add inside python data models field*** ad libitum inside for cycle
+                  ✔ Pippa mentale! @done (15-02-28 17:42)
                 ☐ Handle notification
-                  ☐ factory??
+                  ☐ inside factory??
 
         ☐ Use step type to define html element in the step editor
+        ☐ What about the difference from "new" and "edit" step....
         ☐ A new view when edit on
           ✔ dark background @done (15-02-11 07:46)
           ☐ modal? i have an example

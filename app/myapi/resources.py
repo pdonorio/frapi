@@ -228,6 +228,8 @@ def resource_builder(label, model):
 # Resources factory: create as many as there are ORM models
 resources = {}
 for (name, data_model) in models.iteritems():
+    if 'Base' in name:
+        continue
     # Create the new class using the factory
     new_class = resource_builder(name + "Resource", data_model)
     # Save it for restful routing inside an array

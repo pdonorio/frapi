@@ -96,7 +96,7 @@ class StepList(GenericORMModel):
         return value    #e.g. "Commento!"
 
 ##############################
-class StepContent(GenericORMModel):
+class StepContentBase(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepscontent'
 
@@ -109,23 +109,24 @@ class StepContent(GenericORMModel):
             raise ValueError(m)
         return tmp    #e.g. 1
 
-    @staticmethod
-    def content(value):
-        return value    #e.g. "Commento!"
-
-
         ################################
 # ADD field*** ad libitum in a range
+methods = dict(StepContentBase.__dict__)
+@staticmethod
+def basefunction(value):
+    return value
+
 last = 9
 for i in xrange(1, last+1):
-    padded = 'field' + i.__str__().zfill(3)
-    print "Fix field padding", padded
     # Padding
+    padded = 'field' + i.__str__().zfill(3)
+    #StepContent.method = types.MethodType(padded, None, StepContent)
+    methods.update({padded: basefunction})
+StepContent = type("StepContent", (StepContentBase,), methods)
     # static method??
         ################################
         ################################
         ################################
-
 
 ##############################
 class StepTemplate(GenericORMModel):
