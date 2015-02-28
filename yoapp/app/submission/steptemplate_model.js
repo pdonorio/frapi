@@ -16,7 +16,7 @@ myApp
 
     return API.get(resource, parameters)
       .then(function(response) {
-          var data = [];
+          var data = {};
           if (response.count > 0) {
             var tmp = response.items; //tmp.sort();
 
@@ -33,7 +33,7 @@ myApp
                     else if (!obj.type || obj.type == '')
                         console.log("Failed type for template on step" + step)
                     else
-                        data[obj.field] = obj.type;
+                        data[obj.field]= obj.type;
                 }
                 //console.log("Warning: found duplicate in "+j+":"+obj.element)
             });

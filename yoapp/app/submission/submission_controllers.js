@@ -140,54 +140,43 @@ myApp
 
     // StepTemplate (admin structure)
     $scope.templateModel = StepTemplate.build($scope.step);
-    $scope.templateModel.getData().then(function(out) {
+    $scope.templateModel.getData().then(function(tout) {
 
         // TO GET DATA PER EACH OBJECT (when activated)
-        console.log("Load step ", $scope.step)
-        var template = out;
-        $scope.templateData = out;
-        //console.log("Template");
+        var template = tout;
 
+        //////////////////////
+        // DEBUG
         if ($scope.step == $scope.current) {
             console.log("Activated step ", $scope.step)
         }
-        console.log(out);
+        // DEBUG
+        //////////////////////
+
     // StepContent (center data)
           $scope.contentData = StepContent.build($scope.step);
-          $scope.contentData.getData().then(function(out) {
-            console.log("Content");
-            var content = out;
-            console.log(out);
+          $scope.contentData.getData().then(function(cout) {
+            var content = cout;
+            //console.log(content);
 /*
+                // Pad
+                var pad = "000";
+                var str = "" + 1;
+                var field = 'field' + pad.substring(0, pad.length - str.length) + str
+                console.log(field);
+*/
             // Mixing template and content here
-            template.forEach(function(obj, step) {
-              if (!obj) return;
-              var data = {};
-
-              obj.forEach(function(tmpl, position) {
-                if (tmpl.length < 1) return;
-                var value = null;
-
-                // The main part
-                if (content[step] && content[step][position]) {
-                    //CHANGE ME
-                    // if (content[step][position].key == tmpl.key)
-                    //     if (content[step][position].value)
-                    //         value = content[step][position].value;
-                    //CHANGE ME
-                    console.log("Define what to do with content");
-                }
-
-                // The main part
-
-                data[tmpl.key] = value;
-              });
-
-              $scope.stepsData[step] = data;
-
+            console.log("Step "+$scope.step);
+            angular.forEach(template, function(type, label) {
+                console.log(label + ":" + type);
             });
+/*
+            var data = {};
+            // The main part
+            data[tmpl.key] = value;
+            // TEST
+            $scope.stepsData[step] = data;
             //console.log($scope.stepsData);
-            //////////////////////////////////////////////////
 */
 
 

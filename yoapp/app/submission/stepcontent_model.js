@@ -8,49 +8,19 @@
 myApp
 .factory('StepContent', function (API)
 {
-
   var resource = 'stepscontent';
 
   function loadData(step) {
 
-    console.log("Please add step " + step);
+    var parameters = {step: step, perpage: 100};
 
-    return API.get(resource)
+    return API.get(resource, parameters)
       .then(function(response) {
           var data = [];
 
-/*
-          if (response.count > 0) {
-            var tmp = response.items; //tmp.sort();
-
-            //console.log(tmp);
-            data[0] = null;
-
-            // Js foreach cycle: to create my array out of RDB json
-            tmp.forEach(function(obj, index) {
-                var j = obj.step;
-                if (!data[j])
-                    data[j] = [];
-                if (data[j][obj.element])
-                  console.log("Warning: found duplicate in "+j+":"+obj.element)
-                else
-                  data[j][obj.element] = {key: obj.label, value: obj.content};
-            });
-
-            // Filling holes?
-            for (var i = 1; i < data.length; i++) {
-                if (data[i]) {
-                    for (var j = 0; j < data[i].length; j++) {
-                        if (!data[i][j])
-                            data[i][j] = [];
-                    };
-                } else {
-                    data[i] = [];
-                }
-            };
-          }
-
-*/
+          if (response.count > 0)
+            // Response should be one row in this case
+            var data = response.items.pop(); //tmp.sort();
 
           return data;
       });

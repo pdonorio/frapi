@@ -108,24 +108,24 @@ class StepContent(GenericORMModel):
         if not isinstance(tmp, types.IntType):
             raise ValueError(m)
         return tmp    #e.g. 1
-# TO REMOVE
-    @staticmethod
-    def element(value, name):
-        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
-        tmp = get_original_pytype(value)
-        if not isinstance(tmp, types.IntType):
-            raise ValueError(m)
-        return tmp    #e.g. 1
-# TO REMOVE
-    @staticmethod
-    def type(value):
-        return value    #e.g. "Commento!"
-    @staticmethod
-    def label(value):
-        return value    #e.g. "Commento!"
+
     @staticmethod
     def content(value):
         return value    #e.g. "Commento!"
+
+
+        ################################
+# ADD field*** ad libitum in a range
+last = 9
+for i in xrange(1, last+1):
+    padded = 'field' + i.__str__().zfill(3)
+    print "Fix field padding", padded
+    # Padding
+    # static method??
+        ################################
+        ################################
+        ################################
+
 
 ##############################
 class StepTemplate(GenericORMModel):
