@@ -138,6 +138,8 @@ myApp
         console.log("TEST");
     }
 
+    var data = {};
+
     // StepTemplate (admin structure)
     $scope.templateModel = StepTemplate.build($scope.step);
     $scope.templateModel.getData().then(function(tout) {
@@ -145,39 +147,37 @@ myApp
         // TO GET DATA PER EACH OBJECT (when activated)
         var template = tout;
 
-        //////////////////////
-        // DEBUG
-        if ($scope.step == $scope.current) {
-            console.log("Activated step ", $scope.step)
-        }
-        // DEBUG
-        //////////////////////
-
     // StepContent (center data)
           $scope.contentData = StepContent.build($scope.step);
           $scope.contentData.getData().then(function(cout) {
+
+            // var init
             var content = cout;
-            //console.log(content);
-/*
-                // Pad
-                var pad = "000";
-                var str = "" + 1;
-                var field = 'field' + pad.substring(0, pad.length - str.length) + str
-                console.log(field);
-*/
-            // Mixing template and content here
+            var counter = 0;
+            var pad = "000";
+
+            // DEBUG
             console.log("Step "+$scope.step);
+            if ($scope.step == $scope.current)
+                console.log("Activated step ", $scope.step)
+
+            // Mixing template and content here
             angular.forEach(template, function(type, label) {
-                console.log(label + ":" + type);
+                var value = null;
+                counter++;
+                var str = String(counter);
+                var field = 'field' + pad.substring(0, pad.length - str.length) + str;
+                // console.log(label + ":" + type);
+                // if (content[field]) console.log(content[field]);
+                if (content[field]) {
+                    value = content[field];
+                }
+                data[label] = value;
             });
-/*
-            var data = {};
-            // The main part
-            data[tmpl.key] = value;
-            // TEST
-            $scope.stepsData[step] = data;
-            //console.log($scope.stepsData);
-*/
+
+            console.log(data);
+            if (Object.keys(data).length > 0)
+                $scope.data = data;
 
 
           });   //content end
