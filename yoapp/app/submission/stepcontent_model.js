@@ -67,6 +67,9 @@ myApp
     });
     // Add step field
     data.step = this.Step;
+    // Update element if existing
+    if (this.id !== null)
+        data.id = this.id;
 
     console.log("To save");
     console.log(data);
@@ -88,6 +91,10 @@ myApp
   StepContent.build = function (step) {
     // API call
     var data = loadData(step);
+
+// Should check if i have an id here and put it
+//data.id ??
+
     // Create object
     return new StepContent(step, data);
   }
