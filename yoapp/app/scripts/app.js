@@ -37,6 +37,7 @@ var myApp = angular.module('yoApp',
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
   .constant('someInitTime', 1000)
+  .constant('fieldPad', '000')
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY

@@ -103,13 +103,15 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
-    $scope, $timeout, directiveTimeout,
+    $scope, $timeout, directiveTimeout, NotificationData, AppConfig, fieldPad,
     StepTemplate, StepContent
     )
 {
 
     // If working on empty step as first, show already the form
     if ($scope.id == 'new' && $scope.step == $scope.current) {
+
+        // Things here get a little complicated...
 
         // When the timeout is defined, it returns a promise object.
         var timer = $timeout( function() {
@@ -124,37 +126,36 @@ myApp
 
     }
 
-    $scope.stepContent = [];
-    $scope.stepCopy = [];
+
+    // Build objects
+    var data = {};
+    $scope.templateModel = StepTemplate.build($scope.step);
+    $scope.contentData = StepContent.build($scope.step);
+
+    // Cancel button
     $scope.undoStep = function() {
-        // Recover the array copied
-        $scope.stepContent = angular.copy($scope.stepCopy);
         // Abort the current form
         $scope.myForm.$cancel();
     };
+    // Save button
     $scope.saveStep = function() {
         // Signal that we are going to try to edit data
         //NotificationData.setNotification(AppConfig.messageStatus.loading, "");
-        console.log("TEST");
+        // Try to save data
+        var saving = $scope.contentData.setData($scope.data);
     }
 
-    var data = {};
-
-    // StepTemplate (admin structure)
-    $scope.templateModel = StepTemplate.build($scope.step);
+    // Get StepTemplate (admin data)
     $scope.templateModel.getData().then(function(tout) {
 
-        // TO GET DATA PER EACH OBJECT (when activated)
         var template = tout;
 
-    // StepContent (center data)
-          $scope.contentData = StepContent.build($scope.step);
-          $scope.contentData.getData().then(function(cout) {
+        // Get StepContent (user data)
+        $scope.contentData.getData().then(function(cout) {
 
             // var init
             var content = cout;
             var counter = 0;
-            var pad = "000";
 
             // DEBUG
             console.log("Step "+$scope.step);
@@ -166,7 +167,7 @@ myApp
                 var value = null;
                 counter++;
                 var str = String(counter);
-                var field = 'field' + pad.substring(0, pad.length - str.length) + str;
+                var field = 'field' + fieldPad.substring(0, fieldPad.length - str.length) + str;
                 // console.log(label + ":" + type);
                 // if (content[field]) console.log(content[field]);
                 if (content[field]) {
