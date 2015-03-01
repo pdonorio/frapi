@@ -106,13 +106,21 @@ class GenericDBResource(Resource):
         """
         self.parser = reqparse.RequestParser()
         # Extra parameter id for POST updates or key forcing
-        self.parser.add_argument("id")
+        self.parser.add_argument("id", type=str)
 
         # Based on my datamodelled ORM class
         # Cycle class attributes
         for key, value in g.rdb.model.list_attributes().iteritems():
+            act = 'store'
+            loc = ['headers', 'values'] #multiple locations
             # Decide type based on attribute
-            self.parser.add_argument(key, type=value)
+            if value == 'makearray':
+                value = str
+                act = 'append'
+            #print "Type ", key, value, act, loc
+
+            self.parser.add_argument(key, type=value, action=act, location=loc)
+            #http://flask-restful.readthedocs.org/en/latest/api.html#module-reqparse
 
         return self.parser
 
@@ -125,8 +133,9 @@ class GenericDBResource(Resource):
 
         self.log.info("API: Received 'search'")
         params = self.parser.parse_args()
-        for (name, value) in params.iteritems():
-            params[name] = value
+        for (parname, value) in params.iteritems():
+            print "Param", parname, value
+            params[parname] = value
 
         # Query RDB filtering on a single key
         if data_key != None:

@@ -128,7 +128,7 @@ class StepTemplate(GenericORMModel):
 
 ################################################
 # This is a VERY PARTICULAR data model....
-class StepContentBase(GenericORMModel):
+class StepContent(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepscontent'
 
@@ -140,10 +140,12 @@ class StepContentBase(GenericORMModel):
         if not isinstance(tmp, types.IntType):
             raise ValueError(m)
         return tmp    #e.g. 1
-
+    # ARRAY??
+    arr = 'list'
     # User (admin? logged?)
-
+    user = str
     # Id ('new' or record)
+    recordid = str
 
 """
 # TO FIX -
@@ -154,26 +156,7 @@ class StepContentBase(GenericORMModel):
     e.g. http://stackoverflow.com/a/9176496 like
         source?elem[]=one&elem[]=two
         or even better source?elem=one&elem=two
+    like http://flask-restful.readthedocs.org/en/latest/reqparse.html#multiple-values-lists
 3. test
 
 """
-
-
-## AFTER CLASS OPERATIONs:
-# add fields ad libitum in a range
-methods = dict(StepContentBase.__dict__)
-@staticmethod
-def basefunction(value):
-    return value
-
-last = 9
-for i in xrange(1, last+1):
-    # Padding
-    padded = 'field' + i.__str__().zfill(3)
-    #StepContent.method = types.MethodType(padded, None, StepContent)
-    methods.update({padded: basefunction})
-
-# Creating the new object to use
-StepContent = type("StepContent", (StepContentBase,), methods)
-
-################################################

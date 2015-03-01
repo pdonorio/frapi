@@ -12,8 +12,8 @@ port=5507
 #resource="webcontent"
 #resource="news"
 #resource="steps"
-#resource="stepscontent"
-resource="stepstemplate"
+resource="stepscontent"
+#resource="stepstemplate"
 
 #############################################
 # BUILD TEST
@@ -37,7 +37,8 @@ resource="stepstemplate"
 #############################################
 #PAGING and simple test
 echo "***\nPaging"
-values="perpage=6&currentpage=1&step=2"
+# Array testing
+values="perpage=6&arr=el1&currentpage=1&step=2&arr=el2"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
 echo "received '$key'"
 exit;

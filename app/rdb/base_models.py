@@ -46,8 +46,14 @@ class GenericORMModel(RethinkModel):
 
         for key in cls.__dict__.keys():
             value = getattr(cls, key)
+            #print "Attributes found:", key, value
+
+            # We accept two types at the moment:
+            # 1. A list of elements
+            if value == 'list':
+                attributes[key] = 'makearray'
+            # 2. A function which defines a custom type
             if isinstance(value, types.FunctionType):
-                #print "PASS Attr:", key, value
                 attributes[key] = value
 
         # Common standard parameters??
