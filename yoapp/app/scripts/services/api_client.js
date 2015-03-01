@@ -80,9 +80,13 @@ myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDe
 
       var api = RestAPI.all(resource);
       var route = ''; //no route
+
+      //post(subElement, elementToPost, [queryParams, headers])
+      //customPOST([elem, path, params, headers])
+
       return api
         .withHttpConfig({timeout: apiTimeout*2}) //double timeout for Write
-        .doPOST({}, route, data);  //put data
+        .doPOST({}, route, data); //, {}, headers);  //put data
     }
 
     //###################################

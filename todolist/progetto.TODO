@@ -116,9 +116,11 @@ Bugs:
               ✔ Save data at insert time @done (15-02-28 16:56)
                 ✔ add inside python data models field*** ad libitum inside for cycle @done (15-03-01 12:30)
                   ✔ Pippa mentale! @done (15-02-28 17:42)
-                  ☐ Change this as soon as possible
-                  ☐ handle array for example in API
+                  ✔ Change this as soon as possible @done (15-03-01 19:56)
+                  ✔ handle array for example in API @done (15-03-01 19:56)
+                  ☐ be sure you save the right order and you show the right order
                 ☐ Handle record id inside step content! :P @stupidme
+                  ☐ add user and recordid in table
                 ☐ Handle notification
                   ☐ inside factory??
 

@@ -159,25 +159,22 @@ myApp
             // var init
             var counter = 0;
             var content = cout;
-            if (cout.length > 0 && cout.id)
+            var notempty = cout.values && cout.values.length
+            if (notempty && cout.id)
                 $scope.contentData.setId(cout.id);
 
             // Mixing template and content here
             angular.forEach(template, function(type, label) {
                 var value = null;
-                counter++;
-                var str = String(counter);
-                var field = 'field' + fieldPad.substring(0, fieldPad.length - str.length) + str;
-                // console.log(label + ":" + type);
-                // if (content[field]) console.log(content[field]);
-                if (content[field]) {
-                    value = content[field];
-                }
+                if (notempty && content.values.length >= counter)
+                    value = content.values[counter++];
                 data[label] = value;
             });
 
             if (Object.keys(data).length > 0)
                 $scope.data = data;
+
+            console.log($scope.data);
 
             // DEBUG
             // if ($scope.step == $scope.current)

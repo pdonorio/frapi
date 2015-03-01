@@ -59,27 +59,26 @@ myApp
   }
   StepContent.prototype.setData = function (obj) {
 
-    // Be sure you are with a copy, and not a reference to DOM data!!
-    var data = angular.copy(obj);
-    // Add fields name
-    var counter = 1;
-
-    angular.forEach(data, function(value, key) {
-        //console.log(key,value);
-        var str = String(counter++);
-        var field = 'field' + fieldPad.substring(0, fieldPad.length - str.length) + str;
-        delete data[key];
-        data[field] = value;
+    var data = {};
+    // Save all in one array
+    var values = [];
+    angular.forEach(obj, function(value, key) {
+        //empty value
+        if (value == undefined || value == null)
+            value = '';
+        //push inside the new array
+        values.push(value);
     });
+    data.values = values;
     // Add step field
     data.step = this.Step;
     // Update element if existing
     if (this.id !== null && !data.id)
         data.id = this.id;
-
     // Save it
     saveData(data, this);
 
+// TO FIX -
     // Return a promise to work on notification?
     // Where should notification stay?
     var promise = null;

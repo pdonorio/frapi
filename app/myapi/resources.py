@@ -134,7 +134,7 @@ class GenericDBResource(Resource):
         self.log.info("API: Received 'search'")
         params = self.parser.parse_args()
         for (parname, value) in params.iteritems():
-            print "Param", parname, value
+            #print "Param", parname, value
             params[parname] = value
 
         # Query RDB filtering on a single key

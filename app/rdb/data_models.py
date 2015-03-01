@@ -99,7 +99,7 @@ class StepList(GenericORMModel):
 class StepTemplate(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepstemplate'
-    order = 'step,position'
+    order = 'position'
 
     # Attributes as defined by static methods:
     @staticmethod
@@ -127,7 +127,7 @@ class StepTemplate(GenericORMModel):
         return value    #e.g. "Commento!"
 
 ################################################
-# This is a VERY PARTICULAR data model....
+# using arrays as single element for the first time
 class StepContent(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepscontent'
@@ -140,23 +140,11 @@ class StepContent(GenericORMModel):
         if not isinstance(tmp, types.IntType):
             raise ValueError(m)
         return tmp    #e.g. 1
-    # ARRAY??
-    arr = 'list'
-    # User (admin? logged?)
-    user = str
-    # Id ('new' or record)
-    recordid = str
-
-"""
-# TO FIX -
-    # i should use an array as data save, not this strange thing here
-
-1. check how an array saved in rethinkdb is rappresented in chateau
-2. find the way to pass an array via api as single argument
-    e.g. http://stackoverflow.com/a/9176496 like
-        source?elem[]=one&elem[]=two
-        or even better source?elem=one&elem=two
-    like http://flask-restful.readthedocs.org/en/latest/reqparse.html#multiple-values-lists
-3. test
-
-"""
+    @staticmethod
+    def user(value):
+        return value    #e.g. "admin"
+    @staticmethod
+    def recordid(value):
+        return value    #e.g. 'new' or record
+    # ARRAY!
+    values = 'list'

@@ -20,7 +20,6 @@ myApp
         step: "=",  // This is the reason of the isolated scope
         name: "=",
         current: "=",
-        max: "=",
         id: "=",
       },
       controller: 'StepDirectiveController',
