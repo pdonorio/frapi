@@ -148,19 +148,19 @@ myApp
     // Get StepTemplate (admin data)
     $scope.templateModel.getData().then(function(tout) {
 
+        //console.log("Step "+$scope.step);
         var template = tout;
+        if (tout.length < 1)
+            return false;
 
         // Get StepContent (user data)
         $scope.contentData.getData().then(function(cout) {
 
             // var init
-            var content = cout;
             var counter = 0;
-
-            // DEBUG
-            console.log("Step "+$scope.step);
-            if ($scope.step == $scope.current)
-                console.log("Activated step ", $scope.step)
+            var content = cout;
+            if (cout.length > 0 && cout.id)
+                $scope.contentData.setId(cout.id);
 
             // Mixing template and content here
             angular.forEach(template, function(type, label) {
@@ -176,10 +176,12 @@ myApp
                 data[label] = value;
             });
 
-            console.log(data);
             if (Object.keys(data).length > 0)
                 $scope.data = data;
 
+            // DEBUG
+            // if ($scope.step == $scope.current)
+            //     console.log("Activated step ", $scope.step)
 
           });   //content end
         });     //template end

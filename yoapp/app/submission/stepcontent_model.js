@@ -29,12 +29,14 @@ myApp
   }
 
   // Save data from API
-  function saveData(data) {
+  function saveData(data, obj) {
     return API.set(resource, data)
       .then(function(response) {
-        console.log("API saving");
-        console.log(data);
-        console.log(response);
+        //console.log("API saving");
+        //console.log(data);
+        obj.setId(response);
+        return response;
+        //console.log(response);
     });
   }
 
@@ -51,6 +53,10 @@ myApp
   StepContent.prototype.getData = function () {
     return this.StepContent;
   };
+  StepContent.prototype.setId = function (id) {
+    this.id = id;
+    //console.log("Setting an existing id: " + this.id);
+  }
   StepContent.prototype.setData = function (obj) {
 
     // Be sure you are with a copy, and not a reference to DOM data!!
@@ -68,14 +74,11 @@ myApp
     // Add step field
     data.step = this.Step;
     // Update element if existing
-    if (this.id !== null)
+    if (this.id !== null && !data.id)
         data.id = this.id;
 
-    console.log("To save");
-    console.log(data);
-
     // Save it
-    this.id = saveData(data);
+    saveData(data, this);
 
     // Return a promise to work on notification?
     // Where should notification stay?
@@ -91,10 +94,6 @@ myApp
   StepContent.build = function (step) {
     // API call
     var data = loadData(step);
-
-// Should check if i have an id here and put it
-//data.id ??
-
     // Create object
     return new StepContent(step, data);
   }

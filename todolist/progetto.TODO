@@ -114,8 +114,11 @@ Bugs:
               ✔ change stepcontent loading and saving in JS @done (15-02-28 15:57)
               ✔ Mix template and content inside directive @done (15-02-28 16:21)
               ✔ Save data at insert time @done (15-02-28 16:56)
-                ☐ add inside python data models field*** ad libitum inside for cycle
+                ✔ add inside python data models field*** ad libitum inside for cycle @done (15-03-01 12:30)
                   ✔ Pippa mentale! @done (15-02-28 17:42)
+                  ☐ Change this as soon as possible
+                  ☐ handle array for example in API
+                ☐ Handle record id inside step content! :P @stupidme
                 ☐ Handle notification
                   ☐ inside factory??
 
@@ -148,7 +151,20 @@ Bugs:
       ☐ associate one or more transcriptions
       ☐ choose page
 
-  Dev Release:
+remodel:
+  ☐ getting SUPERHERO
+    ☐ http://www.rethinkdb.com/docs/tutorials/superheroes
+    ☐ How do i pass an array as a single parameter via API?
+  ☐ ODM and relations
+    ☐ https://github.com/linkyndy/remodel
+  ☐ CHANGE feed
+    ☐ http://rethinkdb.com/docs/changefeeds/python
+    ☐ http://rethinkdb.com/api/python/changes/
+  ☐ BINARY
+    ☐ store in table http://www.rethinkdb.com/docs/storing-binary/python/
+    ☐ examples: http://www.rethinkdb.com/docs/storing-binary/python/
+
+Dev Release:
     ☐ ASK FOR Welcome page french text @last
       ☐ WAITING!
     ☐ Change edit on/off button with bootstrap group button ?

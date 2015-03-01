@@ -141,6 +141,24 @@ class StepContentBase(GenericORMModel):
             raise ValueError(m)
         return tmp    #e.g. 1
 
+    # User (admin? logged?)
+
+    # Id ('new' or record)
+
+"""
+# TO FIX -
+    # i should use an array as data save, not this strange thing here
+
+1. check how an array saved in rethinkdb is rappresented in chateau
+2. find the way to pass an array via api as single argument
+    e.g. http://stackoverflow.com/a/9176496 like
+        source?elem[]=one&elem[]=two
+        or even better source?elem=one&elem=two
+3. test
+
+"""
+
+
 ## AFTER CLASS OPERATIONs:
 # add fields ad libitum in a range
 methods = dict(StepContentBase.__dict__)
