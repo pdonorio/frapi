@@ -18,4 +18,12 @@ angular.module('textOperations', [])
         }
         return input;
     };
+
   });
+
+angular.module('arrayOperations', [])
+  .filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});

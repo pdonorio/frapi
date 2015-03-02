@@ -26,6 +26,7 @@ var myApp = angular.module('yoApp',
     'angularFileUpload',  //uploader for files
   // DEPENCIES: own filters
     'textOperations', //my filters on strings
+    'arrayOperations', //my filters on arrays
   ])
 
   // CONSTANTS

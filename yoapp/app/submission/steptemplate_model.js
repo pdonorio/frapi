@@ -12,17 +12,14 @@ myApp
 
   function loadData(step) {
 
+    // WARNING: i need only one step!!!
     var parameters = {step: step, perpage: 100};
 
     return API.get(resource, parameters)
       .then(function(response) {
           var data = {};
           if (response.count > 0) {
-            var tmp = response.items; //tmp.sort();
-
-            // WARNING: i need only one step!!!
-            //console.log(tmp);
-
+            var tmp = response.items;
             // Js foreach cycle: to create my array out of RDB json
             tmp.forEach(function(obj, index) {
                 if (obj.step != step) {
@@ -37,7 +34,6 @@ myApp
                 }
                 //console.log("Warning: found duplicate in "+j+":"+obj.element)
             });
-
           }
           return data;
       });

@@ -118,11 +118,14 @@ Bugs:
                   ✔ Pippa mentale! @done (15-02-28 17:42)
                   ✔ Change this as soon as possible @done (15-03-01 19:56)
                   ✔ handle array for example in API @done (15-03-01 19:56)
-                  ☐ be sure you save the right order and you show the right order
-                ☐ Handle record id inside step content! :P @stupidme
+                  ✔ be sure you save the right order and you show the right order @done (15-03-02 07:40)
+                    ✔ DONTLIKE: sorting is by key as default in ng-repeat with Json @done (15-03-01 22:22)
+                    ✔ DONTLIKE: saving array in API loses positions... what if you add a field in the middle? @done (15-03-02 06:45)
+                      ✘ check json saving in rethinkdb @cancelled (15-03-02 06:45)
+                ✔ Handle record id inside step content! :P @stupidme @done (15-03-02 07:40)
                   ☐ add user and recordid in table
-                ☐ Handle notification
-                  ☐ inside factory??
+                ✔ Handle notification @done (15-03-02 07:40)
+                  ✘ inside factory?? @cancelled (15-03-02 07:40)
 
         ☐ Use step type to define html element in the step editor
         ☐ What about the difference from "new" and "edit" step....

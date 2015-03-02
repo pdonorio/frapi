@@ -1,21 +1,13 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name yoApp.controller:SubmissionController
- * @description
- * # SubmissionController
- * Controller of the yoApp
- */
+// List of controllers
 myApp
 
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
     $rootScope, $scope, $state, $stateParams, $filter,
-    NotificationData, AppConfig,
-    // Factory/Service with models
-    StepList
-    //,StepContent, StepTemplate
-    )
+    NotificationData, AppConfig, StepList )
 {
     ////////////////////////////////
     // get variable inside url as param
@@ -86,12 +78,10 @@ myApp
 
  }) //end SubmissionController
 
-
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('StepController', function ($scope, $stateParams)
 {
-
     $scope.setStep($stateParams.stepId);
 
     // this does not work for the parent!
@@ -99,92 +89,104 @@ myApp
 
 }) //end StepController
 
-
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig, fieldPad,
-    StepTemplate, StepContent
-    )
+    StepTemplate, StepContent )
 {
 
     // If working on empty step as first, show already the form
     if ($scope.id == 'new' && $scope.step == $scope.current) {
-
-        // Things here get a little complicated...
-
-        // When the timeout is defined, it returns a promise object.
-        var timer = $timeout( function() {
+        // Timer is necessary to make sure that the compiled directive
+        // gets the necessary data before action
+        $timeout( function() {
             if ($scope.myform) $scope.myform.$show();
         }, directiveTimeout);
-        // Let's bind to the resolve/reject handlers
-        timer.then( function() { ; }, function() {
-            console.log( "Timer rejected!", Date.now() );
-        });
-        // When the DOM element is removed from the page
-        $scope.$on( "$destroy", function( event ) { $timeout.cancel( timer ); });
-
     }
 
-
     // Build objects
-    var data = {};
-    $scope.templateModel = StepTemplate.build($scope.step);
+    var data = [];
     $scope.contentData = StepContent.build($scope.step);
+    $scope.templateModel = StepTemplate.build($scope.step);
 
+    ////////////////////////////////////////////////
+    // Procedure to mix data and save it into scope
+    var injectData = function(template, content) {
+
+        // var init
+        var counter = 0;
+        var notempty = content.values && content.values.length;
+        if (notempty && content.id)
+            $scope.contentData.setId(content.id);
+        // Mixing template and content here
+        angular.forEach(template, function(type, label) {
+            var value = null;
+            if (notempty && content.values.length >= counter) {
+                value = content.values[counter];
+            }
+            //data[label] = value;
+            data[counter++] = {key: label, value: value};
+        });
+
+        // If i have data: send it to DOM scope
+        if (Object.keys(data).length > 0)
+            $scope.data = data;
+
+    }
+    ////////////////////////////////////////////////
     // Cancel button
     $scope.undoStep = function() {
         // Abort the current form
         $scope.myForm.$cancel();
     };
+    ////////////////////////////////////////////////
     // Save button
     $scope.saveStep = function() {
         // Signal that we are going to try to edit data
-        //NotificationData.setNotification(AppConfig.messageStatus.loading, "");
+        NotificationData.setNotification(AppConfig.messageStatus.loading);
         // Try to save data
-        var saving = $scope.contentData.setData($scope.data);
+        $scope.contentData.setData($scope.data)
+            .then(function(success) {
+                if (success) {
+                    NotificationData.setNotification(
+                        AppConfig.messageStatus.success, "Saved");
+                } else {
+                    NotificationData.setNotification(
+                        AppConfig.messageStatus.error, "Il servizio dati non é raggiungibile");
+                    //Bring data back?
+                    var backup = $scope.contentData.restoreBackup();
+                    $scope.templateModel.getData().then(function(template){
+                        injectData(template, backup);
+                    });
+                }
+            });
     }
 
+    ////////////////////////////////////////////////
+    // FIRST TIME: get data
     // Get StepTemplate (admin data)
-    $scope.templateModel.getData().then(function(tout) {
+    $scope.templateModel.getData().then(function(template) {
 
-        //console.log("Step "+$scope.step);
-        var template = tout;
-        if (tout.length < 1)
+        if (template.length < 1)
             return false;
-
         // Get StepContent (user data)
-        $scope.contentData.getData().then(function(cout) {
+        var content = $scope.contentData.getData();
+        // Do not stop if content is empty, as user will submit data for it
+        injectData(template,content);
 
-            // var init
-            var counter = 0;
-            var content = cout;
-            var notempty = cout.values && cout.values.length
-            if (notempty && cout.id)
-                $scope.contentData.setId(cout.id);
+        // DEBUG
+        //console.log($scope.data);
+        if ($scope.step == $scope.current) {
+            console.log("Activated step ", $scope.step);
+            //open form?
+        }
 
-            // Mixing template and content here
-            angular.forEach(template, function(type, label) {
-                var value = null;
-                if (notempty && content.values.length >= counter)
-                    value = content.values[counter++];
-                data[label] = value;
-            });
-
-            if (Object.keys(data).length > 0)
-                $scope.data = data;
-
-            console.log($scope.data);
-
-            // DEBUG
-            // if ($scope.step == $scope.current)
-            //     console.log("Activated step ", $scope.step)
-
-          });   //content end
-        });     //template end
+    });     //template end
 
 }) //end StepController
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
 ; //end of controllers

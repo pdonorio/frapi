@@ -26,12 +26,12 @@
         <!-- <thead> <tr> <th>Colonna</th> <th>Valore</th> </tr> </thead> -->
         <tbody>
           <!-- repeat with sort on key 'pos' -->
-          <tr ng-if='key' ng-repeat="(key,value) in data | orderBy:'+pos' | limitTo:15">
-              <th class='title'> {{ (key | ucFirst) || 'empty'}} </th>
+          <tr ng-repeat="(pos,obj) in data" ng-if='obj.key' >
+              <th class='title'> {{ (obj.key | ucFirst) || 'empty'}} </th>
               <td ng-show='current != step'>&nbsp;</td>
-              <td editable-text="data[key]" e-name="name" e-size='40'
+              <td editable-text="data[pos].value" e-name="name" e-size='40'
                 e-placeholder='Inserisci un valore'>
-                {{value|| 'empty'}}
+                {{obj.value|| 'empty'}}
               </td>
           </tr>
         </tbody>
