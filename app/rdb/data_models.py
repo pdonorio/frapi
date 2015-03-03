@@ -59,7 +59,7 @@ class WebContent(GenericORMModel):
         return value    #e.g. "This is the content <b>here</b>"
 
 ##############################
-class News(GenericORMModel):
+class NewsFeed(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'news'
 
@@ -148,3 +148,15 @@ class StepContent(GenericORMModel):
         return value    #e.g. 'new' or record
     # ARRAY!
     values = 'list'
+
+##############################
+class RegisterIdentifier(GenericORMModel):
+    """ A service used to provide identifiers to drafts and published documents """
+    table = 'myidprovider'
+    # Attributes as defined by static methods:
+    @staticmethod
+    def user(value):
+        return value
+    @staticmethod
+    def date(value):
+        return value    #e.g. 01/01/2015

@@ -12,8 +12,9 @@ port=5507
 #resource="webcontent"
 #resource="news"
 #resource="steps"
-resource="stepscontent"
+#resource="stepscontent"
 #resource="stepstemplate"
+resource="myidprovider"
 
 #############################################
 # BUILD TEST
@@ -38,7 +39,7 @@ resource="stepscontent"
 #PAGING and simple test
 echo "***\nPaging"
 # Array testing
-values="perpage=6&arr=el1&currentpage=1&step=2&arr=el2"
+values="perpage=6&currentpage=1"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
 echo "received '$key'"
 exit;
@@ -46,8 +47,9 @@ exit;
 #############################################
 #ADD a new element
 echo "***\nINSERT"
-values="step=1&position=2&type=select&field=Titolo&extra=testingapi"
+#values="step=1&position=2&type=select&field=Titolo&extra=testingapi"
 #values="step=1&element=1&type=number&content=checkingMyTests!&label=titolo"
+values="arr=el1&step=2&arr=el2&user=paulie&date=test"
 #values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
