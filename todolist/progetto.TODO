@@ -123,7 +123,13 @@ Bugs:
                     ✔ DONTLIKE: saving array in API loses positions... what if you add a field in the middle? @done (15-03-02 06:45)
                       ✘ check json saving in rethinkdb @cancelled (15-03-02 06:45)
                 ✔ Handle record id inside step content! :P @stupidme @done (15-03-02 07:40)
-                  ☐ add user and recordid in table
+                  ✔ add user and recordid in table @done (15-03-02 17:16)
+                    ✔ i need a record resource Provider (from API) @done (15-03-02 17:16)
+                    ✔ very simple: save a new data and get id to use (e.g. user and date) @done (15-03-02 17:16)
+                      ✔ Use the promise to handle the provider @done (15-03-02 19:54)
+                      ☐ datetime from JS to Python API....
+                      ☐ use recordid to recover data
+                        ☐ if new in the address bar, no data to recover!!
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
 

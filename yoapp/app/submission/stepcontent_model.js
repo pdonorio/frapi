@@ -6,7 +6,7 @@
 */
 
 myApp
-.factory('StepContent', function (API, fieldPad)
+.factory('StepContent', function (API)
 {
 
   /*********************************
@@ -69,7 +69,7 @@ myApp
   StepContent.prototype.saveBackup = function (data) {
     this.StepContent = angular.copy(data);
   }
-  StepContent.prototype.setData = function (obj) {
+  StepContent.prototype.setData = function (obj, user, record) {
 
     var data = {};
     // Save all in one array
@@ -88,6 +88,8 @@ myApp
     // Update element if existing
     if (this.id !== null && !data.id)
         data.id = this.id;
+    data.user = user;
+    data.recordid = record;
     // Save it
     return saveData(data, this);
 

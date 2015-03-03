@@ -7,7 +7,7 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
     $rootScope, $scope, $state, $stateParams, $filter,
-    NotificationData, AppConfig, StepList )
+    NotificationData, AppConfig, StepList)
 {
     ////////////////////////////////
     // get variable inside url as param
@@ -92,12 +92,22 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
-    $scope, $timeout, directiveTimeout, NotificationData, AppConfig, fieldPad,
-    StepTemplate, StepContent )
+    $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
+    StepTemplate, StepContent, IdProvider)
 {
+    // TO FIX!
+    var user = 'admin';
 
     // If working on empty step as first, show already the form
     if ($scope.id == 'new' && $scope.step == $scope.current) {
+
+        // Register a new identifier for this draft
+        $scope.pid = IdProvider.build();
+        $scope.pid.getId(user).then(function(id){
+            console.log("New id: "+id);
+            $scope.record = id;
+        });
+
         // Timer is necessary to make sure that the compiled directive
         // gets the necessary data before action
         $timeout( function() {
@@ -145,22 +155,27 @@ myApp
     $scope.saveStep = function() {
         // Signal that we are going to try to edit data
         NotificationData.setNotification(AppConfig.messageStatus.loading);
-        // Try to save data
-        $scope.contentData.setData($scope.data)
-            .then(function(success) {
+
+        $scope.pid.getId(user).then(function(identifier){
+
+            // Try to save data
+            $scope.contentData.setData($scope.data, user, identifier)
+             .then(function(success) {
                 if (success) {
-                    NotificationData.setNotification(
-                        AppConfig.messageStatus.success, "Saved");
+                    NotificationData.setNotification(AppConfig.messageStatus.success,
+                        "Salvataggio riuscito");
                 } else {
-                    NotificationData.setNotification(
-                        AppConfig.messageStatus.error, "Il servizio dati non é raggiungibile");
-                    //Bring data back?
+                    NotificationData.setNotification(AppConfig.messageStatus.error,
+                        "Il servizio dati non é raggiungibile");
+                    // Bring data back?
                     var backup = $scope.contentData.restoreBackup();
+                    // Template is a promise...
                     $scope.templateModel.getData().then(function(template){
                         injectData(template, backup);
                     });
                 }
-            });
+             });
+        });
     }
 
     ////////////////////////////////////////////////
