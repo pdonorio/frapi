@@ -6,9 +6,11 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
-    $rootScope, $scope, $state, $stateParams, $filter,
-    NotificationData, AppConfig, StepList)
+    $rootScope, $scope, $state, $stateParams, $filter, $timeout,
+    NotificationData, AppConfig, StepList, IdProvider)
 {
+// TO FIX!
+    var user = 'admin';
 
 ////////////////////////////////////////////
     ////////////////////////////////
@@ -20,11 +22,27 @@ myApp
     // I want to always be in EDIT mode!
     // difference from draft and completed is the 'published' field
 
-    // If id is 'new' get the identifier and set it inside the URL
-    // also switch to step 1 ??
-
-    // Inject to all DOM elements
+    // 0. Inject to all DOM elements
     $scope.myrecordid = id;
+
+    // 1. If id is 'new' get the identifier and set it inside the URL
+    // NEW UNIQUE IDENTIFIER
+    // Register a new identifier for this draft
+    if (id == 'new') {
+
+        $scope.pid = IdProvider.build();
+// Timer?
+        $timeout( function() {
+            $scope.pid.getId(user).then(function(response){
+                //console.log("New id: "+response);
+                $state.go('logged.submission.step', { myId: response});
+
+            });
+        }, 1800);
+
+    } //else { console.log("Hello, i am " + id); }
+
+    // 2. also switch to step 1 ??
 
 ////////////////////////////////////////////
 
@@ -112,8 +130,6 @@ myApp
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
     StepTemplate, StepContent, IdProvider)
 {
-// TO FIX!
-    var user = 'admin';
 
 // TO FIX!
     var new_draft = true;
@@ -123,18 +139,10 @@ myApp
     // If working on empty step as first, show already the form
     if ($scope.step == $scope.current)
     {
-        console.log("Activated step ", $scope.step);
+        console.log("Activated step: "+ $scope.step);
         if (new_draft) {
 
-            console.log($scope.identifier);
-
-            // NEW UNIQUE IDENTIFIER
-            // Register a new identifier for this draft
-            $scope.pid = IdProvider.build();
-            $scope.pid.getId(user).then(function(id){
-                //console.log("New id: "+id);
-                $scope.record = id;
-            });
+            console.log("Check identifier: " + $scope.identifier);
 
             // OPEN FORM
             // Timer is necessary to make sure that the compiled directive

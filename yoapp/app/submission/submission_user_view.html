@@ -52,19 +52,33 @@
       </div>
     </div>
 
-    <!-- MAIN BODY of USER SUBMISSION -->
-    <div class="col-md-9 col-xs-9">
-      <!-- Make sure of at least one element selected -->
-      <div ng-hide='current'>
-        Seleziona un elemento nel menu laterale
-      </div>
+    <div ng-show="myrecordid == 'new'">
+        <div class='panel'>
+            <div class='panel-header'>
+                <h4> <i class="fa fa-refresh fa-spin"></i> Generando una nuova bozza </h4>
+            </div>
+            <div class='panel-body'>
+                Attendere prego...
+            </div>
+        </div>
+    </div>
 
-      <!-- A new view for ajax calls -->
-      <div ui-view="singlestep"></div>
+    <div ng-hide="myrecordid == 'new'">
+        <!-- MAIN BODY of USER SUBMISSION -->
+        <div class="col-md-9 col-xs-9">
+          <!-- Make sure of at least one element selected -->
+          <div ng-hide='current'>
+            Seleziona un elemento nel menu laterale
+          </div>
 
+          <!-- A new view for ajax calls -->
+          <div ui-view="singlestep"></div>
+
+        </div>
     </div>
 
   <!-- BLUR div -->
   </div>
  </div> <!-- row -->
+
 </div>

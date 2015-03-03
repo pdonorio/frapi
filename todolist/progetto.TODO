@@ -129,9 +129,9 @@ Bugs:
                       ✔ Use the promise to handle the provider @done (15-03-02 19:54)
                       ☐ datetime from JS to Python API....
                         ☐ resources.py:121
-                      ☐ how (where) to save correctly id inside the page
-                        ☐ do not load a new one if changing the current step
-                      ☐ use recordid to recover data
+                      ✔ how (where) to save correctly id inside the page @done (15-03-03 17:22)
+                        ✔ do not load a new one if changing the current step @done (15-03-03 17:22)
+                      ✔ use recordid to recover data @done (15-03-03 17:22)
                         ☐ if new in the address bar, no data to recover!!
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
