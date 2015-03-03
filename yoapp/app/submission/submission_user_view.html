@@ -27,7 +27,10 @@
         </a>
         <a class="list-group-item disabled" ng-if="id != 'new'">
           <h4 class='dtext'> Modifica </h4>
-          <b>Record</b> <span class="label label-info"> {{id | limitTo:8}} </span>
+
+<!-- SHOULD ADD 'draft' IF NOT PUBLISHED YET -->
+          <b>Record</b> <span class="label label-info">
+            {{ myrecordid | limitTo:8}} </span>
         </a>
 
         <!-- STEPS -->

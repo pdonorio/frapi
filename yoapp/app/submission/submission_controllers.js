@@ -9,11 +9,28 @@ myApp
     $rootScope, $scope, $state, $stateParams, $filter,
     NotificationData, AppConfig, StepList)
 {
+
+////////////////////////////////////////////
     ////////////////////////////////
+    // The IDENTIFIER ***
+
     // get variable inside url as param
     var id = $stateParams.myId;
-    // Inject for DOM
-    $scope.id = id;
+
+    // I want to always be in EDIT mode!
+    // difference from draft and completed is the 'published' field
+
+    // If id is 'new' get the identifier and set it inside the URL
+    // also switch to step 1 ??
+
+    // Inject to all DOM elements
+    $scope.myrecordid = id;
+
+////////////////////////////////////////////
+
+    ////////////////////////////////
+    // Do not start with a current value as default
+    // Let the URL decide
     $scope.current = null;
 
     ////////////////////////////////
@@ -95,26 +112,40 @@ myApp
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
     StepTemplate, StepContent, IdProvider)
 {
-    // TO FIX!
+// TO FIX!
     var user = 'admin';
 
+// TO FIX!
+    var new_draft = true;
+    //var new_draft = ($scope.id == 'new');
+
+    ///////////////////////////////////////////////////////////
     // If working on empty step as first, show already the form
-    if ($scope.id == 'new' && $scope.step == $scope.current) {
+    if ($scope.step == $scope.current)
+    {
+        console.log("Activated step ", $scope.step);
+        if (new_draft) {
 
-        // Register a new identifier for this draft
-        $scope.pid = IdProvider.build();
-        $scope.pid.getId(user).then(function(id){
-            console.log("New id: "+id);
-            $scope.record = id;
-        });
+            console.log($scope.identifier);
 
-        // Timer is necessary to make sure that the compiled directive
-        // gets the necessary data before action
-        $timeout( function() {
-            if ($scope.myform) $scope.myform.$show();
-        }, directiveTimeout);
+            // NEW UNIQUE IDENTIFIER
+            // Register a new identifier for this draft
+            $scope.pid = IdProvider.build();
+            $scope.pid.getId(user).then(function(id){
+                //console.log("New id: "+id);
+                $scope.record = id;
+            });
+
+            // OPEN FORM
+            // Timer is necessary to make sure that the compiled directive
+            // gets the necessary data before action
+            $timeout( function() {
+                if ($scope.myform) $scope.myform.$show();
+            }, directiveTimeout);
+        }
     }
 
+    ////////////////////////////////////////////////
     // Build objects
     var data = [];
     $scope.contentData = StepContent.build($scope.step);
@@ -156,16 +187,21 @@ myApp
         // Signal that we are going to try to edit data
         NotificationData.setNotification(AppConfig.messageStatus.loading);
 
-        $scope.pid.getId(user).then(function(identifier){
+        // Identifier is a promise
+        $scope.pid.getId(user)
+         .then(function(identifier) {
 
-            // Try to save data
+            // Try to save data. Also this has to be a promise
+            // if i want to handle notification at this level
             $scope.contentData.setData($scope.data, user, identifier)
              .then(function(success) {
                 if (success) {
-                    NotificationData.setNotification(AppConfig.messageStatus.success,
+                    NotificationData.setNotification(
+                        AppConfig.messageStatus.success,
                         "Salvataggio riuscito");
                 } else {
-                    NotificationData.setNotification(AppConfig.messageStatus.error,
+                    NotificationData.setNotification(
+                        AppConfig.messageStatus.error,
                         "Il servizio dati non é raggiungibile");
                     // Bring data back?
                     var backup = $scope.contentData.restoreBackup();
@@ -175,29 +211,31 @@ myApp
                     });
                 }
              });
-        });
+         });
     }
 
     ////////////////////////////////////////////////
-    // FIRST TIME: get data
+    // FIRST TIME: get data if not 'new' in address bar
     // Get StepTemplate (admin data)
-    $scope.templateModel.getData().then(function(template) {
+    $scope.templateModel.getData()
+     .then(function(template) {
 
         if (template.length < 1)
             return false;
-        // Get StepContent (user data)
-        var content = $scope.contentData.getData();
-        // Do not stop if content is empty, as user will submit data for it
+
+        var content = [];
+        if (!new_draft) {
+
+// TO FIX -
+    // Load only data for current identifier
+
+            // Get StepContent (user data)
+            content = $scope.contentData.getData();
+        }
+        // Create data from models and inject the result inside scope
         injectData(template,content);
 
-        // DEBUG
-        //console.log($scope.data);
-        if ($scope.step == $scope.current) {
-            console.log("Activated step ", $scope.step);
-            //open form?
-        }
-
-    });     //template end
+     });     //template end
 
 }) //end StepController
 
