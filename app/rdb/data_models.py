@@ -158,5 +158,15 @@ class RegisterIdentifier(GenericORMModel):
     def user(value):
         return value
     @staticmethod
-    def date(value):
+    def request_time(value):
         return value    #e.g. 01/01/2015
+    @staticmethod
+    def last_update_time(value):
+        return value    #e.g. 01/01/2015
+    @staticmethod
+    def published(value, name):
+        m = "Parameter '"+name+"' may only be 0 or 1. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType) or tmp < 0 or tmp > 1:
+            raise ValueError(m)
+        return tmp    # 0 or 1

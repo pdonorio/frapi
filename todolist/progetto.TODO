@@ -128,27 +128,34 @@ Bugs:
                     ✔ very simple: save a new data and get id to use (e.g. user and date) @done (15-03-02 17:16)
                       ✔ Use the promise to handle the provider @done (15-03-02 19:54)
                       ☐ datetime from JS to Python API....
+                        ☐ resources.py:121
+                      ☐ how (where) to save correctly id inside the page
+                        ☐ do not load a new one if changing the current step
                       ☐ use recordid to recover data
                         ☐ if new in the address bar, no data to recover!!
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
 
-        ☐ Use step type to define html element in the step editor
-        ☐ What about the difference from "new" and "edit" step....
-        ☐ A new view when edit on
-          ✔ dark background @done (15-02-11 07:46)
-          ☐ modal? i have an example
-          ☐ step list on the side
-          ☐ step editing on the other side
-          ☐ Edit step name on one line
-          ☐ Edit step contents
-            ☐ one piece at the time
-        ☐ Indexes python
-          ☐ Multiple order by
-          ☐ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...])
-        ☐ Better backups
-          ☐ each day clean main folder
-          ☐ but save first the last folder of backup into "backup/"
+    ☐ A mock User model
+      ☐ across the project to share the current user
+      ☐ list of user drafts @cool
+        ☐ by identifiers inside the api provider
+    ☐ Use step type to define html element in the step editor
+    ☐ What about the difference from "new" and "edit" step....
+    ☐ A new view when edit on
+      ✔ dark background @done (15-02-11 07:46)
+      ☐ modal? i have an example
+      ☐ step list on the side
+      ☐ step editing on the other side
+      ☐ Edit step name on one line
+      ☐ Edit step contents
+        ☐ one piece at the time
+    ☐ Indexes python
+      ☐ Multiple order by
+      ☐ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...])
+    ☐ Better backups
+      ☐ each day clean main folder
+      ☐ but save first the last folder of backup into "backup/"
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

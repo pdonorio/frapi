@@ -18,10 +18,14 @@ myApp
   var defaultId = null;
 
   // Save data from API
-  function createId(user, request_time, obj) {
+  function createId(user, obj) {
 
-    console.log("Creating new id for user "+user);
-    var params = {user: user, date: request_time};
+    //console.log("Creating new id for user "+user);
+    var params = {
+        user: user,
+        request_time: new Date(),
+        published: 0,
+    };
 
     return API.set(resource, params)
       .then(function(response) {
@@ -31,6 +35,7 @@ myApp
     }, function() {
         return defaultId;
     });
+
   }
 
   /*********************************
@@ -43,18 +48,14 @@ myApp
   IdProvider.prototype.getId = function (user) {
     // Not checking status here
     if (this.id === defaultId)
-        return createId(user, new Date(), this).then(function(id){
-            console.log("success"+id);
+        return createId(user, this).then(function(id){
             return id;
         });
-    console.log("ACCI");
     // return also if it's null
     var tmp = this.id;
     return $q(function(resolve) {
         resolve(tmp);
     });
-
-
   };
   IdProvider.prototype.setId = function (id) {
     this.id = id;

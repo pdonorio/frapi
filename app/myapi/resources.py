@@ -117,6 +117,8 @@ class GenericDBResource(Resource):
             if value == 'makearray':
                 value = str
                 act = 'append'
+            elif '_time' in key:
+                print "TIME FOR", key
             #print "Type ", key, value, act, loc
 
             self.parser.add_argument(key, type=value, action=act, location=loc)
