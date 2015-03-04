@@ -19,43 +19,28 @@ myApp
 
   // Save data from API
   function createId(user, obj) {
-
-    //console.log("Creating new id for user "+user);
     var params = {
         user: user,
         request_time: new Date(),
         published: 0,
     };
-
-    return API.set(resource, params)
-      .then(function(response) {
-        // Response here is the id of inserted/updated element
-        obj.setId(response);
-        return response;
-    }, function() {
-        return defaultId;
-    });
-
+    return API.set(resource, params);
   }
 
   /*********************************
   ** CLASS *
   ******************************** */
   // Constructor, with class name
-  function IdProvider() {
+  function IdProvider(url) {
     this.id = defaultId;
+    this.url = url;
   }
   IdProvider.prototype.getId = function (user) {
-    // Not checking status here
-    if (this.id === defaultId)
-        return createId(user, this).then(function(id){
-            return id;
-        });
-    // return also if it's null
-    var tmp = this.id;
-    return $q(function(resolve) {
-        resolve(tmp);
-    });
+    console.log("Url", this.url);
+    var response = defaultId;
+    if (this.url == 'new')
+        response = createId(user, this);
+    return response;
   };
   IdProvider.prototype.setId = function (id) {
     this.id = id;
@@ -67,11 +52,9 @@ myApp
   ******************************** */
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
-  IdProvider.build = function (step) {
+  IdProvider.build = function (url) {
     // Create object
-    var obj = new IdProvider();
-    // Send object
-    return obj;
+    return new IdProvider(url);
   }
 
   // Give this service to someone

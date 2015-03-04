@@ -132,7 +132,10 @@ Bugs:
                       ✔ how (where) to save correctly id inside the page @done (15-03-03 17:22)
                         ✔ do not load a new one if changing the current step @done (15-03-03 17:22)
                       ✔ use recordid to recover data @done (15-03-03 17:22)
-                        ☐ if new in the address bar, no data to recover!!
+                        ✔ if new in the address bar, no data to recover!! @done (15-03-04 07:20)
+                        ✔ What the hell is the right way to solve the damn promise... @done (15-03-04 07:18)
+                          ✔ ui router resolve!!! @done (15-03-04 07:18)
+                            ☐ Fixing based on ui router everything!
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
 
@@ -142,6 +145,7 @@ Bugs:
         ☐ by identifiers inside the api provider
     ☐ Use step type to define html element in the step editor
     ☐ What about the difference from "new" and "edit" step....
+      ☐ use hash (first 8 chars) of the rethinkdb id?
     ☐ A new view when edit on
       ✔ dark background @done (15-02-11 07:46)
       ☐ modal? i have an example

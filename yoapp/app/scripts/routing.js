@@ -27,6 +27,15 @@ myApp
     //LOGGED ROOT
     .state('logged', {
       url: "/app",
+      // Set the current user for the whole application
+      resolve: {
+        user: function() {
+            var user = 'admin';
+            console.log("Current user: ", user);
+            // TO FIX with User model
+            return user;
+        },
+      },
       views: {
         "main": {
             templateUrl: "views/app.html",
@@ -88,6 +97,17 @@ myApp
             $rootScope.$emit('rootScope:emit', 'editon');
           }
         },
+        // Be sure to have data before loading the page
+        resolve: {
+            // Load the service to resolve
+            provider: 'IdProvider',
+            // Create an object with service result
+            draft: function($stateParams, user, provider) {
+              console.log("Resolving id provider");
+              // This promise has been resolved inside the Service
+              return provider.build($stateParams.myId).getId(user);
+            },
+        },
       })
 
       .state('logged.submission.step', {
@@ -98,7 +118,6 @@ myApp
             controller: 'StepController',
           },
         },
-        //onEnter: function() { console.log("Entered step"); },
       })
 
       .state('logged.search', {

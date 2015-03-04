@@ -13,7 +13,7 @@ myApp
   function loadData(step) {
 
     // WARNING: i need only one step!!!
-    var parameters = {step: step, perpage: 100};
+    var parameters = {step: step, perpage: 999};
 
     return API.get(resource, parameters)
       .then(function(response) {
