@@ -17,10 +17,13 @@ myApp
       /////////////////////////////////////
       //Directives isolated scope (cleaner and better)
       scope: {
-        step: "=",  // This is the reason of the isolated scope
-        name: "=",
-        current: "=",
+        user: "=",
         identifier: "=",
+        // This is the reason of the isolated scope
+        step: "=",     // different per each directive/tag
+        name: "=",
+        // This is the reason of the isolated scope
+        current: "=",
       },
       controller: 'StepDirectiveController',
 

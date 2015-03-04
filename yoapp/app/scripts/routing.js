@@ -103,7 +103,6 @@ myApp
             provider: 'IdProvider',
             // Create an object with service result
             draft: function($stateParams, user, provider) {
-              console.log("Resolving id provider");
               // This promise has been resolved inside the Service
               return provider.get($stateParams.myId,user);
             },
@@ -118,6 +117,12 @@ myApp
             controller: 'StepController',
           },
         },
+/*  cool: may this become handy in the future? hope not
+        onEnter: function($rootScope, $stateParams) {
+            $rootScope.test = $stateParams.myId;
+            //console.log($stateParams);
+        },
+*/
       })
 
       .state('logged.search', {

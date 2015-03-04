@@ -14,6 +14,7 @@ myApp
     // Do not start with a current value as default
     // Let the URL decide
     $scope.current = null;
+    $scope.currentuser = user;
 
     ////////////////////////////////
     // STEPS (list) EDITABLE
@@ -72,7 +73,7 @@ myApp
 
     // 1. If id is 'new' get the identifier and set it inside the URL
     // This was moved to the resolve part in the routing section
-    console.log("Obtained", draft);
+    //console.log("Obtained draft id", draft);
 
     // 2. Switch to edit of the new dratf + step 1 (default if not set)
     if (draft !== null) {
@@ -114,14 +115,15 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
-    $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
+    $rootScope, $scope, $timeout,
+    directiveTimeout, NotificationData, AppConfig,
     StepTemplate, StepContent, IdProvider)
 {
 
     ////////////////////////////////////////////////
     // Build objects
     var data = [];
-    $scope.contentData = StepContent.build($scope.step);
+    $scope.contentData = StepContent.build($scope.identifier, $scope.step);
     $scope.templateModel = StepTemplate.build($scope.step);
 
     ////////////////////////////////////////////////
@@ -152,35 +154,30 @@ myApp
     ////////////////////////////////////////////////
     // FIRST TIME: get data if not 'new' in address bar
     // Get StepTemplate (admin data)
-    $scope.templateModel.getData().then(function(template) {
+    $scope.templateModel.getData().then(function(template)
+    {
         // Set error if empty template on this step...
         if (template.length < 1)
             return false;
-        // Load only data for current identifier
-        var content = $scope.contentData.getData();
-        // Create data from models and inject the result inside scope
-        injectData(template,content);
+
+        // Load only data for current identifier, see build of the class
+        $scope.contentData.getData().then(function(content)
+        {
+            var notempty = content.values && content.values.length;
+            // Create data from models and inject the result inside scope
+            injectData(template,content);
+
+            // Decide on form to show
+            if ($scope.step == $scope.current)
+            {
+                console.log("Activated step:", $scope.step);
+                // OPEN FORM
+                if ($scope.myform && !notempty) {
+                    $scope.myform.$show();
+                }
+            }
+        });
      });
-
-    ///////////////////////////////////////////////////////////
-// UHM NON FUNZIONA.
-// SERVE UN NUOVO DISCRIMINANTE
-    var new_draft = $scope.id == 'new';
-    //var new_draft = ($scope.id == 'new');
-
-    // Decide on form to show
-    if ($scope.step == $scope.current)
-    {
-        console.log("Activated step: "+ $scope.step);
-        console.log("Check identifier: " + $scope.identifier);
-
-        // OPEN FORM
-        // Timer is necessary to make sure that the compiled directive
-        // gets the necessary data before action
-        $timeout( function() {
-            if ($scope.myform) $scope.myform.$show();
-        }, directiveTimeout);
-    }
 
     ////////////////////////////////////////////////
     // OPERATIONs:
@@ -195,28 +192,23 @@ myApp
         // Signal that we are going to try to edit data
         NotificationData.setNotification(AppConfig.messageStatus.loading);
 
-        // Identifier is a promise
-        $scope.pid.getId(user)
-         .then(function(identifier) {
-
-            // Try to save data. Also this has to be a promise
-            // if i want to handle notification at this level
-            $scope.contentData.setData($scope.data, user, identifier)
-             .then(function(success) {
-                if (success) {
-                    NotificationData.setNotification( AppConfig.messageStatus.success,
-                        "Salvataggio riuscito");
-                } else {
-                    NotificationData.setNotification( AppConfig.messageStatus.error,
-                        "Il servizio dati non é raggiungibile");
-                    // Bring data back?
-                    var backup = $scope.contentData.restoreBackup();
-                    // Template is a promise...
-                    $scope.templateModel.getData().then(function(template){
-                        injectData(template, backup);
-                    });
-                }
-             });
+        // Try to save data. Also this has to be a promise
+        // if i want to handle notification at this level
+        $scope.contentData.setData($scope.data, user, $scope.identifier)
+         .then(function(success) {
+            if (success) {
+                NotificationData.setNotification( AppConfig.messageStatus.success,
+                    "Salvataggio riuscito");
+            } else {
+                NotificationData.setNotification( AppConfig.messageStatus.error,
+                    "Il servizio dati non é raggiungibile");
+                // Bring data back?
+                var backup = $scope.contentData.restoreBackup();
+                // Template is a promise...
+                $scope.templateModel.getData().then(function(template){
+                    injectData(template, backup);
+                });
+            }
          });
     }
 

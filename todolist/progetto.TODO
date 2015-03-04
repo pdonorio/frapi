@@ -127,7 +127,7 @@ Bugs:
                     ✔ i need a record resource Provider (from API) @done (15-03-02 17:16)
                     ✔ very simple: save a new data and get id to use (e.g. user and date) @done (15-03-02 17:16)
                       ✔ Use the promise to handle the provider @done (15-03-02 19:54)
-                      ☐ datetime from JS to Python API....
+                      ☐ datetime from JS to Python API.... @lastbeforepull
                         ☐ resources.py:121
                       ✔ how (where) to save correctly id inside the page @done (15-03-03 17:22)
                         ✔ do not load a new one if changing the current step @done (15-03-03 17:22)
@@ -135,7 +135,7 @@ Bugs:
                         ✔ if new in the address bar, no data to recover!! @done (15-03-04 07:20)
                         ✔ What the hell is the right way to solve the damn promise... @done (15-03-04 07:18)
                           ✔ ui router resolve!!! @done (15-03-04 07:18)
-                            ☐ Fixing based on ui router everything!
+                            ✔ Fixing based on ui router everything! @done (15-03-04 17:16)
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
 
