@@ -105,7 +105,7 @@ myApp
             draft: function($stateParams, user, provider) {
               console.log("Resolving id provider");
               // This promise has been resolved inside the Service
-              return provider.build($stateParams.myId).getId(user);
+              return provider.get($stateParams.myId,user);
             },
         },
       })
