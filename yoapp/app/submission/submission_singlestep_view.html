@@ -15,7 +15,11 @@
     <div class="panel-body">
 
       <div ng-hide='data'>
-        <b>Missing step template. <br><i>(add a new one)</i> </b>
+        <h4> <i class="fa fa-refresh fa-spin"></i> in caricamento </h4>
+      </div>
+
+      <div ng-show='data && !data[0]'>
+        <b>Questo step non è ancora stato configurato...</b>
       </div>
 
      <!-- Form for Normal insert user (OPERATOR)-->
@@ -38,7 +42,7 @@
        </table>
 
         <!-- based on current and the step of this directive -->
-        <div class="buttons" ng-show="current == step">
+        <div class="buttons" ng-show="current == step && data[0]">
           <!-- button to show form -->
           <button type="button" class="btn btn-default" ng-click="myform.$show()"
             ng-show="!myform.$visible">

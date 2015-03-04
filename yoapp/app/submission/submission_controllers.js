@@ -122,32 +122,37 @@ myApp
 
     ////////////////////////////////////////////////
     // Build objects
-    var data = [];
+    var data = {};
     $scope.contentData = StepContent.build($scope.identifier, $scope.step);
     $scope.templateModel = StepTemplate.build($scope.step);
 
     ////////////////////////////////////////////////
     // Procedure to mix data and save it into scope
-    var injectData = function(template, content) {
+    var injectData = function(template, content, notempty) {
 
         // var init
-        var counter = 0;
-        var notempty = content.values && content.values.length;
+        var index = 0;
+        var count = 0;
         if (notempty && content.id)
             $scope.contentData.setId(content.id);
         // Mixing template and content here
         angular.forEach(template, function(type, label) {
             var value = null;
-            if (notempty && content.values.length >= counter) {
-                value = content.values[counter];
+            if (notempty && content.values.length >= index) {
+                value = content.values[index];
+                if (value !== '') {
+                    count++;
+                }
             }
             //data[label] = value;
-            data[counter++] = {key: label, value: value};
+            data[index++] = {key: label, value: value};
         });
 
-        // If i have data: send it to DOM scope
-        if (Object.keys(data).length > 0)
+        //$timeout( function() {
             $scope.data = data;
+        //}, 350);
+
+        return count;
 
     }
 
@@ -165,14 +170,14 @@ myApp
         {
             var notempty = content.values && content.values.length;
             // Create data from models and inject the result inside scope
-            injectData(template,content);
+            var count = injectData(template, content, notempty);
 
             // Decide on form to show
             if ($scope.step == $scope.current)
             {
-                console.log("Activated step:", $scope.step);
-                // OPEN FORM
-                if ($scope.myform && !notempty) {
+                //console.log("Activated step:", $scope.step);
+                // Open form
+                if ($scope.myform && count < 1) {
                     $scope.myform.$show();
                 }
             }
@@ -194,11 +199,13 @@ myApp
 
         // Try to save data. Also this has to be a promise
         // if i want to handle notification at this level
-        $scope.contentData.setData($scope.data, user, $scope.identifier)
+        $scope.contentData.setData($scope.data, $scope.user, $scope.identifier)
          .then(function(success) {
             if (success) {
-                NotificationData.setNotification( AppConfig.messageStatus.success,
-                    "Salvataggio riuscito");
+                $timeout( function() {
+                    NotificationData.setNotification( AppConfig.messageStatus.success,
+                        "Salvataggio riuscito");
+                }, 800);
             } else {
                 NotificationData.setNotification( AppConfig.messageStatus.error,
                     "Il servizio dati non é raggiungibile");
