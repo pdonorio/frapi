@@ -7,30 +7,8 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
     $rootScope, $scope, $state, $stateParams, $filter, $timeout,
-    NotificationData, AppConfig, StepList, draft)
+    user, NotificationData, AppConfig, StepList, draft)
 {
-// TO FIX!
-    var user = 'admin';
-
-    ////////////////////////////////
-    // The IDENTIFIER ***
-
-    // I want to always be in EDIT mode!
-    // difference from draft and completed is the 'published' field
-
-    // 0. Inject to all DOM elements
-    // get variable inside url as param
-    $scope.myrecordid = $stateParams.myId;
-
-    // 1. If id is 'new' get the identifier and set it inside the URL
-    // This was moved to the resolve part in the routing section
-    console.log("Obtained", draft);
-
-    // 2. also switch to step 1 ??
-    if (draft !== null) {
-        console.log("SWITCH");
-        //$state.go('logged.submission.step', { myId: response});
-    }
 
     ////////////////////////////////
     // Do not start with a current value as default
@@ -82,20 +60,43 @@ myApp
         // Coming as an url parameter i have to make sure is not a string
         $scope.current = parseInt(step);
     }
+    ////////////////////////////////
+    // The IDENTIFIER ***
 
-    //////////////////////////////////////////////
-    // Getting data from my Models
-    $scope.stepObj = {};
-    $scope.stepsData = {};
+    // I want to always be in EDIT mode!
+    // difference from draft and completed is the 'published' field
 
-    // StepList (side navbar)
-    $scope.stepObj.list = StepList.build();
-    $scope.stepObj.list.getData().then(function(out) {
-        //console.log("List");
-        $scope.steps = out;
-        //$scope.stepsNum = Object.keys($scope.stepsData).length;
-        $scope.stepsNum = $scope.steps.length;
-    });
+    // 0. Inject to all DOM elements
+    // get variable inside url as param
+    $scope.myrecordid = $stateParams.myId;
+
+    // 1. If id is 'new' get the identifier and set it inside the URL
+    // This was moved to the resolve part in the routing section
+    console.log("Obtained", draft);
+
+    // 2. Switch to edit of the new dratf + step 1 (default if not set)
+    if (draft !== null) {
+        $timeout( function() {
+            $state.go('logged.submission.step', { myId: draft});
+// TO FIX -
+        }, 1800);
+    } else {
+
+        //////////////////////////////////////////////
+        // Getting data from my Models
+        $scope.stepObj = {};
+        $scope.stepsData = {};
+
+        // StepList (side navbar)
+        $scope.stepObj.list = StepList.build();
+        $scope.stepObj.list.getData().then(function(out) {
+            //console.log("List");
+            $scope.steps = out;
+            //$scope.stepsNum = Object.keys($scope.stepsData).length;
+            $scope.stepsNum = $scope.steps.length;
+        });
+
+    }
 
  }) //end SubmissionController
 
