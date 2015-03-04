@@ -175,11 +175,11 @@ myApp
             // Decide on form to show
             if ($scope.step == $scope.current)
             {
-                //console.log("Activated step:", $scope.step);
                 // Open form
                 if ($scope.myform && count < 1) {
                     $scope.myform.$show();
                 }
+                //console.log("Activated step:", $scope.step);
             }
         });
      });

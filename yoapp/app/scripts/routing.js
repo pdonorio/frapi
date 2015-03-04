@@ -103,6 +103,8 @@ myApp
             provider: 'IdProvider',
             // Create an object with service result
             draft: function($stateParams, user, provider) {
+              //console.log("Entered RESOLVE");
+
               // This promise has been resolved inside the Service
               return provider.get($stateParams.myId,user);
             },
