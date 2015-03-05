@@ -36,40 +36,6 @@ Feb ALPHA:
     ✔ via docker container launch every hour/day @done (15-02-10 07:06)
       ✘ volumes from @cancelled (15-02-10 07:06)
   ✔ Rebuild ONLINE @done (15-02-09 11:13)
-
-Bugs:
- ✔ http://getawesomeness.com/get/docker @done (15-02-21 12:54)
- ✔ http://blog.evernote.com/blog/2015/02/06/paperless-productivity-evernote-pocket @done (15-02-21 12:54)
- ✔ https://github.com/aziz/PlainNotes @done (15-02-21 12:54)
-    ✔ If focus on search @done (15-02-11 06:36)
-        ✔ make the bg gray @done (15-02-09 11:13)
-        ✔ take the switch for edit out @done (15-02-11 06:36)
-    ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
-      ✔ testing @help @done (15-02-12 18:39)
-        ✔ Update of rethinkdb base image @done (15-02-12 18:39)
-        ✔ baseimage-docker @done (15-02-12 18:39)
-    ✔ New news not working for Date @done (15-02-07 14:59)
-    ✔ Move editoff inside routing @done (15-02-07 15:17)
-    ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
-    ☐ Loading div pendig to a promise when changing routes
-      ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
-    ☐ RENAME @inprogress
-      ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
-    ☐ An api resource only to check if api and db are available?
-      ☐ Testing inside the step saving @important
-    ☐ News
-        ☐ datetime saving in api?
-    ☐ Google
-      ☐ designhttps://www.dropbox.com/s/pneoe206w8wn2kd/Screenshot%202015-02-11%2010.19.59.png?dl=0
-    ☐ Move edit switch inside a factory or service @thatistherightway
-    ☐ the best promise
-      ☐ http://andyshora.com/promises-angularjs-explained-as-cartoon.html
-    ☐ promise cache
-      ☐ https://github.com/chrisronline/angular-promise-cache
-    ☐ SSH docker
-      ☐ via baseimage
-        ☐ https://github.com/phusion/baseimage-docker#login_ssh
-
 Steps:
   ✔ Steps @done (15-02-28 16:57)
       ✔ Load from API @done (15-02-06 17:23)
@@ -127,11 +93,12 @@ Steps:
                     ✔ i need a record resource Provider (from API) @done (15-03-02 17:16)
                     ✔ very simple: save a new data and get id to use (e.g. user and date) @done (15-03-02 17:16)
                       ✔ Use the promise to handle the provider @done (15-03-02 19:54)
-                      ☐ datetime from JS to Python API.... @lastbeforepull
-                        ☐ timestamp?
-                          ☐ datetime.fromtimestamp('1321463229215') PYTHON
-                          ☐ docker time sync http://stackoverflow.com/a/24568137
-                          ☐ boot2docker http://log.axcoto.com/article/164442905
+                      ✔ datetime from JS to Python API.... @lastbeforepull @done (15-03-05 17:08)
+                        ✘ Date.prototype.getTimestamp = return this.getTime()/1000 | 0; @cancelled (15-03-05 17:08)
+                        ✔ timestamp? @done (15-03-05 17:08)
+                          ✔ datetime.fromtimestamp('1321463229215') PYTHON @done (15-03-05 17:08)
+                          ✘ docker time sync http://stackoverflow.com/a/24568137 @cancelled (15-03-05 17:08)
+                          ✘ boot2docker http://log.axcoto.com/article/164442905 @cancelled (15-03-05 17:08)
                       ✔ how (where) to save correctly id inside the page @done (15-03-03 17:22)
                         ✔ do not load a new one if changing the current step @done (15-03-03 17:22)
                       ✔ use recordid to recover data @done (15-03-03 17:22)
@@ -141,7 +108,9 @@ Steps:
                             ✔ Fixing based on ui router everything! @done (15-03-04 17:16)
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
+                ✔ Add timestamp save of any insert / update to my nosql tables @done (15-03-05 17:16)
 
+StepsAdmin:
     ☐ Use step type to define html element in the step editor
     ☐ What about the difference from "new" and "edit" step....
       ☐ use hash (first 8 chars) of the rethinkdb id?
@@ -176,6 +145,36 @@ Steps:
       ☐ list the images
       ☐ associate one or more transcriptions
       ☐ choose page
+
+Bugs:
+ ✔ http://getawesomeness.com/get/docker @done (15-02-21 12:54)
+ ✔ http://blog.evernote.com/blog/2015/02/06/paperless-productivity-evernote-pocket @done (15-02-21 12:54)
+ ✔ https://github.com/aziz/PlainNotes @done (15-02-21 12:54)
+    ✔ If focus on search @done (15-02-11 06:36)
+        ✔ make the bg gray @done (15-02-09 11:13)
+        ✔ take the switch for edit out @done (15-02-11 06:36)
+    ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
+      ✔ testing @help @done (15-02-12 18:39)
+        ✔ Update of rethinkdb base image @done (15-02-12 18:39)
+        ✔ baseimage-docker @done (15-02-12 18:39)
+    ✔ New news not working for Date @done (15-02-07 14:59)
+    ✔ Move editoff inside routing @done (15-02-07 15:17)
+    ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
+    ☐ Loading div pendig to a promise when changing routes
+      ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
+    ☐ RENAME @inprogress
+      ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
+    ☐ An api resource only to check if api and db are available?
+      ☐ Testing inside the step saving @important
+    ☐ Move edit switch inside a factory or service @thatistherightway
+      ☐ ??
+    ☐ promise cache
+      ☐ https://github.com/chrisronline/angular-promise-cache
+
+    FAR FAR AWAY:
+      ☐ SSH docker
+        ☐ via baseimage
+          ☐ https://github.com/phusion/baseimage-docker#login_ssh
 
 remodel:
   ☐ getting SUPERHERO

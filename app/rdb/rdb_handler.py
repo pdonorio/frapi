@@ -31,6 +31,7 @@ RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
 #Database and tables to use
 APP_DB = "webapp"
 DEFAULT_TABLE = "test"
+TIME_COLUMN = 'latest_timestamp'
 DEFAULT_COLLECTION = GenericORMModel
 
 # == Utilities ==
@@ -267,17 +268,21 @@ class RethinkConnection(Connection):
         """ Get timezone and set the received time to rdb object """
         # Time makes us real
         try:
+            num = float(string)
             # Convert to python from natural javascript time...
-            d = dt.datetime.strptime(string, "%a, %d %b %Y %H:%M:%S %Z")
+            d = dt.datetime.fromtimestamp(num / 1e3)
             # Timezone https://docs.python.org/2/library/time.html#time.timezone
             timezone = time.strftime("%z")
             tmz = timezone[:3] + ":" + timezone[3:]
+            # The required string from RDB
             dformat = "%Y-%m-%dT%H:%M:%S" + tmz
             datevalue = d.strftime(dformat).__str__()
-            # Convert directly to rdb time
-            return r.iso8601(datevalue) #.to_iso8601()
+            # Convert to rdb time
+            mytime = r.iso8601(datevalue) #.to_iso8601()
+            return mytime
+
         except TypeError:
-            self.log.debug("Failed converting time '" + string + "'")
+            self.log.debug("Failed converting timestamp '" + string + "'")
         return string
 
 
@@ -306,7 +311,8 @@ class RethinkConnection(Connection):
         if data.__len__() < 1:
             return self
 
-        print "TEST ", data
+        # Add a timestamp to any insert or update
+        data[TIME_COLUMN] = time.time()
 
         # Save data inside the choosed model
         model_data = self.model(**data)

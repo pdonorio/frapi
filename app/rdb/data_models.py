@@ -161,9 +161,6 @@ class RegisterIdentifier(GenericORMModel):
     def request_time(value):
         return value    #e.g. 01/01/2015
     @staticmethod
-    def last_update_time(value):
-        return value    #e.g. 01/01/2015
-    @staticmethod
     def published(value, name):
         m = "Parameter '"+name+"' may only be 0 or 1. Received value: *"+value+"*"
         tmp = get_original_pytype(value)
