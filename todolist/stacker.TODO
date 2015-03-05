@@ -1,6 +1,37 @@
 
+Concepts:
+   ☐ Calm colors
+   ☐ note / task
+     ☐ due date
+     ☐ comments
+     ☐ when done set the time on the side
+       ☐ when abort is light red
+   ☐ stars * (favourite)
+   ☐ tags #
+   ☐ mentions @
+   ☐ hierarchy
+     ☐ breadcrumbs
+     ☐ focus
+
  ☐ AUTO Grouping !
-   ☐ Hashtags for tagging
- ☐ Open view like inbox google
- ☐ mentions via @
- ☐ Link, image, notes, share
+   ☐ Hashtags as tagging/search system
+     ☐ Fetchnotes
+     ☐ workflowy
+       ☐ http://worklikeanartist.com/blog/workflowy
+ ☐ Open hierarchy view like inbox google
+ ☐ Link, image, notes, share?
+
+DB:
+   ☐ Key value
+     ☐ redis  http://redis.io/topics/twitter-clone
+     ☐ also simple reliable queue message system?
+       ☐ method http://restmq.com/
+       ☐ library http://python-rq.org/
+       ☐ flask code http://flask.pocoo.org/snippets/73/
+   ☐ Graph
+     ☐ orientdb http://www.orientechnologies.com/
+   ☐ Document
+     ☐ rethinkdb
+
+User Support / Happiness hero:
+  https://www.intercom.io/real-time-messaging

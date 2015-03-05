@@ -12,18 +12,20 @@ myApp
       //create my editable step panel for Submission
       restrict: 'E',
       //HTML template to work data inside the markup
-      templateUrl: 'templates/step.html',
+      templateUrl: 'submission/submission_singlestep_view.html',
 
       /////////////////////////////////////
       //Directives isolated scope (cleaner and better)
       scope: {
+        user: "=",
+        identifier: "=",
+        // This is the reason of the isolated scope
+        step: "=",     // different per each directive/tag
+        name: "=",
+        // This is the reason of the isolated scope
         current: "=",
-        step: "=",
-        max: "=",
-        data: "=",
-        template: "=",
       },
-      //controller: function($scope) {}
+      controller: 'StepDirectiveController',
 
     };
   });

@@ -20,7 +20,8 @@
     <!-- endbuild -->
   </head>
 
-  <body ng-class="{'gbg': onOff.bg, 'bodypadtop': onOff.pad, 'staticbg': !onOff.pad}">
+  <body ng-class="{'gbg': onOff.bg, 'bodypadtop': onOff.pad,
+  'staticbg': !onOff.pad, 'darkbg': onOff.dark, }">
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser.<br>
     Please <a href="http://browsehappy.com/">upgrade your browser</a><br>
@@ -61,21 +62,28 @@
         <script src="scripts/conf.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/routing.js"></script>
+        <!-- new logic -->
+        <script src="submission/idprovider_service.js"></script>
+        <script src="submission/steplist_model.js"></script>
+        <script src="submission/stepcontent_model.js"></script>
+        <script src="submission/steptemplate_model.js"></script>
+        <script src="submission/submission_controllers.js"></script>
+        <script src="submission/singlestep_directive.js"></script>
+        <script src="upload/uploader_controller.js"></script>
+        <script src="upload/fileuploader_directive.js"></script>
+        <!-- new logic -->
         <script src="scripts/controllers/initcontroller.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/search.js"></script>
-        <script src="scripts/controllers/submissioncontroller.js"></script>
-        <script src="scripts/controllers/uploadcontroller.js"></script>
+        <script src="scripts/controllers/newscontroller.js"></script>
+        <script src="scripts/controllers/viewercontroller.js"></script>
         <script src="scripts/services/notificationfactory.js"></script>
         <script src="scripts/services/api_client.js"></script>
         <script src="scripts/services/mixed.js"></script>
         <script src="scripts/directives/notify.js"></script>
         <script src="scripts/directives/editablecontent.js"></script>
-        <script src="scripts/directives/submissionstep.js"></script>
-        <script src="scripts/directives/fileuploader.js"></script>
         <script src="scripts/filters/textop.js"></script>
         <script src="scripts/apppostprocess.js"></script>
-        <script src="scripts/controllers/viewercontroller.js"></script>
         <!-- endbuild -->
 
 </body>

@@ -4,10 +4,12 @@
 <div ng-if="init.startup" id="wrap">
     <!-- Top bar -->
     <div ng-include="'templates/topbar.html'"></div>
+    <!-- Fixed Alerts (example: for edit mode) -->
+    <div ng-include="'templates/fixedalerts.html'"></div>
     <!-- Notification message Directive -->
     <notify></notify>
     <!-- MAIN VIEW (see views/ directory) -->
     <div ui-view="contain"></div>
-    <div ui-view="extra"></div>
+    <div ui-view="extra" ng-hide='edit.switch'></div>
 </div>
 <!-- No Footer -->

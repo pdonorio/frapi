@@ -8,7 +8,8 @@
  * Service in the yoApp.
  */
 myApp
-.service('NotificationData', function ($timeout, AppConfig, messageTimeout) {
+.service('NotificationData', function ($timeout, AppConfig, messageTimeout)
+{
 
  //init structure
  var emptyMessage = {

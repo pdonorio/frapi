@@ -31,47 +31,233 @@ Feb ALPHA:
         ✔ Main.js Implement back with $rootScope.$on('$stateChangeStart' @done (15-02-02 06:54)
         ✔ Make button appear only if there is at least one url back @done (15-02-02 06:54)
         ✔ Buttons tooltip @done (15-02-02 11:32)
+  ✔ Update RethinkDB on docker image? what the hell? @done (15-02-02 07:19)
+  ✔ Directories backup (e.g. images) @done (15-02-10 07:06)
+    ✔ via docker container launch every hour/day @done (15-02-10 07:06)
+      ✘ volumes from @cancelled (15-02-10 07:06)
+  ✔ Rebuild ONLINE @done (15-02-09 11:13)
+Steps:
+  ✔ Steps @done (15-02-28 16:57)
+      ✔ Load from API @done (15-02-06 17:23)
+      ✔ A div for no data loaded? @done (15-02-07 09:49)
+        ✔ datetime js handling @done (15-02-07 09:49)
+        ✔ Steps editing @done (15-02-07 12:15)
+        ✔ Steps add, remove, undo  @done (15-02-07 13:33)
+          ✔ url checking... @done (15-02-07 13:33)
+        ✔ No edit mode if not a new step @done (15-02-07 14:47)
+        ✔ Steps with form open if no data in form/template @done (15-02-07 15:56)
+      ✔ Understanding angular @done (15-02-11 17:09)
+        ✔ Model with nesting promise @done (15-02-11 17:09)
+        ✔ Using 'then' inside service to modify data before sending it to the controller @done (15-02-11 17:09)
+        ✔ Using 'then' again inside controller @done (15-02-11 17:09)
+    ✘ A factory for handling the global form? @cancelled (15-02-10 07:08)
+        ✘ Learning to find the differences in two objects @cancelled (15-02-10 07:08)
+      ✔ Transformation @done (15-02-13 07:47)
+        ✔ Convert StepList @done (15-02-11 17:30)
+        ✔ Convert StepContent @done (15-02-11 17:30)
+          ✔ StepContent API? @done (15-02-11 17:30)
+          ✔ JS side @done (15-02-12 10:13)
+        ✔ Move files inside new folder @done (15-02-12 17:26)
+        ✔ Fill data inside db and export @done (15-02-13 07:47)
+        ✔ Admin @done (15-02-24 18:26)
+          ✔ Step via url: the new ajax @current pre @done (15-02-21 13:44)
+            ✔ Rearrange a new standard for names and directory! @done (15-02-21 17:52)
+          ✔ Make StepTemplate API @done (15-02-13 22:01)
+          ✔ Merge Template and content @done (15-02-19 17:17)
+          ✔ Open form for steps with no data @current @done (15-02-21 20:35)
+          ✔ Problems with parameters on API @done (15-02-25 07:08)
+            ✔ Change the factory in JS @done (15-02-25 07:08)
+            ✔ Check what happens on API with the parameter @done (15-02-26 16:46)
+              ✔ Fix by understanding rethinkdb filter @done (15-02-26 16:46)
+            ✘ no test unit :/ @cancelled (15-02-26 16:46)
+          ✔ Edit for existing @done (15-02-28 16:56)
+            ✔ Each edit should work on one single row @done (15-02-26 16:47)
+              ✔ Cleaned table @done (15-02-26 16:47)
+            ✔ Move load single step data inside its controller @current HARD @done (15-02-28 16:56)
+              ✔ change steptemplate loading and saving in JS @done (15-02-26 17:26)
+              ✔ change stepcontent table: one row per step (per element) @done (15-02-28 11:55)
+                ✔ field00x @done (15-02-28 11:55)
+              ✔ change stepcontent loading and saving in JS @done (15-02-28 15:57)
+              ✔ Mix template and content inside directive @done (15-02-28 16:21)
+              ✔ Save data at insert time @done (15-02-28 16:56)
+                ✔ add inside python data models field*** ad libitum inside for cycle @done (15-03-01 12:30)
+                  ✔ Pippa mentale! @done (15-02-28 17:42)
+                  ✔ Change this as soon as possible @done (15-03-01 19:56)
+                  ✔ handle array for example in API @done (15-03-01 19:56)
+                  ✔ be sure you save the right order and you show the right order @done (15-03-02 07:40)
+                    ✔ DONTLIKE: sorting is by key as default in ng-repeat with Json @done (15-03-01 22:22)
+                    ✔ DONTLIKE: saving array in API loses positions... what if you add a field in the middle? @done (15-03-02 06:45)
+                      ✘ check json saving in rethinkdb @cancelled (15-03-02 06:45)
+                ✔ Handle record id inside step content! :P @stupidme @done (15-03-02 07:40)
+                  ✔ add user and recordid in table @done (15-03-02 17:16)
+                    ✔ i need a record resource Provider (from API) @done (15-03-02 17:16)
+                    ✔ very simple: save a new data and get id to use (e.g. user and date) @done (15-03-02 17:16)
+                      ✔ Use the promise to handle the provider @done (15-03-02 19:54)
+                      ✔ datetime from JS to Python API.... @lastbeforepull @done (15-03-05 17:08)
+                        ✘ Date.prototype.getTimestamp = return this.getTime()/1000 | 0; @cancelled (15-03-05 17:08)
+                        ✔ timestamp? @done (15-03-05 17:08)
+                          ✔ datetime.fromtimestamp('1321463229215') PYTHON @done (15-03-05 17:08)
+                          ✘ docker time sync http://stackoverflow.com/a/24568137 @cancelled (15-03-05 17:08)
+                          ✘ boot2docker http://log.axcoto.com/article/164442905 @cancelled (15-03-05 17:08)
+                      ✔ how (where) to save correctly id inside the page @done (15-03-03 17:22)
+                        ✔ do not load a new one if changing the current step @done (15-03-03 17:22)
+                      ✔ use recordid to recover data @done (15-03-03 17:22)
+                        ✔ if new in the address bar, no data to recover!! @done (15-03-04 07:20)
+                        ✔ What the hell is the right way to solve the damn promise... @done (15-03-04 07:18)
+                          ✔ ui router resolve!!! @done (15-03-04 07:18)
+                            ✔ Fixing based on ui router everything! @done (15-03-04 17:16)
+                ✔ Handle notification @done (15-03-02 07:40)
+                  ✘ inside factory?? @cancelled (15-03-02 07:40)
+                ✔ Add timestamp save of any insert / update to my nosql tables @done (15-03-05 17:16)
 
-  Dev Release:
-    ☐ Login (angular?)
-      ☐ isAuthenticated(nextState) ui router?
-      ☐ ui resolve for API login ?
-      ☐ add login checker in cron/repeat
+StepsAdmin:
+  ☐ The type!
+    ☐ Use step type to define html element in the step editor
+  ☐ What about the difference from "new" and "edit" step....
+    ☐ use hash (first 8 chars) of the rethinkdb id?
+      ☐ any function to convert?
+      ☐ search rethinkdb short hash
+    ☐ A new view when edit on
+      ✔ dark background @done (15-02-11 07:46)
+      ✔ Edit step contents @done (15-03-05 17:22)
+        ✔ one piece at the time @done (15-03-05 17:22)
+      ☐ modal? i have an example
+      ☐ step list on the side
+      ☐ step editing on the other side
+        ☐ Edit step name on one line
+    ✘ Indexes python @cancelled (15-03-05 17:22)
+      ✘ Multiple order by workaround @cancelled (15-03-05 17:22)
+        ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
+
+SomeMore:
+    ☐ A mock User model
+      ☐ across the project to share the current user
+      ☐ list of user drafts @cool
+        ☐ by identifiers inside the api provider
+
+    ☐ Better backups
+      ☐ cron daily
+        ☐ move latest folder to backup/
+        ☐ clean main data folder from saved data
+
+  ☐ Upload and transcriptions
+    ☐ Create a new upload folder for any new draft
+      ☐ cron daily to remove what has not used for at least 24 hours
+    ☐ Zoomify image via API
+      ☐ argh: command?
+    ☐ Upload only images
+    ☐ If already exists go to error via notify
+      ☐ if goes to already exists, disable upload button
+    ☐ share folder of uploaded files for thumbnails?
+
+    ☐ Last step is transciptions
+      ☐ list the images
+      ☐ associate one or more transcriptions
+      ☐ choose page
+
+Bugs:
+ ✔ http://getawesomeness.com/get/docker @done (15-02-21 12:54)
+ ✔ http://blog.evernote.com/blog/2015/02/06/paperless-productivity-evernote-pocket @done (15-02-21 12:54)
+ ✔ https://github.com/aziz/PlainNotes @done (15-02-21 12:54)
+    ✔ If focus on search @done (15-02-11 06:36)
+        ✔ make the bg gray @done (15-02-09 11:13)
+        ✔ take the switch for edit out @done (15-02-11 06:36)
+    ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
+      ✔ testing @help @done (15-02-12 18:39)
+        ✔ Update of rethinkdb base image @done (15-02-12 18:39)
+        ✔ baseimage-docker @done (15-02-12 18:39)
+    ✔ New news not working for Date @done (15-02-07 14:59)
+    ✔ Move editoff inside routing @done (15-02-07 15:17)
+    ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
+    ☐ Loading div pendig to a promise when changing routes
+      ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
+    ☐ RENAME @inprogress
+      ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
+    ☐ An api resource only to check if api and db are available?
+      ☐ Testing inside the step saving @important
+    ☐ Move edit switch inside a factory or service @thatistherightway
+      ☐ ??
+    ☐ promise cache
+      ☐ https://github.com/chrisronline/angular-promise-cache
+
+    FAR FAR AWAY:
+      ☐ SSH docker
+        ☐ via baseimage
+          ☐ https://github.com/phusion/baseimage-docker#login_ssh
+
+remodel:
+  ☐ getting SUPERHERO
+    ☐ http://www.rethinkdb.com/docs/tutorials/superheroes
+    ☐ How do i pass an array as a single parameter via API?
+  ☐ ODM and relations
+    ☐ https://github.com/linkyndy/remodel
+  ☐ CHANGE feed
+    ☐ http://rethinkdb.com/docs/changefeeds/python
+    ☐ http://rethinkdb.com/api/python/changes/
+  ☐ BINARY
+    ☐ store in table http://www.rethinkdb.com/docs/storing-binary/python/
+    ☐ examples: http://www.rethinkdb.com/docs/storing-binary/python/
+
+Dev Release:
+    ☐ ASK FOR Welcome page french text @last
+      ☐ WAITING!
+    ☐ Change edit on/off button with bootstrap group button ?
+    ☐ Progress page & resource
+      ☐ to keep track of what we are doing
+      ☐ with comments on the side?
     ✔ Google analytics @done (15-02-02 07:34)
       ✔ only in production mode, via angular variable @done (15-02-02 07:38)
       ✔ how to ng-if on 'script' tag? @done (15-02-02 11:26)
-    ✔ News @done (15-02-02 11:46)
+    ☐ News
       ✔ New resource api @done (15-02-02 11:57)
       ✔ Show resources in change page @done (15-02-02 12:41)
       ✔ Add button only in admin mode @current @done (15-02-02 16:12)
       ✔ also quick/dirty xeditable table? @done (15-02-02 12:41)
+      ☐ Save via API
       ☐ RSS feed?
         ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
       ☐ Connect with apis
-    ☐ ASK FOR Welcome page french text @last
-    ☐ Progress page & resource
-      ☐ to keep track of what we are doing
-      ☐ with comments on the side?
+    ☐ Angular.js Login
+      ☐ isAuthenticated(nextState) ui router?
+      ☐ ui resolve for API login ?
+      ☐ https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f @easy
+      ☐ https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec @serious
+        ☐ http headers?
+        ☐ http://blog.brunoscopelliti.com/authentication-to-a-restful-web-service-in-an-angularjs-web-app
+      ☐ add login checker in cron/repeat
 
     ☐ Development pages for now
       ☐ not minified....
       ☐ Rebuild with grunt
         ☐ Grunt not working! @gush
+        ☐ UnCSS - http://addyosmani.com/blog/removing-unused-css/
      ☐ SECURITY rethinkdb updated... does not work anymore
        ☐ Using the RethinkDB authentication system
          ☐ http://www.rethinkdb.com/docs/security/
          ☐ Build a python query on the system table
            ☐ an api resource with some password to secure the server?
+       ☐ Orchestration @docker
+         ☐ docker-composer
+           ☐ http://chrisbarra.me/posts/docker-orchestration.html
+       ☐ Usage stats @docker
+         ☐ http://java.dzone.com/articles/what-docker-stats-api
+       ☐ Monitoring
+         ☐ http://prometheus.io/docs/introduction/comparison
+         ☐ https://revelops.com/community/packs/docker
+         ☐ https://logentries.com
+         ☐ https://github.com/nearform/docker-logentries
 
   ☐ Mixed
     ✔ Update database @done (15-02-01 12:37)
-    ☐ Backups?
-      ☐ http://rethinkdb.com/docs/backup/
-      ☐ rethinkdb dump + restore (via api?)
-      ☐ Cron
-        ☐ export/import? http://rethinkdb.com/docs/importing/
-          ☐ rethinkdb export
-          ☐ rethinkdb import -d rethinkdb_export_DIR/ --force
+   ✔ Metaclasses @done (15-02-13 20:16)
+     ✔ http://www.jeffknupp.com/blog/2013/12/28/improve-your-python-metaclasses-and-dynamic-classes-with-type/ @done (15-02-13 20:16)
+    ✔ Backups? @done (15-02-13 20:16)
+      ✔ http://rethinkdb.com/docs/backup/ @done (15-02-13 20:16)
+      ✔ rethinkdb dump + restore (via api?) @done (15-02-13 20:16)
+      ✔ Cron @done (15-02-13 20:16)
+        ✔ export/import? http://rethinkdb.com/docs/importing/ @done (15-02-13 20:16)
+          ✔ rethinkdb export @done (15-02-13 20:16)
+          ✔ rethinkdb import -d rethinkdb_export_DIR/ --force @done (15-02-13 20:16)
     ☐ Draft section inside profile @cool
     ☐ Language?
       ☐ Fixed for now
@@ -95,41 +281,56 @@ Feb ALPHA:
       ☐ one python file?
       ☐ Dynamic resource building with names? It could be!
 
-  ☐ Upload and transcriptions
-    ☐ Create a new upload folder for any new draft
-    ☐ Zoomify image via API
-    ☐ Upload only images
-    ☐ If already exists go to error via notify
-      ☐ if goes to already exists, disable upload button
-    ☐ share folder of uploaded files for thumbnails?
-    ☐ Last step is transciptions
-      ☐ list the images
-      ☐ associate one or more transcriptions
-      ☐ choose page
-
-  ✔ Update RethinkDB on docker image? what the hell? @done (15-02-02 07:19)
-  ☐ Directories backup (e.g. images)
-    ☐ via docker container launch every hour/day
-      ☐ volumes from
-
-  ☐ Steps
-    ☐ Admin add, edit, remove
-    ☐ Rdb backup every hour, then @send
-    ☐ API fix
-      ☐ create table if not exist (at search time?)
-
   ☐ Admin content: use 'page' db attribute for different pages
     ☐ Html editor
     ☐ Edit switch only if page element counter > 0
       ☐ Sanitize content (e.g. open tags)
 
-  ☐ Search bar history when focus (cookie)?
+  ☐ Search bar history when focus
+    ☐ cookie
+  ☐ Optimization for angular
+    ☐ http://blog.scalyr.com/2013/10/angularjs-1200ms-to-35ms/
 
 --- ✄ -----------------------
 Mar:
+ ☐ https://leanpub.com/web-component-development-with-angularjs/read
  ☐ Advanced search
  ☐ Profiles
  ☐ Testing
 
+ ☐ Swarm test?
+   ☐ https://github.com/docker/swarm/
+
  ☐ CSS on demand!
    ☐ https://github.com/door3/angular-css
+
+ ☐ Go mobile
+   ☐ http://ccoenraets.github.io/ionic-tutorial/install-ionic.html
+
+--- ✄ -----------------------
+
+Timer TIMEOUT how to:
+
+// When the timeout is defined, it returns a promise object.
+var timer = $timeout( function() {
+    if ($scope.myform)
+        $scope.myform.$show();
+}, directiveTimeout);
+
+// Let's bind to the resolve/reject handlers of
+// the timer promise so that we can make sure our
+// cancel approach is actually working.
+timer.then( function() {
+    console.log( "Timer resolved!", Date.now() );
+}, function() {
+    console.log( "Timer rejected!", Date.now() );
+});
+
+// When the DOM element is removed from the page,
+// AngularJS will trigger the $destroy event on
+// the scope. This gives us a chance to cancel any
+// pending timer that we may have.
+$scope.$on( "$destroy", function( event ) {
+    console.log("Destroy");
+    $timeout.cancel( timer );
+});

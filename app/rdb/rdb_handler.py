@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 # === Models for NoSQL db ===
 My python experiments with rethinkdb
@@ -5,6 +7,8 @@ My python experiments with rethinkdb
 
 # === Libraries ===
 import os
+import time
+import datetime as dt
 
 # Connection structure and rethink libraries
 from bpractices.connections import Connection
@@ -27,6 +31,7 @@ RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
 #Database and tables to use
 APP_DB = "webapp"
 DEFAULT_TABLE = "test"
+TIME_COLUMN = 'latest_timestamp'
 DEFAULT_COLLECTION = GenericORMModel
 
 # == Utilities ==
@@ -120,6 +125,9 @@ class RethinkConnection(Connection):
         except RqlRuntimeError:
             self.log.debug("Database '" + APP_DB + "' exists ")
 
+    def default_database(self):
+        self._connection.use(APP_DB)
+
     # == This handler base its operation on ORM models ==
 
     def define_model(self, model=DEFAULT_COLLECTION):
@@ -146,6 +154,20 @@ class RethinkConnection(Connection):
             r.table_create(table).run()
             self.log.info("Table '" + table + "' created")
 
+    @check_model
+    def indexing(self):
+# NOT WORKING AT THE MOMENT
+        table = self.model.table
+        # list indexes on table "users"
+        index_list = r.table(table).index_list().run()
+        # check indexes or create
+        for i in self.model.indexes:
+            if i not in index_list:
+                print "Index '" + i + "' missing in table " + table
+                r.table(table).index_create(i).run()
+                print "Waiting"
+                r.table(table).index_wait(i).run()
+
     @staticmethod
     def get_parameters_with_defaults(params):
 
@@ -155,7 +177,9 @@ class RethinkConnection(Connection):
 
         # save parameters
         for name in params:
-            p[name] = params.get(name)
+            tmp = params.get(name)
+            if tmp != None:
+                p[name] = tmp
 
         # set defaults for paging
         if "perpage" in p:
@@ -177,18 +201,12 @@ class RethinkConnection(Connection):
         self.log.debug("Searching rdb table '" + table + "'")
         p = RethinkConnection.get_parameters_with_defaults(kwargs)
 
-        # Case with arguments
-        if p["id"] != None:
-            # Note: 'get_all' works, don't know why 'get' doesn't
-            query = r.table(table).get_all(p["id"], index='id')
-        # Case no arguments (all table)
-        else:
-            query = r.table(table)
+        query = r.table(table)
 
-        # === Filter* ===
-        # filt = {"where":"silence"}
-        # collection = RethinkCollection(DataDump, filter=filt)
-        # result = collection.fetch()
+        # Case with arguments
+        if "id" in p and p["id"] != None:
+            # Note: 'get_all' works, don't know why 'get' doesn't
+            query = query.get_all(p["id"], index='id')
 
         # Note: i should not check if i cannot find any data.
         out = {}
@@ -197,18 +215,41 @@ class RethinkConnection(Connection):
         # from my query
         if not query.is_empty().run():
 
+            # === Filter* ===
+            for key, value in p.iteritems():
+                if key == 'currentpage' or key == 'perpage':
+                    continue
+                # Apply simple equality
+                self.log.info("Filtering on key '" + key + \
+                    "' with value '" + value.__str__() + "'")
+                query = query.filter(r.row[key] == value)
+                # What about subquery?
+
             # Get total query count
+            # ...just before slicing and order
             count = query.count().run()
 
             # Slice for pagination
-            if "currentpage" in p and "perpage" in p:
+            if "currentpage" in p and "perpage" in p \
+                and p["perpage"] > 0:
+                # If per page == 0 then give everything you have
                 start = (p["currentpage"] - 1) * p["perpage"]
                 end = p["currentpage"] * p["perpage"]
+                # Limit elements
+                query = query.slice(start, end)
                 #this does not work: WHY??
                 #out = query.skip(start).limit(end).run()
-                out = query.slice(start, end).run()
-            else:
-                out = query.run()
+
+            # Order by if necessary (as defined in the model)
+            if self.model.order != None:
+                query = query.order_by(self.model.order)
+# TO FIX:
+            # What if i have multiple orders?
+            # Bug! Rethinkdb needs indexes for multiple order
+            # but indexes are not created on a virtualbox machine...
+
+            # Final result
+            out = query.run()
 
         # Warning: out is a cursor and can be used in two ways:
         # 1. use the for cycle
@@ -222,9 +263,32 @@ class RethinkConnection(Connection):
                 del data_dict[i]
         return data_dict
 
+    #http://rethinkdb.com/docs/cookbook/python/#storing-timestamps-and-json-date-strings-as-t
+    def get_time(self, string):
+        """ Get timezone and set the received time to rdb object """
+        # Time makes us real
+        try:
+            num = float(string)
+            # Convert to python from natural javascript time...
+            d = dt.datetime.fromtimestamp(num / 1e3)
+            # Timezone https://docs.python.org/2/library/time.html#time.timezone
+            timezone = time.strftime("%z")
+            tmz = timezone[:3] + ":" + timezone[3:]
+            # The required string from RDB
+            dformat = "%Y-%m-%dT%H:%M:%S" + tmz
+            datevalue = d.strftime(dformat).__str__()
+            # Convert to rdb time
+            mytime = r.iso8601(datevalue) #.to_iso8601()
+            return mytime
+
+        except TypeError:
+            self.log.debug("Failed converting timestamp '" + string + "'")
+        return string
+
+
     # === Insert ===
     @check_model
-    @TryExcept("DB table does not exist", RqlRuntimeError)
+    @TryExcept("Failed to insert data inside DB", RqlRuntimeError)
     def insert(self, data_dict, force_id=None):
         """ Data insert in a table/collection
         Note: rdb cannot take the id value inside the whole data.
@@ -238,9 +302,17 @@ class RethinkConnection(Connection):
         # Some options are used only as parameters and should not be saved
         data = self.remove_options(data_dict)
 
+        # Time check
+        for key, value in data.iteritems():
+            if '_time' in key and value != None:
+                data[key] = self.get_time(value)
+
         # Skip if empty
         if data.__len__() < 1:
             return self
+
+        # Add a timestamp to any insert or update
+        data[TIME_COLUMN] = time.time()
 
         # Save data inside the choosed model
         model_data = self.model(**data)

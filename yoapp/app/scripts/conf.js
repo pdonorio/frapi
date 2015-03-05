@@ -11,10 +11,14 @@
 
 angular.module('AppConfig', [])
 
-  //API ?
+  //API
   .constant('apiPort', '5507')
   .constant('apiFilePort', '5346')
   .constant('apiFileResource', 'uploads')
+  // Minimum timeout to get objects working inside directive....
+  // I DON'T LIKE THIS
+  .constant('directiveDataTimeout', 150)
+  .constant('directiveTimeout', 10)
 
   //Notification status
   .constant('messageStatus', {

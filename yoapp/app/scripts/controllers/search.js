@@ -9,7 +9,7 @@
  */
 
 myApp
- .controller('ViewController', function ($scope, $rootScope, DataResource, perpageDefault, currentpageDefault)
+ .controller('ViewController', function ($scope, $rootScope, API, perpageDefault, currentpageDefault)
 {
     // Init: Html scope data
     $scope.datacount = 0;
@@ -28,6 +28,7 @@ myApp
     $scope.doFocus = function () {
       $scope.mytable.show = true;
       $rootScope.searching = true;
+      $rootScope.edit.available = false;
     }
 
   /* ************************************
@@ -70,20 +71,9 @@ myApp
     $scope.reloadTable = function(perpage, currentpage)
     {
 
-      //Warning: if data is coming from input
-      //we must convert string to integer (just in case)
-      perpage = parseInt(perpage);
-      if (isNaN(perpage)) {
-        perpage = perpageDefault;
-      }
-      currentpage = parseInt(currentpage);
-      if (isNaN(currentpage)) {
-        currentpage = currentpageDefault;
-      }
-      //console.log(perpage);
-
       // Get the data (as a promise)
-      var promise = DataResource.get("data", perpage, currentpage);
+      var params = {perpage: perpage, currentpage: currentpage};
+      var promise = API.get("data", params);
 
       // Use the data promise
       promise

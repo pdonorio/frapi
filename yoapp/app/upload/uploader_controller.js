@@ -16,7 +16,7 @@ myApp
     //Init uploader
     $scope.uploader = new FileUploader();
     //Set upload path
-    $scope.uploader.url = AppConfig.apiFileBase; ;
+    $scope.uploader.url = AppConfig.apiFileBase;
 
 /*
     onBeforeUploadItem function(item) {

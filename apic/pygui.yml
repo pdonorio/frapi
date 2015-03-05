@@ -13,13 +13,13 @@ up:
 data:
     build: ./docker/pybase
     volumes:
-        - ./data:/data:rw
+        - ./data/py:/data:rw
+        - ./data:/rethinkdb:rw
 
 # Database server master
 rdb:
     build: ./docker/rethinkdb
-    #command: bash /root/init.sh
-    command: rethinkdb --bind all   #No security
+    #command: rethinkdb --bind all   #No security
     volumes_from:
          - data     # Import data directory from storage container
          - fs
@@ -31,8 +31,8 @@ api:
     build: ./docker/webapp
     #command: bash /root/security.sh
     command: python file.py
-    #command: sleep 876129876
     #command: python main.py
+    #command: sleep 876129876
     volumes:
         - ./app:/opt/app
     working_dir: /opt/app

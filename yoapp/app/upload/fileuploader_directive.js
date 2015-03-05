@@ -12,7 +12,7 @@ myApp
   //create my div for uploading multiple files
   restrict: 'E',
   //create a template to work data inside the markup
-  templateUrl: 'templates/uploader.html',
+  templateUrl: 'upload/uploader_view.html',
   controller: 'UploadController',
 /*
   link: function postLink(scope, element, attrs) {

@@ -4,7 +4,11 @@
 		{
 			"folder_exclude_patterns":
 			[
-				"yoapp/.tmp"
+				"yoapp/.tmp",
+				"yoapp/dist",
+				"yoapp/test",
+				"yoapp/node_modules",
+				"yoapp/bower_components"
 			],
 			"follow_symlinks": true,
 			"path": "."

@@ -11,11 +11,19 @@ from bpractices.exceptions import log, LoggedError
 # The global data
 from myapi.app import g
 # Data models from DB ORM
-from rdb import data_models
+from rdb.get_models import models
 # Import html codes
 import bpractices.htmlcodes as hcodes
+# Handling time
+import datetime as dt
 
 # == Utilities ==
+
+# Handling time format for json_dumps
+dthandler = lambda obj: ( obj.isoformat()
+    if isinstance(obj, dt.datetime) or isinstance(obj, dt.date) else None)
+# This one above could/should be a class
+# http://stackoverflow.com/a/23287543
 
 def clean_parameter(param=""):
     """ I get parameters already with '"' quotes from curl? """
@@ -40,7 +48,13 @@ def abort_on_db_fail(func):
         try:
             return func(self, *args, **kwargs)
         except LoggedError, e:
-            abort(hcodes.HTTP_BAD_NOTFOUND, message=e.__str__())
+            print e
+            if e.__str__() == "DB table does not exist yet":
+                # Empty table
+                abort(hcodes.HTTP_BAD_CONFLICT, message=e.__str__())
+            else:
+                # Very bad
+                abort(hcodes.HTTP_BAD_NOTFOUND, message=e.__str__())
     return wrapper
 
 # == Implement a generic Resource for RethinkDB ORM model ==
@@ -62,24 +76,25 @@ class GenericDBResource(Resource):
     """
 
     parser = None
+    model = None
 
     #define
-    def __init__(self, ormModel=data_models.GenericORMModel, db=None):
+    def __init__(self):
         """ Implement a parser for validating arguments of api """
 
+        ############################
         # how to get the model as parameter since its a resource?
-        # subclass this instance and call super with model as arg
+        # use a factory which sets attribute 'model' as a Data ORM Class
+        ############################
 
-        if db == None:
-            self.log = log.get_logger(self.__class__.__name__)
+        # IMPORTANT!
+        # This model will be defined inside the resource factory
+        g.rdb.define_model(self.model)
 
-            # Decide the model to use for this DB resource
-            g.rdb.define_model(ormModel)
-
-            # Use the model to configure parameters
-            self.__configure_parsing()
-        else:
-            db.define_model(ormModel)
+        # Init self logger
+        self.log = log.get_logger(self.__class__.__name__)
+        # Read all the properties that will be used from API methods
+        self.__configure_parsing()
 
     def __configure_parsing(self):
         """
@@ -91,13 +106,22 @@ class GenericDBResource(Resource):
         """
         self.parser = reqparse.RequestParser()
         # Extra parameter id for POST updates or key forcing
-        self.parser.add_argument("id")
+        self.parser.add_argument("id", type=str)
 
         # Based on my datamodelled ORM class
         # Cycle class attributes
         for key, value in g.rdb.model.list_attributes().iteritems():
+            act = 'store'
+            loc = ['headers', 'values'] #multiple locations
             # Decide type based on attribute
-            self.parser.add_argument(key, type=value)
+            if value == 'makearray':
+                value = str
+                act = 'append'
+            # elif '_time' in key:
+            #     print "Type ", key, value, act, loc
+
+            self.parser.add_argument(key, type=value, action=act, location=loc)
+            #http://flask-restful.readthedocs.org/en/latest/api.html#module-reqparse
 
         return self.parser
 
@@ -110,8 +134,9 @@ class GenericDBResource(Resource):
 
         self.log.info("API: Received 'search'")
         params = self.parser.parse_args()
-        for (name, value) in params.iteritems():
-            params[name] = value
+        for (parname, value) in params.iteritems():
+            #print "Param", parname, value
+            params[parname] = value
 
         # Query RDB filtering on a single key
         if data_key != None:
@@ -119,13 +144,14 @@ class GenericDBResource(Resource):
             params["id"] = data_key
 
         # Passing each parameters directly to rdb
-        (count,out) = g.rdb.search(**params)
+        (count, out) = g.rdb.search(**params)
 
         # Need a list to make this work
         #data = list(out)
         data = {"count":count, "items":list(out)}
-        # Serialize
-        json_data = json.dumps(data)
+
+        # Serialize (using dthandler to avoid problems with date)
+        json_data = json.dumps(data, default=dthandler)
 
         # Should build a better json array response
         return json_data, hcodes.HTTP_OK_ACCEPTED
@@ -197,79 +223,24 @@ class GenericDBResource(Resource):
 
 # Get instances of the generic resources
 # based on a specific data_models
-#
-# Warning: due to restful plugin system, get and get(value)
-# require 2 different resources...
 
+# The Factory method for my resources classes (SUPER COOL!)
+def resource_builder(label, model):
+    # My new resource class have to inherict everything from the Generic Resource
+    methods = dict(GenericDBResource.__dict__)
+    # Here is the trick:
+    # I set a property in the new class, and it's the ORM model
+    # This way every action will dinamically change based on this content
+    methods.update({'model': model})
+    # Use 'type' standard python to dynamically create a new Class on the fly
+    return type(label, (GenericDBResource,), methods)
 
-## Data (generic)
-class DataList(GenericDBResource):
-    def __init__(self, db=None):
-        super(DataList, self).__init__(data_models.DataDump, db)
-class DataSingle(GenericDBResource):
-    def __init__(self):
-        super(DataSingle, self).__init__(data_models.DataDump)
-
-## HtmlContent (admin editable html content of web pages)
-class HtmlContents(GenericDBResource):
-    def __init__(self, db=None):
-        super(HtmlContents, self).__init__(data_models.WebContent, db)
-class HtmlContent(GenericDBResource):
-    def __init__(self):
-        super(HtmlContent, self).__init__(data_models.WebContent)
-
-## News (informations about the data)
-class NewsFeeds(GenericDBResource):
-    def __init__(self, db=None):
-        super(NewsFeeds, self).__init__(data_models.News, db)
-class NewsFeed(GenericDBResource):
-    def __init__(self):
-        super(NewsFeed, self).__init__(data_models.News)
-
-
-################################################################
-
-
-
-
-
-
-# ################################################################
-# # FOR FUTURE TESTING on AUTHENTICATION?
-
-# # Handle login and logout
-# class LogUser(Resource):
-#     """  Init authentication and give token """
-#     def __init__(self):
-#         self.parser = reqparse.RequestParser()
-#         self.parser.add_argument('user', type=str)
-#         # IN CHIARO??
-#         self.parser.add_argument('password', type=str)
-#             #help='The "id" parameter should be an integer')
-
-#     def post(self):
-#         """ Get data as defined in init parser and push it to rdb """
-#         data = self.parser.parse_args()
-#         #print data
-#         user = data["user"]
-#         p = data["password"]
-#         app.logger.info("API: Received login request for user '" + user + "'")
-
-#         ###############################
-#         code = hcodes.HTTP_BAD_UNAUTHORIZED
-
-# # DON'T LIKE
-#     #check if user is inside database?
-#         if user in {}:
-#             if p == "test":
-#                 # Authenticate and log in!
-#                 code = hcodes.HTTP_OK_ACCEPTED
-#                 msg = "Logged in"
-#             else:
-#                 msg = "Password is wrong"
-#         else:
-#             msg = "Failed to authenticate"
-
-#         # Server response
-#         app.logger.info("API: " + msg + "\t[code " + code.__str__() + "]")
-#         return msg, code
+# Resources factory: create as many as there are ORM models
+resources = {}
+for (name, data_model) in models.iteritems():
+    if 'Base' in name:
+        continue
+    # Create the new class using the factory
+    new_class = resource_builder(name + "Resource", data_model)
+    # Save it for restful routing inside an array
+    resources[name] = (new_class, data_model.table)

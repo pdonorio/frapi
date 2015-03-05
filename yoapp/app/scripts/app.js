@@ -26,6 +26,7 @@ var myApp = angular.module('yoApp',
     'angularFileUpload',  //uploader for files
   // DEPENCIES: own filters
     'textOperations', //my filters on strings
+    'arrayOperations', //my filters on arrays
   ])
 
   // CONSTANTS
@@ -36,62 +37,12 @@ var myApp = angular.module('yoApp',
   .constant('warningInitTime', 7500)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
-  .constant('someInitTime', 1500)
+  .constant('someInitTime', 1000)
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY
-.controller('SomeController', function($rootScope, $scope, NotificationData, DataResource, currentpageDefault)
+.controller('SomeController', function($scope)
 {
-    $scope.setNotification = function(s,m) {
-      //console.log("Some controller: set notifaction with "+s+","+m);
-      NotificationData.setNotification(s,m);
-    };
-
-
-    // Angular query api
-    DataResource.get("news", 500, currentpageDefault)    // Use the data promise
-      .then(function(data) {  //Success
-          //console.log(data);
-          //do modifications to $scope
-          $scope.news = data.items;
-          $scope.newsNum = data.count;
-      }, function(object) {      //Error
-        console.log("Controller NEWS api call Error");
-        console.log(object);
-      }
-    );
-
-    ///////////////////////////////////////////
-    ///////////////////////////////////////////
-    // Manage news
-    $scope.saveNews = function(data, id) {
-      //$scope.user not updated yet
-      angular.extend(data, {id: id});
-      //API save
-      //return $http.post('/saveUser', data);
-    };
-    // remove user
-    $scope.removeNews = function(index) {
-      $scope.news.splice(index, 1);
-      //API remove
-    };
-    // add user
-    $scope.addNews = function() {
-      $scope.inserted = {
-        id: null, //$scope.news.length+1,
-        date: '',
-        description: '',
-        user: 'paulie',
-      };
-      $scope.news.push($scope.inserted);
-      //API add
-    };
-    // Validate text
-    $scope.checkName = function(data, id) {
-      if (id === 2 && data !== 'awesome') {
-        return "Username 2 should be `awesome`";
-      }
-    };
-    ///////////////////////////////////////////
-
+  $scope.test = 1;
 })
+;

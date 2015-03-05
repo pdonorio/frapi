@@ -10,8 +10,7 @@
 myApp
 .controller('MainController', function ($scope, $rootScope, $timeout, $interval, $location,
     //tester,
-    projectName,
-    DataResource, mixed, warningInitTime, someInitTime, apiTimeout)
+    projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
@@ -29,14 +28,6 @@ myApp
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
 */
-
-    //////////////////////////////////////
-    // editable element via xeditable: init?
-    $scope.edit = {
-        available: true, //ONLY IF ADMIN!!
-        switch: false,
-        state: 1
-    };
     $scope.elements = {};
     //API give me access to HTML content inside database
 
@@ -119,9 +110,7 @@ myApp
 
     //////////////////////////////////////
     // Query api - READ the whole html content
-    var perpage = 1000;
-    DataResource
-        .get("webcontent", perpage, 1)    // Use the data promise
+    API.get("webcontent")
         .then(function(data) {
 
             var tmp = data.items;
@@ -132,10 +121,10 @@ myApp
                     var j = tmp[i].element;
                     $scope.elements[j] = tmp[i];
                 };
-                $scope.edit = {
+                $rootScope.edit = {
                     state: 0,
-                    switch: $scope.edit.switch,
-                    available: $scope.edit.available,
+                    switch: $rootScope.edit.switch,
+                    available: $rootScope.edit.available,
                 };
 
                 //Getting progress closer
@@ -157,7 +146,7 @@ myApp
                 $timeout.cancel(longerThanUsual);
                 $interval.cancel(progressInterval);
                 //disable any admin edit if page loads
-                $scope.edit = { switch: false, state: 1 };
+                $rootScope.edit = { switch: false, state: 1, available: false };
             }
 
         }, function(object) {      //Error? Uhm

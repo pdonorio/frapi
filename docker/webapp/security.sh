@@ -40,7 +40,7 @@ function secure_server {
 
     # Save to future bash use
     #echo "export KEYDBPASS='$key'" >> /etc/profile #/root/.bashrc
-    echo "env KEYDBPASS=\"$key\" nohup python main.py > /root/app.log" > /root/app.sh
+    echo "env KEYDBPASS=\"$key\" nohup python main.py disable > /root/app.log" > /root/app.sh
     #export SECRETKEYAUTH="$key"
 }
 
@@ -49,7 +49,7 @@ secure_server "db"
 # echo $SECRETKEYAUTH
 bash /root/app.sh
 
-# File upload server
+# File upload server - not for now
 nohup python file.py > /root/fileupload.log
 
 # Note to my self:

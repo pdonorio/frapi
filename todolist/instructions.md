@@ -39,21 +39,25 @@ grunt build
 ```
 
 # HOW TO: new resource (api python)
-**to be fixed...**
 
-0. Create new table (inside rethinkdb database, via chateau)
+0. Create new table
+(inside rethinkdb database, e.g. via chateau)
 1. Define a new model inside data_models.py, with table of step 0
-2. Implement Rdb resource inside resources.py with data model of step 1
-3. Define route inside routes.py with resource created in the step 2
-4. Test modifying clients/test_api.sh
+2. Test modifying the script clients/test_api.sh
 
 Angular code to use it:
 ```
-  // Angular query api
-  DataResource.get("webcontent", perpage, currentpage)    // Use the data promise
+  // Angular query api: promise
+  DataResource.get("webcontent"
+    //, perpage, currentpage  //optional
+    )
     .then(function(data) {  //Success
-        console.log(data);
         //do modifications to $scope
+        for (var i = 0; i < data.items.length; i++) {
+          var x = data.items[i];
+          console.log(x);
+        };
+        //console.log(data);
     }, function(object) {      //Error
       console.log("Controller api call Error");
       console.log(object);

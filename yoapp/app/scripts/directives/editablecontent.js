@@ -37,7 +37,7 @@ myApp
 
       /////////////////////////////////////
       //manage the local scope
-      controller: function($scope, $timeout, $location, DataResource, AppConfig, messageTimeout, NotificationData)
+      controller: function($scope, $timeout, $location, API, AppConfig, messageTimeout, NotificationData)
       {
         //check inside the array
         $scope.item = $scope.data[$scope.pos];
@@ -71,13 +71,12 @@ myApp
           };
 
           $scope.item.highlight = false;
-          var msg = "";
-        // API UPDATE ^_^
-          DataResource.set("webcontent", data)
-          .then(function() {
 
-//TO FIX - should this stay inside link function?
-// it works on HTML and DOM
+          /////////////////////
+          // API UPDATE
+          var msg = "";
+          API.set("webcontent", data)
+          .then(function() {
               msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
               NotificationData.setNotification(AppConfig.messageStatus.success, msg);
             }, function() {
@@ -89,6 +88,7 @@ myApp
               NotificationData.setNotification(AppConfig.messageStatus.error, msg);
             }
           );
+          /////////////////////
 
         }
 

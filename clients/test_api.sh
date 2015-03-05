@@ -7,9 +7,14 @@ host=$(boot2docker ip 2> /dev/null) #from host to local docker
 #host="80.240.138.39" #from host to digitalocean
 port=5507
 
+#resource="dump"
 #resource="data"
 #resource="webcontent"
-resource="news"
+#resource="news"
+#resource="steps"
+#resource="stepscontent"
+#resource="stepstemplate"
+resource="myidprovider"
 
 #############################################
 # BUILD TEST
@@ -18,32 +23,36 @@ resource="news"
 # exit
 
 #############################################
-# TO CHECK later on:
-
-# ## AUTH
-# # test access to /login
-# echo "***\nAUTH"
-# auth="user=admin&password=passworda"
-# #values="$auth&key=user&value=test"
-# key=`$cmd $protocol://$host:$port/login -d $auth -X POST ` # -v # verbose
-# echo "received response '$key'"
-
-# exit 1
+## TIME TEST
+# #REMOVE ME
+# #values="published=0&request_time=Wed,+04+Mar+2015+21:27:18+GMT&user=admin"
+# values="published=0&request_time=1425570333826&user=admin"
+# #values="published=0&request_time=2015-03-04T21:08:38.504Z&user=admin"
+# key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
+# echo "received '$key'"
+# exit
+# #REMOVE ME
 
 #############################################
 #PAGING and simple test
 echo "***\nPaging"
-values="perpage=7&currentpage=1"
+# Array testing
+values="perpage=6&currentpage=1"
+#values='currentpage=1&perpage=999&recordid=aefd6289-d192-4ff9-9d7d-acd522203979&step=2'
 key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
 echo "received '$key'"
-exit
+exit;
 
 #############################################
 #ADD a new element
 echo "***\nINSERT"
-values="date=12-01-2014&description=test&user=paulie"
+#values="step=1&position=2&type=select&field=Titolo&extra=testingapi"
+#values="step=1&element=1&type=number&content=checkingMyTests!&label=titolo"
+values="arr=el1&step=2&arr=el2&user=paulie&date=test"
+#values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
+exit;
 
 #############################################
 #ADD a new element forcing the key
@@ -85,3 +94,16 @@ put=`$cmd $protocol://$host:$port/$resource/$id -d "$values" -X PUT `
 echo "TESTED put *$put*"
 
 echo "***\n\nDONE"
+
+#############################################
+# TO CHECK later on:
+
+# ## AUTH
+# # test access to /login
+# echo "***\nAUTH"
+# auth="user=admin&password=passworda"
+# #values="$auth&key=user&value=test"
+# key=`$cmd $protocol://$host:$port/login -d $auth -X POST ` # -v # verbose
+# echo "received response '$key'"
+
+# exit 1

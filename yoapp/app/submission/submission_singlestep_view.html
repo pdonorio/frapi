@@ -1,0 +1,69 @@
+<div>
+ <article ng-class="{'blur': current != step}" >
+
+  <div class="panel" ng-class="{'shad': current == step, 'panel-default': current != step}">
+
+    <div class="panel-heading">
+      <h4> Step
+        <span ng-if='current > step'>precedente</span>
+        <span ng-if='current < step'>successivo</span>
+        [{{step}}]:
+        <i>{{name | ucFirst}}</i>
+      </h4>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-hide='data'>
+        <h4> <i class="fa fa-refresh fa-spin"></i> in caricamento </h4>
+      </div>
+
+      <div ng-show='data && !data[0]'>
+        <b>Questo step non è ancora stato configurato...</b>
+      </div>
+
+     <!-- Form for Normal insert user (OPERATOR)-->
+      <form editable-form name="myform" ng-show='data' onaftersave="saveStep()" >
+
+       <!-- editable username (text with validation) -->
+       <table ng-class="{'table': current == step}">
+        <!-- <thead> <tr> <th>Colonna</th> <th>Valore</th> </tr> </thead> -->
+        <tbody>
+          <!-- repeat with sort on key 'pos' -->
+          <tr ng-repeat="(pos,obj) in data" ng-if='obj.key' >
+              <th class='title'> {{ (obj.key | ucFirst) || 'empty'}} </th>
+              <td ng-show='current != step'>&nbsp;</td>
+              <td editable-text="data[pos].value" e-name="name" e-size='40'
+                e-placeholder='Inserisci un valore'>
+                {{obj.value|| 'empty'}}
+              </td>
+          </tr>
+        </tbody>
+       </table>
+
+        <!-- based on current and the step of this directive -->
+        <div class="buttons" ng-show="current == step && data[0]">
+          <!-- button to show form -->
+          <button type="button" class="btn btn-default" ng-click="myform.$show()"
+            ng-show="!myform.$visible">
+            Edit
+          </button>
+          <!-- buttons to submit / cancel form -->
+          <span ng-show="myform.$visible">
+            <button type="submit" class="btn btn-primary" ng-disabled="myform.$waiting">
+              Save
+            </button>
+            <button type="button" class="btn btn-default" ng-disabled="myform.$waiting"
+              ng-click="myform.$cancel()">
+              Cancel
+            </button>
+          </span>
+        </div>
+
+      </form>
+
+    </div>  <!-- end of panel body -->
+  </div> <!-- end of panel -->
+
+ </article>
+</div>

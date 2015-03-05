@@ -1,0 +1,84 @@
+<div class="container-fluid">
+
+ <!-- ADMIN USER - EDIT MODE -->
+ <!-- ADMIN USER - EDIT MODE -->
+ <div class="row" ng-show='edit.switch'>
+    <form editable-form name="stepsForm" onaftersave="saveSteps()">
+     <div ng-include="'submission/submission_admin_view.html'"></div>
+    </form>
+ </div>
+<!-- CHANGE ME -->
+ <!-- ADMIN USER - EDIT MODE -->
+ <!-- ADMIN USER - EDIT MODE -->
+
+ <!-- NORMAL USER - INSERT MODE -->
+ <div class="row" ng-hide='edit.switch'>
+
+  <!-- this is used to get the CSS3 blur -->
+  <div class="ib-container" id="ib-container">
+
+    <!-- STEP LIST -->
+    <div class="col-md-3 col-xs-3">
+
+      <div class="list-group">
+        <!-- HEADER -->
+        <a class="list-group-item peach" ng-if="id == 'new'">
+          <h4 class='dtext'> Inserimento </h4>
+        </a>
+        <a class="list-group-item disabled" ng-if="id != 'new'">
+          <h4 class='dtext'> Modifica </h4>
+
+<!-- SHOULD ADD 'draft' IF NOT PUBLISHED YET -->
+          <b>Record</b> <span class="label label-info">
+            {{ myrecordid | limitTo:8}} </span>
+        </a>
+
+        <!-- STEPS -->
+        <a href class="list-group-item" ng-repeat='(step,name) in steps'
+          ng-if='name != null'
+          ng-click="broadcastStep(step)" ng-class="{'orange': step == current}">
+          <!-- name -->
+          {{name | ucFirst}}
+          <!-- badge -->
+          <span class="badge"> {{step}} </span>
+        </a>
+
+        <!-- UPLOADER -->
+        <a href="" class="list-group-item"
+          ng-click="broadcastStep(steps.length)" ng-class="{'orange': steps.length == current}">
+          <span class="badge">{{steps.length}}</span> Upload
+        </a>
+
+      </div>
+    </div>
+
+    <div ng-show="myrecordid == 'new'">
+        <div class='panel'>
+            <div class='panel-header'>
+                <h4> <i class="fa fa-refresh fa-spin"></i> Generando una nuova bozza </h4>
+            </div>
+            <div class='panel-body'>
+                Attendere prego...
+            </div>
+        </div>
+    </div>
+
+    <div ng-hide="myrecordid == 'new'">
+        <!-- MAIN BODY of USER SUBMISSION -->
+        <div class="col-md-9 col-xs-9">
+          <!-- Make sure of at least one element selected -->
+          <div ng-hide='current'>
+            Seleziona un elemento nel menu laterale
+          </div>
+
+          <!-- A new view for ajax calls -->
+          <div ui-view="singlestep"></div>
+
+        </div>
+    </div>
+
+  <!-- BLUR div -->
+  </div>
+ </div> <!-- row -->
+
+</div>
