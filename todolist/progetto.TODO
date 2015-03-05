@@ -70,7 +70,7 @@ Bugs:
       ☐ via baseimage
         ☐ https://github.com/phusion/baseimage-docker#login_ssh
 
- Steps:
+Steps:
   ✔ Steps @done (15-02-28 16:57)
       ✔ Load from API @done (15-02-06 17:23)
       ✔ A div for no data loaded? @done (15-02-07 09:49)
@@ -128,7 +128,10 @@ Bugs:
                     ✔ very simple: save a new data and get id to use (e.g. user and date) @done (15-03-02 17:16)
                       ✔ Use the promise to handle the provider @done (15-03-02 19:54)
                       ☐ datetime from JS to Python API.... @lastbeforepull
-                        ☐ resources.py:121
+                        ☐ timestamp?
+                          ☐ datetime.fromtimestamp('1321463229215') PYTHON
+                          ☐ docker time sync http://stackoverflow.com/a/24568137
+                          ☐ boot2docker http://log.axcoto.com/article/164442905
                       ✔ how (where) to save correctly id inside the page @done (15-03-03 17:22)
                         ✔ do not load a new one if changing the current step @done (15-03-03 17:22)
                       ✔ use recordid to recover data @done (15-03-03 17:22)
@@ -139,10 +142,6 @@ Bugs:
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
 
-    ☐ A mock User model
-      ☐ across the project to share the current user
-      ☐ list of user drafts @cool
-        ☐ by identifiers inside the api provider
     ☐ Use step type to define html element in the step editor
     ☐ What about the difference from "new" and "edit" step....
       ☐ use hash (first 8 chars) of the rethinkdb id?
@@ -160,6 +159,11 @@ Bugs:
     ☐ Better backups
       ☐ each day clean main folder
       ☐ but save first the last folder of backup into "backup/"
+
+    ☐ A mock User model
+      ☐ across the project to share the current user
+      ☐ list of user drafts @cool
+        ☐ by identifiers inside the api provider
 
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft

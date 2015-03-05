@@ -12,15 +12,25 @@ port=5507
 #resource="webcontent"
 #resource="news"
 #resource="steps"
-resource="stepscontent"
+#resource="stepscontent"
 #resource="stepstemplate"
-#resource="myidprovider"
+resource="myidprovider"
 
 #############################################
 # BUILD TEST
 # echo "***\nFULL LIST"
 # $cmd $protocol://$host:$port/$resource
 # exit
+
+#############################################
+## TIME TEST
+#REMOVE ME
+# values="published=0&request_time=Wed,+04+Mar+2015+21:27:18+GMT&user=admin"
+# #values="published=0&request_time=2015-03-04T21:08:38.504Z&user=admin"
+# key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
+# echo "received '$key'"
+# exit
+#REMOVE ME
 
 #############################################
 #PAGING and simple test

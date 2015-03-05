@@ -7,6 +7,8 @@ My python experiments with rethinkdb
 
 # === Libraries ===
 import os
+import time
+import datetime as dt
 
 # Connection structure and rethink libraries
 from bpractices.connections import Connection
@@ -260,9 +262,28 @@ class RethinkConnection(Connection):
                 del data_dict[i]
         return data_dict
 
+    #http://rethinkdb.com/docs/cookbook/python/#storing-timestamps-and-json-date-strings-as-t
+    def get_time(self, string):
+        """ Get timezone and set the received time to rdb object """
+        # Time makes us real
+        try:
+            # Convert to python from natural javascript time...
+            d = dt.datetime.strptime(string, "%a, %d %b %Y %H:%M:%S %Z")
+            # Timezone https://docs.python.org/2/library/time.html#time.timezone
+            timezone = time.strftime("%z")
+            tmz = timezone[:3] + ":" + timezone[3:]
+            dformat = "%Y-%m-%dT%H:%M:%S" + tmz
+            datevalue = d.strftime(dformat).__str__()
+            # Convert directly to rdb time
+            return r.iso8601(datevalue) #.to_iso8601()
+        except TypeError:
+            self.log.debug("Failed converting time '" + string + "'")
+        return string
+
+
     # === Insert ===
     @check_model
-    @TryExcept("DB table does not exist", RqlRuntimeError)
+    @TryExcept("Failed to insert data inside DB", RqlRuntimeError)
     def insert(self, data_dict, force_id=None):
         """ Data insert in a table/collection
         Note: rdb cannot take the id value inside the whole data.
@@ -276,9 +297,16 @@ class RethinkConnection(Connection):
         # Some options are used only as parameters and should not be saved
         data = self.remove_options(data_dict)
 
+        # Time check
+        for key, value in data.iteritems():
+            if '_time' in key and value != None:
+                data[key] = self.get_time(value)
+
         # Skip if empty
         if data.__len__() < 1:
             return self
+
+        print "TEST ", data
 
         # Save data inside the choosed model
         model_data = self.model(**data)

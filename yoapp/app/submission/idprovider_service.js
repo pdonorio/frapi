@@ -20,7 +20,7 @@ myApp
         if (url == 'new') {
             var params = {
                 user: user,
-                request_time: new Date(),
+                request_time: new Date().toUTCString(),
                 published: 0,
             };
             // Save a new document and get the id
