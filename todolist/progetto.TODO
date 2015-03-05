@@ -111,7 +111,7 @@ Steps:
                 ✔ Add timestamp save of any insert / update to my nosql tables @done (15-03-05 17:16)
 
 StepsAdmin:
-  ☐ The type!
+  ☐ The type is the center key
     ☐ Use step type to define html element in the step editor
   ☐ What about the difference from "new" and "edit" step....
     ☐ use hash (first 8 chars) of the rethinkdb id?
