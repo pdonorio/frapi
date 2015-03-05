@@ -111,36 +111,45 @@ Steps:
                 ✔ Add timestamp save of any insert / update to my nosql tables @done (15-03-05 17:16)
 
 StepsAdmin:
+  ☐ The type!
     ☐ Use step type to define html element in the step editor
-    ☐ What about the difference from "new" and "edit" step....
-      ☐ use hash (first 8 chars) of the rethinkdb id?
+  ☐ What about the difference from "new" and "edit" step....
+    ☐ use hash (first 8 chars) of the rethinkdb id?
+      ☐ any function to convert?
+      ☐ search rethinkdb short hash
     ☐ A new view when edit on
       ✔ dark background @done (15-02-11 07:46)
+      ✔ Edit step contents @done (15-03-05 17:22)
+        ✔ one piece at the time @done (15-03-05 17:22)
       ☐ modal? i have an example
       ☐ step list on the side
       ☐ step editing on the other side
-      ☐ Edit step name on one line
-      ☐ Edit step contents
-        ☐ one piece at the time
-    ☐ Indexes python
-      ☐ Multiple order by
-      ☐ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...])
-    ☐ Better backups
-      ☐ each day clean main folder
-      ☐ but save first the last folder of backup into "backup/"
+        ☐ Edit step name on one line
+    ✘ Indexes python @cancelled (15-03-05 17:22)
+      ✘ Multiple order by workaround @cancelled (15-03-05 17:22)
+        ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
 
+SomeMore:
     ☐ A mock User model
       ☐ across the project to share the current user
       ☐ list of user drafts @cool
         ☐ by identifiers inside the api provider
 
+    ☐ Better backups
+      ☐ cron daily
+        ☐ move latest folder to backup/
+        ☐ clean main data folder from saved data
+
   ☐ Upload and transcriptions
     ☐ Create a new upload folder for any new draft
+      ☐ cron daily to remove what has not used for at least 24 hours
     ☐ Zoomify image via API
+      ☐ argh: command?
     ☐ Upload only images
     ☐ If already exists go to error via notify
       ☐ if goes to already exists, disable upload button
     ☐ share folder of uploaded files for thumbnails?
+
     ☐ Last step is transciptions
       ☐ list the images
       ☐ associate one or more transcriptions
