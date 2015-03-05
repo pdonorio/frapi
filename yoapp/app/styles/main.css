@@ -246,6 +246,9 @@ My own extra
   -moz-border-radius: 0.2em;
   border-radius: 0.2em;
 }
+.mybold {
+    font-weight: bold;
+}
 .headcolor {
   color: #002C42;
 }

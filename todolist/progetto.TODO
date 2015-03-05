@@ -111,13 +111,15 @@ Steps:
                 ✔ Add timestamp save of any insert / update to my nosql tables @done (15-03-05 17:16)
 
 StepsAdmin:
+  ✔ Reenable switch edit @done (15-03-05 21:29)
+    ✔ it was only for new step @done (15-03-05 21:29)
+    ✔ Change edit on/off button with bootstrap group button ? @done (15-03-05 21:29)
   ☐ The type is the center key
     ☐ Use step type to define html element in the step editor
-  ☐ What about the difference from "new" and "edit" step....
-    ☐ use hash (first 8 chars) of the rethinkdb id?
-      ☐ any function to convert?
-      ☐ search rethinkdb short hash
-    ☐ A new view when edit on
+  ☐ use hash (first 8 chars) of the rethinkdb id?
+    ☐ any function to convert?
+    ☐ search rethinkdb short hash
+  ☐ A new view when edit on
       ✔ dark background @done (15-02-11 07:46)
       ✔ Edit step contents @done (15-03-05 17:22)
         ✔ one piece at the time @done (15-03-05 17:22)
@@ -201,7 +203,6 @@ remodel:
 Dev Release:
     ☐ ASK FOR Welcome page french text @last
       ☐ WAITING!
-    ☐ Change edit on/off button with bootstrap group button ?
     ☐ Progress page & resource
       ☐ to keep track of what we are doing
       ☐ with comments on the side?

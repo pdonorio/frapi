@@ -83,19 +83,11 @@ myApp
             controller: 'SubmissionController',
           },
         },
-        onEnter: function($rootScope, $stateParams) {
+        onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          if ($stateParams.myId == 'new') {
-            if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
-          } else {
-            $rootScope.$emit('rootScope:emit', 'editoff');
-          }
-        }, onExit: function($rootScope, $stateParams){
-          if ($stateParams.myId == 'new') {
-            if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
-          } else {
-            $rootScope.$emit('rootScope:emit', 'editon');
-          }
+          if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
+        }, onExit: function($rootScope){
+          if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
         },
         // Be sure to have data before loading the page
         resolve: {
