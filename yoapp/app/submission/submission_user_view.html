@@ -1,16 +1,5 @@
 <div class="container-fluid">
 
- <!-- ADMIN USER - EDIT MODE -->
- <!-- ADMIN USER - EDIT MODE -->
- <div class="row" ng-show='edit.switch'>
-    <form editable-form name="stepsForm" onaftersave="saveSteps()">
-     <div ng-include="'submission/submission_admin_view.html'"></div>
-    </form>
- </div>
-<!-- CHANGE ME -->
- <!-- ADMIN USER - EDIT MODE -->
- <!-- ADMIN USER - EDIT MODE -->
-
  <!-- NORMAL USER - INSERT MODE -->
  <div class="row" ng-hide='edit.switch'>
 
@@ -19,13 +8,12 @@
 
     <!-- STEP LIST -->
     <div class="col-md-3 col-xs-3">
-
       <div class="list-group">
         <!-- HEADER -->
-        <a class="list-group-item peach" ng-if="id == 'new'">
-          <h4 class='dtext'> Inserimento </h4>
+        <a class="list-group-item peach" ng-if="myrecordid == 'new'">
+          <h4 class='dtext'> Procedura di inserimento </h4>
         </a>
-        <a class="list-group-item disabled" ng-if="id != 'new'">
+        <a class="list-group-item disabled" ng-if="myrecordid != 'new'">
           <h4 class='dtext'> Modifica </h4>
 
 <!-- SHOULD ADD 'draft' IF NOT PUBLISHED YET -->
@@ -44,20 +32,22 @@
         </a>
 
         <!-- UPLOADER -->
-        <a href="" class="list-group-item"
-          ng-click="broadcastStep(steps.length)" ng-class="{'orange': steps.length == current}">
+        <a href="" class="list-group-item" ng-hide="myrecordid == 'new'"
+          ng-click="broadcastStep(steps.length)"
+          ng-class="{'orange': steps.length == current}">
           <span class="badge">{{steps.length}}</span> Upload
         </a>
 
       </div>
     </div>
 
-    <div ng-show="myrecordid == 'new'">
-        <div class='panel'>
-            <div class='panel-header'>
-                <h4> <i class="fa fa-refresh fa-spin"></i> Generando una nuova bozza </h4>
+    <div ng-show="myrecordid == 'new'" class='col-md-8 col-xs-8'>
+        <div class='panel panel-warning'>
+            <div class='panel-heading'>
+                <h4> Generando una nuova bozza </h4>
             </div>
             <div class='panel-body'>
+                <i class="fa fa-refresh fa-spin"></i>
                 Attendere prego...
             </div>
         </div>

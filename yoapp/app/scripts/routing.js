@@ -29,9 +29,10 @@ myApp
       url: "/app",
       // Set the current user for the whole application
       resolve: {
-        user: function() {
-            var user = 'admin';
+        user: function($rootScope) {
+            var user = {name: 'admin'};
             console.log("Current user: ", user);
+            $rootScope.username = user.name;
             // TO FIX with User model
             return user;
         },
@@ -81,11 +82,22 @@ myApp
           "contain": {
             templateUrl: 'submission/submission_user_view.html',
             controller: 'SubmissionController',
+          },"admin": {
+            templateUrl: 'submission/submission_admin_view.html',
+            controller: 'SubmissionAdminController',
+            //controller: 'SubmissionController',
           },
         },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
           if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
+
+/*** REMOVE ME **/
+//DEBUG
+          $rootScope.switchEdit(true);
+//DEBUG
+/*** REMOVE ME **/
+
         }, onExit: function($rootScope){
           if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
         },

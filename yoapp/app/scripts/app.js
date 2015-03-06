@@ -37,6 +37,7 @@ var myApp = angular.module('yoApp',
   .constant('warningInitTime', 7500)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
+  // use more time to load the page
   .constant('someInitTime', 1000)
 
 /////////////////////////////////////////

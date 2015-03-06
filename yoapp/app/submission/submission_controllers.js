@@ -6,15 +6,14 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
-    $rootScope, $scope, $state, $stateParams, $filter, $timeout,
-    user, NotificationData, AppConfig, StepList, draft)
+    $scope, $state, $stateParams, $timeout,
+    NotificationData, AppConfig, StepList, draft)
 {
 
     ////////////////////////////////
     // Do not start with a current value as default
     // Let the URL decide
     $scope.current = null;
-    $scope.currentuser = user;
 
     ////////////////////////////////
     // STEPS (list) EDITABLE
@@ -77,10 +76,12 @@ myApp
 
     // 2. Switch to edit of the new dratf + step 1 (default if not set)
     if (draft !== null) {
+
         $timeout( function() {
             $state.go('logged.submission.step', { myId: draft});
 // TO FIX -
-        }, 1800);
+        }, 1600);
+
     } else {
 
         //////////////////////////////////////////////
@@ -103,6 +104,12 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+.controller('SubmissionAdminController', function ($scope) {
+    console.log($scope.username);
+})
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 .controller('StepController', function ($scope, $stateParams)
 {
     $scope.setStep($stateParams.stepId);
@@ -115,8 +122,7 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
-    $rootScope, $scope, $timeout,
-    directiveTimeout, NotificationData, AppConfig,
+    $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
     StepTemplate, StepContent, IdProvider)
 {
 
@@ -199,7 +205,7 @@ myApp
 
         // Try to save data. Also this has to be a promise
         // if i want to handle notification at this level
-        $scope.contentData.setData($scope.data, $scope.user, $scope.identifier)
+        $scope.contentData.setData($scope.data, $scope.username, $scope.identifier)
          .then(function(success) {
             if (success) {
                 $timeout( function() {

@@ -116,9 +116,9 @@ StepsAdmin:
     ✔ Change edit on/off button with bootstrap group button ? @done (15-03-05 21:29)
   ☐ The type is the center key
     ☐ Use step type to define html element in the step editor
-  ☐ use hash (first 8 chars) of the rethinkdb id?
-    ☐ any function to convert?
-    ☐ search rethinkdb short hash
+  ✔ use hash (first 8 chars) of the rethinkdb id? @done (15-03-05 21:45)
+    ✘ any function to convert? @cancelled (15-03-05 21:45)
+    ✘ search rethinkdb short hash @cancelled (15-03-05 21:45)
   ☐ A new view when edit on
       ✔ dark background @done (15-02-11 07:46)
       ✔ Edit step contents @done (15-03-05 17:22)
@@ -127,9 +127,19 @@ StepsAdmin:
       ☐ step list on the side
       ☐ step editing on the other side
         ☐ Edit step name on one line
+  ☐ If not published
+    ☐ signal draft in submission/edit
     ✘ Indexes python @cancelled (15-03-05 17:22)
       ✘ Multiple order by workaround @cancelled (15-03-05 17:22)
         ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
+  ☐ Some clean pattern image repaeat as background
+
+DebugMode:
+ ☐ Feedback button
+ ☐ inside profile menu
+   ☐ Fires a modal
+   ☐ Feedback saved inside rdb api resource
+     ☐ on change of table, python sends me an email
 
 SomeMore:
     ☐ A mock User model

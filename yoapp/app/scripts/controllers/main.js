@@ -108,6 +108,9 @@ myApp
     var timeStep = apiTimeout / intervalStep;
     var progressInterval = $interval(function() { $scope.progress.value += secondsStep; }, timeStep);
 
+// TO FIX - this should go in a separate service
+    // and loaded inside routing
+
     //////////////////////////////////////
     // Query api - READ the whole html content
     API.get("webcontent")

@@ -10,20 +10,19 @@
 
           <!-- Edit MODE button / ONLY FOR ADMIN! -->
           <ul class="nav navbar-nav navbar-left" ng-hide="!edit.available">
-              <li>
-                <div style='padding-top:10px; padding-left:25px;'>
-                  EditMode:
-                  <div class="btn-group btn-group-sm" role="group" aria-label="admin edit switch">
-                    <button type="button" class="btn btn-default"
-                        ng-click='switchEdit(true)'
-                        ng-class="{'disabled': edit.switch, 'mybold': !edit.switch}"
-                        >On</button>
-                    <button type="button" class="btn btn-default"
-                        ng-click='switchEdit(false)'
-                        ng-class="{'disabled': !edit.switch, 'mybold': edit.switch}">Off</button>
-                  </div>
+            <li>
+              <div style='padding-top:10px; padding-left:25px;'>
+                EditMode:
+                <div class="btn-group btn-group-sm" role="group">
+                  <button type="button" class="btn btn-default"
+                    ng-class="{'disabled': edit.switch, 'mybold': !edit.switch}"
+                    ng-click='switchEdit(true)' >On</button>
+                  <button type="button" class="btn btn-default"
+                    ng-class="{'disabled': !edit.switch, 'mybold': edit.switch}"
+                    ng-click='switchEdit(false)' >Off</button>
                 </div>
-              </li>
+              </div>
+            </li>
           </ul>
 
           <!-- Main menu -->

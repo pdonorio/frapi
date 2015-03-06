@@ -10,6 +10,7 @@
     <notify></notify>
     <!-- MAIN VIEW (see views/ directory) -->
     <div ui-view="contain"></div>
+    <div ui-view="admin" ng-show='edit.switch'></div>
     <div ui-view="extra" ng-hide='edit.switch'></div>
 </div>
 <!-- No Footer -->
