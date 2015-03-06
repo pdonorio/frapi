@@ -39,6 +39,7 @@
         <button type='button' class="btn btn-default" ng-click="addStep()" ng-disabled="stepsForm.$waiting">
           <i class="fa fa-plus"></i>
         </button>
+<!--
         <button type="submit" class="btn btn-success" ng-disabled="stepsForm.$waiting"
           ng-click='edit.switch = false;' ng-show='steps'>
           <i class="fa fa-floppy-o"></i>
@@ -47,6 +48,7 @@
           ng-click="undoSteps(); edit.switch = false;" ng-show='steps'>
           <i class="fa fa-times"></i>
         </button>
+-->
       </span>
     </a>
 
@@ -59,14 +61,24 @@
  <form editable-form name="myform" onaftersave="doSomethingToSave()">
  <div class='panel whitecard'>
     <div class='panel-heading'>
-      <h3>Work in progress</h3>
+     <h3>
+      <span ng-hide='current'> Work in progress </span>
+      <span ng-show='current'>
+        Step {{current}}:
+        <!-- make editable -->
+        {{steps[current]}}
+      </span>
+     </h3>
     </div>
     <div class='panel-body'>
       <div ng-hide='current'>
           Seleziona nel menu uno <b>Step</b> da modificare.<br>
       </div>
       <div ng-show='current'>
-          Step corrent {{current}}
+        Modifica nome step<br>
+        Cancella step<br>
+        Lista tipi<br>
+
       </div>
     </div>
   </div>

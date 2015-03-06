@@ -16,40 +16,6 @@ myApp
     $scope.current = null;
 
     ////////////////////////////////
-    // STEPS (list) EDITABLE
-
-    // Init
-    $scope.steps = [];
-    $scope.stepsCopy = [];
-    var closingAction = function() {
-        $state.go('logged.submission');
-    }
-    $scope.undoSteps = function() {
-        // Recover the array copied
-        $scope.steps = angular.copy($scope.stepsCopy);
-        // Abort the current form
-        $scope.stepsForm.$cancel();
-        closingAction();
-    };
-    $scope.saveSteps = function() {
-        console.log("Call me to save");
-        // Note to self:
-        // i should reload the view which shows the step contents!
-        $state.go('logged.submission');
-    }
-    $scope.removeStep = function(index) {
-        $scope.steps.splice(index, 1);
-    };
-    $scope.addStep = function() {
-        var newStep = {
-          id: null,
-          step: $scope.steps.length + 1,
-          label: 'nuovo',
-        };
-        $scope.steps.push(newStep);
-    };
-
-    ////////////////////////////////
     // STEPS as a parameter for the whole view
     //define step on click
     $scope.broadcastStep = function(step) {
@@ -109,6 +75,21 @@ myApp
     //console.log($scope.username);
     if ($scope.username != 'admin')
         return false;
+    // StepList (side navbar)
+    var stepObj = StepList.build();
+    $scope.steps = [];
+    stepObj.getData().then(function(out) {
+        //console.log("List");
+        $scope.steps = out;
+        console.log($scope.steps);
+        //$scope.stepsNum = Object.keys($scope.stepsData).length;
+        $scope.stepsNum = $scope.steps.length;
+    });
+
+
+    ////////////////////////////////
+    // STEPS (list) EDITABLE
+    $scope.newsteps = 1;
     //define step on click
     $scope.setStep = function(step) {
         if (step == $scope.current)
@@ -116,14 +97,36 @@ myApp
         $scope.current = step;
         console.log("Step",step);
     }
-    // StepList (side navbar)
-    var stepObj = StepList.build();
-    stepObj.getData().then(function(out) {
-        //console.log("List");
-        $scope.steps = out;
-        //$scope.stepsNum = Object.keys($scope.stepsData).length;
-        $scope.stepsNum = $scope.steps.length;
-    });
+    $scope.addStep = function() {
+        var label = 'nuovo_' + $scope.newsteps++;
+        // Add step
+        $scope.steps.push(label);
+        // Select the step right after
+        $scope.current = $scope.steps.length - 1;
+    };
+
+////////////////////
+/*
+    $scope.removeStep = function(index) {
+        $scope.steps.splice(index, 1);
+    };
+    $scope.saveStep = function() {
+        console.log("Call me to save");
+        // Note to self:
+        // i should reload the view which shows the step contents!
+        $state.go('logged.submission');
+    }
+
+    // ????
+    $scope.stepsCopy = [];
+    $scope.undoSteps = function() {
+        // Recover the array copied
+        $scope.steps = angular.copy($scope.stepsCopy);
+        // Abort the current form
+        $scope.stepsForm.$cancel();
+        closingAction();
+    };
+*/
 })
 
 //////////////////////////////////////////////////////////////
