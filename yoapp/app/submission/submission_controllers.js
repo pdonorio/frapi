@@ -72,7 +72,11 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminController', function ($scope, $state, StepList)
 {
-    //console.log($scope.username);
+
+//DEBUG
+    $scope.current = 2;
+//DEBUG
+
     if ($scope.username != 'admin')
         return false;
     // StepList (side navbar)
@@ -103,13 +107,23 @@ myApp
         $scope.steps.push(label);
         // Select the step right after
         $scope.current = $scope.steps.length - 1;
+        // API save?
     };
-
-////////////////////
-/*
     $scope.removeStep = function(index) {
+// Are you really sure?
+// Are you really sure?
+
+        // Remove from array
         $scope.steps.splice(index, 1);
+        // Unselect steps in list
+        $scope.current = null;
+
+        // API PROMISE CHAINING
+        // 1. Remove from API the step
+        // 2. Remove from API steptemplate
+        // 3. Remove from API stepcontent
     };
+/*
     $scope.saveStep = function() {
         console.log("Call me to save");
         // Note to self:

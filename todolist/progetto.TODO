@@ -124,12 +124,16 @@ StepsAdmin:
       ✘ modal? i have an example @cancelled (15-03-06 15:42)
       ✔ step list on the side @done (15-03-06 15:42)
       ✔ step editing on the other side @done (15-03-06 15:42)
-        ☐ Edit step name on first line
-      ☐ check buttons
+      ✔ check buttons @done (15-03-06 16:03)
+      ☐ Step name
+        ☐ edit and delete step
+        ☐ api commit
   ☐ The type is the center key
     ☐ Use step type to define html element in the step editor
   ☐ If not published
     ☐ signal draft in submission/edit
+  ☐ Resort steps numbers with drag and drop?? @ohboy
+  ☐ REMOVE DEBUG in routing
     ✘ Indexes python @cancelled (15-03-05 17:22)
       ✘ Multiple order by workaround @cancelled (15-03-05 17:22)
         ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
