@@ -104,8 +104,20 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope) {
-    console.log($scope.username);
+.controller('SubmissionAdminController', function ($scope, StepList)
+{
+    //console.log($scope.username);
+    if ($scope.username != 'admin')
+        return false;
+
+    // StepList (side navbar)
+    var stepObj = StepList.build();
+    stepObj.getData().then(function(out) {
+        //console.log("List");
+        $scope.steps = out;
+        //$scope.stepsNum = Object.keys($scope.stepsData).length;
+        $scope.stepsNum = $scope.steps.length;
+    });
 })
 
 //////////////////////////////////////////////////////////////

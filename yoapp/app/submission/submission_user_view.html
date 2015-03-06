@@ -22,8 +22,8 @@
         </a>
 
         <!-- STEPS -->
-        <a href class="list-group-item" ng-repeat='(step,name) in steps'
-          ng-if='name != null'
+        <a href class="list-group-item"
+          ng-repeat='(step,name) in steps' ng-if='name != null'
           ng-click="broadcastStep(step)" ng-class="{'orange': step == current}">
           <!-- name -->
           {{name | ucFirst}}
