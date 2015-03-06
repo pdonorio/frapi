@@ -13,7 +13,7 @@
     <!-- STEPS -->
     <a href class="list-group-item"
       ng-repeat='(step,name) in steps' ng-if='name != null'
-      ng-click="broadcastStep(step)" ng-class="{'orange': step == current}">
+      ng-click="setStep(step)" ng-class="{'orange': step == current}">
       <!-- step edit -->
       <span editable-number="step" e-min="1" ng-show="stepsForm.$visible" e-required>
         Step
@@ -62,7 +62,12 @@
       <h3>Work in progress</h3>
     </div>
     <div class='panel-body'>
-      Seleziona nel menu uno <b>Step</b> da modificare.<br>
+      <div ng-hide='current'>
+          Seleziona nel menu uno <b>Step</b> da modificare.<br>
+      </div>
+      <div ng-show='current'>
+          Step corrent {{current}}
+      </div>
     </div>
   </div>
  </form>

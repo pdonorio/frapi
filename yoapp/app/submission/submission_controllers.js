@@ -104,12 +104,18 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope, StepList)
+.controller('SubmissionAdminController', function ($scope, $state, StepList)
 {
     //console.log($scope.username);
     if ($scope.username != 'admin')
         return false;
-
+    //define step on click
+    $scope.setStep = function(step) {
+        if (step == $scope.current)
+            return;
+        $scope.current = step;
+        console.log("Step",step);
+    }
     // StepList (side navbar)
     var stepObj = StepList.build();
     stepObj.getData().then(function(out) {
