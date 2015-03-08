@@ -70,36 +70,45 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope, $state, StepList)
+.controller('SubmissionAdminController', function ($scope, $state, StepList, ADMIN_USER)
 {
 
 //DEBUG
     $scope.current = 2;
 //DEBUG
 
-    if ($scope.username != 'admin')
+    // Stop unwanted user
+    if ($scope.username != ADMIN_USER)
         return false;
+    $scope.myelement = null;
+
     // StepList (side navbar)
     var stepObj = StepList.build();
     $scope.steps = [];
     stepObj.getData().then(function(out) {
         //console.log("List");
         $scope.steps = out;
-        console.log($scope.steps);
-        //$scope.stepsNum = Object.keys($scope.stepsData).length;
+        //console.log($scope.steps);
         $scope.stepsNum = $scope.steps.length;
+        $scope.myelement = angular.copy($scope.steps[$scope.current]);
     });
 
 
     ////////////////////////////////
     // STEPS (list) EDITABLE
     $scope.newsteps = 1;
+
     //define step on click
     $scope.setStep = function(step) {
+        $scope.snameform.$cancel();
         if (step == $scope.current)
             return;
         $scope.current = step;
         console.log("Step",step);
+    }
+    $scope.saveStepName = function() {
+        console.log("Save");
+        //console.log($scope.steps[$scope.current]);
     }
     $scope.addStep = function() {
         var label = 'nuovo_' + $scope.newsteps++;

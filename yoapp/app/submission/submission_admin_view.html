@@ -1,6 +1,5 @@
 
 <div class="col-md-3 col-xs-3">
- <form editable-form >
 
   <div class="list-group">
     <!-- HEADER -->
@@ -18,7 +17,6 @@
         <span class="badge"> {{step}} </span>
         <!-- name -->
         {{ (name | ucFirst) || 'empty'}}
-      </span>
     </a>
 
     <a href="" class="list-group-item">
@@ -38,28 +36,37 @@
 
 <div class="col-md-6 col-xs-6" ng-show='steps'>
  <!-- Form for ADMIN USER -->
- <form editable-form name="myform" onaftersave="doSomethingToSave()">
+
  <div class='panel whitecard'>
     <div class='panel-heading'>
+
      <h3>
+
       <span ng-hide='current'> Work in progress </span>
       <span ng-show='current'>
         Step {{current}}:
         <!-- make editable -->
-        {{steps[current]}}
-      <!--
-      <span editable-number="step" e-min="1" ng-show="stepsForm.$visible" e-required>
-        Step {{step}}
+      <span editable-text="steps[current]" e-form="snameform" onaftersave='saveStepName()'>
+        {{steps[current] || 'vuoto'}}
       </span>
-      <span editable-text="name" e-form="stepsForm">
-      -->
-        <!-- remove button -->
-        <button class="btn btn-danger" ng-click="removeStep(current)"
-        tooltip-placement="right" tooltip="Cancella lo step {{current}}">
-          <i class="fa fa-trash-o"></i>
+
+      <div class="btn-group" role="group" ng-hide="snameform.$visible">
+        <!-- button to edit name -->
+        <button type="button" class="btn btn-default" ng-click="snameform.$show()"
+        tooltip-placement="bottom" tooltip="Cambia nome dello step {{current}}"
+        >
+          <i class="fa fa-edit fa-fix"></i>
         </button>
-      </span>
+        <!-- remove step -->
+        <button class="btn btn-danger" ng-click="removeStep(current)"
+        tooltip-placement="bottom" tooltip="Cancella lo step {{current}}"
+        >
+          <i class="fa fa-trash-o fa-fix"></i>
+        </button>
+      </div>
+
      </h3>
+
     </div>
     <div class='panel-body'>
       <div ng-hide='current'>
@@ -73,5 +80,6 @@
       </div>
     </div>
   </div>
- </form>
+
+
 </div>
