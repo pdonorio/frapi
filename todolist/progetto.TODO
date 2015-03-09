@@ -129,13 +129,19 @@ StepsAdmin:
     ✘ Indexes python @cancelled (15-03-05 17:22)
       ✘ Multiple order by workaround @cancelled (15-03-05 17:22)
         ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
+  ☐ Url to access edit mode
+    ☐ via parameter ?key=value for ui router?
+    ☐ put that inside the profile
   ☐ Step name/number: API commit?
   ☐ The type is the center key
      ☐ Add element in step
         ✔ list types @done (15-03-09 07:50)
         ✔ Should use the editable row @current @done (15-03-09 17:28)
+        ✔ the hell of removing an item on an object @done (15-03-09 21:38)
+          ✔ my remove item http://stackoverflow.com/a/9973592 @done (15-03-09 21:38)
+            ✘ should be moved? @cancelled (15-03-09 21:38)
         ☐ type is a list
-          ☐ can i get this to work?
+          ☐ can i get this to work? @current
         ☐ options?
           ☐ use patterns (instead of html types)
             ☐ when you check insert AS A USER :D
@@ -146,6 +152,8 @@ StepsAdmin:
     ☐ REMOVE DEBUG in admin controller
   ☐ Last but not least
     ☐ Some clean pattern image repaeat as background
+ ☐ User model
+   ☐ Profile adjust to User model
 
 A CARD:
   -webkit-box-shadow: 2px 3px 5px #333;

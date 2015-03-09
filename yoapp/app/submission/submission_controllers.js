@@ -126,9 +126,14 @@ myApp
         //return (type && selected.length) ? selected[0].text : 'Not set';
     };
     $scope.removeElement = function(index) {
-        console.log("Remove", index);
-// DOES NOT WORK
-        //$scope.templates.splice(index, 1);
+        Object.prototype.myRemoveItem = function (key) {
+           if (!this.hasOwnProperty(key)) return
+           if (isNaN(parseInt(key)) || !(this instanceof Array))
+              delete this[key]
+           else this.splice(key, 1)
+        };
+        $scope.templates.myRemoveItem(index);
+
         // API save?
     };
 
