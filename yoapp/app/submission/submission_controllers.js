@@ -116,15 +116,20 @@ myApp
         // Add template
         console.log($scope.templates);
         $scope.templates[label] = null;
+
         // API save?
     };
     $scope.selectType = function(type) {
-
-        console.log("Select",type);
+        //console.log("Select",type);
         //var selected = $filter('filter')($scope.statuses, {value: type});
         return "string";
         //return (type && selected.length) ? selected[0].text : 'Not set';
-
+    };
+    $scope.removeElement = function(index) {
+        console.log("Remove", index);
+// DOES NOT WORK
+        //$scope.templates.splice(index, 1);
+        // API save?
     };
 
     //

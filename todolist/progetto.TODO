@@ -1,7 +1,6 @@
 
 --- ✄ -----------------------
 Feb ALPHA:
-
   ✔ Going HOME @done (15-02-01 17:30)
     ✔ Routing & states @done (15-01-29 06:59)
     ✔ ui router? @done (15-01-29 06:59)
@@ -134,8 +133,7 @@ StepsAdmin:
   ☐ The type is the center key
      ☐ Add element in step
         ✔ list types @done (15-03-09 07:50)
-        ☐ Should use the editable row @current
-          ☐ http://vitalets.github.io/angular-xeditable/#editable-row
+        ✔ Should use the editable row @current @done (15-03-09 17:28)
         ☐ type is a list
           ☐ can i get this to work?
         ☐ options?
@@ -148,6 +146,10 @@ StepsAdmin:
     ☐ REMOVE DEBUG in admin controller
   ☐ Last but not least
     ☐ Some clean pattern image repaeat as background
+
+A CARD:
+  -webkit-box-shadow: 2px 3px 5px #333;
+  -webkit-border-bottom-right-radius: 5px;
 
 DebugMode:
  ☐ Feedback button
