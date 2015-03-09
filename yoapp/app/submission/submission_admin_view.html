@@ -83,12 +83,13 @@
          <tbody>
           <tr ng-repeat='(name, type) in templates'>
            <td>
-            <a href="#" editable-text="name" onbeforesave="checkName($data)">
+            <a href="#" editable-text="name" e-form='templname' onbeforesave="checkName($data)">
               {{name || 'empty'}}
             </a>
            </td> <td> = </td> <td>
-            <a href="#" editable-text="type">
-              {{type || 'empty'}}
+            <a href="#" editable-text="type" e-form='templtype'
+              e-ng-options="s.value as s.text for s in statuses">
+              {{ selectType(type) }}
             </a>
            </td>
           </tr>

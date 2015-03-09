@@ -70,7 +70,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope, $state,
+.controller('SubmissionAdminController', function ($scope, $state, $filter,
     StepTemplate, StepList, ADMIN_USER)
 {
 
@@ -103,12 +103,28 @@ myApp
     // STEP template EDITING
     $scope.newtemplates = 1;
 
+    $scope.statuses = [
+        {value: 1, text: 'string'},
+        {value: 2, text: 'number'},
+        {value: 3, text: 'range'},
+        {value: 3, text: 'date'},
+        {value: 4, text: 'email'},
+    ];
+
     $scope.addTemplate = function() {
         var label = 'z nuovo_' + $scope.newtemplates++;
         // Add template
         console.log($scope.templates);
         $scope.templates[label] = null;
         // API save?
+    };
+    $scope.selectType = function(type) {
+
+        console.log("Select",type);
+        var selected = $filter('filter')($scope.statuses, {value: type});
+        //return "string";
+        return (type && selected.length) ? selected[0].text : 'Not set';
+
     };
 
     //

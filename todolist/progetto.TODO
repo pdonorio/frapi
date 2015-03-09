@@ -134,9 +134,14 @@ StepsAdmin:
   ☐ The type is the center key
      ☐ Add element in step
         ✔ list types @done (15-03-09 07:50)
-        ☐ type is a list @current
+        ☐ Should use the editable row @current
+          ☐ http://vitalets.github.io/angular-xeditable/#editable-row
+        ☐ type is a list
+          ☐ can i get this to work?
         ☐ options?
           ☐ use patterns (instead of html types)
+            ☐ when you check insert AS A USER :D
+            ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
   ☐ If not published
     ☐ signal draft in submission/edit
   ☐ REMOVE DEBUG in routing
