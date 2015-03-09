@@ -121,9 +121,9 @@ myApp
     $scope.selectType = function(type) {
 
         console.log("Select",type);
-        var selected = $filter('filter')($scope.statuses, {value: type});
-        //return "string";
-        return (type && selected.length) ? selected[0].text : 'Not set';
+        //var selected = $filter('filter')($scope.statuses, {value: type});
+        return "string";
+        //return (type && selected.length) ? selected[0].text : 'Not set';
 
     };
 
