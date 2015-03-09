@@ -73,9 +73,34 @@
           Seleziona nel menu uno <b>Step</b> da modificare.<br>
       </div>
       <div ng-show='current'>
-        Modifica nome step<br>
-        Cancella step<br>
-        Lista tipi<br>
+
+        <table class="table">
+
+         <thead>
+             <tr> <th>Nome</th> <th></th> <th>Tipo</th> </tr>
+         </thead>
+
+         <tbody>
+          <tr ng-repeat='(name, type) in templates'>
+           <td>
+            <a href="#" editable-text="name" onbeforesave="checkName($data)">
+              {{name || 'empty'}}
+            </a>
+           </td> <td> = </td> <td>
+            <a href="#" editable-text="type">
+              {{type || 'empty'}}
+            </a>
+           </td>
+          </tr>
+         </tbody>
+
+        </table>
+
+        <br>
+        <button type='button' class="btn btn-primary" ng-click="addTemplate()"
+          tooltip-placement="right" tooltip="Aggiungi un nuovo campo allo step {{steps.length}}">
+          <i class="fa fa-plus"></i>
+        </button>
 
       </div>
     </div>

@@ -70,7 +70,8 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope, $state, StepList, ADMIN_USER)
+.controller('SubmissionAdminController', function ($scope, $state,
+    StepTemplate, StepList, ADMIN_USER)
 {
 
 //DEBUG
@@ -82,20 +83,38 @@ myApp
         return false;
     $scope.myelement = null;
 
-    // StepList (side navbar)
+    // Objects / Models INIT
     var stepObj = StepList.build();
+    var templObj = StepTemplate.build($scope.current);
     $scope.steps = [];
+    // Try to load step list
     stepObj.getData().then(function(out) {
-        //console.log("List");
+        // Set step list
         $scope.steps = out;
-        //console.log($scope.steps);
+        // Try to load also template
+        templObj.getData().then(function(response) {
+            $scope.templates = response;
+        });
+        // Set number of steps somewhere
         $scope.stepsNum = $scope.steps.length;
-        $scope.myelement = angular.copy($scope.steps[$scope.current]);
     });
 
+    ////////////////////////////////
+    // STEP template EDITING
+    $scope.newtemplates = 1;
+
+    $scope.addTemplate = function() {
+        var label = 'z nuovo_' + $scope.newtemplates++;
+        // Add template
+        console.log($scope.templates);
+        $scope.templates[label] = null;
+        // API save?
+    };
+
+    //
 
     ////////////////////////////////
-    // STEPS (list) EDITABLE
+    // STEP name EDITING
     $scope.newsteps = 1;
 
     //define step on click
@@ -132,24 +151,7 @@ myApp
         // 2. Remove from API steptemplate
         // 3. Remove from API stepcontent
     };
-/*
-    $scope.saveStep = function() {
-        console.log("Call me to save");
-        // Note to self:
-        // i should reload the view which shows the step contents!
-        $state.go('logged.submission');
-    }
 
-    // ????
-    $scope.stepsCopy = [];
-    $scope.undoSteps = function() {
-        // Recover the array copied
-        $scope.steps = angular.copy($scope.stepsCopy);
-        // Abort the current form
-        $scope.stepsForm.$cancel();
-        closingAction();
-    };
-*/
 })
 
 //////////////////////////////////////////////////////////////

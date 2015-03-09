@@ -125,19 +125,24 @@ StepsAdmin:
       ✔ step list on the side @done (15-03-06 15:42)
       ✔ step editing on the other side @done (15-03-06 15:42)
       ✔ check buttons @done (15-03-06 16:03)
-      ☐ Step name
-        ☐ edit and delete step
-        ☐ api commit
-  ☐ The type is the center key
-    ☐ Use step type to define html element in the step editor
-  ☐ If not published
-    ☐ signal draft in submission/edit
-  ☐ Resort steps numbers with drag and drop?? @ohboy
-  ☐ REMOVE DEBUG in routing
+      ✔ Step name @done (15-03-09 07:30)
+        ✔ edit and delete step @done (15-03-09 07:30)
     ✘ Indexes python @cancelled (15-03-05 17:22)
       ✘ Multiple order by workaround @cancelled (15-03-05 17:22)
         ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
-  ☐ Some clean pattern image repaeat as background
+  ☐ Step name/number: API commit?
+  ☐ The type is the center key
+     ☐ Add element in step
+        ✔ list types @done (15-03-09 07:50)
+        ☐ type is a list @current
+        ☐ options?
+          ☐ use patterns (instead of html types)
+  ☐ If not published
+    ☐ signal draft in submission/edit
+  ☐ REMOVE DEBUG in routing
+    ☐ REMOVE DEBUG in admin controller
+  ☐ Last but not least
+    ☐ Some clean pattern image repaeat as background
 
 DebugMode:
  ☐ Feedback button
@@ -147,6 +152,8 @@ DebugMode:
      ☐ on change of table, python sends me an email
 
 SomeMore:
+  ☐ Resort steps numbers with drag and drop?? @ohboy
+
     ☐ A mock User model
       ☐ across the project to share the current user
       ☐ list of user drafts @cool
