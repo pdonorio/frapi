@@ -51,6 +51,10 @@ myApp
   StepTemplate.prototype.getData = function () {
     return this.StepTemplate;
   };
+  StepTemplate.prototype.unsetData = function (key) {
+    console.log("Template remove", key);
+    //return removeData(key);
+  };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
   StepTemplate.build = function (step) {

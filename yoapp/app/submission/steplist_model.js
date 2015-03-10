@@ -40,14 +40,18 @@ myApp
     var params = { step: key };
     return API.get(resource, params)
       .then(function(response) {
-        console.log("response",response);
         if (!response.items) {
             console.log("Failed to get id: no save data!!",key,value);
             return false;
         }
         // Here i know which recordo to update
+        var id = null;
+        // Case of update
+        if (response.count == 1)
+            id = response.items[0].id;
+
         var data = {
-            id: response.items[0].id,
+            id: id,
             step: key,
             label: value,
             description: 'from front-end interface',
@@ -60,6 +64,12 @@ myApp
             return false;
         });
     });
+  }
+
+  // API to remove data
+  function removeData(key) {
+    console.log("I want to remove", key);
+    return false;
   }
 
   //////////////////////////////////////////
@@ -78,8 +88,8 @@ myApp
     return saveData(key, data[key]);
   };
   StepList.prototype.unsetData = function (key) {
-    console.log("remove", key);
-    return this.stepList;
+    console.log("Step remove", key);
+    return removeData(key);
   };
 
   //////////////////////////////////////////

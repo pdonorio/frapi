@@ -133,6 +133,8 @@ StepsAdmin:
     ☐ via parameter ?key=value for ui router?
     ☐ put that link inside the profile
   ☐ Step name/number: API commit?
+    ☐ how to remove? @current
+    ☐ fix "are you really sure" notice
   ☐ The type is the center key
      ☐ Add element in step
         ✔ list types @done (15-03-09 07:50)
@@ -141,7 +143,7 @@ StepsAdmin:
           ✔ my remove item http://stackoverflow.com/a/9973592 @done (15-03-09 21:38)
             ✘ should be moved? @cancelled (15-03-09 21:38)
         ☐ type is a list
-          ☐ can i get this to work? @current
+          ☐ can i get this to work?
         ☐ options?
           ☐ use patterns (instead of html types)
             ☐ when you check insert AS A USER :D

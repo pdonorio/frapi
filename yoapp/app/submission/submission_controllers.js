@@ -71,7 +71,8 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminController', function ($scope, $state, $filter,
-    NotificationData, AppConfig, StepTemplate, StepList, ADMIN_USER)
+    NotificationData, AppConfig, ADMIN_USER,
+    StepContent, StepTemplate, StepList )
 {
 
 //DEBUG
@@ -143,15 +144,15 @@ myApp
     // STEP name EDITING
     $scope.newsteps = 1;
 
-    //define step on click
+    // Define step on click
     $scope.setStep = function(step) {
       $scope.snameform.$cancel();
       if (step == $scope.current)
           return;
       $scope.current = step;
     }
+    // Save new name
     $scope.saveStepName = function() {
-      // API save
       stepObj.setData($scope.steps, $scope.current).then(function(check){
           NotificationData.setNotification(AppConfig.messageStatus.loading);
           if (check === false)
@@ -162,27 +163,46 @@ myApp
                   "Elemento salvato");
       });
     }
+    // Add a step to database
     $scope.addStep = function() {
-        var label = 'nuovo_' + $scope.newsteps++;
-        // Add step
-        $scope.steps.push(label);
-        // Select the step right after
-        $scope.current = $scope.steps.length - 1;
-        // API save?
+      var label = 'nuovo_' + $scope.newsteps++;
+      // Add step
+      $scope.steps.push(label);
+      // Select the step right after
+      $scope.current = $scope.steps.length - 1;
+      // API save
+      stepObj.setData($scope.steps, $scope.current).then(function(check){
+          NotificationData.setNotification(AppConfig.messageStatus.loading);
+          if (check === false)
+              NotificationData.setNotification(AppConfig.messageStatus.error,
+                  "Database non raggiungibile");
+          else
+              NotificationData.setNotification(AppConfig.messageStatus.success,
+                  "Aggiunto elemento" + $scope.current);
+      });
     };
     $scope.removeStep = function(index) {
+
+// TO FIX -
 // Are you really sure?
+        alert("Are you really sure?!?!");
 // Are you really sure?
 
         // Remove from array
         $scope.steps.splice(index, 1);
-        // Unselect steps in list
-        $scope.current = null;
+        var step = angular.copy($scope.current);
 
         // API PROMISE CHAINING
         // 1. Remove from API the step
+        stepObj.unsetData(step); //.then(function(check){
         // 2. Remove from API steptemplate
+        templObj.unsetData(step); //.then(function(check){
         // 3. Remove from API stepcontent
+        var contObj = StepContent.build(null, step);
+        contObj.unsetData(step);
+
+        // Unselect steps in list
+        $scope.current = null;
     };
 
 })
