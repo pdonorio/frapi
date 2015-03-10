@@ -131,7 +131,7 @@ StepsAdmin:
         ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
   ☐ Url to access edit mode
     ☐ via parameter ?key=value for ui router?
-    ☐ put that inside the profile
+    ☐ put that link inside the profile
   ☐ Step name/number: API commit?
   ☐ The type is the center key
      ☐ Add element in step

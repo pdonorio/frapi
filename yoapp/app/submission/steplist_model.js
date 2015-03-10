@@ -13,6 +13,7 @@ myApp
 
 // No, you can transform the result just fine by using a .then() handler inside the service. That's how promises are supposed to be used.
 
+  //////////////////////////////////////////
   // API resolve data
   function loadData() {
     return API.get(resource)
@@ -33,20 +34,35 @@ myApp
   }
 
   // API try to save data
-  function saveData(data) {
-/*
-    //API CALL
-    API.set(resource, data).then(function() {
-        msg = "Saved content<br> <div class='well'>"+ $scope.item.content +"</div>";
-        NotificationData.setNotification(AppConfig.messageStatus.success, msg);
-    }, function() {
-        msg = "Could not save steps editing<br> " +
-        "<br> <br> Please try again in a few minutes." + "";
-        NotificationData.setNotification(AppConfig.messageStatus.error, msg);
+  function saveData(key, value) {
+
+    // Find the key to update
+    var params = { step: key };
+    return API.get(resource, params)
+      .then(function(response) {
+        console.log("response",response);
+        if (!response.items) {
+            console.log("Failed to get id: no save data!!",key,value);
+            return false;
+        }
+        // Here i know which recordo to update
+        var data = {
+            id: response.items[0].id,
+            step: key,
+            label: value,
+            description: 'from front-end interface',
+        };
+        // How about i save it
+        return API.set(resource, data).then(function(id) {
+            return id;
+        }, function() {
+            console.log("Failed to put data: no save!!",key,value);
+            return false;
+        });
     });
-*/
   }
 
+  //////////////////////////////////////////
   // Constructor, with class name
   function StepList(data) {
     this.stepList = data;
@@ -55,6 +71,18 @@ myApp
   StepList.prototype.getData = function () {
     return this.stepList;
   };
+  StepList.prototype.setData = function (data, key) {
+    if (!data || !data[key])
+        return false;
+    //console.log("add/update data", key, data[key]);
+    return saveData(key, data[key]);
+  };
+  StepList.prototype.unsetData = function (key) {
+    console.log("remove", key);
+    return this.stepList;
+  };
+
+  //////////////////////////////////////////
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
   StepList.build = function (data) {

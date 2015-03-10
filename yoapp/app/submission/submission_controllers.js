@@ -71,7 +71,7 @@ myApp
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminController', function ($scope, $state, $filter,
-    StepTemplate, StepList, ADMIN_USER)
+    NotificationData, AppConfig, StepTemplate, StepList, ADMIN_USER)
 {
 
 //DEBUG
@@ -145,15 +145,22 @@ myApp
 
     //define step on click
     $scope.setStep = function(step) {
-        $scope.snameform.$cancel();
-        if (step == $scope.current)
-            return;
-        $scope.current = step;
-        console.log("Step",step);
+      $scope.snameform.$cancel();
+      if (step == $scope.current)
+          return;
+      $scope.current = step;
     }
     $scope.saveStepName = function() {
-        console.log("Save");
-        //console.log($scope.steps[$scope.current]);
+      // API save
+      stepObj.setData($scope.steps, $scope.current).then(function(check){
+          NotificationData.setNotification(AppConfig.messageStatus.loading);
+          if (check === false)
+              NotificationData.setNotification(AppConfig.messageStatus.error,
+                  "Database non raggiungibile");
+          else
+              NotificationData.setNotification(AppConfig.messageStatus.success,
+                  "Elemento salvato");
+      });
     }
     $scope.addStep = function() {
         var label = 'nuovo_' + $scope.newsteps++;
