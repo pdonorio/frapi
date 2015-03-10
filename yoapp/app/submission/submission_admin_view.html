@@ -91,9 +91,11 @@
             </span>
            </td> <td>
            <!-- List of elements -->
+<!-- TO FIX - change this for cycle.... to work on simple array -->
             <span href="#" editable-select="type" e-name="htmltype" e-form="rowform"
               e-ng-options="s.value as s.text for s in statuses">
-              {{ selectType(type) }}
+<!-- TO FIX - change this for cycle.... to work on simple array -->
+              {{ selectType(s.value) }}
             </span>
            </td>
 

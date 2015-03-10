@@ -108,8 +108,8 @@ myApp
         {value: 1, text: 'string'},
         {value: 2, text: 'number'},
         {value: 3, text: 'range'},
-        {value: 3, text: 'date'},
-        {value: 4, text: 'email'},
+        {value: 4, text: 'date'},
+        {value: 5, text: 'email'},
     ];
 
     $scope.addTemplate = function() {
@@ -120,11 +120,9 @@ myApp
 
         // API save?
     };
-    $scope.selectType = function(type) {
-        //console.log("Select",type);
-        //var selected = $filter('filter')($scope.statuses, {value: type});
-        return "string";
-        //return (type && selected.length) ? selected[0].text : 'Not set';
+    $scope.selectType = function(value) {
+        var selected = $filter('filter')($scope.statuses, {value: value});
+        return (value && selected.length) ? selected[0].text : 'Not set';
     };
     $scope.removeElement = function(index) {
         Object.prototype.myRemoveItem = function (key) {
@@ -136,6 +134,7 @@ myApp
         $scope.templates.myRemoveItem(index);
 
         // API save?
+        console.log("Removed ",index);
     };
 
     //
