@@ -92,10 +92,22 @@
            </td> <td>
            <!-- List of elements -->
 <!-- TO FIX - change this for cycle.... to work on simple array -->
-            <span href="#" editable-select="type" e-name="htmltype" e-form="rowform"
-              e-ng-options="s.value as s.text for s in statuses">
+            <span
+              editable-select="type" e-name="htmltype" e-form="rowform"
+              onaftersave=''
+              e-ng-options="s.text for s in statuses"
+              >
+              {{ selectType(type) }}
+              <!--
+    $scope.colors = [
+      {name:'black', shade:'dark'},
+      {name:'white', shade:'light', notAnOption: true},
+      {name:'red', shade:'dark'},
+          ng-options="color.name for color in colors"
+          ng-options="color.name group by color.shade for color in colors"
+          "color.name group by color.shade disable when color.notAnOption for color in colors"
+              -->
 <!-- TO FIX - change this for cycle.... to work on simple array -->
-              {{ selectType(s.value) }}
             </span>
            </td>
 
@@ -126,7 +138,9 @@
                <i class="fa fa-minus fa-fix"></i>
               </button>
             </div>
-           </td>
+<!--             {{Object.keys(templates)}}
+                ng-show='templates.length > 0'
+ -->           </td>
 
           </tr>
          </tbody>

@@ -39,6 +39,25 @@ myApp
       });
   }
 
+  // API to remove data
+  function removeData(params) {
+
+    return API.get(resource, params)
+      .then(function(response) {
+        if (!response.items) {
+            console.log("Template. Failed to get id: no save data!!",key,value);
+            return false;
+        }
+        // Here i know which recordo to update
+        var id = null;
+        // Case of update
+        if (response.count == 1)
+            id = response.items[0].id;
+
+        console.log("ID",id);
+    });
+  }
+
 ////////////////////////////////////
 // FIXED
 ////////////////////////////////////
@@ -51,9 +70,15 @@ myApp
   StepTemplate.prototype.getData = function () {
     return this.StepTemplate;
   };
-  StepTemplate.prototype.unsetData = function (key) {
-    console.log("Template remove", key);
-    //return removeData(key);
+  StepTemplate.prototype.unsetData = function (step, label) {
+    console.log("Template remove", step, label);
+    var params = {};
+    if (step) {
+        params.step = step;
+    } else if (label) {
+        params.field = label;
+    }
+    return removeData(params);
   };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context

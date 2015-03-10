@@ -131,6 +131,8 @@ StepsAdmin:
         ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
   ☐ Step name/number: API commit?
     ☐ how to remove? @current
+      ✔ doDELETE inside API @done (15-03-10 17:07)
+      ☐ use unset from factory from controller
     ☐ fix "are you really sure" notice
   ☐ The type is the center key
      ☐ Add element in step
@@ -140,6 +142,7 @@ StepsAdmin:
           ✔ my remove item http://stackoverflow.com/a/9973592 @done (15-03-09 21:38)
             ✘ should be moved? @cancelled (15-03-09 21:38)
         ☐ type is a list
+          ☐ use a normal select
           ☐ can i get this to work?
         ☐ options?
           ☐ use patterns (instead of html types)

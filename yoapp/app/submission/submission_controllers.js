@@ -105,36 +105,39 @@ myApp
     $scope.newtemplates = 1;
 
     $scope.statuses = [
-        {value: 1, text: 'string'},
-        {value: 2, text: 'number'},
-        {value: 3, text: 'range'},
-        {value: 4, text: 'date'},
-        {value: 5, text: 'email'},
+        {value: 0, text: 'string'},
+        {value: 1, text: 'number'},
+        {value: 2, text: 'range'},
+        {value: 3, text: 'date'},
+        {value: 4, text: 'email'},
     ];
 
     $scope.addTemplate = function() {
         var label = 'z nuovo_' + $scope.newtemplates++;
         // Add template
+        console.log("Add");
         console.log($scope.templates);
         $scope.templates[label] = null;
 
         // API save?
     };
-    $scope.selectType = function(value) {
-        var selected = $filter('filter')($scope.statuses, {value: value});
-        return (value && selected.length) ? selected[0].text : 'Not set';
+    $scope.selectType = function(key) {
+        if (!key || !$scope.statuses[key])
+            key = 0;
+        console.log("TEST", key)
+        return $scope.statuses[key].text;
+        //return $scope.statuses[value];
+
+        // var selected = $filter('filter')($scope.statuses, {value: value});
+        // return (value && selected.length) ? selected[0].text : 'Not set';
     };
     $scope.removeElement = function(index) {
-        Object.prototype.myRemoveItem = function (key) {
-           if (!this.hasOwnProperty(key)) return
-           if (isNaN(parseInt(key)) || !(this instanceof Array))
-              delete this[key]
-           else this.splice(key, 1)
-        };
-        $scope.templates.myRemoveItem(index);
-
+        delete $scope.templates[index];
         // API save?
-        console.log("Removed ",index);
+        templObj.unsetData(null, index).then(function(check){
+            //remove via label, instead of step
+            console.log("Check",check);
+        });
     };
 
     //
@@ -146,8 +149,10 @@ myApp
     // Define step on click
     $scope.setStep = function(step) {
       $scope.snameform.$cancel();
+      // Avoid if step has not changed
       if (step == $scope.current)
           return;
+      // Set step for administration
       $scope.current = step;
     }
     // Save new name

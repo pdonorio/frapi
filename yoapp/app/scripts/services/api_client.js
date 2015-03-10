@@ -75,6 +75,16 @@ myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDe
     };
 
     //###################################
+    //DELETE DATA
+    Factory.unset = function(resource, data) {
+      var api = RestAPI.all(resource);
+      var route = ''; //no route
+      return api
+        .withHttpConfig({timeout: apiTimeout})
+        .doDELETE({}, route, data); //, {}, headers);  //put data
+    }
+
+    //###################################
     //POST DATA
     Factory.set = function(resource, data) {
 
