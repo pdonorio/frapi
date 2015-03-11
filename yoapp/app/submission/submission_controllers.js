@@ -104,7 +104,7 @@ myApp
     // STEP template EDITING
     $scope.newtemplates = 1;
 
-    $scope.statuses = [
+    $scope.types = [
         {value: 0, text: 'string'},
         {value: 1, text: 'number'},
         {value: 2, text: 'range'},
@@ -120,16 +120,6 @@ myApp
         $scope.templates[label] = null;
 
         // API save?
-    };
-    $scope.selectType = function(key) {
-        if (!key || !$scope.statuses[key])
-            key = 0;
-        console.log("TEST", key)
-        return $scope.statuses[key].text;
-        //return $scope.statuses[value];
-
-        // var selected = $filter('filter')($scope.statuses, {value: value});
-        // return (value && selected.length) ? selected[0].text : 'Not set';
     };
     $scope.removeElement = function(index) {
         delete $scope.templates[index];
