@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var myApp = angular.module('yoApp',
+var myApp = angular.module('archivi',
   [
   // CONFIGURATION and DYNAMIC CONSTANTS - made by me
     'AppConfig',

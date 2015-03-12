@@ -10,6 +10,9 @@ myApp
 {
   var resource = 'stepstemplate';
 
+  // Load, Save, Remove
+
+  ////////////////////////////
   function loadData(step) {
 
     // WARNING: i need only one step!!!
@@ -39,6 +42,29 @@ myApp
       });
   }
 
+  ////////////////////////////
+  // API try to save data
+  function saveData(data) {
+
+    // Check elements necessary...
+    if (!data['step'] && !data['position']) {
+        return false;
+    }
+    // Find the key to update
+    var params = { step: data['step'], position: data['position'] };
+    return API.get(resource, params)
+      .then(function(response) {
+        console.log("RESPONSE", response);
+        return response;
+
+        // // How about i save it
+        // return API.set(resource, data).then(function(id) {
+        //     return id;
+        // });
+    });
+  }
+
+  ////////////////////////////
   // API to remove data
   function removeData(params) {
 
@@ -69,6 +95,16 @@ myApp
   // Public methods, assigned to prototype
   StepTemplate.prototype.getData = function () {
     return this.StepTemplate;
+  };
+  StepTemplate.prototype.setData = function (step, pos, label, value) {
+    var data = {
+        step: step,
+        position: pos,
+        field: label,
+        type: value,
+    };
+    console.log("Set template data", data);
+    return saveData(data);
   };
   StepTemplate.prototype.unsetData = function (step, label) {
     console.log("Template remove", step, label);

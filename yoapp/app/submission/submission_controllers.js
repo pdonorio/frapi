@@ -95,6 +95,7 @@ myApp
         // Try to load also template
         templObj.getData().then(function(response) {
             $scope.templates = response;
+            //console.log($scope.templates);
         });
         // Set number of steps somewhere
         $scope.stepsNum = $scope.steps.length;
@@ -104,6 +105,11 @@ myApp
     // STEP template EDITING
     $scope.newtemplates = 1;
 
+    /**************************/
+    /*  TYPES   ***************/
+// TO FIX -
+    // Should be defined inside database?
+    // Or inside configuration (app.conf)?
     $scope.types = [
         {value: 0, text: 'string'},
         {value: 1, text: 'number'},
@@ -111,19 +117,26 @@ myApp
         {value: 3, text: 'date'},
         {value: 4, text: 'email'},
     ];
+    /*  TYPES   ***************/
+    /**************************/
 
     $scope.addTemplate = function() {
         var label = 'z nuovo_' + $scope.newtemplates++;
+        var value = 0;
         // Add template
-        console.log("Add");
-        console.log($scope.templates);
-        $scope.templates[label] = null;
-
+        $scope.templates[label] = value; //first element: default
+        var pos = Object.keys($scope.templates).length;
+        // API save
+        var id = templObj.setData($scope.current, pos, label, value);
+        console.log("Saved id", id);
+    };
+    $scope.updateElement = function(index) {
+        console.log("Update element");
         // API save?
     };
     $scope.removeElement = function(index) {
         delete $scope.templates[index];
-        // API save?
+        // API save
         templObj.unsetData(null, index).then(function(check){
             //remove via label, instead of step
             console.log("Check",check);

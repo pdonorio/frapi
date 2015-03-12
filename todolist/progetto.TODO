@@ -129,25 +129,25 @@ StepsAdmin:
     ✘ Indexes python @cancelled (15-03-05 17:22)
       ✘ Multiple order by workaround @cancelled (15-03-05 17:22)
         ✔ r.table(...).orderBy(lambda x: [x['field1'], x['field2'], ...]) @done (15-03-05 17:23)
-  ☐ Step name/number: API commit?
-    ☐ how to remove? @current
+  ✔ Step name/number: API commit? @done (15-03-12 07:03)
+    ✔ how to remove? @current @done (15-03-12 07:03)
       ✔ doDELETE inside API @done (15-03-10 17:07)
-      ☐ use unset from factory from controller
-    ☐ fix "are you really sure" notice
-  ☐ The type is the center key
-     ☐ Add element in step
+      ✔ use unset from factory from controller @done (15-03-12 07:04)
+     ✔ Add element in step @done (15-03-12 07:04)
         ✔ list types @done (15-03-09 07:50)
         ✔ Should use the editable row @current @done (15-03-09 17:28)
         ✔ the hell of removing an item on an object @done (15-03-09 21:38)
           ✔ my remove item http://stackoverflow.com/a/9973592 @done (15-03-09 21:38)
             ✘ should be moved? @cancelled (15-03-09 21:38)
-        ☐ type is a list
-          ☐ use a normal select
-          ☐ can i get this to work?
-        ☐ options?
-          ☐ use patterns (instead of html types)
-            ☐ when you check insert AS A USER :D
-            ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
+        ✔ type is a list @done (15-03-11 07:12)
+          ✔ use a normal select @done (15-03-11 07:12)
+  ☐ template elements
+    ☐ set, update, remove, add
+  ☐ The type is the center key
+    ☐ use patterns (instead of html types)
+      ☐ when you check insert AS A USER :D
+      ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
+  ☐ fix "are you really sure" notice
   ☐ Url to access edit mode
     ☐ via parameter ?key=value for ui router?
     ☐ put that link inside the profile

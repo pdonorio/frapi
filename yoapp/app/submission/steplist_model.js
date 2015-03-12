@@ -34,14 +34,15 @@ myApp
   }
 
   // API try to save data
-  function saveData(key, value) {
+  function saveData(step, value)
+  {
 
     // Find the key to update
     var params = { step: key };
     return API.get(resource, params)
       .then(function(response) {
         if (!response.items) {
-            console.log("Failed to get id: no save data!!",key,value);
+            console.log("Failed to get id: no saved data!!",key,value);
             return false;
         }
         // Here i know which recordo to update
