@@ -29,10 +29,8 @@ myApp
             tmp.forEach(function(obj, index) {
                 data[obj.position] = {label:obj.field, value:obj.type};
             });
-            console.log("Data");
-            console.log(data);
-
           }
+          console.log("Loaded from step ", step, "data", data);
           return data;
       });
   }
@@ -42,18 +40,11 @@ myApp
   function saveData(data) {
 
 // TO FIX -
-//This could be checked from an array of positions
-    // Check elements necessary...
-    if (!data['step'] && !data['position']) {
-        return false;
-    }
-// TO FIX -
 //This could be made automatic
-    // Find the key to update
+    // Find the key to update, if any
     var params = { step: data['step'], position: data['position'] };
     return API.get(resource, params)
       .then(function(response) {
-        console.log("RESPONSE", response);
         // Set id
         data.id = null;
         if (response.count == 1)
@@ -71,14 +62,12 @@ myApp
   function removeData(step, position) {
     var params = {step:step, position:position};
 
+    // Selecting id to remove
     return API.get(resource, params)
       .then(function(response) {
-        console.log(response);
         if (response.count == 1) {
-            resource += "/" + response.items[0].id;
-            return API.del(resource);
+            return API.del(resource, response.items[0].id);
         }
-
     });
   }
 
@@ -111,7 +100,6 @@ myApp
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
   StepTemplate.build = function (step) {
-    console.log("Build from step", step);
     // API call
     var data = loadData(step);
     // Create object

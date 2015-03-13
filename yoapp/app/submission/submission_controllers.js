@@ -75,10 +75,6 @@ myApp
     StepContent, StepTemplate, StepList )
 {
 
-//DEBUG
-    $scope.current = 2;
-//DEBUG
-
     // Stop unwanted user
     if ($scope.username != ADMIN_USER)
         return false;
@@ -138,13 +134,20 @@ myApp
         });
     };
     $scope.updateElement = function(index) {
-        console.log("Update element");
-        // API save?
+        var l = $scope.templates[index].label;
+        var v = $scope.templates[index].value;
+        // API save
+        templObj.setData($scope.current, index, l, v)
+        .then(function(id){
+            console.log("Updated id", id);
+        });
     };
     $scope.removeElement = function(index) {
         delete $scope.templates[index];
         // API save
         templObj.unsetData($scope.current, index).then(function(){});
+// TO FIX -
+        //These should also remove every content set on this step:field from user...
     };
 
     //

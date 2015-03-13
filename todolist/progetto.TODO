@@ -142,19 +142,26 @@ StepsAdmin:
         ✔ type is a list @done (15-03-11 07:12)
           ✔ use a normal select @done (15-03-11 07:12)
   ✔ template elements @done (15-03-13 07:20)
-    ☐ set, update, remove, add
+    ✔ set, update, remove, add @done (15-03-13 07:40)
     ✔ FIX BUG: template positions are wrong @done (15-03-13 07:20)
+    ☐ FIX BUG:   does not change step
+      ☐ looks like it loads the same stuff for each step
   ☐ The type is the center key
     ☐ use patterns (instead of html types)
       ☐ when you check insert AS A USER :D
       ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
+  ☐ Split admin and insert....
+    ☐ Two views, do not let user and admin controller be called at the same time
+    ☐ Put admin link inside profile if user == 'admin'
+    ☐ Remove edit button inside topbar inside insert
+      ☐ REMOVE DEBUG in routing
+      ☐ Remove it also inside view page for the moment
   ☐ fix "are you really sure" notice
   ☐ Url to access edit mode
     ☐ via parameter ?key=value for ui router?
     ☐ put that link inside the profile
   ☐ If not published
     ☐ signal draft in submission/edit
-  ☐ REMOVE DEBUG in routing
     ☐ REMOVE DEBUG in admin controller
   ☐ Last but not least
     ☐ Some clean pattern image repaeat as background

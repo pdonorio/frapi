@@ -50,6 +50,7 @@ myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDe
 
       // Check other parameters??
       // foreach parameters
+      /////////////////////////////////////////
 
 
       var route = ''; //no sub routing as this is a "get all"
@@ -76,7 +77,15 @@ myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDe
 
     //###################################
     //DELETE DATA
-    Factory.del = function(resource) {
+    Factory.del = function(resource, id) {
+
+      // Check id
+      if (!id) {
+        console.log("Trying to delete no rows");
+        return false;
+      }
+
+      resource += "/" + id;
       var api = RestAPI.all(resource);
       return api
         .withHttpConfig({timeout: apiTimeout})
