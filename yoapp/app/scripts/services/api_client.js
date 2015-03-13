@@ -76,12 +76,11 @@ myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDe
 
     //###################################
     //DELETE DATA
-    Factory.unset = function(resource, data) {
+    Factory.del = function(resource) {
       var api = RestAPI.all(resource);
-      var route = ''; //no route
       return api
         .withHttpConfig({timeout: apiTimeout})
-        .doDELETE({}, route, data); //, {}, headers);  //put data
+        .doDELETE();
     }
 
     //###################################

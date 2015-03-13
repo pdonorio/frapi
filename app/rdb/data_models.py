@@ -117,8 +117,12 @@ class StepTemplate(GenericORMModel):
             raise ValueError(m)
         return tmp    #e.g. 2
     @staticmethod
-    def type(value):
-        return value    #e.g. "Select"
+    def type(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 2
     @staticmethod
     def field(value):
         return value    #e.g. "Estratto"

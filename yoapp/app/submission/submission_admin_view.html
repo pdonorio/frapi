@@ -82,23 +82,22 @@
          </thead>
 
          <tbody>
-          <tr ng-repeat='(name, type) in templates'>
-           <td style='background: #ccc;'> {{$index+1}} </td>
+          <tr ng-repeat='template in templates track by $index'
+            ng-if='$index > 0 && template.label'>
+           <td style='background: #ccc;'> {{$index}} </td>
            <!-- Text with Validation -->
            <td>
-            <span href="#" editable-text="name" e-name="label" e-form="rowform" e-required>
-              {{name || 'empty'}}
+            <span href="#" editable-text="template.label" e-name="label" e-form="rowform" e-required>
+              {{template.label || 'vuoto'}}
             </span>
            </td>
            <!-- List of elements -->
            <td>
              <span ng-show="rowform.$visible">
-              <select ng-model="myselect" ng-init='myselect=types[type] || types[0]'
+              <select ng-model="myselect" ng-init='myselect=types[template.value] || types[0]'
                   ng-options="mytype.text for mytype in types" ></select>
              </span>
-             <span ng-hide="rowform.$visible"> {{myselect.text}}
-             <!-- {{myselect}}  -->
-             </span>
+             <span ng-hide="rowform.$visible"> {{myselect.text}} </span>
            </td>
 
            <td>
@@ -123,7 +122,7 @@
                 tooltip-placement="bottom" tooltip="Modifica parametri">
                <i class="fa fa-edit fa-fix"></i>
               </button>
-              <button class="btn btn-danger" ng-click="removeElement(name)"
+              <button class="btn btn-danger" ng-click="removeElement($index)"
                 tooltip-placement="bottom" tooltip="Rimuovi elemento">
                <i class="fa fa-minus fa-fix"></i>
               </button>

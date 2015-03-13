@@ -70,7 +70,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope, $state, $filter,
+.controller('SubmissionAdminController', function ($scope, $state,
     NotificationData, AppConfig, ADMIN_USER,
     StepContent, StepTemplate, StepList )
 {
@@ -95,7 +95,6 @@ myApp
         // Try to load also template
         templObj.getData().then(function(response) {
             $scope.templates = response;
-            //console.log($scope.templates);
         });
         // Set number of steps somewhere
         $scope.stepsNum = $scope.steps.length;
@@ -103,7 +102,6 @@ myApp
 
     ////////////////////////////////
     // STEP template EDITING
-    $scope.newtemplates = 1;
 
     /**************************/
     /*  TYPES   ***************/
@@ -121,14 +119,23 @@ myApp
     /**************************/
 
     $scope.addTemplate = function() {
-        var label = 'z nuovo_' + $scope.newtemplates++;
-        var value = 0;
+        var pos = 0;
+        var label = 'nuovo elemento';
+        var value = 0;  //first element: default
+        // Find smallest position
+        for (var j = 1; j < $scope.templates.length; j++) {
+            if (!$scope.templates[j]) {
+                pos = j;
+                break;
+            }
+        };
         // Add template
-        $scope.templates[label] = value; //first element: default
-        var pos = Object.keys($scope.templates).length;
+        $scope.templates[pos] = {label:label, value:value};
         // API save
-        var id = templObj.setData($scope.current, pos, label, value);
-        console.log("Saved id", id);
+        templObj.setData($scope.current, pos, label, value)
+        .then(function(id){
+            console.log("Saved id", id);
+        });
     };
     $scope.updateElement = function(index) {
         console.log("Update element");
@@ -137,10 +144,7 @@ myApp
     $scope.removeElement = function(index) {
         delete $scope.templates[index];
         // API save
-        templObj.unsetData(null, index).then(function(check){
-            //remove via label, instead of step
-            console.log("Check",check);
-        });
+        templObj.unsetData($scope.current, index).then(function(){});
     };
 
     //
@@ -248,7 +252,8 @@ myApp
         if (notempty && content.id)
             $scope.contentData.setId(content.id);
         // Mixing template and content here
-        angular.forEach(template, function(type, label) {
+        angular.forEach(template, function(obj) {
+
             var value = null;
             if (notempty && content.values.length >= index) {
                 value = content.values[index];
@@ -257,7 +262,7 @@ myApp
                 }
             }
             //data[label] = value;
-            data[index++] = {key: label, value: value};
+            data[index++] = {key: obj.label, value: value};
         });
 
         //$timeout( function() {

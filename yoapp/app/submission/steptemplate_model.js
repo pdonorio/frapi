@@ -20,23 +20,18 @@ myApp
 
     return API.get(resource, parameters)
       .then(function(response) {
-          var data = {};
+          var data = [];
           if (response.count > 0) {
+            // Algorithm: create positions? No.
             var tmp = response.items;
+
             // Js foreach cycle: to create my array out of RDB json
             tmp.forEach(function(obj, index) {
-                if (obj.step != step) {
-                    console.log("Received wrong template!??");
-                } else {
-                    if (!obj.field || obj.field == '')
-                        console.log("Failed field for template on step" + step)
-                    else if (!obj.type || obj.type == '')
-                        console.log("Failed type for template on step" + step)
-                    else
-                        data[obj.field]= obj.type;
-                }
-                //console.log("Warning: found duplicate in "+j+":"+obj.element)
+                data[obj.position] = {label:obj.field, value:obj.type};
             });
+            console.log("Data");
+            console.log(data);
+
           }
           return data;
       });
@@ -46,41 +41,44 @@ myApp
   // API try to save data
   function saveData(data) {
 
+// TO FIX -
+//This could be checked from an array of positions
     // Check elements necessary...
     if (!data['step'] && !data['position']) {
         return false;
     }
+// TO FIX -
+//This could be made automatic
     // Find the key to update
     var params = { step: data['step'], position: data['position'] };
     return API.get(resource, params)
       .then(function(response) {
         console.log("RESPONSE", response);
-        return response;
-
-        // // How about i save it
-        // return API.set(resource, data).then(function(id) {
-        //     return id;
-        // });
+        // Set id
+        data.id = null;
+        if (response.count == 1)
+            data.id = response.items[0].id;
+        // How about i save it
+        return API.set(resource, data).then(function(id) {
+            console.log("Inserted id", id);
+            return id;
+        });
     });
   }
 
   ////////////////////////////
   // API to remove data
-  function removeData(params) {
+  function removeData(step, position) {
+    var params = {step:step, position:position};
 
     return API.get(resource, params)
       .then(function(response) {
-        if (!response.items) {
-            console.log("Template. Failed to get id: no save data!!",key,value);
-            return false;
+        console.log(response);
+        if (response.count == 1) {
+            resource += "/" + response.items[0].id;
+            return API.del(resource);
         }
-        // Here i know which recordo to update
-        var id = null;
-        // Case of update
-        if (response.count == 1)
-            id = response.items[0].id;
 
-        console.log("ID",id);
     });
   }
 
@@ -106,19 +104,14 @@ myApp
     console.log("Set template data", data);
     return saveData(data);
   };
-  StepTemplate.prototype.unsetData = function (step, label) {
-    console.log("Template remove", step, label);
-    var params = {};
-    if (step) {
-        params.step = step;
-    } else if (label) {
-        params.field = label;
-    }
-    return removeData(params);
+  StepTemplate.prototype.unsetData = function (step, position) {
+    console.log("Template remove", step, position);
+    return removeData(step, position);
   };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
   StepTemplate.build = function (step) {
+    console.log("Build from step", step);
     // API call
     var data = loadData(step);
     // Create object

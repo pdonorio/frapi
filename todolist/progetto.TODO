@@ -141,8 +141,9 @@ StepsAdmin:
             ✘ should be moved? @cancelled (15-03-09 21:38)
         ✔ type is a list @done (15-03-11 07:12)
           ✔ use a normal select @done (15-03-11 07:12)
-  ☐ template elements
+  ✔ template elements @done (15-03-13 07:20)
     ☐ set, update, remove, add
+    ✔ FIX BUG: template positions are wrong @done (15-03-13 07:20)
   ☐ The type is the center key
     ☐ use patterns (instead of html types)
       ☐ when you check insert AS A USER :D
