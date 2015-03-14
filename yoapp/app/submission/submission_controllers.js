@@ -197,26 +197,29 @@ myApp
     };
     $scope.removeStep = function(index) {
 
+        var message = "Removing a complete step,\n" +
+            "including content inserted by user so far...\n" +
+            "Are you really sure?!?!";
 // TO FIX -
 // Are you really sure?
-        alert("Are you really sure?!?!");
-// Are you really sure?
+        if (confirm(message))
+        {
+            // Remove from array
+            $scope.steps.splice(index, 1);
+            var step = angular.copy($scope.current);
 
-        // Remove from array
-        $scope.steps.splice(index, 1);
-        var step = angular.copy($scope.current);
+            // API PROMISE CHAINING
+            // 1. Remove from API the step
+            stepObj.unsetData(step); //.then(function(check){
+            // 2. Remove from API steptemplate
+            templObj.unsetData(step); //.then(function(check){
+            // 3. Remove from API stepcontent
+            var contObj = StepContent.build(null, step);
+            contObj.unsetData(step);
 
-        // API PROMISE CHAINING
-        // 1. Remove from API the step
-        stepObj.unsetData(step); //.then(function(check){
-        // 2. Remove from API steptemplate
-        templObj.unsetData(step); //.then(function(check){
-        // 3. Remove from API stepcontent
-        var contObj = StepContent.build(null, step);
-        contObj.unsetData(step);
-
-        // Unselect steps in list
-        $scope.current = null;
+            // Unselect steps in list
+            $scope.current = null;
+        }
     };
 
 })
