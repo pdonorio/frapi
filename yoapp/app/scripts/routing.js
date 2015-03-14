@@ -54,6 +54,9 @@ myApp
         $rootScope.$emit('rootScope:emit', 'padoff');
       },
     })
+/****************************************
+/****************************************
+/****************************************/
     // LOGGED Child routes (sub view, nested inside parent)
       .state('logged.main', {
         url: "/main",
@@ -70,36 +73,27 @@ myApp
           //make project text appear
           $rootScope.searching = false;
           $rootScope.$emit('rootScope:emit', 'gbgoff');
+          $rootScope.$emit('rootScope:emit', 'editon');
           $rootScope.lastVisited = undefined;
         }, onExit: function($rootScope) {
           $rootScope.edit.available = true;
         }
       })
+/****************************************
+/****************************************
+/****************************************/
 
       .state('logged.submission', {
-        url: "/add/{myId:[0-9\-a-z]*}",
+        url: "/submission/{myId:[0-9\-a-z]*}",
         views: {
           "contain": {
             templateUrl: 'submission/submission_user_view.html',
             controller: 'SubmissionController',
-          },"admin": {
-            templateUrl: 'submission/submission_admin_view.html',
-            controller: 'SubmissionAdminController',
-            //controller: 'SubmissionController',
           },
         },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
-          if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
-
-/*** REMOVE ME **/
-//DEBUG
-          $rootScope.switchEdit(true);
-//DEBUG
-/*** REMOVE ME **/
-
-        }, onExit: function($rootScope){
-          if ($rootScope.edit.switch) { $rootScope.switchEdit(false); }
+          $rootScope.$emit('rootScope:emit', 'editoff');
         },
         // Be sure to have data before loading the page
         resolve: {
@@ -107,14 +101,12 @@ myApp
             provider: 'IdProvider',
             // Create an object with service result
             draft: function($stateParams, user, provider) {
-              //console.log("Entered RESOLVE");
-
+              console.log("Entered RESOLVE");
               // This promise has been resolved inside the Service
               return provider.get($stateParams.myId,user);
             },
         },
       })
-
       .state('logged.submission.step', {
         url: "/step/:stepId",
         views: {
@@ -123,13 +115,38 @@ myApp
             controller: 'StepController',
           },
         },
-/*  cool: may this become handy in the future? hope not
-        onEnter: function($rootScope, $stateParams) {
-            $rootScope.test = $stateParams.myId;
-            //console.log($stateParams);
-        },
-*/
       })
+/****************************************
+/****************************************
+/****************************************/
+
+      .state('logged.adminsubmission', {
+        url: "/configure/{myId:[0-9\-a-z]*}",
+        views: {
+          "contain": {
+            templateUrl: 'submission/submission_admin_view.html',
+            controller: 'SubmissionAdminController',
+            //controller: 'SubmissionController',
+          },
+        },
+        onEnter: function($rootScope) {
+          //$rootScope.$emit('rootScope:emit', 'gbgoff');
+          //$rootScope.switchEdit(false);
+          $rootScope.$emit('rootScope:emit', 'editoff');
+        },
+      })
+      .state('logged.adminsubmission.step', {
+        url: "/step/:stepId",
+        views: {
+          "singlestep": {
+            templateUrl: 'submission/submission_allsteps_view.html',
+            controller: 'StepController',
+          },
+        },
+      })
+/****************************************
+/****************************************
+/****************************************/
 
       .state('logged.search', {
         url: "/search",
@@ -163,6 +180,7 @@ myApp
         }, },
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgoff');
+          $rootScope.$emit('rootScope:emit', 'editon');
           $rootScope.lastVisited = undefined;
         },
       })

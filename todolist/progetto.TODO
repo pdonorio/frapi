@@ -144,8 +144,16 @@ StepsAdmin:
   ✔ template elements @done (15-03-13 07:20)
     ✔ set, update, remove, add @done (15-03-13 07:40)
     ✔ FIX BUG: template positions are wrong @done (15-03-13 07:20)
-    ☐ FIX BUG:   does not change step
-      ☐ looks like it loads the same stuff for each step
+
+  ✔ FIX BUG:   does not change step @done (15-03-13 17:24)
+    ✔ looks like it loads the same stuff for each step @done (15-03-13 17:24)
+  ☐ Admin routing
+    ✔ how the hell to remove the button inside topbar @done (15-03-14 15:23)
+    ☐ BUG FIX: user does not load empty step at submission time:
+      ☐ http://awesome.dev/#/app/submission/a0425997-acf0-4b84-a2ee-6117138c5f1b/step/3
+    ☐ BUG FIX: adding a step does not count the right way and gives error
+    ☐ Make a view for single step inside admin
+
   ☐ The type is the center key
     ☐ use patterns (instead of html types)
       ☐ when you check insert AS A USER :D
