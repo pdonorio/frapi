@@ -70,6 +70,17 @@ myApp
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+.controller('SubmissionAdminStepController',
+    function ($scope, $stateParams)
+{
+    $scope.setStep($stateParams.stepId);
+    console.log("Step", $scope.current);
+    //$scope.snameform.$cancel();
+
+})
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 .controller('SubmissionAdminController', function ($scope, $state,
     NotificationData, AppConfig, ADMIN_USER,
     StepContent, StepTemplate, StepList )
@@ -78,12 +89,13 @@ myApp
     // Stop unwanted user
     if ($scope.username != ADMIN_USER)
         return false;
-    $scope.myelement = null;
 
     // Objects / Models INIT
+    $scope.myelement = null;
     var stepObj = StepList.build();
     var templObj = StepTemplate.build($scope.current);
     $scope.steps = [];
+
     // Try to load step list
     stepObj.getData().then(function(out) {
         // Set step list
@@ -156,14 +168,18 @@ myApp
     // STEP name EDITING
 
     // Define step on click
-    $scope.setStep = function(step) {
-      $scope.snameform.$cancel();
-      // Avoid if step has not changed
-      if (step == $scope.current)
-          return;
-      // Set step for administration
-      $scope.current = step;
+    $scope.stepInUrl = function(step) {
+      $state.go('logged.adminsubmission.step', {stepId: step});
     }
+    // Define step from inside view
+    $scope.setStep = function(step) {
+      if (step < 1)
+        $scope.current = null
+      // Avoid if step has not changed
+      else if (step != $scope.current)
+        $scope.current = step; // Set step for administration
+    }
+
     // Save new name
     $scope.saveStepName = function() {
       stepObj.setData($scope.steps, $scope.current).then(function(check){

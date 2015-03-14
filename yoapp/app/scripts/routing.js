@@ -126,12 +126,10 @@ myApp
           "contain": {
             templateUrl: 'submission/submission_admin_view.html',
             controller: 'SubmissionAdminController',
-            //controller: 'SubmissionController',
           },
         },
         onEnter: function($rootScope) {
           //$rootScope.$emit('rootScope:emit', 'gbgoff');
-          //$rootScope.switchEdit(false);
           $rootScope.$emit('rootScope:emit', 'editoff');
         },
       })
@@ -139,8 +137,8 @@ myApp
         url: "/step/:stepId",
         views: {
           "singlestep": {
-            templateUrl: 'submission/submission_allsteps_view.html',
-            controller: 'StepController',
+            templateUrl: 'submission/submission_admin_step.html',
+            controller: 'SubmissionAdminStepController',
           },
         },
       })
