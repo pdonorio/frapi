@@ -154,7 +154,6 @@ myApp
 
     ////////////////////////////////
     // STEP name EDITING
-    $scope.newsteps = 1;
 
     // Define step on click
     $scope.setStep = function(step) {
@@ -177,13 +176,23 @@ myApp
                   "Elemento salvato");
       });
     }
+    $scope.computeNextStep = function() {
+      var pos = $scope.steps.length;
+      // Find smallest position
+      for (var j = 1; j < $scope.steps.length; j++) {
+          if (!$scope.steps[j]) {
+              pos = j;
+              break;
+          }
+      };
+      return pos;
+    }
     // Add a step to database
     $scope.addStep = function() {
-      var label = 'nuovo_' + $scope.newsteps++;
+      var label = 'nuovo step';
+      $scope.current = $scope.computeNextStep();
       // Add step
-      $scope.steps.push(label);
-      // Select the step right after
-      $scope.current = $scope.steps.length - 1;
+      $scope.steps[$scope.current] = label;
       // API save
       stepObj.setData($scope.steps, $scope.current).then(function(check){
           NotificationData.setNotification(AppConfig.messageStatus.loading);
@@ -192,7 +201,7 @@ myApp
                   "Database non raggiungibile");
           else
               NotificationData.setNotification(AppConfig.messageStatus.success,
-                  "Aggiunto elemento" + $scope.current);
+                  "Aggiunto step n." + $scope.current);
       });
     };
     $scope.removeStep = function(index) {
@@ -205,14 +214,17 @@ myApp
         if (confirm(message))
         {
             // Remove from array
-            $scope.steps.splice(index, 1);
+            delete $scope.steps[index];
+            //$scope.steps.splice(index, 1);
             var step = angular.copy($scope.current);
 
             // API PROMISE CHAINING
             // 1. Remove from API the step
             stepObj.unsetData(step); //.then(function(check){
+// TO FIX -
             // 2. Remove from API steptemplate
             templObj.unsetData(step); //.then(function(check){
+// TO FIX -
             // 3. Remove from API stepcontent
             var contObj = StepContent.build(null, step);
             contObj.unsetData(step);

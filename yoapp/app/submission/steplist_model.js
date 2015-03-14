@@ -38,11 +38,11 @@ myApp
   {
 
     // Find the key to update
-    var params = { step: key };
+    var params = { step: step };
     return API.get(resource, params)
       .then(function(response) {
         if (!response.items) {
-            console.log("Failed to get id: no saved data!!",key,value);
+            console.log("Failed to get id: no saved data!!",step,value);
             return false;
         }
         // Here i know which recordo to update
@@ -53,7 +53,7 @@ myApp
 
         var data = {
             id: id,
-            step: key,
+            step: step,
             label: value,
             description: 'from front-end interface',
         };
@@ -61,16 +61,22 @@ myApp
         return API.set(resource, data).then(function(id) {
             return id;
         }, function() {
-            console.log("Failed to put data: no save!!",key,value);
+            console.log("Failed to put data: no save!!",step,value);
             return false;
         });
     });
   }
 
   // API to remove data
-  function removeData(key) {
-    console.log("I want to remove", key);
-    return false;
+  function removeData(step) {
+    var params = {step:step};
+    // Selecting id to remove
+    return API.get(resource, params)
+      .then(function(response) {
+        if (response.count == 1) {
+            return API.del(resource, response.items[0].id);
+        }
+    });
   }
 
   //////////////////////////////////////////

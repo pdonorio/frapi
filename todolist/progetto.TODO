@@ -147,11 +147,12 @@ StepsAdmin:
 
   ✔ FIX BUG:   does not change step @done (15-03-13 17:24)
     ✔ looks like it loads the same stuff for each step @done (15-03-13 17:24)
-  ☐ Admin routing
+  ✔ Admin routing @done (15-03-14 15:52)
     ✔ how the hell to remove the button inside topbar @done (15-03-14 15:23)
+    ☐ BUG FIX: move admin step to another view
     ☐ BUG FIX: user does not load empty step at submission time:
       ☐ http://awesome.dev/#/app/submission/a0425997-acf0-4b84-a2ee-6117138c5f1b/step/3
-    ☐ BUG FIX: adding a step does not count the right way and gives error
+    ✔ BUG FIX: adding a step does not count the right way and gives error @done (15-03-14 15:52)
     ☐ Make a view for single step inside admin
 
   ☐ The type is the center key
@@ -176,10 +177,7 @@ StepsAdmin:
  ☐ User model
    ☐ Profile adjust to User model
  ☐ Stupid login?
-
-A CARD:
-  -webkit-box-shadow: 2px 3px 5px #333;
-  -webkit-border-bottom-right-radius: 5px;
+ ☐ Dark pattern background
 
 DebugMode:
  ☐ Feedback button

@@ -11,10 +11,10 @@
     </a>
     <!-- STEPS -->
     <a href class="list-group-item"
-      ng-repeat='(step,name) in steps' ng-if='name != null'
-      ng-click="setStep(step)" ng-class="{'orange': step == current}">
+      ng-repeat='name in steps track by $index' ng-if='name'
+      ng-click="setStep($index)" ng-class="{'orange': $index == current}">
         <!-- badge -->
-        <span class="badge"> {{step}} </span>
+        <span class="badge"> {{$index}} </span>
         <!-- name -->
         {{ (name | ucFirst) || 'empty'}}
     </a>
@@ -24,7 +24,7 @@
       <span>
         <br>
         <button type='button' class="btn btn-default" ng-click="addStep()"
-          tooltip-placement="right" tooltip="Aggiungi il nuovo step {{steps.length}}">
+          tooltip-placement="right" tooltip="Aggiungi il nuovo step {{computeNextStep()}}">
           <i class="fa fa-plus"></i>
         </button>
       </span>
@@ -35,8 +35,10 @@
 </div>
 
 
+<!-- FROM HERE to another view -->
 <!-- to another view -->
-
+<!-- to another view -->
+<!-- to another view -->
 
 <div class="col-md-6 col-xs-6" ng-show='steps'>
  <!-- Form for ADMIN USER -->
@@ -45,7 +47,7 @@
     <div class='panel-heading'>
      <h3>
 
-      <span ng-hide='current'> Work in progress </span>
+      <span ng-hide='current'> Nessuno step selezionato </span>
       <span ng-show='current'>
         Step {{current}}:
         <!-- make editable -->
@@ -73,7 +75,10 @@
 
     <div class='panel-body'>
       <div ng-hide='current'>
-          Seleziona nel menu uno <b>Step</b> da modificare.<br>
+          <i class='fa fa-arrow-circle-left fa-2x'></i>
+          Per favore, <br>
+          seleziona nel menu uno <b>Step</b> da modificare.<br>
+
       </div>
       <div ng-show='current'>
 
