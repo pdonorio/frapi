@@ -155,7 +155,7 @@ StepsAdmin:
       ☐ http://awesome.dev/#/app/submission/a0425997-acf0-4b84-a2ee-6117138c5f1b/step/3
     ✔ BUG FIX: adding a step does not count the right way and gives error @done (15-03-14 15:52)
     ✔ Make a view for single step inside admin @done (15-03-15 09:33)
-    ☐ Divide contollers from a single file
+    ✔ Divide contollers from a single file @done (15-03-15 09:37)
 
   ☐ The type is the center key
     ☐ use patterns (instead of html types)
