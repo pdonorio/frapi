@@ -46,7 +46,8 @@
           <!-- Edit buttons and form -->
           <td style="white-space: nowrap" ng-show="edit.switch">
             <!-- form -->
-            <form editable-form name="rowform" onbeforesave="saveNews($data, el.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == el">
+            <form editable-form name="rowform" onbeforesave="saveNews($data, el.id)"
+                ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == el">
               <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-info">
                 <i class='fa fa-check-square-o' tooltip-placement="Left" tooltip="Salva"></i>
               </button>
@@ -75,12 +76,12 @@
  <hr>
  <div>
    Oggi è il <b>{{date | date:'dd-MM-yyyy'}}</b>
+ </div>
 
   <!-- Modal example
   <button class="btn btn-default" ng-click="open()">Open me!</button>
   -->
 
- </div>
 
  <!-- Notification tester
 

@@ -1,60 +1,89 @@
 
 <div id="navbar-custom" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" ui-sref='logged.main'>{{projectName}}</a>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-          </button>
-        </div>
-        <div id='navbar' class="collapse navbar-collapse navbar-menubuilder">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref='logged.main'>{{projectName}}</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+      </button>
+    </div>
+    <div id='navbar' class="collapse navbar-collapse navbar-menubuilder">
 
-          <!-- Edit MODE button / ONLY FOR ADMIN! -->
-          <ul class="nav navbar-nav navbar-left" ng-hide="!edit.available">
-          <li>
-            <a href="" ng-click="switchEdit(true)" ng-hide="edit.switch">
-              <i class="fa fa-toggle-off fa-lg fa-fw"></i>
-              Edit-off
-            </a>
-            <a href="" ng-click="switchEdit(false)" ng-show="edit.switch">
-              <i class="fa fa-toggle-on fa-lg fa-fw"></i>
-              Edit-on
+      <!-- Edit MODE button / ONLY FOR ADMIN! -->
+      <ul class="nav navbar-nav navbar-left"
+        ng-hide="!edit.available"
+        ng-show="adminer"
+        >
+        <li>
+          <div style='padding-top:10px; padding-left:25px;'>
+            EditMode:
+            <div class="btn-group btn-group-sm" role="group">
+              <button type="button" class="btn btn-default"
+                ng-class="{'disabled': edit.switch, 'mybold': !edit.switch}"
+                ng-click='switchEdit(true)' >On</button>
+              <button type="button" class="btn btn-default"
+                ng-class="{'disabled': !edit.switch, 'mybold': edit.switch}"
+                ng-click='switchEdit(false)' >Off</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Main menu -->
+      <ul class="nav navbar-nav navbar-right">
+          <li ng-if='lastVisited'>
+            <a href ng-click="go(lastVisited)">
+              <i class="fa fa-step-backward fa-1x"></i> Back
             </a>
           </li>
-          </ul>
+          <!-- Menu buttons -->
+          <li ng-repeat='el in menu' ng-class="{'active': el.active}">
+            <a ui-sref='{{el.link}}'>
+              <i class="fa fa-{{el.icon}}"></i>
+              {{el.name | ucFirst}}
+            </a>
+          </li>
 
-          <!-- Main menu -->
-          <ul class="nav navbar-nav navbar-right">
-              <li ng-if='lastVisited'>
-                <a href ng-click="go(lastVisited)">
-                  <i class="fa fa-step-backward fa-1x"></i> Back
+          <!-- Profile button -->
+          <li class="dropdown" dropdown>
+            <a href dropdown-toggle>
+              <i class="fa fa-user fa-1x"></i>
+              Profile <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+
+              <li ng-if='adminer' role="presentation" class="dropdown-header">
+                Role: <b>adminer</b>
+              </li>
+              <li ng-if='adminer'><a ng-click="go('app/configure/admin/step/0')">
+                <i>Submission</i>
+                <span class="label label-danger">admin</span>
+                <!-- <span class="label label-default">new</span> -->
                 </a>
               </li>
-              <!-- Menu buttons -->
-              <li ng-repeat='el in menu' ng-class="{'active': el.active}">
-                <a ui-sref='{{el.link}}'>
-                  <i class="fa fa-{{el.icon}}"></i>
-                  {{el.name | ucFirst}}
+              <li ng-if='adminer'>
+                <a href="#">work in progress
+                <span class="label label-info">todo</span>
                 </a>
               </li>
+              <li ng-if='adminer' class="divider"></li>
 
-              <!-- Profile button -->
-              <li class="dropdown" dropdown>
+              <li role="presentation" class="dropdown-header"> Role: <b>user</b> </li>
+              <li><a href="#">My documents
+                <span class="label label-info">todo</span>
+              </a></li>
+              <li><a href="#">Advanced search
+                <span class="label label-info">todo</span>
+              </a></li>
 
-                  <a href dropdown-toggle>
-                    <i class="fa fa-user fa-1x"></i>
-                    Profile <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                    <li role="presentation" class="dropdown-header"> Role: <b>adminer</b> </li>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action <span class="label label-default">new</span></a></li>
-                    <li><a href="#">Messages  <span class="badge alert-info">4</span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Log out</a></li>
-                  </ul>
+              <li class="divider"></li>
+              <li role="presentation" class="dropdown-header"> <b>Social</b> </li>
+              <li><a href="#">Messages  <span class="badge alert-warning">4</span></a></li>
 
-              </li>
-          </ul>
-        </div>
+              <li class="divider"></li>
+              <li><a href="#">Log out</a></li>
+            </ul>
+          </li>
+      </ul>
     </div>
+  </div>
 </div>

@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var myApp = angular.module('yoApp',
+var myApp = angular.module('archivi',
   [
   // CONFIGURATION and DYNAMIC CONSTANTS - made by me
     'AppConfig',
@@ -32,11 +32,17 @@ var myApp = angular.module('yoApp',
   // CONSTANTS
   .constant('projectName', 'SpectaleBaroque')
   .constant('devHost', 'awesome.dev')
+  // USERS
+  .constant('ADMIN_USER', 'admin')
+  .constant('OPERATOR_USER', 'op')
+  .constant('GUEST_USER', 'guest')
+  // Other
   .constant('apiTimeout', 15750) //remember: a refused connection waits no time
   .constant('messageTimeout', 3000)
   .constant('warningInitTime', 7500)
   .constant('perpageDefault', 7)
   .constant('currentpageDefault', 1)
+  // use more time to load the page
   .constant('someInitTime', 1000)
 
 /////////////////////////////////////////

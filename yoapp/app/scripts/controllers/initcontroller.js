@@ -82,6 +82,7 @@ myApp
             $scope.onOff.dark = true;
         } else if (data == "dbgoff") {
             $scope.onOff.dark = false;
+        // Remove edit button on topbar?
         } else if (data == "editon") {
             $rootScope.edit.available = true;
         } else if (data == "editoff") {

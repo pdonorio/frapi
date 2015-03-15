@@ -1,54 +1,38 @@
+
 <div class="col-md-3 col-xs-3">
+
   <div class="list-group">
+    <!-- HEADER -->
+    <a class="list-group-item peach" ng-show='steps'>
+      <h4 class='dtext'> Modifica degli step </h4>
+    </a>
+    <a href class="list-group-item" ng-hide='steps'>
+      <h4 class='dtext'> Nessuno step ancora definito </h4>
+    </a>
     <!-- STEPS -->
-    <a href class="list-group-item" ng-repeat='step in steps' ng-click="setStep(step.step)"
-      ng-class="{'orange': step.step == current}">
-      <!-- step edit -->
-      <span editable-number="step.step" e-min="1" ng-show="stepsForm.$visible" e-required>
-        Step
-        {{step.step}}
-      </span>
-      <!-- editable label -->
-      <span editable-text="step.name" e-form="stepsForm">
-        {{ (step.name | ucFirst) || 'empty'}}
-      </span>
-      <!-- remove button -->
-      <button ng-show="stepsForm.$visible" class="btn btn-danger" ng-click="removeStep($index)">
-        <i class="fa fa-trash-o"></i>
-      </button>
+    <a href class="list-group-item"
+      ng-repeat='name in steps track by $index' ng-if='name'
+      ng-click="stepInUrl($index)" ng-class="{'orange': $index == current}">
+        <!-- badge -->
+        <span class="badge"> {{$index}} </span>
+        <!-- name -->
+        {{ (name | ucFirst) || 'empty'}}
     </a>
 
-    <a href="" class="list-group-item"
+    <a href="" class="list-group-item">
       <!-- buttons to submit / cancel form -->
-      <span ng-show="stepsForm.$visible">
+      <span>
         <br>
-        <button type='button' class="btn btn-default" ng-click="addStep()" ng-disabled="stepsForm.$waiting">
+        <button type='button' class="btn btn-default" ng-click="addStep()"
+          tooltip-placement="right" tooltip="Aggiungi il nuovo step {{computeNextStep()}}">
           <i class="fa fa-plus"></i>
         </button>
-        <button type="submit" class="btn btn-success" ng-disabled="stepsForm.$waiting"
-          ng-click='edit.switch = false;'>
-          <i class="fa fa-floppy-o"></i>
-        </button>
-        <button type="button" class="btn btn-warning" ng-disabled="stepsForm.$waiting"
-          ng-click="undoSteps(); edit.switch = false;">
-          <i class="fa fa-times"></i>
-        </button>
       </span>
     </a>
 
   </div>
+ </a>
 </div>
 
-<div class="col-md-6 col-xs-6">
- <!-- Form for ADMIN USER -->
- <form editable-form name="myform" onaftersave="doSomethingToSave()">
- <div class='panel whitecard'>
-    <div class='panel-heading'>
-      <h3>Work in progress</h3>
-    </div>
-    <div class='panel-body'>
-      There will be fields edit in here.
-    </div>
-  </div>
- </form>
-</div>
+<!-- FROM HERE to another view -->
+<div ui-view="singlestep"></div>

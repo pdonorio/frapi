@@ -98,6 +98,10 @@ myApp
     return saveData(this, data);
 
   }
+  StepContent.prototype.unsetData = function (key) {
+    console.log("Content remove", key);
+    //return removeData(key);
+  };
 
   /*********************************
   ** CONTEXT *

@@ -1,3 +1,8 @@
+.mycard {
+  -webkit-box-shadow: 2px 3px 5px #333;
+  -webkit-border-bottom-right-radius: 5px;
+}
+
 /* Static welcome page
 -------------------------------------------------- */
 .staticbg {
@@ -245,6 +250,9 @@ My own extra
   -webkit-border-radius: 0.2em;
   -moz-border-radius: 0.2em;
   border-radius: 0.2em;
+}
+.mybold {
+    font-weight: bold;
 }
 .headcolor {
   color: #002C42;

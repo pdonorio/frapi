@@ -1,0 +1,117 @@
+<div class="col-md-6 col-xs-6" ng-show='steps'>
+ <!-- Form for ADMIN USER -->
+
+<div class='panel whitecard'>
+ <div class='panel-heading'>
+ <h3>
+
+  <span ng-hide='current'> Nessuno step selezionato </span>
+  <span ng-show='current'>
+    Step {{current}}:
+    <!-- make editable -->
+  <span editable-text="steps[current]" e-form="snameform" onaftersave='saveStepName()'>
+    {{steps[current] || 'vuoto'}}
+  </span>
+
+  <div class="btn-group" role="group" ng-hide="snameform.$visible">
+    <!-- button to edit name -->
+    <button type="button" class="btn btn-default" ng-click="snameform.$show()"
+    tooltip-placement="bottom" tooltip="Cambia nome dello step {{current}}"
+    >
+      <i class="fa fa-edit fa-fix"></i>
+    </button>
+    <!-- remove step -->
+    <button class="btn btn-danger" ng-click="removeStep(current)"
+    tooltip-placement="bottom" tooltip="Cancella lo step {{current}}"
+    >
+      <i class="fa fa-trash-o fa-fix"></i>
+    </button>
+  </div>
+
+ </h3>
+</div>
+
+<div class='panel-body'>
+  <div ng-hide='current'>
+      <i class='fa fa-arrow-circle-left fa-2x'></i>
+      Per favore, <br>
+      seleziona nel menu uno <b>Step</b> da modificare.<br>
+
+  </div>
+  <div ng-show='current'>
+
+    <table class="table table-hover table-condensed">
+
+     <thead>
+         <tr> <th>Campo</th> <th>Nome</th> <th>Tipo</th> <th>Operazioni</th> </tr>
+     </thead>
+
+     <tbody>
+      <tr ng-repeat='template in templates track by $index'
+        ng-if='$index > 0 && template.label'>
+       <td style='background: #eee; text-align: center; font-weight: bold;'>
+        #{{$index}}
+       </td>
+       <!-- Text with Validation -->
+       <td>
+        <span href="#" editable-text="template.label" e-name="label"
+            e-form="rowform" e-required onaftersave='updateElement($index)'>
+          {{template.label || 'vuoto'}}
+        </span>
+       </td>
+       <!-- List of elements -->
+       <td>
+         <span ng-show="rowform.$visible">
+          <select ng-model="myselect" ng-init='myselect=types[template.value] || types[0]'
+              ng-options="mytype.text for mytype in types" ></select>
+         </span>
+         <span ng-hide="rowform.$visible"> {{myselect.text}} </span>
+       </td>
+
+       <td>
+        <!-- form -->
+        <form editable-form name="rowform" ng-show="rowform.$visible"
+        class="form-buttons form-inline">
+         <div class="btn-group" role="group">
+          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary"
+            tooltip-placement="bottom" tooltip="Salva modifiche">
+           <i class="fa fa-save fa-fix"></i>
+          </button>
+          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+            tooltip-placement="bottom" tooltip="Annulla modifiche"
+            class="btn btn-default">
+           <i class="fa fa-remove fa-fix"></i>
+          </button>
+         </div>
+        </form>
+        <div class="btn-group" role="group" ng-show="!rowform.$visible">
+          <button class="btn btn-info" ng-click="rowform.$show()"
+            tooltip-placement="bottom" tooltip="Modifica parametri">
+           <i class="fa fa-edit fa-fix"></i>
+          </button>
+          <button class="btn btn-danger" ng-click="removeElement($index)"
+            tooltip-placement="bottom" tooltip="Rimuovi elemento">
+           <i class="fa fa-minus fa-fix"></i>
+          </button>
+        </div>
+<!--             {{Object.keys(templates)}}
+            ng-show='templates.length > 0'
+-->           </td>
+
+      </tr>
+     </tbody>
+
+    </table>
+
+    <button type='button' class="btn btn-primary" ng-click="addTemplate()"
+    tooltip-placement="right" tooltip="Aggiungi un nuovo campo allo step {{current}}">
+      <i class="fa fa-plus"></i>
+    </button>
+
+  </div>
+ </div>
+
+</div>
+<hr> <div> Oggi è il <b>{{date | date:'dd-MM-yyyy'}}</b> </div>
+
+</div>
