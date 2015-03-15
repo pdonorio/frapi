@@ -23,12 +23,12 @@
 
         <!-- STEPS -->
         <a href class="list-group-item"
-          ng-repeat='(step,name) in steps' ng-if='name != null'
-          ng-click="broadcastStep(step)" ng-class="{'orange': step == current}">
+          ng-repeat='name in steps track by $index' ng-if='name'
+          ng-click="broadcastStep($index)" ng-class="{'orange': $index == current}">
           <!-- name -->
           {{name | ucFirst}}
           <!-- badge -->
-          <span class="badge"> {{step}} </span>
+          <span class="badge"> {{$index}} </span>
         </a>
 
         <!-- UPLOADER -->
