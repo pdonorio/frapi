@@ -162,10 +162,9 @@ StepsAdmin:
       ✔ Remove it also inside view page for the moment @done (15-03-15 11:28)
 
 StepsInsertType:
-  ☐ THE TYPE IS THE CENTER KEY
+  ☐ THE TYPE IS THE CENTER KEY @current
     ☐ use patterns (instead of html types)
-      ☐ when you check insert AS A USER :D
-      ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
+      ☐ EXAMPLE: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
   ☐ fix "are you really sure" notice
   ☐ Url to access edit mode
     ☐ via parameter ?key=value for ui router?
