@@ -108,7 +108,6 @@ Steps:
                 ✔ Handle notification @done (15-03-02 07:40)
                   ✘ inside factory?? @cancelled (15-03-02 07:40)
                 ✔ Add timestamp save of any insert / update to my nosql tables @done (15-03-05 17:16)
-
 StepsAdmin:
   ✔ Reenable switch edit @done (15-03-05 21:29)
     ✔ it was only for new step @done (15-03-05 21:29)
@@ -162,7 +161,8 @@ StepsAdmin:
     ✔ Remove edit button inside topbar inside insert @done (15-03-15 11:28)
       ✔ Remove it also inside view page for the moment @done (15-03-15 11:28)
 
-  ☐ THE TYPE IS THE CENTER KEY @current
+StepsInsertType:
+  ☐ THE TYPE IS THE CENTER KEY
     ☐ use patterns (instead of html types)
       ☐ when you check insert AS A USER :D
       ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
