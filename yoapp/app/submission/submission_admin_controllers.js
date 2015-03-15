@@ -8,9 +8,8 @@ myApp
     NotificationData, AppConfig, ADMIN_USER,
     StepContent, StepTemplate, StepList )
 {
-
     // Stop unwanted user
-    if ($scope.username != ADMIN_USER)
+    if (!$scope.adminer)
         return false;
 
     // Objects / Models INIT
@@ -133,7 +132,12 @@ myApp
 .controller('SubmissionAdminStepController',
     function ($scope, $stateParams, StepTemplate)
 {
+    if (!$scope.adminer)
+        return false;
+
+    // Apply current url step to whole view
     $scope.setStep($stateParams.stepId);
+
     if ($scope.current > 0) {
         console.log("Step", $scope.current);
 

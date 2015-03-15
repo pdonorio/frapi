@@ -37,7 +37,7 @@ myApp
             $rootScope.user = user;
 
             // Check role
-            $rootScope.adminer = user.role == ADMIN_USER;
+            $rootScope.adminer = (user.role == ADMIN_USER);
             return user;
         },
       },
