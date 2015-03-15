@@ -14,11 +14,11 @@
 
     <div class="panel-body">
 
-      <div ng-hide='data'>
+      <div ng-hide='data[step] || (data && !data[step])'>
         <h4> <i class="fa fa-refresh fa-spin"></i> in caricamento </h4>
       </div>
 
-      <div ng-show='data && !data[0]'>
+      <div ng-show='data && !data[step]'>
         <b>Questo step non è ancora stato configurato...</b>
       </div>
 
@@ -30,7 +30,7 @@
         <!-- <thead> <tr> <th>Colonna</th> <th>Valore</th> </tr> </thead> -->
         <tbody>
           <!-- repeat with sort on key 'pos' -->
-          <tr ng-repeat="(pos,obj) in data" ng-if='obj.key' >
+          <tr ng-repeat="(pos,obj) in data[step]" ng-if='obj.key' >
               <th class='title'> {{ (obj.key | ucFirst) || 'empty'}} </th>
               <td ng-show='current != step'>&nbsp;</td>
               <td editable-text="data[pos].value" e-name="name" e-size='40'

@@ -32,7 +32,8 @@ myApp
     $scope.myrecordid = $stateParams.myId;
     // 1. If id is 'new' get the identifier and set it inside the URL
     // This was moved to the resolve part in the routing section
-    console.log("Obtained draft id", draft);
+    if (draft)
+        console.log("Obtained draft id", draft);
     // 2. Switch to edit of the new dratf + step 1 (default if not set)
     if (draft !== null) {
         $timeout( function() {
@@ -68,17 +69,19 @@ myApp
 
     ////////////////////////////////////////////////
     // Build objects
-    var data = {};
+    var data = [];
+    $scope.data = [];
     $scope.contentData = StepContent.build($scope.identifier, $scope.step);
-    $scope.templateModel = StepTemplate.build($scope.step);
 
     ////////////////////////////////////////////////
     // Procedure to mix data and save it into scope
-    var injectData = function(template, content, notempty) {
-
+    var injectData = function(template, content)
+    {
         // var init
         var index = 0;
         var count = 0;
+        var notempty = content.values && content.values.length;
+
         if (notempty && content.id)
             $scope.contentData.setId(content.id);
         // Mixing template and content here
@@ -91,14 +94,10 @@ myApp
                     count++;
                 }
             }
-            //data[label] = value;
             data[index++] = {key: obj.label, value: value};
         });
-
-        //$timeout( function() {
-            $scope.data = data;
-        //}, 350);
-
+// TO FIX
+        $scope.data[$scope.step] = data;
         return count;
 
     }
@@ -106,7 +105,8 @@ myApp
     ////////////////////////////////////////////////
     // FIRST TIME: get data if not 'new' in address bar
     // Get StepTemplate (admin data)
-    $scope.templateModel.getData().then(function(template)
+    var templObj = StepTemplate.build($scope.step);
+    templObj.getData().then(function(template)
     {
         // Set error if empty template on this step...
         if (template.length < 1)
@@ -115,18 +115,16 @@ myApp
         // Load only data for current identifier, see build of the class
         $scope.contentData.getData().then(function(content)
         {
-            var notempty = content.values && content.values.length;
             // Create data from models and inject the result inside scope
-            var count = injectData(template, content, notempty);
-
+            var count = injectData(template, content);
             // Decide on form to show
             if ($scope.step == $scope.current)
             {
+                console.log("Activated step:", $scope.step);
                 // Open form
                 if ($scope.myform && count < 1) {
                     $scope.myform.$show();
                 }
-                //console.log("Activated step:", $scope.step);
             }
         });
      });
@@ -159,7 +157,7 @@ myApp
                 // Bring data back?
                 var backup = $scope.contentData.restoreBackup();
                 // Template is a promise...
-                $scope.templateModel.getData().then(function(template){
+                templObj.getData().then(function(template){
                     injectData(template, backup);
                 });
             }

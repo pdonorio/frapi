@@ -154,9 +154,10 @@ StepsAdmin:
     ✔ Make a view for single step inside admin @done (15-03-15 09:33)
     ✔ Divide contollers from a single file @done (15-03-15 09:37)
     ✔ BUG FIX: correct ng repeat for user view @done (15-03-15 09:46)
-    ☐ BUG FIX: user does not load empty step at submission time:
+    ✔ BUG FIX: user does not load empty step at submission time @done (15-03-15 11:23)
+      ✔ how to define empty data or data not loaded @done (15-03-15 11:23)
 
-  ☐ The type is the center key
+  ☐ THE TYPE IS THE CENTER KEY @current
     ☐ use patterns (instead of html types)
       ☐ when you check insert AS A USER :D
       ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
