@@ -1,7 +1,7 @@
 
 //ROUTING new
 myApp
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, ADMIN_USER) {
 
   // Set up the states and URL routing
   $stateProvider
@@ -30,10 +30,14 @@ myApp
       // Set the current user for the whole application
       resolve: {
         user: function($rootScope) {
-            var user = {name: 'admin'};
+
+// TO FIX - load from DB [with User model]
+            var user = {name: 'Administrator', role: ADMIN_USER};
             console.log("Current user: ", user);
-            $rootScope.username = user.name;
-            // TO FIX with User model
+            $rootScope.user = user;
+
+            // Check role
+            $rootScope.adminer = user.role == ADMIN_USER;
             return user;
         },
       },

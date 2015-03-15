@@ -9,7 +9,10 @@
     <div id='navbar' class="collapse navbar-collapse navbar-menubuilder">
 
       <!-- Edit MODE button / ONLY FOR ADMIN! -->
-      <ul class="nav navbar-nav navbar-left" ng-hide="!edit.available">
+      <ul class="nav navbar-nav navbar-left"
+        ng-hide="!edit.available"
+        ng-show="adminer"
+        >
         <li>
           <div style='padding-top:10px; padding-left:25px;'>
             EditMode:
@@ -48,23 +51,33 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
 
-              <li role="presentation" class="dropdown-header"> Role: <b>adminer</b> </li>
-              <li><a ng-click="go('app/configure/admin/step/0')">
+              <li ng-if='adminer' role="presentation" class="dropdown-header">
+                Role: <b>adminer</b>
+              </li>
+              <li ng-if='adminer'><a ng-click="go('app/configure/admin/step/0')">
                 <i>Submission</i>
-                <span class="label label-warning">admin</span>
+                <span class="label label-danger">admin</span>
                 <!-- <span class="label label-default">new</span> -->
                 </a>
               </li>
-              <li><a href="#">work in progress</a></li>
-              <li class="divider"></li>
+              <li ng-if='adminer'>
+                <a href="#">work in progress
+                <span class="label label-info">todo</span>
+                </a>
+              </li>
+              <li ng-if='adminer' class="divider"></li>
 
               <li role="presentation" class="dropdown-header"> Role: <b>user</b> </li>
-              <li><a href="#">My documents</a></li>
-              <li><a href="#">Advanced search </a></li>
+              <li><a href="#">My documents
+                <span class="label label-info">todo</span>
+              </a></li>
+              <li><a href="#">Advanced search
+                <span class="label label-info">todo</span>
+              </a></li>
 
               <li class="divider"></li>
               <li role="presentation" class="dropdown-header"> <b>Social</b> </li>
-              <li><a href="#">Messages  <span class="badge alert-info">4</span></a></li>
+              <li><a href="#">Messages  <span class="badge alert-warning">4</span></a></li>
 
               <li class="divider"></li>
               <li><a href="#">Log out</a></li>

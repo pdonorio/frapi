@@ -156,17 +156,16 @@ StepsAdmin:
     ✔ BUG FIX: correct ng repeat for user view @done (15-03-15 09:46)
     ✔ BUG FIX: user does not load empty step at submission time @done (15-03-15 11:23)
       ✔ how to define empty data or data not loaded @done (15-03-15 11:23)
+  ✔ Split admin and insert.... @done (15-03-15 11:28)
+    ✔ Two views, do not let user and admin controller be called at the same time @done (15-03-15 11:28)
+    ✔ Put admin link inside profile if user == 'admin' @done (15-03-15 11:49)
+    ✔ Remove edit button inside topbar inside insert @done (15-03-15 11:28)
+      ✔ Remove it also inside view page for the moment @done (15-03-15 11:28)
 
   ☐ THE TYPE IS THE CENTER KEY @current
     ☐ use patterns (instead of html types)
       ☐ when you check insert AS A USER :D
       ☐ <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
-  ☐ Split admin and insert....
-    ☐ Two views, do not let user and admin controller be called at the same time
-    ☐ Put admin link inside profile if user == 'admin'
-    ☐ Remove edit button inside topbar inside insert
-      ☐ REMOVE DEBUG in routing
-      ☐ Remove it also inside view page for the moment
   ☐ fix "are you really sure" notice
   ☐ Url to access edit mode
     ☐ via parameter ?key=value for ui router?
