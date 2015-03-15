@@ -30,7 +30,6 @@ myApp
                 data[obj.position] = {label:obj.field, value:obj.type};
             });
           }
-          console.log("Loaded from step ", step, "data", data);
           return data;
       });
   }
@@ -90,11 +89,9 @@ myApp
         field: label,
         type: value,
     };
-    console.log("Set template data", data);
     return saveData(data);
   };
   StepTemplate.prototype.unsetData = function (step, position) {
-    console.log("Template remove", step, position);
     return removeData(step, position);
   };
   // Static method, assigned to class

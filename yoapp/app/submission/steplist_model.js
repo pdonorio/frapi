@@ -73,9 +73,9 @@ myApp
     // Selecting id to remove
     return API.get(resource, params)
       .then(function(response) {
-        if (response.count == 1) {
+        if (response.count == 1)
             return API.del(resource, response.items[0].id);
-        }
+        return false;
     });
   }
 

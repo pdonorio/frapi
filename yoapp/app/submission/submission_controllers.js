@@ -4,15 +4,10 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-.controller('SubmissionController', function (
-    $scope, $state, $stateParams, $timeout,
-    NotificationData, AppConfig, StepList, draft)
+.controller('SubmissionController', function ($scope, $state, $stateParams, $timeout, NotificationData, AppConfig, StepList, draft)
 {
-
     ////////////////////////////////
-    // Do not start with a current value as default
-    // Let the URL decide
+    // Do not start with a current value as default (Let the URL decide)
     $scope.current = null;
 
     ////////////////////////////////
@@ -26,6 +21,7 @@ myApp
         // Coming as an url parameter i have to make sure is not a string
         $scope.current = parseInt(step);
     }
+
     ////////////////////////////////
     // The IDENTIFIER ***
 
@@ -35,26 +31,19 @@ myApp
     // 0. Inject to all DOM elements
     // get variable inside url as param
     $scope.myrecordid = $stateParams.myId;
-
     // 1. If id is 'new' get the identifier and set it inside the URL
     // This was moved to the resolve part in the routing section
-    //console.log("Obtained draft id", draft);
-
+    console.log("Obtained draft id", draft);
     // 2. Switch to edit of the new dratf + step 1 (default if not set)
     if (draft !== null) {
-
         $timeout( function() {
             $state.go('logged.submission.step', { myId: draft});
 // TO FIX -
         }, 1600);
-
     } else {
-
-        //////////////////////////////////////////////
         // Getting data from my Models
         $scope.stepObj = {};
         $scope.stepsData = {};
-
         // StepList (side navbar)
         $scope.stepObj.list = StepList.build();
         $scope.stepObj.list.getData().then(function(out) {
@@ -63,23 +52,9 @@ myApp
             //$scope.stepsNum = Object.keys($scope.stepsData).length;
             $scope.stepsNum = $scope.steps.length;
         });
-
     }
+}) //end SubmissionController
 
- }) //end SubmissionController
-
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-.controller('SubmissionAdminStepController',
-    function ($scope, $stateParams)
-{
-    $scope.setStep($stateParams.stepId);
-    console.log("Step", $scope.current);
-    //$scope.snameform.$cancel();
-
-})
-
-//////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminController', function ($scope, $state,
     NotificationData, AppConfig, ADMIN_USER,
@@ -93,76 +68,21 @@ myApp
     // Objects / Models INIT
     $scope.myelement = null;
     var stepObj = StepList.build();
-    var templObj = StepTemplate.build($scope.current);
     $scope.steps = [];
 
     // Try to load step list
     stepObj.getData().then(function(out) {
-        // Set step list
-        $scope.steps = out;
-        // Try to load also template
-        templObj.getData().then(function(response) {
-            $scope.templates = response;
-        });
-        // Set number of steps somewhere
-        $scope.stepsNum = $scope.steps.length;
+        if (out) {
+            // Set step list
+            $scope.steps = out;
+            $scope.templObj = StepTemplate.build($scope.current);
+            // Set number of steps somewhere
+            $scope.stepsNum = $scope.steps.length;
+        }
+        // Unselect if trying to reach a non existing step
+        if (!$scope.steps[$scope.current])
+          $scope.stepInUrl(0);
     });
-
-    ////////////////////////////////
-    // STEP template EDITING
-
-    /**************************/
-    /*  TYPES   ***************/
-// TO FIX -
-    // Should be defined inside database?
-    // Or inside configuration (app.conf)?
-    $scope.types = [
-        {value: 0, text: 'string'},
-        {value: 1, text: 'number'},
-        {value: 2, text: 'range'},
-        {value: 3, text: 'date'},
-        {value: 4, text: 'email'},
-    ];
-    /*  TYPES   ***************/
-    /**************************/
-
-    $scope.addTemplate = function() {
-        var pos = 0;
-        var label = 'nuovo elemento';
-        var value = 0;  //first element: default
-        // Find smallest position
-        for (var j = 1; j < $scope.templates.length; j++) {
-            if (!$scope.templates[j]) {
-                pos = j;
-                break;
-            }
-        };
-        // Add template
-        $scope.templates[pos] = {label:label, value:value};
-        // API save
-        templObj.setData($scope.current, pos, label, value)
-        .then(function(id){
-            console.log("Saved id", id);
-        });
-    };
-    $scope.updateElement = function(index) {
-        var l = $scope.templates[index].label;
-        var v = $scope.templates[index].value;
-        // API save
-        templObj.setData($scope.current, index, l, v)
-        .then(function(id){
-            console.log("Updated id", id);
-        });
-    };
-    $scope.removeElement = function(index) {
-        delete $scope.templates[index];
-        // API save
-        templObj.unsetData($scope.current, index).then(function(){});
-// TO FIX -
-        //These should also remove every content set on this step:field from user...
-    };
-
-    //
 
     ////////////////////////////////
     // STEP name EDITING
@@ -197,8 +117,7 @@ myApp
       // Find smallest position
       for (var j = 1; j < $scope.steps.length; j++) {
           if (!$scope.steps[j]) {
-              pos = j;
-              break;
+              pos = j; break;
           }
       };
       return pos;
@@ -236,20 +155,96 @@ myApp
 
             // API PROMISE CHAINING
             // 1. Remove from API the step
-            stepObj.unsetData(step); //.then(function(check){
+            stepObj.unsetData(step).then(function(check){
+              if (check === false) {
+                NotificationData.setNotification(AppConfig.messageStatus.error,
+                    "Database non raggiungibile");
+              } else {
+
 // TO FIX -
-            // 2. Remove from API steptemplate
-            templObj.unsetData(step); //.then(function(check){
+                // 2. Remove from API steptemplate
+                $scope.templObj.unsetData(step); //.then(function(check){
+                // 3. Remove from API stepcontent
+                var contObj = StepContent.build(null, step);
+                contObj.unsetData(step);
 // TO FIX -
-            // 3. Remove from API stepcontent
-            var contObj = StepContent.build(null, step);
-            contObj.unsetData(step);
+
+                NotificationData.setNotification(AppConfig.messageStatus.success,
+                    "Rimosso step n." + $scope.current);
+              }
+            });
 
             // Unselect steps in list
-            $scope.current = null;
+            $scope.stepInUrl(0);
         }
     };
 
+})
+
+//////////////////////////////////////////////////////////////
+.controller('SubmissionAdminStepController',
+    function ($scope, $stateParams, StepTemplate)
+{
+    $scope.setStep($stateParams.stepId);
+    if ($scope.current > 0) {
+        console.log("Step", $scope.current);
+
+        // Try to load also template
+        $scope.templObj = StepTemplate.build($scope.current);
+        $scope.templObj.getData().then(function(response) {
+            if (response.length)
+                $scope.templates = response;
+        });
+    }
+// TO FIX -
+    //$scope.snameform.$cancel();
+
+    ////////////////////////////////
+    // STEP template EDITING
+
+    /**************************/
+    /*  TYPES   ***************/
+// TO FIX -
+    // Should be defined inside database?
+    // Or inside configuration (app.conf)?
+    $scope.types = [
+        {value: 0, text: 'string'},
+        {value: 1, text: 'number'},
+        {value: 2, text: 'range'},
+        {value: 3, text: 'date'},
+        {value: 4, text: 'email'},
+    ];
+    /**************************/
+
+    $scope.addTemplate = function() {
+      var pos = 1;
+      var label = 'nuovo elemento';
+      var value = 0;  //first element: default
+      // Find smallest position
+      for (var j = 1; j < $scope.templates.length; j++) {
+        if (!$scope.templates[j]) {
+          pos = j;
+          break;
+        }
+      };
+      // Add template
+      $scope.templates[pos] = {label:label, value:value};
+      // API save
+      $scope.templObj.setData($scope.current, pos,label,value).then(function(id){});
+    };
+    $scope.updateElement = function(index) {
+      var l = $scope.templates[index].label;
+      var v = $scope.templates[index].value;
+      // API save
+      $scope.templObj.setData($scope.current, index, l, v).then(function(id){});
+    };
+    $scope.removeElement = function(index) {
+      delete $scope.templates[index];
+      // API save
+      $scope.templObj.unsetData($scope.current, index).then(function(){});
+// TO FIX -
+      //These should also remove every content set on this step:field from user...
+    };
 })
 
 //////////////////////////////////////////////////////////////
@@ -257,13 +252,8 @@ myApp
 .controller('StepController', function ($scope, $stateParams)
 {
     $scope.setStep($stateParams.stepId);
-
-    // this does not work for the parent!
-    //$scope.current = $stateParams.stepId;
-
 }) //end StepController
 
-//////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
@@ -373,6 +363,4 @@ myApp
 }) //end StepController
 
 //////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
 ; //end of controllers
