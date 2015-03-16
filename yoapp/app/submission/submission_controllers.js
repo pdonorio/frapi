@@ -69,7 +69,6 @@ myApp
 
     ////////////////////////////////////////////////
     // Build objects
-    var data = [];
     $scope.data = [];
     $scope.contentData = StepContent.build($scope.identifier, $scope.step);
 
@@ -80,6 +79,7 @@ myApp
         // var init
         var index = 0;
         var count = 0;
+        var data = [];
         var notempty = content.values && content.values.length;
 
         if (notempty && content.id)
@@ -87,14 +87,19 @@ myApp
         // Mixing template and content here
         angular.forEach(template, function(obj) {
 
-            var value = null;
+            var content = null;
             if (notempty && content.values.length >= index) {
-                value = content.values[index];
-                if (value !== '') {
+                content = content.values[index];
+                if (content !== '')
                     count++;
-                }
             }
-            data[index++] = {key: obj.label, value: value};
+
+            var type = $scope.types[0].text;
+            if ($scope.types[obj.value])
+                type = $scope.types[obj.value].text;
+            //obj.value
+
+            data[index++] = {key: obj.label, type: type, value: content};
         });
 // TO FIX
         $scope.data[$scope.step] = data;
@@ -106,6 +111,7 @@ myApp
     // FIRST TIME: get data if not 'new' in address bar
     // Get StepTemplate (admin data)
     var templObj = StepTemplate.build($scope.step);
+    $scope.types = templObj.getTypes();
     templObj.getData().then(function(template)
     {
         // Set error if empty template on this step...

@@ -162,22 +162,24 @@ StepsAdmin:
       ✔ Remove it also inside view page for the moment @done (15-03-15 11:28)
 
 StepsInsertType:
-  ☐ THE TYPE IS THE CENTER KEY @current
+  ☐ THE TYPE IS THE CENTER KEY
+    ✔ recover types from template @done (15-03-16 06:51)
+    ☐ BUG FIX: does not save edit of a template
     ☐ use patterns (instead of html types)
-      ☐ EXAMPLE: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
-  ☐ fix "are you really sure" notice
-  ☐ Url to access edit mode
-    ☐ via parameter ?key=value for ui router?
-    ☐ put that link inside the profile
+      ☐ checks: good luck
   ☐ If not published
     ☐ signal draft in submission/edit
-    ☐ REMOVE DEBUG in admin controller
+  ☐ Make sure the label of the field name is saved inside database!!!
+    ☐ EPIC FAIL: i don't know how to save a json via API @ohboy
+    ☐ IDEA: save another field with couple 'label:value' as string
+
+  ☐ fix "are you really sure" notice
   ☐ Last but not least
     ☐ Some clean pattern image repaeat as background
+   ☐ Dark pattern background for ADMIN
  ☐ User model
    ☐ Profile adjust to User model
  ☐ Stupid login?
- ☐ Dark pattern background
 
 DebugMode:
  ☐ Feedback button

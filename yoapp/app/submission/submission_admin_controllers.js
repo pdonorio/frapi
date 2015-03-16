@@ -5,8 +5,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminController', function ($scope, $state,
-    NotificationData, AppConfig, ADMIN_USER,
-    StepContent, StepTemplate, StepList )
+    NotificationData, AppConfig, StepContent, StepTemplate, StepList )
 {
     // Stop unwanted user
     if (!$scope.adminer)
@@ -135,6 +134,10 @@ myApp
     if (!$scope.adminer)
         return false;
 
+    // Reset form if exists?
+// TO FIX - does not work. Should be done onExit, but how?
+    //$scope.snameform.$cancel();
+
     // Apply current url step to whole view
     $scope.setStep($stateParams.stepId);
 
@@ -143,31 +146,17 @@ myApp
 
         // Try to load also template
         $scope.templObj = StepTemplate.build($scope.current);
+        // Types
+        $scope.types = $scope.templObj.getTypes();
         $scope.templObj.getData().then(function(response) {
             if (response.length)
                 $scope.templates = response;
         });
     }
-// TO FIX -
-    //$scope.snameform.$cancel();
+
 
     ////////////////////////////////
     // STEP template EDITING
-
-    /**************************/
-    /*  TYPES   ***************/
-// TO FIX -
-    // Should be defined inside database?
-    // Or inside configuration (app.conf)?
-    $scope.types = [
-        {value: 0, text: 'string'},
-        {value: 1, text: 'number'},
-        {value: 2, text: 'range'},
-        {value: 3, text: 'date'},
-        {value: 4, text: 'email'},
-    ];
-    /**************************/
-
     $scope.addTemplate = function() {
       var pos = 1;
       var label = 'nuovo elemento';
