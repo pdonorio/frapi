@@ -169,15 +169,19 @@ myApp
         }
       };
       // Add template
-      $scope.templates[pos] = {label:label, value:value};
+      $scope.templates[pos] = {label:label, value:value, extra:null};
       // API save
-      $scope.templObj.setData($scope.current, pos,label,value).then(function(id){});
+      $scope.templObj.setData($scope.current, pos,label,value).then(function(){});
     };
     $scope.updateElement = function(index) {
-      var l = $scope.templates[index].label;
-      var v = $scope.templates[index].value;
+
+      var obj = $scope.templates[index].myselect;
+      var lab = $scope.templates[index].label;
+      console.log("TEST select", obj);
+
       // API save
-      $scope.templObj.setData($scope.current, index, l, v).then(function(id){});
+      $scope.templObj.setData($scope.current, index, lab, obj.value)
+        .then(function(){});
     };
     $scope.removeElement = function(index) {
       delete $scope.templates[index];

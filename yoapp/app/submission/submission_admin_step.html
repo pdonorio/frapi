@@ -64,10 +64,16 @@
        <!-- List of elements -->
        <td>
          <span ng-show="rowform.$visible">
-          <select ng-model="myselect" ng-init='myselect=types[template.value] || types[0]'
-              ng-options="mytype.text for mytype in types" ></select>
+          <!-- Show select on edit -->
+          <select ng-model="template.myselect" ng-options="mytype.text for mytype in types"
+            ng-init='template.myselect=types[template.value]'> </select>
          </span>
-         <span ng-hide="rowform.$visible"> {{myselect.text}} </span>
+         <span ng-hide="rowform.$visible">
+            <!-- DEFAULT -->
+            <span ng-hide='types[template.myselect.value]'> {{types[0].text}} </span>
+            <!-- Real value -->
+            <span ng-if='types[template.myselect.value]'> {{types[template.myselect.value].text}} </span>
+         </span>
        </td>
 
        <td>
