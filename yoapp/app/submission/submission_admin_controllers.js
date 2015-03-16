@@ -174,14 +174,11 @@ myApp
       $scope.templObj.setData($scope.current, pos,label,value).then(function(){});
     };
     $scope.updateElement = function(index) {
-
-      var obj = $scope.templates[index].myselect;
+      // Get values from index
+      var val = $scope.templates[index].myselect.value;
       var lab = $scope.templates[index].label;
-      console.log("TEST select", obj);
-
       // API save
-      $scope.templObj.setData($scope.current, index, lab, obj.value)
-        .then(function(){});
+      $scope.templObj.setData($scope.current, index, lab, val).then(function(){});
     };
     $scope.removeElement = function(index) {
       delete $scope.templates[index];

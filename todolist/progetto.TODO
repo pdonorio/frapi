@@ -164,14 +164,18 @@ StepsAdmin:
 StepsInsertType:
   ☐ THE TYPE IS THE CENTER KEY
     ✔ recover types from template @done (15-03-16 06:51)
-    ☐ BUG FIX: does not save edit of a template
-    ☐ use patterns (instead of html types)
-      ☐ checks: good luck
+    ✔ BUG FIX: does not save edit of a template @done (15-03-16 07:26)
+    ✘ use patterns (instead of html types) @cancelled (15-03-16 07:40)
+    ✔ first test on number type @done (15-03-16 07:41)
+      ☐ validation?
+   ☐ checks: good luck
   ☐ If not published
     ☐ signal draft in submission/edit
   ☐ Make sure the label of the field name is saved inside database!!!
     ☐ EPIC FAIL: i don't know how to save a json via API @ohboy
     ☐ IDEA: save another field with couple 'label:value' as string
+  ☐ Ranges and list as @type
+    ☐ Another column and another field of the database?
 
   ☐ fix "are you really sure" notice
   ☐ Last but not least
