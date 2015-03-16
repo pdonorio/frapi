@@ -63,6 +63,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
+    $rootScope,
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
     StepTemplate, StepContent, IdProvider)
 {
@@ -143,14 +144,36 @@ myApp
         // Abort the current form
         $scope.myForm.$cancel();
     };
+    // Validating data before saving
+    $scope.checkData = function(data, type) {
+        if (type == 'string') {
+          return true;
+        } else if (type == 'number') {
+          return true;
+          return "Number!";
+        }
+        // Validation
+        console.log("Check data!");
+        console.log(data);
+        // if returning a string form gives an error
+        return "No checks defined yet on type '"+type+"'";
+    }
     // Save button
     $scope.saveStep = function() {
+
+// REMOVE ME
+        console.log("Debug save");
+        console.log($scope.data);
+        console.log($rootScope.user);
+        console.log($scope.identifier);
+        return true;
+// REMOVE ME
         // Signal that we are going to try to edit data
         NotificationData.setNotification(AppConfig.messageStatus.loading);
 
         // Try to save data. Also this has to be a promise
         // if i want to handle notification at this level
-        $scope.contentData.setData($scope.data, $scope.username, $scope.identifier)
+        $scope.contentData.setData($scope.data, $rootScope.user.name, $scope.identifier)
          .then(function(success) {
             if (success) {
                 $timeout( function() {

@@ -77,6 +77,8 @@ myApp
   // Constructor, with class name
   function StepTemplate(data) {
     this.StepTemplate = data;
+
+// TO FIX - define more and better
     this.types = [
         {value: 0, text: 'string'},
         {value: 1, text: 'number'},
@@ -84,6 +86,7 @@ myApp
         {value: 3, text: 'date'},
         {value: 4, text: 'email'},
     ];
+
   }
   // Public methods, assigned to prototype
   StepTemplate.prototype.getTypes = function () {

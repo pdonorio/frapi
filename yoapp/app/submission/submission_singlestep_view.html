@@ -23,7 +23,8 @@
       </div>
 
      <!-- Form for Normal insert user (OPERATOR)-->
-      <form editable-form name="myform" ng-show='data' onaftersave="saveStep()" >
+      <form editable-form name="myform" ng-show='data'
+        onaftersave="saveStep()" >
 
        <!-- editable username (text with validation) -->
        <table ng-class="{'table': current == step}">
@@ -38,13 +39,28 @@
 
             <!-- TYPE -->
             <td>
-              <span ng-if='obj.type != types[1].text'
-                editable-text="data[pos].value" e-size='40'
-                e-placeholder='Inserisci un valore {{obj.type}}'>
-                {{obj.value|| 'empty'}}
+<!-- ON OUT FOCUS? -->
+              <!-- STRING -->
+              <span
+                ng-if='obj.type == types[0].text'
+                e-form="myform"
+                editable-text="obj.value"
+                onbeforesave="checkData($data, obj.type)"
+                e-placeholder='Inserisci una {{obj.type}}a'
+                e-size='40'
+                >
+                {{obj.value || 'empty'}}
               </span>
-              <span ng-if='obj.type == types[1].text' editable-number="user.number" e-min="18">
-                {{obj.value|| 'empty'}}
+              <!-- NUMBER -->
+              <span
+                ng-if='obj.type == types[1].text'
+                e-form="myform"
+                editable-number="obj.value"
+                e-placeholder='Inserisci un {{obj.type}} reale'
+                onbeforesave="checkData($data, obj.type)"
+                e-min="18"
+                >
+                {{obj.value || 'empty'}}
               </span>
 <!--
   <div>Email: <a href="#" editable-email="user.email">{{ user.email || 'empty' }}</a></div>
@@ -63,10 +79,10 @@
        </table>
 
         <!-- based on current and the step of this directive -->
-        <div class="buttons" ng-show="current == step && data[0]">
+        <div class="buttons" ng-show="current == step && data">
           <!-- button to show form -->
           <button type="button" class="btn btn-default" ng-click="myform.$show()"
-            ng-show="!myform.$visible">
+            ng-show="!myform.$visible" >
             Edit
           </button>
           <!-- buttons to submit / cancel form -->
