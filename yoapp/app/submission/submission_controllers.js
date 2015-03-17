@@ -146,11 +146,14 @@ myApp
     };
     // Validating data before saving
     $scope.checkData = function(data, type) {
-        if (type == 'string') {
+        if (!data) {
+          return "Please insert some value";
+        } else if (type == 'string') {
           return true;
         } else if (type == 'number') {
           return true;
-          return "Number!";
+        } else if (type == 'email') {
+          return true;
         }
         // Validation
         console.log("Check data!");

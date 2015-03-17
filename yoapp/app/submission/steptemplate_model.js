@@ -82,9 +82,11 @@ myApp
     this.types = [
         {value: 0, text: 'string'},
         {value: 1, text: 'number'},
-        {value: 2, text: 'range'},
-        {value: 3, text: 'date'},
-        {value: 4, text: 'email'},
+        {value: 2, text: 'email'},
+        {value: 3, text: 'url'},
+        {value: 4, text: 'date'},
+        {value: 5, text: 'time'},
+        {value: 9, text: 'list'},
     ];
 
   }

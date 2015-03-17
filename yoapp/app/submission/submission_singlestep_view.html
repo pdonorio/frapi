@@ -42,30 +42,37 @@
 <!-- ON OUT FOCUS? -->
               <!-- STRING -->
               <span
-                ng-if='obj.type == types[0].text'
-                e-form="myform"
+                ng-if='obj.type == types[0].text' e-form="myform"
                 editable-text="obj.value"
-                onbeforesave="checkData($data, obj.type)"
                 e-placeholder='Inserisci una {{obj.type}}a'
+                onbeforesave="checkData($data, obj.type)"
                 e-size='40'
                 >
                 {{obj.value || 'empty'}}
               </span>
               <!-- NUMBER -->
               <span
-                ng-if='obj.type == types[1].text'
-                e-form="myform"
+                ng-if='obj.type == types[1].text' e-form="myform"
                 editable-number="obj.value"
                 e-placeholder='Inserisci un {{obj.type}} reale'
                 onbeforesave="checkData($data, obj.type)"
                 e-min="18"
+                e-max="30"
+                >
+                {{obj.value || 'empty'}}
+              </span>
+              <!-- EMAIL -->
+              <span
+                ng-if='obj.type == types[2].text' e-form="myform"
+                editable-email="obj.value"
+                e-placeholder='Indirizzo {{obj.type}}'
+                onbeforesave="checkData($data, obj.type)"
+                e-size='40'
                 >
                 {{obj.value || 'empty'}}
               </span>
 <!--
-  <div>Email: <a href="#" editable-email="user.email">{{ user.email || 'empty' }}</a></div>
   <div>Tel: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">{{ user.tel || 'empty' }}</a></div>
-  <div>Range: <a href="#" editable-range="user.range" e-step="5">{{ user.range || 'empty' }}</a></div>
   <div>Url: <a href="#" editable-url="user.url">{{ user.url || 'empty' }}</a></div>
   <div>Search: <a href="#" editable-search="user.search">{{ user.search || 'empty' }}</a></div>
   <div>Color: <a href="#" editable-color="user.color">{{ user.color || 'empty' }}</a></div>

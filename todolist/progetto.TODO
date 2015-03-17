@@ -162,7 +162,7 @@ StepsAdmin:
       ✔ Remove it also inside view page for the moment @done (15-03-15 11:28)
 
 StepsInsertType:
-  ☐ THE TYPE IS THE CENTER KEY
+  ✔ THE TYPE IS THE CENTER KEY @done (15-03-17 07:05)
     ✔ recover types from template @done (15-03-16 06:51)
     ✔ BUG FIX: does not save edit of a template @done (15-03-16 07:26)
     ✘ use patterns (instead of html types) @cancelled (15-03-16 07:40)
@@ -170,8 +170,13 @@ StepsInsertType:
       ✔ VALIDATION? two ways @done (15-03-16 17:29)
         ✔ type validation html @done (15-03-16 17:29)
         ✔ xeditable onbeforesave @done (15-03-16 17:29)
-         ☐ checks: good luck
-         ☐ Define all types @sigh
+         ✔ checks: good luck @done (15-03-17 07:01)
+         ☐ Check on out of focus?
+         ☐ dynamic add of attributes to tag????
+  ☐ Defines ALL TYPES
+  ☐ Defines 2 extra fields
+    ☐ required
+    ☐ extra (e.g. range, min and max, lists values and so on)
   ☐ Ranges and list as types
     ☐ Another column and another field of the database?
   ☐ Make sure the label of the field name is saved inside database!!!
