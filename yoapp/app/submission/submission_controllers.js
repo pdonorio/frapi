@@ -153,13 +153,16 @@ myApp
         } else if (type == 'number') {
           return true;
         } else if (type == 'email') {
+//does not verify if you have the dot after @
+          return true;
+        } else if (type == 'url') {
+//only checks for http protocol. I think there should be at least one dot
           return true;
         }
         // Validation
-        console.log("Check data!");
-        console.log(data);
-        // if returning a string form gives an error
-        return "No checks defined yet on type '"+type+"'";
+        console.log("Check data", data);
+        // Unknown type. Problem in configuration.
+        return "No checks defined yet on type '"+type+"'...!";
     }
     // Save button
     $scope.saveStep = function() {

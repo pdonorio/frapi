@@ -86,6 +86,8 @@ myApp
         {value: 3, text: 'url'},
         {value: 4, text: 'date'},
         {value: 5, text: 'time'},
+        {value: 6, text: 'pattern'},
+        {value: 7, text: 'color'},
         {value: 9, text: 'list'},
     ];
 
