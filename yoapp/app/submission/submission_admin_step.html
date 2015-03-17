@@ -1,4 +1,4 @@
-<div class="col-md-6 col-xs-6" ng-show='steps'>
+<div class="col-md-8 col-xs-8" ng-show='steps'>
  <!-- Form for ADMIN USER -->
 
 <div class='panel whitecard'>
@@ -43,11 +43,13 @@
      <thead ng-if='templates'>
          <tr> <th>Campo</th> <th>Nome</th>
          <th>Tipo
-          <a href='#'> <i class="fa fa-question" style='color:red;' ng-click="open()"
+          <a href='#'>(<i class="fa fa-question" style='color:red;' ng-click="open()"
             tooltip-placement="right" tooltip="Scopri i tipi disponibili"
-          ></i></a>
+          ></i>)</a>
          </th>
-         <th>Operazioni</th> </tr>
+         <th>Extra</th>
+         <th>Richiesto</th>
+         <th>Azioni</th> </tr>
      </thead>
 
      <tbody>
@@ -62,8 +64,8 @@
        </td>
        <!-- Text with Validation -->
        <td>
-        <span href="#" editable-text="template.label" e-name="label"
-            e-form="rowform" e-required onaftersave='updateElement($index)'>
+        <span editable-text="template.label" e-form="rowform" e-required
+            onaftersave='updateElement($index)'>
           {{template.label || 'vuoto'}}
         </span>
        </td>
@@ -80,6 +82,21 @@
             <!-- Real value -->
             <span ng-if='types[template.myselect.value]'> {{types[template.myselect.value].text}} </span>
          </span>
+       </td>
+       <!-- Extra -->
+       <td>
+        <span editable-text="template.extra" e-form="rowform">
+          {{template.extra || '-' }}
+        </span>
+       </td>
+       <!-- Required -->
+       <td>
+        <span editable-radiolist="template.required"
+            e-ng-options="s.value as s.text for s in reqopts"
+            ng-init='template.required = template.required || 0'
+            e-form="rowform">
+          {{reqopts[template.required].text}}
+        </span>
        </td>
 
        <td>

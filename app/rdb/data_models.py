@@ -25,10 +25,8 @@ class DataDump(GenericORMModel):
 
     # No checks type
     @staticmethod
-    def value(value, name):
+    def value(value):
         """ Defining a key as i wanted """
-        #print "Received: ", name, value, type(value), get_original_pytype(value)
-
         # Try to convert numbers in original python types
         tmp = get_original_pytype(value)
         if tmp != None:
@@ -125,6 +123,9 @@ class StepTemplate(GenericORMModel):
         return tmp    #e.g. 2
     @staticmethod
     def field(value):
+        return value    #e.g. "Estratto"
+    @staticmethod
+    def required(value):
         return value    #e.g. "Estratto"
     @staticmethod
     def extra(value):

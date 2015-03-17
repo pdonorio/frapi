@@ -171,20 +171,20 @@ StepsInsertType:
         ✔ type validation html @done (15-03-16 17:29)
         ✔ xeditable onbeforesave @done (15-03-16 17:29)
          ✔ checks: good luck @done (15-03-17 07:01)
-         ☐ Check on out of focus?
-         ☐ dynamic add of attributes to tag????
- ✔ descriptions and modal @done (15-03-17 07:42)
-   ☐ modal select?
   ☐ Defines ALL TYPES
+   ✔ descriptions and modal @done (15-03-17 07:42)
   ☐ Defines 2 extra fields
-    ☐ required
+    ✔ required @done (15-03-17 22:51)
     ☐ extra (e.g. range, min and max, lists values and so on)
+    ☐ use them
+  ☐ modal select?
+    ☐ Check on out of focus?
+    ☐ dynamic add of attributes to tag????
   ☐ Ranges and list as types
     ☐ Another column and another field of the database?
   ☐ Make sure the label of the field name is saved inside database!!!
-    ☐ EPIC FAIL: i don't know how to save a json via API @ohboy
     ☐ IDEA: save another field with array of labels
-      ☐ use them as a check when showing data!!!!!
+    ☐ use them as a check when showing data!!!!!
   ☐ If not published
     ☐ signal draft in submission/edit
 

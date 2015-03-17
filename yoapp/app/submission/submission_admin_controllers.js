@@ -144,6 +144,13 @@ myApp
     // Apply current url step to whole view
     $scope.setStep($stateParams.stepId);
 
+    ////////////////////////
+    $scope.reqopts = [
+        {value: 0, text: 'opzionale'},
+        {value: 1, text: 'obligatorio'}
+    ];
+
+    ////////////////////////
     if ($scope.current > 0) {
         console.log("Step", $scope.current);
 
@@ -193,16 +200,23 @@ myApp
         }
       };
       // Add template
-      $scope.templates[pos] = {label:label, value:value, extra:null};
+// TO FIX - extra and required
+      $scope.templates[pos] = {
+        label:label, value:value,
+        extra:null, required: 0,
+      };
       // API save
-      $scope.templObj.setData($scope.current, pos,label,value).then(function(){});
+      $scope.templObj.setData($scope.current, pos,label,value)
+        .then(function(){});
     };
     $scope.updateElement = function(index) {
       // Get values from index
       var val = $scope.templates[index].myselect.value;
       var lab = $scope.templates[index].label;
+      var req = $scope.templates[index].required;
       // API save
-      $scope.templObj.setData($scope.current, index, lab, val).then(function(){});
+      $scope.templObj.setData($scope.current, index, lab, val, req)
+        .then(function(){});
     };
     $scope.removeElement = function(index) {
       delete $scope.templates[index];

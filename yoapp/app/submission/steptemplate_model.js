@@ -27,7 +27,13 @@ myApp
 
             // Js foreach cycle: to create my array out of RDB json
             tmp.forEach(function(obj, index) {
-                data[obj.position] = {label:obj.field, value:obj.type};
+                data[obj.position] = {
+                    label:obj.field,
+                    value:obj.type,
+                    extra:obj.extra,
+                    required:obj.required,
+                    //add required and extra?
+                };
             });
           }
           return data;
@@ -111,12 +117,15 @@ myApp
   StepTemplate.prototype.getData = function () {
     return this.StepTemplate;
   };
-  StepTemplate.prototype.setData = function (step, pos, label, value) {
+  StepTemplate.prototype.setData =
+    function(step, pos, label, value, required, extra) {
     var data = {
         step: step,
         position: pos,
         field: label,
         type: value,
+        required: required,
+        extra: extra,
     };
     return saveData(data);
   };
