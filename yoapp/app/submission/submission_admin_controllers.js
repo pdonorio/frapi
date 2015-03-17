@@ -129,10 +129,13 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminStepController',
-    function ($scope, $stateParams, StepTemplate)
+    function ($scope, $modal, $log, $stateParams, StepTemplate)
 {
     if (!$scope.adminer)
         return false;
+
+    // modal init
+    var modalMessage = "Not defined yet";
 
     // Reset form if exists?
 // TO FIX - does not work. Should be done onExit, but how?
@@ -148,6 +151,27 @@ myApp
         $scope.templObj = StepTemplate.build($scope.current);
         // Types
         $scope.types = $scope.templObj.getTypes();
+
+        //Define Modal
+        modalMessage = "<table class='table'>";
+        angular.forEach($scope.types, function(element, index){
+            //$log.info("Element "+index);
+            modalMessage +=
+                '<tr>'
+                + "<th>"+element.text+" </th>"
+                + "<td>"+element.desc+"</td>"
+                + '</tr>';
+            //console.log(element);
+        });
+        modalMessage += '</table>';
+        modalMessage =
+            '<div class="modal-header"> ' +
+            '<h3 class="modal-title">Available types</h3>' +
+            '</div>' +
+            '<div class="modal-body"> ' + modalMessage + ' </div>'+
+            '';
+
+        // Load templates
         $scope.templObj.getData().then(function(response) {
             if (response.length)
                 $scope.templates = response;
@@ -187,6 +211,24 @@ myApp
 // TO FIX -
       //These should also remove every content set on this step:field from user...
     };
+
+    /////////////////////////////////
+    // Modal
+
+    $scope.open = function (size) {
+      // get instance
+      var modalInstance = $modal.open({
+        template: modalMessage,
+        backdrop: true,
+      });
+      //after closing
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        //$log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
 })
 
 //////////////////////////////////////////////////////////////

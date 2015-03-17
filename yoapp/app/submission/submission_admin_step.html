@@ -41,7 +41,13 @@
     <table class="table table-hover table-condensed">
 
      <thead ng-if='templates'>
-         <tr> <th>Campo</th> <th>Nome</th> <th>Tipo</th> <th>Operazioni</th> </tr>
+         <tr> <th>Campo</th> <th>Nome</th>
+         <th>Tipo
+          <a href='#'> <i class="fa fa-question" style='color:red;' ng-click="open()"
+            tooltip-placement="right" tooltip="Scopri i tipi disponibili"
+          ></i></a>
+         </th>
+         <th>Operazioni</th> </tr>
      </thead>
 
      <tbody>

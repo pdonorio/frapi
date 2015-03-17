@@ -168,10 +168,8 @@ myApp
     $scope.saveStep = function() {
 
 // REMOVE ME
-        console.log("Debug save");
+        console.log("Debug save [skip for now]");
         console.log($scope.data);
-        console.log($rootScope.user);
-        console.log($scope.identifier);
         return true;
 // REMOVE ME
         // Signal that we are going to try to edit data
