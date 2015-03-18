@@ -84,7 +84,14 @@ myApp
   function StepTemplate(data) {
     this.StepTemplate = data;
 
+    this.opts = [
+        {value: 0, text: 'opzionale'},
+        {value: 1, text: 'obligatorio'}
+    ];
+
 // TO FIX - define more and better
+    // Should be defined inside database?
+    // Or inside configuration (app.conf)?
     this.types = [
         {value: 0, text: 'string', desc:
             'All text is allowed'},
@@ -108,10 +115,10 @@ myApp
 
   }
   // Public methods, assigned to prototype
+  StepTemplate.prototype.getOpts = function () {
+    return this.opts;
+  };
   StepTemplate.prototype.getTypes = function () {
-// TO FIX -
-    // Should be defined inside database?
-    // Or inside configuration (app.conf)?
     return this.types;
   };
   StepTemplate.prototype.getData = function () {

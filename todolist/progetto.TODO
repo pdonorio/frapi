@@ -171,12 +171,16 @@ StepsInsertType:
         ✔ type validation html @done (15-03-16 17:29)
         ✔ xeditable onbeforesave @done (15-03-16 17:29)
          ✔ checks: good luck @done (15-03-17 07:01)
-  ☐ Defines ALL TYPES
+  ✔ Defines ALL TYPES @done (15-03-18 08:12)
    ✔ descriptions and modal @done (15-03-17 07:42)
-  ☐ Defines 2 extra fields
+   ☐ Understand how pattern works
+     ☐ and how to show which pattern to insert
+     ☐ or disable for now....
+   ☐ Date within a range of years
+     ☐ only month or only year
+  ✔ Defines 2 extra fields @done (15-03-18 08:12)
     ✔ required @done (15-03-17 22:51)
-    ☐ extra (e.g. range, min and max, lists values and so on)
-    ☐ use them
+    ✔ extra (e.g. range, min and max, lists values and so on) @done (15-03-18 08:12)
   ☐ modal select?
     ☐ Check on out of focus?
     ☐ dynamic add of attributes to tag????

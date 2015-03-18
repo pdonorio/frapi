@@ -100,7 +100,11 @@ myApp
                 type = $scope.types[obj.value].text;
             //obj.value
 
-            data[index++] = {key: obj.label, type: type, value: content};
+            data[index++] = {
+                key: obj.label, type: type, value: content,
+                req: parseInt(obj.required),
+                extra: obj.extra,
+            };
         });
 // TO FIX
         $scope.data[$scope.step] = data;
@@ -145,15 +149,21 @@ myApp
         $scope.myForm.$cancel();
     };
     // Validating data before saving
-    $scope.checkData = function(data, type) {
-        if (!data) {
-          return "Please insert some value";
+    $scope.checkData = function(required, data, type) {
+        if (!data && required) {
+          return "Questo campo è obligatorio";
         } else if (type == 'string') {
           return true;
         } else if (type == 'number') {
           return true;
         } else if (type == 'email') {
 //does not verify if you have the dot after @
+          return true;
+        } else if (type == 'date') {
+          return true;
+        } else if (type == 'time') {
+          return true;
+        } else if (type == 'color') {
           return true;
         } else if (type == 'url') {
 //only checks for http protocol. I think there should be at least one dot

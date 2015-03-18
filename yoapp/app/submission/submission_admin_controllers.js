@@ -145,10 +145,6 @@ myApp
     $scope.setStep($stateParams.stepId);
 
     ////////////////////////
-    $scope.reqopts = [
-        {value: 0, text: 'opzionale'},
-        {value: 1, text: 'obligatorio'}
-    ];
 
     ////////////////////////
     if ($scope.current > 0) {
@@ -158,6 +154,7 @@ myApp
         $scope.templObj = StepTemplate.build($scope.current);
         // Types
         $scope.types = $scope.templObj.getTypes();
+        $scope.reqopts = $scope.templObj.getOpts();
 
         //Define Modal
         modalMessage = "<table class='table'>";
@@ -189,7 +186,7 @@ myApp
     ////////////////////////////////
     // STEP template EDITING
     $scope.addTemplate = function() {
-      var pos = 1;
+      var pos = $scope.templates.length;
       var label = 'nuovo elemento';
       var value = 0;  //first element: default
       // Find smallest position
@@ -200,7 +197,7 @@ myApp
         }
       };
       // Add template
-// TO FIX - extra and required
+// TO FIX - extra for list
       $scope.templates[pos] = {
         label:label, value:value,
         extra:null, required: 0,

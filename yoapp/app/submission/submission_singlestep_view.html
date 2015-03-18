@@ -45,7 +45,7 @@
                 ng-if='obj.type == types[0].text' e-form="myform"
                 editable-text="obj.value"
                 e-placeholder='Inserisci una {{obj.type}}a'
-                onbeforesave="checkData($data, obj.type)"
+                onbeforesave="checkData(obj.req, $data, obj.type)"
                 e-size='40'
                 >
                 {{obj.value || 'empty'}}
@@ -55,7 +55,7 @@
                 ng-if='obj.type == types[1].text' e-form="myform"
                 editable-number="obj.value"
                 e-placeholder='Inserisci un {{obj.type}} reale'
-                onbeforesave="checkData($data, obj.type)"
+                onbeforesave="checkData(obj.req, $data, obj.type)"
                 e-min="18"
                 e-max="30"
                 >
@@ -66,7 +66,7 @@
                 ng-if='obj.type == types[2].text' e-form="myform"
                 editable-email="obj.value"
                 e-placeholder='Indirizzo {{obj.type}}'
-                onbeforesave="checkData($data, obj.type)"
+                onbeforesave="checkData(obj.req, $data, obj.type)"
                 e-size='40'
                 >
                 {{obj.value || 'empty'}}
@@ -76,14 +76,37 @@
                 ng-if='obj.type == types[3].text' e-form="myform"
                 editable-url="obj.value"
                 e-placeholder='Indirizzo {{obj.type}}'
-                onbeforesave="checkData($data, obj.type)"
+                onbeforesave="checkData(obj.req, $data, obj.type)"
                 e-size='40'
                 >
                 {{obj.value || 'empty'}}
               </span>
+              <!-- DATE -->
+              <span ng-if='obj.type == types[4].text' e-form="myform"
+                editable-date="obj.value"
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                {{obj.value | date:'dd-MM-yyyy'}}
+              </span>
+              <!-- TIME -->
+              <span ng-if='obj.type == types[5].text' e-form="myform"
+                editable-time="obj.value"
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                {{obj.value}}
+              </span>
+              <!-- PATTERN -->
+              <span ng-if='obj.type == types[6].text' e-form="myform"
+                editable-text="obj.value"
+                e-pattern="d{2}w{3}"
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                my pattern {{obj.value || 'empty'}}
+              </span>
+              <!-- COLOR -->
+              <span ng-if='obj.type == types[7].text' e-form="myform"
+                editable-color="obj.value"
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                {{obj.value}}
+              </span>
 <!--
-  <div>Date: <a href="#" editable-date="user.date">{{ user.date || 'empty' }}</a></div>
-  <div>Time: <a href="#" editable-time="user.time">{{ user.time || 'empty' }}</a></div>
   <div>PATTERN: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">{{ user.tel || 'empty' }}</a></div>
   <div>Color: <a href="#" editable-color="user.color">{{ user.color || 'empty' }}</a></div>
 -->
