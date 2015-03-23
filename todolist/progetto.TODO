@@ -173,19 +173,21 @@ StepsInsertType:
          ✔ checks: good luck @done (15-03-17 07:01)
   ✔ Defines ALL TYPES @done (15-03-18 08:12)
    ✔ descriptions and modal @done (15-03-17 07:42)
+  ✔ Defines 2 extra fields @done (15-03-18 08:12)
+    ✔ required @done (15-03-17 22:51)
+    ✔ extra (e.g. range, min and max, lists values and so on) @done (15-03-18 08:12)
+
+  ☐ Ranges and list as types
+    ✔ Another column and another field of the database? @done (15-03-23 17:23)
+    ☐ Implement via user
+    ✘ modal select @cancelled (15-03-23 17:23)
    ☐ Understand how pattern works
      ☐ and how to show which pattern to insert
      ☐ or disable for now....
    ☐ Date within a range of years
      ☐ only month or only year
-  ✔ Defines 2 extra fields @done (15-03-18 08:12)
-    ✔ required @done (15-03-17 22:51)
-    ✔ extra (e.g. range, min and max, lists values and so on) @done (15-03-18 08:12)
-  ☐ modal select?
+   ☐ required
     ☐ Check on out of focus?
-    ☐ dynamic add of attributes to tag????
-  ☐ Ranges and list as types
-    ☐ Another column and another field of the database?
   ☐ Make sure the label of the field name is saved inside database!!!
     ☐ IDEA: save another field with array of labels
     ☐ use them as a check when showing data!!!!!

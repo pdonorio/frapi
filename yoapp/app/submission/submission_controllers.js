@@ -172,7 +172,7 @@ myApp
         // Validation
         console.log("Check data", data);
         // Unknown type. Problem in configuration.
-        return "No checks defined yet on type '"+type+"'...!";
+        return "La tipologia '"+type+"' non e' ancora implementata";
     }
     // Save button
     $scope.saveStep = function() {

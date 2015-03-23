@@ -109,7 +109,7 @@ myApp
             'Define a regular expression for a custom type'},
         {value: 7, text: 'color', desc:
             'Only colors in hexadecimal value. Choose from color picker.'},
-        {value: 9, text: 'list', desc:
+        {value: 8, text: 'list', desc:
             'Define a list of possible values (e.g. a dictionary)'},
     ];
 

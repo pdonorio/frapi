@@ -77,15 +77,22 @@
             ng-init='template.myselect=types[template.value]'> </select>
          </span>
          <span ng-hide="rowform.$visible">
-            <!-- DEFAULT -->
-            <span ng-hide='types[template.myselect.value]'> {{types[0].text}} </span>
-            <!-- Real value -->
-            <span ng-if='types[template.myselect.value]'> {{types[template.myselect.value].text}} </span>
+            <i>
+                <!-- DEFAULT -->
+                <span ng-hide='types[template.myselect.value]'> {{types[0].text}} </span>
+                <!-- Real value -->
+                <span ng-if='types[template.myselect.value]'> {{types[template.myselect.value].text}} </span>
+            </i>
          </span>
        </td>
        <!-- Extra -->
        <td>
-        <span editable-text="template.extra" e-form="rowform">
+        <span ng-hide='template.myselect.value == listType'> - </span>
+        <span ng-if='template.myselect.value == listType'
+            e-placeholder="list,of,data"
+            editable-text="template.extra" e-form="rowform"
+            onbeforesave="checkList($data)"
+            >
           {{template.extra || '-' }}
         </span>
        </td>
@@ -134,10 +141,12 @@
 
     </table>
 
-    <button type='button' class="btn btn-primary" ng-click="addTemplate()"
-    tooltip-placement="right" tooltip="Aggiungi un nuovo campo allo step {{current}}">
-      <i class="fa fa-plus"></i>
-    </button>
+    <div style="text-align: right;">
+        <button type='button' class="btn btn-primary" ng-click="addTemplate()"
+        tooltip-placement="bottom" tooltip="Aggiungi un nuovo campo allo step {{current}}">
+          <i class="fa fa-plus"></i>
+        </button>
+    </div>
 
   </div>
  </div>

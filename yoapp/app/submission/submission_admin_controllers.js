@@ -129,7 +129,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminStepController',
-    function ($scope, $modal, $log, $stateParams, StepTemplate)
+    function ($scope, $modal, $log, $filter, $stateParams, StepTemplate)
 {
     if (!$scope.adminer)
         return false;
@@ -154,6 +154,8 @@ myApp
         $scope.templObj = StepTemplate.build($scope.current);
         // Types
         $scope.types = $scope.templObj.getTypes();
+// TO FIX - make a $filter
+        $scope.listType = 8; //$filter('list')($scope.types);
         $scope.reqopts = $scope.templObj.getOpts();
 
         //Define Modal
@@ -211,8 +213,9 @@ myApp
       var val = $scope.templates[index].myselect.value;
       var lab = $scope.templates[index].label;
       var req = $scope.templates[index].required;
+      var ex = $scope.templates[index].extra;
       // API save
-      $scope.templObj.setData($scope.current, index, lab, val, req)
+      $scope.templObj.setData($scope.current, index, lab, val, req, ex)
         .then(function(){});
     };
     $scope.removeElement = function(index) {
@@ -221,6 +224,23 @@ myApp
       $scope.templObj.unsetData($scope.current, index).then(function(){});
 // TO FIX -
       //These should also remove every content set on this step:field from user...
+    };
+
+    $scope.checkList = function(data) {
+        var msg = "Lista di valori separati da virgola (almeno 2)";
+
+        if (!data || data == '')
+            return msg;
+        var list = data.split(',');
+        var count = 0;
+        angular.forEach(list, function(val, key){
+            if (val != '') {
+                count++;
+            }
+        });
+        if (count < 2)
+            return msg;
+        //console.log(data);
     };
 
     /////////////////////////////////
