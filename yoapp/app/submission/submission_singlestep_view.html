@@ -91,8 +91,10 @@
               <span ng-if='obj.type == types[5].text' e-form="myform"
                 editable-time="obj.value"
                 onbeforesave="checkData(obj.req, $data, obj.type)" >
-                {{obj.value}}
+                {{obj.value | date:'hh:mm'}}
               </span>
+
+<!-- TO FIX -->
               <!-- PATTERN -->
               <span ng-if='obj.type == types[6].text' e-form="myform"
                 editable-text="obj.value"
@@ -100,16 +102,37 @@
                 onbeforesave="checkData(obj.req, $data, obj.type)" >
                 my pattern {{obj.value || 'empty'}}
               </span>
+<!--
+  <div>PATTERN: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">{{ user.tel || 'empty' }}</a></div>
+-->
+
               <!-- COLOR -->
               <span ng-if='obj.type == types[7].text' e-form="myform"
                 editable-color="obj.value"
+                ng-init='obj.value = obj.value || "#000"'
                 onbeforesave="checkData(obj.req, $data, obj.type)" >
                 {{obj.value}}
               </span>
-<!--
-  <div>PATTERN: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">{{ user.tel || 'empty' }}</a></div>
-  <div>Color: <a href="#" editable-color="user.color">{{ user.color || 'empty' }}</a></div>
--->
+              <!-- LIST -->
+              <span ng-if='obj.type == types[8].text' >
+               <span ng-show="myform.$visible">
+
+<!-- ng-init='if (obj.req) {obj.value = obj.value || 0;}' -->
+                <select ng-model="obj.tmp"
+                    ng-init='obj.thelist=obj.extra.split(",");
+                    obj.tmp = obj.thelist[obj.value];'
+                    ng-options="tmp for tmp in obj.thelist"
+                    onbeforesave="checkData(obj.req, $data, obj.type)"
+                > </select>
+<!--                 test {{obj}}
+ -->
+               </span>
+<!-- RETRY XEDITABLE SELECT -->
+               <span ng-hide="myform.$visible">
+               {{obj.tmp || 'empty'}}
+              </span>
+
+
             </td> <!-- TYPE -->
 
           </tr>
