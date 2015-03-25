@@ -176,7 +176,6 @@ StepsInsertType:
   ✔ Defines 2 extra fields @done (15-03-18 08:12)
     ✔ required @done (15-03-17 22:51)
     ✔ extra (e.g. range, min and max, lists values and so on) @done (15-03-18 08:12)
-
   ✔ Ranges and list as types @done (15-03-24 07:14)
     ✔ Another column and another field of the database? @done (15-03-23 17:23)
     ✔ Implement via user @done (15-03-24 07:14)
@@ -190,12 +189,24 @@ StepsInsertType:
      ☐ only month or only year
    ☐ required
     ☐ Check on out of focus?
-  ☐ Make sure the label of the field name is saved inside database!!!
-    ☐ IDEA: save another field with array of labels
-    ☐ use them as a check when showing data!!!!!
+
+#HASH ALGO
+
+  ✔ What happens if i change name and position of a field? @done (15-03-25 07:18)
+    ☐ IDEA:  produce hash for a new field in template @thehashsolution
+      ✔ produce the hash from a table @done (15-03-25 07:27)
+        ✘ reuse the provider? @cancelled (15-03-25 07:18)
+        ✘ create an element and then destroy? @cancelled (15-03-25 07:18)
+        ☐ create the element based on a name
+          ☐ do not recreate if the name already exists
+          ☐ do not change the hash if you chage position or label
+      ☐ save another field with the list of hashes, for user content
+      ☐ use them as a check when showing data!!!!!
+      ☐ create a view to show used field names
+        ☐ compute content inside rethinkdb stepcontent with that hash
+
   ☐ If not published
     ☐ signal draft in submission/edit
-
   ☐ fix "are you really sure" notice
   ☐ Last but not least
     ☐ Some clean pattern image repaeat as background
@@ -203,7 +214,7 @@ StepsInsertType:
  ☐ User model
    ☐ Profile adjust to User model
  ☐ Stupid login?
- ☐ Remove back button @sostupid
+ ✔ Remove back button @sostupid @done (15-03-24 07:34)
 
 DebugMode:
  ☐ Feedback button

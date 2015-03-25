@@ -94,6 +94,23 @@ class StepList(GenericORMModel):
         return value    #e.g. "Commento!"
 
 ##############################
+class FieldNames(GenericORMModel):
+    """ A hash provider to keep track of field created """
+    table = 'stepfields'
+
+    # Attributes as defined by static methods:
+    @staticmethod
+    def name(value):
+        return value
+    @staticmethod
+    def step(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 1
+
+##############################
 class StepTemplate(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepstemplate'
@@ -125,6 +142,9 @@ class StepTemplate(GenericORMModel):
     def field(value):
         return value    #e.g. "Estratto"
     @staticmethod
+    def hash(value):
+        return value    #e.g. "Estratto"
+    @staticmethod
     def required(value):
         return value    #e.g. "Estratto"
     @staticmethod
@@ -153,6 +173,7 @@ class StepContent(GenericORMModel):
         return value    #e.g. 'new' or record
     # ARRAY!
     values = 'list'
+    hashes = 'list'
 
 ##############################
 class RegisterIdentifier(GenericORMModel):

@@ -14,7 +14,8 @@ port=5507
 #resource="steps"
 #resource="stepscontent"
 #resource="stepstemplate"
-resource="myidprovider"
+#resource="myidprovider"
+resource="stepfields"
 
 #############################################
 # BUILD TEST
@@ -48,7 +49,8 @@ exit;
 echo "***\nINSERT"
 #values="step=1&position=2&type=select&field=Titolo&extra=testingapi"
 #values="step=1&element=1&type=number&content=checkingMyTests!&label=titolo"
-values="arr=el1&step=2&arr=el2&user=paulie&date=test"
+#values="arr=el1&step=2&arr=el2&user=paulie&date=test"
+values="step=2&name=test"
 #values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
