@@ -75,6 +75,9 @@ myApp
   };
   StepContent.prototype.setData = function (obj, user, record) {
 
+    console.log("Init save");
+    console.log(obj);
+
     var data = {};
     // Save all in one array
     var values = [];
@@ -94,8 +97,12 @@ myApp
         data.id = this.id;
     data.user = user;
     data.recordid = record;
+
+    console.log("Ready to save");
+    console.log(data);
+
     // Save it
-    return saveData(this, data);
+    //return saveData(this, data);
 
   }
   StepContent.prototype.unsetData = function (key) {

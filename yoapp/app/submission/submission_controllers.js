@@ -176,12 +176,14 @@ myApp
     }
     // Save button
     $scope.saveStep = function() {
-
 // REMOVE ME
         console.log("Debug save [skip for now]");
         console.log($scope.data);
         return true;
+/*
 // REMOVE ME
+*/
+
         // Signal that we are going to try to edit data
         NotificationData.setNotification(AppConfig.messageStatus.loading);
 
@@ -190,19 +192,20 @@ myApp
         $scope.contentData.setData($scope.data, $rootScope.user.name, $scope.identifier)
          .then(function(success) {
             if (success) {
-                $timeout( function() {
-                    NotificationData.setNotification( AppConfig.messageStatus.success,
-                        "Salvataggio riuscito");
-                }, 800);
+              $timeout( function() {
+                  NotificationData.setNotification( AppConfig.messageStatus.success,
+                    "Salvataggio riuscito");
+              }, 800);
             } else {
-                NotificationData.setNotification( AppConfig.messageStatus.error,
-                    "Il servizio dati non é raggiungibile");
-                // Bring data back?
-                var backup = $scope.contentData.restoreBackup();
-                // Template is a promise...
-                templObj.getData().then(function(template){
-                    injectData(template, backup);
-                });
+// CHECK ME AGAIN
+              NotificationData.setNotification( AppConfig.messageStatus.error,
+                  "Il servizio dati non é raggiungibile");
+              // Bring data back?
+              var backup = $scope.contentData.restoreBackup();
+              // Template is a promise...
+              templObj.getData().then(function(template){
+                  injectData(template, backup);
+              });
             }
          });
     }

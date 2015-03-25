@@ -32,7 +32,7 @@ myApp
         user: function($rootScope) {
 
 // TO FIX - load from DB [with User model]
-            var user = {name: 'Administrator', role: ADMIN_USER};
+            var user = {name: 'Baroque Admin', role: ADMIN_USER};
             console.log("Current user: ", user);
             $rootScope.user = user;
 
