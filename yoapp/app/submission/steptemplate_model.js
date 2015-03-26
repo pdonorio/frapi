@@ -9,6 +9,32 @@ myApp
 .factory('StepTemplate', function (API)
 {
   var resource = 'stepstemplate';
+  var hashres = 'stepfields';
+
+  function cutCommit(hash) {
+    // CUT TO FIRST 8 chars
+    return hash.substr(0,8);
+  }
+
+  function getHash(step, name) {
+    var params = { step: step, name: name};
+
+    return API.get(hashres, params)
+      .then(function(response) {
+
+        if (response.count == 1) {
+            var commit = cutCommit(response.items[0].id);
+            console.log("Existing hash", commit);
+            return commit;
+        }
+        return API.set(hashres, params).then(function(hash)
+        {
+            var commit = cutCommit(hash);
+            console.log("Created hash", commit);
+            return commit;
+        });
+    });
+  }
 
   // Load, Save, Remove
 
@@ -29,6 +55,7 @@ myApp
             tmp.forEach(function(obj, index) {
                 data[obj.position] = {
                     label:obj.field,
+                    hash: obj.hash,
                     value:obj.type,
                     extra:obj.extra,
                     required:obj.required,
@@ -48,18 +75,27 @@ myApp
 //This could be made automatic
     // Find the key to update, if any
     var params = { step: data['step'], position: data['position'] };
-    return API.get(resource, params)
-      .then(function(response) {
-        // Set id
-        data.id = null;
-        if (response.count == 1)
-            data.id = response.items[0].id;
-        // How about i save it
-        return API.set(resource, data).then(function(id) {
-            console.log("Inserted id", id);
-            return id;
+    console.log(params);
+
+    // need the hash
+    return getHash(params.step, data['field']).then(function(hash) {
+
+        return API.get(resource, params)
+          .then(function(response) {
+            // Set id
+            data.id = null;
+            if (response.count == 1)
+                data.id = response.items[0].id;
+            data.hash = hash;
+            // How about i save it
+            return API.set(resource, data).then(function(id) {
+                console.log("Inserted id", id);
+                data.id = id;
+                return data;
+            });
         });
     });
+
   }
 
   ////////////////////////////
@@ -141,9 +177,11 @@ myApp
   };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context
-  StepTemplate.build = function (step) {
+  StepTemplate.build = function (step, skipLoading) {
+    var data = null;
     // API call
-    var data = loadData(step);
+    if (!skipLoading)
+        data = loadData(step);
     // Create object
     return new StepTemplate(data);
   }

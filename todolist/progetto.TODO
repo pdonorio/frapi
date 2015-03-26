@@ -197,9 +197,9 @@ StepsInsertType:
       ✔ produce the hash from a table @done (15-03-25 07:27)
         ✘ reuse the provider? @cancelled (15-03-25 07:18)
         ✘ create an element and then destroy? @cancelled (15-03-25 07:18)
-        ☐ create the element based on a name
-          ☐ do not recreate if the name already exists
-          ☐ do not change the hash if you chage position or label
+        ✔ create the element based on a name @done (15-03-26 07:02)
+          ✔ do not recreate if the name already exists @done (15-03-26 07:37)
+          ☐ check that name does not exist already in any field of the actual template...
       ☐ save another field with the list of hashes, for user content
       ☐ use them as a check when showing data!!!!!
       ☐ create a view to show used field names

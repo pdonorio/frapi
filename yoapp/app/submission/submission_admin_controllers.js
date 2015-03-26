@@ -21,7 +21,6 @@ myApp
         if (out) {
             // Set step list
             $scope.steps = out;
-            $scope.templObj = StepTemplate.build($scope.current);
             // Set number of steps somewhere
             $scope.stepsNum = $scope.steps.length;
         }
@@ -109,10 +108,15 @@ myApp
 
 // TO FIX -
                 // 2. Remove from API steptemplate
-                $scope.templObj.unsetData(step); //.then(function(check){
+                $scope.templObj = StepTemplate.build($scope.current, true);
+                $scope.templObj.unsetData(step); //.then(function(check){});
+
                 // 3. Remove from API stepcontent
+/* actually no. this way we can preserve data if you want to reenable via admin
+//i use the hash algo to do so
                 var contObj = StepContent.build(null, step);
                 contObj.unsetData(step);
+*/
 // TO FIX -
 
                 NotificationData.setNotification(AppConfig.messageStatus.success,
@@ -189,8 +193,6 @@ myApp
     // STEP template EDITING
     $scope.addTemplate = function() {
       var pos = $scope.templates.length;
-      var label = 'nuovo elemento';
-      var value = 0;  //first element: default
       // Find smallest position
       for (var j = 1; j < $scope.templates.length; j++) {
         if (!$scope.templates[j]) {
@@ -199,14 +201,18 @@ myApp
         }
       };
       // Add template
-// TO FIX - extra for list
+      var label = 'nuovo ' + pos;
+      var value = 0;
       $scope.templates[pos] = {
-        label:label, value:value,
-        extra:null, required: 0,
+        label: label, value: value,
+        extra:null, required: 0, hash: 'new',
       };
       // API save
-      $scope.templObj.setData($scope.current, pos,label,value)
-        .then(function(){});
+      $scope.templObj.setData($scope.current, pos,label,value,value)
+        .then(function(tmp){
+            $scope.templates[pos].hash = tmp.hash;
+
+        });
     };
     $scope.updateElement = function(index) {
       // Get values from index
@@ -216,7 +222,9 @@ myApp
       var ex = $scope.templates[index].extra;
       // API save
       $scope.templObj.setData($scope.current, index, lab, val, req, ex)
-        .then(function(){});
+        .then(function(tmp){
+            $scope.templates[index].hash = tmp.hash;
+        });
     };
     $scope.removeElement = function(index) {
       delete $scope.templates[index];
