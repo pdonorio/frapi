@@ -63,7 +63,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
-    $rootScope,
+    $rootScope, $filter,
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
     StepTemplate, StepContent, IdProvider)
 {
@@ -81,30 +81,44 @@ myApp
         var index = 0;
         var count = 0;
         var data = [];
-        var notempty = content.values && content.values.length;
 
-        if (notempty && content.id)
+        //console.log(content);
+        if (content.values && content.values.length && content.id)
             $scope.contentData.setId(content.id);
+
         // Mixing template and content here
         angular.forEach(template, function(obj) {
 
-            var content = null;
-            if (notempty && content.values.length >= index) {
-                content = content.values[index];
-                if (content !== '')
+// FOR EACH TEMPLATE
+            //console.log(content.values);
+
+// SHOULD GET CONTENT VALUE FROM HASH
+            var value = null;
+            if (content.values) {
+                // Get from index
+                index = content.hashes.indexOf(obj.hash);
+                console.log("Index",index);
+                value = content.values[index];
+                if (value !== '')
                     count++;
             }
+            //console.log("VALUES"); console.log(value);
 
+            // save type to be sure in the future?
             var type = $scope.types[0].text;
             if ($scope.types[obj.value])
                 type = $scope.types[obj.value].text;
 
-            data[index++] = {
-                key: obj.label, type: type, value: content,
+            data[index] = {
+                // current data
+                value: value,
+                // the rest, from template
+                key: obj.label, type: type,
+                req: parseInt(obj.required), extra: obj.extra,
+                // save also hash
                 hasher: obj.hash,
-                req: parseInt(obj.required),
-                extra: obj.extra,
             };
+
         });
 
 // TO FIX - how? save this data inside object?
@@ -178,14 +192,6 @@ myApp
     }
     // Save button
     $scope.saveStep = function() {
-
-/*
-// REMOVE ME
-        console.log("Debug save [skip for now]");
-        console.log($scope.data);
-        return true;
-// REMOVE ME
-*/
 
         // Signal that we are going to try to edit data
         NotificationData.setNotification(AppConfig.messageStatus.loading);

@@ -85,13 +85,13 @@
               <span ng-if='obj.type == types[4].text' e-form="myform"
                 editable-date="obj.value"
                 onbeforesave="checkData(obj.req, $data, obj.type)" >
-                {{obj.value | date:'dd-MM-yyyy'}}
+                {{ (obj.value | date:'dd-MM-yyyy') || 'empty'}}
               </span>
               <!-- TIME -->
               <span ng-if='obj.type == types[5].text' e-form="myform"
                 editable-time="obj.value"
                 onbeforesave="checkData(obj.req, $data, obj.type)" >
-                {{obj.value | date:'hh:mm'}}
+                {{ (obj.value | date:'hh:mm') || 'empty'}}
               </span>
 
 <!-- TO FIX -->

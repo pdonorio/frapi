@@ -198,14 +198,15 @@ StepsInsertType:
         ✘ reuse the provider? @cancelled (15-03-25 07:18)
         ✘ create an element and then destroy? @cancelled (15-03-25 07:18)
         ✔ create the element based on a name @done (15-03-26 07:02)
-          ✔ do not recreate if the name already exists @done (15-03-26 07:37)
           ✔ check that name does not exist already in any field of the actual template... @done (15-03-26 16:50)
       ✔ save another field with the list of hashes, for user content @done (15-03-26 17:13)
-      ☐ use them
-        ☐ in fact now if i save one data, reading is broken
-        ☐ as a check when showing data!!!!!
-      ☐ create a view to show used field names
+      ✔ use them @done (15-03-26 20:47)
+        ✔ in fact now if i save one data, reading is broken @done (15-03-26 20:47)
+        ✔ as a check when showing data!!!!! @done (15-03-26 20:47)
+      ☐ do not recreate if the name already exists @ooops @adminview
+      ☐ create a view to show used field names?
         ☐ compute content inside rethinkdb stepcontent with that hash
+        ☐ first try of a search inside a list of elements as a field in rethinkdb
 
   ☐ If not published
     ☐ signal draft in submission/edit
