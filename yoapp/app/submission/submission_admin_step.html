@@ -60,11 +60,12 @@
         ng-if='$index > 0 && template.label'>
        <!-- Element count -->
        <td style='background: #eee; text-align: center; '>
-        <b>{{$index}}</b>: <i>{{template.hash}}</i>
+        <b>{{$index}}</b>: <i>{{template.hash || 'none'}}</i>
        </td>
        <!-- Text with Validation -->
        <td>
         <span editable-text="template.label" e-form="rowform" e-required
+            onbeforesave='checkIfNameExist($data, $index)'
             onaftersave='updateElement($index)'>
           {{template.label || 'vuoto'}}
         </span>

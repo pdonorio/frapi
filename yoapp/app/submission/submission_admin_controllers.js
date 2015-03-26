@@ -234,6 +234,15 @@ myApp
       //These should also remove every content set on this step:field from user...
     };
 
+    $scope.checkIfNameExist = function(name, pos) {
+        return $scope.templObj.checkLabel(name, $scope.current, pos)
+        .then(function(response){
+            if (response)
+                return "Il nome '"+name+"' viene gia' utilizzato";
+            return true;
+        });
+    }
+
     $scope.checkList = function(data) {
         var msg = "Lista di valori separati da virgola (almeno 2)";
 

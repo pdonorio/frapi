@@ -24,14 +24,40 @@ myApp
 
         if (response.count == 1) {
             var commit = cutCommit(response.items[0].id);
-            console.log("Existing hash", commit);
+            //console.log("Existing hash", commit);
             return commit;
         }
         return API.set(hashres, params).then(function(hash)
         {
             var commit = cutCommit(hash);
-            console.log("Created hash", commit);
+            //console.log("Created hash", commit);
             return commit;
+        });
+    });
+  }
+
+  // Does this label already exists?
+  function checkName(name, step, pos) {
+
+    var params = { step: step, field: name};
+    return API.get(resource, params)
+      .then(function(response) {
+        //console.log("Params 1", params); console.log("Res 1", response);
+
+        // Check if existing element is the one i am editing
+        params.position = pos;
+        return API.get(resource, params)
+          .then(function(same) {
+            //console.log("Res 2", same); console.log("Params 2", params);
+
+            // Case 1: my new name is the same of old original
+            if (same.count == 1)
+                return false;
+            // Case 2: this name already exists in another field of the same step
+            if (response.count == 1)
+                return true;
+            // Case 3: none of the above
+            return false;
         });
     });
   }
@@ -75,7 +101,6 @@ myApp
 //This could be made automatic
     // Find the key to update, if any
     var params = { step: data['step'], position: data['position'] };
-    console.log(params);
 
     // need the hash
     return getHash(params.step, data['field']).then(function(hash) {
@@ -89,7 +114,7 @@ myApp
             data.hash = hash;
             // How about i save it
             return API.set(resource, data).then(function(id) {
-                console.log("Inserted id", id);
+                console.log("Insert / update id", id);
                 data.id = id;
                 return data;
             });
@@ -151,6 +176,9 @@ myApp
 
   }
   // Public methods, assigned to prototype
+  StepTemplate.prototype.checkLabel = function (name, step, pos) {
+    return checkName(name, step, pos);
+  };
   StepTemplate.prototype.getOpts = function () {
     return this.opts;
   };

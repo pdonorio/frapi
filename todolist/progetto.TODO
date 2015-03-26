@@ -199,7 +199,7 @@ StepsInsertType:
         ✘ create an element and then destroy? @cancelled (15-03-25 07:18)
         ✔ create the element based on a name @done (15-03-26 07:02)
           ✔ do not recreate if the name already exists @done (15-03-26 07:37)
-          ☐ check that name does not exist already in any field of the actual template...
+          ✔ check that name does not exist already in any field of the actual template... @done (15-03-26 16:50)
       ☐ save another field with the list of hashes, for user content
       ☐ use them as a check when showing data!!!!!
       ☐ create a view to show used field names
