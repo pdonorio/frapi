@@ -73,6 +73,14 @@ myApp
     $scope.data = [];
     $scope.contentData = StepContent.build($scope.identifier, $scope.step);
 
+    var getType = function(key) {
+        // save type to be sure in the future?
+        var type = $scope.types[0].text;
+        if ($scope.types[key])
+            type = $scope.types[key].text;
+        return type;
+    }
+
     ////////////////////////////////////////////////
     // Procedure to mix data and save it into scope
     var injectData = function(template, content)
@@ -87,37 +95,37 @@ myApp
             $scope.contentData.setId(content.id);
 
         // Mixing template and content here
-        angular.forEach(template, function(obj) {
-
-// FOR EACH TEMPLATE
-            //console.log(content.values);
-
-// SHOULD GET CONTENT VALUE FROM HASH
+        angular.forEach(template, function(obj, pos) {
             var value = null;
+            var key = -1;
+            // IF I HAVE DATA
             if (content.values) {
-                // Get from index
-                index = content.hashes.indexOf(obj.hash);
-                console.log("Index",index);
-                value = content.values[index];
-                if (value !== '')
-                    count++;
+                var key = content.hashes.indexOf(obj.hash);
+                value = content.values[key];
             }
-            //console.log("VALUES"); console.log(value);
-
-            // save type to be sure in the future?
-            var type = $scope.types[0].text;
-            if ($scope.types[obj.value])
-                type = $scope.types[obj.value].text;
-
-            data[index] = {
-                // current data
-                value: value,
-                // the rest, from template
-                key: obj.label, type: type,
-                req: parseInt(obj.required), extra: obj.extra,
-                // save also hash
-                hasher: obj.hash,
+            if (value !== '')
+                count++;
+            data[pos] = {
+                key: obj.label, value: value, type: getType(obj.value),
+                req: parseInt(obj.required), extra: obj.extra, hasher: obj.hash,
             };
+
+/*
+            if (key >= 0) {
+                data[key] = angular.copy(tmp);
+                console.log("NORMAL", key);
+            } else if (!data[pos]) {
+                data[pos] = angular.copy(tmp);
+                console.log("INIT", pos);
+            } else {
+                //put this somewhere else ?
+                l1 = template.length;
+                l2 = data.length;
+                key = window.Math.max(l1,l2);
+                console.log("TEST NEW", key);
+                data[key] = angular.copy(tmp);
+            }
+*/
 
         });
 
