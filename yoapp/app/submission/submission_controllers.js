@@ -98,15 +98,17 @@ myApp
             var type = $scope.types[0].text;
             if ($scope.types[obj.value])
                 type = $scope.types[obj.value].text;
-            //obj.value
 
             data[index++] = {
                 key: obj.label, type: type, value: content,
+                hasher: obj.hash,
                 req: parseInt(obj.required),
                 extra: obj.extra,
             };
         });
-// TO FIX
+
+// TO FIX - how? save this data inside object?
+//probably yes
         $scope.data[$scope.step] = data;
         return count;
 
@@ -176,11 +178,12 @@ myApp
     }
     // Save button
     $scope.saveStep = function() {
+
+/*
 // REMOVE ME
         console.log("Debug save [skip for now]");
         console.log($scope.data);
         return true;
-/*
 // REMOVE ME
 */
 
@@ -189,7 +192,8 @@ myApp
 
         // Try to save data. Also this has to be a promise
         // if i want to handle notification at this level
-        $scope.contentData.setData($scope.data, $rootScope.user.name, $scope.identifier)
+        $scope.contentData.setData($scope.data[$scope.current],
+            $rootScope.user.name, $scope.identifier)
          .then(function(success) {
             if (success) {
               $timeout( function() {
