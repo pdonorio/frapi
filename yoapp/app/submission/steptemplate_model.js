@@ -37,6 +37,7 @@ myApp
   }
 
   // Does this label already exists?
+  // this is used to avoid duplicates at run time
   function checkName(name, step, pos) {
 
     var params = { step: step, field: name};

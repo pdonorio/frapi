@@ -160,7 +160,6 @@ StepsAdmin:
     ✔ Put admin link inside profile if user == 'admin' @done (15-03-15 11:49)
     ✔ Remove edit button inside topbar inside insert @done (15-03-15 11:28)
       ✔ Remove it also inside view page for the moment @done (15-03-15 11:28)
-
 StepsInsertType:
   ✔ THE TYPE IS THE CENTER KEY @done (15-03-17 07:05)
     ✔ recover types from template @done (15-03-16 06:51)
@@ -180,20 +179,13 @@ StepsInsertType:
     ✔ Another column and another field of the database? @done (15-03-23 17:23)
     ✔ Implement via user @done (15-03-24 07:14)
     ✘ modal select @cancelled (15-03-23 17:23)
-   ☐ Understand how pattern works
-     ☐ and how to show which pattern to insert
-     ☐ or disable for now....
-   ☐ Recheck types default
-     ☐ expecially time and date
-   ☐ Date within a range of years
-     ☐ only month or only year
-   ☐ required
-    ☐ Check on out of focus?
+ ✔ Remove back button @sostupid @done (15-03-24 07:34)
+   ✔ Recheck types default @done (15-03-28 11:33)
+     ✔ expecially time and date @done (15-03-28 11:33)
 
-#HASH ALGO
-
+HASH ALGO:
   ✔ What happens if i change name and position of a field? @done (15-03-25 07:18)
-    ☐ IDEA:  produce hash for a new field in template @thehashsolution
+    ✔ IDEA:  produce hash for a new field in template @thehashsolution @done (15-03-28 11:35)
       ✔ produce the hash from a table @done (15-03-25 07:27)
         ✘ reuse the provider? @cancelled (15-03-25 07:18)
         ✘ create an element and then destroy? @cancelled (15-03-25 07:18)
@@ -208,16 +200,10 @@ StepsInsertType:
         ☐ compute content inside rethinkdb stepcontent with that hash
         ☐ first try of a search inside a list of elements as a field in rethinkdb
 
-  ☐ If not published
-    ☐ signal draft in submission/edit
-  ☐ fix "are you really sure" notice
-  ☐ Last but not least
-    ☐ Some clean pattern image repaeat as background
-   ☐ Dark pattern background for ADMIN
- ☐ User model
-   ☐ Profile adjust to User model
- ☐ Stupid login?
- ✔ Remove back button @sostupid @done (15-03-24 07:34)
+   ☐ Date within a range of years
+     ☐ only month or only year
+   ☐ required
+    ☐ Check on out of focus?
 
 DebugMode:
  ☐ Feedback button
@@ -226,8 +212,24 @@ DebugMode:
    ☐ Feedback saved inside rdb api resource
      ☐ on change of table, python sends me an email
 
+☐ Some clean pattern image repaeat as background
+  ☐ Dark pattern background for ADMIN
+☐ Stupid login
+☐ Fix news
+
+================================================
+
 SomeMore:
-  ☐ Resort steps numbers with drag and drop?? @ohboy
+
+  ☐ PUBLISHING
+    ☐ signal draft in submission/edit
+  ☐ fix "are you really sure" notice
+ ☐ User model
+   ☐ Profile adjust to User model
+   ☐ Understand how pattern works
+     ☐ and how to show which pattern to insert
+     ☐ or disable for now....
+
 
     ☐ A mock User model
       ☐ across the project to share the current user

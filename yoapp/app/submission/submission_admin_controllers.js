@@ -106,18 +106,15 @@ myApp
                     "Database non raggiungibile");
               } else {
 
-// TO FIX -
                 // 2. Remove from API steptemplate
                 $scope.templObj = StepTemplate.build($scope.current, true);
-                $scope.templObj.unsetData(step); //.then(function(check){});
+                $scope.templObj.unsetData(step);
 
                 // 3. Remove from API stepcontent
-/* actually no. this way we can preserve data if you want to reenable via admin
-//i use the hash algo to do so
-                var contObj = StepContent.build(null, step);
-                contObj.unsetData(step);
-*/
-// TO FIX -
+                // Small note:
+                // I will not remove user data related to these column,
+                // as it could be usefull to make it show again
+                // if admin recreates the same field again, with the same name
 
                 NotificationData.setNotification(AppConfig.messageStatus.success,
                     "Rimosso step n." + $scope.current);
@@ -230,8 +227,11 @@ myApp
       delete $scope.templates[index];
       // API save
       $scope.templObj.unsetData($scope.current, index).then(function(){});
-// TO FIX -
-      //These should also remove every content set on this step:field from user...
+
+      // Small note:
+      // I will not remove user data related to these column,
+      // as it could be usefull to make it show again
+      // if admin recreates the same field again, with the same name
     };
 
     $scope.checkIfNameExist = function(name, pos) {

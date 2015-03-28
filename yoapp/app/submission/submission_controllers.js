@@ -110,23 +110,6 @@ myApp
                 req: parseInt(obj.required), extra: obj.extra, hasher: obj.hash,
             };
 
-/*
-            if (key >= 0) {
-                data[key] = angular.copy(tmp);
-                console.log("NORMAL", key);
-            } else if (!data[pos]) {
-                data[pos] = angular.copy(tmp);
-                console.log("INIT", pos);
-            } else {
-                //put this somewhere else ?
-                l1 = template.length;
-                l2 = data.length;
-                key = window.Math.max(l1,l2);
-                console.log("TEST NEW", key);
-                data[key] = angular.copy(tmp);
-            }
-*/
-
         });
 
 // TO FIX - how? save this data inside object?
