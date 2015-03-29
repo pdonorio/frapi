@@ -1,4 +1,9 @@
 
+TO DISCUSS:
+  ☐ changing labels position and name when user data exists
+  ☐ date only for years
+  ☐ define the search basic idea
+
 --- ✄ -----------------------
 Feb ALPHA:
   ✔ Going HOME @done (15-02-01 17:30)
@@ -192,34 +197,32 @@ HASH ALGO:
         ✔ create the element based on a name @done (15-03-26 07:02)
           ✔ check that name does not exist already in any field of the actual template... @done (15-03-26 16:50)
       ✔ save another field with the list of hashes, for user content @done (15-03-26 17:13)
+   ✔ required @done (15-03-28 11:47)
       ✔ use them @done (15-03-26 20:47)
         ✔ in fact now if i save one data, reading is broken @done (15-03-26 20:47)
         ✔ as a check when showing data!!!!! @done (15-03-26 20:47)
-      ☐ do not recreate if the name already exists @ooops @adminview
-      ☐ create a view to show used field names?
-        ☐ compute content inside rethinkdb stepcontent with that hash
-        ☐ first try of a search inside a list of elements as a field in rethinkdb
-
-   ☐ Date within a range of years
-     ☐ only month or only year
-   ☐ required
-    ☐ Check on out of focus?
+      ☐ do not recreate if the name already exists
+        ☐ show a label with new or existing, just to get the idea
 
 DebugMode:
+ ☐ STUPID LOGIN!
+☐ Fix news
+  ☐ Work in progress for now
  ☐ Feedback button
- ☐ inside profile menu
-   ☐ Fires a modal
+   ☐ inside profile menu
    ☐ Feedback saved inside rdb api resource
      ☐ on change of table, python sends me an email
-
-☐ Some clean pattern image repaeat as background
+ ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
-☐ Stupid login
-☐ Fix news
+ ☐ Date within a range of years
+   ☐ only month or only year
 
 ================================================
 
 SomeMore:
+  ☐ create a view to show used field names?
+    ☐ compute content inside rethinkdb stepcontent with that hash
+    ☐ first try of a search inside a list of elements as a field in rethinkdb
 
   ☐ PUBLISHING
     ☐ signal draft in submission/edit
