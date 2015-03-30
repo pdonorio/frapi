@@ -187,7 +187,6 @@ StepsInsertType:
  ✔ Remove back button @sostupid @done (15-03-24 07:34)
    ✔ Recheck types default @done (15-03-28 11:33)
      ✔ expecially time and date @done (15-03-28 11:33)
-
 HASH ALGO:
   ✔ What happens if i change name and position of a field? @done (15-03-25 07:18)
     ✔ IDEA:  produce hash for a new field in template @thehashsolution @done (15-03-28 11:35)
@@ -201,8 +200,8 @@ HASH ALGO:
       ✔ use them @done (15-03-26 20:47)
         ✔ in fact now if i save one data, reading is broken @done (15-03-26 20:47)
         ✔ as a check when showing data!!!!! @done (15-03-26 20:47)
-      ☐ do not recreate if the name already exists
-        ☐ show a label with new or existing, just to get the idea
+      ✔ do not recreate if the name already exists @done (15-03-30 09:59)
+        ✔ show a label with new or existing, just to get the idea @done (15-03-30 09:59)
 
 DebugMode:
  ☐ STUPID LOGIN!

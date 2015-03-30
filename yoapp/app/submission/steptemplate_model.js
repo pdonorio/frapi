@@ -89,9 +89,7 @@ myApp
                 data[obj.position] = {
                     label:obj.field,
                     hash: obj.hash,
-
-//ARGH!
-                    hashStatus: 'new',
+                    //hashStatus: 'new',    //not necessary for now
                     value:obj.type,
                     extra:obj.extra,
                     required:obj.required,

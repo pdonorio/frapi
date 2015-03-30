@@ -182,8 +182,7 @@ myApp
         $scope.templObj.getData().then(function(response) {
             if (response.length) {
                 $scope.templates = response;
-// ARGH - for each??
-// hashStatus
+                //for each? // hashStatus
             }
         });
     }
@@ -225,13 +224,11 @@ myApp
       $scope.templObj.setData($scope.current, index, lab, val, req, ex)
         .then(function(tmp){
 
-// add check for hash status
+            // add check for hash status
             if ($scope.templObj.checkHash())
                 $scope.templates[index].hashStatus = 'existing';
             else
                 $scope.templates[index].hashStatus = 'new';
-            //console.log("Status:",hashStatus);
-
             $scope.templates[index].hash = tmp.hash;
         });
     };
@@ -240,7 +237,7 @@ myApp
       // API save
       $scope.templObj.unsetData($scope.current, index).then(function(){});
 
-      // Small note:
+      // Small note (hashStatus):
       // I will not remove user data related to these column,
       // as it could be usefull to make it show again
       // if admin recreates the same field again, with the same name

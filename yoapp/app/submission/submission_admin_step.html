@@ -60,9 +60,12 @@
         ng-if='$index > 0 && template.label'>
        <!-- Element count -->
        <td style='background: #eee; text-align: center; '>
+        <span ng-show='template.hashStatus == "new"'
+            class="label label-primary">{{template.hashStatus}}</span>
+        <span ng-show='template.hashStatus == "existing"'
+            class="label label-warning">{{template.hashStatus}}</span>
+
         <b>{{$index}}</b>: <i>{{template.hash || 'none'}}</i>
-        <br>
-        <span class="label label-success">{{template.hashStatus}}</span>
 
        </td>
        <!-- Text with Validation -->
