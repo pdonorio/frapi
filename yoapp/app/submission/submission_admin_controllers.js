@@ -180,8 +180,11 @@ myApp
 
         // Load templates
         $scope.templObj.getData().then(function(response) {
-            if (response.length)
+            if (response.length) {
                 $scope.templates = response;
+// ARGH - for each??
+// hashStatus
+            }
         });
     }
 
@@ -203,6 +206,7 @@ myApp
       $scope.templates[pos] = {
         label: label, value: value,
         extra:null, required: 0, hash: 'new',
+        hashStatus: 'new',
       };
       // API save
       $scope.templObj.setData($scope.current, pos,label,value,value)
@@ -220,6 +224,14 @@ myApp
       // API save
       $scope.templObj.setData($scope.current, index, lab, val, req, ex)
         .then(function(tmp){
+
+// add check for hash status
+            if ($scope.templObj.checkHash())
+                $scope.templates[index].hashStatus = 'existing';
+            else
+                $scope.templates[index].hashStatus = 'new';
+            //console.log("Status:",hashStatus);
+
             $scope.templates[index].hash = tmp.hash;
         });
     };

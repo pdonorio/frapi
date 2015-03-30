@@ -10,6 +10,10 @@ myApp
 {
   var resource = 'stepstemplate';
   var hashres = 'stepfields';
+  var lastCommit = {
+    existing: true,
+    failed: false,
+  }
 
   function cutCommit(hash) {
     // CUT TO FIRST 8 chars
@@ -24,12 +28,14 @@ myApp
 
         if (response.count == 1) {
             var commit = cutCommit(response.items[0].id);
+            lastCommit.existing = true;
             //console.log("Existing hash", commit);
             return commit;
         }
         return API.set(hashres, params).then(function(hash)
         {
             var commit = cutCommit(hash);
+            lastCommit.existing = false;
             //console.log("Created hash", commit);
             return commit;
         });
@@ -83,6 +89,9 @@ myApp
                 data[obj.position] = {
                     label:obj.field,
                     hash: obj.hash,
+
+//ARGH!
+                    hashStatus: 'new',
                     value:obj.type,
                     extra:obj.extra,
                     required:obj.required,
@@ -179,6 +188,9 @@ myApp
   // Public methods, assigned to prototype
   StepTemplate.prototype.checkLabel = function (name, step, pos) {
     return checkName(name, step, pos);
+  };
+  StepTemplate.prototype.checkHash = function () {
+    return lastCommit.existing;
   };
   StepTemplate.prototype.getOpts = function () {
     return this.opts;
