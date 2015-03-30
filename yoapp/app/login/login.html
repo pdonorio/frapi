@@ -10,13 +10,47 @@
         <div class="col-md-3 col-xs-3"></div>
         <div class="col-md-6 col-xs-6">
             <div class='well shad centering'>
-                <H3>SpectacleBaroque</H3>
-                La collezione di estratti sulle Feste Barocche.
-                <br> <br>
+              <H3>SpectacleBaroque</H3>
+              La collezione di estratti sulle Feste Barocche.
+              <br><br>
+              {{register}}
 
+              <form name="loginForm" novalidate ng-hide='registered'>
                 <a ui-sref="logged.main">
-                    <button type="button" class="btn btn-danger"> Login </button>
+                  <button type="button" class="btn btn-danger"> Login </button>
                 </a>
+              </form>
+
+
+              <form name="registerForm" novalidate ng-show='registered'>
+               <table class="table">
+                <thead> <tr> <th colspan="2"> Registrazione </th> </thead>
+                <tbody> <tr> <td>
+                <p> <input type="text" ng-model="user.name" name='username'
+                    ng-minlength='3'
+                    ng-model-options="{ updateOn: 'blur' }"
+                    placeholder='Il tuo nome' required /> </p>
+                    <span
+                      ng-show="registerForm.username.$dirty
+                      && registerForm.username.$invalid">
+                      Errore
+                      </span>
+
+                <p> <input type="text" ng-model="user.surname" /> </p>
+                <p> <input type="email" ng-model="user.email"
+                 placeholder='Il tuo indirizzo mail' required /> </p>
+                <p> <input type="password" ng-model="user.pw" required /> </p>
+
+                <p>
+                <a href='' ng-click='reset()'>
+                  <button type="button" class="btn btn-warning"> Reset </button>
+                </a>
+                <input type="submit" class="btn btn-danger" value='Registra'
+                    ng-click='register(user)' />
+                </p>
+                </td> </tr> </tbody>
+               </table>
+              </form>
 
             </div>
         </div>

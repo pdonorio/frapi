@@ -9,12 +9,12 @@ myApp
     // For each page i didn't setup
     .state('notfound', {
       url: "/404",
-      views: { "main": { templateUrl: "views/oops.html", }, },
+      views: { "main": { templateUrl: "login/oops.html", }, },
     })
     // Static welcome page
     .state('welcome', {
       url: "/static",
-      views: { "main": { templateUrl: "views/welcome.html", }, },
+      views: { "main": { templateUrl: "login/welcome.html", }, },
     })
     // Simple login logic
     .state('dologin', {

@@ -214,6 +214,7 @@ DebugMode:
   ✔ sceDelegateProvider @done (15-03-30 18:05)
  ✔ Login @done (15-03-30 19:18)
    ✔ API resource: account @done (15-03-30 19:18)
+   ☐ angularjs normal form: https://docs.angularjs.org/guide/forms
      ☐ register goes in post
        ☐ use a token: hash(user+password+hash(user-password))
          ☐ sha256_digest(value)
@@ -222,6 +223,7 @@ DebugMode:
     ☐ across the project to share the current user
     ☐ list of user drafts @cool
       ☐ by identifiers inside the api provider
+ ☐ Login require an activation
   ☐ Timely session
 
  ☐ Feedback button
