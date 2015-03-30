@@ -204,9 +204,23 @@ HASH ALGO:
         ✔ show a label with new or existing, just to get the idea @done (15-03-30 09:59)
 
 DebugMode:
- ☐ STUPID LOGIN!
 ☐ Fix news
   ☐ Work in progress for now
+✔ Flask https @done (15-03-30 17:48)
+  ✔ http://kracekumar.com/post/54437887454/ssl-for-flask-local-development @done (15-03-30 17:48)
+    ✔ pw cRin2gap6Bir4Abs7eB5 @done (15-03-30 18:05)
+  ✘ or more http://flask.pocoo.org/snippets/111/ @cancelled (15-03-30 17:48)
+  ✔ change resource js in https @done (15-03-30 18:05)
+  ✔ sceDelegateProvider @done (15-03-30 18:05)
+☐ Ngix HTTPS?
+☐ file upload https
+ ☐ Login
+   ☐ API resource: account
+     ☐ register goes in post
+       ☐ use a token: hash(user+password+hash(user-password))
+         ☐ sha256_digest(value)
+     ☐ login goes in get with token
+☐ Timely session
  ☐ Feedback button
    ☐ inside profile menu
    ☐ Feedback saved inside rdb api resource

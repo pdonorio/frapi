@@ -48,12 +48,16 @@ angular.module('AppConfig', [])
       {
 
         //use location https://docs.angularjs.org/api/ng/service/$location
-        var protocol = $location.protocol();
         var host = $location.host();
         var port = $location.port();
-        config.apiBase = protocol + "://" + host + ":" + apiPort;
+
+// TO FIX - enable https on client js served
+        var protocol = $location.protocol();
         config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
           + "/" + apiFileResource;
+
+        protocol = "https";
+        config.apiBase = protocol + "://" + host + ":" + apiPort;
 
         //notification messages status
         config.messageStatus = messageStatus;

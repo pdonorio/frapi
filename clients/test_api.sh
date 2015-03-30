@@ -39,6 +39,11 @@ resource="stepfields"
 echo "***\nPaging"
 # Array testing
 values="perpage=6&currentpage=1"
+
+# HTTPS?
+protocol="https"
+values="perpage=6&currentpage=1 --insecure"
+
 #values='currentpage=1&perpage=999&recordid=aefd6289-d192-4ff9-9d7d-acd522203979&step=2'
 key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
 echo "received '$key'"

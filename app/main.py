@@ -26,12 +26,17 @@ if __name__ == "__main__":
             debug = False
 
     # Make a flask app for my API
-    app.run(host="0.0.0.0", debug=debug)
+    """
+        Note: 'host' tells you who can access. 0.0.0.0 = all;
+        'debug' tells the app to restart when code changes
+        and should be off on production
+    """
+    app.run(host="0.0.0.0", debug=debug, \
+        ssl_context=( \
+            '/opt/app/certs/server.crt', \
+            '/opt/app/certs/server.key' \
+            ))
     #print "Debug: ", debug
-
-    # Note: 'host' tells you who can access. 0.0.0.0 = all;
-    # 'debug' tells the app to restart when code changes
-    # and should be off on production
 
 # === For future file configuration ===
 # # Read conf files
