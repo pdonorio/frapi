@@ -19,7 +19,12 @@ myApp
     // Simple login logic
     .state('dologin', {
       url: "/login",
-      views: { "main": { templateUrl: "views/login.html", }, },
+      views: {
+        "main": {
+            templateUrl: "login/login.html",
+            controller: "LoginController",
+        },
+      },
     })
 
 // Once Logged
