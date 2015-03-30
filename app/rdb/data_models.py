@@ -57,6 +57,27 @@ class WebContent(GenericORMModel):
         return value    #e.g. "This is the content <b>here</b>"
 
 ##############################
+class Account(GenericORMModel):
+    """ Handling users """
+    table = 'accounts'
+
+    @staticmethod
+    def name(value):
+        return value
+    @staticmethod
+    def surname(value):
+        return value
+    @staticmethod
+    def email(value):
+        return value
+    @staticmethod
+    def token(value):
+        return value
+    @staticmethod
+    def lastip(value):
+        return value
+
+##############################
 class NewsFeed(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'news'

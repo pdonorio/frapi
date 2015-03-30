@@ -212,15 +212,18 @@ DebugMode:
   ✘ or more http://flask.pocoo.org/snippets/111/ @cancelled (15-03-30 17:48)
   ✔ change resource js in https @done (15-03-30 18:05)
   ✔ sceDelegateProvider @done (15-03-30 18:05)
-☐ Ngix HTTPS?
-☐ file upload https
- ☐ Login
-   ☐ API resource: account
+ ✔ Login @done (15-03-30 19:18)
+   ✔ API resource: account @done (15-03-30 19:18)
      ☐ register goes in post
        ☐ use a token: hash(user+password+hash(user-password))
          ☐ sha256_digest(value)
      ☐ login goes in get with token
-☐ Timely session
+  ☐ A mock User model
+    ☐ across the project to share the current user
+    ☐ list of user drafts @cool
+      ☐ by identifiers inside the api provider
+  ☐ Timely session
+
  ☐ Feedback button
    ☐ inside profile menu
    ☐ Feedback saved inside rdb api resource
@@ -246,11 +249,8 @@ SomeMore:
      ☐ and how to show which pattern to insert
      ☐ or disable for now....
 
-
-    ☐ A mock User model
-      ☐ across the project to share the current user
-      ☐ list of user drafts @cool
-        ☐ by identifiers inside the api provider
+  ☐ Ngix HTTPS?
+  ☐ file upload https
 
     ☐ Better backups
       ☐ cron daily
