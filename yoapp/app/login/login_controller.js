@@ -4,11 +4,13 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('LoginController', function ($scope)
+.controller('LoginController', function ($scope, $state, $stateParams)
 {
-    console.log("Login");
-
-    $scope.registered = true; //false;
+    $scope.gostate = $state.go;
+    $scope.registered = false;
+    if ($stateParams.status == 'register') {
+        $scope.registered = true;
+    }
     $scope.user = null;
     $scope.master = {};
 
@@ -22,6 +24,8 @@ myApp
             console.log("NOT Valid");
         }
     };
+
+    // go to login.main
 
     // Clear form
     $scope.reset = function() {

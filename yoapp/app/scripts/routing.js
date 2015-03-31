@@ -14,11 +14,16 @@ myApp
     // Static welcome page
     .state('welcome', {
       url: "/static",
-      views: { "main": { templateUrl: "login/welcome.html", }, },
+      views: {
+        "main": {
+            templateUrl: "login/welcome.html",
+            controller: 'MainController',
+        },
+      },
     })
     // Simple login logic
     .state('dologin', {
-      url: "/login",
+      url: "/login/{status:[a-z]+}",
       views: {
         "main": {
             templateUrl: "login/login.html",

@@ -13,15 +13,34 @@
               <H3>SpectacleBaroque</H3>
               La collezione di estratti sulle Feste Barocche.
               <br><br>
-              {{register}}
 
+              <!-- LOGIN IF YOU HAVE CREDENTIALS -->
               <form name="loginForm" novalidate ng-hide='registered'>
-                <a ui-sref="logged.main">
-                  <button type="button" class="btn btn-danger"> Login </button>
-                </a>
+               <table class="table" style="margin-bottom: 0;">
+                <thead> <tr> <th colspan="2"> Accesso </th> </thead>
+                <tbody> <tr> <td>
+                <p> <input
+                    type="email" ng-model="user.email" name='usermail'
+                    ng-minlength='10' size='30'
+                    ng-model-options="{ updateOn: 'blur' }"
+                    placeholder='Il tuo account (indirizzo di posta)' required /> </p>
+                 <span ng-show="registerForm.usermail.$dirty
+                      && registerForm.usermail.$invalid">
+                  Errore </span>
+                <p> <input type="password" ng-model="user.pw"
+                    size='30'
+                    placeholder='Password'
+                    required /> </p>
+                <p> <input type="submit" class="btn btn-danger" value='Login'
+                    ng-click='login(user)' /> </p>
+                </td> </tr> </tbody>
+               </table>
+              <p style='text-align: right;'>
+                <a href="" ng-click='gostate("dologin", {status: "register"})'>register</a>
+              </p>
               </form>
 
-
+              <!-- REGISTRATION IF YOU HAVE NO CREDENTIALS -->
               <form name="registerForm" novalidate ng-show='registered'>
                <table class="table">
                 <thead> <tr> <th colspan="2"> Registrazione </th> </thead>

@@ -8,18 +8,20 @@
  * Controller of the yoApp
  */
 myApp
-.controller('MainController', function ($scope, $rootScope, $timeout, $interval, $location,
+.controller('MainController', function ($scope,
+    $rootScope, $timeout, $interval, $location, $state,
     //tester,
     projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
 
-    // Function to simplify href on buttons via Angular
+    // Functions to simplify href on buttons via Angular
     $scope.go = function ( path ) {
       $location.path( path );
       $rootScope.lastVisited = undefined;
     };
+    $scope.gostate = $state.go;
 
 /*
     //////////////////////////////////////
