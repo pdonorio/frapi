@@ -15,9 +15,9 @@
               <br><br>
 
               <!-- LOGIN IF YOU HAVE CREDENTIALS -->
-              <form name="loginForm" novalidate ng-hide='registered'>
+              <form name="loginForm" novalidate ng-show='registered && !welcome'>
                <table class="table" style="margin-bottom: 0;">
-                <thead> <tr> <th colspan="2"> Accesso </th> </thead>
+                <thead> <tr> <th colspan="2"> Accesso </th> </tr> </thead>
                 <tbody> <tr> <td>
                 <p> <input
                     type="email" ng-model="user.email" name='usermail'
@@ -41,9 +41,9 @@
               </form>
 
               <!-- REGISTRATION IF YOU HAVE NO CREDENTIALS -->
-              <form name="registerForm" novalidate ng-show='registered'>
+              <form name="registerForm" novalidate ng-hide='registered'>
                <table class="table">
-                <thead> <tr> <th colspan="2"> Registrazione </th> </thead>
+                <thead> <tr> <th colspan="2"> Registrazione </th> </tr> </thead>
                 <tbody> <tr> <td>
                 <p> <input type="text" ng-model="user.name" name='username'
                     ng-minlength='3' size='25'
@@ -73,6 +73,20 @@
                 </td> </tr> </tbody>
                </table>
               </form>
+
+              <!-- Welcome registered user -->
+              <div ng-show='welcome'>
+               <table class="table">
+                <thead> <tr> <th colspan="2"> Benvenuto </th> </tr> </thead>
+                <tbody> <tr> <td>
+                    La tua richiesta e' in attesa di valutazione.
+                    <br>
+                    Controlla la tua posta per utilizzare le credenziali.
+                    <br>
+                </td></tr></tbody>
+               </table>
+              </div>
+
 
             </div>
         </div>

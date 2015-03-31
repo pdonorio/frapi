@@ -25,6 +25,21 @@ myApp
       });
   }
 
+  // Register user
+  function saveUser(data) {
+
+// TO FIX - define roles?
+    data.role = 999;
+// TO FIX - IP, how to get?
+    data.lastip = 123456789;
+    // send to database
+    return API.set(resource, data)
+      .then(function(id) {
+          console.log("Saved user", id);
+          return id;
+      });
+  }
+
   function makeToken(user) {
     var sep = '£';
 // TO FIX - use crypto with bower
@@ -42,15 +57,13 @@ myApp
   ******************************** */
   // Constructor, with class name
   function Account(user) {
-    console.log("This is a user", user);
     user.token = makeToken(user);
     delete(user.pw);
-    console.log("tokening", user);
     this.user = user;
   }
   // Public methods, assigned to prototype
   Account.prototype.set = function () {
-    console.log("Register");
+    return saveUser(this.user);
   }
   Account.prototype.get = function () {
     console.log("Set session?");
@@ -66,7 +79,6 @@ myApp
     // Create object
     return new Account(user);
   }
-
   // Give this service to someone
   return Account;
 

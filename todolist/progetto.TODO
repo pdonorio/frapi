@@ -216,18 +216,18 @@ DebugMode:
    ✔ API resource: account @done (15-03-30 19:18)
    ✔ angularjs normal form: https://docs.angularjs.org/guide/forms @done (15-03-31 07:00)
    ✔ account js object @done (15-03-31 07:33)
-     ☐ register goes in post
-       ☐ use a token: hash(user+password+hash(user-password))
+     ✔ register goes in post @done (15-03-31 07:56)
+       ✔ use a token: hash(user+password+hash(user-password)) @done (15-03-31 07:56)
          ☐ sha256_digest(value)
      ☐ login goes in get with token
-  ☐ A mock User model
-    ☐ across the project to share the current user
-    ☐ list of user drafts @cool
-      ☐ by identifiers inside the api provider
  ☐ Login require an activation
    ☐ Save ip
    ☐ update ip at each login
  ☐ Timely session
+  ☐ A real User model
+    ☐ across the project to share the current user
+    ☐ list of user drafts @cool
+      ☐ by identifiers inside the api provider
 
  ☐ Feedback button
    ☐ inside profile menu
