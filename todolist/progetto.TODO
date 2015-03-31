@@ -221,13 +221,14 @@ DebugMode:
          ✔ sha256_digest(value) @done (15-03-31 10:28)
      ☐ login goes in get with token
  ☐ Login require an activation
-   ☐ Save ip
+   ✔ Save ip @done (15-03-31 15:43)
    ☐ update ip at each login
- ☐ Send out users not logged from normal app routing
-   ☐ routing helps here
- ☐ Timely session
   ☐ A real User model
-    ☐ across the project to share the current user
+  ☐ Timely session
+    ☐ save token infos like @logintime
+      ☐ do not let multiple access?
+    ☐ Send out users not logged
+      ☐ if no valid session checked on ui-router main onEnter
     ☐ list of user drafts @cool
       ☐ by identifiers inside the api provider
 
@@ -240,6 +241,8 @@ DebugMode:
  ☐ Date within a range of years
    ☐ only month or only year
 
+LIMIT PUBLIC API
+http://flask-limiter.readthedocs.org/en/stable/
 ================================================
 
 SomeMore:
