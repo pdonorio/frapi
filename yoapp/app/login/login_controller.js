@@ -10,6 +10,7 @@ myApp
     $scope.registered = true;
     $scope.welcome = false;
     $scope.user = null;
+    //console.log("Pars", $stateParams);
 
     // DECIDE ROUTE
     if ($stateParams.status == 'register') {
@@ -18,8 +19,6 @@ myApp
         $scope.registered = true;
         $scope.welcome = true;
     }
-
-    console.log("Pars", $stateParams);
 
     $scope.register = function(user) {
         if($scope.registerForm.$valid){

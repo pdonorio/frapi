@@ -29,6 +29,18 @@ var myApp = angular.module('archivi',
     'arrayOperations', //my filters on arrays
   ])
 
+// THIS IS NEEDED FOR DEVELOPMENT
+// allow insecure https if your host does not have an official certificate yet
+//see: https://docs.angularjs.org/api/ng/provider/$sceDelegateProvider
+.config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+        // Allow same origin resource loads.
+        'self',
+        // Allow loading from our assets domain.  Notice the difference between * and **.
+        //'http://srv*.assets.example.com/**'
+    ])
+})
+
   // CONSTANTS
   .constant('projectName', 'SpectaleBaroque')
   .constant('devHost', 'awesome.dev')
@@ -45,18 +57,6 @@ var myApp = angular.module('archivi',
   // use more time to load the page
   .constant('someInitTime', 1000)
 
-// THIS IS NEEDED FOR DEVELOPMENT
-// allow insecure https if your host does not have an official certificate yet
-
-//see: https://docs.angularjs.org/api/ng/provider/$sceDelegateProvider
-.config(function($sceDelegateProvider) {
-    $sceDelegateProvider.resourceUrlWhitelist([
-        // Allow same origin resource loads.
-        'self',
-        // Allow loading from our assets domain.  Notice the difference between * and **.
-        //'http://srv*.assets.example.com/**'
-    ])
-})
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY

@@ -42,14 +42,10 @@ myApp
 
   function makeToken(user) {
     var sep = '£';
-// TO FIX - use crypto with bower
-    //var salt = Crypto.SHA1(user.surname).toString();
-    var salt = "todo";
+    var salt = Crypto.SHA256(user.surname).toString();
     var mystring = salt + user.surname + sep + user.name + sep
         + sep + user.pw + user.email;
-
-    //return = Crypto.SHA1(mystring);
-    return "hashing" + mystring;
+    return Crypto.SHA256(mystring).toString();
   }
 
   /*********************************
