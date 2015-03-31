@@ -22,26 +22,38 @@ myApp
 
     $scope.register = function(user) {
         if($scope.registerForm.$valid){
-    //CHECK EMAIL?
-          console.log("Valid");
+
+// TO FIX - CHECK EMAIL format?
+
+// TO FIX - Check already existing?
+
           var ldap = Account.build(user);
           ldap.set().then(function(id){
-
-// TO FIX - how to set another parameter to give to angularroute
-            $state.go('dologin', {status: 'registered', id: id});
+              $state.go('dologin', {status: 'registered'});
           });
         // go to login.main ??
-
         } else {
           console.log("NOT Valid");
         }
     };
-
 
     // Clear form
     $scope.reset = function() {
         $scope.user = {};
     };
     $scope.reset();
+
+    $scope.login = function(user) {
+        var ldap = Account.build(user);
+        ldap.check().then(function(response){
+            if (response) {
+                console.log("Save token in session");
+// SEND ME TO MAIN?
+                $state.go('logged.main');
+            } else {
+                console.log("Failed login");
+            }
+        });
+    }
 
 });

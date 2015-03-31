@@ -10,32 +10,59 @@ myApp
   var resource = 'accounts';
 
   // Load data from API
-  function loadData(username) {
-    console.log("Access with", user, token);
-    var parameters = {
-        //step: step,
-    };
+  function verifyUser(req) {
+
+    var parameters = { email: req.email };
+
     return API.get(resource, parameters)
       .then(function(response) {
-          var data = [];
-          // Response should be one row in this case
-          if (response.count > 0)
-            data = response.items.pop();
-          return data;
+
+          // Init check
+          if (response.count != 1){
+            console.log("User not found");
+            delete(req.pw);
+            return false;
+          }
+          if (!response.items[0].token){
+            console.log("Item not available...");
+            delete(req.pw);
+            return false;
+          }
+
+          // Dirty moves
+          var tmp = response.items[0];
+          tmp.pw = req.pw;
+          req.token = makeToken(tmp);
+          delete(req.pw);
+          tmp = {};
+
+          // Final check
+          if (response.items[0].token != req.token) {
+            console.log("Wrong password");
+            return false;
+          }
+
+          //console.log("Authorized");
+          return true;
+
+// IF WELL - request the token - with check api side...
+
       });
   }
 
   // Register user
   function saveUser(data) {
 
+    // Complete data
+    data.token = makeToken(data);
+    delete(data.pw);
 // TO FIX - define roles?
     data.role = 999;
-// TO FIX - IP, how to get?
-    data.lastip = 123456789;
+    data.activation = 0;
     // send to database
     return API.set(resource, data)
       .then(function(id) {
-          console.log("Saved user", id);
+          //console.log("Saved user", id);
           return id;
       });
   }
@@ -45,6 +72,7 @@ myApp
     var salt = Crypto.SHA256(user.surname).toString();
     var mystring = salt + user.surname + sep + user.name + sep
         + sep + user.pw + user.email;
+    console.log("String token is ", mystring);
     return Crypto.SHA256(mystring).toString();
   }
 
@@ -53,16 +81,16 @@ myApp
   ******************************** */
   // Constructor, with class name
   function Account(user) {
-    user.token = makeToken(user);
-    delete(user.pw);
     this.user = user;
   }
   // Public methods, assigned to prototype
   Account.prototype.set = function () {
     return saveUser(this.user);
   }
-  Account.prototype.get = function () {
-    console.log("Set session?");
+  Account.prototype.check = function () {
+    console.log("Verify");
+    return verifyUser(this.user);
+
   }
 
   /*********************************
