@@ -71,8 +71,12 @@ class Account(GenericORMModel):
     def email(value):
         return value
     @staticmethod
-    def lastip(value):
-        return value
+    def activation(value, name):
+        m = "Parameter '"+name+"' may only be 0 or 1. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType) or tmp < 0 or tmp > 1:
+            raise ValueError(m)
+        return tmp    # 0 or 1
     @staticmethod
     def role(value, name):
         m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"

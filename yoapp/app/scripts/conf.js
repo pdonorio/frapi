@@ -13,6 +13,7 @@ angular.module('AppConfig', [])
 
   //API
   .constant('apiPort', '5507')
+  .constant('apiBase', '/api/v1.0')
   .constant('apiFilePort', '5346')
   .constant('apiFileResource', 'uploads')
   // Minimum timeout to get objects working inside directive....
@@ -44,7 +45,7 @@ angular.module('AppConfig', [])
 
     //save in a variable the path to API
     return {
-      $get: function ($location, apiPort, apiFilePort, apiFileResource, messageStatus)
+      $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus)
       {
 
         //use location https://docs.angularjs.org/api/ng/service/$location
@@ -57,7 +58,7 @@ angular.module('AppConfig', [])
           + "/" + apiFileResource;
 
         protocol = "https";
-        config.apiBase = protocol + "://" + host + ":" + apiPort;
+        config.apiBase = protocol + "://" + host + ":" + apiPort + apiBase;
 
         //notification messages status
         config.messageStatus = messageStatus;

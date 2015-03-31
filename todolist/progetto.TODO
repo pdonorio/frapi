@@ -204,8 +204,8 @@ HASH ALGO:
         ✔ show a label with new or existing, just to get the idea @done (15-03-30 09:59)
 
 DebugMode:
-☐ Fix news
-  ☐ Work in progress for now
+ ✔ API versioning flask? @done (15-03-31 20:36)
+   ✔ Could apply versioning when creating every address @done (15-03-31 20:36)
 ✔ Flask https @done (15-03-30 17:48)
   ✔ http://kracekumar.com/post/54437887454/ssl-for-flask-local-development @done (15-03-30 17:48)
     ✔ pw cRin2gap6Bir4Abs7eB5 @done (15-03-30 18:05)
@@ -220,9 +220,11 @@ DebugMode:
        ✔ use a token: hash(user+password+hash(user-password)) @done (15-03-31 07:56)
          ✔ sha256_digest(value) @done (15-03-31 10:28)
      ☐ login goes in get with token
+☐ Fix news
+  ☐ Work in progress for now
  ☐ Login require an activation
+   ☐ check activation at login time
    ✔ Save ip @done (15-03-31 15:43)
-   ☐ update ip at each login
   ☐ A real User model
   ☐ Timely session
     ☐ save token infos like @logintime
@@ -231,6 +233,31 @@ DebugMode:
       ☐ if no valid session checked on ui-router main onEnter
     ☐ list of user drafts @cool
       ☐ by identifiers inside the api provider
+
+An action that can be applied at each ui-router change?
+
+UHM
+    ☐ Should i send password via https to api?
+      ☐ http://alexbilbie.com/2014/11/oauth-and-javascript/
+
+    ☐ CSRF and CORS http://stackoverflow.com/a/17941052
+    ☐ Angular manual https://docs.angularjs.org/api/ng/service/$http
+      ☐ https://thomas.rabaix.net/blog/2013/05/csrf-token-security-with-angularjs
+        ☐ $http and $cookie
+        ☐ http://angularjs-best-practices.blogspot.it/2013/07/angularjs-and-xsrfcsrf-cross-site.html
+      ☐ http://flask.pocoo.org/snippets/3/   &&   http://sjl.bitbucket.org/flask-csrf/
+        ☐ django http://django-angular.readthedocs.org/en/latest/csrf-protection.html
+      ☐ restangular
+        ☐ NoBaseURL.all('/login/').post(post_data, "", {}, {'X-CSRFToken':token})
+        ☐ post_data, "", {"X-CSRFToken": token}, {}
+        ☐ RestangularProvider.setDefaultHeaders({'X-XSRF-TOKEN': CSRF_TOKEN}); //CSRF_TOKEN gathered elsewhere
+
+     ☐ api/authentication POST=login DELETE=logout
+        ☐ http://farazdagi.com/talks/2014-06-dpc/#35
+
+       ☐ Same origin policy
+         ☐ http://farazdagi.com/talks/2014-06-dpc/#26
+
 
  ☐ Feedback button
    ☐ inside profile menu
@@ -241,11 +268,13 @@ DebugMode:
  ☐ Date within a range of years
    ☐ only month or only year
 
-LIMIT PUBLIC API
+LIMIT PUBLIC API:
 http://flask-limiter.readthedocs.org/en/stable/
 ================================================
 
 SomeMore:
+
+
   ☐ create a view to show used field names?
     ☐ compute content inside rethinkdb stepcontent with that hash
     ☐ first try of a search inside a list of elements as a field in rethinkdb
@@ -306,11 +335,6 @@ Bugs:
       ☐ ??
     ☐ promise cache
       ☐ https://github.com/chrisronline/angular-promise-cache
-
-    FAR FAR AWAY:
-      ☐ SSH docker
-        ☐ via baseimage
-          ☐ https://github.com/phusion/baseimage-docker#login_ssh
 
 remodel:
   ☐ getting SUPERHERO
