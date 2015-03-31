@@ -4,7 +4,7 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('LoginController', function ($scope, $state, $stateParams)
+.controller('LoginController', function ($scope, $state, $stateParams, Account)
 {
     $scope.gostate = $state.go;
     $scope.registered = false;
@@ -12,24 +12,23 @@ myApp
         $scope.registered = true;
     }
     $scope.user = null;
-    $scope.master = {};
 
     $scope.register = function(user) {
         if($scope.registerForm.$valid){
     //CHECK EMAIL?
+          console.log("Valid");
+          var ldap = Account.build(user);
 
-            console.log("Valid");
-            $scope.master = angular.copy(user);
+        // go to login.main ??
         } else {
-            console.log("NOT Valid");
+          console.log("NOT Valid");
         }
     };
 
-    // go to login.main
 
     // Clear form
     $scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
+        $scope.user = {};
     };
     $scope.reset();
 

@@ -71,10 +71,17 @@ class Account(GenericORMModel):
     def email(value):
         return value
     @staticmethod
-    def token(value):
+    def lastip(value):
         return value
     @staticmethod
-    def lastip(value):
+    def role(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 1
+    @staticmethod
+    def token(value):
         return value
 
 ##############################

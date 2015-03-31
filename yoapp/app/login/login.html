@@ -46,7 +46,7 @@
                 <thead> <tr> <th colspan="2"> Registrazione </th> </thead>
                 <tbody> <tr> <td>
                 <p> <input type="text" ng-model="user.name" name='username'
-                    ng-minlength='3'
+                    ng-minlength='3' size='25'
                     ng-model-options="{ updateOn: 'blur' }"
                     placeholder='Il tuo nome' required /> </p>
                     <span
@@ -55,10 +55,13 @@
                       Errore
                       </span>
 
-                <p> <input type="text" ng-model="user.surname" /> </p>
-                <p> <input type="email" ng-model="user.email"
+                <p> <input type="text" ng-model="user.surname" size="25"
+                 placeholder='Cognome' /> </p>
+                <p> <input type="email" ng-model="user.email" size="25"
                  placeholder='Il tuo indirizzo mail' required /> </p>
-                <p> <input type="password" ng-model="user.pw" required /> </p>
+                <p> <input type="password" ng-model="user.pw" minlength='8'
+                 size="25"
+                 placeholder='Password (min 8 caratteri)' required /> </p>
 
                 <p>
                 <a href='' ng-click='reset()'>

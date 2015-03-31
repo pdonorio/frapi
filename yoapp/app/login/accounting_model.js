@@ -1,0 +1,73 @@
+'use strict';
+/*
+* accounting
+*/
+
+myApp
+.constant('Crypto', window.CryptoJS)
+.factory('Account', function (API, Crypto) {
+
+  var resource = 'accounts';
+
+  // Load data from API
+  function loadData(username) {
+    console.log("Access with", user, token);
+    var parameters = {
+        //step: step,
+    };
+    return API.get(resource, parameters)
+      .then(function(response) {
+          var data = [];
+          // Response should be one row in this case
+          if (response.count > 0)
+            data = response.items.pop();
+          return data;
+      });
+  }
+
+  function makeToken(user) {
+    var sep = '£';
+// TO FIX - use crypto with bower
+    //var salt = Crypto.SHA1(user.surname).toString();
+    var salt = "todo";
+    var mystring = salt + user.surname + sep + user.name + sep
+        + sep + user.pw + user.email;
+
+    //return = Crypto.SHA1(mystring);
+    return "hashing" + mystring;
+  }
+
+  /*********************************
+  ** CLASS *
+  ******************************** */
+  // Constructor, with class name
+  function Account(user) {
+    console.log("This is a user", user);
+    user.token = makeToken(user);
+    delete(user.pw);
+    console.log("tokening", user);
+    this.user = user;
+  }
+  // Public methods, assigned to prototype
+  Account.prototype.set = function () {
+    console.log("Register");
+  }
+  Account.prototype.get = function () {
+    console.log("Set session?");
+  }
+
+  /*********************************
+  ** CONTEXT *
+  ******************************** */
+  // Static method, assigned to class
+  // p.s. Instance ('this') is not available in static context
+  Account.build = function (user)
+  {
+    // Create object
+    return new Account(user);
+  }
+
+  // Give this service to someone
+  return Account;
+
+});
