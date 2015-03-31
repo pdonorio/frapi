@@ -32,6 +32,7 @@ RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
 APP_DB = "webapp"
 DEFAULT_TABLE = "test"
 TIME_COLUMN = 'latest_timestamp'
+IP_COLUMN = 'latest_ipaddress'
 DEFAULT_COLLECTION = GenericORMModel
 
 # == Utilities ==
@@ -289,7 +290,7 @@ class RethinkConnection(Connection):
     # === Insert ===
     @check_model
     @TryExcept("Failed to insert data inside DB", RqlRuntimeError)
-    def insert(self, data_dict, force_id=None):
+    def insert(self, data_dict, force_id=None, lastip=None):
         """ Data insert in a table/collection
         Note: rdb cannot take the id value inside the whole data.
         Make sure you pop that out as 'force_id' """
@@ -313,6 +314,7 @@ class RethinkConnection(Connection):
 
         # Add a timestamp to any insert or update
         data[TIME_COLUMN] = time.time()
+        data[IP_COLUMN] = lastip
 
         # Save data inside the choosed model
         model_data = self.model(**data)

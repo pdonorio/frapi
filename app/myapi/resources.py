@@ -25,6 +25,16 @@ dthandler = lambda obj: ( obj.isoformat()
 # This one above could/should be a class
 # http://stackoverflow.com/a/23287543
 
+# Please fix me here: http://esd.io/blog/flask-apps-heroku-real-ip-spoofing.html
+from flask import request # handle ip
+def get_ip():
+    ip = None
+    if not request.headers.getlist("X-Forwarded-For"):
+       ip = request.remote_addr
+    else:
+       ip = request.headers.getlist("X-Forwarded-For")[0]
+    return ip
+
 def clean_parameter(param=""):
     """ I get parameters already with '"' quotes from curl? """
     if param == None:
@@ -180,7 +190,7 @@ class GenericDBResource(Resource):
         if "id" in data:
             data_key = data.pop("id")
 
-        key = g.rdb.insert(data, data_key)
+        key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
         #################
 
@@ -206,7 +216,7 @@ class GenericDBResource(Resource):
             data.pop("id")  #trash it
         # in this case i use the data_key
 
-        key = g.rdb.insert(data, data_key)
+        key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
         return key, hcodes.HTTP_OK_CREATED
 
