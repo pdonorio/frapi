@@ -4,7 +4,7 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('LoginController', function ($scope, $state, $stateParams, Account)
+.controller('LoginController', function ($scope, $cookies, $state, $stateParams, Account)
 {
     $scope.gostate = $state.go;
     $scope.registered = true;

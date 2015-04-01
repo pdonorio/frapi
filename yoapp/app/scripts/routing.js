@@ -62,7 +62,8 @@ myApp
         auth: 'Auth',
         // Inject in my new user object
         user: function($rootScope, auth) {
-            auth.get();
+            //auth.get();
+            auth.set();
 
 // I need a Model here
 // TO FIX - load from DB [with User model]

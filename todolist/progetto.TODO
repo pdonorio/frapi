@@ -224,6 +224,8 @@ DebugMode:
    ✔ check activation at login time @done (15-04-01 07:09)
    ✔ Save ip @done (15-03-31 15:43)
  ✔ An action that can be applied at each ui-router change? @done (15-04-01 07:19)
+ ✔ UPDATE bower packages @done (15-04-01 15:07)
+   ✔ ng-cookies test with angular 1.4 @done (15-04-01 15:12)
  ☐ Check login first time when getting inside the app
  ☐ Raw logout
 
