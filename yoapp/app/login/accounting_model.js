@@ -18,34 +18,33 @@ myApp
       .then(function(response) {
 
           // Init check
-          if (response.count != 1){
-            console.log("User not found");
+          if (response.count != 1) {
             delete(req.pw);
-            return false;
-          }
-          if (!response.items[0].token){
-            console.log("Item not available...");
+            return "User not found";
+          } else if (!response.items[0].token) {
             delete(req.pw);
-            return false;
+            return "Service unavailable";
           }
 
           // Dirty moves
           var tmp = response.items[0];
           tmp.pw = req.pw;
+          // Compute token
           req.token = makeToken(tmp);
           delete(req.pw);
-          tmp = {};
 
+          // Password check
+          if (response.items[0].token != req.token)
+            return "Wrong password";
           // Final check
-          if (response.items[0].token != req.token) {
-            console.log("Wrong password");
-            return false;
-          }
+          if (tmp.activation < 1)
+            return "Account not activated yet";
 
-          //console.log("Authorized");
+          // Authorized
           return true;
 
-// IF WELL - request the token - with check api side...
+// TO FIX -
+    // if all is fine: request the token - with check api side...
 
       });
   }
@@ -72,7 +71,6 @@ myApp
     var salt = Crypto.SHA256(user.surname).toString();
     var mystring = salt + user.surname + sep + user.name + sep
         + sep + user.pw + user.email;
-    console.log("String token is ", mystring);
     return Crypto.SHA256(mystring).toString();
   }
 

@@ -30,6 +30,16 @@ myApp
     // Very easy to use: a range for my editable directive
     $scope.range = _.range(1, 7);
 */
+
+    // AT ANY ROUTE CHANGE
+    //* https://github.com/angular-ui/ui-router/wiki#state-change-events
+    $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+        //console.log("Changing from", fromState, "to", toState);
+        console.log("To check if logged");
+        //event.preventDefault();
+    })
+
     $scope.elements = {};
     //API give me access to HTML content inside database
 

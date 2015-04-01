@@ -219,12 +219,15 @@ DebugMode:
      ✔ register goes in post @done (15-03-31 07:56)
        ✔ use a token: hash(user+password+hash(user-password)) @done (15-03-31 07:56)
          ✔ sha256_digest(value) @done (15-03-31 10:28)
-     ☐ login goes in get with token
-☐ Fix news
-  ☐ Work in progress for now
- ☐ Login require an activation
-   ☐ check activation at login time
+     ✔ login goes in get with token @done (15-03-31 20:37)
+ ✔ Login require an activation @done (15-04-01 07:09)
+   ✔ check activation at login time @done (15-04-01 07:09)
    ✔ Save ip @done (15-03-31 15:43)
+ ☐ Check login first time when getting inside the app
+ ☐ Token
+   ☐ Eventually check at any route transition
+   ☐ Check with a timer also?
+
   ☐ A real User model
   ☐ Timely session
     ☐ save token infos like @logintime
@@ -233,6 +236,9 @@ DebugMode:
       ☐ if no valid session checked on ui-router main onEnter
     ☐ list of user drafts @cool
       ☐ by identifiers inside the api provider
+
+☐ Fix news
+  ☐ Work in progress for now
 
 An action that can be applied at each ui-router change?
 

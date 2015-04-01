@@ -46,12 +46,14 @@ myApp
     $scope.login = function(user) {
         var ldap = Account.build(user);
         ldap.check().then(function(response){
-            if (response) {
-                console.log("Save token in session");
-// SEND ME TO MAIN?
-                $state.go('logged.main');
+            if (response === true) {
+// TO FIX - save token in session
+
+              // log me in
+              $state.go('logged.main');
             } else {
-                console.log("Failed login");
+              $scope.loginError = response;
+              console.log("Failed login");
             }
         });
     }

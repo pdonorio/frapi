@@ -13,6 +13,8 @@
               <H3>SpectacleBaroque</H3>
               La collezione di estratti sulle Feste Barocche.
               <br><br>
+              <span ng-if='loginError' class="label label-danger">{{loginError}}</span>
+
 
               <!-- LOGIN IF YOU HAVE CREDENTIALS -->
               <form name="loginForm" novalidate ng-show='registered && !welcome'>

@@ -32,9 +32,11 @@ myApp
       },
     })
 
+
+///////////////////////////////////////////
 // Once Logged
 // Once Logged
-    //LOGGED ROOT
+    //The parent of all logged views
     .state('logged', {
       url: "/app",
       // Set the current user for the whole application
@@ -45,8 +47,9 @@ myApp
             var user = {name: 'Baroque Admin', role: ADMIN_USER};
             console.log("Current user: ", user);
             $rootScope.user = user;
-
+            console.log("Check logged main");
             // Check role
+            console.log("Check role");
             $rootScope.adminer = (user.role == ADMIN_USER);
             return user;
         },
@@ -205,8 +208,7 @@ myApp
   // Redirect if unknown state
   $urlRouterProvider.otherwise(function ($injector, $location) {
     $injector.invoke(['$state', function ($state) {
-      console.log("Unknown");
-      console.log($location);
+      console.log("Unknown", $location);
       $state.go('notfound');
     }]);
     return true;
