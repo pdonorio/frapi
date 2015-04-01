@@ -1,11 +1,11 @@
 
 //ROUTING new
 myApp
-.config(function($stateProvider, $urlRouterProvider, ADMIN_USER) {
+.config(function($stateProvider, $urlRouterProvider, ADMIN_USER)
+{
 
   // Set up the states and URL routing
   $stateProvider
-
     // For each page i didn't setup
     .state('notfound', {
       url: "/404",
@@ -39,21 +39,6 @@ myApp
     //The parent of all logged views
     .state('logged', {
       url: "/app",
-      // Set the current user for the whole application
-      resolve: {
-        user: function($rootScope) {
-
-// TO FIX - load from DB [with User model]
-            var user = {name: 'Baroque Admin', role: ADMIN_USER};
-            console.log("Current user: ", user);
-            $rootScope.user = user;
-            console.log("Check logged main");
-            // Check role
-            console.log("Check role");
-            $rootScope.adminer = (user.role == ADMIN_USER);
-            return user;
-        },
-      },
       views: {
         "main": {
             templateUrl: "views/app.html",
@@ -69,6 +54,29 @@ myApp
         $rootScope.$emit('rootScope:emit', 'padon');
       }, onExit: function($rootScope){
         $rootScope.$emit('rootScope:emit', 'padoff');
+      },
+      // Set the current user for the whole application
+      resolve: {
+
+        // Cookie service for authorization
+        auth: 'Auth',
+        // Inject in my new user object
+        user: function($rootScope, auth) {
+            auth.get();
+
+// I need a Model here
+// TO FIX - load from DB [with User model]
+            var user = {name: 'Baroque Admin', role: ADMIN_USER};
+// TO FIX - load from DB [with User model]
+
+            console.log("Current user: ", user);
+            $rootScope.user = user;
+            console.log("Check logged main");
+            // Check role
+            console.log("Check role");
+            $rootScope.adminer = (user.role == ADMIN_USER);
+            return user;
+        },
       },
     })
 /****************************************

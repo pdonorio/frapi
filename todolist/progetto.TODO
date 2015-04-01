@@ -223,15 +223,12 @@ DebugMode:
  ✔ Login require an activation @done (15-04-01 07:09)
    ✔ check activation at login time @done (15-04-01 07:09)
    ✔ Save ip @done (15-03-31 15:43)
+ ✔ An action that can be applied at each ui-router change? @done (15-04-01 07:19)
  ☐ Check login first time when getting inside the app
- ☐ Token
-   ☐ Eventually check at any route transition
-   ☐ Check with a timer also?
+ ☐ Raw logout
 
   ☐ A real User model
-  ☐ Timely session
-    ☐ save token infos like @logintime
-      ☐ do not let multiple access?
+    ☐ Cookie for remembering user?
     ☐ Send out users not logged
       ☐ if no valid session checked on ui-router main onEnter
     ☐ list of user drafts @cool
@@ -240,11 +237,18 @@ DebugMode:
 ☐ Fix news
   ☐ Work in progress for now
 
-An action that can be applied at each ui-router change?
+================================================
 
-UHM
+Real authentication on API side with Token (OAuth2):
     ☐ Should i send password via https to api?
       ☐ http://alexbilbie.com/2014/11/oauth-and-javascript/
+      ☐ yes!
+   ☐ Token
+     ☐ Eventually check at any route transition
+     ☐ Check with a timer also?
+  ☐ Timely session
+    ☐ save token infos like @logintime
+      ☐ do not let multiple access?
 
     ☐ CSRF and CORS http://stackoverflow.com/a/17941052
     ☐ Angular manual https://docs.angularjs.org/api/ng/service/$http
@@ -260,8 +264,7 @@ UHM
 
      ☐ api/authentication POST=login DELETE=logout
         ☐ http://farazdagi.com/talks/2014-06-dpc/#35
-
-       ☐ Same origin policy
+       ☐ Same origin policy @wow
          ☐ http://farazdagi.com/talks/2014-06-dpc/#26
 
 
@@ -276,7 +279,6 @@ UHM
 
 LIMIT PUBLIC API:
 http://flask-limiter.readthedocs.org/en/stable/
-================================================
 
 SomeMore:
 
