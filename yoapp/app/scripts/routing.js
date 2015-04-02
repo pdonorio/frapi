@@ -62,10 +62,13 @@ myApp
         auth: 'Auth',
         // Inject in my new user object
         user: function($rootScope, auth) {
+
+// Test cookies here
             //auth.get();
             auth.set();
 
 // I need a Model here
+
 // TO FIX - load from DB [with User model]
             var user = {name: 'Baroque Admin', role: ADMIN_USER};
 // TO FIX - load from DB [with User model]
