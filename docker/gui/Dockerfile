@@ -5,7 +5,7 @@
 FROM dockerfile/ubuntu
 
 # Install Nginx.
-RUN \
+RUN apt-get update && \
   add-apt-repository -y ppa:nginx/stable && \
   apt-get update && \
   apt-get install -y nginx expect && \
@@ -32,10 +32,7 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
 #RUN ln -s /opt/app /var/www/html/app
 
 # Configure SSL
-ADD expecting_ssl_1 /tmp/ssl1
-ADD expecting_ssl_2 /tmp/ssl2
-ADD expecting_ssl_3 /tmp/ssl3
-ADD ssl.sh /tmp/ssl.sh
+ADD *ssl* /tmp/
 WORKDIR /tmp
 RUN /bin/bash /tmp/ssl.sh
 
@@ -45,5 +42,5 @@ EXPOSE 443
 # redirection from http to https
 EXPOSE 80
 
-# Define default command.
+WORKDIR /var/www
 #CMD ["nginx"]

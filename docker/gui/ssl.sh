@@ -1,19 +1,22 @@
-# Following this guide
+#Following this guide
 #https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-nginx-for-ubuntu-12-04
 
-# Create directory
-mkdir /etc/nginx/ssl
+#Create directory
+mkdir -p /etc/nginx/ssl
 cd /etc/nginx/ssl
+rm -f server.*
 
-# Make initial key
-expect ssl1
+# Make initial key
+nohup expect /tmp/expecting_ssl_1
 # Sign certificate
-expect ssl2
+nohup expect /tmp/expecting_ssl_2
 # Remove password inside certificate
 cp server.key server.key.org
-expect ssl3
+nohup expect /tmp/expecting_ssl_3
 # Create private key
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-# Activate the virtual host
-ln -s /etc/nginx/sites-available/example /etc/nginx/sites-enabled/example
+# Change permissions
+chmod 400 server.key*
+# Activate the virtual host
+ln -sf /etc/nginx/sites-available/example /etc/nginx/sites-enabled/example
 # This link will work only at runtime

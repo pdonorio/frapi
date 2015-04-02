@@ -1,6 +1,4 @@
-#!/usr/bin/expect
-eval spawn openssl req -new -key server.key -out server.csr
-set prompt "Enter pass phrase for server.key:"
-interact -o -nobuffer -re $prompt return
+eval spawn openssl rsa -in server.key.org -out server.key
+expect ":"
 send "sslisasecreteweapon\r"
-interact
+wait

@@ -1,8 +1,7 @@
-#!/usr/bin/expect
 eval spawn openssl genrsa -des3 -out server.key 2048
-set prompt "Enter pass phrase for server.key:"
-interact -o -nobuffer -re $prompt return
+expect ":"
 send "sslisasecreteweapon\r"
-interact -o -nobuffer -re $prompt return
+expect ":"
 send "sslisasecreteweapon\r"
-interact
+wait
+puts "\nDone"
