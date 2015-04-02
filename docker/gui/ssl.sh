@@ -17,6 +17,3 @@ nohup expect /tmp/expecting_ssl_3
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 # Change permissions
 chmod 400 server.key*
-# Activate the virtual host
-ln -sf /etc/nginx/sites-available/example /etc/nginx/sites-enabled/example
-# This link will work only at runtime

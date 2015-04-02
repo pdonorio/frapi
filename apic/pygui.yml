@@ -67,15 +67,15 @@ web:
     build: ./docker/gui
     command: nginx
     volumes:
-        #- ./staticroot:/var/www/html
         - ./yoapp/app:/var/www/html
+        - ./docker/gui/sites.conf:/etc/nginx/sites-enabled/default
 # TO FIX with grunt/gulp rebuild
         #- ./yoapp/dist:/var/www/html/static
-        - ./docker/gui/sites.conf:/etc/nginx/sites-available/example
     volumes_from:
         - up
     working_dir: /opt/app
     links:
         - api:api
     ports:
-        - "80:80" # Main server
+        - "80:80" # basic
+        - "443:443" # ssl server

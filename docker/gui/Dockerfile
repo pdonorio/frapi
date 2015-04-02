@@ -1,6 +1,8 @@
 # Nginx Dockerfile **official**
 # https://github.com/dockerfile/nginx
 
+#http://blog.tryolabs.com/2015/03/26/configurable-docker-containers-for-multiple-environments/
+
 # Pull base image.
 FROM dockerfile/ubuntu
 
@@ -35,6 +37,7 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
 ADD *ssl* /tmp/
 WORKDIR /tmp
 RUN /bin/bash /tmp/ssl.sh
+WORKDIR /var/www
 
 # Expose ports
 # ssl port
@@ -42,5 +45,6 @@ EXPOSE 443
 # redirection from http to https
 EXPOSE 80
 
-WORKDIR /var/www
+# Finish
+VOLUME ['/etc/nginx/sites-enabled','/var/www']
 #CMD ["nginx"]
