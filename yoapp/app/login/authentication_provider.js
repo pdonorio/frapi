@@ -7,6 +7,7 @@ myApp
 .factory('Auth', function ($cookies)
 {
 
+
     var tmp = "empty";
     //Empty factory
     var Authentication = {};
@@ -18,11 +19,20 @@ myApp
         /* cookieStore deprecated!!!
         // http://stackoverflow.com/a/28854854/2114395
         **/
-        var now = new Date(), // this will set the expiration to 6 months
-            exp = new Date(now.getFullYear(), now.getMonth()+6, now.getDate());
-        $cookies.put('someToken','blabla',{ expires: exp });
+        // One day expiration
+        var now = new Date(),
+            exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        var cOptions = {
+            secure: true,
+            expires: exp,
+
+            // NOT WORKING
+            //domain: 'http://test.goo.devs',
+            //path: '/login',
+        };
+        $cookies.put('someToken','blabla', cOptions);
         var cookie = $cookies.get('someToken');
-        console.log(cookie); // logs 'blabla'
+        console.log("COOKIE", cookie); // logs 'blabla'
 
         return true;
     }
