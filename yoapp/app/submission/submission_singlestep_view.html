@@ -23,7 +23,8 @@
       </div>
 
      <!-- Form for Normal insert user (OPERATOR)-->
-      <form editable-form name="myform" ng-show='data' onaftersave="saveStep()" >
+      <form editable-form name="myform" ng-show='data'
+        onaftersave="saveStep()" >
 
        <!-- editable username (text with validation) -->
        <table ng-class="{'table': current == step}">
@@ -31,21 +32,118 @@
         <tbody>
           <!-- repeat with sort on key 'pos' -->
           <tr ng-repeat="(pos,obj) in data[step]" ng-if='obj.key' >
-              <th class='title'> {{ (obj.key | ucFirst) || 'empty'}} </th>
-              <td ng-show='current != step'>&nbsp;</td>
-              <td editable-text="data[pos].value" e-name="name" e-size='40'
-                e-placeholder='Inserisci un valore'>
-                {{obj.value|| 'empty'}}
-              </td>
+
+            <!-- Name of this field -->
+            <th class='title'> {{ (obj.key | ucFirst) || 'empty'}} </th>
+            <td ng-show='current != step'>&nbsp;</td>
+
+            <!-- TYPE -->
+            <td>
+<!-- ON OUT FOCUS? -->
+              <!-- STRING -->
+              <span
+                ng-if='obj.type == types[0].text' e-form="myform"
+                editable-text="obj.value"
+                e-placeholder='Inserisci una {{obj.type}}a'
+                onbeforesave="checkData(obj.req, $data, obj.type)"
+                e-size='40'
+                >
+                {{obj.value || 'empty'}}
+              </span>
+              <!-- NUMBER -->
+              <span
+                ng-if='obj.type == types[1].text' e-form="myform"
+                editable-number="obj.value"
+                e-placeholder='Inserisci un {{obj.type}} reale'
+                onbeforesave="checkData(obj.req, $data, obj.type)"
+                e-min="18"
+                e-max="30"
+                >
+                {{obj.value || 'empty'}}
+              </span>
+              <!-- EMAIL -->
+              <span
+                ng-if='obj.type == types[2].text' e-form="myform"
+                editable-email="obj.value"
+                e-placeholder='Indirizzo {{obj.type}}'
+                onbeforesave="checkData(obj.req, $data, obj.type)"
+                e-size='40'
+                >
+                {{obj.value || 'empty'}}
+              </span>
+              <!-- URL -->
+              <span
+                ng-if='obj.type == types[3].text' e-form="myform"
+                editable-url="obj.value"
+                e-placeholder='Indirizzo {{obj.type}}'
+                onbeforesave="checkData(obj.req, $data, obj.type)"
+                e-size='40'
+                >
+                {{obj.value || 'empty'}}
+              </span>
+              <!-- DATE -->
+              <span ng-if='obj.type == types[4].text' e-form="myform"
+                editable-date="obj.value"
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                {{ (obj.value | date:'dd-MM-yyyy') || 'empty'}}
+              </span>
+              <!-- TIME -->
+              <span ng-if='obj.type == types[5].text' e-form="myform"
+                editable-time="obj.value"
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                {{ (obj.value | date:'hh:mm') || 'empty'}}
+              </span>
+
+<!-- TO FIX -->
+              <!-- PATTERN -->
+              <span ng-if='obj.type == types[6].text' e-form="myform"
+                editable-text="obj.value"
+                e-pattern="d{2}w{3}"
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                my pattern {{obj.value || 'empty'}}
+              </span>
+<!--
+  <div>PATTERN: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">{{ user.tel || 'empty' }}</a></div>
+-->
+
+              <!-- COLOR -->
+              <span ng-if='obj.type == types[7].text' e-form="myform"
+                editable-color="obj.value"
+                ng-init='obj.value = obj.value || "#000"'
+                onbeforesave="checkData(obj.req, $data, obj.type)" >
+                {{obj.value}}
+              </span>
+              <!-- LIST -->
+              <span ng-if='obj.type == types[8].text' >
+               <span ng-show="myform.$visible">
+
+<!-- ng-init='if (obj.req) {obj.value = obj.value || 0;}' -->
+                <select ng-model="obj.tmp"
+                    ng-init='obj.thelist=obj.extra.split(",");
+                    obj.tmp = obj.thelist[obj.value];'
+                    ng-options="tmp for tmp in obj.thelist"
+                    onbeforesave="checkData(obj.req, $data, obj.type)"
+                > </select>
+<!--                 test {{obj}}
+ -->
+               </span>
+<!-- RETRY XEDITABLE SELECT -->
+               <span ng-hide="myform.$visible">
+               {{obj.tmp || 'empty'}}
+              </span>
+
+
+            </td> <!-- TYPE -->
+
           </tr>
         </tbody>
        </table>
 
         <!-- based on current and the step of this directive -->
-        <div class="buttons" ng-show="current == step && data[0]">
+        <div class="buttons" ng-show="current == step && data">
           <!-- button to show form -->
           <button type="button" class="btn btn-default" ng-click="myform.$show()"
-            ng-show="!myform.$visible">
+            ng-show="!myform.$visible" >
             Edit
           </button>
           <!-- buttons to submit / cancel form -->

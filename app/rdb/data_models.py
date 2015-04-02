@@ -25,10 +25,8 @@ class DataDump(GenericORMModel):
 
     # No checks type
     @staticmethod
-    def value(value, name):
+    def value(value):
         """ Defining a key as i wanted """
-        #print "Received: ", name, value, type(value), get_original_pytype(value)
-
         # Try to convert numbers in original python types
         tmp = get_original_pytype(value)
         if tmp != None:
@@ -57,6 +55,38 @@ class WebContent(GenericORMModel):
     @staticmethod
     def content(value):
         return value    #e.g. "This is the content <b>here</b>"
+
+##############################
+class Account(GenericORMModel):
+    """ Handling users """
+    table = 'accounts'
+
+    @staticmethod
+    def name(value):
+        return value
+    @staticmethod
+    def surname(value):
+        return value
+    @staticmethod
+    def email(value):
+        return value
+    @staticmethod
+    def activation(value, name):
+        m = "Parameter '"+name+"' may only be 0 or 1. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType) or tmp < 0 or tmp > 1:
+            raise ValueError(m)
+        return tmp    # 0 or 1
+    @staticmethod
+    def role(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 1
+    @staticmethod
+    def token(value):
+        return value
 
 ##############################
 class NewsFeed(GenericORMModel):
@@ -96,6 +126,23 @@ class StepList(GenericORMModel):
         return value    #e.g. "Commento!"
 
 ##############################
+class FieldNames(GenericORMModel):
+    """ A hash provider to keep track of field created """
+    table = 'stepfields'
+
+    # Attributes as defined by static methods:
+    @staticmethod
+    def name(value):
+        return value
+    @staticmethod
+    def step(value, name):
+        m = "Parameter '"+name+"' is not an integer. Received value: *"+value+"*"
+        tmp = get_original_pytype(value)
+        if not isinstance(tmp, types.IntType):
+            raise ValueError(m)
+        return tmp    #e.g. 1
+
+##############################
 class StepTemplate(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepstemplate'
@@ -127,6 +174,12 @@ class StepTemplate(GenericORMModel):
     def field(value):
         return value    #e.g. "Estratto"
     @staticmethod
+    def hash(value):
+        return value    #e.g. "Estratto"
+    @staticmethod
+    def required(value):
+        return value    #e.g. "Estratto"
+    @staticmethod
     def extra(value):
         return value    #e.g. "Commento!"
 
@@ -152,6 +205,7 @@ class StepContent(GenericORMModel):
         return value    #e.g. 'new' or record
     # ARRAY!
     values = 'list'
+    hashes = 'list'
 
 ##############################
 class RegisterIdentifier(GenericORMModel):

@@ -1,0 +1,304 @@
+
+--- ✄ -----------------------
+
+TO DISCUSS:
+  ☐ changing labels position and name when user data exists
+  ☐ date only for years
+  ☐ define the search basic idea
+
+--- ✄ -----------------------
+
+Cookies:
+ ☐ Cookie to save information about the fact i used login to get in
+   ☐ Check login first time when getting inside the app
+     ☐ ui router resolve
+ ☐ Raw logout
+
+  ☐ A real User model
+    ☐ Cookie for remembering user?
+    ☐ Send out users not logged
+      ☐ if no valid session checked on ui-router main onEnter
+    ☐ list of user drafts @cool
+      ☐ by identifiers inside the api provider
+
+☐ Fix news
+  ☐ Work in progress for now
+
+COOKIE SECURITY:
+ ☐ Secure: cookie will only be send over https
+   ☐ nginx https?
+   ☐ avoid man in the middle
+ ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
+   ☐ ??
+ ☐ Path: cookie will only be send on specified path e.g. /login
+   ☐ @try
+ ☐ I would also define an expiration date on the cookie
+   ☐ one day?
+ ☐ CORS?
+   ☐ Pre-flight OPTIONS requests
+   ☐ http://stackoverflow.com/a/19576540/2114395
+
+$http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
+
+
+
+
+================================================
+================================================
+
+
+
+
+Real authentication on API side with Token (OAuth2):
+    ☐ Should i send password via https to api?
+      ☐ http://alexbilbie.com/2014/11/oauth-and-javascript/
+      ☐ yes!
+   ☐ Token
+     ☐ Eventually check at any route transition
+     ☐ Check with a timer also?
+  ☐ Timely session
+    ☐ save token infos like @logintime
+      ☐ do not let multiple access?
+
+    ☐ CSRF and CORS http://stackoverflow.com/a/17941052
+    ☐ Angular manual https://docs.angularjs.org/api/ng/service/$http
+      ☐ https://thomas.rabaix.net/blog/2013/05/csrf-token-security-with-angularjs
+        ☐ $http and $cookie
+        ☐ http://angularjs-best-practices.blogspot.it/2013/07/angularjs-and-xsrfcsrf-cross-site.html
+      ☐ http://flask.pocoo.org/snippets/3/   &&   http://sjl.bitbucket.org/flask-csrf/
+        ☐ django http://django-angular.readthedocs.org/en/latest/csrf-protection.html
+      ☐ restangular
+        ☐ NoBaseURL.all('/login/').post(post_data, "", {}, {'X-CSRFToken':token})
+        ☐ post_data, "", {"X-CSRFToken": token}, {}
+        ☐ RestangularProvider.setDefaultHeaders({'X-XSRF-TOKEN': CSRF_TOKEN}); //CSRF_TOKEN gathered elsewhere
+
+     ☐ api/authentication POST=login DELETE=logout
+        ☐ http://farazdagi.com/talks/2014-06-dpc/#35
+       ☐ Same origin policy @wow
+         ☐ http://farazdagi.com/talks/2014-06-dpc/#26
+
+
+ ☐ Feedback button
+   ☐ inside profile menu
+   ☐ Feedback saved inside rdb api resource
+     ☐ on change of table, python sends me an email
+ ☐ Some clean pattern image repaeat as background
+  ☐ Dark pattern background for ADMIN
+ ☐ Date within a range of years
+   ☐ only month or only year
+
+LIMIT PUBLIC API:
+http://flask-limiter.readthedocs.org/en/stable/
+
+SomeMore:
+
+
+  ☐ create a view to show used field names?
+    ☐ compute content inside rethinkdb stepcontent with that hash
+    ☐ first try of a search inside a list of elements as a field in rethinkdb
+
+  ☐ PUBLISHING
+    ☐ signal draft in submission/edit
+  ☐ fix "are you really sure" notice
+ ☐ User model
+   ☐ Profile adjust to User model
+   ☐ Understand how pattern works
+     ☐ and how to show which pattern to insert
+     ☐ or disable for now....
+
+  ☐ Ngix HTTPS?
+  ☐ file upload https
+
+    ☐ Better backups
+      ☐ cron daily
+        ☐ move latest folder to backup/
+        ☐ clean main data folder from saved data
+
+  ☐ Upload and transcriptions
+    ☐ Create a new upload folder for any new draft
+      ☐ cron daily to remove what has not used for at least 24 hours
+    ☐ Zoomify image via API
+      ☐ argh: command?
+    ☐ Upload only images
+    ☐ If already exists go to error via notify
+      ☐ if goes to already exists, disable upload button
+    ☐ share folder of uploaded files for thumbnails?
+
+    ☐ Last step is transciptions
+      ☐ list the images
+      ☐ associate one or more transcriptions
+      ☐ choose page
+
+Bugs:
+ ✔ http://getawesomeness.com/get/docker @done (15-02-21 12:54)
+ ✔ http://blog.evernote.com/blog/2015/02/06/paperless-productivity-evernote-pocket @done (15-02-21 12:54)
+ ✔ https://github.com/aziz/PlainNotes @done (15-02-21 12:54)
+    ✔ If focus on search @done (15-02-11 06:36)
+        ✔ make the bg gray @done (15-02-09 11:13)
+        ✔ take the switch for edit out @done (15-02-11 06:36)
+    ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
+      ✔ testing @help @done (15-02-12 18:39)
+        ✔ Update of rethinkdb base image @done (15-02-12 18:39)
+        ✔ baseimage-docker @done (15-02-12 18:39)
+    ✔ New news not working for Date @done (15-02-07 14:59)
+    ✔ Move editoff inside routing @done (15-02-07 15:17)
+    ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
+    ☐ Loading div pendig to a promise when changing routes
+      ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
+    ☐ RENAME @inprogress
+      ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
+    ☐ An api resource only to check if api and db are available?
+      ☐ Testing inside the step saving @important
+    ☐ Move edit switch inside a factory or service @thatistherightway
+      ☐ ??
+    ☐ promise cache
+      ☐ https://github.com/chrisronline/angular-promise-cache
+
+remodel:
+  ☐ getting SUPERHERO
+    ☐ http://www.rethinkdb.com/docs/tutorials/superheroes
+    ☐ How do i pass an array as a single parameter via API?
+  ☐ ODM and relations
+    ☐ https://github.com/linkyndy/remodel
+  ☐ CHANGE feed
+    ☐ http://rethinkdb.com/docs/changefeeds/python
+    ☐ http://rethinkdb.com/api/python/changes/
+  ☐ BINARY
+    ☐ store in table http://www.rethinkdb.com/docs/storing-binary/python/
+    ☐ examples: http://www.rethinkdb.com/docs/storing-binary/python/
+
+Dev Release:
+    ☐ ASK FOR Welcome page french text @last
+      ☐ WAITING!
+    ☐ Progress page & resource
+      ☐ to keep track of what we are doing
+      ☐ with comments on the side?
+    ✔ Google analytics @done (15-02-02 07:34)
+      ✔ only in production mode, via angular variable @done (15-02-02 07:38)
+      ✔ how to ng-if on 'script' tag? @done (15-02-02 11:26)
+    ☐ News
+      ✔ New resource api @done (15-02-02 11:57)
+      ✔ Show resources in change page @done (15-02-02 12:41)
+      ✔ Add button only in admin mode @current @done (15-02-02 16:12)
+      ✔ also quick/dirty xeditable table? @done (15-02-02 12:41)
+      ☐ Save via API
+      ☐ RSS feed?
+        ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
+      ☐ Connect with apis
+    ☐ Angular.js Login
+      ☐ isAuthenticated(nextState) ui router?
+      ☐ ui resolve for API login ?
+      ☐ https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f @easy
+      ☐ https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec @serious
+        ☐ http headers?
+        ☐ http://blog.brunoscopelliti.com/authentication-to-a-restful-web-service-in-an-angularjs-web-app
+      ☐ add login checker in cron/repeat
+
+    ☐ Development pages for now
+      ☐ not minified....
+      ☐ Rebuild with grunt
+        ☐ Grunt not working! @gush
+        ☐ UnCSS - http://addyosmani.com/blog/removing-unused-css/
+     ☐ SECURITY rethinkdb updated... does not work anymore
+       ☐ Using the RethinkDB authentication system
+         ☐ http://www.rethinkdb.com/docs/security/
+         ☐ Build a python query on the system table
+           ☐ an api resource with some password to secure the server?
+       ☐ Orchestration @docker
+         ☐ docker-composer
+           ☐ http://chrisbarra.me/posts/docker-orchestration.html
+       ☐ Usage stats @docker
+         ☐ http://java.dzone.com/articles/what-docker-stats-api
+       ☐ Monitoring
+         ☐ http://prometheus.io/docs/introduction/comparison
+         ☐ https://revelops.com/community/packs/docker
+         ☐ https://logentries.com
+         ☐ https://github.com/nearform/docker-logentries
+
+  ☐ Mixed
+    ✔ Update database @done (15-02-01 12:37)
+   ✔ Metaclasses @done (15-02-13 20:16)
+     ✔ http://www.jeffknupp.com/blog/2013/12/28/improve-your-python-metaclasses-and-dynamic-classes-with-type/ @done (15-02-13 20:16)
+    ✔ Backups? @done (15-02-13 20:16)
+      ✔ http://rethinkdb.com/docs/backup/ @done (15-02-13 20:16)
+      ✔ rethinkdb dump + restore (via api?) @done (15-02-13 20:16)
+      ✔ Cron @done (15-02-13 20:16)
+        ✔ export/import? http://rethinkdb.com/docs/importing/ @done (15-02-13 20:16)
+          ✔ rethinkdb export @done (15-02-13 20:16)
+          ✔ rethinkdb import -d rethinkdb_export_DIR/ --force @done (15-02-13 20:16)
+    ☐ Draft section inside profile @cool
+    ☐ Language?
+      ☐ Fixed for now
+    ☐ Material update
+      ☐ http://codepen.io/zavoloklom/
+    ✔ Jquery: Get rid @done (15-01-30 19:34)
+      ✔ check dropdowns @done (15-01-30 19:34)
+      ✔ tooltip @done (15-01-30 20:14)
+    ☐ Add functions via ui bootstrap
+      ☐ popover http://angular-ui.github.io/bootstrap/#/popover
+      ☐ modal http://angular-ui.github.io/bootstrap/#/modal
+    ☐ Move $rootScope.menu inside resolve?
+    ☐ OFFLINE checking
+      ☐ http://stackoverflow.com/a/16242703
+      ☐ Some nice indications from this library:
+        ☐ http://github.hubspot.com/offline/docs/welcome/
+    ☐ Load local script if no connection?
+      ☐ http://bahmutov.calepin.co/cdn-with-local-fallback.html
+    ☐ Fix resource creation... api,
+      ☐ see instructions md
+      ☐ one python file?
+      ☐ Dynamic resource building with names? It could be!
+
+  ☐ Admin content: use 'page' db attribute for different pages
+    ☐ Html editor
+    ☐ Edit switch only if page element counter > 0
+      ☐ Sanitize content (e.g. open tags)
+
+  ☐ Search bar history when focus
+    ☐ cookie
+  ☐ Optimization for angular
+    ☐ http://blog.scalyr.com/2013/10/angularjs-1200ms-to-35ms/
+
+--- ✄ -----------------------
+Mar:
+ ☐ https://leanpub.com/web-component-development-with-angularjs/read
+ ☐ Advanced search
+ ☐ Profiles
+ ☐ Testing
+
+ ☐ Swarm test?
+   ☐ https://github.com/docker/swarm/
+
+ ☐ CSS on demand!
+   ☐ https://github.com/door3/angular-css
+
+ ☐ Go mobile
+   ☐ http://ccoenraets.github.io/ionic-tutorial/install-ionic.html
+
+--- ✄ -----------------------
+
+Timer TIMEOUT how to:
+
+// When the timeout is defined, it returns a promise object.
+var timer = $timeout( function() {
+    if ($scope.myform)
+        $scope.myform.$show();
+}, directiveTimeout);
+
+// Let's bind to the resolve/reject handlers of
+// the timer promise so that we can make sure our
+// cancel approach is actually working.
+timer.then( function() {
+    console.log( "Timer resolved!", Date.now() );
+}, function() {
+    console.log( "Timer rejected!", Date.now() );
+});
+
+// When the DOM element is removed from the page,
+// AngularJS will trigger the $destroy event on
+// the scope. This gives us a chance to cancel any
+// pending timer that we may have.
+$scope.$on( "$destroy", function( event ) {
+    console.log("Destroy");
+    $timeout.cancel( timer );
+});

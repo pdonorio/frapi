@@ -1,0 +1,7 @@
+eval spawn openssl genrsa -des3 -out server.key 2048
+expect ":"
+send "sslisasecreteweapon\r"
+expect ":"
+send "sslisasecreteweapon\r"
+wait
+puts "\nDone"

@@ -1,0 +1,101 @@
+<div class="container">
+
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+
+    <div class="row">
+        <div class="col-md-3 col-xs-3"></div>
+        <div class="col-md-6 col-xs-6">
+            <div class='well shad centering'>
+              <H3>SpectacleBaroque</H3>
+              La collezione di estratti sulle Feste Barocche.
+              <br><br>
+              <span ng-if='loginError' class="label label-danger">{{loginError}}</span>
+
+
+              <!-- LOGIN IF YOU HAVE CREDENTIALS -->
+              <form name="loginForm" novalidate ng-show='registered && !welcome'>
+               <table class="table" style="margin-bottom: 0;">
+                <thead> <tr> <th colspan="2"> Accesso </th> </tr> </thead>
+                <tbody> <tr> <td>
+                <p> <input
+                    type="email" ng-model="user.email" name='usermail'
+                    ng-minlength='10' size='30'
+                    ng-model-options="{ updateOn: 'blur' }"
+                    placeholder='Il tuo account (indirizzo di posta)' required /> </p>
+                 <span ng-show="registerForm.usermail.$dirty
+                      && registerForm.usermail.$invalid">
+                  Errore </span>
+                <p> <input type="password" ng-model="user.pw"
+                    size='30'
+                    placeholder='Password'
+                    required /> </p>
+                <p> <input type="submit" class="btn btn-danger" value='Login'
+                    ng-click='login(user)' /> </p>
+                </td> </tr> </tbody>
+               </table>
+              <p style='text-align: right;'>
+                <a href="" ng-click='gostate("dologin", {status: "register"})'>register</a>
+              </p>
+              </form>
+
+              <!-- REGISTRATION IF YOU HAVE NO CREDENTIALS -->
+              <form name="registerForm" novalidate ng-hide='registered'>
+               <table class="table">
+                <thead> <tr> <th colspan="2"> Registrazione </th> </tr> </thead>
+                <tbody> <tr> <td>
+                <p> <input type="text" ng-model="user.name" name='username'
+                    ng-minlength='3' size='25'
+                    ng-model-options="{ updateOn: 'blur' }"
+                    placeholder='Il tuo nome' required /> </p>
+                    <span
+                      ng-show="registerForm.username.$dirty
+                      && registerForm.username.$invalid">
+                      Errore
+                      </span>
+
+                <p> <input type="text" ng-model="user.surname" size="25"
+                 placeholder='Cognome' /> </p>
+                <p> <input type="email" ng-model="user.email" size="25"
+                 placeholder='Il tuo indirizzo mail' required /> </p>
+                <p> <input type="password" ng-model="user.pw" minlength='8'
+                 size="25"
+                 placeholder='Password (min 8 caratteri)' required /> </p>
+
+                <p>
+                <a href='' ng-click='reset()'>
+                  <button type="button" class="btn btn-warning"> Reset </button>
+                </a>
+                <input type="submit" class="btn btn-danger" value='Registra'
+                    ng-click='register(user)' />
+                </p>
+                </td> </tr> </tbody>
+               </table>
+              </form>
+
+              <!-- Welcome registered user -->
+              <div ng-show='welcome'>
+               <table class="table">
+                <thead> <tr> <th colspan="2"> Benvenuto </th> </tr> </thead>
+                <tbody> <tr> <td>
+                    La tua richiesta e' in attesa di valutazione.
+                    <br>
+                    Controlla la tua posta per utilizzare le credenziali.
+                    <br>
+                </td></tr></tbody>
+               </table>
+               <p style='text-align: right;'>
+                <a href="" ng-click='gostate("dologin", {status: "user"})'>login</a>
+               </p>
+              </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3"></div>
+    </div>
+
+</div>

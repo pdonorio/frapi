@@ -5,8 +5,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminController', function ($scope, $state,
-    NotificationData, AppConfig, ADMIN_USER,
-    StepContent, StepTemplate, StepList )
+    NotificationData, AppConfig, StepContent, StepTemplate, StepList )
 {
     // Stop unwanted user
     if (!$scope.adminer)
@@ -22,7 +21,6 @@ myApp
         if (out) {
             // Set step list
             $scope.steps = out;
-            $scope.templObj = StepTemplate.build($scope.current);
             // Set number of steps somewhere
             $scope.stepsNum = $scope.steps.length;
         }
@@ -108,13 +106,15 @@ myApp
                     "Database non raggiungibile");
               } else {
 
-// TO FIX -
                 // 2. Remove from API steptemplate
-                $scope.templObj.unsetData(step); //.then(function(check){
+                $scope.templObj = StepTemplate.build($scope.current, true);
+                $scope.templObj.unsetData(step);
+
                 // 3. Remove from API stepcontent
-                var contObj = StepContent.build(null, step);
-                contObj.unsetData(step);
-// TO FIX -
+                // Small note:
+                // I will not remove user data related to these column,
+                // as it could be usefull to make it show again
+                // if admin recreates the same field again, with the same name
 
                 NotificationData.setNotification(AppConfig.messageStatus.success,
                     "Rimosso step n." + $scope.current);
@@ -130,48 +130,68 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminStepController',
-    function ($scope, $stateParams, StepTemplate)
+    function ($scope, $modal, $log, $filter, $stateParams, StepTemplate)
 {
     if (!$scope.adminer)
         return false;
 
+    // modal init
+    var modalMessage = "Not defined yet";
+
+    // Reset form if exists?
+// TO FIX - does not work. Should be done onExit, but how?
+    //$scope.snameform.$cancel();
+
     // Apply current url step to whole view
     $scope.setStep($stateParams.stepId);
 
+    ////////////////////////
+
+    ////////////////////////
     if ($scope.current > 0) {
         console.log("Step", $scope.current);
 
         // Try to load also template
         $scope.templObj = StepTemplate.build($scope.current);
+        // Types
+        $scope.types = $scope.templObj.getTypes();
+// TO FIX - make a $filter
+        $scope.listType = 8; //$filter('list')($scope.types);
+        $scope.reqopts = $scope.templObj.getOpts();
+
+        //Define Modal
+        modalMessage = "<table class='table'>";
+        angular.forEach($scope.types, function(element, index){
+            //$log.info("Element "+index);
+            modalMessage +=
+                '<tr>'
+                + "<th>"+element.text+" </th>"
+                + "<td>"+element.desc+"</td>"
+                + '</tr>';
+            //console.log(element);
+        });
+        modalMessage += '</table>';
+        modalMessage =
+            '<div class="modal-header"> ' +
+            '<h3 class="modal-title">Available types</h3>' +
+            '</div>' +
+            '<div class="modal-body"> ' + modalMessage + ' </div>'+
+            '';
+
+        // Load templates
         $scope.templObj.getData().then(function(response) {
-            if (response.length)
+            if (response.length) {
                 $scope.templates = response;
+                //for each? // hashStatus
+            }
         });
     }
-// TO FIX -
-    //$scope.snameform.$cancel();
+
 
     ////////////////////////////////
     // STEP template EDITING
-
-    /**************************/
-    /*  TYPES   ***************/
-// TO FIX -
-    // Should be defined inside database?
-    // Or inside configuration (app.conf)?
-    $scope.types = [
-        {value: 0, text: 'string'},
-        {value: 1, text: 'number'},
-        {value: 2, text: 'range'},
-        {value: 3, text: 'date'},
-        {value: 4, text: 'email'},
-    ];
-    /**************************/
-
     $scope.addTemplate = function() {
-      var pos = 1;
-      var label = 'nuovo elemento';
-      var value = 0;  //first element: default
+      var pos = $scope.templates.length;
       // Find smallest position
       for (var j = 1; j < $scope.templates.length; j++) {
         if (!$scope.templates[j]) {
@@ -180,23 +200,92 @@ myApp
         }
       };
       // Add template
-      $scope.templates[pos] = {label:label, value:value};
+      var label = 'nuovo ' + pos;
+      var value = 0;
+      $scope.templates[pos] = {
+        label: label, value: value,
+        extra:null, required: 0, hash: 'new',
+        hashStatus: 'new',
+      };
       // API save
-      $scope.templObj.setData($scope.current, pos,label,value).then(function(id){});
+      $scope.templObj.setData($scope.current, pos,label,value,value)
+        .then(function(tmp){
+            $scope.templates[pos].hash = tmp.hash;
+
+        });
     };
     $scope.updateElement = function(index) {
-      var l = $scope.templates[index].label;
-      var v = $scope.templates[index].value;
+      // Get values from index
+      var val = $scope.templates[index].myselect.value;
+      var lab = $scope.templates[index].label;
+      var req = $scope.templates[index].required;
+      var ex = $scope.templates[index].extra;
       // API save
-      $scope.templObj.setData($scope.current, index, l, v).then(function(id){});
+      $scope.templObj.setData($scope.current, index, lab, val, req, ex)
+        .then(function(tmp){
+
+            // add check for hash status
+            if ($scope.templObj.checkHash())
+                $scope.templates[index].hashStatus = 'existing';
+            else
+                $scope.templates[index].hashStatus = 'new';
+            $scope.templates[index].hash = tmp.hash;
+        });
     };
     $scope.removeElement = function(index) {
       delete $scope.templates[index];
       // API save
       $scope.templObj.unsetData($scope.current, index).then(function(){});
-// TO FIX -
-      //These should also remove every content set on this step:field from user...
+
+      // Small note (hashStatus):
+      // I will not remove user data related to these column,
+      // as it could be usefull to make it show again
+      // if admin recreates the same field again, with the same name
     };
+
+    $scope.checkIfNameExist = function(name, pos) {
+        return $scope.templObj.checkLabel(name, $scope.current, pos)
+        .then(function(response){
+            if (response)
+                return "Il nome '"+name+"' viene gia' utilizzato";
+            return true;
+        });
+    }
+
+    $scope.checkList = function(data) {
+        var msg = "Lista di valori separati da virgola (almeno 2)";
+
+        if (!data || data == '')
+            return msg;
+        var list = data.split(',');
+        var count = 0;
+        angular.forEach(list, function(val, key){
+            if (val != '') {
+                count++;
+            }
+        });
+        if (count < 2)
+            return msg;
+        //console.log(data);
+    };
+
+    /////////////////////////////////
+    // Modal
+
+    $scope.open = function (size) {
+      // get instance
+      var modalInstance = $modal.open({
+        template: modalMessage,
+        backdrop: true,
+      });
+      //after closing
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        //$log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
 })
 
 //////////////////////////////////////////////////////////////

@@ -5,7 +5,9 @@ protocol="http"
 #host="127.0.0.1" #from node
 host=$(boot2docker ip 2> /dev/null) #from host to local docker
 #host="80.240.138.39" #from host to digitalocean
-port=5507
+#port=5507
+# trick to add address
+port="5507/api/v1.0"
 
 #resource="dump"
 #resource="data"
@@ -14,7 +16,9 @@ port=5507
 #resource="steps"
 #resource="stepscontent"
 #resource="stepstemplate"
-resource="myidprovider"
+#resource="myidprovider"
+#resource="stepfields"
+resource="accounts"
 
 #############################################
 # BUILD TEST
@@ -38,6 +42,11 @@ resource="myidprovider"
 echo "***\nPaging"
 # Array testing
 values="perpage=6&currentpage=1"
+
+# HTTPS?
+protocol="https"
+values="perpage=6&currentpage=1 --insecure"
+
 #values='currentpage=1&perpage=999&recordid=aefd6289-d192-4ff9-9d7d-acd522203979&step=2'
 key=`$cmd $protocol://$host:$port/$resource -d $values -X GET ` # -v # verbose
 echo "received '$key'"
@@ -48,7 +57,9 @@ exit;
 echo "***\nINSERT"
 #values="step=1&position=2&type=select&field=Titolo&extra=testingapi"
 #values="step=1&element=1&type=number&content=checkingMyTests!&label=titolo"
-values="arr=el1&step=2&arr=el2&user=paulie&date=test"
+#values="arr=el1&step=2&arr=el2&user=paulie&date=test"
+#values="step=2&name=test"
+values="name=paulie&surname=thebest&email=test@gmail.com&token=kjhsadf7 --insecure"
 #values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"

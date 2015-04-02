@@ -1,5 +1,6 @@
 
 --- ✄ -----------------------
+
 Feb ALPHA:
   ✔ Going HOME @done (15-02-01 17:30)
     ✔ Routing & states @done (15-01-29 06:59)
@@ -160,235 +161,67 @@ StepsAdmin:
     ✔ Put admin link inside profile if user == 'admin' @done (15-03-15 11:49)
     ✔ Remove edit button inside topbar inside insert @done (15-03-15 11:28)
       ✔ Remove it also inside view page for the moment @done (15-03-15 11:28)
-
 StepsInsertType:
-  ☐ THE TYPE IS THE CENTER KEY @current
-    ☐ use patterns (instead of html types)
-      ☐ EXAMPLE: <a href="#" editable-tel="user.tel" e-pattern="\d{3}\-\d{2}\-\d{2}" e-title="xxx-xx-xx">
-  ☐ fix "are you really sure" notice
-  ☐ Url to access edit mode
-    ☐ via parameter ?key=value for ui router?
-    ☐ put that link inside the profile
-  ☐ If not published
-    ☐ signal draft in submission/edit
-    ☐ REMOVE DEBUG in admin controller
-  ☐ Last but not least
-    ☐ Some clean pattern image repaeat as background
- ☐ User model
-   ☐ Profile adjust to User model
- ☐ Stupid login?
- ☐ Dark pattern background
-
-DebugMode:
- ☐ Feedback button
- ☐ inside profile menu
-   ☐ Fires a modal
-   ☐ Feedback saved inside rdb api resource
-     ☐ on change of table, python sends me an email
-
-SomeMore:
-  ☐ Resort steps numbers with drag and drop?? @ohboy
-
-    ☐ A mock User model
-      ☐ across the project to share the current user
-      ☐ list of user drafts @cool
-        ☐ by identifiers inside the api provider
-
-    ☐ Better backups
-      ☐ cron daily
-        ☐ move latest folder to backup/
-        ☐ clean main data folder from saved data
-
-  ☐ Upload and transcriptions
-    ☐ Create a new upload folder for any new draft
-      ☐ cron daily to remove what has not used for at least 24 hours
-    ☐ Zoomify image via API
-      ☐ argh: command?
-    ☐ Upload only images
-    ☐ If already exists go to error via notify
-      ☐ if goes to already exists, disable upload button
-    ☐ share folder of uploaded files for thumbnails?
-
-    ☐ Last step is transciptions
-      ☐ list the images
-      ☐ associate one or more transcriptions
-      ☐ choose page
-
-Bugs:
- ✔ http://getawesomeness.com/get/docker @done (15-02-21 12:54)
- ✔ http://blog.evernote.com/blog/2015/02/06/paperless-productivity-evernote-pocket @done (15-02-21 12:54)
- ✔ https://github.com/aziz/PlainNotes @done (15-02-21 12:54)
-    ✔ If focus on search @done (15-02-11 06:36)
-        ✔ make the bg gray @done (15-02-09 11:13)
-        ✔ take the switch for edit out @done (15-02-11 06:36)
-    ✔ Cron saving of rethinkdb data @done (15-02-07 16:16)
-      ✔ testing @help @done (15-02-12 18:39)
-        ✔ Update of rethinkdb base image @done (15-02-12 18:39)
-        ✔ baseimage-docker @done (15-02-12 18:39)
-    ✔ New news not working for Date @done (15-02-07 14:59)
-    ✔ Move editoff inside routing @done (15-02-07 15:17)
-    ✔ move edit swtich inside init controller? @done (15-02-07 15:17)
-    ☐ Loading div pendig to a promise when changing routes
-      ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
-    ☐ RENAME @inprogress
-      ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
-    ☐ An api resource only to check if api and db are available?
-      ☐ Testing inside the step saving @important
-    ☐ Move edit switch inside a factory or service @thatistherightway
-      ☐ ??
-    ☐ promise cache
-      ☐ https://github.com/chrisronline/angular-promise-cache
-
-    FAR FAR AWAY:
-      ☐ SSH docker
-        ☐ via baseimage
-          ☐ https://github.com/phusion/baseimage-docker#login_ssh
-
-remodel:
-  ☐ getting SUPERHERO
-    ☐ http://www.rethinkdb.com/docs/tutorials/superheroes
-    ☐ How do i pass an array as a single parameter via API?
-  ☐ ODM and relations
-    ☐ https://github.com/linkyndy/remodel
-  ☐ CHANGE feed
-    ☐ http://rethinkdb.com/docs/changefeeds/python
-    ☐ http://rethinkdb.com/api/python/changes/
-  ☐ BINARY
-    ☐ store in table http://www.rethinkdb.com/docs/storing-binary/python/
-    ☐ examples: http://www.rethinkdb.com/docs/storing-binary/python/
-
-Dev Release:
-    ☐ ASK FOR Welcome page french text @last
-      ☐ WAITING!
-    ☐ Progress page & resource
-      ☐ to keep track of what we are doing
-      ☐ with comments on the side?
-    ✔ Google analytics @done (15-02-02 07:34)
-      ✔ only in production mode, via angular variable @done (15-02-02 07:38)
-      ✔ how to ng-if on 'script' tag? @done (15-02-02 11:26)
-    ☐ News
-      ✔ New resource api @done (15-02-02 11:57)
-      ✔ Show resources in change page @done (15-02-02 12:41)
-      ✔ Add button only in admin mode @current @done (15-02-02 16:12)
-      ✔ also quick/dirty xeditable table? @done (15-02-02 12:41)
-      ☐ Save via API
-      ☐ RSS feed?
-        ☐ http://www.w3schools.com/rss/rss_tag_generator.asp
-      ☐ Connect with apis
-    ☐ Angular.js Login
-      ☐ isAuthenticated(nextState) ui router?
-      ☐ ui resolve for API login ?
-      ☐ https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f @easy
-      ☐ https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec @serious
-        ☐ http headers?
-        ☐ http://blog.brunoscopelliti.com/authentication-to-a-restful-web-service-in-an-angularjs-web-app
-      ☐ add login checker in cron/repeat
-
-    ☐ Development pages for now
-      ☐ not minified....
-      ☐ Rebuild with grunt
-        ☐ Grunt not working! @gush
-        ☐ UnCSS - http://addyosmani.com/blog/removing-unused-css/
-     ☐ SECURITY rethinkdb updated... does not work anymore
-       ☐ Using the RethinkDB authentication system
-         ☐ http://www.rethinkdb.com/docs/security/
-         ☐ Build a python query on the system table
-           ☐ an api resource with some password to secure the server?
-       ☐ Orchestration @docker
-         ☐ docker-composer
-           ☐ http://chrisbarra.me/posts/docker-orchestration.html
-       ☐ Usage stats @docker
-         ☐ http://java.dzone.com/articles/what-docker-stats-api
-       ☐ Monitoring
-         ☐ http://prometheus.io/docs/introduction/comparison
-         ☐ https://revelops.com/community/packs/docker
-         ☐ https://logentries.com
-         ☐ https://github.com/nearform/docker-logentries
-
-  ☐ Mixed
-    ✔ Update database @done (15-02-01 12:37)
-   ✔ Metaclasses @done (15-02-13 20:16)
-     ✔ http://www.jeffknupp.com/blog/2013/12/28/improve-your-python-metaclasses-and-dynamic-classes-with-type/ @done (15-02-13 20:16)
-    ✔ Backups? @done (15-02-13 20:16)
-      ✔ http://rethinkdb.com/docs/backup/ @done (15-02-13 20:16)
-      ✔ rethinkdb dump + restore (via api?) @done (15-02-13 20:16)
-      ✔ Cron @done (15-02-13 20:16)
-        ✔ export/import? http://rethinkdb.com/docs/importing/ @done (15-02-13 20:16)
-          ✔ rethinkdb export @done (15-02-13 20:16)
-          ✔ rethinkdb import -d rethinkdb_export_DIR/ --force @done (15-02-13 20:16)
-    ☐ Draft section inside profile @cool
-    ☐ Language?
-      ☐ Fixed for now
-    ☐ Material update
-      ☐ http://codepen.io/zavoloklom/
-    ✔ Jquery: Get rid @done (15-01-30 19:34)
-      ✔ check dropdowns @done (15-01-30 19:34)
-      ✔ tooltip @done (15-01-30 20:14)
-    ☐ Add functions via ui bootstrap
-      ☐ popover http://angular-ui.github.io/bootstrap/#/popover
-      ☐ modal http://angular-ui.github.io/bootstrap/#/modal
-    ☐ Move $rootScope.menu inside resolve?
-    ☐ OFFLINE checking
-      ☐ http://stackoverflow.com/a/16242703
-      ☐ Some nice indications from this library:
-        ☐ http://github.hubspot.com/offline/docs/welcome/
-    ☐ Load local script if no connection?
-      ☐ http://bahmutov.calepin.co/cdn-with-local-fallback.html
-    ☐ Fix resource creation... api,
-      ☐ see instructions md
-      ☐ one python file?
-      ☐ Dynamic resource building with names? It could be!
-
-  ☐ Admin content: use 'page' db attribute for different pages
-    ☐ Html editor
-    ☐ Edit switch only if page element counter > 0
-      ☐ Sanitize content (e.g. open tags)
-
-  ☐ Search bar history when focus
-    ☐ cookie
-  ☐ Optimization for angular
-    ☐ http://blog.scalyr.com/2013/10/angularjs-1200ms-to-35ms/
+  ✔ THE TYPE IS THE CENTER KEY @done (15-03-17 07:05)
+    ✔ recover types from template @done (15-03-16 06:51)
+    ✔ BUG FIX: does not save edit of a template @done (15-03-16 07:26)
+    ✘ use patterns (instead of html types) @cancelled (15-03-16 07:40)
+    ✔ first test on number type @done (15-03-16 07:41)
+      ✔ VALIDATION? two ways @done (15-03-16 17:29)
+        ✔ type validation html @done (15-03-16 17:29)
+        ✔ xeditable onbeforesave @done (15-03-16 17:29)
+         ✔ checks: good luck @done (15-03-17 07:01)
+  ✔ Defines ALL TYPES @done (15-03-18 08:12)
+   ✔ descriptions and modal @done (15-03-17 07:42)
+  ✔ Defines 2 extra fields @done (15-03-18 08:12)
+    ✔ required @done (15-03-17 22:51)
+    ✔ extra (e.g. range, min and max, lists values and so on) @done (15-03-18 08:12)
+  ✔ Ranges and list as types @done (15-03-24 07:14)
+    ✔ Another column and another field of the database? @done (15-03-23 17:23)
+    ✔ Implement via user @done (15-03-24 07:14)
+    ✘ modal select @cancelled (15-03-23 17:23)
+ ✔ Remove back button @sostupid @done (15-03-24 07:34)
+   ✔ Recheck types default @done (15-03-28 11:33)
+     ✔ expecially time and date @done (15-03-28 11:33)
+HASH ALGO:
+  ✔ What happens if i change name and position of a field? @done (15-03-25 07:18)
+    ✔ IDEA:  produce hash for a new field in template @thehashsolution @done (15-03-28 11:35)
+      ✔ produce the hash from a table @done (15-03-25 07:27)
+        ✘ reuse the provider? @cancelled (15-03-25 07:18)
+        ✘ create an element and then destroy? @cancelled (15-03-25 07:18)
+        ✔ create the element based on a name @done (15-03-26 07:02)
+          ✔ check that name does not exist already in any field of the actual template... @done (15-03-26 16:50)
+      ✔ save another field with the list of hashes, for user content @done (15-03-26 17:13)
+   ✔ required @done (15-03-28 11:47)
+      ✔ use them @done (15-03-26 20:47)
+        ✔ in fact now if i save one data, reading is broken @done (15-03-26 20:47)
+        ✔ as a check when showing data!!!!! @done (15-03-26 20:47)
+      ✔ do not recreate if the name already exists @done (15-03-30 09:59)
+        ✔ show a label with new or existing, just to get the idea @done (15-03-30 09:59)
+Some security and https:
+ ✔ API versioning flask? @done (15-03-31 20:36)
+   ✔ Could apply versioning when creating every address @done (15-03-31 20:36)
+  ✔ Flask https @done (15-03-30 17:48)
+    ✔ http://kracekumar.com/post/54437887454/ssl-for-flask-local-development @done (15-03-30 17:48)
+      ✔ pw cRin2gap6Bir4Abs7eB5 @done (15-03-30 18:05)
+    ✘ or more http://flask.pocoo.org/snippets/111/ @cancelled (15-03-30 17:48)
+    ✔ change resource js in https @done (15-03-30 18:05)
+    ✔ sceDelegateProvider @done (15-03-30 18:05)
+   ✔ Login @done (15-03-30 19:18)
+     ✔ API resource: account @done (15-03-30 19:18)
+     ✔ angularjs normal form: https://docs.angularjs.org/guide/forms @done (15-03-31 07:00)
+     ✔ account js object @done (15-03-31 07:33)
+       ✔ register goes in post @done (15-03-31 07:56)
+         ✔ use a token: hash(user+password+hash(user-password)) @done (15-03-31 07:56)
+           ✔ sha256_digest(value) @done (15-03-31 10:28)
+       ✔ login goes in get with token @done (15-03-31 20:37)
+   ✔ Login require an activation @done (15-04-01 07:09)
+     ✔ check activation at login time @done (15-04-01 07:09)
+     ✔ Save ip @done (15-03-31 15:43)
+   ✔ An action that can be applied at each ui-router change? @done (15-04-01 07:19)
+   ✔ UPDATE bower packages @done (15-04-01 15:07)
+     ✔ ng-cookies test with angular 1.4 @done (15-04-01 15:12)
+   ✔ nginx https @done (15-04-02 14:40)
+     ✔ working on configuration via docker @done (15-04-02 14:40)
 
 --- ✄ -----------------------
-Mar:
- ☐ https://leanpub.com/web-component-development-with-angularjs/read
- ☐ Advanced search
- ☐ Profiles
- ☐ Testing
-
- ☐ Swarm test?
-   ☐ https://github.com/docker/swarm/
-
- ☐ CSS on demand!
-   ☐ https://github.com/door3/angular-css
-
- ☐ Go mobile
-   ☐ http://ccoenraets.github.io/ionic-tutorial/install-ionic.html
-
---- ✄ -----------------------
-
-Timer TIMEOUT how to:
-
-// When the timeout is defined, it returns a promise object.
-var timer = $timeout( function() {
-    if ($scope.myform)
-        $scope.myform.$show();
-}, directiveTimeout);
-
-// Let's bind to the resolve/reject handlers of
-// the timer promise so that we can make sure our
-// cancel approach is actually working.
-timer.then( function() {
-    console.log( "Timer resolved!", Date.now() );
-}, function() {
-    console.log( "Timer rejected!", Date.now() );
-});
-
-// When the DOM element is removed from the page,
-// AngularJS will trigger the $destroy event on
-// the scope. This gives us a chance to cancel any
-// pending timer that we may have.
-$scope.$on( "$destroy", function( event ) {
-    console.log("Destroy");
-    $timeout.cancel( timer );
-});

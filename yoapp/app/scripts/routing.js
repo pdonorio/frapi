@@ -1,46 +1,44 @@
 
 //ROUTING new
 myApp
-.config(function($stateProvider, $urlRouterProvider, ADMIN_USER) {
+.config(function($stateProvider, $urlRouterProvider, ADMIN_USER)
+{
 
   // Set up the states and URL routing
   $stateProvider
-
     // For each page i didn't setup
     .state('notfound', {
       url: "/404",
-      views: { "main": { templateUrl: "views/oops.html", }, },
+      views: { "main": { templateUrl: "login/oops.html", }, },
     })
     // Static welcome page
     .state('welcome', {
       url: "/static",
-      views: { "main": { templateUrl: "views/welcome.html", }, },
+      views: {
+        "main": {
+            templateUrl: "login/welcome.html",
+            controller: 'MainController',
+        },
+      },
     })
     // Simple login logic
     .state('dologin', {
-      url: "/login",
-      views: { "main": { templateUrl: "views/login.html", }, },
-    })
-
-// Once Logged
-// Once Logged
-    //LOGGED ROOT
-    .state('logged', {
-      url: "/app",
-      // Set the current user for the whole application
-      resolve: {
-        user: function($rootScope) {
-
-// TO FIX - load from DB [with User model]
-            var user = {name: 'Administrator', role: ADMIN_USER};
-            console.log("Current user: ", user);
-            $rootScope.user = user;
-
-            // Check role
-            $rootScope.adminer = (user.role == ADMIN_USER);
-            return user;
+      url: "/login/{status:[a-z]+}",
+      views: {
+        "main": {
+            templateUrl: "login/login.html",
+            controller: "LoginController",
         },
       },
+    })
+
+
+///////////////////////////////////////////
+// Once Logged
+// Once Logged
+    //The parent of all logged views
+    .state('logged', {
+      url: "/app",
       views: {
         "main": {
             templateUrl: "views/app.html",
@@ -56,6 +54,30 @@ myApp
         $rootScope.$emit('rootScope:emit', 'padon');
       }, onExit: function($rootScope){
         $rootScope.$emit('rootScope:emit', 'padoff');
+      },
+      // Set the current user for the whole application
+      resolve: {
+
+        // Cookie service for authorization
+        auth: 'Auth',
+        // Inject in my new user object
+        user: function($rootScope, auth) {
+            //auth.get();
+            auth.set();
+
+// I need a Model here
+// TO FIX - load from DB [with User model]
+            var user = {name: 'Baroque Admin', role: ADMIN_USER};
+// TO FIX - load from DB [with User model]
+
+            console.log("Current user: ", user);
+            $rootScope.user = user;
+            console.log("Check logged main");
+            // Check role
+            console.log("Check role");
+            $rootScope.adminer = (user.role == ADMIN_USER);
+            return user;
+        },
       },
     })
 /****************************************
@@ -195,8 +217,7 @@ myApp
   // Redirect if unknown state
   $urlRouterProvider.otherwise(function ($injector, $location) {
     $injector.invoke(['$state', function ($state) {
-      console.log("Unknown");
-      console.log($location);
+      console.log("Unknown", $location);
       $state.go('notfound');
     }]);
     return true;

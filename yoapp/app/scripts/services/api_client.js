@@ -60,6 +60,11 @@ myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDe
         .withHttpConfig({timeout: apiTimeout})  //set timeout
         //Address will be: "base url / resource / route "
         .doGET(route, parameters)
+
+// TO FIX -
+// SHOULD USE success and error?
+// http://farazdagi.com/talks/2014-06-dpc/#11
+
         .then( function(output) { //Success
             data = JSON.parse(output);
             //console.log(data);

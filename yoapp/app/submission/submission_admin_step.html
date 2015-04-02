@@ -1,4 +1,4 @@
-<div class="col-md-6 col-xs-6" ng-show='steps'>
+<div class="col-md-8 col-xs-8" ng-show='steps'>
  <!-- Form for ADMIN USER -->
 
 <div class='panel whitecard'>
@@ -7,7 +7,7 @@
 
   <span ng-hide='current'> Nessuno step selezionato </span>
   <span ng-show='current'>
-    Step {{current}}:
+    <u>Step {{current}}</u>:
     <!-- make editable -->
   <span editable-text="steps[current]" e-form="snameform" onaftersave='saveStepName()'>
     {{steps[current] || 'vuoto'}}
@@ -16,14 +16,12 @@
   <div class="btn-group" role="group" ng-hide="snameform.$visible">
     <!-- button to edit name -->
     <button type="button" class="btn btn-default" ng-click="snameform.$show()"
-    tooltip-placement="bottom" tooltip="Cambia nome dello step {{current}}"
-    >
+      tooltip-placement="bottom" tooltip="Cambia nome dello step {{current}}" >
       <i class="fa fa-edit fa-fix"></i>
     </button>
     <!-- remove step -->
     <button class="btn btn-danger" ng-click="removeStep(current)"
-    tooltip-placement="bottom" tooltip="Cancella lo step {{current}}"
-    >
+      tooltip-placement="bottom" tooltip="Cancella lo step {{current}}" >
       <i class="fa fa-trash-o fa-fix"></i>
     </button>
   </div>
@@ -42,30 +40,77 @@
 
     <table class="table table-hover table-condensed">
 
-     <thead>
-         <tr> <th>Campo</th> <th>Nome</th> <th>Tipo</th> <th>Operazioni</th> </tr>
+     <thead ng-if='templates'>
+         <tr> <th></th> <th>Nome</th>
+         <th>Tipo
+          <a href='#'>(<i class="fa fa-question" style='color:red;' ng-click="open()"
+            tooltip-placement="right" tooltip="Scopri i tipi disponibili"
+          ></i>)</a>
+         </th>
+         <th>Extra</th>
+         <th>Richiesto</th>
+         <th>Azioni</th> </tr>
      </thead>
 
      <tbody>
+      <tr ng-hide='templates'>
+        <td> Nessun elemento definito per questo step </td>
+      </tr>
       <tr ng-repeat='template in templates track by $index'
         ng-if='$index > 0 && template.label'>
-       <td style='background: #eee; text-align: center; font-weight: bold;'>
-        #{{$index}}
+       <!-- Element count -->
+       <td style='background: #eee; text-align: center; '>
+        <span ng-show='template.hashStatus == "new"'
+            class="label label-primary">{{template.hashStatus}}</span>
+        <span ng-show='template.hashStatus == "existing"'
+            class="label label-warning">{{template.hashStatus}}</span>
+
+        <b>{{$index}}</b>: <i>{{template.hash || 'none'}}</i>
+
        </td>
        <!-- Text with Validation -->
        <td>
-        <span href="#" editable-text="template.label" e-name="label"
-            e-form="rowform" e-required onaftersave='updateElement($index)'>
+        <span editable-text="template.label" e-form="rowform" e-required
+            onbeforesave='checkIfNameExist($data, $index)'
+            onaftersave='updateElement($index)'>
           {{template.label || 'vuoto'}}
         </span>
        </td>
        <!-- List of elements -->
        <td>
          <span ng-show="rowform.$visible">
-          <select ng-model="myselect" ng-init='myselect=types[template.value] || types[0]'
-              ng-options="mytype.text for mytype in types" ></select>
+          <!-- Show select on edit -->
+          <select ng-model="template.myselect" ng-options="mytype.text for mytype in types"
+            ng-init='template.myselect=types[template.value]'> </select>
          </span>
-         <span ng-hide="rowform.$visible"> {{myselect.text}} </span>
+         <span ng-hide="rowform.$visible">
+            <i>
+                <!-- DEFAULT -->
+                <span ng-hide='types[template.myselect.value]'> {{types[0].text}} </span>
+                <!-- Real value -->
+                <span ng-if='types[template.myselect.value]'> {{types[template.myselect.value].text}} </span>
+            </i>
+         </span>
+       </td>
+       <!-- Extra -->
+       <td>
+        <span ng-hide='template.myselect.value == listType'> - </span>
+        <span ng-if='template.myselect.value == listType'
+            e-placeholder="list,of,data"
+            editable-text="template.extra" e-form="rowform"
+            onbeforesave="checkList($data)"
+            >
+          {{template.extra || '-' }}
+        </span>
+       </td>
+       <!-- Required -->
+       <td>
+        <span editable-radiolist="template.required"
+            e-ng-options="s.value as s.text for s in reqopts"
+            ng-init='template.required = template.required || 0'
+            e-form="rowform">
+          {{reqopts[template.required].text}}
+        </span>
        </td>
 
        <td>
@@ -103,10 +148,12 @@
 
     </table>
 
-    <button type='button' class="btn btn-primary" ng-click="addTemplate()"
-    tooltip-placement="right" tooltip="Aggiungi un nuovo campo allo step {{current}}">
-      <i class="fa fa-plus"></i>
-    </button>
+    <div style="text-align: right;">
+        <button type='button' class="btn btn-primary" ng-click="addTemplate()"
+        tooltip-placement="bottom" tooltip="Aggiungi un nuovo campo allo step {{current}}">
+          <i class="fa fa-plus"></i>
+        </button>
+    </div>
 
   </div>
  </div>

@@ -1,0 +1,4 @@
+eval spawn openssl rsa -in server.key.org -out server.key
+expect ":"
+send "sslisasecreteweapon\r"
+wait

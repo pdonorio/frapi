@@ -40,6 +40,8 @@ api = Api(app, catch_all_404s=True)
 ## AUTH EXAMPLE:
 #api.add_resource(resources.LogUser, '/login')
 
+FIXED_APIURL = '/api/v1.0'
+
 def resources_init(myresources):
     for name, content in myresources.iteritems():
         (resource_class, resource_name) = content
@@ -48,9 +50,9 @@ def resources_init(myresources):
         # Add resource from ORM class
         api.add_resource(resource_class, \
         # 1. /resource      #GET
-            '/' + resource_name, \
+            FIXED_APIURL + '/' + resource_name, \
         # 2. /resource/:id  #POST
-            '/' + resource_name + '/<string:data_key>')
+            FIXED_APIURL + '/' + resource_name + '/<string:data_key>')
         # Warning: due to restful plugin system,
         # methods get and get(value) require 2 different resources.
         # This is why we provide two times the same resource

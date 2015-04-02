@@ -75,18 +75,30 @@ myApp
   };
   StepContent.prototype.setData = function (obj, user, record) {
 
+    console.log("Init save"); //console.log(obj);
+
     var data = {};
     // Save all in one array
     var values = [];
+    var hashers = [];
+
     angular.forEach(obj, function(myjson, key) {
+        //console.log(myjson);
+
         //empty value
         var value = '';
         if (myjson.value)
             value = myjson.value;
+        //hash linked to step and field name
+        var hash = null;
+        if (myjson.hasher)
+            hash = myjson.hasher;
         //push inside the new array
         values.push(value);
+        hashers.push(hash);
     });
     data.values = values;
+    data.hashes = hashers;
     // Add step field
     data.step = this.Step;
     // Update element if existing
@@ -94,7 +106,9 @@ myApp
         data.id = this.id;
     data.user = user;
     data.recordid = record;
+
     // Save it
+    //console.log("Ready to save"); //console.log(data);
     return saveData(this, data);
 
   }

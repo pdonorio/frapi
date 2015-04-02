@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+eval spawn openssl req -new -key server.key -out server.csr
+expect ":"
+send "sslisasecreteweapon\r"
+expect ":"
+send "IT\r"
+expect ":"
+send "Rome\r"
+expect ":"
+send "RM\r"
+expect ":"
+send "Awesome Inc\r"
+expect ":"
+send "mydepartment\r"
+expect ":"
+#  ONLY IMPORTANT
+send "awesome.dev\r"
+expect ":"
+send "archive.webdmin@gmail.com\r"
+expect ":"
+send "\r"
+expect ":"
+send "\r"
+wait

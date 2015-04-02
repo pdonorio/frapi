@@ -30,11 +30,6 @@
 
       <!-- Main menu -->
       <ul class="nav navbar-nav navbar-right">
-          <li ng-if='lastVisited'>
-            <a href ng-click="go(lastVisited)">
-              <i class="fa fa-step-backward fa-1x"></i> Back
-            </a>
-          </li>
           <!-- Menu buttons -->
           <li ng-repeat='el in menu' ng-class="{'active': el.active}">
             <a ui-sref='{{el.link}}'>
@@ -47,21 +42,22 @@
           <li class="dropdown" dropdown>
             <a href dropdown-toggle>
               <i class="fa fa-user fa-1x"></i>
-              Profile <span class="caret"></span>
+              <b>{{user.name}}</b>
+              <span class="caret"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
 
               <li ng-if='adminer' role="presentation" class="dropdown-header">
                 Role: <b>adminer</b>
               </li>
-              <li ng-if='adminer'><a ng-click="go('app/configure/admin/step/0')">
-                <i>Submission</i>
-                <span class="label label-danger">admin</span>
-                <!-- <span class="label label-default">new</span> -->
+              <li ng-if='adminer'>
+                <a href='#' ng-click="go('app/configure/admin/step/0')">
+                    Submission
+                    <span class="label label-success">done</span>
                 </a>
               </li>
               <li ng-if='adminer'>
-                <a href="#">work in progress
+                <a href="#">Users management
                 <span class="label label-info">todo</span>
                 </a>
               </li>

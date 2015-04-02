@@ -63,15 +63,23 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('StepDirectiveController', function (
+    $rootScope, $filter,
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
     StepTemplate, StepContent, IdProvider)
 {
 
     ////////////////////////////////////////////////
     // Build objects
-    var data = [];
     $scope.data = [];
     $scope.contentData = StepContent.build($scope.identifier, $scope.step);
+
+    var getType = function(key) {
+        // save type to be sure in the future?
+        var type = $scope.types[0].text;
+        if ($scope.types[key])
+            type = $scope.types[key].text;
+        return type;
+    }
 
     ////////////////////////////////////////////////
     // Procedure to mix data and save it into scope
@@ -80,23 +88,32 @@ myApp
         // var init
         var index = 0;
         var count = 0;
-        var notempty = content.values && content.values.length;
+        var data = [];
 
-        if (notempty && content.id)
+        //console.log(content);
+        if (content.values && content.values.length && content.id)
             $scope.contentData.setId(content.id);
-        // Mixing template and content here
-        angular.forEach(template, function(obj) {
 
+        // Mixing template and content here
+        angular.forEach(template, function(obj, pos) {
             var value = null;
-            if (notempty && content.values.length >= index) {
-                value = content.values[index];
-                if (value !== '') {
-                    count++;
-                }
+            var key = -1;
+            // IF I HAVE DATA
+            if (content.values) {
+                var key = content.hashes.indexOf(obj.hash);
+                value = content.values[key];
             }
-            data[index++] = {key: obj.label, value: value};
+            if (value !== '')
+                count++;
+            data[pos] = {
+                key: obj.label, value: value, type: getType(obj.value),
+                req: parseInt(obj.required), extra: obj.extra, hasher: obj.hash,
+            };
+
         });
-// TO FIX
+
+// TO FIX - how? save this data inside object?
+//probably yes
         $scope.data[$scope.step] = data;
         return count;
 
@@ -106,6 +123,7 @@ myApp
     // FIRST TIME: get data if not 'new' in address bar
     // Get StepTemplate (admin data)
     var templObj = StepTemplate.build($scope.step);
+    $scope.types = templObj.getTypes();
     templObj.getData().then(function(template)
     {
         // Set error if empty template on this step...
@@ -137,29 +155,58 @@ myApp
         // Abort the current form
         $scope.myForm.$cancel();
     };
+    // Validating data before saving
+    $scope.checkData = function(required, data, type) {
+        if (!data && required) {
+          return "Questo campo è obligatorio";
+        } else if (type == 'string') {
+          return true;
+        } else if (type == 'number') {
+          return true;
+        } else if (type == 'email') {
+//does not verify if you have the dot after @
+          return true;
+        } else if (type == 'date') {
+          return true;
+        } else if (type == 'time') {
+          return true;
+        } else if (type == 'color') {
+          return true;
+        } else if (type == 'url') {
+//only checks for http protocol. I think there should be at least one dot
+          return true;
+        }
+        // Validation
+        console.log("Check data", data);
+        // Unknown type. Problem in configuration.
+        return "La tipologia '"+type+"' non e' ancora implementata";
+    }
     // Save button
     $scope.saveStep = function() {
+
         // Signal that we are going to try to edit data
         NotificationData.setNotification(AppConfig.messageStatus.loading);
 
         // Try to save data. Also this has to be a promise
         // if i want to handle notification at this level
-        $scope.contentData.setData($scope.data, $scope.username, $scope.identifier)
+        $scope.contentData.setData($scope.data[$scope.current],
+            $rootScope.user.name, $scope.identifier)
          .then(function(success) {
             if (success) {
-                $timeout( function() {
-                    NotificationData.setNotification( AppConfig.messageStatus.success,
-                        "Salvataggio riuscito");
-                }, 800);
+              $timeout( function() {
+                  NotificationData.setNotification( AppConfig.messageStatus.success,
+                    "Salvataggio riuscito");
+              }, 800);
             } else {
-                NotificationData.setNotification( AppConfig.messageStatus.error,
-                    "Il servizio dati non é raggiungibile");
-                // Bring data back?
-                var backup = $scope.contentData.restoreBackup();
-                // Template is a promise...
-                templObj.getData().then(function(template){
-                    injectData(template, backup);
-                });
+// CHECK ME AGAIN
+              NotificationData.setNotification( AppConfig.messageStatus.error,
+                  "Il servizio dati non é raggiungibile");
+              // Bring data back?
+              var backup = $scope.contentData.restoreBackup();
+              // Template is a promise...
+              templObj.getData().then(function(template){
+                  injectData(template, backup);
+              });
             }
          });
     }
