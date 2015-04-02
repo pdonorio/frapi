@@ -8,7 +8,7 @@
  * Controller of the yoApp
  */
 myApp
-.controller('InitController', function($scope, $rootScope, $location, devHost)
+.controller('InitController', function($scope, $state, $rootScope, $location, devHost)
 {
 
     // If redirection goes wrong

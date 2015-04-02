@@ -11,7 +11,7 @@ myApp
 .controller('MainController', function ($scope,
     $rootScope, $timeout, $interval, $location, $state,
     //tester,
-    projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
+    projectName, API, Auth, mixed, warningInitTime, someInitTime, apiTimeout)
 {
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
@@ -36,8 +36,13 @@ myApp
     $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams){
         //console.log("Changing from", fromState, "to", toState);
-        console.log("To check if logged");
-        //event.preventDefault();
+        console.log("TO CHECK IF LOGGED");
+
+        // Test cookies AUTH here
+        if (!Auth.checkAuth()) {
+            event.preventDefault();
+            $state.go('dologin');
+        }
     })
 
     $scope.elements = {};

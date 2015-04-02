@@ -4,7 +4,7 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('LoginController', function ($scope, $cookies, $state, $stateParams, Account)
+.controller('LoginController', function ($scope, Auth, $state, $stateParams, Account)
 {
     $scope.gostate = $state.go;
     $scope.registered = true;
@@ -46,15 +46,19 @@ myApp
     $scope.login = function(user) {
         var ldap = Account.build(user);
         ldap.check().then(function(response){
+            var token = null;
             if (response === true) {
 // TO FIX - save token in session
-
-              // log me in
-              $state.go('logged.main');
+                token = 'qualcosa';
             } else {
               $scope.loginError = response;
               console.log("Failed login");
             }
+            // Save what i get
+            Auth.set(token);
+            // Check if working
+            if (Auth.checkAuth())
+                $state.go('logged.main');
         });
     }
 

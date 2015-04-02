@@ -29,6 +29,9 @@ myApp
             templateUrl: "login/login.html",
             controller: "LoginController",
         },
+      }, onEnter: function(Auth, $state) {
+        if (Auth.checkAuth())
+            $state.go("logged.main");
       },
     })
 
@@ -58,17 +61,8 @@ myApp
       // Set the current user for the whole application
       resolve: {
 
-        // Cookie service for authorization
-        auth: 'Auth',
-        // Inject in my new user object
-        user: function($rootScope, auth) {
-
-// Test cookies here
-            //auth.get();
-            auth.set();
-
-// I need a Model here
-
+        user: function($rootScope) {
+// I need a User Model
 // TO FIX - load from DB [with User model]
             var user = {name: 'Baroque Admin', role: ADMIN_USER};
 // TO FIX - load from DB [with User model]
