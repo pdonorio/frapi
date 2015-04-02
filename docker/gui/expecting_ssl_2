@@ -1,0 +1,25 @@
+#!/usr/bin/expect
+eval spawn openssl req -new -key server.key -out server.csr
+set prompt "Enter pass phrase for server.key:"
+interact -o -nobuffer -re $prompt return
+send "sslisasecreteweapon\r"
+interact -o -nobuffer -re $prompt return
+send "IT\r"
+interact -o -nobuffer -re $prompt return
+send "Rome\r"
+interact -o -nobuffer -re $prompt return
+send "RM\r"
+interact -o -nobuffer -re $prompt return
+send "Awesome Inc\r"
+interact -o -nobuffer -re $prompt return
+send "mydepartment\r"
+interact -o -nobuffer -re $prompt return
+#  ONLY IMPORTANT
+send "awesome.dev\r"
+interact -o -nobuffer -re $prompt return
+send "archive.webdmin@gmail.com\r"
+interact -o -nobuffer -re $prompt return
+send "\r"
+interact -o -nobuffer -re $prompt return
+send "\r"
+interact

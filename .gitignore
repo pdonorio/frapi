@@ -18,6 +18,8 @@ logs
 
 # Sublime stuff
 *sublime*
+# Mac
+.DS_S*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

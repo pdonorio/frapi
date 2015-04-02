@@ -226,7 +226,11 @@ DebugMode:
  ✔ An action that can be applied at each ui-router change? @done (15-04-01 07:19)
  ✔ UPDATE bower packages @done (15-04-01 15:07)
    ✔ ng-cookies test with angular 1.4 @done (15-04-01 15:12)
- ☐ Check login first time when getting inside the app
+ ☐ nginx https
+   ☐ working on configuration via docker
+ ☐ Cookie to save information about the fact i used login to get in
+   ☐ Check login first time when getting inside the app
+     ☐ ui router resolve
  ☐ Raw logout
 
   ☐ A real User model
@@ -238,6 +242,22 @@ DebugMode:
 
 ☐ Fix news
   ☐ Work in progress for now
+
+COOKIE SECURITY:
+ ☐ Secure: cookie will only be send over https
+   ☐ nginx https?
+   ☐ avoid man in the middle
+ ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
+   ☐ ??
+ ☐ Path: cookie will only be send on specified path e.g. /login
+   ☐ @try
+ ☐ I would also define an expiration date on the cookie
+   ☐ one day?
+ ☐ CORS?
+   ☐ Pre-flight OPTIONS requests
+   ☐ http://stackoverflow.com/a/19576540/2114395
+
+$http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
 
 ================================================
 
