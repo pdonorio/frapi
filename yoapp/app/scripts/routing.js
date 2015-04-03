@@ -29,10 +29,11 @@ myApp
             templateUrl: "login/login.html",
             controller: "LoginController",
         },
-      }, onEnter: function(Auth, $state) {
-        if (Auth.checkAuth())
-            $state.go("logged.main");
-      },
+      }
+    })
+    .state('dologout', {
+      url: "/logout",
+      views: { "main": { controller: "LogoutController", } },
     })
 
 
@@ -41,6 +42,11 @@ myApp
 // Once Logged
     //The parent of all logged views
     .state('logged', {
+
+      // Make this PARENT state abstract so it can never be
+      // loaded directly
+      abstract: true,
+
       url: "/app",
       views: {
         "main": {
@@ -50,8 +56,6 @@ myApp
             controller: 'MainController',
             //this controller scope will be inherited from every nested child view
         },
-        //reminder: this line below will not work as the 'contain' view is nested!
-        //"contain": { templateUrl: "views/main.html", },
       }, onEnter: function($rootScope, $state) {
         // Signal to remove background and add body pad for the topbar
         $rootScope.$emit('rootScope:emit', 'padon');
@@ -60,7 +64,6 @@ myApp
       },
       // Set the current user for the whole application
       resolve: {
-
         user: function($rootScope) {
 // I need a User Model
 // TO FIX - load from DB [with User model]
@@ -69,9 +72,8 @@ myApp
 
             console.log("Current user: ", user);
             $rootScope.user = user;
-            console.log("Check logged main");
             // Check role
-            console.log("Check role");
+            //console.log("Check role");
             $rootScope.adminer = (user.role == ADMIN_USER);
             return user;
         },
@@ -215,6 +217,9 @@ myApp
   $urlRouterProvider.otherwise(function ($injector, $location) {
     $injector.invoke(['$state', function ($state) {
       console.log("Unknown", $location);
+      // For a bug
+      //http://stackoverflow.com/a/25755152/2114395
+      var $state = $injector.get("$state");
       $state.go('notfound');
     }]);
     return true;

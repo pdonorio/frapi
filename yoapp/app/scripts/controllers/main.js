@@ -31,19 +31,29 @@ myApp
     $scope.range = _.range(1, 7);
 */
 
-    // AT ANY ROUTE CHANGE
-    //* https://github.com/angular-ui/ui-router/wiki#state-change-events
-    $rootScope.$on('$stateChangeStart',
-    function(event, toState, toParams, fromState, fromParams){
-        //console.log("Changing from", fromState, "to", toState);
-        console.log("TO CHECK IF LOGGED");
-
-        // Test cookies AUTH here
-        if (!Auth.checkAuth()) {
-            event.preventDefault();
+    //////////////////////////////////////
+    //////////////////////////////////////
+    // AUTHENTICATION
+    var authCheck = function () {
+        if (!Auth.checkAuth())
             $state.go('dologin');
-        }
+    }
+    // First check on entering main
+    authCheck();
+    // And at any route change
+    $rootScope.$on('$stateChangeSuccess',
+     function(event, toState, toParams, fromState, fromParams){
+        //console.log("Changing from", fromState, "to", toState);
+        if ( // Do not check inital state
+            toState.name == "dologin" ||
+            toState.name == "dologout" ||
+            toState.name == "welcome"
+            ) return;
+        console.log("State changed, but check authorization");
+        authCheck();
     })
+    //////////////////////////////////////
+    //////////////////////////////////////
 
     $scope.elements = {};
     //API give me access to HTML content inside database

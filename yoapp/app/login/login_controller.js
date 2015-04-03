@@ -2,6 +2,14 @@
 
 // List of controllers
 myApp
+//////////////////////////////////////////////////////////////
+.controller('LogoutController', function ($scope, Auth, $state)
+{
+    // LOGOUT
+    console.log("Requested logout");
+    Auth.set();
+    $state.go("welcome");
+})
 
 //////////////////////////////////////////////////////////////
 .controller('LoginController', function ($scope, Auth, $state, $stateParams, Account)
@@ -11,6 +19,13 @@ myApp
     $scope.welcome = false;
     $scope.user = null;
     //console.log("Pars", $stateParams);
+
+    // First check
+    console.log("Already logged?")
+    if (Auth.checkAuth()) {
+        //var $state = $injector.get("$state");
+        $state.go("logged.main");
+    }
 
     // DECIDE ROUTE
     if ($stateParams.status == 'register') {

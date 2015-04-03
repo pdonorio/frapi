@@ -15,7 +15,7 @@ myApp
 
     Authentication.set = function(token)
     {
-        console.log("Setting token", token);
+        //console.log("Setting token", token);
         if (!token)
             token = FAILED_TOKEN;
 

@@ -12,8 +12,10 @@ Cookies:
    ✔ save at login time @done (15-04-02 17:12)
      ✔ if cookie exists, force login @done (15-04-02 17:24)
    ✔ Check login everytime i switch route at least @done (15-04-02 17:25)
-   ☐ Raw logout
-     ☐ /logout route
+   ✔ Raw logout @done (15-04-03 16:49)
+     ✔ /logout route @done (15-04-03 16:49)
+     ✔ learning to use ui router in some better forms.... @done (15-04-03 16:49)
+       ✔ stateChangeSuccess @done (15-04-03 16:49)
 
   ☐ A real User model
     ☐ Cookie for remembering user? @also
@@ -94,6 +96,7 @@ http://flask-limiter.readthedocs.org/en/stable/
 
 SomeMore:
 
+ ☐ Email verification...
 
   ☐ create a view to show used field names?
     ☐ compute content inside rethinkdb stepcontent with that hash
