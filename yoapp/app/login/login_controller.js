@@ -63,14 +63,14 @@ myApp
         ldap.check().then(function(response){
             var token = null;
             if (response === true) {
-// TO FIX - save token in session
+// TO FIX - GET A REAL TOKEN!
                 token = 'qualcosa';
             } else {
               $scope.loginError = response;
               console.log("Failed login");
             }
             // Save what i get
-            Auth.set(token);
+            Auth.set(token, user.email);
             // Check if working
             if (Auth.checkAuth())
                 $state.go('logged.main');

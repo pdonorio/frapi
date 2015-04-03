@@ -49,6 +49,7 @@ var myApp = angular.module('archivi',
   .constant('OPERATOR_USER', 'op')
   .constant('GUEST_USER', 'guest')
   .constant('COOKIEVAR_AUTHTOKEN', 'mysecrettoken')
+  .constant('COOKIEVAR_USER', 'mysecretuser')
   .constant('FAILED_TOKEN', 'epicfailwithsecret')
   // Other
   .constant('apiTimeout', 15750) //remember: a refused connection waits no time

@@ -57,6 +57,7 @@ angular.module('AppConfig', [])
         config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
           + "/" + apiFileResource;
 
+// Force https only for sending informations, not files
         protocol = "https";
         config.apiBase = protocol + "://" + host + ":" + apiPort + apiBase;
 

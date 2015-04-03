@@ -16,42 +16,36 @@ Cookies:
      ✔ /logout route @done (15-04-03 16:49)
      ✔ learning to use ui router in some better forms.... @done (15-04-03 16:49)
        ✔ stateChangeSuccess @done (15-04-03 16:49)
-
+  ☐ Logout fontawesome
   ☐ A real User model
-    ☐ Cookie for remembering user? @also
-      ☐ get user from token inside cookie?
-    ☐ Send out users not logged
-      ☐ if no valid session checked on ui-router main onEnter
+    ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
+      ☐ load from db
     ☐ list of user drafts @cool
       ☐ by identifiers inside the api provider
-
-☐ Fix news
-  ☐ Work in progress for now
+  ☐ Fix news: Work in progress for now?
+  ☐ SSL certificate
 
 COOKIE SECURITY:
- ☐ Secure: cookie will only be send over https
-   ☐ nginx https?
-   ☐ avoid man in the middle
+ ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
+   ✔ nginx https? @done (15-04-03 16:51)
+   ✔ avoid man in the middle @done (15-04-03 16:51)
  ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
    ☐ ??
  ☐ Path: cookie will only be send on specified path e.g. /login
-   ☐ @try
+   ☐ does not work with angular 1.4 beta6?A
+     ☐ check updates
  ☐ I would also define an expiration date on the cookie
-   ☐ one day?
  ☐ CORS?
    ☐ Pre-flight OPTIONS requests
    ☐ http://stackoverflow.com/a/19576540/2114395
+ ☐ $http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
 
-$http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
+SECURITY QUESTION:
+  ☐ how to prevent if a user change the received code via debugger?
+    ☐ uglify?
+    ☐ also bloatware removing?
 
-
-
-
-================================================
-================================================
-
-
-
+--- ✄ -----------------------
 
 Real authentication on API side with Token (OAuth2):
     ☐ Should i send password via https to api?
@@ -152,6 +146,10 @@ Bugs:
       ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
     ☐ RENAME @inprogress
       ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
+      ☐ ALSO REMEBER THAT I SHOULD WRITE A MODULE FOR EACH PART....
+        ☐ e.g. Authentication, Database, Feedback, and so on...
+          ☐ but only the main one will have the routing part
+        ☐ write a scaffold for a generic module, with service, controllers and views
     ☐ An api resource only to check if api and db are available?
       ☐ Testing inside the step saving @important
     ☐ Move edit switch inside a factory or service @thatistherightway

@@ -64,9 +64,13 @@ myApp
       },
       // Set the current user for the whole application
       resolve: {
-        user: function($rootScope) {
-// I need a User Model
+
+        auth: 'Auth',
+        user: function($rootScope, auth) {
+
 // TO FIX - load from DB [with User model]
+            var email = auth.getUser();
+            // I need a User Model
             var user = {name: 'Baroque Admin', role: ADMIN_USER};
 // TO FIX - load from DB [with User model]
 
