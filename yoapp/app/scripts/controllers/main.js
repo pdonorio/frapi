@@ -35,8 +35,9 @@ myApp
     //////////////////////////////////////
     // AUTHENTICATION
     var authCheck = function () {
-        if (!Auth.checkAuth())
-            $state.go('dologin');
+        console.log("Main, auth check");
+        if (!$state.is('welcome') && !Auth.checkAuth())
+            $state.go('dologin', {status: 'user'});
     }
     // First check on entering main
     authCheck();
