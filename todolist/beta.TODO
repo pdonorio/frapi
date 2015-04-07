@@ -17,7 +17,7 @@ Cookies:
      ✔ learning to use ui router in some better forms.... @done (15-04-03 16:49)
        ✔ stateChangeSuccess @done (15-04-03 16:49)
   ✔ Logout fontawesome @done (15-04-07 09:47)
-    ☐ Others icons
+    ✔ Others icons @done (15-04-07 09:52)
   ☐ A real User model
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
       ☐ load from db
