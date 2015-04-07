@@ -5,7 +5,7 @@
 
 myApp
 .constant('Crypto', window.CryptoJS)
-.factory('Account', function (API, Crypto) {
+.factory('Account', function (API, Crypto, AppConfig) {
 
   var resource = 'accounts';
 
@@ -87,14 +87,31 @@ myApp
   ******************************** */
   // Constructor, with class name
   function Account(user) {
+    if (!user)
+        console.log("Loading");
     this.user = user;
+    return "TEST";
   }
   // Public methods, assigned to prototype
   Account.prototype.set = function () {
     return saveUser(this.user);
   }
   Account.prototype.get = function () {
+
+    var email = Auth.getUser();
+    this.user = {email: email};
+// TO FIX - load from DB [with User model]
     loadUser(this.user);
+
+    console.log("TEST ME");
+
+    var user = {
+        name: 'Baroque Admin',
+        role: AppConfig.USER_ROLES.ADMIN_USER
+    };
+    console.log("Current user: ", user);
+    return user;
+
   }
   Account.prototype.check = function () {
     console.log("Verify");

@@ -10,6 +10,8 @@
 myApp
 .controller('MainController', function ($scope,
     $rootScope, $timeout, $interval, $location, $state,
+    // account verified
+    user,
     //tester,
     projectName, API, Auth, mixed, warningInitTime, someInitTime, apiTimeout)
 {
@@ -41,6 +43,15 @@ myApp
     }
     // First check on entering main
     authCheck();
+
+
+console.log("MAIN USER", user);
+/* TO FIX
+    $rootScope.user = user;
+    //console.log("Check role");
+    // use conf.js
+    $rootScope.adminer = (user.role == ADMIN_USER);
+*/
 
     // And at any route change
     $rootScope.$on('$stateChangeSuccess',

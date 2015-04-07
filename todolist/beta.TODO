@@ -7,7 +7,7 @@ TO DISCUSS:
 
 --- ✄ -----------------------
 
-Cookies:
+Cookies take 1:
  ✔ Cookie to save information about the fact i used login to get in @done (15-04-02 17:12)
    ✔ save at login time @done (15-04-02 17:12)
      ✔ if cookie exists, force login @done (15-04-02 17:24)
@@ -18,20 +18,34 @@ Cookies:
        ✔ stateChangeSuccess @done (15-04-03 16:49)
   ✔ Logout fontawesome @done (15-04-07 09:47)
     ✔ Others icons @done (15-04-07 09:52)
-  ☐ A real User model
-    ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
-      ✔ bug fixes @done (15-04-07 15:10)
-      ☐ load from db
-    ☐ list of user drafts @cool
-      ☐ by identifiers inside the api provider
-  ☐ Fix news: Work in progress for now?
   ✔ SSL certificate @done (15-04-07 10:53)
   ✔ free domain check @done (15-04-07 12:26)
     ✔ startssl check on pile.wf domain @done (15-04-07 12:26)
     ✔ @itworks!! @done (15-04-07 14:53)
       ✔ certificates as volumes inside docker compose @done (15-04-07 14:53)
       ✔ make them work on flask too @done (15-04-07 14:53)
-        ☐ use spectaclebaroque domain
+
+A real User model:
+    ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
+      ✔ bug fixes @done (15-04-07 15:10)
+      ☐ How to resolve the object via ui router?? @HOUSTON
+      ☐ load from db
+    ☐ list of user drafts
+      ☐ by identifiers inside the api provider
+  ☐ STARTSSL https://konklone.com/post/switch-to-https-now-for-free
+    ☐ use spectaclebaroque domain
+
+ ☐ Fix news: Work in progress for now?
+ ☐ Feedback button
+   ☐ inside profile menu
+   ☐ Feedback saved inside rdb api resource
+     ☐ on change of table, python sends me an email
+ ☐ Some clean pattern image repaeat as background
+  ☐ Dark pattern background for ADMIN
+ ☐ Date within a range of years
+   ☐ only month or only year
+
+--- ✄ -----------------------
 
 COOKIE SECURITY:
  ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
@@ -47,13 +61,6 @@ COOKIE SECURITY:
    ☐ Pre-flight OPTIONS requests
    ☐ http://stackoverflow.com/a/19576540/2114395
  ☐ $http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
-
-SECURITY QUESTION:
-  ☐ how to prevent if a user change the received code via debugger?
-    ☐ uglify?
-    ☐ also bloatware removing?
-
---- ✄ -----------------------
 
 Real authentication on API side with Token (OAuth2):
     ☐ Should i send password via https to api?
@@ -86,21 +93,14 @@ Real authentication on API side with Token (OAuth2):
  ☐ Oauth2 provider
    ☐ http://lepture.com/en/2013/create-oauth-server
 
- ☐ Feedback button
-   ☐ inside profile menu
-   ☐ Feedback saved inside rdb api resource
-     ☐ on change of table, python sends me an email
- ☐ Some clean pattern image repaeat as background
-  ☐ Dark pattern background for ADMIN
- ☐ Date within a range of years
-   ☐ only month or only year
-
 LIMIT PUBLIC API:
 http://flask-limiter.readthedocs.org/en/stable/
 
 SomeMore:
 
  ☐ Email verification...
+
+ ☐ Minification back with grunt
 
   ☐ create a view to show used field names?
     ☐ compute content inside rethinkdb stepcontent with that hash

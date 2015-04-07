@@ -16,6 +16,13 @@ angular.module('AppConfig', [])
   .constant('apiBase', '/api/v1.0')
   .constant('apiFilePort', '5346')
   .constant('apiFileResource', 'uploads')
+  //USERS
+  .constant('USER_ROLES',{
+    ADMIN_USER: 99,
+    OPERATOR_USER: 11,
+    GUEST_USER: 2,
+  })
+
   // Minimum timeout to get objects working inside directive....
   // I DON'T LIKE THIS
   .constant('directiveDataTimeout', 150)

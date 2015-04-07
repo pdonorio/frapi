@@ -46,9 +46,6 @@ var myApp = angular.module('archivi',
   //.constant('devHost', 'awesome.dev')
   .constant('devHost', 'dev.pile.wf')
   // USERS
-  .constant('ADMIN_USER', 'admin')
-  .constant('OPERATOR_USER', 'op')
-  .constant('GUEST_USER', 'guest')
   .constant('COOKIEVAR_AUTHTOKEN', 'mysecrettoken')
   .constant('COOKIEVAR_USER', 'mysecretuser')
   .constant('FAILED_TOKEN', 'epicfailwithsecret')
