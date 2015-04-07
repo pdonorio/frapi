@@ -9,6 +9,14 @@ myApp
 
   var resource = 'accounts';
 
+  function loadUser(user) {
+    console.log("user", user);
+
+// API CALL
+// API CALL
+// API CALL
+  }
+
   // Load data from API
   function verifyUser(req) {
 
@@ -85,10 +93,12 @@ myApp
   Account.prototype.set = function () {
     return saveUser(this.user);
   }
+  Account.prototype.get = function () {
+    loadUser(this.user);
+  }
   Account.prototype.check = function () {
     console.log("Verify");
     return verifyUser(this.user);
-
   }
 
   /*********************************

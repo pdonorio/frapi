@@ -66,10 +66,16 @@ myApp
       resolve: {
 
         auth: 'Auth',
-        user: function($rootScope, auth) {
+        userModel: 'Account',
+        user: function($rootScope, auth, userModel) {
+
+            var email = auth.getUser();
+            var model = userModel.build({email: email});
 
 // TO FIX - load from DB [with User model]
-            var email = auth.getUser();
+            var tmp = model.get();
+
+            //console.log(model);
             // I need a User Model
             var user = {name: 'Baroque Admin', role: ADMIN_USER};
 // TO FIX - load from DB [with User model]
