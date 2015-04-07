@@ -43,7 +43,8 @@ var myApp = angular.module('archivi',
 
   // CONSTANTS
   .constant('projectName', 'SpectaleBaroque')
-  .constant('devHost', 'awesome.dev')
+  //.constant('devHost', 'awesome.dev')
+  .constant('devHost', 'dev.pile.wf')
   // USERS
   .constant('ADMIN_USER', 'admin')
   .constant('OPERATOR_USER', 'op')

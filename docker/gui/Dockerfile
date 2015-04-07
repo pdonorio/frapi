@@ -34,16 +34,19 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
 #################################################
 ###### CERTIFICATES
 
-### Configure your own SSL
+### take 1 - DEBUG - Configure your own SSL
 # ADD *ssl* /tmp/
 # WORKDIR /tmp
 # RUN /bin/bash /tmp/ssl.sh
 # WORKDIR /var/www
 
-### Configure from certificate
-ADD privateUnKey.pem /etc/nginx/ssl/server.key
-RUN chmod 400 /etc/nginx/ssl/server.key
-ADD publicCert.pem /etc/nginx/ssl/server.crt
+### take 2 - Configure from certificate
+#ADD privateUnKey.pem /etc/nginx/ssl/server.key
+#RUN chmod 400 /etc/nginx/ssl/server.key
+#ADD publicCert.pem /etc/nginx/ssl/server.crt
+
+### take 3 - PRODUCTION - Configure valid certificates from volumes
+# see pygui.yml
 #################################################
 #################################################
 

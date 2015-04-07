@@ -16,6 +16,8 @@ yoapp/app/images/yeoman*
 *.pem
 *.crt
 *.key
+key
+*.cert
 
 # Data dir
 data/*

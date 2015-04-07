@@ -35,6 +35,9 @@ api:
     #command: sleep 876129876
     volumes:
         - ./app:/opt/app
+        # Certificates
+        - ./certificates/key:/myssl/certs/server.key
+        - ./certificates/domain.cert:/myssl/certs/server.crt
     working_dir: /opt/app
     volumes_from:
         - fs
@@ -69,6 +72,9 @@ web:
     volumes:
         - ./yoapp/app:/var/www/html
         - ./docker/gui/sites.conf:/etc/nginx/sites-enabled/default
+        # Certificates
+        - ./certificates/key:/etc/nginx/ssl/server.key
+        - ./certificates/domain.cert:/etc/nginx/ssl/server.crt
 # TO FIX with grunt/gulp rebuild
         #- ./yoapp/dist:/var/www/html/static
     volumes_from:

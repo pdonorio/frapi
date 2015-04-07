@@ -33,8 +33,8 @@ if __name__ == "__main__":
     """
     app.run(host="0.0.0.0", debug=debug, \
         ssl_context=( \
-            '/opt/app/certs/server.crt', \
-            '/opt/app/certs/server.key' \
+            '/myssl/certs/server.crt', \
+            '/myssl/certs/server.key' \
             ))
     #print "Debug: ", debug
 

@@ -22,7 +22,7 @@ myApp
         "styles/topbar.css",
         "styles/blur.css",
     ];
-    var cssFont = 'http://fonts.googleapis.com/css?family=Mr+De+Haviland';
+    var cssFont = 'https://fonts.googleapis.com/css?family=Mr+De+Haviland';
 
     // Google analytics only if on production site
     $rootScope.analytics = false;

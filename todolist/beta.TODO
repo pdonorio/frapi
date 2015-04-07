@@ -27,7 +27,10 @@ Cookies:
   ✔ SSL certificate @done (15-04-07 10:53)
   ✔ free domain check @done (15-04-07 12:26)
     ✔ startssl check on pile.wf domain @done (15-04-07 12:26)
-    ☐ @itworks!!
+    ✔ @itworks!! @done (15-04-07 14:53)
+      ✔ certificates as volumes inside docker compose @done (15-04-07 14:53)
+      ✔ make them work on flask too @done (15-04-07 14:53)
+        ☐ use spectaclebaroque domain
 
 COOKIE SECURITY:
  ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
