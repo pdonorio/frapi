@@ -2,10 +2,8 @@
 # https://github.com/dockerfile/nginx
 
 #http://blog.tryolabs.com/2015/03/26/configurable-docker-containers-for-multiple-environments/
-
 # Pull base image.
 FROM ubuntu:14.04
-
 ENV TERM xterm
 
 # Install Nginx.
@@ -32,15 +30,14 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
     && rm /tmp/conf
 # also Increase max upload size
 
-# Define working directory.
-#WORKDIR /etc/nginx
-#RUN ln -s /opt/app /var/www/html/app
-
-# Configure SSL
-ADD *ssl* /tmp/
-WORKDIR /tmp
-RUN /bin/bash /tmp/ssl.sh
-WORKDIR /var/www
+### Configure your own SSL
+# ADD *ssl* /tmp/
+# WORKDIR /tmp
+# RUN /bin/bash /tmp/ssl.sh
+# WORKDIR /var/www
+## Configure from certificate
+ADD privateUnKey.pem /etc/nginx/ssl/server.key
+ADD publicCert.pem /etc/nginx/ssl/server.crt
 
 # Expose ports
 # ssl port

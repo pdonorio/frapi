@@ -12,6 +12,9 @@ yoapp/app/robots*
 #yoapp/app/images
 yoapp/app/images/yeoman*
 
+# Certificates
+*.pem
+
 # Data dir
 data/*
 tmp
