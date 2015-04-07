@@ -4,10 +4,13 @@
 #http://blog.tryolabs.com/2015/03/26/configurable-docker-containers-for-multiple-environments/
 
 # Pull base image.
-FROM dockerfile/ubuntu
+FROM ubuntu:14.04
+
+ENV TERM xterm
 
 # Install Nginx.
 RUN apt-get update && \
+  apt-get install -y python-software-properties software-properties-common && \
   add-apt-repository -y ppa:nginx/stable && \
   apt-get update && \
   apt-get install -y nginx expect && \
