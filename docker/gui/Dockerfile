@@ -30,14 +30,22 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
     && rm /tmp/conf
 # also Increase max upload size
 
+#################################################
+#################################################
+###### CERTIFICATES
+
 ### Configure your own SSL
 # ADD *ssl* /tmp/
 # WORKDIR /tmp
 # RUN /bin/bash /tmp/ssl.sh
 # WORKDIR /var/www
-## Configure from certificate
+
+### Configure from certificate
 ADD privateUnKey.pem /etc/nginx/ssl/server.key
+RUN chmod 400 /etc/nginx/ssl/server.key
 ADD publicCert.pem /etc/nginx/ssl/server.crt
+#################################################
+#################################################
 
 # Expose ports
 # ssl port

@@ -23,3 +23,8 @@ chmod 400 server.key*
 # openssl pkcs12 -in myp12.pfx -clcerts -nokeys -out publicCert.pem
 # # also http://stackoverflow.com/a/18102479/2114395
 #openssl rsa -in privateKey.pem -out privateUnKey.pem
+
+## Or this guide about startssl
+#https://konklone.com/post/switch-to-https-now-for-free
+## if error 'bad end line'
+#http://www.ur-ban.com/blog/2010/12/09/nginx-ssl-pem_read_biobad-end-line/

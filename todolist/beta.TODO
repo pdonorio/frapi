@@ -24,7 +24,10 @@ Cookies:
     ☐ list of user drafts @cool
       ☐ by identifiers inside the api provider
   ☐ Fix news: Work in progress for now?
-  ☐ SSL certificate
+  ✔ SSL certificate @done (15-04-07 10:53)
+  ✔ free domain check @done (15-04-07 12:26)
+    ✔ startssl check on pile.wf domain @done (15-04-07 12:26)
+    ☐ @itworks!!
 
 COOKIE SECURITY:
  ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
