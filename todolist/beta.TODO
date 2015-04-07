@@ -16,7 +16,8 @@ Cookies:
      ✔ /logout route @done (15-04-03 16:49)
      ✔ learning to use ui router in some better forms.... @done (15-04-03 16:49)
        ✔ stateChangeSuccess @done (15-04-03 16:49)
-  ☐ Logout fontawesome
+  ✔ Logout fontawesome @done (15-04-07 09:47)
+    ☐ Others icons
   ☐ A real User model
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
       ☐ load from db
@@ -75,6 +76,8 @@ Real authentication on API side with Token (OAuth2):
        ☐ Same origin policy @wow
          ☐ http://farazdagi.com/talks/2014-06-dpc/#26
 
+ ☐ Oauth2 provider
+   ☐ http://lepture.com/en/2013/create-oauth-server
 
  ☐ Feedback button
    ☐ inside profile menu
