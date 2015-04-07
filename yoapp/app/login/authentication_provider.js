@@ -39,12 +39,17 @@ myApp
 
         // Save
         $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
+        console.log("setting username", username);
         $cookies.put(COOKIEVAR_USER, username, cOptions);
     }
 
     // To see if correctly logged
     Authentication.checkAuth = function() {
-        return privateCheckToken();
+        var check1 = privateCheckToken();
+        //console.log("check 1", check1);
+        var check2 = privateGetUser();
+        //console.log("check 2", check2);
+        return check1 && (check2 !== null);
     }
 
     // Username for query

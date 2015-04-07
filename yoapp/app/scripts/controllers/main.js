@@ -41,6 +41,7 @@ myApp
     }
     // First check on entering main
     authCheck();
+
     // And at any route change
     $rootScope.$on('$stateChangeSuccess',
      function(event, toState, toParams, fromState, fromParams){
