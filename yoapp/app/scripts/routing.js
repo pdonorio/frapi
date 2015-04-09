@@ -68,26 +68,16 @@ myApp
         user: function(Account, $state) {
 
             console.log("Resolve user");
-            return {empty: null};
-
-/*
-// TO FIX - user only Account
-
-            var id = myauth.getUser();
-            // First check on entering main
-            console.log("Calling myauth check");
+            var model = new Account();
 
             // AUTHENTICATION
-            // What i check?
-            // 1. current state (inside app)
-            // 2. check authorized
-            // 3. check if user name is correctly set inside cookie
-            if (!$state.is('welcome') && (!myauth.checkAuth() || !id) )
+            // First check on entering main
+            if (!$state.is('welcome') && !model.check()) {
+                console.log("Go away");
                 $state.go('dologin', {status: 'user'});
+            }
 
-            var model = new Account({email: id});
             return model.get();
-*/
         },
       },
     })

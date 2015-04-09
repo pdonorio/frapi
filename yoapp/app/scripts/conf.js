@@ -16,6 +16,7 @@ angular.module('AppConfig', [])
   .constant('apiBase', '/api/v1.0')
   .constant('apiFilePort', '5346')
   .constant('apiFileResource', 'uploads')
+
   //USERS
   .constant('USER_ROLES',{
     ADMIN_USER: 99,
@@ -52,7 +53,7 @@ angular.module('AppConfig', [])
 
     //save in a variable the path to API
     return {
-      $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus)
+      $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus, USER_ROLES)
       {
 
         //use location https://docs.angularjs.org/api/ng/service/$location
@@ -70,6 +71,9 @@ angular.module('AppConfig', [])
 
         //notification messages status
         config.messageStatus = messageStatus;
+
+        // Roles
+        config.userRoles = USER_ROLES;
 
         return config;
       }

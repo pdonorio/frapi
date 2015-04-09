@@ -26,14 +26,8 @@ myApp
     };
     $scope.gostate = $state.go;
 
-/*
-// TO FIX - user user object
     console.log("MAIN: Using User", user);
     $rootScope.user = user;
-    //console.log("Check role");
-    // use conf.js
-    $rootScope.adminer = (user.role == ADMIN_USER);
-*/
 
     // And at any route change
     $rootScope.$on('$stateChangeSuccess',

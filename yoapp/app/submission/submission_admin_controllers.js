@@ -8,7 +8,7 @@ myApp
     NotificationData, AppConfig, StepContent, StepTemplate, StepList )
 {
     // Stop unwanted user
-    if (!$scope.adminer)
+    if (!$scope.user.admin)
         return false;
 
     // Objects / Models INIT
@@ -132,7 +132,7 @@ myApp
 .controller('SubmissionAdminStepController',
     function ($scope, $modal, $log, $filter, $stateParams, StepTemplate)
 {
-    if (!$scope.adminer)
+    if (!$scope.user.admin)
         return false;
 
     // modal init

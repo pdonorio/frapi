@@ -11,7 +11,7 @@
       <!-- Edit MODE button / ONLY FOR ADMIN! -->
       <ul class="nav navbar-nav navbar-left"
         ng-hide="!edit.available"
-        ng-show="adminer"
+        ng-show="user.admin"
         >
         <li>
           <div style='padding-top:10px; padding-left:25px;'>
@@ -47,22 +47,22 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
 
-              <li ng-if='adminer' role="presentation" class="dropdown-header">
-                Role: <b>adminer</b>
+              <li ng-if='user.admin' role="presentation" class="dropdown-header">
+                Role: <b>Admin!</b>
               </li>
-              <li ng-if='adminer'>
+              <li ng-if='user.admin'>
                 <a href='#' ng-click="go('app/configure/admin/step/0')">
                     <i class="fa fa-wrench"></i>
                     Submission
                     <span class="label label-success">done</span>
                 </a>
               </li>
-              <li ng-if='adminer'>
+              <li ng-if='user.admin'>
                 <a href="#"> <i class="fa fa-users"></i> Users management
                 <span class="label label-info">todo</span>
                 </a>
               </li>
-              <li ng-if='adminer' class="divider"></li>
+              <li ng-if='user.admin' class="divider"></li>
 
               <li role="presentation" class="dropdown-header"> Role: <b>user</b> </li>
               <li><a href="#"> <i class="fa fa-book"></i> My documents

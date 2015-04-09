@@ -20,14 +20,11 @@ myApp
   ////////////////////////////////////////////
 
   // Authentication service is very private
-  var privateGetToken = function() {
-      return $cookies.get(COOKIEVAR_AUTHTOKEN);
-  }
   var privateGetUser = function() {
       return $cookies.get(COOKIEVAR_USER);
   }
   var privateCheckToken = function() {
-      return privateGetToken() !== FAILED_TOKEN;
+      return $cookies.get(COOKIEVAR_AUTHTOKEN) !== FAILED_TOKEN;
   }
   // Handle cookie and authentication
   var Authentication = {};
@@ -143,37 +140,58 @@ myApp
   ////////////////////////////////////////////
   ////////////////////////////////////////////
 
+  var isAdmin = function (role) {
+    return role == AppConfig.userRoles.ADMIN_USER;
+  }
+
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+
   // Constructor, with class name
-  function Account(user) {
-    this.user = user;
+  function Account() {
+    this.account = Authentication.getUser();
+    console.log("Creating Account", this.account);
   }
 
-  Account.prototype.set = function () {
-    return saveUser(this.user);
+  ////////////////////////////////////////
+  Account.prototype.set = function (user) {
+
+// TO FIX - set cookie via Authorization
+
+    return saveUser(user);
   }
 
+  ////////////////////////////////////////
   Account.prototype.get = function () {
 
 // TO FIX - load from DB [with User model]
-    console.log("TEST ME");
-    return this.user;
-// TO FIX - load from DB [with User model]
-
-    loadUser(this.user);
-
+    this.role = 99;
+    var admin = isAdmin(this.role);
+    //loadUser(this.account);
     var user = {
         name: 'Baroque Admin',
-        role: AppConfig.USER_ROLES.ADMIN_USER
+        admin: admin,
     };
-    console.log("Current user: ", user);
+
     return user;
 
   }
 
+  ////////////////////////////////////////
   Account.prototype.check = function () {
-    console.log("Verify");
-    return verifyUser(this.user);
+    // Once logged
+    console.log("Verify auth");
+    if (Authentication.checkAuth())
+        return true;
+    // When logging
+    console.log("Verify user");
+    if (verifyUser(this.user))
+        return true;
+    // When not authorized
+    return false;
   }
 
+
+  ////////////////////////////////////////
   return Account;
 });
