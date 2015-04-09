@@ -57,7 +57,7 @@ myApp
             controller: 'MainController',
             //this controller scope will be inherited from every nested child view
         },
-      }, onEnter: function($rootScope, $state, Auth) {
+      }, onEnter: function($rootScope, $state) {
         // Signal to remove background and add body pad for the topbar
         $rootScope.$emit('rootScope:emit', 'padon');
       }, onExit: function($rootScope){
@@ -65,8 +65,13 @@ myApp
       },
       // Set the current user for the whole application
       resolve: {
-        myauth: 'Auth',
-        user: function(myauth, Account, $state) {
+        user: function(Account, $state) {
+
+            console.log("Resolve user");
+            return {empty: null};
+
+/*
+// TO FIX - user only Account
 
             var id = myauth.getUser();
             // First check on entering main
@@ -82,6 +87,7 @@ myApp
 
             var model = new Account({email: id});
             return model.get();
+*/
         },
       },
     })

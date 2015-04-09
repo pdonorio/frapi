@@ -3,16 +3,20 @@
 // List of controllers
 myApp
 //////////////////////////////////////////////////////////////
-.controller('LogoutController', function ($scope, Auth, $state)
+.controller('LogoutController', function ($scope, $state)
 {
     // LOGOUT
     console.log("Requested logout");
+
+// TO FIX - use User? or inside Resolve?
+/*
     Auth.set();
     $state.go("welcome");
+*/
 })
 
 //////////////////////////////////////////////////////////////
-.controller('LoginController', function ($scope, Auth, $state, $stateParams, Account)
+.controller('LoginController', function ($scope, $state, $stateParams, Account)
 {
     $scope.gostate = $state.go;
     $scope.registered = true;
@@ -22,10 +26,14 @@ myApp
 
     // First check
     console.log("Already logged?")
+
+// TO FIX - user model
+/*
     if (Auth.checkAuth()) {
         //var $state = $injector.get("$state");
         $state.go("logged.main");
     }
+*/
 
     // DECIDE ROUTE
     if ($stateParams.status == 'register') {
@@ -69,11 +77,15 @@ myApp
               $scope.loginError = response;
               console.log("Failed login");
             }
+
+// TO FIX - set with user model
+/*
             // Save what i get
             Auth.set(token, user.email);
             // Check if working
             if (Auth.checkAuth())
                 $state.go('logged.main');
+*/
         });
     }
 

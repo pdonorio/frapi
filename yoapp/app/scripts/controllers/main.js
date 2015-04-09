@@ -10,15 +10,15 @@
 myApp
 .controller('MainController', function ($scope,
     $rootScope, $timeout, $interval, $location, $state,
-    // account verified
-    user, Auth,
-    //tester,
+    // account stuff (and verification)
+    user,
+    // what else?
     projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
 
+    // Init time
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
-
     // Functions to simplify href on buttons via Angular
     $scope.go = function ( path ) {
       $location.path( path );
@@ -27,16 +27,8 @@ myApp
     $scope.gostate = $state.go;
 
 /*
-    //////////////////////////////////////
-    // Lo.dash | underscore
-    $scope._ = _;
-    // Very easy to use: a range for my editable directive
-    $scope.range = _.range(1, 7);
-*/
-
-// TO FIX -
-    console.log("User 2", user);
-/* TO FIX
+// TO FIX - user user object
+    console.log("MAIN: Using User", user);
     $rootScope.user = user;
     //console.log("Check role");
     // use conf.js
@@ -53,9 +45,12 @@ myApp
             toState.name == "welcome"
             ) return;
 
+/*
+// TO FIX - check via user object
         console.log("State changed, but check authorization");
         if (!$state.is('welcome') && !Auth.checkAuth())
             $state.go('dologin', {status: 'user'});
+*/
     })
     //////////////////////////////////////
     //////////////////////////////////////

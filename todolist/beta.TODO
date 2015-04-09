@@ -29,21 +29,25 @@ A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
       ✔ bug fixes @done (15-04-07 15:10)
       ✔ How to resolve the object via ui router?? @HOUSTON @done (15-04-09 18:36)
+    ☐ Infinite loop of user logged problem
       ☐ load from db
     ☐ list of user drafts
       ☐ by identifiers inside the api provider
-  ☐ STARTSSL https://konklone.com/post/switch-to-https-now-for-free
-    ☐ use spectaclebaroque domain
+  ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
+    ☐ use spectaclebaroque domain @marcohelpG
 
- ☐ Fix news: Work in progress for now?
- ☐ Feedback button
-   ☐ inside profile menu
-   ☐ Feedback saved inside rdb api resource
-     ☐ on change of table, python sends me an email
  ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
  ☐ Date within a range of years
    ☐ only month or only year
+
+STATUS:
+  ☐ New button topbar
+  ☐ List of things i am doing and status
+    ☐ Conversations like feedback
+      ☐ Feedback saved inside rdb api resource
+      ☐ on change of table, python sends me an email
+  ☐ Fix news: Work in progress for now?
 
 --- ✄ -----------------------
 
@@ -274,45 +278,11 @@ Dev Release:
     ☐ http://blog.scalyr.com/2013/10/angularjs-1200ms-to-35ms/
 
 --- ✄ -----------------------
-Mar:
+
+In the future:
  ☐ https://leanpub.com/web-component-development-with-angularjs/read
  ☐ Advanced search
  ☐ Profiles
  ☐ Testing
-
- ☐ Swarm test?
-   ☐ https://github.com/docker/swarm/
-
  ☐ CSS on demand!
    ☐ https://github.com/door3/angular-css
-
- ☐ Go mobile
-   ☐ http://ccoenraets.github.io/ionic-tutorial/install-ionic.html
-
---- ✄ -----------------------
-
-Timer TIMEOUT how to:
-
-// When the timeout is defined, it returns a promise object.
-var timer = $timeout( function() {
-    if ($scope.myform)
-        $scope.myform.$show();
-}, directiveTimeout);
-
-// Let's bind to the resolve/reject handlers of
-// the timer promise so that we can make sure our
-// cancel approach is actually working.
-timer.then( function() {
-    console.log( "Timer resolved!", Date.now() );
-}, function() {
-    console.log( "Timer rejected!", Date.now() );
-});
-
-// When the DOM element is removed from the page,
-// AngularJS will trigger the $destroy event on
-// the scope. This gives us a chance to cancel any
-// pending timer that we may have.
-$scope.$on( "$destroy", function( event ) {
-    console.log("Destroy");
-    $timeout.cancel( timer );
-});

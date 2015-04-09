@@ -2,13 +2,71 @@
 /*
 * accounting
 */
-
 myApp
+
+// For sha256 hashing
 .constant('Crypto', window.CryptoJS)
-.factory('Account', function ($q, API, Crypto, AppConfig) {
+
+// Real service
+.factory('Account', function (
+    // Secret/hidden authorizatino service
+    $cookies, COOKIEVAR_AUTHTOKEN, COOKIEVAR_USER, FAILED_TOKEN,
+    // Normal part
+    API, Crypto, AppConfig
+    )
+{
+
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+
+  // Authentication service is very private
+  var privateGetToken = function() {
+      return $cookies.get(COOKIEVAR_AUTHTOKEN);
+  }
+  var privateGetUser = function() {
+      return $cookies.get(COOKIEVAR_USER);
+  }
+  var privateCheckToken = function() {
+      return privateGetToken() !== FAILED_TOKEN;
+  }
+  // Handle cookie and authentication
+  var Authentication = {};
+  // Save cookie data at login time
+  Authentication.set = function(token, username)
+  {
+      // If logout, token is null or undefined
+      if (!token)
+          token = FAILED_TOKEN;
+// TO FIX - verify expiration
+      // One day expiration
+      var now = new Date(),
+          exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      var cOptions = {
+          secure: true, expires: exp,
+          //domain: 'http://test.goo.devs', //path: '/login',
+      };
+      // Save
+      $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
+      console.log("setting username", username);
+      $cookies.put(COOKIEVAR_USER, username, cOptions);
+  }
+  // To see if correctly logged
+  Authentication.checkAuth = function() {
+      var check1 = privateCheckToken();
+      //console.log("check 1", check1);
+      var check2 = privateGetUser();
+      //console.log("check 2", check2);
+      return check1 && (check2 !== null);
+  }
+  // Username for query
+  Authentication.getUser = function() {
+      return privateGetUser();
+  }
+
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
 
   var resource = 'accounts';
-
   function loadUser(user) {
     console.log("user", user);
 
@@ -82,19 +140,18 @@ myApp
     return Crypto.SHA256(mystring).toString();
   }
 
-  /*********************************
-  ** CLASS *
-  ******************************** */
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+
   // Constructor, with class name
   function Account(user) {
-    if (!user)
-        console.log("Loading");
     this.user = user;
   }
-  // Public methods, assigned to prototype
+
   Account.prototype.set = function () {
     return saveUser(this.user);
   }
+
   Account.prototype.get = function () {
 
 // TO FIX - load from DB [with User model]
@@ -112,11 +169,11 @@ myApp
     return user;
 
   }
+
   Account.prototype.check = function () {
     console.log("Verify");
     return verifyUser(this.user);
   }
 
   return Account;
-
 });
