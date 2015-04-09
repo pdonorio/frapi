@@ -11,10 +11,11 @@ myApp
 .controller('MainController', function ($scope,
     $rootScope, $timeout, $interval, $location, $state,
     // account verified
-    user,
+    user, Auth,
     //tester,
-    projectName, API, Auth, mixed, warningInitTime, someInitTime, apiTimeout)
+    projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
 
@@ -33,19 +34,8 @@ myApp
     $scope.range = _.range(1, 7);
 */
 
-    //////////////////////////////////////
-    //////////////////////////////////////
-    // AUTHENTICATION
-    var authCheck = function () {
-        console.log("Main, auth check");
-        if (!$state.is('welcome') && !Auth.checkAuth())
-            $state.go('dologin', {status: 'user'});
-    }
-    // First check on entering main
-    authCheck();
-
-
-console.log("MAIN USER", user);
+// TO FIX -
+    console.log("User 2", user);
 /* TO FIX
     $rootScope.user = user;
     //console.log("Check role");
@@ -62,8 +52,10 @@ console.log("MAIN USER", user);
             toState.name == "dologout" ||
             toState.name == "welcome"
             ) return;
+
         console.log("State changed, but check authorization");
-        authCheck();
+        if (!$state.is('welcome') && !Auth.checkAuth())
+            $state.go('dologin', {status: 'user'});
     })
     //////////////////////////////////////
     //////////////////////////////////////

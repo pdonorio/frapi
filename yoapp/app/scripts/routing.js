@@ -14,6 +14,7 @@ myApp
     // Static welcome page
     .state('welcome', {
       url: "/static",
+      resolve: { user: function() { return undefined } },
       views: {
         "main": {
             templateUrl: "login/welcome.html",
@@ -56,7 +57,7 @@ myApp
             controller: 'MainController',
             //this controller scope will be inherited from every nested child view
         },
-      }, onEnter: function($rootScope, $state) {
+      }, onEnter: function($rootScope, $state, Auth) {
         // Signal to remove background and add body pad for the topbar
         $rootScope.$emit('rootScope:emit', 'padon');
       }, onExit: function($rootScope){
@@ -64,7 +65,24 @@ myApp
       },
       // Set the current user for the whole application
       resolve: {
-        user: 'Account',
+        myauth: 'Auth',
+        user: function(myauth, Account, $state) {
+
+            var id = myauth.getUser();
+            // First check on entering main
+            console.log("Calling myauth check");
+
+            // AUTHENTICATION
+            // What i check?
+            // 1. current state (inside app)
+            // 2. check authorized
+            // 3. check if user name is correctly set inside cookie
+            if (!$state.is('welcome') && (!myauth.checkAuth() || !id) )
+                $state.go('dologin', {status: 'user'});
+
+            var model = new Account({email: id});
+            return model.get();
+        },
       },
     })
 /****************************************

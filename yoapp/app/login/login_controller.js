@@ -42,7 +42,7 @@ myApp
 
 // TO FIX - Check already existing?
 
-          var ldap = Account.build(user);
+          var ldap = new Account(user);
           ldap.set().then(function(id){
               $state.go('dologin', {status: 'registered'});
           });
@@ -59,7 +59,7 @@ myApp
     $scope.reset();
 
     $scope.login = function(user) {
-        var ldap = Account.build(user);
+        var ldap = new Account(user);
         ldap.check().then(function(response){
             var token = null;
             if (response === true) {

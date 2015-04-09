@@ -28,7 +28,7 @@ Cookies take 1:
 A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
       ✔ bug fixes @done (15-04-07 15:10)
-      ☐ How to resolve the object via ui router?? @HOUSTON
+      ✔ How to resolve the object via ui router?? @HOUSTON @done (15-04-09 18:36)
       ☐ load from db
     ☐ list of user drafts
       ☐ by identifiers inside the api provider
@@ -51,6 +51,7 @@ COOKIE SECURITY:
  ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
    ✔ nginx https? @done (15-04-03 16:51)
    ✔ avoid man in the middle @done (15-04-03 16:51)
+  ☐ Check cookie timer...
  ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
    ☐ ??
  ☐ Path: cookie will only be send on specified path e.g. /login

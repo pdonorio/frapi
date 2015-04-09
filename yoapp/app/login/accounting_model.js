@@ -5,7 +5,7 @@
 
 myApp
 .constant('Crypto', window.CryptoJS)
-.factory('Account', function (API, Crypto, AppConfig) {
+.factory('Account', function ($q, API, Crypto, AppConfig) {
 
   var resource = 'accounts';
 
@@ -90,7 +90,6 @@ myApp
     if (!user)
         console.log("Loading");
     this.user = user;
-    return "TEST";
   }
   // Public methods, assigned to prototype
   Account.prototype.set = function () {
@@ -98,12 +97,12 @@ myApp
   }
   Account.prototype.get = function () {
 
-    var email = Auth.getUser();
-    this.user = {email: email};
 // TO FIX - load from DB [with User model]
-    loadUser(this.user);
-
     console.log("TEST ME");
+    return this.user;
+// TO FIX - load from DB [with User model]
+
+    loadUser(this.user);
 
     var user = {
         name: 'Baroque Admin',
@@ -118,17 +117,6 @@ myApp
     return verifyUser(this.user);
   }
 
-  /*********************************
-  ** CONTEXT *
-  ******************************** */
-  // Static method, assigned to class
-  // p.s. Instance ('this') is not available in static context
-  Account.build = function (user)
-  {
-    // Create object
-    return new Account(user);
-  }
-  // Give this service to someone
   return Account;
 
 });
