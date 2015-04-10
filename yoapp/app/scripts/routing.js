@@ -14,13 +14,14 @@ myApp
     // Static welcome page
     .state('welcome', {
       url: "/static",
-      resolve: { user: function() { return undefined } },
       views: {
         "main": {
             templateUrl: "login/welcome.html",
             controller: 'MainController',
         },
       },
+      // since using the MainController, it waits for a 'user' object
+      resolve: { user: function() { return null; } },
     })
     // Simple login logic
     .state('dologin', {
@@ -34,7 +35,16 @@ myApp
     })
     .state('dologout', {
       url: "/logout",
-      views: { "main": { controller: "LogoutController", } },
+      views: {
+        "main": {
+          // Simple controller for logging out the account
+          controller: function($state, Account) {
+            var model = new Account();
+            model.logging(null); // unset user
+            $state.go('welcome'); // go to init page
+          }
+        }
+      },
     })
 
 

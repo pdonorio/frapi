@@ -32,7 +32,9 @@ myApp
     // And at any route change
     $rootScope.$on('$stateChangeSuccess',
      function(event, toState, toParams, fromState, fromParams){
+
         //console.log("Changing from", fromState, "to", toState);
+
         if ( // Do not check inital state
             toState.name == "dologin" ||
             toState.name == "dologout" ||
@@ -77,8 +79,11 @@ myApp
     if (tmp[2]) {
       $rootScope.setActiveMenu(tmp[2]);
     }
+
+/*
     // SET ACIVE ELEMENT - ANY OTHER TIME
-    $rootScope.$on('$stateChangeStart', function (event, nextState, npar, currentState, cpar) {
+    $rootScope.$on('$stateChangeStart',
+        function (event, nextState, npar, currentState, cpar) {
 
       var p = nextState.url;
       var p = p.substring(1, p.length);
@@ -99,15 +104,8 @@ myApp
       }
       //console.log($rootScope.lastVisited);
 
-/*      AUTH?
-        if (!isAuthenticated(nextState)) {
-            console.debug('Could not change route! Not authenticated!');
-            $rootScope.$broadcast('$stateChangeError');
-            e.preventDefault();
-            $state.go('login');
-        }
-*/
     });
+*/
 
     //////////////////////////////////////
     // INIT for loading the app based on API status

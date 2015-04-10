@@ -119,12 +119,12 @@ myApp
     data.token = makeToken(data);
     delete(data.pw);
 // TO FIX - define roles?
-    data.role = 999;
+    data.role = AppConfig.userRoles.ADMIN_USER;
     data.activation = 0;
     // send to database
     return API.set(resource, data)
       .then(function(id) {
-          //console.log("Saved user", id);
+          console.log("Saved user", id);
           return id;
       });
   }
@@ -154,11 +154,21 @@ myApp
   }
 
   ////////////////////////////////////////
-  Account.prototype.set = function (user) {
+  Account.prototype.logging = function (user) {
+
+    if (!user)
+        return Authentication.set(user, user);
 
 // TO FIX - set cookie via Authorization
+    console.log("Save cookie user", user);
+    //Authentication.set(token, username)
+  }
 
-    return saveUser(user);
+  ////////////////////////////////////////
+  Account.prototype.set = function (user) {
+    // Save inside db via API
+    console.log("DB save user");
+    saveUser(user);
   }
 
   ////////////////////////////////////////

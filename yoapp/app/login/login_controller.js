@@ -2,18 +2,6 @@
 
 // List of controllers
 myApp
-//////////////////////////////////////////////////////////////
-.controller('LogoutController', function ($scope, $state)
-{
-    // LOGOUT
-    console.log("Requested logout");
-
-// TO FIX - use User? or inside Resolve?
-/*
-    Auth.set();
-    $state.go("welcome");
-*/
-})
 
 //////////////////////////////////////////////////////////////
 .controller('LoginController', function ($scope, $state, $stateParams, Account)
@@ -22,7 +10,6 @@ myApp
     $scope.registered = true;
     $scope.welcome = false;
     $scope.user = null;
-    //console.log("Pars", $stateParams);
 
     // First check
     console.log("Already logged?")
