@@ -13,7 +13,7 @@ myApp
 
     // If redirection goes wrong
     $rootScope.$on('$stateChangeError', function(event) {
-      $state.go('notfound');
+      $state.go('unlogged.notfound');
     });
 
     // Personal css to include

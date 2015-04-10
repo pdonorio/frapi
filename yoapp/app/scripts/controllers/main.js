@@ -33,20 +33,18 @@ myApp
     $rootScope.$on('$stateChangeSuccess',
      function(event, toState, toParams, fromState, fromParams){
 
-        //console.log("Changing from", fromState, "to", toState);
-
-        if ( // Do not check inital state
-            toState.name == "dologin" ||
-            toState.name == "dologout" ||
-            toState.name == "welcome"
-            ) return;
+        console.log("Changing from", fromState, "to", toState);
+        if (!toState.data.requireLogin)
+            return;
+        console.log("Check login?");
 
 /*
 // TO FIX - check via user object
         console.log("State changed, but check authorization");
-        if (!$state.is('welcome') && !Auth.checkAuth())
-            $state.go('dologin', {status: 'user'});
+        if (toState.data.requireLogin && !Auth.checkAuth())
+            $state.go('unlogged.dologin', {status: 'user'});
 */
+
     })
     //////////////////////////////////////
     //////////////////////////////////////

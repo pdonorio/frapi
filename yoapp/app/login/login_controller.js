@@ -6,21 +6,25 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('LoginController', function ($scope, $state, $stateParams, Account)
 {
+
+// TO FIX
+    console.log("LOGIN: Already logged? (tofix)");
+/*
+    // First check
+    var model = new Account();
+    model.check().then(function(response){
+        if (response === true) {
+            console.log("Yes");
+            $state.go("logged.main");
+        }
+    });
+*/
+
+    // INIT
     $scope.gostate = $state.go;
     $scope.registered = true;
     $scope.welcome = false;
     $scope.user = null;
-
-    // First check
-    console.log("Already logged?")
-
-// TO FIX - user model
-/*
-    if (Auth.checkAuth()) {
-        //var $state = $injector.get("$state");
-        $state.go("logged.main");
-    }
-*/
 
     // DECIDE ROUTE
     if ($stateParams.status == 'register') {
@@ -39,7 +43,7 @@ myApp
 
           var ldap = new Account(user);
           ldap.set().then(function(id){
-              $state.go('dologin', {status: 'registered'});
+              $state.go('unlogged.dologin', {status: 'registered'});
           });
         // go to login.main ??
         } else {
@@ -54,8 +58,13 @@ myApp
     $scope.reset();
 
     $scope.login = function(user) {
-        var ldap = new Account(user);
-        ldap.check().then(function(response){
+
+        var model = new Account(user);
+
+        model.check().then(function(response){
+
+console.log("I AM HERE", response);
+
             var token = null;
             if (response === true) {
 // TO FIX - GET A REAL TOKEN!
@@ -65,6 +74,7 @@ myApp
               console.log("Failed login");
             }
 
+            console.log("Ready to check auth");
 // TO FIX - set with user model
 /*
             // Save what i get

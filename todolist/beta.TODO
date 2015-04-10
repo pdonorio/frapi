@@ -25,11 +25,14 @@ Cookies take 1:
       ✔ certificates as volumes inside docker compose @done (15-04-07 14:53)
       ✔ make them work on flask too @done (15-04-07 14:53)
 
+Something very difficult: LOGIN PATTERN for ANGULARJS:
+  ☐ restart....
+
 A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
       ✔ bug fixes @done (15-04-07 15:10)
       ✔ How to resolve the object via ui router?? @HOUSTON @done (15-04-09 18:36)
-    ☐ Infinite loop of user logged problem
+    ✘ Infinite loop of user logged problem @cancelled (15-04-10 19:29)
       ☐ load from db
     ☐ list of user drafts
       ☐ by identifiers inside the api provider

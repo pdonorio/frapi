@@ -10,7 +10,7 @@ myApp
 // Real service
 .factory('Account', function (
     // Secret/hidden authorizatino service
-    $cookies, COOKIEVAR_AUTHTOKEN, COOKIEVAR_USER, FAILED_TOKEN,
+    $q, $cookies, COOKIEVAR_AUTHTOKEN, COOKIEVAR_USER, FAILED_TOKEN,
     // Normal part
     API, Crypto, AppConfig
     )
@@ -50,10 +50,18 @@ myApp
   // To see if correctly logged
   Authentication.checkAuth = function() {
       var check1 = privateCheckToken();
-      //console.log("check 1", check1);
+      console.log("check 1", check1);
       var check2 = privateGetUser();
-      //console.log("check 2", check2);
-      return check1 && (check2 !== null);
+      console.log("check 2", check2);
+
+      var response = check1 && (check2 !== null);
+
+      // make a promise for compatibility with other checks
+      var deferred = $q.defer();
+      //deferred.notify('About to check');
+      deferred.resolve(response);
+      return deferred.promise;
+
   }
   // Username for query
   Authentication.getUser = function() {
@@ -75,10 +83,16 @@ myApp
   // Load data from API
   function verifyUser(req) {
 
-    var parameters = { email: req.email };
+    var email = null;
+    if (req && req.email)
+        email = req.email;
+    var parameters = { email: email };
 
     return API.get(resource, parameters)
       .then(function(response) {
+
+          if (!req)
+            return "No user";
 
           // Init check
           if (response.count != 1) {
@@ -148,10 +162,21 @@ myApp
   ////////////////////////////////////////////
 
   // Constructor, with class name
-  function Account() {
-    this.account = Authentication.getUser();
+  function Account(user) {
+    if (user) {
+        this.account = user;
+    } else {
+        this.account = Authentication.getUser();
+    }
     console.log("Creating Account", this.account);
   }
+
+  ////////////////////////////////////////
+// TO FIX -
+
+// add login
+
+// add logout
 
   ////////////////////////////////////////
   Account.prototype.logging = function (user) {
@@ -159,9 +184,12 @@ myApp
     if (!user)
         return Authentication.set(user, user);
 
-// TO FIX - set cookie via Authorization
     console.log("Save cookie user", user);
-    //Authentication.set(token, username)
+/*
+    var token = makeToken(user);
+    Authentication.set(token, user.email);
+    console.log("Saved");
+*/
   }
 
   ////////////////////////////////////////
@@ -188,17 +216,22 @@ myApp
   }
 
   ////////////////////////////////////////
+// Please make sure i return a promise
   Account.prototype.check = function () {
+
+    var obj = this;
     // Once logged
-    console.log("Verify auth");
-    if (Authentication.checkAuth())
-        return true;
-    // When logging
-    console.log("Verify user");
-    if (verifyUser(this.user))
-        return true;
-    // When not authorized
-    return false;
+    return Authentication.checkAuth().then(function(check1) {
+        // If authorized
+        console.log("Verify auth");
+        if (check1)
+            return check1;
+        // Otherwise i am here when logging first time
+        console.log("Verify user", obj);
+        return verifyUser(obj.user).then(function(check2){
+            return check2;
+        });
+    });
   }
 
 

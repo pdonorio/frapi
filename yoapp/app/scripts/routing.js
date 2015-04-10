@@ -4,18 +4,33 @@ myApp
 .config(function($stateProvider, $urlRouterProvider)
 {
 
+
   // Set up the states and URL routing
   $stateProvider
-    // For each page i didn't setup
-    .state('notfound', {
-      url: "/404",
-      views: { "main": { templateUrl: "login/oops.html", }, },
+
+    .state('unlogged', {
+      url: "/public",
+      abstract: true,
+      views: { "main": {
+        template: '<div ui-view="contain"></div>',
+      }},
+      data: {
+        // this property will apply to all children of 'app'
+        requireLogin: false,
+      },
     })
+
+    // For each page i didn't setup
+    .state('unlogged.notfound', {
+      url: "/404",
+      views: { "contain": { templateUrl: "login/oops.html", }, },
+    })
+
     // Static welcome page
-    .state('welcome', {
+    .state('unlogged.welcome', {
       url: "/static",
       views: {
-        "main": {
+        "contain": {
             templateUrl: "login/welcome.html",
             controller: 'MainController',
         },
@@ -23,30 +38,34 @@ myApp
       // since using the MainController, it waits for a 'user' object
       resolve: { user: function() { return null; } },
     })
+
     // Simple login logic
-    .state('dologin', {
+    .state('unlogged.dologin', {
       url: "/login/{status:[a-z]+}",
       views: {
-        "main": {
+        "contain": {
             templateUrl: "login/login.html",
             controller: "LoginController",
         },
       }
     })
-    .state('dologout', {
+    .state('unlogged.dologout', {
       url: "/logout",
       views: {
-        "main": {
+        "contain": {
           // Simple controller for logging out the account
+          // note: resolve is no good for a state change //http://j.mp/1Fujv5n
           controller: function($state, Account) {
+// TO FIX -
             var model = new Account();
             model.logging(null); // unset user
-            $state.go('welcome'); // go to init page
+            $state.go('unlogged.welcome'); // go to init page
           }
         }
       },
     })
 
+/*
 
 ///////////////////////////////////////////
 // Once Logged
@@ -54,11 +73,17 @@ myApp
     //The parent of all logged views
     .state('logged', {
 
+      url: "/app",
       // Make this PARENT state abstract so it can never be
       // loaded directly
       abstract: true,
+      data: {
+        // this property will apply to all children of 'app'
+        requireLogin: true,
+        // this should be changed for admins
+        requireAdmin: false,
+      },
 
-      url: "/app",
       views: {
         "main": {
             templateUrl: "views/app.html",
@@ -82,18 +107,23 @@ myApp
 
             // AUTHENTICATION
             // First check on entering main
-            if (!$state.is('welcome') && !model.check()) {
-                console.log("Go away");
-                $state.go('dologin', {status: 'user'});
+            if ($state.data.requireLogin) {
+                model.check().then(function(response){
+                    console.log("Test auth", response);
+                    if (response !== true) {
+                        console.log("Go away:", response);
+                        $state.go('unlogged.dologin', {status: 'user'});
+                    }
+                });
             }
-
             return model.get();
         },
       },
     })
-/****************************************
-/****************************************
-/****************************************/
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
     // LOGGED Child routes (sub view, nested inside parent)
       .state('logged.main', {
         url: "/main",
@@ -116,10 +146,8 @@ myApp
           $rootScope.edit.available = true;
         }
       })
-/****************************************
-/****************************************
-/****************************************/
 
+    ///////////////////////////////////////////////
       .state('logged.submission', {
         url: "/submission/{myId:[0-9\-a-z]*}",
         views: {
@@ -152,10 +180,8 @@ myApp
           },
         },
       })
-/****************************************
-/****************************************
-/****************************************/
 
+    ///////////////////////////////////////////////
       .state('logged.adminsubmission', {
         url: "/configure/{myId:[0-9\-a-z]*}",
         views: {
@@ -178,10 +204,8 @@ myApp
           },
         },
       })
-/****************************************
-/****************************************
-/****************************************/
 
+    ///////////////////////////////////////////////
       .state('logged.search', {
         url: "/search",
         views: {
@@ -220,19 +244,24 @@ myApp
       })
 // Once Logged
 // Once Logged
+
+*/
   ; //routing end
 
   //Alias for no url?
-  $urlRouterProvider.when('', '/static');
+  $urlRouterProvider.when('', '/public/static');
 
   // Redirect if unknown state
   $urlRouterProvider.otherwise(function ($injector, $location) {
     $injector.invoke(['$state', function ($state) {
-      console.log("Unknown", $location);
+
+      // Log what happened
+      var tmp = angular.copy($location);
+      console.log("Unknown location:", tmp.$$absUrl);
       // For a bug
       //http://stackoverflow.com/a/25755152/2114395
       var $state = $injector.get("$state");
-      $state.go('notfound');
+      $state.go('unlogged.notfound');
     }]);
     return true;
   });
