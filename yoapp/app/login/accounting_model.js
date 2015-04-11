@@ -9,12 +9,23 @@ myApp
 
 // Real service
 .factory('Account', function (
+    Logger,
     // Secret/hidden authorizatino service
-    $q, $cookies, COOKIEVAR_AUTHTOKEN, COOKIEVAR_USER, FAILED_TOKEN,
+    $q, $log, $cookies,
+    COOKIEVAR_AUTHTOKEN, COOKIEVAR_USER, FAILED_TOKEN,
     // Normal part
     API, Crypto, AppConfig
     )
 {
+
+  //https://github.com/naorye/angular-ny-logger
+  var logger = Logger.getInstance('UserObj');
+/*
+  logger.log('This is a log');
+  logger.warn('warn', 'This is a warn');
+  logger.error('This is a {0} error! {1}', [ 'big', 'just kidding' ]);
+  logger.debug('debug', 'This is a debug for line {0}', [ 8 ]);
+*/
 
   ////////////////////////////////////////////
   ////////////////////////////////////////////
@@ -162,33 +173,68 @@ myApp
   ////////////////////////////////////////////
 
   // Constructor, with class name
-  function Account(user) {
-    if (user) {
-        this.account = user;
-    } else {
-        this.account = Authentication.getUser();
+  function Account() {
+
+    logger.debug("Creating user object");
+    this.account = "null";
+    this.status = {
+        logged: false,
+        roles: [],
     }
-    console.log("Creating Account", this.account);
+
+// TO FIX -
+    // Resolve all promises here if you can
+
+    // Should see if i have a cookie user and token
+    this.account = Authentication.getUser();
+
+    // If yes check if database has same user and token
+    if (this.account !== "null") {
+        logger.debug("Check user");
+    }
+
+    // Set now data for isLogged and isAdmin
+
   }
 
+  ////////////////////////////////////////
+  ////////////////////////////////////////
   ////////////////////////////////////////
 // TO FIX -
 
 // add login
+  Account.prototype.logIn = function (user) {
+    $log.debug("");
 
-// add logout
-
-  ////////////////////////////////////////
-  Account.prototype.logging = function (user) {
-
-    if (!user)
-        return Authentication.set(user, user);
-
-    console.log("Save cookie user", user);
 /*
     var token = makeToken(user);
     Authentication.set(token, user.email);
     console.log("Saved");
+*/
+  }
+
+// add logout
+  Account.prototype.logOut = function () {
+    return Authentication.set(null, null);
+  }
+
+// is logged
+  Account.prototype.isLogged = function () {
+
+    logger.debug('TOFIX','Am i logged?');
+
+  }
+
+// is admin
+  Account.prototype.isAdmin = function () { }
+
+  ////////////////////////////////////////
+  ////////////////////////////////////////
+  ////////////////////////////////////////
+  Account.prototype.logging = function (user) {
+
+    console.log("Save cookie user", user);
+/*
 */
   }
 

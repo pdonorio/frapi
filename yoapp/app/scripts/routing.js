@@ -42,12 +42,13 @@ myApp
     // Simple login logic
     .state('unlogged.dologin', {
       url: "/login/{status:[a-z]+}",
+      resolve: { user: function(Account) { return new Account(); } },
       views: {
         "contain": {
             templateUrl: "login/login.html",
             controller: "LoginController",
         },
-      }
+      },
     })
     .state('unlogged.dologout', {
       url: "/logout",
@@ -64,9 +65,6 @@ myApp
         }
       },
     })
-
-/*
-
 ///////////////////////////////////////////
 // Once Logged
 // Once Logged
@@ -121,8 +119,6 @@ myApp
       },
     })
 
-///////////////////////////////////////////////
-///////////////////////////////////////////////
 ///////////////////////////////////////////////
     // LOGGED Child routes (sub view, nested inside parent)
       .state('logged.main', {
@@ -245,9 +241,10 @@ myApp
 // Once Logged
 // Once Logged
 
-*/
+////////////////////
   ; //routing end
 
+////////////////////
   //Alias for no url?
   $urlRouterProvider.when('', '/public/static');
 

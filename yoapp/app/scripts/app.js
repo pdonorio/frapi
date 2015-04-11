@@ -12,6 +12,8 @@ var myApp = angular.module('archivi',
   [
   // CONFIGURATION and DYNAMIC CONSTANTS - made by me
     'AppConfig',
+  // LOGGER
+    'ny.logger',
   // DEPENCIES: base yeoman modules
     'ngAnimate',
     //'ngRoute',
@@ -28,6 +30,12 @@ var myApp = angular.module('archivi',
     'textOperations', //my filters on strings
     'arrayOperations', //my filters on arrays
   ])
+
+// LOGGER
+.config(['LoggerProvider', function(LoggerProvider) {
+    // We don't want the Logger service to be enabled in production
+    LoggerProvider.enabled(true);
+}])
 
 // THIS IS NEEDED FOR DEVELOPMENT
 // allow insecure https if your host does not have an official certificate yet

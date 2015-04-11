@@ -4,11 +4,13 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('LoginController', function ($scope, $state, $stateParams, Account)
+.controller('LoginController',
+    function ($scope, $state, $stateParams, user)
 {
 
 // TO FIX
     console.log("LOGIN: Already logged? (tofix)");
+    user.isLogged();
 /*
     // First check
     var model = new Account();
@@ -40,12 +42,14 @@ myApp
 // TO FIX - CHECK EMAIL format?
 
 // TO FIX - Check already existing?
-
+          console.log("FIX REGISTER");
+/*
           var ldap = new Account(user);
           ldap.set().then(function(id){
+             // IF?
               $state.go('unlogged.dologin', {status: 'registered'});
           });
-        // go to login.main ??
+*/
         } else {
           console.log("NOT Valid");
         }
@@ -59,6 +63,9 @@ myApp
 
     $scope.login = function(user) {
 
+        console.log("FIX LOGIN");
+
+/*
         var model = new Account(user);
 
         model.check().then(function(response){
@@ -75,15 +82,14 @@ console.log("I AM HERE", response);
             }
 
             console.log("Ready to check auth");
-// TO FIX - set with user model
-/*
-            // Save what i get
-            Auth.set(token, user.email);
-            // Check if working
-            if (Auth.checkAuth())
-                $state.go('logged.main');
-*/
+// // TO FIX - set with user model
+//             // Save what i get
+//             Auth.set(token, user.email);
+//             // Check if working
+//             if (Auth.checkAuth())
+//                 $state.go('logged.main');
         });
+*/
     }
 
 });

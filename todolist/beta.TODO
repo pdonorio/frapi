@@ -39,6 +39,8 @@ A real User model:
   ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
     ☐ use spectaclebaroque domain @marcohelpG
 
+ ☐ API check at page load?
+
  ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
  ☐ Date within a range of years
@@ -71,6 +73,9 @@ COOKIE SECURITY:
  ☐ $http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
 
 Real authentication on API side with Token (OAuth2):
+
+http://j.mp/angularsecurity
+
     ☐ Should i send password via https to api?
       ☐ http://alexbilbie.com/2014/11/oauth-and-javascript/
       ☐ yes!
