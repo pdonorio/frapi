@@ -60,13 +60,13 @@ angular.module('AppConfig', [])
         var host = $location.host();
         var port = $location.port();
 
-// TO FIX - enable https on client js served
-        var protocol = $location.protocol();
+// TO FIX -
+// https only for sending informations, not files, at the moment
+        protocol = "http";
         config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
           + "/" + apiFileResource;
 
-// Force https only for sending informations, not files
-        protocol = "https";
+        var protocol = $location.protocol();
         config.apiBase = protocol + "://" + host + ":" + apiPort + apiBase;
 
         //notification messages status

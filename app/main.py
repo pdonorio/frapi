@@ -13,7 +13,7 @@ Someone has to do the dirty work (LOL).
 # Load the pre-configured api with all services
 from myapi.routes import app
 # Handle command line parameters
-import sys
+import sys, os
 
 # === MAIN FUNCTION ===
 if __name__ == "__main__":
@@ -31,12 +31,15 @@ if __name__ == "__main__":
         'debug' tells the app to restart when code changes
         and should be off on production
     """
-    app.run(host="0.0.0.0", debug=debug, \
-        ssl_context=( \
-            '/myssl/certs/server.crt', \
-            '/myssl/certs/server.key' \
-            ))
-    #print "Debug: ", debug
+
+    crt = '/myssl/certs/server.crt'
+    key = '/myssl/certs/server.key'
+    if os.path.isfile(crt) and os.path.isfile(key):
+        print "HTTPS"
+        app.run(host="0.0.0.0", debug=debug, ssl_context=(crt, key))
+    else:
+        app.run(host="0.0.0.0", debug=debug)
+    print "Debug: ", debug
 
 # === For future file configuration ===
 # # Read conf files
