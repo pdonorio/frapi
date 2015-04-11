@@ -3,96 +3,22 @@
 * accounting
 */
 myApp
-
 // For sha256 hashing
 .constant('Crypto', window.CryptoJS)
-
 // Real service
-.factory('Account', function (
-    Logger,
-    // Secret/hidden authorizatino service
-    $q, $log, $cookies,
-    COOKIEVAR_AUTHTOKEN, COOKIEVAR_USER, FAILED_TOKEN,
-    // Normal part
-    API, Crypto, AppConfig
-    )
+.factory('Account', function (Logger, $q, API, Crypto, AppConfig, Authentication)
 {
-
-  //https://github.com/naorye/angular-ny-logger
-  var logger = Logger.getInstance('UserObj');
-/*
-  logger.log('This is a log');
-  logger.warn('warn', 'This is a warn');
-  logger.error('This is a {0} error! {1}', [ 'big', 'just kidding' ]);
-  logger.debug('debug', 'This is a debug for line {0}', [ 8 ]);
-*/
-
-  ////////////////////////////////////////////
-  ////////////////////////////////////////////
-
-  // Authentication service is very private
-  var privateGetUser = function() {
-      return $cookies.get(COOKIEVAR_USER);
-  }
-  var privateCheckToken = function() {
-      return $cookies.get(COOKIEVAR_AUTHTOKEN) !== FAILED_TOKEN;
-  }
-  // Handle cookie and authentication
-  var Authentication = {};
-  // Save cookie data at login time
-  Authentication.set = function(token, username)
-  {
-      // If logout, token is null or undefined
-      if (!token)
-          token = FAILED_TOKEN;
-// TO FIX - verify expiration
-      // One day expiration
-      var now = new Date(),
-          exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-      var cOptions = {
-          secure: true, expires: exp,
-          //domain: 'http://test.goo.devs', //path: '/login',
-      };
-      // Save
-      $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
-      console.log("setting username", username);
-      $cookies.put(COOKIEVAR_USER, username, cOptions);
-  }
-  // To see if correctly logged
-  Authentication.checkAuth = function() {
-      var check1 = privateCheckToken();
-      console.log("check 1", check1);
-      var check2 = privateGetUser();
-      console.log("check 2", check2);
-
-      var response = check1 && (check2 !== null);
-
-      // make a promise for compatibility with other checks
-      var deferred = $q.defer();
-      //deferred.notify('About to check');
-      deferred.resolve(response);
-      return deferred.promise;
-
-  }
-  // Username for query
-  Authentication.getUser = function() {
-      return privateGetUser();
-  }
-
-  ////////////////////////////////////////////
-  ////////////////////////////////////////////
-
+  var logger = Logger.getInstance('UserAccount');
   var resource = 'accounts';
+
   function loadUser(user) {
     console.log("user", user);
-
-// API CALL
-// API CALL
+// TO FIX -
 // API CALL
   }
 
   // Load data from API
-  function verifyUser(req) {
+  function compareUserAgainstDB(req) {
 
     var email = null;
     if (req && req.email)
@@ -199,44 +125,25 @@ myApp
 
   ////////////////////////////////////////
   ////////////////////////////////////////
-  ////////////////////////////////////////
 // TO FIX -
-
-// add login
   Account.prototype.logIn = function (user) {
     $log.debug("");
-
 /*
     var token = makeToken(user);
     Authentication.set(token, user.email);
     console.log("Saved");
 */
   }
-
-// add logout
   Account.prototype.logOut = function () {
     return Authentication.set(null, null);
   }
-
-// is logged
   Account.prototype.isLogged = function () {
-
     logger.debug('TOFIX','Am i logged?');
-
   }
-
-// is admin
   Account.prototype.isAdmin = function () { }
 
   ////////////////////////////////////////
   ////////////////////////////////////////
-  ////////////////////////////////////////
-  Account.prototype.logging = function (user) {
-
-    console.log("Save cookie user", user);
-/*
-*/
-  }
 
   ////////////////////////////////////////
   Account.prototype.set = function (user) {
@@ -274,13 +181,19 @@ myApp
             return check1;
         // Otherwise i am here when logging first time
         console.log("Verify user", obj);
-        return verifyUser(obj.user).then(function(check2){
+        return compareUserAgainstDB(obj.user).then(function(check2){
             return check2;
         });
     });
   }
 
-
   ////////////////////////////////////////
-  return Account;
+  // SERVICE RETURN
+  return {
+    getItem: function() {
+        var user = new Account();
+        return user;
+    }
+  }
+
 });

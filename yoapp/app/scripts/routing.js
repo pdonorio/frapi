@@ -42,7 +42,15 @@ myApp
     // Simple login logic
     .state('unlogged.dologin', {
       url: "/login/{status:[a-z]+}",
-      resolve: { user: function(Account) { return new Account(); } },
+      resolve: {
+        cookie: function(Authentication) {
+            return true;
+        },
+        user: function(Account) {
+            return true;
+            //return Account.getItem();
+        }
+      },
       views: {
         "contain": {
             templateUrl: "login/login.html",
@@ -58,13 +66,17 @@ myApp
           // note: resolve is no good for a state change //http://j.mp/1Fujv5n
           controller: function($state, Account) {
 // TO FIX -
+/*
             var model = new Account();
             model.logging(null); // unset user
             $state.go('unlogged.welcome'); // go to init page
+*/
           }
         }
       },
     })
+
+/*
 ///////////////////////////////////////////
 // Once Logged
 // Once Logged
@@ -101,6 +113,11 @@ myApp
         user: function(Account, $state) {
 
             console.log("Resolve user");
+
+*/
+
+// TO FIX -
+/*
             var model = new Account();
 
             // AUTHENTICATION
@@ -115,6 +132,10 @@ myApp
                 });
             }
             return model.get();
+*/
+
+/*
+            return {empty: null};
         },
       },
     })
@@ -240,6 +261,7 @@ myApp
       })
 // Once Logged
 // Once Logged
+*/
 
 ////////////////////
   ; //routing end

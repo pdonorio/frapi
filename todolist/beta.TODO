@@ -27,6 +27,7 @@ Cookies take 1:
 
 Something very difficult: LOGIN PATTERN for ANGULARJS:
   ☐ restart....
+    ☐ FROM ZERO!!
 
 A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
@@ -40,6 +41,7 @@ A real User model:
     ☐ use spectaclebaroque domain @marcohelpG
 
  ☐ API check at page load?
+ ☐ $q.when? http://jsfiddle.net/jeremylikness/Q2jMG/
 
  ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
