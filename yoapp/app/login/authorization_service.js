@@ -29,6 +29,11 @@ myApp
   // Handle cookie and authentication
   var Authentication = {};
 
+  // Operation to clean cookie
+  Authentication.clean = function() {
+    this.set(null,null);
+  }
+
   // Save cookie data at login time
   Authentication.set = function(token, username)
   {

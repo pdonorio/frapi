@@ -22,13 +22,8 @@
                 <thead> <tr> <th colspan="2"> Accesso </th> </tr> </thead>
                 <tbody> <tr> <td>
                 <p> <input
-                    type="email" ng-model="user.email" name='usermail'
-                    ng-minlength='10' size='30'
-                    ng-model-options="{ updateOn: 'blur' }"
-                    placeholder='Il tuo account (indirizzo di posta)' required /> </p>
-                 <span ng-show="registerForm.usermail.$dirty
-                      && registerForm.usermail.$invalid">
-                  Errore </span>
+                    type="text" ng-model="user.email" size='30'
+                    placeholder='Il tuo account (indirizzo di posta)'/> </p>
                 <p> <input type="password" ng-model="user.pw"
                     size='30'
                     placeholder='Password'

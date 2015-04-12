@@ -11,44 +11,38 @@ myApp
   var logger = Logger.getInstance('UserAccount');
   var resource = 'accounts';
 
+  ////////////////////////////////////////
   function loadUser(user) {
     console.log("user", user);
 // TO FIX -
 // API CALL
   }
 
-  // Load data from API
-  function compareUserAgainstDB(req) {
+  ////////////////////////////////////////
+  // Check data with API
+  function compareUserAgainstDB(user, passw) {
 
-    var email = null;
-    if (req && req.email)
-        email = req.email;
-    var parameters = { email: email };
+    var parameters = { email: user };
 
     return API.get(resource, parameters)
       .then(function(response) {
 
-          if (!req)
+          if (!user)
             return "No user";
 
           // Init check
-          if (response.count != 1) {
-            delete(req.pw);
+          if (response.count != 1) 
             return "User not found";
-          } else if (!response.items[0].token) {
-            delete(req.pw);
+          else if (!response.items[0].token) 
             return "Service unavailable";
-          }
 
-          // Dirty moves
-          var tmp = response.items[0];
-          tmp.pw = req.pw;
           // Compute token
-          req.token = makeToken(tmp);
-          delete(req.pw);
+          var tmp = response.items[0];
+          tmp.pw = passw;
+          var token = makeToken(tmp);
 
           // Password check
-          if (response.items[0].token != req.token)
+          if (response.items[0].token != token)
             return "Wrong password";
           // Final check
           if (tmp.activation < 1)
@@ -63,9 +57,9 @@ myApp
       });
   }
 
+  ////////////////////////////////////////
   // Register user
   function saveUser(data) {
-
     // Complete data
     data.token = makeToken(data);
     delete(data.pw);
@@ -80,6 +74,7 @@ myApp
       });
   }
 
+  ////////////////////////////////////////
   function makeToken(user) {
     var sep = '£';
     var salt = Crypto.SHA256(user.surname).toString();
@@ -93,24 +88,52 @@ myApp
 // TO FIX -
 
   var MyUser = function() {
+    this.error = false;
     this.logged = false;
     this.admin = false;
     this.role = AppConfig.userRoles.NO_ROLE;
   }
   MyUser.prototype.set = function (user) {
     this.user = user;
-    // Load from db if valid
-    //loadUser();
   }
 
-  MyUser.prototype.logIn = function (user) {
-    $log.debug("Set data inside cookie?");
-    // var token = makeToken(user);
-    // Authentication.set(token, user.email);
-    // console.log("Saved");
+  MyUser.prototype.logIn = function () {
+    Authentication.set(makeToken(this.user), this.user);
+    logger.debug('debug', "Set data inside cookie", this.user);
+    var obj = this;
+
+    return compareUserAgainstDB(this.user.email, this.user.pw)
+        .then(function(response) {
+
+        console.log("Response is ", response);
+        if (response === true) {
+
+// TO FIX -
+            // Retrieve data if valid
+            //loadUser();
+            console.log("UHM");
+
+            // Set now data for isLogged and isAdmin ?
+        } else {
+            // Failed
+            obj.error = response;
+            return false;
+        }
+    });
   }
+
+  MyUser.prototype.getError = function () {
+    return this.error;
+  }
+
   MyUser.prototype.logOut = function () {
-    return Authentication.set(null, null);
+    // Clean cookie
+    Authentication.clean();
+
+    // Return promise with reference to object
+    var deferred = $q.defer();
+    deferred.resolve(this);
+    return deferred.promise;
   }
   MyUser.prototype.isLogged = function () {
     return this.logged;
@@ -136,21 +159,19 @@ myApp
     this.usr = new MyUser();
   }
 
+
+// THIS 2 functions should be private and usable by user too
+
   ////////////////////////////////////////
   Account.prototype.get = function () {
 
     // Should see if i have a cookie user and token
     if (this.cookie === false) {
-        var deferred = $q.defer();
-        this.usr.set();
-        deferred.resolve(this.usr);
-        return deferred.promise;
+// LOGOUT
+        return this.usr.logOut();
     } else {
-        console.log("Compare with db");
-        //compareUserAgainstDB(obj.user).then(function(check2){
-
-        // Set now data for isLogged and isAdmin
-        return true;
+// CHECK
+        return this.usr.logIn();
     }
 
   }

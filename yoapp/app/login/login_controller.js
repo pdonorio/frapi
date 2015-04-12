@@ -9,7 +9,6 @@ myApp
 {
 
     // First check
-    console.log("LOGIN: Already logged? (tofix)", user);
     if (user.isLogged()) {
         console.log("Yes");
         $state.go("logged.main");
@@ -17,9 +16,9 @@ myApp
 
     // INIT
     $scope.gostate = $state.go;
+    $scope.user = null;
     $scope.registered = true;
     $scope.welcome = false;
-    $scope.user = null;
 
     // DECIDE ROUTE
     if ($stateParams.status == 'register') {
@@ -54,34 +53,24 @@ myApp
     };
     $scope.reset();
 
-    $scope.login = function(user) {
+    $scope.login = function(data) {
 
-        console.log("FIX LOGIN");
+// TO FIX
+        // Sanitize data?
 
-/*
-        var model = new Account(user);
-
-        model.check().then(function(response){
-
-console.log("I AM HERE", response);
-
-            var token = null;
-            if (response === true) {
-// TO FIX - GET A REAL TOKEN!
-                token = 'qualcosa';
+        // Try
+        user.set(data);
+        user.logIn().then(function(response) {
+            if (response === false) {
+                $scope.loginError = user.getError();
             } else {
-              $scope.loginError = response;
-              console.log("Failed login");
+                $scope.loginError = null;
+                console.log("Logged");
+                //$state.go('logged.main');
             }
 
-            console.log("Ready to check auth");
-// // TO FIX - set with user model
-//             // Save what i get
-//             Auth.set(token, user.email);
-//             // Check if working
-//             if (Auth.checkAuth())
-//                 $state.go('logged.main');
         });
+/*
 */
     }
 
