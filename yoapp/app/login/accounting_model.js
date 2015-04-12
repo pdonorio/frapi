@@ -73,6 +73,8 @@ myApp
     var salt = Crypto.SHA256(user.surname).toString();
     // var mystring = salt + user.surname + sep + user.name + sep
     //     + sep + user.pw + user.email;
+
+    //console.log("test 1", user);
 */
 
     // Only based on email and password
@@ -94,7 +96,8 @@ myApp
 
     // Compute Token
     if (user && user.pw) {
-        user.token = makeToken(user.email, user.pw);
+        user.token = makeToken(user);
+        console.log("token", user.token);
         delete user.pw;
     }
     logger.debug("Istance of User", user);
@@ -113,7 +116,9 @@ myApp
     // The promise
     return loadUserIfValid(this.user.email, this.user.token).then(function(res){
 
-        //console.log("TEST", res); console.log("TEST 2", ref);
+        // Am i logged?
+        ref.logged = res.status;
+        ref.error = !res.status;
 
         // If i have nothing inside the cookie and received valid credential
         if (res.status) {
@@ -126,8 +131,9 @@ myApp
 
             // Save what i need
             ref.name = res.data.name + " " + res.data.surname;
-            ref.logged = true;
             ref.role = res.data.role;
+        } else {
+            ref.error = res.error;
         }
 
         return ref;

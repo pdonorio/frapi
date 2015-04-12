@@ -3,14 +3,37 @@
 // List of controllers
 myApp
 
+// HOW TO GET FOCUS
+// http://stackoverflow.com/a/18295416
+.directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
+})
+.factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    });
+  }
+})
+
 //////////////////////////////////////////////////////////////
 .controller('LoginController',
-    function ($scope, $state, $stateParams, Logger
+    function ($scope, $state, $stateParams, Logger, focus
         , user
         //, Account, cookie
+
         )
 {
+    // Logging
     var logger = Logger.getInstance('LoginCTRL');
+    // Focus on first input field
+    focus('focusMe');
 
 /*
     $scope.registered = true;
@@ -24,6 +47,7 @@ myApp
     // First check
     if (user.isLogged()) {
         console.log("Yes!!!");
+// TO FIX
         //$state.go("logged.main");
     }
 
@@ -71,23 +95,16 @@ myApp
 
         // Try
         user.set(data);
-        user.logIn().then(function(model) {
+        user.logIn().then(function(reference) {
 
-            console.log("ADELE", model);
-            if (model.isLogged()) {
-                ;
-            }
-// TO FIX
-/*
-            if (response) {
+            console.log("ADELE", reference);
+            if (reference.isLogged()) {
                 $scope.loginError = null;
                 logger.debug("Logged");
-                $state.go('logged.main');
+                //$state.go('logged.main');
             } else {
-                $scope.loginError = user.getError();
+                $scope.loginError = reference.getError();
             }
-*/
-
         });
     }
 
