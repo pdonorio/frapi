@@ -169,11 +169,13 @@ myApp
     if (this.cookie !== false) {
         logger.debug("Retrieve token from valid cookie");
         this.usr.set(this.cookie);
-        if (this.usr.logIn())
-            valid = true;
     }
-    // Then act if valid with isLogged()
-    return this.usr;
+    var obj = this.usr;
+    // This method has to be/solve a promise to work inside ui router resolve
+    return this.usr.logIn().then(function(response){
+        // Then act if valid with isLogged()
+        return obj;
+    });
   }
 
   ////////////////////////////////////////
