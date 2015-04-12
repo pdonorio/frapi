@@ -8,19 +8,12 @@ myApp
     function ($scope, $state, $stateParams, user)
 {
 
-// TO FIX
-    console.log("LOGIN: Already logged? (tofix)", user);
-    user.isLogged();
-/*
     // First check
-    var model = new Account();
-    model.check().then(function(response){
-        if (response === true) {
-            console.log("Yes");
-            $state.go("logged.main");
-        }
-    });
-*/
+    console.log("LOGIN: Already logged? (tofix)", user);
+    if (user.isLogged()) {
+        console.log("Yes");
+        $state.go("logged.main");
+    }
 
     // INIT
     $scope.gostate = $state.go;

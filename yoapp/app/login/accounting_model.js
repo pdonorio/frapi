@@ -93,9 +93,14 @@ myApp
 // TO FIX -
 
   var MyUser = function() {
+    this.logged = false;
+    this.admin = false;
+    this.role = AppConfig.userRoles.NO_ROLE;
   }
   MyUser.prototype.set = function (user) {
     this.user = user;
+    // Load from db if valid
+    //loadUser();
   }
 
   MyUser.prototype.logIn = function (user) {
@@ -108,10 +113,11 @@ myApp
     return Authentication.set(null, null);
   }
   MyUser.prototype.isLogged = function () {
-    logger.debug('TOFIX','Am i logged?');
+    return this.logged;
+
   }
   MyUser.prototype.isAdmin = function () {
-    return role == AppConfig.userRoles.ADMIN_USER;
+    return this.role == AppConfig.userRoles.ADMIN_USER;
   }
 
   MyUser.prototype.register = function () {
@@ -125,17 +131,9 @@ myApp
 
   // Constructor, with class name
   function Account(cookie) {
-
     logger.debug("Creating user object");
-
     this.cookie = cookie;
-    this.account = undefined;
-    this.status = {
-        logged: false,
-        roles: AppConfig.userRoles.NO_ROLE,
-    }
     this.usr = new MyUser();
-
   }
 
   ////////////////////////////////////////
@@ -147,30 +145,15 @@ myApp
         this.usr.set();
         deferred.resolve(this.usr);
         return deferred.promise;
+    } else {
+        console.log("Compare with db");
+        //compareUserAgainstDB(obj.user).then(function(check2){
+
+        // Set now data for isLogged and isAdmin
+        return true;
     }
 
-// TO FIX - if i have data inside the cookie
-    // Whatever
-    //this.account = Authentication.getUser();
-    //compareUserAgainstDB(obj.user).then(function(check2){
-
-    // Set now data for isLogged and isAdmin
-
-/*
-    var admin = isAdmin(this.role);
-
-    //loadUser(this.account);
-    var user = {
-        name: 'Baroque Admin',
-        admin: admin,
-    };
-    return user;
-*/
-
-
   }
-
-
 
   ////////////////////////////////////////
   // SERVICE RETURN
