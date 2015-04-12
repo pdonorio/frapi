@@ -44,11 +44,12 @@ myApp
       url: "/login/{status:[a-z]+}",
       resolve: {
         cookie: function(Authentication) {
-            return true;
+            return Authentication.get();
         },
-        user: function(Account) {
-            return true;
-            //return Account.getItem();
+        user: function(Account, cookie) {
+            console.log("Cookie", cookie);
+            var userObj = Account.getItem(cookie);
+            return userObj.get();
         }
       },
       views: {

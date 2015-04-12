@@ -6,7 +6,7 @@ myApp
 // For sha256 hashing
 .constant('Crypto', window.CryptoJS)
 // Real service
-.factory('Account', function (Logger, $q, API, Crypto, AppConfig, Authentication)
+.factory('Account', function (Logger, $q, $timeout, API, Crypto, AppConfig, Authentication)
 {
   var logger = Logger.getInstance('UserAccount');
   var resource = 'accounts';
@@ -88,111 +88,95 @@ myApp
     return Crypto.SHA256(mystring).toString();
   }
 
-  ////////////////////////////////////////////
-  ////////////////////////////////////////////
+  ////////////////////////////////////////
+  ////////////////////////////////////////
+// TO FIX -
 
-  var isAdmin = function (role) {
+  var MyUser = function() {
+  }
+  MyUser.prototype.set = function (user) {
+    this.user = user;
+  }
+
+  MyUser.prototype.logIn = function (user) {
+    $log.debug("Set data inside cookie?");
+    // var token = makeToken(user);
+    // Authentication.set(token, user.email);
+    // console.log("Saved");
+  }
+  MyUser.prototype.logOut = function () {
+    return Authentication.set(null, null);
+  }
+  MyUser.prototype.isLogged = function () {
+    logger.debug('TOFIX','Am i logged?');
+  }
+  MyUser.prototype.isAdmin = function () {
     return role == AppConfig.userRoles.ADMIN_USER;
+  }
+
+  MyUser.prototype.register = function () {
+    // Save inside db via API
+    console.log("DB save user");
+    saveUser(user);
   }
 
   ////////////////////////////////////////////
   ////////////////////////////////////////////
 
   // Constructor, with class name
-  function Account() {
+  function Account(cookie) {
 
     logger.debug("Creating user object");
-    this.account = "null";
+
+    this.cookie = cookie;
+    this.account = undefined;
     this.status = {
         logged: false,
-        roles: [],
+        roles: AppConfig.userRoles.NO_ROLE,
     }
+    this.usr = new MyUser();
 
-// TO FIX -
-    // Resolve all promises here if you can
-
-    // Should see if i have a cookie user and token
-    this.account = Authentication.getUser();
-
-    // If yes check if database has same user and token
-    if (this.account !== "null") {
-        logger.debug("Check user");
-    }
-
-    // Set now data for isLogged and isAdmin
-
-  }
-
-  ////////////////////////////////////////
-  ////////////////////////////////////////
-// TO FIX -
-  Account.prototype.logIn = function (user) {
-    $log.debug("");
-/*
-    var token = makeToken(user);
-    Authentication.set(token, user.email);
-    console.log("Saved");
-*/
-  }
-  Account.prototype.logOut = function () {
-    return Authentication.set(null, null);
-  }
-  Account.prototype.isLogged = function () {
-    logger.debug('TOFIX','Am i logged?');
-  }
-  Account.prototype.isAdmin = function () { }
-
-  ////////////////////////////////////////
-  ////////////////////////////////////////
-
-  ////////////////////////////////////////
-  Account.prototype.set = function (user) {
-    // Save inside db via API
-    console.log("DB save user");
-    saveUser(user);
   }
 
   ////////////////////////////////////////
   Account.prototype.get = function () {
 
-// TO FIX - load from DB [with User model]
-    this.role = 99;
+    // Should see if i have a cookie user and token
+    if (this.cookie === false) {
+        var deferred = $q.defer();
+        this.usr.set();
+        deferred.resolve(this.usr);
+        return deferred.promise;
+    }
+
+// TO FIX - if i have data inside the cookie
+    // Whatever
+    //this.account = Authentication.getUser();
+    //compareUserAgainstDB(obj.user).then(function(check2){
+
+    // Set now data for isLogged and isAdmin
+
+/*
     var admin = isAdmin(this.role);
+
     //loadUser(this.account);
     var user = {
         name: 'Baroque Admin',
         admin: admin,
     };
-
     return user;
+*/
+
 
   }
 
-  ////////////////////////////////////////
-// Please make sure i return a promise
-  Account.prototype.check = function () {
 
-    var obj = this;
-    // Once logged
-    return Authentication.checkAuth().then(function(check1) {
-        // If authorized
-        console.log("Verify auth");
-        if (check1)
-            return check1;
-        // Otherwise i am here when logging first time
-        console.log("Verify user", obj);
-        return compareUserAgainstDB(obj.user).then(function(check2){
-            return check2;
-        });
-    });
-  }
 
   ////////////////////////////////////////
   // SERVICE RETURN
   return {
-    getItem: function() {
-        var user = new Account();
-        return user;
+    getItem: function(cookie) {
+        return new Account(cookie);
     }
   }
 

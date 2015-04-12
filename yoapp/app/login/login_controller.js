@@ -9,9 +9,9 @@ myApp
 {
 
 // TO FIX
-    console.log("LOGIN: Already logged? (tofix)");
-/*
+    console.log("LOGIN: Already logged? (tofix)", user);
     user.isLogged();
+/*
     // First check
     var model = new Account();
     model.check().then(function(response){

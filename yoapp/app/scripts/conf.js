@@ -22,6 +22,7 @@ angular.module('AppConfig', [])
     ADMIN_USER: 99,
     OPERATOR_USER: 11,
     GUEST_USER: 2,
+    NO_ROLE: -1,
   })
 
   // Minimum timeout to get objects working inside directive....

@@ -18,6 +18,14 @@ myApp
   logger.debug('debug', 'This is a debug for line {0}', [ 8 ]);
 */
 
+  var checkAuth = function(user, token) {
+      var checkUser = typeof user !== 'undefined' && user !== FAILED_USER;
+      var checkToken = typeof token !== 'undefined' && token !== FAILED_TOKEN;
+      var response = checkUser && checkToken;
+      logger.debug("Checking cookie", response);
+      return response;
+  }
+
   // Handle cookie and authentication
   var Authentication = {};
 
@@ -42,11 +50,14 @@ myApp
       $cookies.put(COOKIEVAR_USER, username, cOptions);
       logger.log("Saved cookies [token, user]")
   }
-  // To see if correctly logged
-  Authentication.checkAuth = function() {
-      var checkUser = $cookies.get(COOKIEVAR_USER) !== FAILED_USER;
-      var checkToken = $cookies.get(COOKIEVAR_AUTHTOKEN) !== FAILED_TOKEN;
-      return checkUser && checkToken;
+
+  Authentication.get = function() {
+      var user = $cookies.get(COOKIEVAR_USER);
+      var token = $cookies.get(COOKIEVAR_AUTHTOKEN);
+      if (checkAuth(user, token))
+        return {user: user, token: token};
+
+      return false;
   }
 
   return Authentication;
