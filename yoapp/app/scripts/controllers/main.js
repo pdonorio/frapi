@@ -45,7 +45,7 @@ myApp
     $rootScope.$on('$stateChangeSuccess',
      function(event, toState, toParams, fromState, fromParams){
 
-        console.log("Changing from", fromState, "to", toState);
+//        console.log("Changing from", fromState, "to", toState);
         if (!toState.data.requireLogin)
             return;
         console.log("Check login?");

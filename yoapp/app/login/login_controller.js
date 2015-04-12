@@ -97,11 +97,10 @@ myApp
         user.set(data);
         user.logIn().then(function(reference) {
 
-            console.log("ADELE", reference);
             if (reference.isLogged()) {
                 $scope.loginError = null;
                 logger.debug("Logged");
-                //$state.go('logged.main');
+                $state.go('logged.main');
             } else {
                 $scope.loginError = reference.getError();
             }

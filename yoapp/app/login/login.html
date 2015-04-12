@@ -42,7 +42,8 @@
                <table class="table">
                 <thead> <tr> <th colspan="2"> Registrazione </th> </tr> </thead>
                 <tbody> <tr> <td>
-                <p> <input type="text" ng-model="user.name" name='username'
+                <p> <input focus-on="focusMe"
+                    type="text" ng-model="user.name" name='username'
                     ng-minlength='3' size='25'
                     ng-model-options="{ updateOn: 'blur' }"
                     placeholder='Il tuo nome' required /> </p>
@@ -69,6 +70,9 @@
                 </p>
                 </td> </tr> </tbody>
                </table>
+               <p style='text-align: right;'>
+                <a href="" ng-click='gostate("unlogged.dologin", {status: "user"})'>login</a>
+               </p>
               </form>
 
               <!-- Welcome registered user -->
