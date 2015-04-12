@@ -10,11 +10,23 @@
 myApp
 .controller('MainController', function ($scope,
     $rootScope, $timeout, $interval, $location, $state,
+
     // account stuff (and verification)
     user,
+    //Account, cookie,
+
     // what else?
     projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+
+/*
+    var userObj = Account.getItem(cookie);
+    userObj.get().then(function(tmp){
+        console.log(tmp);
+    });
+    return;
+*/
+
 
     // Init time
     $scope.projectName = projectName;

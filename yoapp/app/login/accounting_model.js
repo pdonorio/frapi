@@ -13,31 +13,41 @@ myApp
 
   ////////////////////////////////////////
   // Check data with API
-  function compareUserAgainstDB(user, token) {
+  function loadUserIfValid(user, token, obj) {
 
     var parameters = { email: user };
+    var res = {status: false, error: "No cookie defined"};
 
     return API.get(resource, parameters)
       .then(function(response) {
 
           // Init check
           if (!user)
-            return "No user defined";
+            return res;
+
           if (response.count != 1)
-            return "User not found";
+            res.error =  "User not found";
+          else {
+            var usr = response.items[0];
+            if (!usr.token)
+              res.error =  "Service unavailable";
+            // Password check
+            else if (usr.token != token)
+              res.error =  "Wrong password";
+            // Final check
+            else if (usr.activation < 1)
+              res.error =  "Account not activated yet";
+            // Authorized
+            else {
+              logger.log("Obtained user", usr);
+              res.data = usr;
+              res.status = true;
+            }
+          }
 
-          var usr = response.items[0];
+          console.log("Obj", res);
+          return res;
 
-          if (!usr.token)
-            return "Service unavailable";
-          // Password check
-          if (usr.token != token)
-            return "Wrong password";
-          // Final check
-          if (usr.activation < 1)
-            return "Account not activated yet";
-          // Authorized
-          return usr;
       });
   }
 
@@ -77,47 +87,51 @@ myApp
     this.error = false;
     this.logged = false;
     this.role = AppConfig.userRoles.NO_ROLE;
+    this.name = null;
+    this.user = {email: null, token: null};
   }
   MyUser.prototype.set = function (user) {
 
+    // Compute Token
     if (user && user.pw) {
         user.token = makeToken(user.email, user.pw);
         delete user.pw;
     }
-    this.user = user;
-    logger.debug("Istance of User");
+    logger.debug("Istance of User", user);
+
+    // Set cookie/user inside MyUser object
+    this.user = {email: null, token: null};
+    if (user && user.email)
+        this.user = user;
   }
 
   MyUser.prototype.logIn = function () {
 
-    // Handle login
-    var obj = this;
-    console.log("TESTING LOGIN"); debugger;
+    var ref = this;
 
-    return compareUserAgainstDB(this.user.email, this.user.token)
-        .then(function(response) {
+//THE PROBLEM
+    // The promise
+    return loadUserIfValid(this.user.email, this.user.token).then(function(res){
 
-        if (typeof response === 'object') {
-            // Success
-            obj.logged = true;
-            obj.role = response.role;
-            obj.name = response.name + " " + response.surname;
-            console.log("Logged", obj);
-/*
-    // Cookie save last login
-    if (Authentication.get() === false) {
-        Authentication.set(this.user.token, this.user.email);
-        logger.debug('debug', "Set data inside cookie", this.user.email);
-    }
-*/
-        } else {
-            // Failed
-            obj.error = response;
-            obj.logged = false;
+        //console.log("TEST", res); console.log("TEST 2", ref);
+
+        // If i have nothing inside the cookie and received valid credential
+        if (res.status) {
+
+            // Cookie save last login
+            if (!ref.user.email) {
+                //Authentication.set(res.user.token, res.user.email);
+                logger.debug('debug', "TOFIX Set data inside cookie", res);
+            }
+
+            // Save what i need
+            ref.name = res.data.name + " " + res.data.surname;
+            ref.logged = true;
+            ref.role = res.data.role;
         }
-        return obj.logged;
-    });
 
+        return ref;
+    });
 
   }
 
@@ -162,20 +176,12 @@ myApp
   ////////////////////////////////////////
   Account.prototype.get = function () {
 
-    var obj = this.usr;
-
     // Should see if i have a cookie user and token
     if (this.cookie !== false) {
         logger.debug("Retrieve token from valid cookie");
         this.usr.set(this.cookie);
     }
-
-    // This method has to be/solve a promise to work inside ui router resolve
-    return this.usr.logIn().then(function(response){
-        logger.warn("Login response: {0}", [response]);
-        // Then act if valid with isLogged()
-        return obj;
-    });
+    return this.usr.logIn();
   }
 
   ////////////////////////////////////////

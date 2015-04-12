@@ -5,12 +5,21 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('LoginController',
-    function ($scope, $state, $stateParams,
-        Logger, user
-        //Account, cookie
+    function ($scope, $state, $stateParams, Logger
+        , user
+        //, Account, cookie
         )
 {
     var logger = Logger.getInstance('LoginCTRL');
+
+/*
+    $scope.registered = true;
+    var userObj = Account.getItem(cookie);
+    userObj.get().then(function(tmp){
+        console.log(tmp);
+    });
+    return;
+*/
 
     // First check
     if (user.isLogged()) {
@@ -62,7 +71,14 @@ myApp
 
         // Try
         user.set(data);
-        user.logIn().then(function(response) {
+        user.logIn().then(function(model) {
+
+            console.log("ADELE", model);
+            if (model.isLogged()) {
+                ;
+            }
+// TO FIX
+/*
             if (response) {
                 $scope.loginError = null;
                 logger.debug("Logged");
@@ -70,6 +86,7 @@ myApp
             } else {
                 $scope.loginError = user.getError();
             }
+*/
 
         });
     }
