@@ -54,24 +54,22 @@ myApp
     $scope.reset();
 
     $scope.login = function(data) {
-
+        // Sanitize 'data' ?
 // TO FIX
-        // Sanitize data?
 
         // Try
         user.set(data);
         user.logIn().then(function(response) {
-            if (response === false) {
-                $scope.loginError = user.getError();
-            } else {
+            if (response) {
                 $scope.loginError = null;
                 console.log("Logged");
+// TO FIX
                 //$state.go('logged.main');
+            } else {
+                $scope.loginError = user.getError();
             }
 
         });
-/*
-*/
     }
 
 });

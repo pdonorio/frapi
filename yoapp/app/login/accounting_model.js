@@ -12,13 +12,6 @@ myApp
   var resource = 'accounts';
 
   ////////////////////////////////////////
-  function loadUser(user) {
-    console.log("user", user);
-// TO FIX -
-// API CALL
-  }
-
-  ////////////////////////////////////////
   // Check data with API
   function compareUserAgainstDB(user, passw) {
 
@@ -31,25 +24,26 @@ myApp
             return "No user";
 
           // Init check
-          if (response.count != 1) 
+          if (response.count != 1)
             return "User not found";
-          else if (!response.items[0].token) 
+          else if (!response.items[0].token)
             return "Service unavailable";
 
           // Compute token
-          var tmp = response.items[0];
-          tmp.pw = passw;
-          var token = makeToken(tmp);
+          var usr = response.items[0];
+          usr.pw = passw;
+          var token = makeToken(usr);
+          delete usr.pw;
 
           // Password check
           if (response.items[0].token != token)
             return "Wrong password";
           // Final check
-          if (tmp.activation < 1)
+          if (usr.activation < 1)
             return "Account not activated yet";
 
           // Authorized
-          return true;
+          return usr;
 
 // TO FIX -
     // if all is fine: request the token - with check api side...
@@ -98,28 +92,34 @@ myApp
   }
 
   MyUser.prototype.logIn = function () {
-    Authentication.set(makeToken(this.user), this.user);
-    logger.debug('debug', "Set data inside cookie", this.user);
-    var obj = this;
 
+    // Cookie save last login
+    Authentication.set(makeToken(this.user), this.user.email);
+    logger.debug('debug', "Set data inside cookie", this.user);
+
+    // Handle login
+    var obj = this;
     return compareUserAgainstDB(this.user.email, this.user.pw)
         .then(function(response) {
 
         console.log("Response is ", response);
-        if (response === true) {
+        if (typeof response === 'object') {
+            // Success
+            console.log("UHM", response);
+            obj.logged = true;
+            obj.role = response.role;
 
-// TO FIX -
-            // Retrieve data if valid
-            //loadUser();
-            console.log("UHM");
-
-            // Set now data for isLogged and isAdmin ?
+            var tmp = Authentication.get();
+            console.log("Cookie is", tmp);
         } else {
             // Failed
             obj.error = response;
-            return false;
+            obj.logged = false;
         }
+        return obj.logged;
     });
+
+
   }
 
   MyUser.prototype.getError = function () {
@@ -167,10 +167,10 @@ myApp
 
     // Should see if i have a cookie user and token
     if (this.cookie === false) {
-// LOGOUT
         return this.usr.logOut();
     } else {
-// CHECK
+        console.log("Retrieve cookie user and token", cookie);
+        //this.usr.set();
         return this.usr.logIn();
     }
 

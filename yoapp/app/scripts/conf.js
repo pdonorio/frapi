@@ -63,14 +63,19 @@ angular.module('AppConfig', [])
 
 // TO FIX -
 // https only for sending informations, not files, at the moment
-        protocol = "http";
+        var protocol = "http";
         config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
           + "/" + apiFileResource;
 
-        var protocol = $location.protocol();
+        protocol = $location.protocol();
         config.apiBase = protocol + "://" + host + ":" + apiPort + apiBase;
 
-        //notification messages status
+        config.debug = true;
+
+        // Protocol
+        config.currentProtocol = protocol;
+
+        // notification messages status
         config.messageStatus = messageStatus;
 
         // Roles

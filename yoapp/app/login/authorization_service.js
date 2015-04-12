@@ -5,7 +5,7 @@
 myApp
 
 .factory('Authentication',
-    function (Logger, $q, $cookies,
+    function (Logger, $q, $cookies, AppConfig,
         COOKIEVAR_AUTHTOKEN, COOKIEVAR_USER, FAILED_TOKEN, FAILED_USER)
 {
 
@@ -45,23 +45,34 @@ myApp
       // One day expiration
       var now = new Date(),
           exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+      // Depends on https and debug
+      var securing = false;
+      if (AppConfig.debug && AppConfig.protocol == 'https')
+        securing = true;
+
       var cOptions = {
+          secure: securing,
 // TO FIX - verify expiration
-          secure: true, expires: exp,
+          expires: exp,
           //domain: 'http://test.goo.devs', //path: '/login',
       };
       // Save
       $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
+      console.log("token", token);
       $cookies.put(COOKIEVAR_USER, username, cOptions);
-      logger.log("Saved cookies [token, user]")
+      console.log("User", username);
+
+      logger.log("Saved cookies");
   }
 
   Authentication.get = function() {
-      var user = $cookies.get(COOKIEVAR_USER);
+      var username = $cookies.get(COOKIEVAR_USER);
+      console.log("Get User", username);
       var token = $cookies.get(COOKIEVAR_AUTHTOKEN);
-      if (checkAuth(user, token))
-        return {user: user, token: token};
-
+      console.log("Get Token", token);
+      if (checkAuth(username, token))
+        return {user: username, token: token};
       return false;
   }
 
