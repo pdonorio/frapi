@@ -59,20 +59,19 @@ myApp
       };
       // Save
       $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
-      console.log("token", token);
+      //console.log("token", token);
       $cookies.put(COOKIEVAR_USER, username, cOptions);
-      console.log("User", username);
-
+      //console.log("User", username);
       logger.log("Saved cookies");
   }
 
   Authentication.get = function() {
       var username = $cookies.get(COOKIEVAR_USER);
-      console.log("Get User", username);
+      //console.log("Get User", username);
       var token = $cookies.get(COOKIEVAR_AUTHTOKEN);
-      console.log("Get Token", token);
+      //console.log("Get Token", token);
       if (checkAuth(username, token))
-        return {user: username, token: token};
+        return {email: username, token: token};
       return false;
   }
 

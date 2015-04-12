@@ -11,6 +11,18 @@ myApp
     .state('unlogged', {
       url: "/public",
       abstract: true,
+
+      // Apply to any child
+      resolve: {
+        cookie: function(Authentication) {
+            return Authentication.get();
+        },
+        user: function(Account, cookie) {
+            //console.log("Cookie", cookie);
+            var userObj = Account.getItem(cookie);
+            return userObj.get();
+        }
+      },
       views: { "main": {
         template: '<div ui-view="contain"></div>',
       }},
@@ -35,23 +47,11 @@ myApp
             controller: 'MainController',
         },
       },
-      // since using the MainController, it waits for a 'user' object
-      resolve: { user: function() { return null; } },
     })
 
     // Simple login logic
     .state('unlogged.dologin', {
       url: "/login/{status:[a-z]+}",
-      resolve: {
-        cookie: function(Authentication) {
-            return Authentication.get();
-        },
-        user: function(Account, cookie) {
-            console.log("Cookie", cookie);
-            var userObj = Account.getItem(cookie);
-            return userObj.get();
-        }
-      },
       views: {
         "contain": {
             templateUrl: "login/login.html",
@@ -59,25 +59,21 @@ myApp
         },
       },
     })
+
     .state('unlogged.dologout', {
       url: "/logout",
       views: {
         "contain": {
           // Simple controller for logging out the account
           // note: resolve is no good for a state change //http://j.mp/1Fujv5n
-          controller: function($state, Account) {
-// TO FIX -
-/*
-            var model = new Account();
-            model.logging(null); // unset user
+          controller: function($state, user) {
+            user.logOut();
             $state.go('unlogged.welcome'); // go to init page
-*/
           }
         }
       },
     })
 
-/*
 ///////////////////////////////////////////
 // Once Logged
 // Once Logged
@@ -109,13 +105,12 @@ myApp
       }, onExit: function($rootScope){
         $rootScope.$emit('rootScope:emit', 'padoff');
       },
+/*
       // Set the current user for the whole application
       resolve: {
         user: function(Account, $state) {
 
             console.log("Resolve user");
-
-*/
 
 // TO FIX -
 /*
@@ -139,6 +134,9 @@ myApp
             return {empty: null};
         },
       },
+
+*/
+
     })
 
 ///////////////////////////////////////////////
@@ -165,6 +163,7 @@ myApp
         }
       })
 
+/*
     ///////////////////////////////////////////////
       .state('logged.submission', {
         url: "/submission/{myId:[0-9\-a-z]*}",

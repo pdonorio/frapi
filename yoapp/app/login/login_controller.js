@@ -5,13 +5,18 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('LoginController',
-    function ($scope, $state, $stateParams, user)
+    function ($scope, $state, $stateParams,
+        user
+        //Account, cookie
+        )
 {
+
+    console.log("User", user);
 
     // First check
     if (user.isLogged()) {
-        console.log("Yes");
-        $state.go("logged.main");
+        console.log("Yes!!!");
+        //$state.go("logged.main");
     }
 
     // INIT

@@ -19,7 +19,7 @@ angular.module('AppConfig', [])
 
   //USERS
   .constant('USER_ROLES',{
-    ADMIN_USER: 99,
+    ADMIN_USER: 999,
     OPERATOR_USER: 11,
     GUEST_USER: 2,
     NO_ROLE: -1,
