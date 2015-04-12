@@ -6,12 +6,11 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('LoginController',
     function ($scope, $state, $stateParams,
-        user
+        Logger, user
         //Account, cookie
         )
 {
-
-    console.log("User", user);
+    var logger = Logger.getInstance('LoginCTRL');
 
     // First check
     if (user.isLogged()) {
@@ -33,22 +32,21 @@ myApp
         $scope.welcome = true;
     }
 
-    $scope.register = function(user) {
+    $scope.register = function(data) {
+
         if($scope.registerForm.$valid){
+// TO FIX
+    //- CHECK EMAIL format?
+// TO FIX
+    //- Check already existing?
 
-// TO FIX - CHECK EMAIL format?
-
-// TO FIX - Check already existing?
-          console.log("FIX REGISTER");
-/*
-          var ldap = new Account(user);
-          ldap.set().then(function(id){
-             // IF?
+          //Register with API
+          user.set(data);
+          user.register().then(function(id){
               $state.go('unlogged.dologin', {status: 'registered'});
           });
-*/
         } else {
-          console.log("NOT Valid");
+          logger.warn("Form is NOT valid");
         }
     };
 
@@ -67,9 +65,8 @@ myApp
         user.logIn().then(function(response) {
             if (response) {
                 $scope.loginError = null;
-                console.log("Logged");
-// TO FIX
-                //$state.go('logged.main');
+                logger.debug("Logged");
+                $state.go('logged.main');
             } else {
                 $scope.loginError = user.getError();
             }

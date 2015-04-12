@@ -14,11 +14,8 @@ myApp
 
       // Apply to any child
       resolve: {
-        cookie: function(Authentication) {
-            return Authentication.get();
-        },
+        cookie: function(Authentication) { return Authentication.get(); },
         user: function(Account, cookie) {
-            //console.log("Cookie", cookie);
             var userObj = Account.getItem(cookie);
             return userObj.get();
         }

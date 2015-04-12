@@ -44,16 +44,13 @@ myApp
   ////////////////////////////////////////
   // Register user
   function saveUser(data) {
-    // Complete data
-    data.token = makeToken(data);
-    delete(data.pw);
-// TO FIX - define roles?
-    data.role = AppConfig.userRoles.ADMIN_USER;
     data.activation = 0;
+    // All adminers....
+    data.role = AppConfig.userRoles.ADMIN_USER;
     // send to database
     return API.set(resource, data)
       .then(function(id) {
-          console.log("Saved user", id);
+          logger.log("Saved user: {0}", [id]);
           return id;
       });
   }
@@ -143,8 +140,7 @@ myApp
 
   MyUser.prototype.register = function () {
     // Save inside db via API
-    console.log("DB save user");
-    saveUser(user);
+    return saveUser(this.user);
   }
 
   ////////////////////////////////////////////
