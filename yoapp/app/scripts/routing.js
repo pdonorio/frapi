@@ -3,19 +3,18 @@
 myApp
 .config(function($stateProvider, $urlRouterProvider)
 {
-
-
   // Set up the states and URL routing
   $stateProvider
 
+    ////////////////////////////
+    // Apply to any child
     .state('unlogged', {
       url: "/public",
       abstract: true,
-
-      // Apply to any child
       resolve: {
         cookie: function(Authentication) { return Authentication.get(); },
         user: function(Account, cookie) {
+            console.log("Cookie", cookie);
             var userObj = Account.getItem(cookie);
             return userObj.get();
         }
@@ -28,6 +27,7 @@ myApp
         requireLogin: false,
       },
     })
+    ////////////////////////////
 
     // For each page i didn't setup
     .state('unlogged.notfound', {
@@ -102,38 +102,28 @@ myApp
       }, onExit: function($rootScope){
         $rootScope.$emit('rootScope:emit', 'padoff');
       },
-/*
       // Set the current user for the whole application
       resolve: {
-        user: function(Account, $state) {
+        cookie: function(Authentication) { return Authentication.get(); },
+        user: function(Account, cookie, $state) {
 
-            console.log("Resolve user");
+            console.log("Resolve user", cookie);
+            var userObj = Account.getItem(cookie);
 
-// TO FIX -
+            // AUTHENTICATION: First check on entering main
+            //if ($state.data.requireLogin) {}
+            return userObj.get().then(function(user){
+                console.log("Test auth", user.isLogged());
 /*
-            var model = new Account();
-
-            // AUTHENTICATION
-            // First check on entering main
-            if ($state.data.requireLogin) {
-                model.check().then(function(response){
-                    console.log("Test auth", response);
-                    if (response !== true) {
-                        console.log("Go away:", response);
-                        $state.go('unlogged.dologin', {status: 'user'});
-                    }
-                });
-            }
-            return model.get();
+                if (response !== true) {
+                    console.log("Go away:", response);
+                    $state.go('unlogged.dologin', {status: 'user'});
+                }
 */
-
-/*
-            return {empty: null};
+                return user;
+            });
         },
       },
-
-*/
-
     })
 
 ///////////////////////////////////////////////
@@ -160,7 +150,6 @@ myApp
         }
       })
 
-/*
     ///////////////////////////////////////////////
       .state('logged.submission', {
         url: "/submission/{myId:[0-9\-a-z]*}",
@@ -258,7 +247,6 @@ myApp
       })
 // Once Logged
 // Once Logged
-*/
 
 ////////////////////
   ; //routing end

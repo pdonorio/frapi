@@ -90,14 +90,10 @@ myApp
 
   MyUser.prototype.logIn = function () {
 
-    // Cookie save last login
-    if (Authentication.get() === false) {
-        Authentication.set(this.user.token, this.user.email);
-        logger.debug('debug', "Set data inside cookie", this.user.email);
-    }
-
     // Handle login
     var obj = this;
+    console.log("TESTING LOGIN"); debugger;
+
     return compareUserAgainstDB(this.user.email, this.user.token)
         .then(function(response) {
 
@@ -107,6 +103,13 @@ myApp
             obj.role = response.role;
             obj.name = response.name + " " + response.surname;
             console.log("Logged", obj);
+/*
+    // Cookie save last login
+    if (Authentication.get() === false) {
+        Authentication.set(this.user.token, this.user.email);
+        logger.debug('debug', "Set data inside cookie", this.user.email);
+    }
+*/
         } else {
             // Failed
             obj.error = response;
@@ -159,16 +162,17 @@ myApp
   ////////////////////////////////////////
   Account.prototype.get = function () {
 
-    var valid = false;
+    var obj = this.usr;
 
     // Should see if i have a cookie user and token
     if (this.cookie !== false) {
         logger.debug("Retrieve token from valid cookie");
         this.usr.set(this.cookie);
     }
-    var obj = this.usr;
+
     // This method has to be/solve a promise to work inside ui router resolve
     return this.usr.logIn().then(function(response){
+        logger.warn("Login response: {0}", [response]);
         // Then act if valid with isLogged()
         return obj;
     });
