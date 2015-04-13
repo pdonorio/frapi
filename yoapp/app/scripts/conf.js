@@ -56,6 +56,7 @@ angular.module('AppConfig', [])
     return {
       $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus, USER_ROLES)
       {
+        config.debug = true;
 
         //use location https://docs.angularjs.org/api/ng/service/$location
         var host = $location.host();
@@ -70,10 +71,9 @@ angular.module('AppConfig', [])
         protocol = $location.protocol();
         config.apiBase = protocol + "://" + host + ":" + apiPort + apiBase;
 
-        config.debug = true;
-
         // Protocol
         config.currentProtocol = protocol;
+        config.domain = host;
 
         // notification messages status
         config.messageStatus = messageStatus;

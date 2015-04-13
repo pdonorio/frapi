@@ -11,6 +11,9 @@ myApp
     .state('unlogged', {
       url: "/public",
       abstract: true,
+      onEnter: function($window, AppConfig) {
+        $window.mydomain = AppConfig.domain;
+      },
       resolve: {
         cookie: function(Authentication) {
             return Authentication.get();
@@ -95,7 +98,8 @@ myApp
             controller: 'MainController',
             //this controller scope will be inherited from every nested child view
         },
-      }, onEnter: function($rootScope, $state) {
+      }, onEnter: function($rootScope, $state, $window, AppConfig) {
+        $window.mydomain = AppConfig.domain;
         // Signal to remove background and add body pad for the topbar
         $rootScope.$emit('rootScope:emit', 'padon');
       }, onExit: function($rootScope){
@@ -112,7 +116,7 @@ myApp
             return userObj.get().then(function(user){
                 // if not...
                 if (!user.isLogged()) {
-                    console.log("Go away:", response);
+                    console.log("Go away:",user);
                     $state.go('unlogged.dologin', {status: 'user'});
                 }
                 return user;
