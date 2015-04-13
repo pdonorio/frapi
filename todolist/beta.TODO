@@ -7,7 +7,7 @@ TO DISCUSS:
 
 --- ✄ -----------------------
 
-Cookies take 1:
+Cookies security 1:
  ✔ Cookie to save information about the fact i used login to get in @done (15-04-02 17:12)
    ✔ save at login time @done (15-04-02 17:12)
      ✔ if cookie exists, force login @done (15-04-02 17:24)
@@ -24,12 +24,17 @@ Cookies take 1:
     ✔ @itworks!! @done (15-04-07 14:53)
       ✔ certificates as volumes inside docker compose @done (15-04-07 14:53)
       ✔ make them work on flask too @done (15-04-07 14:53)
+ ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
+   ✔ nginx https? @done (15-04-03 16:51)
+   ✔ avoid man in the middle @done (15-04-03 16:51)
 
 Something very difficult: LOGIN PATTERN for ANGULARJS:
   ✔ restart.... @done (15-04-13 06:22)
     ✔ FROM ZERO!! @done (15-04-13 06:22)
     ✔ define cookie when login is valid.... @done (15-04-13 06:36)
     ✔ use name inside object in topbar @done (15-04-13 06:36)
+      ✔ other fixes @done (15-04-13 06:53)
+        ☐ topbar button not changing
       ☐ use hash to link document submitted to user
 
 A real User model:
@@ -39,19 +44,19 @@ A real User model:
  ✔ $q.when? http://jsfiddle.net/jeremylikness/Q2jMG/ @done (15-04-13 06:38)
     ✘ Infinite loop of user logged problem @cancelled (15-04-10 19:29)
     ✔ learn to debug resolve testing inside controller @done (15-04-13 06:38)
-      ☐ load from db
+    ✔ load from db @done (15-04-13 06:49)
     ☐ list of user drafts
       ☐ by identifiers inside the api provider
   ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
     ☐ use spectaclebaroque domain @marcohelpG
 
- ☐ API check at page load?
- ☐ Should check admin pages via ui router resolve...
-
  ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
  ☐ Date within a range of years
    ☐ only month or only year
+
+ ☐ API check at page load?
+ ☐ Should check admin pages via ui router resolve...
 
 STATUS:
   ☐ New button topbar
@@ -63,17 +68,10 @@ STATUS:
 
 --- ✄ -----------------------
 
-COOKIE SECURITY:
- ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
-   ✔ nginx https? @done (15-04-03 16:51)
-   ✔ avoid man in the middle @done (15-04-03 16:51)
+COOKIE SECURITY 2:
   ☐ Check cookie timer...
  ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
-   ☐ ??
  ☐ Path: cookie will only be send on specified path e.g. /login
-   ☐ does not work with angular 1.4 beta6?A
-     ☐ check updates
- ☐ I would also define an expiration date on the cookie
  ☐ CORS?
    ☐ Pre-flight OPTIONS requests
    ☐ http://stackoverflow.com/a/19576540/2114395

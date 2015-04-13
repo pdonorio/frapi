@@ -31,16 +31,22 @@ myApp
      function(event, toState, toParams, fromState, fromParams){
 
 //        console.log("Changing from", fromState, "to", toState);
+
+        // Do no checks if login is not required
         if (!toState.data.requireLogin)
             return;
-        console.log("Check login?");
-
-/*
-// TO FIX - check via user object
-        console.log("State changed, but check authorization");
-        if (toState.data.requireLogin && !Auth.checkAuth())
+        // Check if logged
+        if (!user.isLogged()) {
+            logger.log("Not authorized");
             $state.go('unlogged.dologin', {status: 'user'});
-*/
+        }
+
+        console.log("Uhm", toState.data);
+        // Check if admin
+        if (toState.data.requireAdmin) {
+            console.log("Check admin?");
+        }
+
 
     })
     //////////////////////////////////////

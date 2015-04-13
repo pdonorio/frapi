@@ -35,20 +35,10 @@ myApp
     // Focus on first input field
     focus('focusMe');
 
-/*
-    $scope.registered = true;
-    var userObj = Account.getItem(cookie);
-    userObj.get().then(function(tmp){
-        console.log(tmp);
-    });
-    return;
-*/
-
     // First check
     if (user.isLogged()) {
-        console.log("Yes!!!");
-// TO FIX
-        //$state.go("logged.main");
+        logger.warn("Already logged");
+        $state.go("logged.main");
     }
 
     // INIT

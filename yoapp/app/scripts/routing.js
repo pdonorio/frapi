@@ -85,8 +85,6 @@ myApp
       data: {
         // this property will apply to all children of 'app'
         requireLogin: true,
-        // this should be changed for admins
-        requireAdmin: false,
       },
 
       views: {
@@ -127,6 +125,7 @@ myApp
     // LOGGED Child routes (sub view, nested inside parent)
       .state('logged.main', {
         url: "/main",
+        data: { requireAdmin: false },
         views: {
           "contain": {
             templateUrl: "views/main.html",
@@ -150,6 +149,7 @@ myApp
     ///////////////////////////////////////////////
       .state('logged.submission', {
         url: "/submission/{myId:[0-9\-a-z]*}",
+        data: { requireAdmin: false },
         views: {
           "contain": {
             templateUrl: 'submission/submission_user_view.html',
@@ -184,6 +184,7 @@ myApp
     ///////////////////////////////////////////////
       .state('logged.adminsubmission', {
         url: "/configure/{myId:[0-9\-a-z]*}",
+        data: { requireAdmin: true }, // Only for admins
         views: {
           "contain": {
             templateUrl: 'submission/submission_admin_view.html',
@@ -208,6 +209,7 @@ myApp
     ///////////////////////////////////////////////
       .state('logged.search', {
         url: "/search",
+        data: { requireAdmin: false },
         views: {
           "contain": {
             templateUrl: "views/datatable.html",
@@ -232,6 +234,7 @@ myApp
       })
       .state('logged.about', {
         url: "/about",
+        data: { requireAdmin: false },
         views: { "contain": {
           templateUrl: "views/change.html",
           controller: 'NewsController',
