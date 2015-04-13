@@ -51,7 +51,7 @@
                 Role: <b>Admin!</b>
               </li>
               <li ng-if='user.isAdmin()'>
-                <a href='#' ng-click="go('app/configure/admin/step/0')">
+                <a ui-sref="logged.adminsubmission.step({myId:'admin', stepId:0})">
                     <i class="fa fa-wrench"></i>
                     Submission
                     <span class="label label-success">done</span>
