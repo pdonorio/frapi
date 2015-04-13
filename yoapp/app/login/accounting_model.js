@@ -24,8 +24,10 @@ myApp
           // Init check
           if (!user)
             return res;
-
-          if (response.count != 1)
+          //console.log(response);
+          if (response.status)
+            res.error = "Database unreachable [offline]";
+          else if (response.count != 1)
             res.error =  "User not found";
           else {
             var usr = response.items[0];
@@ -98,7 +100,7 @@ myApp
     // Compute Token
     if (user && user.pw) {
         user.token = makeToken(user);
-        console.log("token", user.token);
+        //console.log("token", user.token);
         delete user.pw;
     }
     logger.debug("Istance of User", user);
@@ -109,7 +111,7 @@ myApp
         this.user = user;
   }
 
-  MyUser.prototype.logIn = function () {
+  MyUser.prototype.logIn = function (force) {
 
     var ref = this;
 
@@ -124,13 +126,22 @@ myApp
         // If i have nothing inside the cookie and received valid credential
         if (res.status) {
 
-            // Cookie save last login, if empty
-            if (!ref.user.email)
+            // Cookie save last login, only at login time
+            if (force)
                 Authentication.set(ref.user.token, ref.user.email);
 
+// TO FIX
             // Save what i need
+            //var identifier = null;
+            var identifier = 0;
+            if (res.data.id)
+                identifier = res.data.id.substr(0, 8);
+            else
+                logger.warn("Could not get identifier for current user");
+
             ref.name = res.data.name + " " + res.data.surname;
             ref.role = res.data.role;
+            ref.myid = identifier;
         } else {
             ref.error = res.error;
         }

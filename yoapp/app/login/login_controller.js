@@ -79,7 +79,8 @@ myApp
 
         // Try
         user.set(data);
-        user.logIn().then(function(reference) {
+        // Force login to save cookie
+        user.logIn(true).then(function(reference) {
 
             if (reference.isLogged()) {
                 $scope.loginError = null;

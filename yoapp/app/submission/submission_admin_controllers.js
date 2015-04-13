@@ -142,6 +142,8 @@ myApp
 // TO FIX - does not work. Should be done onExit, but how?
     //$scope.snameform.$cancel();
 
+    //INIT
+    $scope.templates = [];
     // Apply current url step to whole view
     $scope.setStep($stateParams.stepId);
 
@@ -199,6 +201,8 @@ myApp
           break;
         }
       };
+      if (pos < 1) pos = 1;
+
       // Add template
       var label = 'nuovo ' + pos;
       var value = 0;

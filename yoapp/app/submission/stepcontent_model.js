@@ -6,8 +6,10 @@
 */
 
 myApp
-.factory('StepContent', function (API)
+.factory('StepContent', function (API, Logger)
 {
+
+  var logger = Logger.getInstance('content');
 
   /*********************************
   ** PRIVATE *
@@ -75,7 +77,10 @@ myApp
   };
   StepContent.prototype.setData = function (obj, user, record) {
 
-    console.log("Init save"); //console.log(obj);
+    logger.log("Saving element", record);
+
+// TO FIX-
+// Log this db operation
 
     var data = {};
     // Save all in one array

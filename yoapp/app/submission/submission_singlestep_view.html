@@ -54,10 +54,9 @@
               <span
                 ng-if='obj.type == types[1].text' e-form="myform"
                 editable-number="obj.value"
-                e-placeholder='Inserisci un {{obj.type}} reale'
+                e-placeholder='{{obj.type}}'
                 onbeforesave="checkData(obj.req, $data, obj.type)"
-                e-min="18"
-                e-max="30"
+                e-min="1" e-max="99999"
                 >
                 {{obj.value || 'empty'}}
               </span>

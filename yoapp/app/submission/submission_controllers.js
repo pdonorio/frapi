@@ -98,10 +98,16 @@ myApp
         angular.forEach(template, function(obj, pos) {
             var value = null;
             var key = -1;
+            var type = getType(obj.value);
             // IF I HAVE DATA
             if (content.values) {
+                //console.log("I have template", obj, pos);
                 var key = content.hashes.indexOf(obj.hash);
+                //console.log("step", pos, "key", key, "values", content);
                 value = content.values[key];
+                if (type == 'number')
+                    value = parseInt(value);
+                //console.log("key", pos, "obj", type);
             }
             if (value !== '')
                 count++;
@@ -181,6 +187,7 @@ myApp
         // Unknown type. Problem in configuration.
         return "La tipologia '"+type+"' non e' ancora implementata";
     }
+
     // Save button
     $scope.saveStep = function() {
 
@@ -189,10 +196,11 @@ myApp
 
         // Try to save data. Also this has to be a promise
         // if i want to handle notification at this level
-        $scope.contentData.setData($scope.data[$scope.current],
-            $rootScope.user.name, $scope.identifier)
+        $scope.contentData.setData(
+            $scope.data[$scope.current], $rootScope.user.myid, $scope.identifier)
          .then(function(success) {
             if (success) {
+
               $timeout( function() {
                   NotificationData.setNotification( AppConfig.messageStatus.success,
                     "Salvataggio riuscito");

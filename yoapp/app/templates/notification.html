@@ -12,21 +12,21 @@
   <!-- Show a panel for SUCCESSFULLY saved element -->
   <div class="message fix shad animate-show animate-hide alert alert-success"
     role="alert" ng-show="notification.status == msgStatus.success">
-   <i class="fa fa-check-square-o"></i> Success!
+   <i class="fa fa-check-square-o"></i>
    <br>
    <div ng-bind-html="notification.successMessage"></div>
   </div>
   <!-- Show a panel for a small alert on element -->
   <div class="message fix shad animate-show animate-hide alert alert-warning"
     role="alert" ng-show="notification.status == msgStatus.warning">
-    <i class="fa fa-exclamation-triangle"></i> Warning
+    <i class="fa fa-exclamation-triangle"></i>
    <br>
    <div ng-bind-html="notification.warningMessage"></div>
   </div>
   <!-- Show a panel for ERROR on element -->
   <div class="message fix shad animate-show animate-hide alert alert-danger"
     role="alert" ng-show="notification.status == msgStatus.error">
-   <b><i class="fa fa-ban"></i> Failed</b>
+   <b><i class="fa fa-ban"></i></b>
    <br>
    <div ng-bind-html="notification.errorMessage"></div>
   </div>
