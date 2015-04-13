@@ -4,7 +4,7 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope, $state,
+.controller('SubmissionAdminController', function ($rootScope, $scope, $state,
     NotificationData, AppConfig, StepContent, StepTemplate, StepList )
 {
     // Stop unwanted user
@@ -34,15 +34,18 @@ myApp
 
     // Define step on click
     $scope.stepInUrl = function(step) {
-      $state.go('logged.adminsubmission.step', {stepId: step});
+      $state.go('logged.adminsubmission.step', {myId: 'admin', stepId: step});
     }
     // Define step from inside view
     $scope.setStep = function(step) {
-      if (step < 1)
+      if (step < 1) {
         $scope.current = null
       // Avoid if step has not changed
-      else if (step != $scope.current)
+      } else if (step != $scope.current) {
+        console.log("CHange to", step);
+        //$scope.stepInUrl(step);
         $scope.current = step; // Set step for administration
+      }
     }
 
     // Save new name
@@ -76,12 +79,14 @@ myApp
       // API save
       stepObj.setData($scope.steps, $scope.current).then(function(check){
           NotificationData.setNotification(AppConfig.messageStatus.loading);
-          if (check === false)
+          if (check === false) {
               NotificationData.setNotification(AppConfig.messageStatus.error,
                   "Database non raggiungibile");
-          else
+          } else {
               NotificationData.setNotification(AppConfig.messageStatus.success,
                   "Aggiunto step n." + $scope.current);
+              $scope.stepInUrl($scope.current);
+          }
       });
     };
     $scope.removeStep = function(index) {
@@ -100,15 +105,16 @@ myApp
 
             // API PROMISE CHAINING
             // 1. Remove from API the step
-            stepObj.unsetData(step).then(function(check){
+            stepObj.unsetData(step, $rootScope.user.myid).then(function(check){
               if (check === false) {
                 NotificationData.setNotification(AppConfig.messageStatus.error,
                     "Database non raggiungibile");
               } else {
 
+// TO CHECK...
                 // 2. Remove from API steptemplate
-                $scope.templObj = StepTemplate.build($scope.current, true);
-                $scope.templObj.unsetData(step);
+                $scope.templObj = StepTemplate.build(step, true);
+                $scope.templObj.unsetData(step, null, $rootScope.user.myid).then();
 
                 // 3. Remove from API stepcontent
                 // Small note:
@@ -117,7 +123,7 @@ myApp
                 // if admin recreates the same field again, with the same name
 
                 NotificationData.setNotification(AppConfig.messageStatus.success,
-                    "Rimosso step n." + $scope.current);
+                    "Rimosso step n." + step);
               }
             });
 
@@ -212,6 +218,8 @@ myApp
         hashStatus: 'new',
       };
       // API save
+      if (!$scope.templObj)
+          $scope.templObj = StepTemplate.build($scope.current);
       $scope.templObj.setData($rootScope.user.myid, $scope.current, pos,label,value,value)
         .then(function(tmp){
             $scope.templates[pos].hash = tmp.hash;

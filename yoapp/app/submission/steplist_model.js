@@ -7,9 +7,11 @@
 */
 
 myApp
-.factory('StepList', function (API) {
+.factory('StepList', function (API, Logger) {
 
   var resource = 'steps';
+  var logresource = 'datalogs';
+  var logger = Logger.getInstance('steps');
 
 // No, you can transform the result just fine by using a .then() handler inside the service. That's how promises are supposed to be used.
 
@@ -45,7 +47,7 @@ myApp
             console.log("Failed to get id: no saved data!!",step,value);
             return false;
         }
-        // Here i know which recordo to update
+        // Here i know which record to update
         var id = null;
         // Case of update
         if (response.count == 1)
@@ -68,16 +70,39 @@ myApp
   }
 
   // API to remove data
-  function removeData(step) {
+  function removeData(step, user) {
     var params = {step:step};
     // Selecting id to remove
     return API.get(resource, params)
       .then(function(response) {
-        if (response.count == 1)
-            return API.del(resource, response.items[0].id);
+        if (response.count == 1) {
+            params.user = user;
+            params.id = response.items[0].id;
+            // Log operation and delete
+            return logOperation(params, 'admin_step_remove').then(function() {
+                return API.del(resource, response.items[0].id);
+            });
+        }
         return false;
     });
   }
+
+  ///////////////////////////
+  // Log writing operation
+  function logOperation(data, operation) {
+    console.log("Data to log", data, operation);
+    var log = {
+        user: data.user,
+        record: data.id,
+        operation: operation,
+        comment: data,
+    };
+    return API.set(logresource, log) .then(function(response) {
+        logger.debug("AdminOp logged");
+        return true;
+    });
+  }
+
 
   //////////////////////////////////////////
   // Constructor, with class name
@@ -94,9 +119,9 @@ myApp
     //console.log("add/update data", key, data[key]);
     return saveData(key, data[key]);
   };
-  StepList.prototype.unsetData = function (key) {
-    console.log("Step remove", key);
-    return removeData(key);
+  StepList.prototype.unsetData = function (key, user) {
+    //console.log("Step remove", key);
+    return removeData(key, user);
   };
 
   //////////////////////////////////////////

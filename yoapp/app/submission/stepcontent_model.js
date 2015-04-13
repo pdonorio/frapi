@@ -15,6 +15,7 @@ myApp
   ** PRIVATE *
   ******************************** */
   var resource = 'stepscontent';
+  var logresource = 'datalogs';
 
   // Load data from API
   function loadData(recordid, step) {
@@ -35,15 +36,35 @@ myApp
       });
   }
 
+  // Log writing operation
+  function logOperation(data) {
+    var log = {
+        user: data.user,
+        record: data.recordid,
+        operation: 'user_content',
+        comment: data,
+    };
+    //console.log("Data to log", data);
+    API.set(logresource, log)
+      .then(function(response) {
+        logger.debug("Op logged");
+    });
+  }
+
   // Save data from API
   function saveData(obj, data) {
     return API.set(resource, data)
       .then(function(response) {
         // Response here is the id of inserted/updated element
         obj.setId(response);
-        obj.saveBackup(data);
-        return true;
-        //console.log(response);
+
+        // Log this operation inside db and make backup
+        data.myid = response;
+        return logOperation(data).then(function(){
+            obj.saveBackup(data);
+            //console.log(response);
+            return true;
+        });
     }, function() {
         return false;
     });

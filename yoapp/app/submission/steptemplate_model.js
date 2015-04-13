@@ -103,9 +103,10 @@ myApp
       });
   }
 
+  ///////////////////////////
   // Log writing operation
   function logOperation(data, remove) {
-    console.log("Data to log", data);
+    //console.log("Data to log", data);
     var log = {
         user: data.user,
         record: data.id,

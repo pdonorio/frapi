@@ -42,12 +42,17 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
         ✔ missing hashes at save time @done (15-04-13 11:04)
           ✔ should check from empty @done (15-04-13 11:04)
  ✔ Does not open edit if all fields are empty... @done (15-04-13 11:25)
+  ✔ BUG: if you create a new step, then templ obj is empty!!! @done (15-04-13 21:33)
 
-☐ i should log every insert/modification operation at content
-  ☐ and admin?
-☐ API check at page load?
-
- ☐ BUG: try without console....
+  ✔ LOG every insert/modification operation at content @done (15-04-13 21:33)
+    ✔ and admin template @done (15-04-13 21:34)
+    ✔ and admin step @done (15-04-13 21:34)
+      ✔ remove @done (15-04-13 21:34)
+      ☐ add and update
+  ☐ Does not remove template step in the middle...
+    ☐ error on submission too
+  ☐ API check at page load?
+  ☐ BUG: try without console....
 
 A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
@@ -57,11 +62,12 @@ A real User model:
     ✘ Infinite loop of user logged problem @cancelled (15-04-10 19:29)
     ✔ learn to debug resolve testing inside controller @done (15-04-13 06:38)
     ✔ load from db @done (15-04-13 06:49)
-    ☐ list of user drafts
-      ☐ by identifiers inside the api provider
   ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
 
- ☐ Some clean pattern image repaeat as background
+  ☐ Publishing
+    ☐ list of documents
+      ☐ published and not (label)
+  ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
 
 
@@ -71,7 +77,8 @@ STATUS:
     ☐ Conversations like feedback
       ☐ Feedback saved inside rdb api resource
       ☐ on change of table, python sends me an email
-  ☐ Publishing
+    ☐ list of user drafts
+      ☐ by identifiers inside the api provider
 
   ☐ Fix news: Work in progress for now?
   ☐ Should check admin pages via ui router resolve...
