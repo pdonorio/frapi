@@ -109,7 +109,7 @@ myApp
                     value = parseInt(value);
                 //console.log("key", pos, "obj", type);
             }
-            if (value !== '')
+            if (value && value !== '')
                 count++;
             data[pos] = {
                 key: obj.label, value: value, type: getType(obj.value),

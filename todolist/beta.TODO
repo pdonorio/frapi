@@ -36,17 +36,18 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
       ✔ other fixes @done (15-04-13 06:53)
         ✔ topbar button not changing @done (15-04-13 07:06)
       ✔ use hash to link document submitted to user @done (15-04-13 07:37)
-      ☐ i should log every insert/modification operation at content
-        ☐ and admin?
-  ☐ API check at page load?
-
   ✔ Bug at saving? @done (15-04-13 11:04)
     ✔ insert but not loading @done (15-04-13 11:04)
       ✔ Loading but not find in the mix @done (15-04-13 11:04)
         ✔ missing hashes at save time @done (15-04-13 11:04)
           ✔ should check from empty @done (15-04-13 11:04)
- ☐ Does not open edit if all fields are empty...
-   ☐ crap!
+ ✔ Does not open edit if all fields are empty... @done (15-04-13 11:25)
+
+☐ i should log every insert/modification operation at content
+  ☐ and admin?
+☐ API check at page load?
+
+ ☐ BUG: try without console....
 
 A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
@@ -62,8 +63,6 @@ A real User model:
 
  ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
- ☐ Date within a range of years
-   ☐ only month or only year
 
 
 STATUS:
@@ -72,10 +71,12 @@ STATUS:
     ☐ Conversations like feedback
       ☐ Feedback saved inside rdb api resource
       ☐ on change of table, python sends me an email
+  ☐ Publishing
 
   ☐ Fix news: Work in progress for now?
   ☐ Should check admin pages via ui router resolve...
   ☐ use spectaclebaroque domain @marcohelpG
+
 
 --- ✄ -----------------------
 
