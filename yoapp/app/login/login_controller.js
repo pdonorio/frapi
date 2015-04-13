@@ -90,8 +90,6 @@ myApp
     $scope.reset();
 
     $scope.login = function(data) {
-        // Sanitize 'data' ?
-// TO FIX
 
         // Try
         user.set(data);
@@ -101,6 +99,7 @@ myApp
                 $scope.loginError = null;
                 logger.debug("Logged");
                 $state.go('logged.main');
+            // Invalid
             } else {
                 $scope.loginError = reference.getError();
             }

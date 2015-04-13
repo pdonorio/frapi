@@ -44,8 +44,7 @@ myApp
               res.status = true;
             }
           }
-
-          console.log("Obj", res);
+          //console.log("Obj", res);
           return res;
 
       });
@@ -67,18 +66,20 @@ myApp
 
   ////////////////////////////////////////
   function makeToken(user) {
+
     var sep = '£';
-    var salt = Crypto.SHA256(user.email).toString();
-/*
+
+/*  this was better
     var salt = Crypto.SHA256(user.surname).toString();
     // var mystring = salt + user.surname + sep + user.name + sep
     //     + sep + user.pw + user.email;
-
-    //console.log("test 1", user);
 */
 
     // Only based on email and password
+    var salt = Crypto.SHA256(user.email).toString();
     var mystring = salt + user.email + sep + user.pw + user.email + sep;
+
+    // Make a string out of Crypto module
     return Crypto.SHA256(mystring).toString();
   }
 
@@ -123,11 +124,9 @@ myApp
         // If i have nothing inside the cookie and received valid credential
         if (res.status) {
 
-            // Cookie save last login
-            if (!ref.user.email) {
-                //Authentication.set(res.user.token, res.user.email);
-                logger.debug('debug', "TOFIX Set data inside cookie", res);
-            }
+            // Cookie save last login, if empty
+            if (!ref.user.email)
+                Authentication.set(ref.user.token, ref.user.email);
 
             // Save what i need
             ref.name = res.data.name + " " + res.data.surname;

@@ -59,10 +59,8 @@ myApp
       };
       // Save
       $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
-      //console.log("token", token);
       $cookies.put(COOKIEVAR_USER, username, cOptions);
-      //console.log("User", username);
-      logger.log("Saved cookies");
+      logger.log("Saved new cookie");
   }
 
   Authentication.get = function() {

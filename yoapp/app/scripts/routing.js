@@ -13,19 +13,12 @@ myApp
       abstract: true,
       resolve: {
         cookie: function(Authentication) {
-//DEBUG HELL
-            //Authentication.set("test@test.it","peppe");
-            //Authentication.clean();
             return Authentication.get();
         },
         user: function(Account, cookie) {
-            console.log("Cookie", cookie);
             var userObj = Account.getItem(cookie);
             return userObj.get();
         }
-/*
-*/
-//DEBUG HELL
       },
       views: { "main": {
         template: '<div ui-view="contain"></div>',
@@ -114,20 +107,16 @@ myApp
       resolve: {
         cookie: function(Authentication) { return Authentication.get(); },
         user: function(Account, cookie, $state) {
-
-            console.log("Resolve user", cookie);
             var userObj = Account.getItem(cookie);
 
             // AUTHENTICATION: First check on entering main
             //if ($state.data.requireLogin) {}
             return userObj.get().then(function(user){
-                console.log("Test auth", user.isLogged());
-/*
-                if (response !== true) {
+                // if not...
+                if (!user.isLogged()) {
                     console.log("Go away:", response);
                     $state.go('unlogged.dologin', {status: 'user'});
                 }
-*/
                 return user;
             });
         },

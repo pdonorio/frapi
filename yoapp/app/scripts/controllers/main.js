@@ -10,23 +10,8 @@
 myApp
 .controller('MainController', function ($scope,
     $rootScope, $timeout, $interval, $location, $state,
-
-    // account stuff (and verification)
-    user,
-    //Account, cookie,
-
-    // what else?
-    projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
+    user, projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
-
-/*
-    var userObj = Account.getItem(cookie);
-    userObj.get().then(function(tmp){
-        console.log(tmp);
-    });
-    return;
-*/
-
 
     // Init time
     $scope.projectName = projectName;
@@ -38,7 +23,7 @@ myApp
     };
     $scope.gostate = $state.go;
 
-    console.log("MAIN: Using User", user);
+    //console.log("MAIN: Using User", user);
     $rootScope.user = user;
 
     // And at any route change
