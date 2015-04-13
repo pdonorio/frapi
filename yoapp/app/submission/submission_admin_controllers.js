@@ -130,7 +130,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminStepController',
-    function ($scope, $modal, $log, $filter, $stateParams, StepTemplate)
+    function ($rootScope, $scope, $modal, $log, $filter, $stateParams, StepTemplate)
 {
     if (!$scope.user.isAdmin())
         return false;
@@ -212,20 +212,23 @@ myApp
         hashStatus: 'new',
       };
       // API save
-      $scope.templObj.setData($scope.current, pos,label,value,value)
+      $scope.templObj.setData($rootScope.user.myid, $scope.current, pos,label,value,value)
         .then(function(tmp){
             $scope.templates[pos].hash = tmp.hash;
 
         });
     };
     $scope.updateElement = function(index) {
+      // Select might be empty
+      var val = 1;
+      if ($scope.templates[index].myselect)
+        val = $scope.templates[index].myselect.value;
       // Get values from index
-      var val = $scope.templates[index].myselect.value;
       var lab = $scope.templates[index].label;
       var req = $scope.templates[index].required;
       var ex = $scope.templates[index].extra;
       // API save
-      $scope.templObj.setData($scope.current, index, lab, val, req, ex)
+      $scope.templObj.setData($rootScope.user.myid, $scope.current, index, lab, val, req, ex)
         .then(function(tmp){
 
             // add check for hash status
@@ -239,7 +242,8 @@ myApp
     $scope.removeElement = function(index) {
       delete $scope.templates[index];
       // API save
-      $scope.templObj.unsetData($scope.current, index).then(function(){});
+      $scope.templObj.unsetData($scope.current, index, $rootScope.user.myid)
+       .then(function(){});
 
       // Small note (hashStatus):
       // I will not remove user data related to these column,

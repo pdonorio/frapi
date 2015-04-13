@@ -225,3 +225,20 @@ class RegisterIdentifier(GenericORMModel):
         if not isinstance(tmp, types.IntType) or tmp < 0 or tmp > 1:
             raise ValueError(m)
         return tmp    # 0 or 1
+
+##############################
+class DataOperationsLogger(GenericORMModel):
+    """ A service used to provide identifiers to drafts and published documents """
+    table = 'datalogs'
+    @staticmethod
+    def user(value):
+        return value
+    @staticmethod
+    def record(value):
+        return value
+    @staticmethod
+    def operation(value):
+        return value
+    @staticmethod
+    def comment(value):
+        return value
