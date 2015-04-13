@@ -222,6 +222,7 @@ myApp
       })
       .state('logged.view', {
         url: "/view/{myId:[0-9\-a-z]+}",
+        data: { requireAdmin: false },
         views: { "contain": {
           templateUrl: 'views/viewer.html',
           controller: 'ViewerController',
@@ -244,6 +245,14 @@ myApp
           $rootScope.$emit('rootScope:emit', 'editon');
           $rootScope.lastVisited = undefined;
         },
+      })
+    ///////////////////////////////////////////////
+      .state('logged.status', {
+        url: "/status",
+        data: { requireAdmin: true },
+        onEnter: function() {
+          console.log("TODO!");
+        }
       })
 // Once Logged
 // Once Logged

@@ -34,8 +34,9 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
     ✔ define cookie when login is valid.... @done (15-04-13 06:36)
     ✔ use name inside object in topbar @done (15-04-13 06:36)
       ✔ other fixes @done (15-04-13 06:53)
-        ☐ topbar button not changing
+        ✔ topbar button not changing @done (15-04-13 07:06)
       ☐ use hash to link document submitted to user
+  ☐ API check at page load?
 
 A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
@@ -48,15 +49,12 @@ A real User model:
     ☐ list of user drafts
       ☐ by identifiers inside the api provider
   ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
-    ☐ use spectaclebaroque domain @marcohelpG
 
  ☐ Some clean pattern image repaeat as background
   ☐ Dark pattern background for ADMIN
  ☐ Date within a range of years
    ☐ only month or only year
 
- ☐ API check at page load?
- ☐ Should check admin pages via ui router resolve...
 
 STATUS:
   ☐ New button topbar
@@ -64,7 +62,10 @@ STATUS:
     ☐ Conversations like feedback
       ☐ Feedback saved inside rdb api resource
       ☐ on change of table, python sends me an email
+
   ☐ Fix news: Work in progress for now?
+  ☐ Should check admin pages via ui router resolve...
+  ☐ use spectaclebaroque domain @marcohelpG
 
 --- ✄ -----------------------
 

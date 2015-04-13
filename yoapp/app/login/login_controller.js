@@ -24,11 +24,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('LoginController',
-    function ($scope, $state, $stateParams, Logger, focus
-        , user
-        //, Account, cookie
-
-        )
+    function ($scope, $state, $stateParams, Logger, focus, user)
 {
     // Logging
     var logger = Logger.getInstance('LoginCTRL');

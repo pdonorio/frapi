@@ -9,10 +9,11 @@
  */
 myApp
 .controller('MainController', function ($scope,
-    $rootScope, $timeout, $interval, $location, $state,
+    $rootScope, $timeout, $interval, $location, $state, Logger,
     user, projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
-
+    // Logging
+    var logger = Logger.getInstance('main');
     // Init time
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
@@ -37,17 +38,15 @@ myApp
             return;
         // Check if logged
         if (!user.isLogged()) {
-            logger.log("Not authorized");
+            logger.warn("Not authorized");
             $state.go('unlogged.dologin', {status: 'user'});
         }
-
-        console.log("Uhm", toState.data);
         // Check if admin
-        if (toState.data.requireAdmin) {
-            console.log("Check admin?");
+        if (toState.data.requireAdmin && !user.isAdmin()) {
+            logger.warn("Not admin");
+// Should send email for warning
+            $timeout(function(){ $state.go('logged.main');}, 300);
         }
-
-
     })
     //////////////////////////////////////
     //////////////////////////////////////
@@ -62,6 +61,7 @@ myApp
         //{active:false, link:'logged.submission', name:'add'},
         //{active:false, link:'logged.search', name:'search'},
         {active:false, link:'logged.about', name:'about', icon:'info-circle', },
+        {active:false, link:'logged.status', name:'plan', icon:'cog', },
     ];
     // Function to set active element
     $rootScope.setActiveMenu = function(current) {
@@ -81,7 +81,6 @@ myApp
       $rootScope.setActiveMenu(tmp[2]);
     }
 
-/*
     // SET ACIVE ELEMENT - ANY OTHER TIME
     $rootScope.$on('$stateChangeStart',
         function (event, nextState, npar, currentState, cpar) {
@@ -90,6 +89,7 @@ myApp
       var p = p.substring(1, p.length);
       $rootScope.setActiveMenu(p);
 
+/*
 //TO FIX - not very straightforward...
       // BACK BUTTON inside TOPBAR
       // Work on latest states
@@ -104,9 +104,9 @@ myApp
           $rootScope.lastVisited = 'app' + tmp;
       }
       //console.log($rootScope.lastVisited);
+*/
 
     });
-*/
 
     //////////////////////////////////////
     // INIT for loading the app based on API status
