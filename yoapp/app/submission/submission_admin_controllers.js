@@ -50,7 +50,8 @@ myApp
 
     // Save new name
     $scope.saveStepName = function() {
-      stepObj.setData($scope.steps, $scope.current).then(function(check){
+      stepObj.setData($scope.steps, $scope.current, $rootScope.user.myid)
+      .then(function(check){
           NotificationData.setNotification(AppConfig.messageStatus.loading);
           if (check === false)
               NotificationData.setNotification(AppConfig.messageStatus.error,
@@ -77,7 +78,8 @@ myApp
       // Add step
       $scope.steps[$scope.current] = label;
       // API save
-      stepObj.setData($scope.steps, $scope.current).then(function(check){
+      stepObj.setData($scope.steps, $scope.current, $rootScope.user.myid)
+      .then(function(check){
           NotificationData.setNotification(AppConfig.messageStatus.loading);
           if (check === false) {
               NotificationData.setNotification(AppConfig.messageStatus.error,

@@ -36,7 +36,7 @@ myApp
   }
 
   // API try to save data
-  function saveData(step, value)
+  function saveData(step, value, user)
   {
 
     // Find the key to update
@@ -49,9 +49,12 @@ myApp
         }
         // Here i know which record to update
         var id = null;
+        var operation = 'admin_step_add';
         // Case of update
-        if (response.count == 1)
+        if (response.count == 1) {
             id = response.items[0].id;
+            operation = 'admin_step_update';
+        }
 
         var data = {
             id: id,
@@ -61,7 +64,12 @@ myApp
         };
         // How about i save it
         return API.set(resource, data).then(function(id) {
-            return id;
+            // Log this operation
+            data.user = user;
+            data.id = id;
+            return logOperation(data, operation).then(function() {
+                return id;
+            });
         }, function() {
             console.log("Failed to put data: no save!!",step,value);
             return false;
@@ -113,11 +121,11 @@ myApp
   StepList.prototype.getData = function () {
     return this.stepList;
   };
-  StepList.prototype.setData = function (data, key) {
+  StepList.prototype.setData = function (data, key, user) {
     if (!data || !data[key])
         return false;
     //console.log("add/update data", key, data[key]);
-    return saveData(key, data[key]);
+    return saveData(key, data[key], user);
   };
   StepList.prototype.unsetData = function (key, user) {
     //console.log("Step remove", key);

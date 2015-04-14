@@ -16,10 +16,9 @@ from bpractices.logger import log
 app = Flask(__name__)
 # config init
 app.config.from_object(__name__)
-
 # Only in debug mode?
 CORS(app, headers=['Content-Type'])
-
+# Create logger
 log.setup_istance(None, app.logger)
 
 #############################################

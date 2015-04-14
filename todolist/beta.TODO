@@ -43,12 +43,11 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
           ✔ should check from empty @done (15-04-13 11:04)
  ✔ Does not open edit if all fields are empty... @done (15-04-13 11:25)
   ✔ BUG: if you create a new step, then templ obj is empty!!! @done (15-04-13 21:33)
-
   ✔ LOG every insert/modification operation at content @done (15-04-13 21:33)
     ✔ and admin template @done (15-04-13 21:34)
     ✔ and admin step @done (15-04-13 21:34)
       ✔ remove @done (15-04-13 21:34)
-      ☐ add and update @CURRENT
+      ✔ add and update @CURRENT @done (15-04-14 11:14)
   ☐ Does not remove template step in the middle...
     ☐ error on submission too
   ☐ API check at page load?
