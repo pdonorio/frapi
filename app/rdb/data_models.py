@@ -268,3 +268,6 @@ class TaskSocial(GenericORMModel):
     @staticmethod
     def comment(value):
         return value
+    @staticmethod
+    def user(value):
+        return value

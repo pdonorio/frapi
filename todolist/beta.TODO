@@ -71,10 +71,12 @@ Plan:
     ✔ js model factory @done (15-04-14 15:28)
     ✔ API load @done (15-04-14 16:55)
       ✔ Conversations like feedback @done (15-04-14 17:44)
-      ☐ conversation add
+      ✔ conversation add @done (15-04-14 19:31)
+      ☐ show user @CURRENT
+      ☐ last update: timestamp conversion
       ☐ conversation edit xeditable
+        ☐ only the ones made by current user
         ☐ admin (on/off) button?
-          ☐ timestamp? @maperfavore
           ☐ on change of table, python sends me an email @maperfavore
   ☐ Publishing
     ☐ list of documents

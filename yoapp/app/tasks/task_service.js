@@ -14,6 +14,20 @@ myApp
   // title = task
   // description = description
 
+  planner.addComment = function(task, user) {
+    var hash = task.substr(0, 8);
+    var data = {
+        task: hash,
+        user: user,
+        comment: 'Il mio commento',
+    }
+    return API.set(subresource, data)
+    .then(function(id) {
+        logger.debug("Adding comment");
+        return id;
+    });
+  }
+
   planner.get = function() {
 
     return API.get(resource)
@@ -33,6 +47,7 @@ myApp
               var hash = obj.id.substr(0, 8);
 // Order by timestamp desc?
               var found = $filter('filter')(subd, {task: hash}, true);
+              data[key].active = false;
               data[key].comments = [];
               // for each comment of the single task
               found.forEach(function(val, lab){
