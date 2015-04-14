@@ -23,8 +23,9 @@
         </div>
         <div class="panel-body">
           {{task.description}}
-          <p style="text-align: right;">
-            <a href ng-click='task.active = true' ng-hide='task.active'>conversation+</a>
+          <p style="text-align: right;" ng-if='task.comments.length > 0'>
+            <a href ng-click='task.active = true' ng-hide='task.active'
+             >({{task.comments.length}}) conversation+</a>
             <a href ng-click='task.active = false' ng-show='task.active'>conversation-</a>
           </p>
         </div>

@@ -71,11 +71,16 @@ Plan:
     ✔ js model factory @done (15-04-14 15:28)
     ✔ API load @done (15-04-14 16:55)
       ✔ Conversations like feedback @done (15-04-14 17:44)
+      ☐ conversation add
       ☐ conversation edit xeditable
-        ☐ on change of table, python sends me an email @maperfavore
+        ☐ admin (on/off) button?
+          ☐ timestamp? @maperfavore
+          ☐ on change of table, python sends me an email @maperfavore
   ☐ Publishing
     ☐ list of documents
-      ☐ published and not (label)
+    ☐ published and not (label)
+
+Later on:
   ☐ Some clean pattern image repaeat as background
     ☐ Dark pattern background for ADMIN
   ☐ Fix news: Work in progress for now?
