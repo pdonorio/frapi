@@ -26,12 +26,13 @@
       <form editable-form name="myform" ng-show='data'
         onaftersave="saveStep()" >
 
+
        <!-- editable username (text with validation) -->
        <table ng-class="{'table': current == step}">
         <!-- <thead> <tr> <th>Colonna</th> <th>Valore</th> </tr> </thead> -->
         <tbody>
           <!-- repeat with sort on key 'pos' -->
-          <tr ng-repeat="(pos,obj) in data[step]" ng-if='obj.key' >
+          <tr ng-repeat="(pos,obj) in data[step] track by $index" ng-if='obj.key' >
 
             <!-- Name of this field -->
             <th class='title'> {{ (obj.key | ucFirst) || 'empty'}} </th>
@@ -54,10 +55,9 @@
               <span
                 ng-if='obj.type == types[1].text' e-form="myform"
                 editable-number="obj.value"
-                e-placeholder='Inserisci un {{obj.type}} reale'
+                e-placeholder='{{obj.type}}'
                 onbeforesave="checkData(obj.req, $data, obj.type)"
-                e-min="18"
-                e-max="30"
+                e-min="1" e-max="99999"
                 >
                 {{obj.value || 'empty'}}
               </span>

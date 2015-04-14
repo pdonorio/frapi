@@ -8,12 +8,12 @@
  * Controller of the yoApp
  */
 myApp
-.controller('InitController', function($scope, $rootScope, $location, devHost)
+.controller('InitController', function($scope, $state, $rootScope, $location, devHost)
 {
 
     // If redirection goes wrong
     $rootScope.$on('$stateChangeError', function(event) {
-      $state.go('notfound');
+      $state.go('unlogged.notfound');
     });
 
     // Personal css to include
@@ -22,7 +22,7 @@ myApp
         "styles/topbar.css",
         "styles/blur.css",
     ];
-    var cssFont = 'http://fonts.googleapis.com/css?family=Mr+De+Haviland';
+    var cssFont = 'https://fonts.googleapis.com/css?family=Mr+De+Haviland';
 
     // Google analytics only if on production site
     $rootScope.analytics = false;

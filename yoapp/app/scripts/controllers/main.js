@@ -9,13 +9,14 @@
  */
 myApp
 .controller('MainController', function ($scope,
-    $rootScope, $timeout, $interval, $location, $state,
-    //tester,
-    projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
+    $rootScope, $timeout, $interval, $location, $state, Logger,
+    user, projectName, API, mixed, warningInitTime, someInitTime, apiTimeout)
 {
+    // Logging
+    var logger = Logger.getInstance('main');
+    // Init time
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;
-
     // Functions to simplify href on buttons via Angular
     $scope.go = function ( path ) {
       $location.path( path );
@@ -23,22 +24,32 @@ myApp
     };
     $scope.gostate = $state.go;
 
-/*
-    //////////////////////////////////////
-    // Lo.dash | underscore
-    $scope._ = _;
-    // Very easy to use: a range for my editable directive
-    $scope.range = _.range(1, 7);
-*/
+    //console.log("MAIN: Using User", user);
+    $rootScope.user = user;
 
-    // AT ANY ROUTE CHANGE
-    //* https://github.com/angular-ui/ui-router/wiki#state-change-events
-    $rootScope.$on('$stateChangeStart',
-    function(event, toState, toParams, fromState, fromParams){
-        //console.log("Changing from", fromState, "to", toState);
-        console.log("To check if logged");
-        //event.preventDefault();
+    // And at any route change
+    $rootScope.$on('$stateChangeSuccess',
+     function(event, toState, toParams, fromState, fromParams){
+
+//        console.log("Changing from", fromState, "to", toState);
+
+        // Do no checks if login is not required
+        if (!toState.data.requireLogin)
+            return;
+        // Check if logged
+        if (!user.isLogged()) {
+            logger.warn("Not authorized");
+            $state.go('unlogged.dologin', {status: 'user'});
+        }
+        // Check if admin
+        if (toState.data.requireAdmin && !user.isAdmin()) {
+            logger.warn("Not admin");
+// Should send email for warning
+            $timeout(function(){ $state.go('logged.main');}, 300);
+        }
     })
+    //////////////////////////////////////
+    //////////////////////////////////////
 
     $scope.elements = {};
     //API give me access to HTML content inside database
@@ -50,6 +61,7 @@ myApp
         //{active:false, link:'logged.submission', name:'add'},
         //{active:false, link:'logged.search', name:'search'},
         {active:false, link:'logged.about', name:'about', icon:'info-circle', },
+        {active:false, link:'logged.status', name:'plan', icon:'cog', },
     ];
     // Function to set active element
     $rootScope.setActiveMenu = function(current) {
@@ -68,13 +80,16 @@ myApp
     if (tmp[2]) {
       $rootScope.setActiveMenu(tmp[2]);
     }
+
     // SET ACIVE ELEMENT - ANY OTHER TIME
-    $rootScope.$on('$stateChangeStart', function (event, nextState, npar, currentState, cpar) {
+    $rootScope.$on('$stateChangeStart',
+        function (event, nextState, npar, currentState, cpar) {
 
       var p = nextState.url;
       var p = p.substring(1, p.length);
       $rootScope.setActiveMenu(p);
 
+/*
 //TO FIX - not very straightforward...
       // BACK BUTTON inside TOPBAR
       // Work on latest states
@@ -89,15 +104,8 @@ myApp
           $rootScope.lastVisited = 'app' + tmp;
       }
       //console.log($rootScope.lastVisited);
-
-/*      AUTH?
-        if (!isAuthenticated(nextState)) {
-            console.debug('Could not change route! Not authenticated!');
-            $rootScope.$broadcast('$stateChangeError');
-            e.preventDefault();
-            $state.go('login');
-        }
 */
+
     });
 
     //////////////////////////////////////

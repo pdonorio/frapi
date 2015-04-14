@@ -4,11 +4,11 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('SubmissionAdminController', function ($scope, $state,
+.controller('SubmissionAdminController', function ($rootScope, $scope, $state,
     NotificationData, AppConfig, StepContent, StepTemplate, StepList )
 {
     // Stop unwanted user
-    if (!$scope.adminer)
+    if (!$scope.user.isAdmin())
         return false;
 
     // Objects / Models INIT
@@ -34,20 +34,23 @@ myApp
 
     // Define step on click
     $scope.stepInUrl = function(step) {
-      $state.go('logged.adminsubmission.step', {stepId: step});
+      $state.go('logged.adminsubmission.step', {myId: 'admin', stepId: step});
     }
     // Define step from inside view
     $scope.setStep = function(step) {
-      if (step < 1)
+      if (step < 1) {
         $scope.current = null
       // Avoid if step has not changed
-      else if (step != $scope.current)
-        $scope.current = step; // Set step for administration
+      } else if (step != $scope.current) {
+        // Set step for administration
+        $scope.current = step;
+      }
     }
 
     // Save new name
     $scope.saveStepName = function() {
-      stepObj.setData($scope.steps, $scope.current).then(function(check){
+      stepObj.setData($scope.steps, $scope.current, $rootScope.user.myid)
+      .then(function(check){
           NotificationData.setNotification(AppConfig.messageStatus.loading);
           if (check === false)
               NotificationData.setNotification(AppConfig.messageStatus.error,
@@ -74,21 +77,24 @@ myApp
       // Add step
       $scope.steps[$scope.current] = label;
       // API save
-      stepObj.setData($scope.steps, $scope.current).then(function(check){
+      stepObj.setData($scope.steps, $scope.current, $rootScope.user.myid)
+      .then(function(check){
           NotificationData.setNotification(AppConfig.messageStatus.loading);
-          if (check === false)
+          if (check === false) {
               NotificationData.setNotification(AppConfig.messageStatus.error,
                   "Database non raggiungibile");
-          else
+          } else {
               NotificationData.setNotification(AppConfig.messageStatus.success,
                   "Aggiunto step n." + $scope.current);
+              $scope.stepInUrl($scope.current);
+          }
       });
     };
     $scope.removeStep = function(index) {
 
         var message = "Removing a complete step,\n" +
             "including content inserted by user so far...\n" +
-            "Are you really sure?!?!";
+            "Are you sure?!?!";
 // TO FIX -
 // Are you really sure?
         if (confirm(message))
@@ -100,15 +106,15 @@ myApp
 
             // API PROMISE CHAINING
             // 1. Remove from API the step
-            stepObj.unsetData(step).then(function(check){
+            stepObj.unsetData(step, $rootScope.user.myid).then(function(check){
               if (check === false) {
                 NotificationData.setNotification(AppConfig.messageStatus.error,
                     "Database non raggiungibile");
               } else {
 
                 // 2. Remove from API steptemplate
-                $scope.templObj = StepTemplate.build($scope.current, true);
-                $scope.templObj.unsetData(step);
+                $scope.templObj = StepTemplate.build(step, true);
+                $scope.templObj.unsetData(step, null, $rootScope.user.myid).then();
 
                 // 3. Remove from API stepcontent
                 // Small note:
@@ -117,7 +123,7 @@ myApp
                 // if admin recreates the same field again, with the same name
 
                 NotificationData.setNotification(AppConfig.messageStatus.success,
-                    "Rimosso step n." + $scope.current);
+                    "Rimosso step n." + step);
               }
             });
 
@@ -130,9 +136,9 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionAdminStepController',
-    function ($scope, $modal, $log, $filter, $stateParams, StepTemplate)
+    function ($rootScope, $scope, $modal, $log, $filter, $stateParams, StepTemplate)
 {
-    if (!$scope.adminer)
+    if (!$scope.user.isAdmin())
         return false;
 
     // modal init
@@ -142,6 +148,8 @@ myApp
 // TO FIX - does not work. Should be done onExit, but how?
     //$scope.snameform.$cancel();
 
+    //INIT
+    $scope.templates = [];
     // Apply current url step to whole view
     $scope.setStep($stateParams.stepId);
 
@@ -181,6 +189,7 @@ myApp
         // Load templates
         $scope.templObj.getData().then(function(response) {
             if (response.length) {
+                console.log("Loading", response);
                 $scope.templates = response;
                 //for each? // hashStatus
             }
@@ -199,6 +208,8 @@ myApp
           break;
         }
       };
+      if (pos < 1) pos = 1;
+
       // Add template
       var label = 'nuovo ' + pos;
       var value = 0;
@@ -208,20 +219,25 @@ myApp
         hashStatus: 'new',
       };
       // API save
-      $scope.templObj.setData($scope.current, pos,label,value,value)
+      if (!$scope.templObj)
+          $scope.templObj = StepTemplate.build($scope.current);
+      $scope.templObj.setData($rootScope.user.myid, $scope.current, pos,label,value,value)
         .then(function(tmp){
             $scope.templates[pos].hash = tmp.hash;
 
         });
     };
     $scope.updateElement = function(index) {
+      // Select might be empty
+      var val = 1;
+      if ($scope.templates[index].myselect)
+        val = $scope.templates[index].myselect.value;
       // Get values from index
-      var val = $scope.templates[index].myselect.value;
       var lab = $scope.templates[index].label;
       var req = $scope.templates[index].required;
       var ex = $scope.templates[index].extra;
       // API save
-      $scope.templObj.setData($scope.current, index, lab, val, req, ex)
+      $scope.templObj.setData($rootScope.user.myid, $scope.current, index, lab, val, req, ex)
         .then(function(tmp){
 
             // add check for hash status
@@ -235,7 +251,8 @@ myApp
     $scope.removeElement = function(index) {
       delete $scope.templates[index];
       // API save
-      $scope.templObj.unsetData($scope.current, index).then(function(){});
+      $scope.templObj.unsetData($scope.current, index, $rootScope.user.myid)
+       .then(function(check){});
 
       // Small note (hashStatus):
       // I will not remove user data related to these column,

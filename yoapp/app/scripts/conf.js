@@ -16,6 +16,15 @@ angular.module('AppConfig', [])
   .constant('apiBase', '/api/v1.0')
   .constant('apiFilePort', '5346')
   .constant('apiFileResource', 'uploads')
+
+  //USERS
+  .constant('USER_ROLES',{
+    ADMIN_USER: 999,
+    OPERATOR_USER: 11,
+    GUEST_USER: 2,
+    NO_ROLE: -1,
+  })
+
   // Minimum timeout to get objects working inside directive....
   // I DON'T LIKE THIS
   .constant('directiveDataTimeout', 150)
@@ -45,23 +54,32 @@ angular.module('AppConfig', [])
 
     //save in a variable the path to API
     return {
-      $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus)
+      $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus, USER_ROLES)
       {
+        config.debug = true;
 
         //use location https://docs.angularjs.org/api/ng/service/$location
         var host = $location.host();
         var port = $location.port();
 
-// TO FIX - enable https on client js served
-        var protocol = $location.protocol();
+// TO FIX -
+// https only for sending informations, not files, at the moment
+        var protocol = "http";
         config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
           + "/" + apiFileResource;
 
-        protocol = "https";
+        protocol = $location.protocol();
         config.apiBase = protocol + "://" + host + ":" + apiPort + apiBase;
 
-        //notification messages status
+        // Protocol
+        config.currentProtocol = protocol;
+        config.domain = host;
+
+        // notification messages status
         config.messageStatus = messageStatus;
+
+        // Roles
+        config.userRoles = USER_ROLES;
 
         return config;
       }

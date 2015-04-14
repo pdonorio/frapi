@@ -9,7 +9,15 @@ yoapp/app/.*
 yoapp/app/404*
 yoapp/app/favico*
 yoapp/app/robots*
-yoapp/app/images
+#yoapp/app/images
+yoapp/app/images/yeoman*
+
+# Certificates
+*.pem
+*.crt
+*.key
+key
+*.cert
 
 # Data dir
 data/*

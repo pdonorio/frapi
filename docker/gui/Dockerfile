@@ -2,12 +2,13 @@
 # https://github.com/dockerfile/nginx
 
 #http://blog.tryolabs.com/2015/03/26/configurable-docker-containers-for-multiple-environments/
-
 # Pull base image.
-FROM dockerfile/ubuntu
+FROM ubuntu:14.04
+ENV TERM xterm
 
 # Install Nginx.
 RUN apt-get update && \
+  apt-get install -y python-software-properties software-properties-common && \
   add-apt-repository -y ppa:nginx/stable && \
   apt-get update && \
   apt-get install -y nginx expect && \
@@ -29,15 +30,25 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
     && rm /tmp/conf
 # also Increase max upload size
 
-# Define working directory.
-#WORKDIR /etc/nginx
-#RUN ln -s /opt/app /var/www/html/app
+#################################################
+#################################################
+###### CERTIFICATES
 
-# Configure SSL
-ADD *ssl* /tmp/
-WORKDIR /tmp
-RUN /bin/bash /tmp/ssl.sh
-WORKDIR /var/www
+### take 1 - DEBUG - Configure your own SSL
+# ADD *ssl* /tmp/
+# WORKDIR /tmp
+# RUN /bin/bash /tmp/ssl.sh
+# WORKDIR /var/www
+
+### take 2 - Configure from certificate
+#ADD privateUnKey.pem /etc/nginx/ssl/server.key
+#RUN chmod 400 /etc/nginx/ssl/server.key
+#ADD publicCert.pem /etc/nginx/ssl/server.crt
+
+### take 3 - PRODUCTION - Configure valid certificates from volumes
+# see pygui.yml
+#################################################
+#################################################
 
 # Expose ports
 # ssl port

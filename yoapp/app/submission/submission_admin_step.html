@@ -57,7 +57,7 @@
         <td> Nessun elemento definito per questo step </td>
       </tr>
       <tr ng-repeat='template in templates track by $index'
-        ng-if='$index > 0 && template.label'>
+        ng-if='$index > 0 && template'>
        <!-- Element count -->
        <td style='background: #eee; text-align: center; '>
         <span ng-show='template.hashStatus == "new"'

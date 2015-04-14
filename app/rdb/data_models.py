@@ -17,7 +17,7 @@ class DataDump(GenericORMModel):
     # Attributes as defined by static methods:
     @staticmethod
     def key(value, name):
-
+        """ Defining a string """
         m = "Parameter '"+name+"' is not a string. Received value: *"+value+"*"
         if not isinstance(value, types.StringTypes):
             raise ValueError(m)
@@ -225,3 +225,32 @@ class RegisterIdentifier(GenericORMModel):
         if not isinstance(tmp, types.IntType) or tmp < 0 or tmp > 1:
             raise ValueError(m)
         return tmp    # 0 or 1
+
+##############################
+class DataOperationsLogger(GenericORMModel):
+    """ A service used to provide identifiers to drafts and published documents """
+    table = 'datalogs'
+    @staticmethod
+    def user(value):
+        return value
+    @staticmethod
+    def record(value):
+        return value
+    @staticmethod
+    def operation(value):
+        return value
+    @staticmethod
+    def comment(value):
+        return value
+
+##############################
+class TaskManagement(GenericORMModel):
+    """ A service used to provide identifiers to drafts and published documents """
+    table = 'tasks'
+
+    @staticmethod
+    def task(value):
+        return value
+    @staticmethod
+    def description(value):
+        return value

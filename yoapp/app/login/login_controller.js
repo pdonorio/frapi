@@ -3,14 +3,45 @@
 // List of controllers
 myApp
 
+// HOW TO GET FOCUS
+// http://stackoverflow.com/a/18295416
+.directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
+})
+.factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    });
+  }
+})
+
 //////////////////////////////////////////////////////////////
-.controller('LoginController', function ($scope, $cookies, $state, $stateParams, Account)
+.controller('LoginController',
+    function ($scope, $state, $stateParams, Logger, focus, user)
 {
+    // Logging
+    var logger = Logger.getInstance('LoginCTRL');
+    // Focus on first input field
+    focus('focusMe');
+
+    // First check
+    if (user.isLogged()) {
+        logger.warn("Already logged");
+        $state.go("logged.main");
+    }
+
+    // INIT
     $scope.gostate = $state.go;
+    $scope.user = null;
     $scope.registered = true;
     $scope.welcome = false;
-    $scope.user = null;
-    //console.log("Pars", $stateParams);
 
     // DECIDE ROUTE
     if ($stateParams.status == 'register') {
@@ -20,20 +51,21 @@ myApp
         $scope.welcome = true;
     }
 
-    $scope.register = function(user) {
+    $scope.register = function(data) {
+
         if($scope.registerForm.$valid){
+// TO FIX
+    //- CHECK EMAIL format?
+// TO FIX
+    //- Check already existing?
 
-// TO FIX - CHECK EMAIL format?
-
-// TO FIX - Check already existing?
-
-          var ldap = Account.build(user);
-          ldap.set().then(function(id){
-              $state.go('dologin', {status: 'registered'});
+          //Register with API
+          user.set(data);
+          user.register().then(function(id){
+              $state.go('unlogged.dologin', {status: 'registered'});
           });
-        // go to login.main ??
         } else {
-          console.log("NOT Valid");
+          logger.warn("Form is NOT valid");
         }
     };
 
@@ -43,17 +75,20 @@ myApp
     };
     $scope.reset();
 
-    $scope.login = function(user) {
-        var ldap = Account.build(user);
-        ldap.check().then(function(response){
-            if (response === true) {
-// TO FIX - save token in session
+    $scope.login = function(data) {
 
-              // log me in
-              $state.go('logged.main');
+        // Try
+        user.set(data);
+        // Force login to save cookie
+        user.logIn(true).then(function(reference) {
+
+            if (reference.isLogged()) {
+                $scope.loginError = null;
+                logger.debug("Logged");
+                $state.go('logged.main');
+            // Invalid
             } else {
-              $scope.loginError = response;
-              console.log("Failed login");
+                $scope.loginError = reference.getError();
             }
         });
     }

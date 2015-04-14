@@ -8,7 +8,8 @@
 				"yoapp/dist",
 				"yoapp/test",
 				"yoapp/node_modules",
-				"yoapp/bower_components"
+				"yoapp/bower_components",
+				"yoapp/app/bower_components"
 			],
 			"follow_symlinks": true,
 			"path": "."

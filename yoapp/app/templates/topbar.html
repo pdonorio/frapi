@@ -11,7 +11,7 @@
       <!-- Edit MODE button / ONLY FOR ADMIN! -->
       <ul class="nav navbar-nav navbar-left"
         ng-hide="!edit.available"
-        ng-show="adminer"
+        ng-show="user.isAdmin()"
         >
         <li>
           <div style='padding-top:10px; padding-left:25px;'>
@@ -47,36 +47,40 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
 
-              <li ng-if='adminer' role="presentation" class="dropdown-header">
-                Role: <b>adminer</b>
+              <li ng-if='user.isAdmin()' role="presentation" class="dropdown-header">
+                Role: <b>Admin!</b>
               </li>
-              <li ng-if='adminer'>
-                <a href='#' ng-click="go('app/configure/admin/step/0')">
+              <li ng-if='user.isAdmin()'>
+                <a ui-sref="logged.adminsubmission.step({myId:'admin', stepId:0})">
+                    <i class="fa fa-wrench"></i>
                     Submission
                     <span class="label label-success">done</span>
                 </a>
               </li>
-              <li ng-if='adminer'>
-                <a href="#">Users management
+              <li ng-if='user.isAdmin()'>
+                <a href="#"> <i class="fa fa-users"></i> Users management
                 <span class="label label-info">todo</span>
                 </a>
               </li>
-              <li ng-if='adminer' class="divider"></li>
+              <li ng-if='user.isAdmin()' class="divider"></li>
 
               <li role="presentation" class="dropdown-header"> Role: <b>user</b> </li>
-              <li><a href="#">My documents
+              <li><a href="#"> <i class="fa fa-book"></i> My documents
                 <span class="label label-info">todo</span>
               </a></li>
-              <li><a href="#">Advanced search
+              <li><a href="#"> <i class="fa fa-search"></i> Advanced search
                 <span class="label label-info">todo</span>
               </a></li>
 
               <li class="divider"></li>
               <li role="presentation" class="dropdown-header"> <b>Social</b> </li>
-              <li><a href="#">Messages  <span class="badge alert-warning">4</span></a></li>
+              <li><a href="#"> <i class="fa fa-envelope-o"></i> Messages
+                <span class="badge alert-warning">4</span></a>
+              </li>
 
               <li class="divider"></li>
-              <li><a href="#">Log out</a></li>
+              <li><a ui-sref="unlogged.dologout"
+               ><i class="fa fa-sign-out"></i> Log out</a></li>
             </ul>
           </li>
       </ul>

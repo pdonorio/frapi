@@ -12,6 +12,8 @@ var myApp = angular.module('archivi',
   [
   // CONFIGURATION and DYNAMIC CONSTANTS - made by me
     'AppConfig',
+  // LOGGER
+    'ny.logger',
   // DEPENCIES: base yeoman modules
     'ngAnimate',
     //'ngRoute',
@@ -29,6 +31,12 @@ var myApp = angular.module('archivi',
     'arrayOperations', //my filters on arrays
   ])
 
+// LOGGER
+.config(['LoggerProvider', function(LoggerProvider) {
+    // We don't want the Logger service to be enabled in production
+    LoggerProvider.enabled(true);
+}])
+
 // THIS IS NEEDED FOR DEVELOPMENT
 // allow insecure https if your host does not have an official certificate yet
 //see: https://docs.angularjs.org/api/ng/provider/$sceDelegateProvider
@@ -43,11 +51,13 @@ var myApp = angular.module('archivi',
 
   // CONSTANTS
   .constant('projectName', 'SpectaleBaroque')
-  .constant('devHost', 'awesome.dev')
+  //.constant('devHost', 'awesome.dev')
+  .constant('devHost', 'dev.pile.wf')
   // USERS
-  .constant('ADMIN_USER', 'admin')
-  .constant('OPERATOR_USER', 'op')
-  .constant('GUEST_USER', 'guest')
+  .constant('COOKIEVAR_AUTHTOKEN', 'mysecrettoken')
+  .constant('COOKIEVAR_USER', 'mysecretuser')
+  .constant('FAILED_TOKEN', 'epicfailwithsecret')
+  .constant('FAILED_USER', 'epicfailwithuser')
   // Other
   .constant('apiTimeout', 15750) //remember: a refused connection waits no time
   .constant('messageTimeout', 3000)

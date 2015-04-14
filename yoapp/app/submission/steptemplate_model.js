@@ -6,14 +6,16 @@
 */
 
 myApp
-.factory('StepTemplate', function (API)
+.factory('StepTemplate', function (API, Logger)
 {
   var resource = 'stepstemplate';
+  var logresource = 'datalogs';
   var hashres = 'stepfields';
   var lastCommit = {
     existing: true,
     failed: false,
   }
+  var logger = Logger.getInstance('template');
 
   function cutCommit(hash) {
     // CUT TO FIRST 8 chars
@@ -95,15 +97,34 @@ myApp
                     required:obj.required,
                     //add required and extra?
                 };
+                //console.log("data for ", index,"is", obj);
             });
           }
           return data;
       });
   }
 
+  ///////////////////////////
+  // Log writing operation
+  function logOperation(data, remove) {
+    //console.log("Data to log", data);
+    var log = {
+        user: data.user,
+        record: data.id,
+        operation: 'admin_template',
+        comment: data,
+    };
+    if (remove)
+        log.operation = 'admin_template_remove';
+    return API.set(logresource, log) .then(function(response) {
+        logger.debug("AdminOp logged");
+        return true;
+    });
+  }
+
   ////////////////////////////
   // API try to save data
-  function saveData(data) {
+  function saveData(data, user) {
 
 // TO FIX -
 //This could be made automatic
@@ -124,7 +145,11 @@ myApp
             return API.set(resource, data).then(function(id) {
                 console.log("Insert / update id", id);
                 data.id = id;
-                return data;
+                var tmp = angular.copy(data);
+                tmp.user = user;
+                return logOperation(tmp).then(function(){
+                    return data;
+                });
             });
         });
     });
@@ -133,15 +158,28 @@ myApp
 
   ////////////////////////////
   // API to remove data
-  function removeData(step, position) {
-    var params = {step:step, position:position};
+  function removeData(step, position, user) {
+    var params = {step:step};
+    if (position)
+        params.position = position;
 
     // Selecting id to remove
     return API.get(resource, params)
       .then(function(response) {
-        if (response.count == 1) {
-            return API.del(resource, response.items[0].id);
-        }
+        if (response.count < 1)
+            return false;
+
+        angular.forEach(response.items, function(obj, key){
+            if (step == obj.step || (!position || position == obj.position) ) {
+                //console.log("removing step", step, "pos",position,"key",key, "obj", obj);
+                API.del(resource, obj.id).then();
+                obj.user = user;
+                logOperation(obj, true);
+            }
+
+        });
+
+        return true;
     });
   }
 
@@ -200,7 +238,7 @@ myApp
     return this.StepTemplate;
   };
   StepTemplate.prototype.setData =
-    function(step, pos, label, value, required, extra) {
+    function(user, step, pos, label, value, required, extra) {
     var data = {
         step: step,
         position: pos,
@@ -209,10 +247,10 @@ myApp
         required: required,
         extra: extra,
     };
-    return saveData(data);
+    return saveData(data, user);
   };
-  StepTemplate.prototype.unsetData = function (step, position) {
-    return removeData(step, position);
+  StepTemplate.prototype.unsetData = function (step, position, user) {
+    return removeData(step, position, user);
   };
   // Static method, assigned to class
   // p.s. Instance ('this') is not available in static context

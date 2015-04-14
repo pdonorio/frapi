@@ -1,55 +1,106 @@
 
---- ✄ -----------------------
-
 TO DISCUSS:
   ☐ changing labels position and name when user data exists
-  ☐ date only for years
+  ☐ date only for years?
+    ☐ do i have an example
   ☐ define the search basic idea
 
 --- ✄ -----------------------
 
-Cookies:
- ☐ Cookie to save information about the fact i used login to get in
-   ☐ Check login first time when getting inside the app
-     ☐ ui router resolve
- ☐ Raw logout
+Cookies security 1:
+ ✔ Cookie to save information about the fact i used login to get in @done (15-04-02 17:12)
+   ✔ save at login time @done (15-04-02 17:12)
+     ✔ if cookie exists, force login @done (15-04-02 17:24)
+   ✔ Check login everytime i switch route at least @done (15-04-02 17:25)
+   ✔ Raw logout @done (15-04-03 16:49)
+     ✔ /logout route @done (15-04-03 16:49)
+     ✔ learning to use ui router in some better forms.... @done (15-04-03 16:49)
+       ✔ stateChangeSuccess @done (15-04-03 16:49)
+  ✔ Logout fontawesome @done (15-04-07 09:47)
+    ✔ Others icons @done (15-04-07 09:52)
+  ✔ SSL certificate @done (15-04-07 10:53)
+  ✔ free domain check @done (15-04-07 12:26)
+    ✔ startssl check on pile.wf domain @done (15-04-07 12:26)
+    ✔ @itworks!! @done (15-04-07 14:53)
+      ✔ certificates as volumes inside docker compose @done (15-04-07 14:53)
+      ✔ make them work on flask too @done (15-04-07 14:53)
+ ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
+   ✔ nginx https? @done (15-04-03 16:51)
+   ✔ avoid man in the middle @done (15-04-03 16:51)
 
-  ☐ A real User model
-    ☐ Cookie for remembering user?
-    ☐ Send out users not logged
-      ☐ if no valid session checked on ui-router main onEnter
-    ☐ list of user drafts @cool
-      ☐ by identifiers inside the api provider
+Something very difficult: LOGIN PATTERN for ANGULARJS:
+  ✔ restart.... @done (15-04-13 06:22)
+    ✔ FROM ZERO!! @done (15-04-13 06:22)
+    ✔ define cookie when login is valid.... @done (15-04-13 06:36)
+    ✔ use name inside object in topbar @done (15-04-13 06:36)
+      ✔ other fixes @done (15-04-13 06:53)
+        ✔ topbar button not changing @done (15-04-13 07:06)
+      ✔ use hash to link document submitted to user @done (15-04-13 07:37)
+  ✔ Bug at saving? @done (15-04-13 11:04)
+    ✔ insert but not loading @done (15-04-13 11:04)
+      ✔ Loading but not find in the mix @done (15-04-13 11:04)
+        ✔ missing hashes at save time @done (15-04-13 11:04)
+          ✔ should check from empty @done (15-04-13 11:04)
+ ✔ Does not open edit if all fields are empty... @done (15-04-13 11:25)
+  ✔ BUG: if you create a new step, then templ obj is empty!!! @done (15-04-13 21:33)
+  ✔ LOG every insert/modification operation at content @done (15-04-13 21:33)
+    ✔ and admin template @done (15-04-13 21:34)
+    ✔ and admin step @done (15-04-13 21:34)
+      ✔ remove @done (15-04-13 21:34)
+      ✔ add and update @CURRENT @done (15-04-14 11:14)
+  ✔ Does not remove templates if removing step... @done (15-04-14 11:47)
+  ✔ Does not remove template step in the middle... @done (15-04-14 14:21)
+    ✔ error on submission too @done (15-04-14 14:21)
+  ✔ BUG: try without console.... @done (15-04-14 10:55)
+  A real User model:
+    ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
+      ✔ bug fixes @done (15-04-07 15:10)
+      ✔ How to resolve the object via ui router?? @HOUSTON @done (15-04-09 18:36)
+ ✔ $q.when? http://jsfiddle.net/jeremylikness/Q2jMG/ @done (15-04-13 06:38)
+    ✘ Infinite loop of user logged problem @cancelled (15-04-10 19:29)
+    ✔ learn to debug resolve testing inside controller @done (15-04-13 06:38)
+    ✔ load from db @done (15-04-13 06:49)
+  ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
 
-☐ Fix news
-  ☐ Work in progress for now
 
-COOKIE SECURITY:
- ☐ Secure: cookie will only be send over https
-   ☐ nginx https?
-   ☐ avoid man in the middle
+Plan:
+  ✔ New button topbar @done (15-04-14 14:47)
+  ✔ List of things i am doing and status @done (15-04-14 14:58)
+    ✔ resource api @done (15-04-14 14:58)
+    ✔ controller @done (15-04-14 15:08)
+    ✔ js model factory @done (15-04-14 15:28)
+    ☐ API load
+      ☐ Conversations like feedback
+        ☐ Feedback saved inside rdb api resource
+        ☐ on change of table, python sends me an email
+
+  ☐ Publishing
+    ☐ list of documents
+      ☐ published and not (label)
+  ☐ Some clean pattern image repaeat as background
+    ☐ Dark pattern background for ADMIN
+
+  ☐ Fix news: Work in progress for now?
+  ☐ Should check admin pages via ui router resolve...
+  ☐ use spectaclebaroque domain @marcohelpG
+
+  ☐ API check at page load?
+
+--- ✄ -----------------------
+
+COOKIE SECURITY 2:
+  ☐ Check cookie timer...
  ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
-   ☐ ??
  ☐ Path: cookie will only be send on specified path e.g. /login
-   ☐ @try
- ☐ I would also define an expiration date on the cookie
-   ☐ one day?
  ☐ CORS?
    ☐ Pre-flight OPTIONS requests
    ☐ http://stackoverflow.com/a/19576540/2114395
-
-$http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
-
-
-
-
-================================================
-================================================
-
-
-
+ ☐ $http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
 
 Real authentication on API side with Token (OAuth2):
+
+http://j.mp/angularsecurity
+
     ☐ Should i send password via https to api?
       ☐ http://alexbilbie.com/2014/11/oauth-and-javascript/
       ☐ yes!
@@ -77,21 +128,24 @@ Real authentication on API side with Token (OAuth2):
        ☐ Same origin policy @wow
          ☐ http://farazdagi.com/talks/2014-06-dpc/#26
 
-
- ☐ Feedback button
-   ☐ inside profile menu
-   ☐ Feedback saved inside rdb api resource
-     ☐ on change of table, python sends me an email
- ☐ Some clean pattern image repaeat as background
-  ☐ Dark pattern background for ADMIN
- ☐ Date within a range of years
-   ☐ only month or only year
+ ☐ Oauth2 provider
+   ☐ http://lepture.com/en/2013/create-oauth-server
+ ☐ Flask cors
+   ☐ http://flask.pocoo.org/snippets/56/
+ ☐ Python API proxy:
+   ☐ nginx, tornado, gunicor (gevents)
+   ☐ http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado
+ ☐ Restangular cache?
+   ☐ http://makandracards.com/makandra/29143-angular-caching-api-responses-in-restangular
 
 LIMIT PUBLIC API:
 http://flask-limiter.readthedocs.org/en/stable/
 
 SomeMore:
 
+ ☐ Email verification...
+
+ ☐ Minification back with grunt
 
   ☐ create a view to show used field names?
     ☐ compute content inside rethinkdb stepcontent with that hash
@@ -147,6 +201,10 @@ Bugs:
       ☐ http://blog.brunoscopelliti.com/show-route-only-after-all-promises-are-resolved
     ☐ RENAME @inprogress
       ☐ https://medium.com/opinionated-angularjs/scalable-code-organization-in-angularjs-9f01b594bf06
+      ☐ ALSO REMEBER THAT I SHOULD WRITE A MODULE FOR EACH PART....
+        ☐ e.g. Authentication, Database, Feedback, and so on...
+          ☐ but only the main one will have the routing part
+        ☐ write a scaffold for a generic module, with service, controllers and views
     ☐ An api resource only to check if api and db are available?
       ☐ Testing inside the step saving @important
     ☐ Move edit switch inside a factory or service @thatistherightway
@@ -260,45 +318,11 @@ Dev Release:
     ☐ http://blog.scalyr.com/2013/10/angularjs-1200ms-to-35ms/
 
 --- ✄ -----------------------
-Mar:
+
+In the future:
  ☐ https://leanpub.com/web-component-development-with-angularjs/read
  ☐ Advanced search
  ☐ Profiles
  ☐ Testing
-
- ☐ Swarm test?
-   ☐ https://github.com/docker/swarm/
-
  ☐ CSS on demand!
    ☐ https://github.com/door3/angular-css
-
- ☐ Go mobile
-   ☐ http://ccoenraets.github.io/ionic-tutorial/install-ionic.html
-
---- ✄ -----------------------
-
-Timer TIMEOUT how to:
-
-// When the timeout is defined, it returns a promise object.
-var timer = $timeout( function() {
-    if ($scope.myform)
-        $scope.myform.$show();
-}, directiveTimeout);
-
-// Let's bind to the resolve/reject handlers of
-// the timer promise so that we can make sure our
-// cancel approach is actually working.
-timer.then( function() {
-    console.log( "Timer resolved!", Date.now() );
-}, function() {
-    console.log( "Timer rejected!", Date.now() );
-});
-
-// When the DOM element is removed from the page,
-// AngularJS will trigger the $destroy event on
-// the scope. This gives us a chance to cancel any
-// pending timer that we may have.
-$scope.$on( "$destroy", function( event ) {
-    console.log("Destroy");
-    $timeout.cancel( timer );
-});
