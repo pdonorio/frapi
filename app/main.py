@@ -34,11 +34,15 @@ if __name__ == "__main__":
 
     crt = '/myssl/certs/server.crt'
     key = '/myssl/certs/server.key'
+
+    # Multi thread this server
+    #http://stackoverflow.com/a/28776624
+
     if os.path.isfile(crt) and os.path.isfile(key):
         print "HTTPS"
-        app.run(host="0.0.0.0", debug=debug, ssl_context=(crt, key))
+        app.run(host="0.0.0.0", debug=debug, threaded=True, ssl_context=(crt, key))
     else:
-        app.run(host="0.0.0.0", debug=debug)
+        app.run(host="0.0.0.0", debug=debug, threaded=True)
     print "Debug: ", debug
 
 # === For future file configuration ===

@@ -48,11 +48,11 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
     ✔ and admin template @done (15-04-13 21:34)
     ✔ and admin step @done (15-04-13 21:34)
       ✔ remove @done (15-04-13 21:34)
-      ☐ add and update
+      ☐ add and update @CURRENT
   ☐ Does not remove template step in the middle...
     ☐ error on submission too
   ☐ API check at page load?
-  ☐ BUG: try without console....
+  ✔ BUG: try without console.... @done (15-04-14 10:55)
 
 A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
@@ -129,6 +129,12 @@ http://j.mp/angularsecurity
 
  ☐ Oauth2 provider
    ☐ http://lepture.com/en/2013/create-oauth-server
+
+ ☐ Restangular cache?
+   ☐ http://makandracards.com/makandra/29143-angular-caching-api-responses-in-restangular
+ ☐ Python API proxy:
+   ☐ nginx, tornado, gunicor (gevents)
+   ☐ http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado
 
 LIMIT PUBLIC API:
 http://flask-limiter.readthedocs.org/en/stable/
