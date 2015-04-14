@@ -254,6 +254,10 @@ myApp
       .state('logged.status', {
         url: "/status",
         data: { requireAdmin: true },
+        onEnter: function($rootScope) {
+          // Avoid editing for now
+          $rootScope.edit.available = false;
+        },
         views: {
           "contain": {
             templateUrl: "tasks/view.html",

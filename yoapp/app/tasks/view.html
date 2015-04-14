@@ -1,15 +1,41 @@
 
 <div class="jumbotron">
-    <h3> Plan my tasks </h3>
+    <h3> Planning </h3>
+    Currently available
+    <span class="badge alert-info">
+        {{tasks.length}}
+    </span></a>
+    <b> tasks </b>
 </div>
 <div class="container">
 
-    <div ng-repeat='task in tasks track by $index' class="panel panel-default shad">
+    <div ng-repeat='task in tasks track by $index'
+        class="panel panel-default shad"
+        ng-init='task.active = false'
+        >
         <div class="panel-heading">
-            <h4> {{$index + 1}}. {{task.task | ucFirst}} </h4>
+            <h4>
+                <span class="badge alert-primary">
+                    {{$index + 1}}
+                </span>
+                {{task.task | ucFirst}}
+            </h4>
         </div>
         <div class="panel-body">
-            {{task.description}}
+          {{task.description}}
+          <p style="text-align: right;">
+            <a href ng-click='task.active = true' ng-hide='task.active'>conversation+</a>
+            <a href ng-click='task.active = false' ng-show='task.active'>conversation-</a>
+          </p>
+        </div>
+
+        <div ng-if='task.active'>
+            <div ng-repeat='comment in task.comments track by $index'
+                class='panel-body'
+                style="text-align: right; border-top: 1px dashed black;"
+                >
+                {{comment}}
+            </div>
         </div>
     </div>
 

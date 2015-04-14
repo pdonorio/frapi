@@ -245,12 +245,26 @@ class DataOperationsLogger(GenericORMModel):
 
 ##############################
 class TaskManagement(GenericORMModel):
-    """ A service used to provide identifiers to drafts and published documents """
+    """ Planning tasks inside the web app. For admins. """
     table = 'tasks'
 
     @staticmethod
     def task(value):
         return value
     @staticmethod
+    def status(value):
+        return value
+    @staticmethod
     def description(value):
+        return value
+##############################
+class TaskSocial(GenericORMModel):
+    """ Conversations inside task management """
+    table = 'conversations'
+
+    @staticmethod
+    def task(value):
+        return value
+    @staticmethod
+    def comment(value):
         return value

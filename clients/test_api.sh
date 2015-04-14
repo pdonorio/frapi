@@ -19,7 +19,8 @@ port="5507/api/v1.0"
 #resource="myidprovider"
 #resource="stepfields"
 #resource="accounts"
-resource="tasks"
+#resource="tasks"
+resource="conversations"
 
 #############################################
 # BUILD TEST
@@ -60,7 +61,7 @@ echo "***\nINSERT"
 #values="step=1&element=1&type=number&content=checkingMyTests!&label=titolo"
 #values="arr=el1&step=2&arr=el2&user=paulie&date=test"
 #values="step=2&name=test"
-values="task=secondo&description=nonsoancorausareglispazi --insecure"
+values="task=8cf92f4d&comment=in_seguito --insecure"
 #values="date=12-01-2014&description=test&user=paulie"
 key=`$cmd $protocol://$host:$port/$resource -d $values -X POST ` # -v # verbose
 echo "received key '$key'"
