@@ -6,7 +6,7 @@
 
     <div ng-repeat='task in tasks track by $index' class="panel panel-default shad">
         <div class="panel-heading">
-            <h4> {{$index + 1}}. {{task.title | ucFirst}} </h4>
+            <h4> {{$index + 1}}. {{task.task | ucFirst}} </h4>
         </div>
         <div class="panel-body">
             {{task.description}}

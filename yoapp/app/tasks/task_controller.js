@@ -3,10 +3,13 @@
 myApp
 
 // Task controller
-.controller('TaskController', function ($scope, Planner)
+.controller('TaskController', function ($scope, Logger, Planner)
 {
+    var logger = Logger.getInstance('tasking_ctrl');
 
-    // Tasks via API?
-    $scope.tasks = Planner.get();
+    // Tasks via API
+    Planner.get().then(function(data){
+        $scope.tasks = data;
+    });
 
 });
