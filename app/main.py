@@ -38,12 +38,23 @@ if __name__ == "__main__":
     # Multi thread this server
     #http://stackoverflow.com/a/28776624
 
+# TO FIX parameters
+    print "Debug: ", debug
     if os.path.isfile(crt) and os.path.isfile(key):
         print "HTTPS"
         app.run(host="0.0.0.0", debug=debug, threaded=True, ssl_context=(crt, key))
     else:
-        app.run(host="0.0.0.0", debug=debug, threaded=True)
-    print "Debug: ", debug
+        app.run(host="0.0.0.0", debug=debug) #, threaded=True)
+
+# TO FIX
+"""
+Thread error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+    #return self.wsgi_app(environ, start_response)
+    RqlDriverError: Unexpected response received.
+"""
 
 # === For future file configuration ===
 # # Read conf files
