@@ -42,9 +42,8 @@ myApp
         $scope.current = null
       // Avoid if step has not changed
       } else if (step != $scope.current) {
-        console.log("CHange to", step);
-        //$scope.stepInUrl(step);
-        $scope.current = step; // Set step for administration
+        // Set step for administration
+        $scope.current = step;
       }
     }
 
@@ -95,7 +94,7 @@ myApp
 
         var message = "Removing a complete step,\n" +
             "including content inserted by user so far...\n" +
-            "Are you really sure?!?!";
+            "Are you sure?!?!";
 // TO FIX -
 // Are you really sure?
         if (confirm(message))
@@ -190,6 +189,7 @@ myApp
         // Load templates
         $scope.templObj.getData().then(function(response) {
             if (response.length) {
+                console.log("Loading", response);
                 $scope.templates = response;
                 //for each? // hashStatus
             }

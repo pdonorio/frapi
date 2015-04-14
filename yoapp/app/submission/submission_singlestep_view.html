@@ -26,12 +26,13 @@
       <form editable-form name="myform" ng-show='data'
         onaftersave="saveStep()" >
 
+
        <!-- editable username (text with validation) -->
        <table ng-class="{'table': current == step}">
         <!-- <thead> <tr> <th>Colonna</th> <th>Valore</th> </tr> </thead> -->
         <tbody>
           <!-- repeat with sort on key 'pos' -->
-          <tr ng-repeat="(pos,obj) in data[step]" ng-if='obj.key' >
+          <tr ng-repeat="(pos,obj) in data[step] track by $index" ng-if='obj.key' >
 
             <!-- Name of this field -->
             <th class='title'> {{ (obj.key | ucFirst) || 'empty'}} </th>

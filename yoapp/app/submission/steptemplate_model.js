@@ -97,6 +97,7 @@ myApp
                     required:obj.required,
                     //add required and extra?
                 };
+                //console.log("data for ", index,"is", obj);
             });
           }
           return data;

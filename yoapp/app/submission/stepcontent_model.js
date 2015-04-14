@@ -45,9 +45,10 @@ myApp
         comment: data,
     };
     //console.log("Data to log", data);
-    API.set(logresource, log)
+    return API.set(logresource, log)
       .then(function(response) {
         logger.debug("Op logged");
+        return true;
     });
   }
 
