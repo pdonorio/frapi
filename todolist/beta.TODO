@@ -48,6 +48,7 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
     ✔ and admin step @done (15-04-13 21:34)
       ✔ remove @done (15-04-13 21:34)
       ✔ add and update @CURRENT @done (15-04-14 11:14)
+  ✔ Does not remove templates if removing step... @done (15-04-14 11:47)
   ☐ Does not remove template step in the middle...
     ☐ error on submission too
   ☐ API check at page load?
@@ -128,12 +129,13 @@ http://j.mp/angularsecurity
 
  ☐ Oauth2 provider
    ☐ http://lepture.com/en/2013/create-oauth-server
-
- ☐ Restangular cache?
-   ☐ http://makandracards.com/makandra/29143-angular-caching-api-responses-in-restangular
+ ☐ Flask cors
+   ☐ http://flask.pocoo.org/snippets/56/
  ☐ Python API proxy:
    ☐ nginx, tornado, gunicor (gevents)
    ☐ http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado
+ ☐ Restangular cache?
+   ☐ http://makandracards.com/makandra/29143-angular-caching-api-responses-in-restangular
 
 LIMIT PUBLIC API:
 http://flask-limiter.readthedocs.org/en/stable/

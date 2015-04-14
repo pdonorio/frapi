@@ -113,7 +113,6 @@ myApp
                     "Database non raggiungibile");
               } else {
 
-// TO CHECK...
                 // 2. Remove from API steptemplate
                 $scope.templObj = StepTemplate.build(step, true);
                 $scope.templObj.unsetData(step, null, $rootScope.user.myid).then();
@@ -253,7 +252,7 @@ myApp
       delete $scope.templates[index];
       // API save
       $scope.templObj.unsetData($scope.current, index, $rootScope.user.myid)
-       .then(function(){});
+       .then(function(check){});
 
       // Small note (hashStatus):
       // I will not remove user data related to these column,

@@ -158,17 +158,27 @@ myApp
   ////////////////////////////
   // API to remove data
   function removeData(step, position, user) {
-    var params = {step:step, position:position};
+    var params = {step:step};
+    if (position)
+        params.position = position;
 
     // Selecting id to remove
     return API.get(resource, params)
       .then(function(response) {
-        if (response.count == 1) {
-            params.user = user;
-            params.id = response.items[0].id;
-            logOperation(params, true);
-            return API.del(resource, response.items[0].id);
-        }
+        if (response.count < 1)
+            return false;
+
+        angular.forEach(response.items, function(obj, key){
+            if (step == obj.step || (!position || position == obj.position) ) {
+                //console.log("removing step", step, "pos",position,"key",key, "obj", obj);
+                API.del(resource, obj.id).then();
+                obj.user = user;
+                logOperation(obj, true);
+            }
+
+        });
+
+        return true;
     });
   }
 
