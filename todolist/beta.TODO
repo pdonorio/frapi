@@ -73,17 +73,14 @@ Plan:
       ☐ Conversations like feedback
         ☐ Feedback saved inside rdb api resource
         ☐ on change of table, python sends me an email
-
   ☐ Publishing
     ☐ list of documents
       ☐ published and not (label)
   ☐ Some clean pattern image repaeat as background
     ☐ Dark pattern background for ADMIN
-
   ☐ Fix news: Work in progress for now?
   ☐ Should check admin pages via ui router resolve...
   ☐ use spectaclebaroque domain @marcohelpG
-
   ☐ API check at page load?
 
 --- ✄ -----------------------
