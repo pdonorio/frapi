@@ -254,8 +254,11 @@ myApp
       .state('logged.status', {
         url: "/status",
         data: { requireAdmin: true },
-        onEnter: function() {
-          console.log("TODO!");
+        views: {
+          "contain": {
+            templateUrl: "tasks/view.html",
+            controller: 'TaskController',
+          }
         }
       })
 // Once Logged

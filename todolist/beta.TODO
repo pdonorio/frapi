@@ -49,12 +49,10 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
       ✔ remove @done (15-04-13 21:34)
       ✔ add and update @CURRENT @done (15-04-14 11:14)
   ✔ Does not remove templates if removing step... @done (15-04-14 11:47)
-  ☐ Does not remove template step in the middle...
-    ☐ error on submission too
-  ☐ API check at page load?
+  ✔ Does not remove template step in the middle... @done (15-04-14 14:21)
+    ✔ error on submission too @done (15-04-14 14:21)
   ✔ BUG: try without console.... @done (15-04-14 10:55)
-
-A real User model:
+  A real User model:
     ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
       ✔ bug fixes @done (15-04-07 15:10)
       ✔ How to resolve the object via ui router?? @HOUSTON @done (15-04-09 18:36)
@@ -64,26 +62,29 @@ A real User model:
     ✔ load from db @done (15-04-13 06:49)
   ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
 
+
+Plan:
+  ✔ New button topbar @done (15-04-14 14:47)
+  ✔ List of things i am doing and status @done (15-04-14 14:58)
+    ✔ resource api @done (15-04-14 14:58)
+    ✔ controller @done (15-04-14 15:08)
+    ✔ js model factory @done (15-04-14 15:28)
+    ☐ API load
+      ☐ Conversations like feedback
+        ☐ Feedback saved inside rdb api resource
+        ☐ on change of table, python sends me an email
+
   ☐ Publishing
     ☐ list of documents
       ☐ published and not (label)
   ☐ Some clean pattern image repaeat as background
-  ☐ Dark pattern background for ADMIN
-
-
-STATUS:
-  ☐ New button topbar
-  ☐ List of things i am doing and status
-    ☐ Conversations like feedback
-      ☐ Feedback saved inside rdb api resource
-      ☐ on change of table, python sends me an email
-    ☐ list of user drafts
-      ☐ by identifiers inside the api provider
+    ☐ Dark pattern background for ADMIN
 
   ☐ Fix news: Work in progress for now?
   ☐ Should check admin pages via ui router resolve...
   ☐ use spectaclebaroque domain @marcohelpG
 
+  ☐ API check at page load?
 
 --- ✄ -----------------------
 
