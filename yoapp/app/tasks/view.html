@@ -42,8 +42,8 @@
 
                 <table class='table'>
                     <tr>
-                        <th> {{comment.myuser}} </th>
-                        <td> {{comment.time | date:'yyyy-MM-dd HH:mm:ss Z' }} </td>
+                        <th> @{{comment.myuser}} </th>
+                        <td> [{{comment.time | date:'dd/MM/yy HH:mm' }}] </td>
                         <td> {{comment.text}} </td>
                     </tr>
                 </table>
