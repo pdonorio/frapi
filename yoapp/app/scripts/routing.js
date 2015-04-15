@@ -252,7 +252,7 @@ myApp
       })
     ///////////////////////////////////////////////
       .state('logged.status', {
-        url: "/status",
+        url: "/plan",
         data: { requireAdmin: true },
         resolve: {
           userlist: function(Account) {

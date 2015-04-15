@@ -60,22 +60,22 @@
                 <small>not published</small>
               </td>
               <td> [<i>Step {{row.step}}</i>]
-                <span ng-repeat='el in row.content'> {{el}} </span>
+                <span ng-repeat='el in row.content track by $index'> {{el}} </span>
               </td>
               <!--buttons-->
               <td>
                 <button type="button" class="btn btn-xs btn-default"
-                  tooltip-placement="left"
+                  tooltip-placement="left" disabled
                   tooltip="Guarda il record {{row.record | limitTo:8}}">
                   <a ui-sref='logged.view({myId:row.record})'>
-                      <i class="fa fa-eye fa-fix"> </i>
+                      <i class="fa fa-eye fa-2x"> </i>
                   </a>
                 </button>
-                <button type="button" class="btn btn-xs btn-info"
+                <button type="button" class="btn btn-xs btn-default"
                   tooltip-placement="right"
                   tooltip="Modifica il record {{row.record | limitTo:8}}">
                   <a ui-sref='logged.submission.step({myId:row.record, stepId:1})'>
-                      <i class="fa fa-edit fa-fix"></i>
+                      <i class="fa fa-edit fa-2x"></i>
                   </a>
                 </button>
               </td>

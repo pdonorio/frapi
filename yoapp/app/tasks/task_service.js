@@ -5,16 +5,13 @@ myApp
 {
 
   var logger = Logger.getInstance('tasking_service');
+  var DEFAULT_COMMENT = 'Il mio commento';
 
   // This is the service
   var planner = {};
   var resource = 'tasks';
   var subresource = 'conversations';
 
-  var DEFAULT_COMMENT = 'Il mio commento';
-
-  // title = task
-  // description = description
 
   planner.addComment = function(task, user) {
     var hash = task.substr(0, 8);
@@ -40,7 +37,7 @@ myApp
         user: user,
         task: hash,
     }
-    console.log("Update", comment,data);
+    //console.log("Update", comment,data);
     return API.set(subresource, data)
     .then(function(id) {
         logger.debug("Updated comment", comment.commid.substr(0,8));

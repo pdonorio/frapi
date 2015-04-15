@@ -6,7 +6,7 @@ myApp
 .controller('TaskController', function ($rootScope, $scope, $filter, Logger, Planner, userlist)
 {
     var logger = Logger.getInstance('tasking_ctrl');
-    console.log(userlist);
+    //console.log(userlist);
 
     $scope.update = function(index) {
         // Tasks via API

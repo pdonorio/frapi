@@ -13,7 +13,7 @@
     </a>
     <!-- STEPS -->
     <a href class="list-group-item"
-      ng-repeat='name in steps track by $index' ng-if='name'
+      ng-repeat='name in steps track by $index' ng-if='name && $index > 0'
       ng-click="stepInUrl($index)" ng-class="{'orange': $index == current}">
         <!-- badge -->
         <span class="badge"> {{$index}} </span>

@@ -36,9 +36,8 @@
 
         <div ng-if='task.active'>
             <div ng-repeat='comment in task.comments track by $index'
-                class='panel-body'
-                style="text-align: right; border-top: 1px dashed black;"
-                >
+                style="text-align: right"
+                class='panel-body'>
 
                 <table class='table'>
                   <tr>
@@ -55,8 +54,7 @@
                   </tr>
                 </table>
             </div>
-            <div style="text-align: right; border-top: 1px dashed black;"
-                class='panel-body'>
+            <div style="text-align: center" class='panel-body'>
                 <button class="btn btn-primary" ng-click="addComment(task.id)">
                   aggiungi
                 </button>
