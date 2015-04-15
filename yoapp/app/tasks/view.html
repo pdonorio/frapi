@@ -43,7 +43,7 @@
                 <table class='table'>
                     <tr>
                         <th> {{comment.myuser}} </th>
-                        <td> {{comment.time}} </td>
+                        <td> {{comment.time | date:'yyyy-MM-dd HH:mm:ss Z' }} </td>
                         <td> {{comment.text}} </td>
                     </tr>
                 </table>

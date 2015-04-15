@@ -53,7 +53,10 @@ myApp
               found.forEach(function(val, lab){
                 //console.log("Comm", val);
                 data[key].comments.push(
-                    {text: val.comment, user: val.user, time: val.latest_timestamp});
+                    {text: val.comment, user: val.user,
+                        // Fix from python to javascript...
+                        // http://stackoverflow.com/a/1077402/2114395
+                        time: val.latest_timestamp * 1000});
               });
             });
 
