@@ -1,5 +1,4 @@
 <div class="container" ng-init="mytable = {show:false}">
-
   <div class="panel shad">
     <div class="panel-heading orange">
       <h4>Ricerca l'archivio</h4>
@@ -41,7 +40,6 @@
 
     </div>
 
-
     <div ng-show='mytable.show'>
 
       <!-- data table -->
@@ -55,9 +53,11 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="row in data track by row.id">
-              <td>{{row.key}}</td>
-              <td>{{row.value}}</td>
+            <tr ng-repeat="row in data track by row.record">
+              <td>{{row.user}}:<b>{{row.record}}</b></td>
+              <td>
+                <span ng-repeat='el in row.content'> {{el}} </span>
+              </td>
               <!--buttons-->
               <td>
                 <button type="button" class="btn btn-xs btn-default"

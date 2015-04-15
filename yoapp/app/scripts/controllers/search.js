@@ -15,9 +15,7 @@ myApp
     $scope.datacount = 0;
     $scope.from = 0;
     $scope.data = {};
-    $scope.headers = [
-      //"Id",
-      "Chiave", "Valore", "Azioni" ];
+    $scope.headers = [ "Documento", "Contenuto", "Azioni" ];
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
 
@@ -73,19 +71,50 @@ myApp
 
       // Get the data (as a promise)
       var params = {perpage: perpage, currentpage: currentpage};
-      var promise = API.get("data", params);
+      var resource = 'stepscontent';
+      var promise = API.get(resource, params);
+
+// GET USERS list
 
       // Use the data promise
       promise
         //Success
         .then(function(data) {
 
+            var documents = [];
+            var hashes = {};
+            //console.log("Data", data);
+            data.items.forEach(function(el, key){
+                //console.log("Found", el);
+                var hash = el.recordid.substr(0, 8);
+                if (!hashes[hash]) {
+                    hashes[hash] = true;
+                    var curr = {
+                        user: el.user,
+                        record: hash,
+                        content: el.values,
+                    }
+                    documents.push(curr);
+                }
+            });
+
+            //console.log(documents);
+            $scope.data = documents;
+            $scope.datacount = documents.length;
+
+            var from = (parseInt(perpage) * (parseInt(currentpage)-1)) +1;
+            if (from < 1) { from = 1; }
+            $scope.from = from;
+
+// DEBUG
+$scope.mytable.show = true;
+$scope.searching = true;
+
+/*
           //assign data to scope
           $scope.datacount = data.count;
           $scope.data = data.items;
-          var from = (perpage * (currentpage-1)) +1;
-          if (from < 1) { from = 1; }
-          $scope.from = from;
+*/
         },
         //Error
         function(object) {
@@ -97,7 +126,6 @@ myApp
     }
 
     // First time call to get data - with defaults
-    $scope.reloadTable();
-    /* HOW TO CACHE ?? */
+    $scope.reloadTable(perpageDefault, currentpageDefault);
 
 });
