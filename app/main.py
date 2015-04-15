@@ -44,7 +44,7 @@ if __name__ == "__main__":
         print "HTTPS"
         app.run(host="0.0.0.0", debug=debug, threaded=True, ssl_context=(crt, key))
     else:
-        app.run(host="0.0.0.0", debug=debug) #, threaded=True)
+        app.run(host="0.0.0.0", debug=debug)#, threaded=True)
 
 # TO FIX
 """

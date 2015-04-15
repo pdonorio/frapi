@@ -221,7 +221,8 @@ myApp
           },
         },
         onEnter: function($rootScope) {
-            $rootScope.$emit('rootScope:emit', 'gbgon');
+          $rootScope.$emit('rootScope:emit', 'gbgon');
+          $rootScope.edit.available = false;
         },
       })
       .state('logged.view', {
