@@ -221,7 +221,8 @@ myApp
           },
         },
         onEnter: function($rootScope) {
-            $rootScope.$emit('rootScope:emit', 'gbgon');
+          $rootScope.$emit('rootScope:emit', 'gbgon');
+          $rootScope.edit.available = false;
         },
       })
       .state('logged.view', {
@@ -252,7 +253,7 @@ myApp
       })
     ///////////////////////////////////////////////
       .state('logged.status', {
-        url: "/status",
+        url: "/plan",
         data: { requireAdmin: true },
         resolve: {
           userlist: function(Account) {

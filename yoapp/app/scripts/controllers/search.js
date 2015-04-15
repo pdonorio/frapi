@@ -11,6 +11,7 @@
 myApp
  .controller('ViewController', function ($scope, $rootScope, API, perpageDefault, currentpageDefault)
 {
+
     // Init: Html scope data
     $scope.datacount = 0;
     $scope.from = 0;
@@ -114,6 +115,11 @@ myApp
                 var from = (parseInt(perpage) * (parseInt(currentpage)-1)) +1;
                 if (from < 1) { from = 1; }
                 $scope.from = from;
+
+                // When using this view alone, open the search
+                if (typeof $rootScope.searching === "undefined") {
+                    $scope.doFocus();
+                }
 
 /*
     // DEBUG

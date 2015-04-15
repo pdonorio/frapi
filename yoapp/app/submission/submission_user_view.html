@@ -15,7 +15,6 @@
         </a>
         <a class="list-group-item disabled" ng-if="myrecordid != 'new'">
           <h4 class='dtext'> Modifica </h4>
-
 <!-- SHOULD ADD 'draft' IF NOT PUBLISHED YET -->
           <b>Record</b> <span class="label label-info">
             {{ myrecordid | limitTo:8}} </span>
@@ -23,7 +22,7 @@
 
         <!-- STEPS -->
         <a href class="list-group-item"
-          ng-repeat='name in steps track by $index' ng-if='name'
+          ng-repeat='name in steps track by $index' ng-if='name && $index > 0'
           ng-click="broadcastStep($index)" ng-class="{'orange': $index == current}">
           <!-- name -->
           {{name | ucFirst}}

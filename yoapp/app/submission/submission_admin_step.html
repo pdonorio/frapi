@@ -38,10 +38,10 @@
   </div>
   <div ng-show='current'>
 
-    <table class="table table-hover table-condensed">
+    <table class="table table-hover">
 
      <thead ng-if='templates'>
-         <tr> <th></th> <th>Nome</th>
+         <tr> <th></th> <th style="text-align: center">Nome</th>
          <th>Tipo
           <a href='#'>(<i class="fa fa-question" style='color:red;' ng-click="open()"
             tooltip-placement="right" tooltip="Scopri i tipi disponibili"
@@ -59,21 +59,25 @@
       <tr ng-repeat='template in templates track by $index'
         ng-if='$index > 0 && template'>
        <!-- Element count -->
-       <td style='background: #eee; text-align: center; '>
+       <td
+       >
         <span ng-show='template.hashStatus == "new"'
             class="label label-primary">{{template.hashStatus}}</span>
         <span ng-show='template.hashStatus == "existing"'
             class="label label-warning">{{template.hashStatus}}</span>
 
-        <b>{{$index}}</b>: <i>{{template.hash || 'none'}}</i>
+        <span class="badge alert-success"> {{$index}} </span>
+        <!-- <i>{{template.hash || 'none'}}</i> -->
 
        </td>
        <!-- Text with Validation -->
-       <td>
+       <td
+       style='background: #eee; text-align: center; '
+       >
         <span editable-text="template.label" e-form="rowform" e-required
             onbeforesave='checkIfNameExist($data, $index)'
             onaftersave='updateElement($index)'>
-          {{template.label || 'vuoto'}}
+          <b>{{template.label || 'vuoto'}}</b>
         </span>
        </td>
        <!-- List of elements -->
@@ -130,7 +134,7 @@
          </div>
         </form>
         <div class="btn-group" role="group" ng-show="!rowform.$visible">
-          <button class="btn btn-info" ng-click="rowform.$show()"
+          <button class="btn btn-warning" ng-click="rowform.$show()"
             tooltip-placement="bottom" tooltip="Modifica parametri">
            <i class="fa fa-edit fa-fix"></i>
           </button>

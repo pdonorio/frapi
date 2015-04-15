@@ -25,7 +25,6 @@ Cookies security 1:
  ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
    ✔ nginx https? @done (15-04-03 16:51)
    ✔ avoid man in the middle @done (15-04-03 16:51)
-
 Something very difficult: LOGIN PATTERN for ANGULARJS:
   ✔ restart.... @done (15-04-13 06:22)
     ✔ FROM ZERO!! @done (15-04-13 06:22)
@@ -59,8 +58,6 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
     ✔ learn to debug resolve testing inside controller @done (15-04-13 06:38)
     ✔ load from db @done (15-04-13 06:49)
   ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
-
-
 Plan:
   ✔ New button topbar @done (15-04-14 14:47)
   ✔ List of things i am doing and status @done (15-04-14 14:58)
@@ -73,8 +70,9 @@ Plan:
       ✔ show task status @done (15-04-15 07:48)
       ✔ show user @CURRENT @done (15-04-15 08:35)
         ✔ problem of users list... (resolve?) @done (15-04-15 08:35)
-      ☐ last update: timestamp conversion
-      ☐ conversation edit xeditable
+      ✔ last update: timestamp conversion @done (15-04-15 09:27)
+      ✔ conversation edit xeditable @done (15-04-15 09:27)
+        ✔ api save @done (15-04-15 10:00)
         ☐ only the ones made by current user
         ☐ admin (on/off) button?
           ☐ on change of table, python sends me an email @maperfavore

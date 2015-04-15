@@ -6,7 +6,7 @@ myApp
 .controller('TaskController', function ($rootScope, $scope, $filter, Logger, Planner, userlist)
 {
     var logger = Logger.getInstance('tasking_ctrl');
-    console.log(userlist);
+    //console.log(userlist);
 
     $scope.update = function(index) {
         // Tasks via API
@@ -30,6 +30,11 @@ myApp
 
     $scope.addComment = function(task) {
         Planner.addComment(task, $rootScope.user.myid).then(function(){
+            $scope.update(task);
+        });
+    }
+    $scope.updateComment = function(comment, task) {
+        Planner.updateComment(comment, task, $rootScope.user.myid).then(function(){
             $scope.update(task);
         });
     }

@@ -36,20 +36,25 @@
 
         <div ng-if='task.active'>
             <div ng-repeat='comment in task.comments track by $index'
-                class='panel-body'
-                style="text-align: right; border-top: 1px dashed black;"
-                >
+                style="text-align: right"
+                class='panel-body'>
 
                 <table class='table'>
-                    <tr>
-                        <th> @{{comment.myuser}} </th>
-                        <td> [{{comment.time | date:'dd/MM/yy HH:mm' }}] </td>
-                        <td> {{comment.text}} </td>
-                    </tr>
+                  <tr>
+                    <th> @{{comment.myuser}} </th>
+                    <td> [{{comment.time | date:'dd/MM/yy HH:mm' }}] </td>
+                    <!-- <td> {{comment.text}} </td> -->
+                    <td>
+                     <a href
+                         editable-textarea="comment.text"
+                         e-rows="7" e-cols="40"
+                         onaftersave='updateComment(comment, task.id)'
+                        > <pre>{{ comment.text || "commento vuoto" }} </pre> </a>
+                    </td>
+                  </tr>
                 </table>
             </div>
-            <div style="text-align: right; border-top: 1px dashed black;"
-                class='panel-body'>
+            <div style="text-align: center" class='panel-body'>
                 <button class="btn btn-primary" ng-click="addComment(task.id)">
                   aggiungi
                 </button>

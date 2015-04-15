@@ -262,6 +262,7 @@ class TaskManagement(GenericORMModel):
 class TaskSocial(GenericORMModel):
     """ Conversations inside task management """
     table = 'conversations'
+    order = 'latest_timestamp'
 
     @staticmethod
     def task(value):

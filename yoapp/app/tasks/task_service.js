@@ -5,25 +5,42 @@ myApp
 {
 
   var logger = Logger.getInstance('tasking_service');
+  var DEFAULT_COMMENT = 'Il mio commento';
 
   // This is the service
   var planner = {};
   var resource = 'tasks';
   var subresource = 'conversations';
 
-  // title = task
-  // description = description
 
   planner.addComment = function(task, user) {
     var hash = task.substr(0, 8);
     var data = {
         task: hash,
         user: user,
-        comment: 'Il mio commento',
+        comment: DEFAULT_COMMENT,
     }
     return API.set(subresource, data)
     .then(function(id) {
         logger.debug("Adding comment");
+        return id;
+    });
+  }
+
+  planner.updateComment = function(comment, task, user) {
+    var hash = task.substr(0, 8);
+
+    var data = {
+        id: comment.commid,
+        comment: comment.text,
+        //comment: 'Edit: ' + comment.text,
+        user: user,
+        task: hash,
+    }
+    //console.log("Update", comment,data);
+    return API.set(subresource, data)
+    .then(function(id) {
+        logger.debug("Updated comment", comment.commid.substr(0,8));
         return id;
     });
   }
@@ -54,6 +71,7 @@ myApp
                 //console.log("Comm", val);
                 data[key].comments.push(
                     {text: val.comment, user: val.user,
+                        commid: val.id,
                         // Fix from python to javascript...
                         // http://stackoverflow.com/a/1077402/2114395
                         time: val.latest_timestamp * 1000});
