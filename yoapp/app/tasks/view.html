@@ -49,6 +49,7 @@
                      <a href
                          editable-textarea="comment.text"
                          e-rows="7" e-cols="40"
+                         onaftersave='updateComment(comment, task.id)'
                         > <pre>{{ comment.text || "commento vuoto" }} </pre> </a>
                     </td>
                   </tr>

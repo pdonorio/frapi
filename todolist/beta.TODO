@@ -73,8 +73,9 @@ Plan:
       ✔ show task status @done (15-04-15 07:48)
       ✔ show user @CURRENT @done (15-04-15 08:35)
         ✔ problem of users list... (resolve?) @done (15-04-15 08:35)
-      ☐ last update: timestamp conversion
-      ☐ conversation edit xeditable
+      ✔ last update: timestamp conversion @done (15-04-15 09:27)
+      ✔ conversation edit xeditable @done (15-04-15 09:27)
+        ✔ api save @done (15-04-15 10:00)
         ☐ only the ones made by current user
         ☐ admin (on/off) button?
           ☐ on change of table, python sends me an email @maperfavore

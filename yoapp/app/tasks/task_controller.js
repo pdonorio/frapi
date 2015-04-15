@@ -33,6 +33,11 @@ myApp
             $scope.update(task);
         });
     }
+    $scope.updateComment = function(comment, task) {
+        Planner.updateComment(comment, task, $rootScope.user.myid).then(function(){
+            $scope.update(task);
+        });
+    }
 
     // First time listing
     $scope.update();
