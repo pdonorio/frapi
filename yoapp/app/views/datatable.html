@@ -54,7 +54,11 @@
 
           <tbody>
             <tr ng-repeat="row in data track by row.record">
-              <td>{{row.user}}:<b>{{row.record | limitTo:8}}</b></td>
+              <td>
+                {{row.user}}:<b>{{row.record | limitTo:8}}</b>
+                <br>
+                <small>not published</small>
+              </td>
               <td> [<i>Step {{row.step}}</i>]
                 <span ng-repeat='el in row.content'> {{el}} </span>
               </td>

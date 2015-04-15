@@ -81,7 +81,7 @@ myApp
           var users = {};
           res.items.forEach(function(obj, key){
             var hash = obj.id.substr(0, 8);
-            users[hash] = obj.name + " " + obj.surname.substr(0, 1);
+            users[hash] = obj.name + obj.surname.substr(0, 1);
           });
           //console.log("Users", users);
 
