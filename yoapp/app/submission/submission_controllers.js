@@ -99,6 +99,7 @@ myApp
             var value = null;
             var key = -1;
             var type = getType(obj.value);
+            index++;
             // IF I HAVE DATA
             if (content.values) {
                 //console.log("I have template", obj, pos);
@@ -121,6 +122,7 @@ myApp
 // TO FIX - how? save this data inside object?
 //probably yes
         $scope.data[$scope.step] = data;
+        $scope.countTempl = index;
         return count;
 
     }

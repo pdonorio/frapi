@@ -25,7 +25,6 @@ Cookies security 1:
  ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
    ✔ nginx https? @done (15-04-03 16:51)
    ✔ avoid man in the middle @done (15-04-03 16:51)
-
 Something very difficult: LOGIN PATTERN for ANGULARJS:
   ✔ restart.... @done (15-04-13 06:22)
     ✔ FROM ZERO!! @done (15-04-13 06:22)
@@ -59,8 +58,6 @@ Something very difficult: LOGIN PATTERN for ANGULARJS:
     ✔ learn to debug resolve testing inside controller @done (15-04-13 06:38)
     ✔ load from db @done (15-04-13 06:49)
   ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
-
-
 Plan:
   ✔ New button topbar @done (15-04-14 14:47)
   ✔ List of things i am doing and status @done (15-04-14 14:58)
