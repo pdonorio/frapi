@@ -74,32 +74,39 @@ Plan:
       ✔ conversation edit xeditable @done (15-04-15 09:27)
         ✔ api save @done (15-04-15 10:00)
         ☐ only the ones made by current user
-        ☐ admin (on/off) button?
-          ☐ on change of table, python sends me an email @maperfavore
-  ☐ Publishing
-    ✔ list of documents @done (15-04-15 07:36)
-    ☐ published and not (label)
-
-Later on:
-  ☐ Fix file upload....
-  ☐ Some clean pattern image repaeat as background
-    ☐ Dark pattern background for ADMIN
-  ☐ Fix news: Work in progress for now?
-  ☐ Should check admin pages via ui router resolve...
-  ☐ use spectaclebaroque domain @marcohelpG
-  ☐ API check at page load?
-    ☐ API joins?
 
 --- ✄ -----------------------
+NEW PLAN:
 
-COOKIE SECURITY 2:
-  ☐ Check cookie timer...
- ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
- ☐ Path: cookie will only be send on specified path e.g. /login
- ☐ CORS?
-   ☐ Pre-flight OPTIONS requests
-   ☐ http://stackoverflow.com/a/19576540/2114395
- ☐ $http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
+☐ Fix WSGI maledetto?
+☐ Date init (1622 1/1)
+  ☐ Date interval 22 luglio 1622 - 29 luglio 1622
+   - select old step (>2) or new
+  - fix transcription upload
+  - base search
+☐ Fix file upload
+  ☐ After upload: modal for editing metadata
+  ☐ (file code, transcription, traduzione francese) - ARSI.FB.62.[f10R]
+    ☐ latin + francese + italiano + greco antico
+    ☐ symbols? email alessandro
+☐ Publishing
+☐ Patterns, dark for admin pages
+☐ API check at page load
+  ☐ Basic search: substring search inside transciption
+    ☐ text indexing rethinkdb?
+
+☐ Fix news
+☐ spectaclebaroque domain
+☐ API joins?
+
+☐ Views
+  ☐ estratto
+  ☐ fonte
+  ☐
+
+☐ Check cookie timer...
+☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
+☐ CORS: Pre-flight OPTIONS requests
 
 Real authentication on API side with Token (OAuth2):
 
