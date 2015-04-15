@@ -72,57 +72,57 @@ myApp
       // Get the data (as a promise)
       var params = {perpage: perpage, currentpage: currentpage};
       var resource = 'stepscontent';
-      var promise = API.get(resource, params);
+      var userresource = 'accounts';
 
-// GET USERS list
+      // GET USERS list
+      API.get(userresource).then(function(res)
+      {
 
-      // Use the data promise
-      promise
-        //Success
-        .then(function(data) {
+          var users = {};
+          res.items.forEach(function(obj, key){
+            var hash = obj.id.substr(0, 8);
+            users[hash] = obj.name + " " + obj.surname.substr(0, 1);
+          });
+          //console.log("Users", users);
 
-            var documents = [];
-            var hashes = {};
-            //console.log("Data", data);
-            data.items.forEach(function(el, key){
-                //console.log("Found", el);
-                var hash = el.recordid.substr(0, 8);
-                if (!hashes[hash]) {
-                    hashes[hash] = true;
-                    var curr = {
-                        user: el.user,
-                        record: hash,
-                        content: el.values,
+          // Get raw content...
+          API.get(resource, params).then(function(data) {
+
+                var documents = [];
+                var hashes = {};
+                //console.log("Data", data);
+                data.items.forEach(function(el, key){
+                    //console.log("Found", el);
+                    //var hash = el.recordid.substr(0, 8);
+                    if (!hashes[el.recordid]) {
+                        hashes[el.recordid] = true;
+                        var curr = {
+                            user: users[el.user],
+                            record: el.recordid,
+                            step: el.step,
+                            content: el.values,
+                        }
+                        documents.push(curr);
                     }
-                    documents.push(curr);
-                }
-            });
+                });
 
-            //console.log(documents);
-            $scope.data = documents;
-            $scope.datacount = documents.length;
+                //console.log(documents);
+                $scope.data = documents;
+                $scope.datacount = documents.length;
 
-            var from = (parseInt(perpage) * (parseInt(currentpage)-1)) +1;
-            if (from < 1) { from = 1; }
-            $scope.from = from;
-
-// DEBUG
-$scope.mytable.show = true;
-$scope.searching = true;
+                var from = (parseInt(perpage) * (parseInt(currentpage)-1)) +1;
+                if (from < 1) { from = 1; }
+                $scope.from = from;
 
 /*
-          //assign data to scope
-          $scope.datacount = data.count;
-          $scope.data = data.items;
+    // DEBUG
+    $scope.mytable.show = true;
+    $scope.searching = true;
 */
-        },
-        //Error
-        function(object) {
-          console.log("Controller api call Error");
-          console.log(object);
-        }
-      );
 
+            }); // api content
+
+        }); // api users
     }
 
     // First time call to get data - with defaults
