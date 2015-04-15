@@ -12,12 +12,18 @@
     <div ng-repeat='task in tasks track by $index'
         class="panel panel-default shad" >
         <div class="panel-heading">
-            <h4>
-                <span class="badge alert-primary">
-                    {{$index + 1}}
-                </span>
-                {{task.task | ucFirst}}
-            </h4>
+
+            <table> <tr>
+                <td>
+                    <span class="label label-info"> {{task.status}} </span>
+                </td>
+                <td>
+                 <h4>
+                    <span class="badge alert-primary"> {{$index + 1}} </span>
+                    {{task.task | ucFirst}}
+                 </h4>
+                </td>
+            </tr></table>
         </div>
         <div class="panel-body">
           {{task.description}}

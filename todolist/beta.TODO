@@ -70,6 +70,7 @@ Plan:
     ✔ API load @done (15-04-14 16:55)
       ✔ Conversations like feedback @done (15-04-14 17:44)
       ✔ conversation add @done (15-04-14 19:31)
+      ✔ show task status @done (15-04-15 07:48)
       ☐ show user @CURRENT
       ☐ last update: timestamp conversion
       ☐ conversation edit xeditable
@@ -81,6 +82,7 @@ Plan:
     ☐ published and not (label)
 
 Later on:
+  ☐ Fix file upload....
   ☐ Some clean pattern image repaeat as background
     ☐ Dark pattern background for ADMIN
   ☐ Fix news: Work in progress for now?
