@@ -254,6 +254,15 @@ myApp
       .state('logged.status', {
         url: "/status",
         data: { requireAdmin: true },
+        resolve: {
+          userlist: function(Account) {
+            return Account.getUserList();
+          }
+        },
+        onEnter: function($rootScope) {
+          // Avoid editing for now
+          $rootScope.edit.available = false;
+        },
         views: {
           "contain": {
             templateUrl: "tasks/view.html",

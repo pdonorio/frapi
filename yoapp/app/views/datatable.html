@@ -1,5 +1,4 @@
 <div class="container" ng-init="mytable = {show:false}">
-
   <div class="panel shad">
     <div class="panel-heading orange">
       <h4>Ricerca l'archivio</h4>
@@ -41,7 +40,6 @@
 
     </div>
 
-
     <div ng-show='mytable.show'>
 
       <!-- data table -->
@@ -55,20 +53,30 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="row in data track by row.id">
-              <td>{{row.key}}</td>
-              <td>{{row.value}}</td>
+            <tr ng-repeat="row in data track by row.record">
+              <td>
+                {{row.user}}:<b>{{row.record | limitTo:8}}</b>
+                <br>
+                <small>not published</small>
+              </td>
+              <td> [<i>Step {{row.step}}</i>]
+                <span ng-repeat='el in row.content'> {{el}} </span>
+              </td>
               <!--buttons-->
               <td>
                 <button type="button" class="btn btn-xs btn-default"
-                  tooltip-placement="left" tooltip="Guarda il record {{row.key}}"
-                  ng-click="go('app/view/{{row.id}}')">
-                  <i class="fa fa-eye fa-fix"> </i>
+                  tooltip-placement="left"
+                  tooltip="Guarda il record {{row.record | limitTo:8}}">
+                  <a ui-sref='logged.view({myId:row.record})'>
+                      <i class="fa fa-eye fa-fix"> </i>
+                  </a>
                 </button>
                 <button type="button" class="btn btn-xs btn-info"
-                  tooltip-placement="right" tooltip="Modifica il record {{row.key}}"
-                  ng-click="go('app/submission/{{row.id}}/step/1')">
-                  <i class="fa fa-edit fa-fix"></i>
+                  tooltip-placement="right"
+                  tooltip="Modifica il record {{row.record | limitTo:8}}">
+                  <a ui-sref='logged.submission.step({myId:row.record, stepId:1})'>
+                      <i class="fa fa-edit fa-fix"></i>
+                  </a>
                 </button>
               </td>
             </tr>

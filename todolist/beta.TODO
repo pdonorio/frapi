@@ -1,10 +1,8 @@
-
 TO DISCUSS:
   ☐ changing labels position and name when user data exists
   ☐ date only for years?
     ☐ do i have an example
   ☐ define the search basic idea
-
 --- ✄ -----------------------
 
 Cookies security 1:
@@ -69,22 +67,30 @@ Plan:
     ✔ resource api @done (15-04-14 14:58)
     ✔ controller @done (15-04-14 15:08)
     ✔ js model factory @done (15-04-14 15:28)
-    ☐ API load
-      ☐ Conversations like feedback
-        ☐ Feedback saved inside rdb api resource
-        ☐ on change of table, python sends me an email
-
+    ✔ API load @done (15-04-14 16:55)
+      ✔ Conversations like feedback @done (15-04-14 17:44)
+      ✔ conversation add @done (15-04-14 19:31)
+      ✔ show task status @done (15-04-15 07:48)
+      ✔ show user @CURRENT @done (15-04-15 08:35)
+        ✔ problem of users list... (resolve?) @done (15-04-15 08:35)
+      ☐ last update: timestamp conversion
+      ☐ conversation edit xeditable
+        ☐ only the ones made by current user
+        ☐ admin (on/off) button?
+          ☐ on change of table, python sends me an email @maperfavore
   ☐ Publishing
-    ☐ list of documents
-      ☐ published and not (label)
+    ✔ list of documents @done (15-04-15 07:36)
+    ☐ published and not (label)
+
+Later on:
+  ☐ Fix file upload....
   ☐ Some clean pattern image repaeat as background
     ☐ Dark pattern background for ADMIN
-
   ☐ Fix news: Work in progress for now?
   ☐ Should check admin pages via ui router resolve...
   ☐ use spectaclebaroque domain @marcohelpG
-
   ☐ API check at page load?
+    ☐ API joins?
 
 --- ✄ -----------------------
 

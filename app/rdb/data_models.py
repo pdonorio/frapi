@@ -188,6 +188,7 @@ class StepTemplate(GenericORMModel):
 class StepContent(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepscontent'
+    order = 'step'
 
     # Attributes as defined by static methods:
     @staticmethod
@@ -245,12 +246,29 @@ class DataOperationsLogger(GenericORMModel):
 
 ##############################
 class TaskManagement(GenericORMModel):
-    """ A service used to provide identifiers to drafts and published documents """
+    """ Planning tasks inside the web app. For admins. """
     table = 'tasks'
 
     @staticmethod
     def task(value):
         return value
     @staticmethod
+    def status(value):
+        return value
+    @staticmethod
     def description(value):
+        return value
+##############################
+class TaskSocial(GenericORMModel):
+    """ Conversations inside task management """
+    table = 'conversations'
+
+    @staticmethod
+    def task(value):
+        return value
+    @staticmethod
+    def comment(value):
+        return value
+    @staticmethod
+    def user(value):
         return value
