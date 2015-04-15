@@ -39,7 +39,14 @@
                 class='panel-body'
                 style="text-align: right; border-top: 1px dashed black;"
                 >
-                {{comment}}
+
+                <table class='table'>
+                    <tr>
+                        <th> {{comment.myuser}} </th>
+                        <td> {{comment.time}} </td>
+                        <td> {{comment.text}} </td>
+                    </tr>
+                </table>
             </div>
             <div style="text-align: right; border-top: 1px dashed black;"
                 class='panel-body'>

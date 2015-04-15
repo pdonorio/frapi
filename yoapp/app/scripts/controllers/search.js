@@ -74,6 +74,7 @@ myApp
       var resource = 'stepscontent';
       var userresource = 'accounts';
 
+// TO FIX - use userlist inside resolve
       // GET USERS list
       API.get(userresource).then(function(res)
       {

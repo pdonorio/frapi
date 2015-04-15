@@ -205,6 +205,19 @@ myApp
   return {
     getItem: function(cookie) {
         return new Account(cookie);
+    },
+
+    // GET USERS list
+    getUserList: function() {
+      return API.get(resource).then(function(res)
+      {
+          var users = {};
+          res.items.forEach(function(obj, key){
+            var hash = obj.id.substr(0, 8);
+            users[hash] = obj.name + obj.surname.substr(0, 1);
+          });
+          return users;
+      });
     }
   }
 

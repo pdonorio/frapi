@@ -52,7 +52,8 @@ myApp
               // for each comment of the single task
               found.forEach(function(val, lab){
                 //console.log("Comm", val);
-                data[key].comments.push(val.comment);
+                data[key].comments.push(
+                    {text: val.comment, user: val.user, time: val.latest_timestamp});
               });
             });
 

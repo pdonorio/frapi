@@ -71,7 +71,8 @@ Plan:
       ✔ Conversations like feedback @done (15-04-14 17:44)
       ✔ conversation add @done (15-04-14 19:31)
       ✔ show task status @done (15-04-15 07:48)
-      ☐ show user @CURRENT
+      ✔ show user @CURRENT @done (15-04-15 08:35)
+        ✔ problem of users list... (resolve?) @done (15-04-15 08:35)
       ☐ last update: timestamp conversion
       ☐ conversation edit xeditable
         ☐ only the ones made by current user
