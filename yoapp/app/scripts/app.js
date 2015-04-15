@@ -67,6 +67,21 @@ var myApp = angular.module('archivi',
   // use more time to load the page
   .constant('someInitTime', 1000)
 
+/////////////////////////////////////////
+// How to force reload (controller init) with ui router
+// http://stackoverflow.com/a/23198743/2114395
+.config(function($provide) {
+    $provide.decorator('$state', function($delegate, $stateParams) {
+        $delegate.forceReload = function() {
+            return $delegate.go($delegate.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+        };
+        return $delegate;
+    });
+})
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY

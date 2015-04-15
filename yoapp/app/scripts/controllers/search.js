@@ -117,9 +117,8 @@ myApp
                 $scope.from = from;
 
                 // When using this view alone, open the search
-                if (typeof $rootScope.searching === "undefined") {
+                if (typeof $rootScope.searching === "undefined")
                     $scope.doFocus();
-                }
 
 /*
     // DEBUG

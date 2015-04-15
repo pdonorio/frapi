@@ -134,10 +134,13 @@ myApp
           "contain": {
             templateUrl: "views/main.html",
           },
+/*
+ * To show search inside the home page
           "extra": {
             templateUrl: "views/datatable.html",
             controller: 'ViewController',
           },
+*/
         },
         onEnter: function($rootScope) {
           //make project text appear
@@ -223,6 +226,7 @@ myApp
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgon');
           $rootScope.edit.available = false;
+          $rootScope.searching = undefined;
         },
       })
       .state('logged.view', {
