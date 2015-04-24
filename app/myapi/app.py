@@ -14,6 +14,7 @@ from bpractices.logger import log
 
 # === Create the app ===
 app = Flask(__name__)
+
 # config init
 app.config.from_object(__name__)
 # Only in debug mode?

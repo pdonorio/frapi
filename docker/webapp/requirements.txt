@@ -10,6 +10,7 @@ RethinkORM==0.3.0
 
 Flask
 Flask-restful
-
 Flask-HTTPAuth
 Flask-Cache==0.13.1
+
+gunicorn

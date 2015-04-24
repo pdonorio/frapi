@@ -1,9 +1,3 @@
-TO DISCUSS:
-  ☐ changing labels position and name when user data exists
-  ☐ date only for years?
-    ☐ do i have an example
-  ☐ define the search basic idea
---- ✄ -----------------------
 
 Cookies security 1:
  ✔ Cookie to save information about the fact i used login to get in @done (15-04-02 17:12)
@@ -78,7 +72,11 @@ Plan:
 --- ✄ -----------------------
 NEW PLAN:
 
-☐ Fix WSGI maledetto?
+✔ Fix WSGI maledetto? @done (15-04-24 07:38)
+  ✔ Installare gunicorn @done (15-04-24 07:38)
+    ☐ Fix https?
+    ☐ Fix page loading and error with API on client
+✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
 ☐ Date init (1622 1/1)
   ☐ Date interval 22 luglio 1622 - 29 luglio 1622
    - select old step (>2) or new
