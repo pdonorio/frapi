@@ -58,4 +58,4 @@ EXPOSE 80
 
 # Finish
 VOLUME ['/etc/nginx/sites-enabled','/var/www']
-#CMD ["nginx"]
+CMD ["nginx"]

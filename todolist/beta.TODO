@@ -74,7 +74,12 @@ NEW PLAN:
 
 ✔ Fix WSGI maledetto? @done (15-04-24 07:38)
   ✔ Installare gunicorn @done (15-04-24 07:38)
+    ✔ http proxy for API @done (15-04-24 17:15)
+      ☐ remove pybase....
+      ☐ use nginx official image?
     ☐ Fix https?
+      ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
+      ☐ better via nginx proxy
     ☐ Fix page loading and error with API on client
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
 ☐ Date init (1622 1/1)
