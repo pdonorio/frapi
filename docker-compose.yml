@@ -1,0 +1,97 @@
+######################
+# Database server master
+dbdata:
+    image: busybox
+    volumes:
+        - ./data/rdb:/data:rw
+rdb:
+    image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
+    volumes_from:
+         - dbdata     # Import data directory from storage container
+    ports:
+        - "9175:8080" # Rdb monitoring cluster - DEBUG
+
+######################
+# Do actions (e.g. backups)
+tasker:
+    build: ./docker/tasks
+    links:
+        - rdb:db
+    volumes:
+        - ./docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
+
+# ######################
+# # # Python api server connected to Rethink DB database
+# pycode:
+#     image: busybox
+#     volumes:
+#         - ./app:/opt/app:ro
+# api:
+#     build: ./docker/webapp
+#     command: gunicorn -w 4 -b 0.0.0.0:5000 main:app
+#     # 172.17.42.1/16 DOCKER
+#     #command: sleep 1234567890
+#     volumes_from:
+#         - pycode
+#     volumes:
+#         # - ./certificates/key:/myssl/certs/server.key
+#         # - ./certificates/domain.cert:/myssl/certs/server.crt
+#     working_dir: /opt/app
+#     links:
+#         - rdb:db
+
+# ######################
+# # Python api file server
+# updata:
+#     image: busybox
+#     volumes:
+#         - ./data/files:/uploads
+# fileapi:
+#     build: ./docker/webapp
+#     command: python file.py #https?
+#     volumes_from:
+#         - pycode
+#         - updata
+#     working_dir: /opt/app
+#     ports:
+#         - "5346:6000" # file handling (directly)
+
+# proxy:
+#     image: nginx
+#     links:
+#         - api:api # i need to know the internal container which exposes api
+#     ports:
+#         - "5507:80" # expose the api to the world!
+#     volumes:
+#         - ./docker/gui/proxy.conf:/etc/nginx/sites-enabled/default
+# # Web development angular pages running on a javascript server
+# webdev:
+#     build: ./docker/jsdev
+#     command: sleep 123456789
+#     volumes:
+#         - ./yoapp:/opt/yo
+#     working_dir: /opt/yo
+#     links:
+#         - rdb:db
+#     ports:
+#         - "8080:3000" # Chateau admin db
+# # Web static angular pages
+# web:
+#     build: ./docker/gui
+#     volumes_from:
+#         - updata
+#     working_dir: /opt/app
+#     ports:
+#         - "80:80" # basic
+#         - "443:443" # ssl server
+#     volumes:
+#         - ./yoapp/app:/var/www/html
+# # TO FIX with grunt/gulp rebuild
+#         #- ./yoapp/dist:/var/www/html/static
+
+# # TO FIX - debug/production
+#         # # SSL
+#         # - ./docker/gui/sites.conf:/etc/nginx/sites-enabled/default
+#         # # Certificates
+#         # - ./certificates/key:/etc/nginx/ssl/server.key
+#         # - ./certificates/domain.cert:/etc/nginx/ssl/server.crt

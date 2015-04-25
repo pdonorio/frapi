@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /tmp
+rethinkdb dump -c rdb_1 -e pippo
+echo "Completed backup"

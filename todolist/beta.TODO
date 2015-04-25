@@ -70,6 +70,14 @@ Plan:
         ☐ only the ones made by current user
 
 --- ✄ -----------------------
+DOCKER COMPOSE CLEAN:
+  ☐  use versions in FROM
+  ☐ use original images
+  ☐ use a container per app (divide api AND file api)
+  ☐ use an extra container for backups and maintenance
+    ☐ phusion baseimage
+
+--- ✄ -----------------------
 NEW PLAN:
 
 ✔ Fix WSGI maledetto? @done (15-04-24 07:38)
@@ -78,8 +86,9 @@ NEW PLAN:
       ☐ remove pybase....
       ☐ use nginx official image?
     ☐ Fix https?
+      ☐ dev / production?
+        ☐ different confs via yaml docker compose?
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
-      ☐ better via nginx proxy
     ☐ Fix page loading and error with API on client
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
 ☐ Date init (1622 1/1)

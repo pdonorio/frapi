@@ -20,12 +20,12 @@ Those have been the main objectives:
 
 ====
 
-This started as a test, and it has become the real project:
-FRANGUI = flask restful api nginx Gui
+I am now providing an interface to use rethinkdb api via angularjs.
 
-Run with
+The full stack of development can be build and executed with:
+
 ```
-$ ./cluster.sh run_with_gui
+$ docker-compose up -d
 ```
 
 Page tests:
