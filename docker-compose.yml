@@ -26,7 +26,7 @@ rdb:
 #         - ./docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
 
 ######################
-# # Python api server connected to Rethink DB database
+# Python api server connected to Rethink DB database (port 5000)
 pycode:
     image: busybox
     volumes:
@@ -51,29 +51,30 @@ proxy:
     image: nginx
     links:
         - api:api # i need to know the internal container which exposes api
+        - fileapi:fapi
     ports:
         #- "5507:80" # expose the api to the world!
         - "80:8080" #the proxy
     volumes:
         - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
         - ./docker/proxy/api:/etc/nginx/sites-enabled/myapi
+        #- ./docker/proxy/file:/etc/nginx/sites-enabled/myfapi
+# If you modify configuration, than:
+# docker exec frapi_proxy_1 nginx -s reload
 
-# ######################
-# # Python api file server
-# updata:
-#     image: busybox
-#     volumes:
-#         - ./data/files:/uploads
-# fileapi:
-#     build: ./docker/pyapp
-#     command: python file.py #https?
-#     volumes_from:
-#         - pycode
-#         - updata
-#     working_dir: /opt/app
-#     ports:
-#         - "5346:6000" # file handling (directly)
-
+######################
+# Python api file server (port 6000)
+updata:
+    image: busybox
+    volumes:
+        - ./data/files:/uploads
+fileapi:
+    build: ./docker/pyapp
+    command: python file.py #https?
+    volumes_from:
+        - pycode
+        - updata
+    working_dir: /opt/app
 
 # # Web development angular pages running on a javascript server
 # webdev:
