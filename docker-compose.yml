@@ -1,5 +1,5 @@
 ######################
-# Database server master
+# Database server
 dbdata:
     image: busybox
     volumes:
@@ -10,6 +10,11 @@ rdb:
          - dbdata     # Import data directory from storage container
     ports:
         - "9175:8080" # Rdb monitoring cluster - DEBUG
+rdbslave:
+    image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
+    command: rethinkdb --join master:29015 --bind all
+    links:
+        - rdb:master
 
 ######################
 # Do actions (e.g. backups)

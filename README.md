@@ -22,11 +22,13 @@ Those have been the main objectives:
 
 I am now providing an interface to use rethinkdb api via angularjs.
 
-The full stack of development can be build and executed with:
-
 ```
+# Build and execute the full stack of development
 $ docker-compose up -d
+# By default i run a db master and also one db slave
+# To increase the number of slaves
+docker-compose scale rdbslave=3
 ```
 
 Page tests:
-http://*serverhost*/
+http://localhost (or server IP)
