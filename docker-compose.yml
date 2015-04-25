@@ -10,40 +10,53 @@ rdb:
          - dbdata     # Import data directory from storage container
     ports:
         - "9175:8080" # Rdb monitoring cluster - DEBUG
-rdbslave:
-    image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
-    command: rethinkdb --join master:29015 --bind all
-    links:
-        - rdb:master
-
-######################
-# Do actions (e.g. backups)
-tasker:
-    build: ./docker/tasks
-    links:
-        - rdb:db
-    volumes:
-        - ./docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
+# rdbslave:
+#     image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
+#     command: rethinkdb --join master:29015 --bind all
+#     links:
+#         - rdb:master
 
 # ######################
-# # # Python api server connected to Rethink DB database
-# pycode:
-#     image: busybox
-#     volumes:
-#         - ./app:/opt/app:ro
-# api:
-#     build: ./docker/webapp
-#     command: gunicorn -w 4 -b 0.0.0.0:5000 main:app
-#     # 172.17.42.1/16 DOCKER
-#     #command: sleep 1234567890
-#     volumes_from:
-#         - pycode
-#     volumes:
-#         # - ./certificates/key:/myssl/certs/server.key
-#         # - ./certificates/domain.cert:/myssl/certs/server.crt
-#     working_dir: /opt/app
+# # Do actions (e.g. backups)
+# tasker:
+#     build: ./docker/tasks
 #     links:
 #         - rdb:db
+#     volumes:
+#         - ./docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
+
+######################
+# # Python api server connected to Rethink DB database
+pycode:
+    image: busybox
+    volumes:
+        - ./app:/opt/app:ro
+api:
+    build: ./docker/pyapp
+    #command: gunicorn -w 4 -b 0.0.0.0:5000 main:app
+    # 172.17.42.1/16 DOCKER
+    command: sleep 1234567890
+    volumes_from:
+        - pycode
+    # volumes:
+    #     - ./certificates/key:/myssl/certs/server.key
+    #     - ./certificates/domain.cert:/myssl/certs/server.crt
+    working_dir: /opt/app
+    links:
+        - rdb:db
+
+######################
+# A proxy for all requests from the outside world
+proxy:
+    image: nginx
+    links:
+        - api:api # i need to know the internal container which exposes api
+    ports:
+        #- "5507:80" # expose the api to the world!
+        - "80:8080" #the proxy
+    volumes:
+        - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
+        - ./docker/proxy/api:/etc/nginx/sites-enabled/myapi
 
 # ######################
 # # Python api file server
@@ -52,7 +65,7 @@ tasker:
 #     volumes:
 #         - ./data/files:/uploads
 # fileapi:
-#     build: ./docker/webapp
+#     build: ./docker/pyapp
 #     command: python file.py #https?
 #     volumes_from:
 #         - pycode
@@ -61,14 +74,7 @@ tasker:
 #     ports:
 #         - "5346:6000" # file handling (directly)
 
-# proxy:
-#     image: nginx
-#     links:
-#         - api:api # i need to know the internal container which exposes api
-#     ports:
-#         - "5507:80" # expose the api to the world!
-#     volumes:
-#         - ./docker/gui/proxy.conf:/etc/nginx/sites-enabled/default
+
 # # Web development angular pages running on a javascript server
 # webdev:
 #     build: ./docker/jsdev

@@ -4,7 +4,7 @@
 """
 
 #filename where to write logs
-LOGDIR = 'logs'
+LOGDIR = '/tmp/logs'
 LOGFILE = 'pyapp.log'
 #string for formatting logs
 FORMAT = '%(asctime)-15s [%(name)-8s|%(levelname)-8s] %(message)s'
