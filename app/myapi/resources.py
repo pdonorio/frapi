@@ -5,7 +5,7 @@ Impement restful Resources for flask
 
 import json
 # Will use the restful plugin instead!
-from flask.ext.restful import reqparse, abort, Resource
+from flask.ext.restful import reqparse, abort, Resource, request
 # Log is a good advice
 from bpractices.exceptions import log, LoggedError
 # The global data
@@ -26,13 +26,15 @@ dthandler = lambda obj: ( obj.isoformat()
 # http://stackoverflow.com/a/23287543
 
 # Please fix me here: http://esd.io/blog/flask-apps-heroku-real-ip-spoofing.html
-from flask import request # handle ip
 def get_ip():
     ip = None
     if not request.headers.getlist("X-Forwarded-For"):
        ip = request.remote_addr
+       #print "Remote", ip
     else:
        ip = request.headers.getlist("X-Forwarded-For")[0]
+       #print request.headers
+       #print "Forward", ip
     return ip
 
 def clean_parameter(param=""):
@@ -142,6 +144,7 @@ class GenericDBResource(Resource):
         restful docs in /quickstart.html#data-formatting
         """
 
+        self.log.debug("IP: " + get_ip())
         self.log.info("API: Received 'search'")
         params = self.parser.parse_args()
         for (parname, value) in params.iteritems():

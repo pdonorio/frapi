@@ -1,8 +1,5 @@
 # Nginx Dockerfile **official**
 # https://github.com/dockerfile/nginx
-
-#http://blog.tryolabs.com/2015/03/26/configurable-docker-containers-for-multiple-environments/
-# Pull base image.
 FROM ubuntu:14.04
 ENV TERM xterm
 

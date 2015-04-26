@@ -2,7 +2,7 @@
 """ Beautiful and fun server API - thanks to ***flask*** """
 
 # Flask app for the api handling
-from flask import Flask, g, abort # 'g' obj is global share for app context, NOT REQUEST
+from flask import Flask, g, abort, request # 'g' obj is global share for app context, NOT REQUEST
 # Handle opening and closing of my Database
 from rdb.rdb_handler import RethinkConnection as db
 # Import html codes
@@ -80,6 +80,28 @@ def before_request():
         try_to_connect()
     # Database should be already connected in "before_first_request"
     # But the post method fails to find the object!
+
+# TO FIX
+#trusted_proxies = ('42.42.42.42', '82.42.82.42', '127.0.0.1')
+
+@app.before_request
+def limit_remote_addr():
+
+    ip = request.headers.getlist("X-Forwarded-Ip")[0]
+    #print request.headers
+
+    # remote = request.remote_addr
+    # route = list(request.access_route)
+    # while remote in trusted_proxies:
+    #     remote = route.pop()
+
+    # print "ROUTE", route, "REMOTE", remote
+    # # 172.17.42.1/16 DOCKER
+    # #172.17.1.84
+
+    #if remote != '10.20.30.40':
+    if '172.17.1' not in ip:
+        abort(403)  # Forbidden
 
 # === What to do AFTER a single request ===
 # @app.teardown_request

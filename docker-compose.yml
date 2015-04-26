@@ -33,11 +33,11 @@ pycode:
         - ./app:/opt/app:ro
 api:
     build: ./docker/pyapp
-    #command: gunicorn -w 4 -b 0.0.0.0:5000 main:app
-    # 172.17.42.1/16 DOCKER
-    command: sleep 1234567890
+    command: gunicorn -c gunicorn.conf.py main:app
+    #command: sleep 1234567890
     volumes_from:
         - pycode
+# MAYBE ONLY ONE FOLDER
     # volumes:
     #     - ./certificates/key:/myssl/certs/server.key
     #     - ./certificates/domain.cert:/myssl/certs/server.crt
@@ -55,6 +55,8 @@ proxy:
     ports:
         #- "5507:80" # expose the api to the world!
         - "80:8080" #the proxy
+# THIS WAY i only have to https certificate this server
+        #- ./certificates:/etc/nginx/certs
     volumes:
         - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
         - ./docker/proxy/api:/etc/nginx/sites-enabled/myapi

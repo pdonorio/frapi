@@ -71,11 +71,16 @@ Plan:
 
 --- ✄ -----------------------
 DOCKER COMPOSE CLEAN:
-  ☐  use versions in FROM
-  ☐ use original images
-  ☐ use a container per app (divide api AND file api)
-  ☐ use an extra container for backups and maintenance
-    ☐ phusion baseimage
+  ✔  use versions in FROM @done (15-04-25 18:21)
+  ✔ use original images @done (15-04-25 18:21)
+  ✔ use a container per app (divide api AND file api) @done (15-04-25 18:21)
+  ✔ use an extra container for backups and maintenance @done (15-04-25 18:21)
+    ✔ phusion baseimage @done (15-04-25 18:21)
+  ☐ Proxy everything you can
+    ☐ how to proxy remaining url?
+    ☐ only proxy with https/certificates
+  ✔ limit flask and gunicorn to internal docker network @done (15-04-26 21:38)
+    ✔ http://stackoverflow.com/a/25737799/2114395 @done (15-04-26 21:38)
 
 --- ✄ -----------------------
 NEW PLAN:
