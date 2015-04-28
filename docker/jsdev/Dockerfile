@@ -38,7 +38,7 @@ RUN source ~/.bashrc && nvm install $NODEV \
 # Chateau (phpmyadmin for rethinkdb) configuration
 ADD chateau_config.js /opt/config.js
 #ADD chateau_config.js /opt/.nvm/v$NODEV/lib/node_modules/chateau/config.js
-EXPOSE 9000
+#EXPOSE 9000
 #######################################
 # Get the environment ready
 RUN echo "nvm use v$NODEV" >> ~/.bashrc

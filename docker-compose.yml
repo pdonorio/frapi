@@ -81,6 +81,7 @@ proxy:
         - webdev:capi
     ports:
         - "80:8080" #the proxy
+        - "4321:9090" #the debug db chateau
         #- "443:443" # ssl server
 # THIS WAY i only have to https certificate this server
         #- ./certificates:/etc/nginx/certs
