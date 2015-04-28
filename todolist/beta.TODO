@@ -74,16 +74,16 @@ Docker compose clean:
   ✔ use a container per app (divide api AND file api) @done (15-04-25 18:21)
   ✔ use an extra container for backups and maintenance @done (15-04-25 18:21)
     ✔ phusion baseimage @done (15-04-25 18:21)
-  ☐ Proxy everything you can
+  ✔ Proxy everything you can @done (15-04-28 17:38)
     ✔ how to proxy remaining url? @done (15-04-27 16:44)
       ✔ just use main folder as js app @done (15-04-27 16:44)
-    ☐ only proxy with https/certificates
   ✔ limit flask and gunicorn to internal docker network @done (15-04-26 21:38)
     ✔ http://stackoverflow.com/a/25737799/2114395 @done (15-04-26 21:38)
 
- ☐ THE API LOGGER PROBLEM with gunicorn
- ☐ how to clean rethinkdb slave via command line
+☐ how to clean rethinkdb slave via command line
 ☐ Fix page loading and error with API on client
+☐ HTTPS proxy
+☐ THE API LOGGER PROBLEM with cors?
 
 Upload files and write transcriptions:
   ☐ Step name: Change name in french

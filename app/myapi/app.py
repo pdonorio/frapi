@@ -81,30 +81,27 @@ def before_request():
     # Database should be already connected in "before_first_request"
     # But the post method fails to find the object!
 
-#DB_PORT=tcp://172.17.0.40:8080
+
+################################################
+## I want API to respond only to my Proxy
+## otherwise reject
+
+# Find the current network this node is in
 import os, re
 SOCK = os.environ.get('DB_PORT')
-reg = re.compile('([0-9]+\\.[0-9]+\\.[0-9]+)\\.') #\\.[0-9]+\\.[0-9]+)')
+reg = re.compile('([0-9]+\\.[0-9]+\\.[0-9]+)\\.')
 match = reg.findall(SOCK)
 mynet = ""
 if match:
-    print "Match", match, SOCK
+    # First 3 numbers of the IP
     mynet = match[0]
 else:
     raise BaseException("No network environment available")
 
 @app.before_request
 def limit_remote_addr():
-
-    #print request.headers
     ip = request.headers.getlist("X-Forwarded-Ip")[0]
-
-    #trusted_proxies = ('42.42.42.42', '82.42.82.42', '127.0.0.1')
-    # remote = request.remote_addr
-    # route = list(request.access_route)
-    # while remote in trusted_proxies:
-    #     remote = route.pop()
-
+    # Trust a proxy only if inside my private LAN network ;)
     if mynet not in ip:
         app.logger.warning("Rejected " + ip)
         abort(403)  # Forbidden
