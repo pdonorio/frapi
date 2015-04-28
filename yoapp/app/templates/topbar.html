@@ -62,6 +62,13 @@
                 <span class="label label-info">todo</span>
                 </a>
               </li>
+              <li ng-if='user.isAdmin()'>
+                <a href>
+                    <i class="fa fa-language"></i>
+                    Translations
+                    <span class="label label-info">todo</span>
+                </a>
+              </li>
               <li ng-if='user.isAdmin()' class="divider"></li>
 
               <li role="presentation" class="dropdown-header"> Role: <b>user</b> </li>

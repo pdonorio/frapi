@@ -68,9 +68,7 @@ Plan:
       ✔ conversation edit xeditable @done (15-04-15 09:27)
         ✔ api save @done (15-04-15 10:00)
         ☐ only the ones made by current user
-
---- ✄ -----------------------
-DOCKER COMPOSE CLEAN:
+Docker compose clean:
   ✔  use versions in FROM @done (15-04-25 18:21)
   ✔ use original images @done (15-04-25 18:21)
   ✔ use a container per app (divide api AND file api) @done (15-04-25 18:21)
@@ -86,6 +84,19 @@ DOCKER COMPOSE CLEAN:
  ☐ THE API LOGGER PROBLEM with gunicorn
  ☐ how to clean rethinkdb slave via command line
 ☐ Fix page loading and error with API on client
+
+Upload files and write transcriptions:
+  ☐ Step name: Change name in french
+    ☐ file api
+      ☐ zoomify...?
+    ☐ normal api
+      ☐ Save inside db every entry
+  ☐ Show step 'files' (in french)
+    ☐ if db files > 0
+    ☐ code
+      ☐ ARSI.FB.62.[f10R]
+    ☐ transcript
+      ☐ modal
 
 --- ✄ -----------------------
 NEW PLAN:

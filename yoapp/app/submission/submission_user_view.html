@@ -37,6 +37,14 @@
           <span class="badge">{{steps.length}}</span> Upload
         </a>
 
+        <!-- FILE PROCESS -->
+        <a href class="list-group-item" ng-hide="current < steps.length"
+          ng-click="broadcastStep(steps.length+1)"
+          ng-class="{'orange': steps.length+1 == current}">
+          <span class="badge">{{steps.length+1}}</span>
+          <b> <i>File Process</i> </b>
+        </a>
+
       </div>
     </div>
 
