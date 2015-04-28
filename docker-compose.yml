@@ -62,16 +62,14 @@ fileapi:
     working_dir: /opt/app
 
 ######################
-# # Web development angular pages running on a javascript server
-# webdev:
-#     build: ./docker/jsdev
-#     command: sleep 123456789
-#     volumes:
-#         - ./yoapp:/opt/jsapp
-#     working_dir:
-#         - /opt/jsapp
-#     links:
-#         - rdb:db
+# Web development angular pages running on a javascript server
+webdev:
+    build: ./docker/jsdev
+    command: sleep 123456789
+    volumes:
+        - ./yoapp:/opt/jsapp
+    links:
+        - rdb:db
 
 ######################
 # A proxy for all requests from the outside world
@@ -80,6 +78,7 @@ proxy:
     links:
         - api:api # i need to know the internal container which exposes api
         - fileapi:fapi
+        - webdev:capi
     ports:
         - "80:8080" #the proxy
         #- "443:443" # ssl server
@@ -92,7 +91,7 @@ proxy:
 #         # - ./certificates/domain.cert:/etc/nginx/ssl/server.crt
     volumes:
         - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
-        - ./docker/proxy/api:/etc/nginx/sites-enabled/myapi
+        - ./docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
         - ./yoapp/app:/var/www
         #- ./docker/proxy/file:/etc/nginx/sites-enabled/myfapi
 
