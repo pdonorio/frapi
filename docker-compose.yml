@@ -1,3 +1,4 @@
+
 ######################
 # Database server
 dbdata:
@@ -18,12 +19,17 @@ rdb:
 
 # ######################
 # # Do actions (e.g. backups)
-# tasker:
-#     build: ./docker/tasks
-#     links:
-#         - rdb:db
-#     volumes:
-#         - ./docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
+backupdata:
+    image: busybox
+    volumes:
+        - ./data/backup:/backup:rw
+        - ./docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
+tasker:
+    build: ./docker/tasks
+    links:
+        - rdb:db
+    volumes_from:
+        - backupdata
 
 ######################
 # Python api server connected to Rethink DB database (port 5000)
@@ -34,16 +40,38 @@ pycode:
 api:
     build: ./docker/pyapp
     command: gunicorn -c gunicorn.conf.py main:app
-    #command: sleep 1234567890
+    #command: sleep 1234567890  #DEBUG
     volumes_from:
         - pycode
-# MAYBE ONLY ONE FOLDER
-    # volumes:
-    #     - ./certificates/key:/myssl/certs/server.key
-    #     - ./certificates/domain.cert:/myssl/certs/server.crt
     working_dir: /opt/app
     links:
         - rdb:db
+
+######################
+# Python api file server (port 6000)
+updata:
+    image: busybox
+    volumes:
+        - ./data/files:/uploads:rw
+fileapi:
+    build: ./docker/pyapp
+    command: python file.py #https?
+    volumes_from:
+        - pycode
+        - updata
+    working_dir: /opt/app
+
+######################
+# # Web development angular pages running on a javascript server
+# webdev:
+#     build: ./docker/jsdev
+#     command: sleep 123456789
+#     volumes:
+#         - ./yoapp:/opt/jsapp
+#     working_dir:
+#         - /opt/jsapp
+#     links:
+#         - rdb:db
 
 ######################
 # A proxy for all requests from the outside world
@@ -53,59 +81,20 @@ proxy:
         - api:api # i need to know the internal container which exposes api
         - fileapi:fapi
     ports:
-        #- "5507:80" # expose the api to the world!
         - "80:8080" #the proxy
+        #- "443:443" # ssl server
 # THIS WAY i only have to https certificate this server
         #- ./certificates:/etc/nginx/certs
-    volumes:
-        - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
-        - ./docker/proxy/api:/etc/nginx/sites-enabled/myapi
-        #- ./docker/proxy/file:/etc/nginx/sites-enabled/myfapi
-# If you modify configuration, than:
-# docker exec frapi_proxy_1 nginx -s reload
-
-######################
-# Python api file server (port 6000)
-updata:
-    image: busybox
-    volumes:
-        - ./data/files:/uploads
-fileapi:
-    build: ./docker/pyapp
-    command: python file.py #https?
-    volumes_from:
-        - pycode
-        - updata
-    working_dir: /opt/app
-
-# # Web development angular pages running on a javascript server
-# webdev:
-#     build: ./docker/jsdev
-#     command: sleep 123456789
-#     volumes:
-#         - ./yoapp:/opt/yo
-#     working_dir: /opt/yo
-#     links:
-#         - rdb:db
-#     ports:
-#         - "8080:3000" # Chateau admin db
-# # Web static angular pages
-# web:
-#     build: ./docker/gui
-#     volumes_from:
-#         - updata
-#     working_dir: /opt/app
-#     ports:
-#         - "80:80" # basic
-#         - "443:443" # ssl server
-#     volumes:
-#         - ./yoapp/app:/var/www/html
-# # TO FIX with grunt/gulp rebuild
-#         #- ./yoapp/dist:/var/www/html/static
-
-# # TO FIX - debug/production
 #         # # SSL
 #         # - ./docker/gui/sites.conf:/etc/nginx/sites-enabled/default
 #         # # Certificates
 #         # - ./certificates/key:/etc/nginx/ssl/server.key
 #         # - ./certificates/domain.cert:/etc/nginx/ssl/server.crt
+    volumes:
+        - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
+        - ./docker/proxy/api:/etc/nginx/sites-enabled/myapi
+        - ./yoapp/app:/var/www
+        #- ./docker/proxy/file:/etc/nginx/sites-enabled/myfapi
+
+# If you modify proxy configuration, then:
+# docker exec frapi_proxy_1 nginx -s reload

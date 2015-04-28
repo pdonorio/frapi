@@ -49,3 +49,6 @@ EXPOSE 5000 6000
 # ENTRYPOINT ["bash"]
 # CMD ["/root/security.sh"]
 # If needed in production use fig config file
+
+RUN mkdir -p /tmp/logs
+VOLUME ['/tmp/logs']

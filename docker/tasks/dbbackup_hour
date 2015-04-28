@@ -1,4 +1,6 @@
 #!/bin/bash
-cd /tmp
-rethinkdb dump -c rdb_1 -e pippo
+dir="backup"
+mkdir -p /$dir
+cd /$dir
+rethinkdb dump -c rdb_1 -e webapp
 echo "Completed backup"

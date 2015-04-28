@@ -77,10 +77,15 @@ DOCKER COMPOSE CLEAN:
   ✔ use an extra container for backups and maintenance @done (15-04-25 18:21)
     ✔ phusion baseimage @done (15-04-25 18:21)
   ☐ Proxy everything you can
-    ☐ how to proxy remaining url?
+    ✔ how to proxy remaining url? @done (15-04-27 16:44)
+      ✔ just use main folder as js app @done (15-04-27 16:44)
     ☐ only proxy with https/certificates
   ✔ limit flask and gunicorn to internal docker network @done (15-04-26 21:38)
     ✔ http://stackoverflow.com/a/25737799/2114395 @done (15-04-26 21:38)
+
+ ☐ THE API LOGGER PROBLEM with gunicorn
+ ☐ how to clean rethinkdb slave via command line
+☐ Fix page loading and error with API on client
 
 --- ✄ -----------------------
 NEW PLAN:
@@ -88,13 +93,9 @@ NEW PLAN:
 ✔ Fix WSGI maledetto? @done (15-04-24 07:38)
   ✔ Installare gunicorn @done (15-04-24 07:38)
     ✔ http proxy for API @done (15-04-24 17:15)
-      ☐ remove pybase....
-      ☐ use nginx official image?
-    ☐ Fix https?
-      ☐ dev / production?
-        ☐ different confs via yaml docker compose?
+      ✔ remove pybase.... @done (15-04-28 06:30)
+      ✔ use nginx official image? @done (15-04-28 06:30)
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
-    ☐ Fix page loading and error with API on client
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
 ☐ Date init (1622 1/1)
   ☐ Date interval 22 luglio 1622 - 29 luglio 1622

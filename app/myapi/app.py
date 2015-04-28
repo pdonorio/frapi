@@ -81,26 +81,32 @@ def before_request():
     # Database should be already connected in "before_first_request"
     # But the post method fails to find the object!
 
-# TO FIX
-#trusted_proxies = ('42.42.42.42', '82.42.82.42', '127.0.0.1')
+#DB_PORT=tcp://172.17.0.40:8080
+import os, re
+SOCK = os.environ.get('DB_PORT')
+reg = re.compile('([0-9]+\\.[0-9]+\\.[0-9]+)\\.') #\\.[0-9]+\\.[0-9]+)')
+match = reg.findall(SOCK)
+mynet = ""
+if match:
+    print "Match", match, SOCK
+    mynet = match[0]
+else:
+    raise BaseException("No network environment available")
 
 @app.before_request
 def limit_remote_addr():
 
-    ip = request.headers.getlist("X-Forwarded-Ip")[0]
     #print request.headers
+    ip = request.headers.getlist("X-Forwarded-Ip")[0]
 
+    #trusted_proxies = ('42.42.42.42', '82.42.82.42', '127.0.0.1')
     # remote = request.remote_addr
     # route = list(request.access_route)
     # while remote in trusted_proxies:
     #     remote = route.pop()
 
-    # print "ROUTE", route, "REMOTE", remote
-    # # 172.17.42.1/16 DOCKER
-    # #172.17.1.84
-
-    #if remote != '10.20.30.40':
-    if '172.17.1' not in ip:
+    if mynet not in ip:
+        app.logger.warning("Rejected " + ip)
         abort(403)  # Forbidden
 
 # === What to do AFTER a single request ===
