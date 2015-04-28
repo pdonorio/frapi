@@ -91,6 +91,7 @@ Upload files and write transcriptions:
       ☐ zoomify...?
     ☐ normal api
       ☐ Save inside db every entry
+      ☐ Document object/service?
   ☐ Show step 'files' (in french)
     ☐ if db files > 0
     ☐ code

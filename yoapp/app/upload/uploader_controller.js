@@ -65,6 +65,8 @@ myApp
                 item._xhr.response + "\n";
         } else {
             msg += "Salvato sul server con successo";
+
+            // API DB CALL
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);
     }

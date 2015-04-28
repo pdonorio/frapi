@@ -180,6 +180,14 @@ myApp
       })
       .state('logged.submission.step', {
         url: "/step/:stepId",
+        resolve: {
+            //docs: 'DocumentsFactory',
+            docs: function(DocumentsFactory) {
+                var tmp = DocumentsFactory.get();
+                console.log("Resolve docs");
+                return false;
+            },
+        },
         views: {
           "singlestep": {
             templateUrl: 'submission/submission_allsteps_view.html',
