@@ -79,20 +79,22 @@ Docker compose clean:
       ✔ just use main folder as js app @done (15-04-27 16:44)
   ✔ limit flask and gunicorn to internal docker network @done (15-04-26 21:38)
     ✔ http://stackoverflow.com/a/25737799/2114395 @done (15-04-26 21:38)
-
-☐ how to clean rethinkdb slave via command line
+✔ how to clean rethinkdb slave via command line @done (15-04-28 22:33)
 ☐ Fix page loading and error with API on client
 ☐ HTTPS proxy
 ☐ THE API LOGGER PROBLEM with cors?
+☐ Compose yaml configuration for production?
 
 Upload files and write transcriptions:
-  ☐ Step name: Change name in french
+  ✔ Step name: Change name in french @done (15-04-29 06:24)
+  ✔ étape @done (15-04-29 06:24)
     ☐ file api
       ☐ zoomify...?
     ☐ normal api
       ☐ Save inside db every entry
       ☐ Document object/service?
-  ☐ Show step 'files' (in french)
+  ✔ Show step 'files' @done (15-04-29 06:24)
+     ✔ (in french) ☐ fichiers @done (15-04-29 06:24)
     ☐ if db files > 0
     ☐ code
       ☐ ARSI.FB.62.[f10R]

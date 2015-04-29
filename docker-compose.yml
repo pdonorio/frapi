@@ -9,8 +9,6 @@ rdb:
     image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
     volumes_from:
          - dbdata     # Import data directory from storage container
-    ports:
-        - "9175:8080" # Rdb monitoring cluster - DEBUG
 # rdbslave:
 #     image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
 #     command: rethinkdb --join master:29015 --bind all
@@ -63,6 +61,7 @@ fileapi:
 
 ######################
 # Web development angular pages running on a javascript server
+# ONLY DEBUG
 webdev:
     build: ./docker/jsdev
     command: sleep 123456789
@@ -78,10 +77,15 @@ proxy:
     links:
         - api:api # i need to know the internal container which exposes api
         - fileapi:fapi
+        # ONLY DEBUG
         - webdev:capi
+        - rdb:rmonitor
     ports:
         - "80:8080" #the proxy
+        # ONLY DEBUG
         - "4321:9090" #the debug db chateau
+        - "5432:7070" #the debug db monitor
+
         #- "443:443" # ssl server
 # THIS WAY i only have to https certificate this server
         #- ./certificates:/etc/nginx/certs
