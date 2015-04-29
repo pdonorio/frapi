@@ -65,7 +65,7 @@ myApp
 .controller('StepDirectiveController', function (
     $rootScope, $filter,
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
-    StepTemplate, StepContent, IdProvider)
+    StepTemplate, StepContent)
 {
 
     ////////////////////////////////////////////////

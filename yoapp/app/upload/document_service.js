@@ -11,6 +11,7 @@ myApp
     var resource = 'docs';
     var factory = {};
 
+    // Retrieve file list
     factory.get = function() {
         return API.get(resource)
           .then(function(response) {
@@ -21,6 +22,24 @@ myApp
               return data;
           });
     }
-    return factory;
 
+    // A new file is uploaded
+    factory.set = function(file, user) {
+
+        var params = {
+            code: null,
+            filename: file,
+            upload_user: user,
+            upload_time: Date.now(), //timestamp
+            // no transcriptions in the beginning
+        };
+
+        // Save a new document and get the id
+        return API.set(resource, params).then(function(id) {
+            console.log("Uploaded new file inside db: " + id);
+            return id;
+        });
+    }
+
+    return factory;
 });

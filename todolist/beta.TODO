@@ -90,9 +90,9 @@ Upload files and write transcriptions:
   ✔ étape @done (15-04-29 06:24)
     ☐ file api
       ☐ zoomify...?
-    ☐ normal api
+    ✔ normal api @done (15-04-29 07:07)
+      ✔ Document object/service? @done (15-04-29 07:07)
       ☐ Save inside db every entry
-      ☐ Document object/service?
   ✔ Show step 'files' @done (15-04-29 06:24)
      ✔ (in french) ☐ fichiers @done (15-04-29 06:24)
     ☐ if db files > 0

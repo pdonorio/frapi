@@ -8,7 +8,9 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('UploadController', function ($scope, AppConfig, FileUploader, DocumentsFactory, NotificationData)
+  .controller('UploadController', function ($scope, AppConfig, FileUploader,
+    DocumentsFactory,
+    NotificationData)
 {
 
     var shortMessageTime = 2000;
@@ -72,6 +74,14 @@ myApp
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);
     }
+
+/*
+// Recover user from scope
+
+    DocumentsFactory.set("testname", "emptyUSER").then(function() {
+        console.log("Saved mock file");
+    });
+*/
 
     DocumentsFactory.get().then(function(data) {
         console.log("Received data", data);

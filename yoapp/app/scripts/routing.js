@@ -174,7 +174,7 @@ myApp
             // Create an object with service result
             draft: function($stateParams, user, provider) {
               // This promise has been resolved inside the Service
-              return provider.get($stateParams.myId,user);
+              return provider.get($stateParams.myId,user.myid);
             },
         },
       })
