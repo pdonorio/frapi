@@ -8,11 +8,18 @@
 myApp
 .factory('DocumentsFactory', function (API) {
 
+    var resource = 'docs';
     var factory = {};
 
     factory.get = function() {
-        console.log("The factory");
-        return true;
+        return API.get(resource)
+          .then(function(response) {
+              console.log("Getting docs");
+              var data = [];
+              if (response.count > 0)
+                  data = response.items;
+              return data;
+          });
     }
     return factory;
 

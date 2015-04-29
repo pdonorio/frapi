@@ -29,8 +29,6 @@ myApp
               data[element.step] = element.label;
             });
           }
-
-
           return data;
       });
   }

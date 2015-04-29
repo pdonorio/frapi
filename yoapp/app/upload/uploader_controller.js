@@ -8,7 +8,7 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('UploadController', function ($scope, AppConfig, FileUploader, NotificationData)
+  .controller('UploadController', function ($scope, AppConfig, FileUploader, DocumentsFactory, NotificationData)
 {
 
     var shortMessageTime = 2000;
@@ -22,6 +22,7 @@ myApp
     onBeforeUploadItem function(item) {
     onSuccessItem function(item, response, status, headers) {
 */
+
     $scope.uploader.onAfterAddingFile = function(item) {
         var msg = "File <b>" + item._file.name + "</b>"
             + "<br>pronto al caricamento "+
@@ -67,8 +68,13 @@ myApp
             msg += "Salvato sul server con successo";
 
             // API DB CALL
+            DocumentsFactory.get().then();
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);
     }
+
+    DocumentsFactory.get().then(function(data) {
+        console.log("Received data", data);
+    });
 
 });
