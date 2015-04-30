@@ -9,7 +9,7 @@
  */
 myApp
   .controller('UploadController', function ($scope, AppConfig, FileUploader,
-    $rootScope, NotificationData)
+    $rootScope, DocumentsFactory, NotificationData)
 {
 
     var shortMessageTime = 2000;
@@ -30,10 +30,14 @@ myApp
             "<i class=\"fa fa-upload fa-fw\"></i> <br>";
         NotificationData.setNotification(AppConfig.messageStatus.success, msg, shortMessageTime);
     }
+
+/*
+DOES NOT WORK WELL
     $scope.uploader.onProgressItem = function(item, progress) {
         var msg = "File " + item._file.name + "<br>\n";
         NotificationData.setNotification(AppConfig.messageStatus.loading, msg);
     }
+*/
     $scope.uploader.onErrorItem = function(item, response, status, headers) {
         var msg = "File " + item._file.name + "<br>Fallito <br>\n";
         NotificationData.setNotification(AppConfig.messageStatus.error, msg);
@@ -67,12 +71,21 @@ myApp
                 item._xhr.response + "\n";
         } else {
             msg += "Salvato sul server con successo";
-
             // API DB CALL to save
-            $scope.docs.set(item._file.name, item._file.type,
-                $rootScope.user.myid).then();
+            DocumentsFactory.set(item._file.name, item._file.type,
+                $rootScope.user.myid).then(function(data){
+                    // Update view
+                    $scope.docs = data;
+                    //console.log("Saved inside db", data);
+                });
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);
+
+// TO FIX -
+
+// IF all files completed:
+// I SHOULD CLEAN THE FILE BUTTONS!
+
     }
 
     //DEBUG

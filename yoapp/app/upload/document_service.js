@@ -6,16 +6,17 @@
 */
 
 myApp
-.factory('DocumentsFactory', function (API) {
+.factory('DocumentsFactory', function (API, Logger) {
 
     var resource = 'docs';
     var factory = {};
+    var logger = Logger.getInstance('docs');
 
     // Retrieve file list
     factory.get = function() {
         return API.get(resource)
           .then(function(response) {
-              console.log("Getting docs");
+              logger.debug("Getting docs list");
               var data = [];
               if (response.count > 0)
                   data = response.items;
@@ -37,8 +38,8 @@ myApp
 
         // Save a new document and get the id
         return API.set(resource, params).then(function(id) {
-            console.log("Uploaded new file inside db: " + id);
-            return id;
+            logger.info("Uploaded new file inside db: " + id);
+            return factory.get();
         });
     }
 

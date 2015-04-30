@@ -83,25 +83,32 @@ Docker compose clean:
 ☐ Fix page loading and error with API on client
 ☐ HTTPS proxy
   ☐ https://gist.github.com/yosemitebandit/1252240
-☐ THE API LOGGER PROBLEM with cors?
-☐ Compose yaml configuration for production?
+☐ Compose yaml configuration for production
+  ☐ But how?
+ ☐ Remove buttons after all uploads completed...
 
 Upload files and write transcriptions:
   ✔ Step name: Change name in french @done (15-04-29 06:24)
   ✔ étape @done (15-04-29 06:24)
     ☐ file api
-      ☐ zoomify...?
+      ☐ zoomify call via python shell
+      ☐ PIL package
+      ☐ command line
+      ☐ thumbnail as preview
+    ☐ code
+      ☐ ARSI.FB.62.[f10R]
+        ☐ Should i give error if  code is wrong? When?
     ✔ normal api @done (15-04-29 07:07)
       ✔ Document object/service? @done (15-04-29 07:07)
       ✔ Save inside db every entry @done (15-04-30 06:45)
   ✔ Show step 'files' @done (15-04-29 06:24)
      ✔ (in french) ☐ fichiers @done (15-04-29 06:24)
-    ☐ if db files > 0
-      ☐ show files step
-    ☐ code
-      ☐ ARSI.FB.62.[f10R]
-    ☐ transcript
-      ☐ modal
+    ✔ if db files > 0 @done (15-04-30 07:12)
+      ✔ show files step @done (15-04-30 07:12)
+    ☐ transcript management
+      ☐ buttons (one per transcript)
+        ☐ insert via modal
+        ☐ edit and delete via modal too?
 
 for i in `docker ps -q`; do docker inspect $i | grep IPA; done
 

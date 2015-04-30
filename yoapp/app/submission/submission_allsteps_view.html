@@ -23,7 +23,16 @@
      <article ng-class="{'blur': current < steps.length}" >
       <div class="well">
         <h4 ng-if='current == steps.length-1'>Successivo:</h4>
+
+        <!-- uploader directive -->
         <file-uploader></file-uploader>
+
+        <!-- button to tell user to go to next step... -->
+        <div ng-if='current == steps.length && docs.length > 0'>
+          <a href ui-sref='logged.submission.step({myId:myrecordid, stepId:current+1})'
+          ><button type="button" class="btn btn-warning"
+          >Elabora trascrizioni &gt;&gt;</button></a>
+        </div>
       </div>
      </article>
   </div>
@@ -31,7 +40,9 @@
   <!-- FILE PROCESS -->
   <div class="col-md-9" ng-show="current == steps.length+1" >
       <div class="panel panel-default">
-        <div class="panel-heading"> Lista di immagini caricate </div>
+        <div class="panel-heading">
+            <h3> Lista di immagini associate </h3>
+        </div>
         <div class="panel-body">
 
         <table class="table">
