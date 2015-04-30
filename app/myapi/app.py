@@ -89,7 +89,9 @@ def before_request():
 # Find the current network this node is in
 import os, re
 SOCK = os.environ.get('DB_PORT')
-reg = re.compile('([0-9]+\\.[0-9]+\\.[0-9]+)\\.')
+# Only check first two numbers.
+# Also the third one may change inside a big stack of container cluster.
+reg = re.compile('([0-9]+\\.[0-9]+)\\.[0-9]+\\.')
 match = reg.findall(SOCK)
 mynet = ""
 if match:
@@ -103,7 +105,7 @@ def limit_remote_addr():
     ip = request.headers.getlist("X-Forwarded-Ip")[0]
     # Trust a proxy only if inside my private LAN network ;)
     if mynet not in ip:
-        app.logger.warning("Rejected " + ip)
+        app.logger.warning("Rejected " + ip + " [expecting "+mynet+".*]")
         abort(403)  # Forbidden
 
 # === What to do AFTER a single request ===
