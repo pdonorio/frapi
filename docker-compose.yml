@@ -54,6 +54,7 @@ updata:
 fileapi:
     build: ./docker/pyapp
     command: python file.py #https?
+    #command: sleep 12345898
     volumes_from:
         - pycode
         - updata

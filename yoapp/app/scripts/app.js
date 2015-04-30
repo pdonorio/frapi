@@ -16,7 +16,6 @@ var myApp = angular.module('archivi',
     'ny.logger',
   // DEPENCIES: base yeoman modules
     'ngAnimate',
-    //'ngRoute',
     'ngCookies',
     'ngSanitize',
     'ngTouch',
