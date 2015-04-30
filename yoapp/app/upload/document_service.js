@@ -24,11 +24,12 @@ myApp
     }
 
     // A new file is uploaded
-    factory.set = function(file, user) {
+    factory.set = function(file, type, user) {
 
         var params = {
             code: null,
             filename: file,
+            filetype: type,
             upload_user: user,
             upload_time: Date.now(), //timestamp
             // no transcriptions in the beginning

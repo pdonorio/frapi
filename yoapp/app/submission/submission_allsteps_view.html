@@ -44,9 +44,9 @@
              </tr>
             </thead>
             <tbody>
-             <tr>
-                <td>A</td>
-                <td></td>
+             <tr ng-repeat='doc in docs'>
+                <td>{{doc.filename}}</td>
+                <td>{{doc.code}}</td>
                 <td> link </td>
                 <td> link </td>
              </tr>

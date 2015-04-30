@@ -219,6 +219,9 @@ class DocumentsUploaded(GenericORMModel):
     def filename(value):
         return value
     @staticmethod
+    def filetype(value):
+        return value
+    @staticmethod
     def upload_time(value):
         return value
     @staticmethod

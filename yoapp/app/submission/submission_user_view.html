@@ -39,7 +39,7 @@
         </a>
 
         <!-- FILE PROCESS -->
-        <a href class="list-group-item" ng-hide="current < steps.length"
+        <a href class="list-group-item" ng-show="docs.length > 0"
           ng-click="broadcastStep(steps.length+1)"
           ng-class="{'orange': steps.length+1 == current}">
           <span class="badge">{{steps.length+1}}</span>

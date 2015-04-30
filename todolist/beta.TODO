@@ -82,6 +82,7 @@ Docker compose clean:
 ✔ how to clean rethinkdb slave via command line @done (15-04-28 22:33)
 ☐ Fix page loading and error with API on client
 ☐ HTTPS proxy
+  ☐ https://gist.github.com/yosemitebandit/1252240
 ☐ THE API LOGGER PROBLEM with cors?
 ☐ Compose yaml configuration for production?
 
@@ -92,14 +93,17 @@ Upload files and write transcriptions:
       ☐ zoomify...?
     ✔ normal api @done (15-04-29 07:07)
       ✔ Document object/service? @done (15-04-29 07:07)
-      ☐ Save inside db every entry
+      ✔ Save inside db every entry @done (15-04-30 06:45)
   ✔ Show step 'files' @done (15-04-29 06:24)
      ✔ (in french) ☐ fichiers @done (15-04-29 06:24)
     ☐ if db files > 0
+      ☐ show files step
     ☐ code
       ☐ ARSI.FB.62.[f10R]
     ☐ transcript
       ☐ modal
+
+for i in `docker ps -q`; do docker inspect $i | grep IPA; done
 
 --- ✄ -----------------------
 NEW PLAN:

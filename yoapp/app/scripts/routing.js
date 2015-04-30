@@ -180,21 +180,23 @@ myApp
       })
       .state('logged.submission.step', {
         url: "/step/:stepId",
-/*
-        resolve: {
-            //docs: 'DocumentsFactory',
-            docs: function(DocumentsFactory) {
-                var tmp = DocumentsFactory.get();
-                console.log("Resolve docs", tmp);
-                return false;
-            },
-        },
-*/
         views: {
           "singlestep": {
             templateUrl: 'submission/submission_allsteps_view.html',
             controller: 'StepController',
           },
+        },
+        resolve: {
+            // The factory of all images and transcriptions
+            docs: function(DocumentsFactory, $rootScope) {
+                console.log("Resolve docs");
+                // Ugly but necessary. Ui router objects are injectable
+                // only into controllers...
+                DocumentsFactory.get().then(function(data){
+                    $rootScope.docs = data;
+                });
+                return true;
+            },
         },
       })
 

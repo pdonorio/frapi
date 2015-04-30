@@ -9,8 +9,7 @@
  */
 myApp
   .controller('UploadController', function ($scope, AppConfig, FileUploader,
-    DocumentsFactory,
-    NotificationData)
+    $rootScope, NotificationData)
 {
 
     var shortMessageTime = 2000;
@@ -69,22 +68,14 @@ myApp
         } else {
             msg += "Salvato sul server con successo";
 
-            // API DB CALL
-            DocumentsFactory.get().then();
+            // API DB CALL to save
+            $scope.docs.set(item._file.name, item._file.type,
+                $rootScope.user.myid).then();
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);
     }
 
-/*
-// Recover user from scope
-
-    DocumentsFactory.set("testname", "emptyUSER").then(function() {
-        console.log("Saved mock file");
-    });
-*/
-
-    DocumentsFactory.get().then(function(data) {
-        console.log("Received data", data);
-    });
+    //DEBUG
+    //console.log($scope.docs);
 
 });
