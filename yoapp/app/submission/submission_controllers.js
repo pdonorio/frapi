@@ -6,11 +6,12 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
     $scope, $state, $stateParams, $timeout, $modal,
-    NotificationData, AppConfig, StepList, draft)
+    Logger, NotificationData, AppConfig, StepList, draft)
 {
     ////////////////////////////////
     // Do not start with a current value as default (Let the URL decide)
     $scope.current = null;
+    var logger = Logger.getInstance('submission_main');
 
     ////////////////////////////////
     // STEPS as a parameter for the whole view
@@ -35,7 +36,7 @@ myApp
     // 1. If id is 'new' get the identifier and set it inside the URL
     // This was moved to the resolve part in the routing section
     if (draft)
-        console.log("Obtained draft id", draft);
+        logger.info("Obtained draft id: " + draft);
     // 2. Switch to edit of the new dratf + step 1 (default if not set)
     if (draft !== null) {
         $timeout( function() {
@@ -62,20 +63,28 @@ myApp
     // Modal
     $scope.openModal = function (fileid) {
 
-      console.log("Opened file", fileid);
+      logger.debug("Opened file: " + fileid);
 
       var modalInstance = $modal.open({
+        // Html template
         templateUrl: 'upload/manage_files.html',
         // Use transcript resource
         controller: function($scope, DocumentsFactory) {
             $scope.selectedFile = fileid;
             DocumentsFactory.getTranscription(fileid).then(function(resp){
                 console.log("Response", resp.transcriptions);
+                $scope.trans = resp.transcriptions;
             });
         }
         //backdrop: true,
       });
     };
+
+//DEBUG
+//DEBUG
+$scope.openModal("c8b08b8e-e09c-4e4b-b93c-03f72683a264");
+//DEBUG
+//DEBUG
 
 }) //end SubmissionController
 
