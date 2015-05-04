@@ -51,6 +51,7 @@ updata:
     image: busybox
     volumes:
         - ./data/files:/uploads:rw
+        - ./imgresize:/zoomify:rw
 fileapi:
     build: ./docker/pyapp
     command: python file.py #https?

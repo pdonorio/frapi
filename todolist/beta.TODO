@@ -86,16 +86,16 @@ Docker compose clean:
   ☐ https://gist.github.com/yosemitebandit/1252240
 ☐ Compose yaml configuration for production
   ☐ But how?
- ☐ Remove buttons after all uploads completed...
 
 Upload files and write transcriptions:
   ✔ Step name: Change name in french @done (15-04-29 06:24)
   ✔ étape @done (15-04-29 06:24)
     ☐ file api
       ☐ zoomify call via python shell
-      ☐ PIL package
+      ✔ PIL package @done (15-05-04 15:55)
       ☐ command line
-      ☐ thumbnail as preview
+        ☐ python zoomify/ZoomifyFileProcessor.py '$finalFile';
+      ☐ thumbnail as preview?
     ☐ code
       ☐ ARSI.FB.62.[f10R]
         ☐ Should i give error if  code is wrong? When?
@@ -111,6 +111,7 @@ Upload files and write transcriptions:
       ✔ buttons (one per file) @done (15-05-04 07:20)
         ✔ insert via modal @current @done (15-05-04 07:19)
         ☐ edit and delete via modal too?
+ ☐ Remove buttons after all uploads completed...
 
 for i in `docker ps -q`; do docker inspect $i | grep IPA; done
 

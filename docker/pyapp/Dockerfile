@@ -3,8 +3,10 @@ MAINTAINER "Paolo D'Onorio De Meo" p.donoriodemeo@gmail.com
 ENV TERM xterm
 
 ##PYTHON: # Update packages check (or it won't find setuptools)
-RUN apt-get update && apt-get install -y python-setuptools && easy_install pip
-#ipython? much better and easier debugging
+RUN apt-get update && apt-get install -y python-setuptools python-dev \
+    build-essential \
+    libjpeg-dev \
+    && easy_install pip
 
 # ##GNU SCREEN
 # RUN apt-get install screen
@@ -51,4 +53,4 @@ EXPOSE 5000 6000
 # If needed in production use fig config file
 
 RUN mkdir -p /tmp/logs
-VOLUME ['/tmp/logs']
+VOLUME /tmp/logs

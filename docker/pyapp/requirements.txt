@@ -21,3 +21,5 @@ nose
 
 rethinkdb
 RethinkORM
+
+Image
