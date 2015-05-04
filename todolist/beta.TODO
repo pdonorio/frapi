@@ -90,12 +90,13 @@ Docker compose clean:
 Upload files and write transcriptions:
   ✔ Step name: Change name in french @done (15-04-29 06:24)
   ✔ étape @done (15-04-29 06:24)
-    ☐ file api
-      ☐ zoomify call via python shell
+    ✔ file api @done (15-05-04 17:31)
+      ✔ zoomify call via python shell @done (15-05-04 17:31)
       ✔ PIL package @done (15-05-04 15:55)
-      ☐ command line
-        ☐ python zoomify/ZoomifyFileProcessor.py '$finalFile';
+      ✔ command line @done (15-05-04 17:31)
+        ✔ python zoomify/ZoomifyFileProcessor.py '$finalFile'; @done (15-05-04 17:31)
       ☐ thumbnail as preview?
+            ☐ data/files/download/TileGroup0/0-0-0.jpg
     ☐ code
       ☐ ARSI.FB.62.[f10R]
         ☐ Should i give error if  code is wrong? When?

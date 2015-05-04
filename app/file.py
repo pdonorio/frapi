@@ -6,7 +6,7 @@ Also apply support for images zoomification.
 """
 
 # Handle files
-import os
+import os, subprocess as shell
 # Flask framework
 from flask import Flask, request, redirect, url_for, abort
 from flask.ext.cors import CORS
@@ -19,6 +19,8 @@ from bpractices.logger import log
 # TO FIX - move to __init__
 # Define directory?
 UPLOAD_FOLDER = '/uploads'
+INTERPRETER = 'python'
+ZBIN = '/zoomify/processor/ZoomifyFileProcessor.py'
 
 app = Flask(__name__)
 log.setup_istance(None, app.logger)
@@ -47,7 +49,7 @@ def upload_file():
             app.logger.info("A file allowed: "+ filename)
 
             # Check file name
-            abs_file = app.config['UPLOAD_FOLDER'] + "/" + filename
+            abs_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             if os.path.exists(abs_file):
 
 #####################
@@ -63,10 +65,23 @@ def upload_file():
 #####################
 
             # Save the file
-            myfile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            myfile.save(abs_file)
 
             # Make zoomify object and thumbnail
-            app.logger.critical("Should zoomify")
+            app.logger.info("Elaborate image")
+            # Proc via current shell
+            cmd = [INTERPRETER, ZBIN, abs_file]
+            proc = shell.Popen(cmd, stdout=shell.PIPE, stderr=shell.PIPE)
+            out, err = proc.communicate()
+            # Handle output
+            if proc.returncode == 0:
+                if out != None and out != "":
+                    app.logger.info("Comm output: " + out)
+            else:
+                app.logger.critical("Failed to process image " + abs_file + \
+                    ". Error: " + err)
+                abort(hcodes.HTTP_BAD_REQUEST, "Could not process file")
+
 
             # Default redirect is to 302 state, which makes client
             # think that response was unauthorized....
