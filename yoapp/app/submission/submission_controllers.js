@@ -4,7 +4,9 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('SubmissionController', function ($scope, $state, $stateParams, $timeout, NotificationData, AppConfig, StepList, draft)
+.controller('SubmissionController', function (
+    $scope, $state, $stateParams, $timeout, $modal,
+    NotificationData, AppConfig, StepList, draft)
 {
     ////////////////////////////////
     // Do not start with a current value as default (Let the URL decide)
@@ -53,6 +55,28 @@ myApp
             $scope.stepsNum = $scope.steps.length;
         });
     }
+
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+
+    // Modal
+    $scope.openModal = function (fileid) {
+
+      console.log("Opened file", fileid);
+
+      var modalInstance = $modal.open({
+        templateUrl: 'upload/manage_files.html',
+        // Use transcript resource
+        controller: function($scope, DocumentsFactory) {
+            $scope.selectedFile = fileid;
+            DocumentsFactory.getTranscription(fileid).then(function(resp){
+                console.log("Response", resp.transcriptions);
+            });
+        }
+        //backdrop: true,
+      });
+    };
+
 }) //end SubmissionController
 
 //////////////////////////////////////////////////////////////

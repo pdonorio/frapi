@@ -24,6 +24,20 @@ myApp
           });
     }
 
+    // Retrieve transcriptions for a single file
+    factory.getTranscription = function(fileid) {
+        var params = {id: fileid};
+
+        return API.get(resource)
+          .then(function(response) {
+              logger.debug("Getting transcriptions for file " + fileid);
+              var data = [];
+              if (response.count > 0)
+                  data = response.items;
+              return data;
+          });
+    }
+
     // A new file is uploaded
     factory.set = function(file, type, user) {
 

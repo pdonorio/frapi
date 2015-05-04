@@ -81,6 +81,7 @@ Docker compose clean:
     ✔ http://stackoverflow.com/a/25737799/2114395 @done (15-04-26 21:38)
 ✔ how to clean rethinkdb slave via command line @done (15-04-28 22:33)
 ☐ Fix page loading and error with API on client
+  ☐ Check loading before checking auth?
 ☐ HTTPS proxy
   ☐ https://gist.github.com/yosemitebandit/1252240
 ☐ Compose yaml configuration for production
@@ -105,9 +106,10 @@ Upload files and write transcriptions:
      ✔ (in french) ☐ fichiers @done (15-04-29 06:24)
     ✔ if db files > 0 @done (15-04-30 07:12)
       ✔ show files step @done (15-04-30 07:12)
-    ☐ transcript management
-      ☐ buttons (one per transcript)
-        ☐ insert via modal
+    ✔ transcript management @done (15-05-04 07:30)
+      ✔ API resource @done (15-05-04 07:30)
+      ✔ buttons (one per file) @done (15-05-04 07:20)
+        ✔ insert via modal @current @done (15-05-04 07:19)
         ☐ edit and delete via modal too?
 
 for i in `docker ps -q`; do docker inspect $i | grep IPA; done

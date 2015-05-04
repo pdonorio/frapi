@@ -39,7 +39,7 @@
 
   <!-- FILE PROCESS -->
   <div class="col-md-9" ng-show="current == steps.length+1" >
-      <div class="panel panel-default">
+      <div class="panel panel-default shad">
         <div class="panel-heading">
             <h3> Lista di immagini associate </h3>
         </div>
@@ -59,7 +59,12 @@
                 <td>{{doc.filename}}</td>
                 <td>{{doc.code}}</td>
                 <td> link </td>
-                <td> link </td>
+                <td>
+                 <!-- open modal -->
+                 <a href>
+                 <button class="btn btn-default" ng-click='openModal(doc.id)'> manage </button>
+                 </a>
+                </td>
              </tr>
             </tbody>
         </table>
