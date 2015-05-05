@@ -35,6 +35,7 @@ pycode:
     image: busybox
     volumes:
         - ./app:/opt/app:ro
+        - ./imgresize:/zoomify:rw
 api:
     build: ./docker/pyapp
     command: gunicorn -c gunicorn.conf.py main:app
@@ -51,7 +52,7 @@ updata:
     image: busybox
     volumes:
         - ./data/files:/uploads:rw
-        - ./imgresize:/zoomify:rw
+        - ./yoapp/app:/var/www:ro
 fileapi:
     build: ./docker/pyapp
     command: python file.py #https?
@@ -99,8 +100,8 @@ proxy:
     volumes:
         - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
         - ./docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
-        - ./yoapp/app:/var/www
-        #- ./docker/proxy/file:/etc/nginx/sites-enabled/myfapi
+    volumes_from:
+        - updata
 
 # If you modify proxy configuration, then:
 # docker exec frapi_proxy_1 nginx -s reload

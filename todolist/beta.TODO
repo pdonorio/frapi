@@ -80,12 +80,6 @@ Docker compose clean:
   ✔ limit flask and gunicorn to internal docker network @done (15-04-26 21:38)
     ✔ http://stackoverflow.com/a/25737799/2114395 @done (15-04-26 21:38)
 ✔ how to clean rethinkdb slave via command line @done (15-04-28 22:33)
-☐ Fix page loading and error with API on client
-  ☐ Check loading before checking auth?
-☐ HTTPS proxy
-  ☐ https://gist.github.com/yosemitebandit/1252240
-☐ Compose yaml configuration for production
-  ☐ But how?
 
 Upload files and write transcriptions:
   ✔ Step name: Change name in french @done (15-04-29 06:24)
@@ -95,11 +89,8 @@ Upload files and write transcriptions:
       ✔ PIL package @done (15-05-04 15:55)
       ✔ command line @done (15-05-04 17:31)
         ✔ python zoomify/ZoomifyFileProcessor.py '$finalFile'; @done (15-05-04 17:31)
-      ☐ thumbnail as preview?
-            ☐ data/files/download/TileGroup0/0-0-0.jpg
-    ☐ code
-      ☐ ARSI.FB.62.[f10R]
-        ☐ Should i give error if  code is wrong? When?
+      ✔ thumbnail as preview? @done (15-05-05 17:14)
+        ✔ Fixing nginx url/proxy @done (15-05-05 17:14)
     ✔ normal api @done (15-04-29 07:07)
       ✔ Document object/service? @done (15-04-29 07:07)
       ✔ Save inside db every entry @done (15-04-30 06:45)
@@ -112,13 +103,15 @@ Upload files and write transcriptions:
       ✔ buttons (one per file) @done (15-05-04 07:20)
         ✔ insert via modal @current @done (15-05-04 07:19)
         ✔ edit and delete via modal too? @done (15-05-05 07:21)
-        ☐ large modal?
-        ☐ div html rendering: text overflow...
-        ☐ editor buttons inside textarea edit... @argh
- ☐ Remove buttons after all uploads completed...
- ☐ Remove debug in fileapi
-
-for i in `docker ps -q`; do docker inspect $i | grep IPA; done
+  ☐ http://awesome.dev/uploads/baroq/TileGroup0/0-0-0.jpg
+    ☐ put in js code
+  ☐ large modal?
+    ☐ div html rendering: text overflow...
+  ☐ editor buttons inside textarea edit... @argh
+  ☐ Remove buttons after all uploads completed...
+  ☐ Remove debug in fileapi
+  ☐ code ??
+    ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?
 
 --- ✄ -----------------------
 NEW PLAN:
@@ -130,6 +123,11 @@ NEW PLAN:
       ✔ use nginx official image? @done (15-04-28 06:30)
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
+
+☐ Remove debug options in nginx configuration @security
+
+☐ Fix page loading and error with API on client
+  ☐ Check loading before checking auth?
 ☐ Date init (1622 1/1)
   ☐ Date interval 22 luglio 1622 - 29 luglio 1622
    - select old step (>2) or new
@@ -158,6 +156,10 @@ NEW PLAN:
 ☐ Check cookie timer...
 ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
 ☐ CORS: Pre-flight OPTIONS requests
+☐ HTTPS proxy
+  ☐ https://gist.github.com/yosemitebandit/1252240
+☐ Compose yaml configuration for production
+  ☐ But how?
 
 Real authentication on API side with Token (OAuth2):
 
