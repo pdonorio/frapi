@@ -71,12 +71,19 @@ myApp
         // Use transcript resource
         controller: function($scope, DocumentsFactory) {
             $scope.selectedFile = fileid;
+
             DocumentsFactory.getTranscription(fileid).then(function(resp){
                 console.log("Response", resp.transcriptions);
+                if (!resp.transcriptions)
+                    resp.transcriptions = [];
                 $scope.trans = resp.transcriptions;
             });
+
+            $scope.addElement = function() {
+                var init = "Incolla il testo qui...";
+                $scope.trans.push(init);
+            }
         }
-        //backdrop: true,
       });
     };
 

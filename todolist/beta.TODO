@@ -113,6 +113,7 @@ Upload files and write transcriptions:
         ✔ insert via modal @current @done (15-05-04 07:19)
         ☐ edit and delete via modal too?
  ☐ Remove buttons after all uploads completed...
+ ☐ Remove debug in fileapi
 
 for i in `docker ps -q`; do docker inspect $i | grep IPA; done
 
