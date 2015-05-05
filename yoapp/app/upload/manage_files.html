@@ -28,13 +28,18 @@
 
     <table class="table">
         <tr ng-repeat='tr in trans track by $index'>
-            <td> <span class="badge">{{$index+1}}</span> </td>
-            <td editable-textarea='tr' e-rows="6" e-cols="60"
-            e-placeholder='Incolla qui il testo...'
-            onaftersave='saveElement(tr)'
-            >
+            <td>
+                <!-- <span class="badge">{{$index+1}}</span> -->
+                <a href><i
+                    class='fa fa-trash-o fa-2x'
+                    ng-click='removeElement($index)'
+                    ></i> </a>
+            </td>
+            <td editable-textarea='trans[$index]' e-rows="6" e-cols="60"
+                e-placeholder='Incolla qui il testo...'
+                onaftersave='saveElement($index)' >
                 <!-- rendering HTML -->
-                <div ng-bind-html="tr || 'Clicca per modificare'"></div>
+                <div ng-bind-html="trans[$index] || 'Clicca per modificare'"></div>
         </tr>
     </table>
 

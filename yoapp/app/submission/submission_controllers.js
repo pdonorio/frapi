@@ -86,8 +86,12 @@ myApp
             $scope.addElement = function() {
                 $scope.trans.push(null);
             }
-            $scope.saveElement = function(elem) {
-                console.log(elem);
+            $scope.removeElement = function(key) {
+                console.log("Remove", key);
+            }
+            $scope.saveElement = function(key) {
+                console.log(key);
+                console.log($scope.trans);
                 //refresh();
             }
         }
