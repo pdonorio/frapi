@@ -24,6 +24,8 @@ myApp
           });
     }
 
+//factory.setTranscription = function(transcription) {
+
     // Retrieve transcriptions for a single file
     factory.getTranscription = function(fileid) {
         var params = {id: fileid};

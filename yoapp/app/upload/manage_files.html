@@ -6,34 +6,37 @@
   <div class="panel panel-body">
 
     <p> File '<b>{{selectedFile}}</b>' </p>
+    <p></p>
 
-    <p>
-        <table>
-            <tr>
-                <td width='90%'>
-                    <div ng-hide='trans.length > 0'>
-                          Nessuna trascrizione disponibile per questo documento.
-                    </div>
-                    <div ng-show='trans.length > 0'>
-                          <b>{{trans.length}}</b> trascrizione/i disponibili.
-                    </div>
-                </td>
-                <td width='10%'>
-                    <button class="btn btn-primary" ng-click="addElement()">
-                      aggiungi
-                    </button>
-                </td>
-            </tr>
-        </table>
-    </p>
+    <table>
+        <tr>
+            <td width='90%'>
+                <div ng-hide='trans.length > 0'>
+                      Nessuna trascrizione disponibile per questo documento.
+                </div>
+                <div ng-show='trans.length > 0'>
+                      <b>{{trans.length}}</b> trascrizione/i disponibili.
+                </div>
+            </td>
+            <td width='10%'>
+                <button class="btn btn-primary" ng-click="addElement()">
+                  aggiungi
+                </button>
+            </td>
+        </tr>
+    </table>
 
     <table class="table">
         <tr ng-repeat='tr in trans track by $index'>
             <td> <span class="badge">{{$index+1}}</span> </td>
-            <td>{{tr}}</td>
+            <td editable-textarea='tr' e-rows="6" e-cols="60"
+            e-placeholder='Incolla qui il testo...'
+            onaftersave='saveElement(tr)'
+            >
+                <!-- rendering HTML -->
+                <div ng-bind-html="tr || 'Clicca per modificare'"></div>
         </tr>
     </table>
-
 
   </div>
 </div>

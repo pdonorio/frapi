@@ -111,7 +111,10 @@ Upload files and write transcriptions:
       ✔ API resource @done (15-05-04 07:30)
       ✔ buttons (one per file) @done (15-05-04 07:20)
         ✔ insert via modal @current @done (15-05-04 07:19)
-        ☐ edit and delete via modal too?
+        ✔ edit and delete via modal too? @done (15-05-05 07:21)
+        ☐ large modal?
+        ☐ div html rendering: text overflow...
+        ☐ editor buttons inside textarea edit... @argh
  ☐ Remove buttons after all uploads completed...
  ☐ Remove debug in fileapi
 

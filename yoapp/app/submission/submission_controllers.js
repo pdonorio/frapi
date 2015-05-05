@@ -70,18 +70,25 @@ myApp
         templateUrl: 'upload/manage_files.html',
         // Use transcript resource
         controller: function($scope, DocumentsFactory) {
+
             $scope.selectedFile = fileid;
 
-            DocumentsFactory.getTranscription(fileid).then(function(resp){
-                console.log("Response", resp.transcriptions);
-                if (!resp.transcriptions)
-                    resp.transcriptions = [];
-                $scope.trans = resp.transcriptions;
-            });
-
+            var refresh = function() {
+                DocumentsFactory.getTranscription(fileid).then(function(resp){
+                    console.log("Response", resp.transcriptions);
+                    if (!resp.transcriptions)
+                        resp.transcriptions = [];
+                    $scope.trans = resp.transcriptions;
+                });
+            }
+            //first time
+            refresh();
             $scope.addElement = function() {
-                var init = "Incolla il testo qui...";
-                $scope.trans.push(init);
+                $scope.trans.push(null);
+            }
+            $scope.saveElement = function(elem) {
+                console.log(elem);
+                //refresh();
             }
         }
       });
