@@ -88,11 +88,14 @@ myApp
             }
             $scope.removeElement = function(key) {
                 console.log("Remove", key);
+                delete $scope.trans[key];
+                //refresh();
             }
             $scope.saveElement = function(key) {
                 console.log(key);
                 console.log($scope.trans);
-                //refresh();
+                DocumentsFactory.setTranscriptions($scope.selectedFile, $scope.trans);
+                refresh();
             }
         }
       });

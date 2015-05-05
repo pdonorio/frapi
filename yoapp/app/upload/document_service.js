@@ -24,20 +24,25 @@ myApp
           });
     }
 
-//factory.setTranscription = function(transcription) {
+    factory.setTranscriptions = function(fileid, trs) {
+        var params = { id: fileid, transcriptions: trs };
+        return API.set(resource, params).then(function(response) {
+            console.log("Updated", response);
+        });
+    }
 
     // Retrieve transcriptions for a single file
     factory.getTranscription = function(fileid) {
         var params = {id: fileid};
 
-        return API.get(resource)
-          .then(function(response) {
-              logger.debug("Getting transcriptions for file " + fileid);
-              var data = [];
-              if (response.count > 0)
-                  data = response.items;
-              return data;
-          });
+        return API.get(resource).then(function(response) {
+          logger.debug("Getting transcriptions for file " + fileid);
+          console.log("Response", response);
+          var data = [];
+          if (response.count > 0)
+              data = response.items[0];
+          return data;
+        });
     }
 
     // A new file is uploaded
