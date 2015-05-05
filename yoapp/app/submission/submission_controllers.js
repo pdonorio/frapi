@@ -69,33 +69,38 @@ myApp
         // Html template
         templateUrl: 'upload/manage_files.html',
         // Use transcript resource
-        controller: function($scope, DocumentsFactory) {
+        controller: function($scope, Logger, DocumentsFactory) {
 
+            var logger = Logger.getInstance('transcr_modal');
             $scope.selectedFile = fileid;
 
             var refresh = function() {
                 DocumentsFactory.getTranscription(fileid).then(function(resp){
-                    console.log("Response", resp.transcriptions);
+                    logger.debug("Refresh transcriptions");
                     if (!resp.transcriptions)
                         resp.transcriptions = [];
                     $scope.trans = resp.transcriptions;
                 });
             }
+            var update = function() {
+                //console.log($scope.trans);
+                DocumentsFactory.setTranscriptions($scope.selectedFile, $scope.trans);
+                refresh();
+            }
             //first time
             refresh();
+
             $scope.addElement = function() {
                 $scope.trans.push(null);
             }
             $scope.removeElement = function(key) {
-                console.log("Remove", key);
+                logger.warn("Removing "+ key);
                 delete $scope.trans[key];
-                //refresh();
+                update();
             }
             $scope.saveElement = function(key) {
-                console.log(key);
-                console.log($scope.trans);
-                DocumentsFactory.setTranscriptions($scope.selectedFile, $scope.trans);
-                refresh();
+                logger.info("Saving from key "+key);
+                update();
             }
         }
       });
@@ -103,7 +108,7 @@ myApp
 
 //DEBUG
 //DEBUG
-$scope.openModal("c8b08b8e-e09c-4e4b-b93c-03f72683a264");
+//$scope.openModal("c8b08b8e-e09c-4e4b-b93c-03f72683a264");
 //DEBUG
 //DEBUG
 
