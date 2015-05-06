@@ -105,11 +105,17 @@ Upload files and write transcriptions:
         ✔ edit and delete via modal too? @done (15-05-05 07:21)
   ✔ http://awesome.dev/uploads/baroq/TileGroup0/0-0-0.jpg @done (15-05-06 07:17)
     ✔ put in js code @done (15-05-06 07:17)
-  ☐ Rethinkdb update? How does it work?
+
+  ✔ Elabora trascrizioni iconfont @done (15-05-06 17:17)
+  ✔ Switch to docker machine @done (15-05-06 17:18)
   ☐ large modal?
     ☐ div html rendering: text overflow...
-  ☐ editor buttons inside textarea edit... @argh
-  ☐ Remove buttons after all uploads completed...
+  ☐ Rethinkdb record update? How does it work?
+    ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
+  ☐ editor buttons inside textarea edit
+    ☐ http://textangular.com/
+
+  ☐ Remove buttons after all uploads completed...?
   ☐ Remove debug in fileapi
   ☐ code ??
     ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?

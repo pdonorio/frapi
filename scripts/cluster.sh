@@ -12,10 +12,10 @@ elif [ `which docker-compose` == "" ]; then
     echo "Error: 'docker-compose' could not be found"
     exit 1;
 # check if boot2docker exists, if it's running!
-elif [ ! `which boot2docker` == "" ]; then
+elif [ ! `which docker-machine` == "" ]; then
     #verify VM status
-    if [ `boot2docker status` != "running" ]; then
-        echo "Error: Please start your boot2docker vm...";
+    if [ `docker-machine ls dev | grep Running | awk '{print $4}'` != "Running" ]; then
+        echo "Error: Please start your docker machine vm...";
         exit 1;
     fi
 fi

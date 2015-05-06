@@ -19,10 +19,13 @@
             Modifica
           </button>
           <!-- button to tell user to go to next step... -->
-          <a href ui-sref='logged.submission.step({myId:myrecordid, stepId:current+1})'
+          <a href ui-sref='logged.submission.step({myId:identifier, stepId:current+1})'
           ><button type="button" class="btn btn-warning"
             ng-show="!myform.$visible"
-            >Prossimo Step {{current + 1}} &gt;&gt;</button></a>
+            >Prossimo Step {{current + 1}}
+              <i class="fa fa-caret-right"></i>
+            </button></a>
+
         </div>
     </div>
 
