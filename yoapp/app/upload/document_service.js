@@ -13,21 +13,40 @@ myApp
     var logger = Logger.getInstance('docs');
 
     // Retrieve file list
-    factory.get = function() {
-        return API.get(resource)
+    factory.get = function(record) {
+        var params = {recordid: record};
+
+        return API.get(resource, params)
           .then(function(response) {
-              logger.debug("Getting docs list");
               var data = [];
-              if (response.count > 0)
+              if (response.count > 0) {
+                  logger.debug("Getting docs list");
                   data = response.items;
+              }
               return data;
           });
     }
 
     factory.setTranscriptions = function(fileid, trs) {
-        var params = { id: fileid, transcriptions: trs };
-        return API.set(resource, params).then(function(response) {
-            console.log("Updated", response);
+        var params = {id: fileid};
+
+        return API.get(resource,params).then(function(response) {
+
+            if (response.count != 1) {
+                logger.error("No document to update!");
+                return false;
+            }
+            data = response.items[0];
+            data.transcriptions = trs;
+
+            delete data.upload_time;
+            delete data.upload_user;
+
+            return API.set(resource, data).then(function(response) {
+                console.log("Updated", response);
+                return true;
+            });
+
         });
     }
 
@@ -35,9 +54,9 @@ myApp
     factory.getTranscription = function(fileid) {
         var params = {id: fileid};
 
-        return API.get(resource).then(function(response) {
+        return API.get(resource, params).then(function(response) {
           logger.debug("Getting transcriptions for file " + fileid);
-          console.log("Response", response);
+          //console.log("Response", response);
           var data = [];
           if (response.count > 0)
               data = response.items[0];
@@ -46,12 +65,13 @@ myApp
     }
 
     // A new file is uploaded
-    factory.set = function(file, type, user) {
+    factory.set = function(id, file, type, user) {
 
         var params = {
-            code: null,
+            code: file.replace(/\.[^\.]+$/, ''),
             filename: file,
             filetype: type,
+            recordid: id,
             upload_user: user,
             upload_time: Date.now(), //timestamp
             // no transcriptions in the beginning

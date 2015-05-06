@@ -72,12 +72,15 @@ DOES NOT WORK WELL
         } else {
             msg += "Salvato sul server con successo";
             // API DB CALL to save
-            DocumentsFactory.set(item._file.name, item._file.type,
-                $rootScope.user.myid).then(function(data){
-                    // Update view
-                    $scope.docs = data;
-                    //console.log("Saved inside db", data);
+            DocumentsFactory.set($scope.myrecordid, item._file.name, item._file.type, $rootScope.user.myid)
+             .then(function(data) {
+                //console.log("ID",$scope.myrecordid);
+                // Update view
+                DocumentsFactory.get($scope.myrecordid).then(function(out){
+                    $scope.docs = out.items;
                 });
+                //console.log("Saved inside db", data);
+            });
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);
 
@@ -89,6 +92,6 @@ DOES NOT WORK WELL
     }
 
     //DEBUG
-    //console.log($scope.docs);
+    //console.log($scope);
 
 });

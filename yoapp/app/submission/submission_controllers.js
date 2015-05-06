@@ -5,7 +5,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
-    $scope, $state, $stateParams, $timeout, $modal,
+    $rootScope, $scope, $state, $stateParams, $timeout, $modal,
     Logger, NotificationData, AppConfig, StepList, draft)
 {
     ////////////////////////////////
@@ -32,7 +32,7 @@ myApp
 
     // 0. Inject to all DOM elements
     // get variable inside url as param
-    $scope.myrecordid = $stateParams.myId;
+    $rootScope.myrecordid = $stateParams.myId;
     // 1. If id is 'new' get the identifier and set it inside the URL
     // This was moved to the resolve part in the routing section
     if (draft)
@@ -69,23 +69,30 @@ myApp
         // Html template
         templateUrl: 'upload/manage_files.html',
         // Use transcript resource
-        controller: function($scope, Logger, DocumentsFactory) {
+        controller: function($rootScope, $scope, Logger, DocumentsFactory) {
 
             var logger = Logger.getInstance('transcr_modal');
             $scope.selectedFile = fileid;
 
             var refresh = function() {
+                logger.debug("Refresh views");
                 DocumentsFactory.getTranscription(fileid).then(function(resp){
-                    logger.debug("Refresh transcriptions");
                     if (!resp.transcriptions)
                         resp.transcriptions = [];
                     $scope.trans = resp.transcriptions;
+// TO FIX -
+                    // Also refresh docs in the main scope?
+                    // don't like this
+                    DocumentsFactory.get($scope.myrecordid).then(function(data){
+                        $rootScope.docs = data;
+                    });
                 });
             }
             var update = function() {
-                //console.log($scope.trans);
-                DocumentsFactory.setTranscriptions($scope.selectedFile, $scope.trans);
-                refresh();
+                DocumentsFactory.setTranscriptions($scope.selectedFile, $scope.trans)
+                 .then(function(){
+                    refresh();
+                });
             }
             //first time
             refresh();
@@ -103,14 +110,12 @@ myApp
                 update();
             }
         }
-      });
+      }); // END UPLOAD CONTROLLER
     };
 
-//DEBUG
-//DEBUG
-//$scope.openModal("c8b08b8e-e09c-4e4b-b93c-03f72683a264");
-//DEBUG
-//DEBUG
+//DEBUG //DEBUG
+//$scope.openModal("38493943-bb08-479c-b4fd-973028ff0343");
+//DEBUG //DEBUG
 
 }) //end SubmissionController
 

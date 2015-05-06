@@ -46,10 +46,11 @@ def upload_file():
 
         if myfile and allowed_file(myfile.filename):
             filename = secure_filename(myfile.filename)
-            app.logger.info("A file allowed: "+ filename)
 
             # Check file name
             abs_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            app.logger.info("A file allowed: "+ filename + ". Path: " +abs_file)
+
             if os.path.exists(abs_file):
 
 #####################

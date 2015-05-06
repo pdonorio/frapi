@@ -45,23 +45,30 @@
         </div>
         <div class="panel-body">
 
-        <table class="table">
+        <span ng-hide='docs.length > 0'>
+            Non sono ancora stati caricati documenti.
+        </span>
+
+        <table class="table" ng-if='docs.length > 0'>
             <thead>
              <tr>
-                <th>File</th>
                 <th>Code</th>
-                <th>Zoom</th>
+                <th>Image</th>
                 <th>Transcription</th>
              </tr>
             </thead>
             <tbody>
              <tr ng-repeat='doc in docs'>
-                <td>{{doc.filename}}</td>
-                <td>{{doc.code}}</td>
-                <td> link </td>
+                <!-- <td>{{doc.filename}}</td> -->
+                <td>{{doc.code || '-'}}</td>
                 <td>
-                 <!-- open modal -->
-                 <a href>
+                    <img ng-src="uploads/{{doc.code}}/TileGroup0/0-0-0.jpg"></img>
+                </td>
+                <td>
+                 <p> Found
+                    <span class="badge">{{doc.transcriptions.length || '0'}}</span>
+                 </p>
+                 <a href> <!-- open modal -->
                  <button class="btn btn-default" ng-click='openModal(doc.id)'> manage </button>
                  </a>
                 </td>

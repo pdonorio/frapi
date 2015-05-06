@@ -188,11 +188,11 @@ myApp
         },
         resolve: {
             // The factory of all images and transcriptions
-            docs: function(DocumentsFactory, $rootScope) {
-                console.log("Resolve docs");
+            docs: function(DocumentsFactory, $rootScope, $stateParams) {
                 // Ugly but necessary. Ui router objects are injectable
                 // only into controllers...
-                DocumentsFactory.get().then(function(data){
+                DocumentsFactory.get($stateParams.myId).then(function(data){
+                    //console.log("Resolve docs", $stateParams);
                     $rootScope.docs = data;
                 });
                 return true;

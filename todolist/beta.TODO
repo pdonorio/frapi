@@ -103,8 +103,9 @@ Upload files and write transcriptions:
       ✔ buttons (one per file) @done (15-05-04 07:20)
         ✔ insert via modal @current @done (15-05-04 07:19)
         ✔ edit and delete via modal too? @done (15-05-05 07:21)
-  ☐ http://awesome.dev/uploads/baroq/TileGroup0/0-0-0.jpg
-    ☐ put in js code
+  ✔ http://awesome.dev/uploads/baroq/TileGroup0/0-0-0.jpg @done (15-05-06 07:17)
+    ✔ put in js code @done (15-05-06 07:17)
+  ☐ Rethinkdb update? How does it work?
   ☐ large modal?
     ☐ div html rendering: text overflow...
   ☐ editor buttons inside textarea edit... @argh
