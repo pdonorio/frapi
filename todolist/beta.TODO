@@ -108,6 +108,7 @@ Upload files and write transcriptions:
 
   ✔ Elabora trascrizioni iconfont @done (15-05-06 17:17)
   ✔ Switch to docker machine @done (15-05-06 17:18)
+  ☐ Remove buttons after all uploads completed...?
   ☐ large modal?
     ☐ div html rendering: text overflow...
   ☐ Rethinkdb record update? How does it work?
@@ -115,7 +116,6 @@ Upload files and write transcriptions:
   ☐ editor buttons inside textarea edit
     ☐ http://textangular.com/
 
-  ☐ Remove buttons after all uploads completed...?
   ☐ Remove debug in fileapi
   ☐ code ??
     ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?

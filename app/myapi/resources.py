@@ -180,13 +180,12 @@ class GenericDBResource(Resource):
 
         # This call will raise errors if types are not as defined in the Model
         data = self.parser.parse_args()
-
         if check_empty_data(data):
             return "Received empty request", hcodes.HTTP_BAD_REQUEST
-
         self.log.debug("API: POST request open")
-        self.log.debug(data)
 
+##############################
+        #self.log.debug(data)
         #################
         # Check if PUT or POST - depends on data_key presence
         data_key = None
@@ -195,11 +194,12 @@ class GenericDBResource(Resource):
 
         key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
-        #################
+##############################
 
         # Should build a better json array response
         return key, hcodes.HTTP_OK_CREATED
 
+# TO FIX - this is almost a post duplicate...
     @abort_on_db_fail
     def put(self, data_key):
         """
@@ -208,12 +208,12 @@ class GenericDBResource(Resource):
         """
         data_key = clean_parameter(data_key)
 
-        self.log.debug("API: PUT request open for " + data_key)
-
         data = self.parser.parse_args()
         if check_empty_data(data):
             return "Received empty request", hcodes.HTTP_BAD_REQUEST
+        self.log.debug("API: PUT request open for " + data_key)
 
+##############################
         # always empty in put - or don't care.
         if "id" in data:
             data.pop("id")  #trash it
@@ -221,6 +221,8 @@ class GenericDBResource(Resource):
 
         key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
+##############################
+
         return key, hcodes.HTTP_OK_CREATED
 
     @abort_on_db_fail
