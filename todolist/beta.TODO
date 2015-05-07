@@ -67,7 +67,6 @@ Plan:
       ✔ last update: timestamp conversion @done (15-04-15 09:27)
       ✔ conversation edit xeditable @done (15-04-15 09:27)
         ✔ api save @done (15-04-15 10:00)
-        ☐ only the ones made by current user
 Docker compose clean:
   ✔  use versions in FROM @done (15-04-25 18:21)
   ✔ use original images @done (15-04-25 18:21)
@@ -79,8 +78,7 @@ Docker compose clean:
       ✔ just use main folder as js app @done (15-04-27 16:44)
   ✔ limit flask and gunicorn to internal docker network @done (15-04-26 21:38)
     ✔ http://stackoverflow.com/a/25737799/2114395 @done (15-04-26 21:38)
-✔ how to clean rethinkdb slave via command line @done (15-04-28 22:33)
-
+  ✔ how to clean rethinkdb slave via command line @done (15-04-28 22:33)
 Upload files and write transcriptions:
   ✔ Step name: Change name in french @done (15-04-29 06:24)
   ✔ étape @done (15-04-29 06:24)
@@ -106,13 +104,15 @@ Upload files and write transcriptions:
   ✔ http://awesome.dev/uploads/baroq/TileGroup0/0-0-0.jpg @done (15-05-06 07:17)
     ✔ put in js code @done (15-05-06 07:17)
 
+CURRENT:
   ✔ Elabora trascrizioni iconfont @done (15-05-06 17:17)
   ✔ Switch to docker machine @done (15-05-06 17:18)
-  ☐ Remove buttons after all uploads completed...?
+  ✔ Remove buttons after all uploads completed...? @done (15-05-07 08:38)
   ☐ large modal?
     ☐ div html rendering: text overflow...
   ☐ Rethinkdb record update? How does it work?
     ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
+  ☐ Change upload notifications
   ☐ editor buttons inside textarea edit
     ☐ http://textangular.com/
 
@@ -120,6 +120,8 @@ Upload files and write transcriptions:
   ☐ code ??
     ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?
 
+    ☐ Plan tasks...
+        ☐ only the ones made by current user
 --- ✄ -----------------------
 NEW PLAN:
 
@@ -158,7 +160,6 @@ NEW PLAN:
 ☐ Views
   ☐ estratto
   ☐ fonte
-  ☐
 
 ☐ Check cookie timer...
 ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)

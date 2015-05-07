@@ -79,21 +79,30 @@
             <br>
             <br>
         </div>
-        <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
-            <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()">
-                <i class="fa fa-trash"></i> Avvia
-            </button>
+
+        <div ng-hide='noOtherUploads'>
+
+            <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
+                <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()">
+                    <i class="fa fa-trash"></i> Avvia
+                </button>
+            </div>
+            <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
+                <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()">
+                    <i class="fa fa-trash"></i> Annulla
+                </button>
+            </div>
+
+<!-- Not really usefull ?
+            <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
+                <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()">
+                    <i class="fa fa-trash"></i> Azzera
+                </button>
+            </div>
+-->
+
         </div>
-        <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
-            <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()">
-                <i class="fa fa-trash"></i> Annulla
-            </button>
-        </div>
-        <div class="col-md-3 col-xs-3" ng-show="uploader.queue.length>0">
-            <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()">
-                <i class="fa fa-trash"></i> Azzera
-            </button>
-        </div>
+
      </div>
   </div>
 </div>

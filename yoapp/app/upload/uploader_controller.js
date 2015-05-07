@@ -29,10 +29,11 @@ myApp
             + "<br>pronto al caricamento "+
             "<i class=\"fa fa-upload fa-fw\"></i> <br>";
         NotificationData.setNotification(AppConfig.messageStatus.success, msg, shortMessageTime);
+        $scope.noOtherUploads = false;
     }
 
 /*
-DOES NOT WORK WELL
+DOES NOT WORK WELL ?
     $scope.uploader.onProgressItem = function(item, progress) {
         var msg = "File " + item._file.name + "<br>\n";
         NotificationData.setNotification(AppConfig.messageStatus.loading, msg);
@@ -77,21 +78,23 @@ DOES NOT WORK WELL
                 //console.log("ID",$scope.myrecordid);
                 // Update view
                 DocumentsFactory.get($scope.myrecordid).then(function(out){
-                    $scope.docs = out.items;
+                    $scope.docs = out;
                 });
-                //console.log("Saved inside db", data);
             });
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);
 
-// TO FIX -
-
-// IF all files completed:
-// I SHOULD CLEAN THE FILE BUTTONS!
-
+        // Handle buttons: clean them if no files to be uploaded yet
+        $scope.noOtherUploads = true;
+        for (var i = 0, len = $scope.uploader.queue.length; i < len; i++) {
+            if (!$scope.uploader.queue[i].isUploaded) {
+                $scope.noOtherUploads = false;
+                break;
+            }
+        }
     }
 
-    //DEBUG
-    //console.log($scope);
+    // Init variable
+    $scope.noOtherUploads = true;
 
 });
