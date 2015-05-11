@@ -25,6 +25,7 @@ var myApp = angular.module('archivi',
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
     'angularFileUpload',  //uploader for files
+    'textAngular', //html editor inside transcriptions inline
   // DEPENCIES: own filters
     'textOperations', //my filters on strings
     'arrayOperations', //my filters on arrays

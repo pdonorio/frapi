@@ -113,16 +113,20 @@ CURRENT:
     ☐ div html rendering: text overflow...
   ☐ Rethinkdb record update? How does it work?
     ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
+  ✔ editor buttons inside textarea edit @done (15-05-11 18:33)
+    ✔ http://textangular.com/ @done (15-05-11 18:33)
+      ☐ range detach: https://github.com/fraywing/textAngular/issues/417
   ☐ Change upload notifications
-  ☐ editor buttons inside textarea edit
-    ☐ http://textangular.com/
 
   ☐ Remove debug in fileapi
   ☐ code ??
     ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?
 
-    ☐ Plan tasks...
-        ☐ only the ones made by current user
+  ☐ Plan tasks...
+      ☐ only the ones made by current user
+  ☐ Fix page loading and error with API on client
+    ☐ Check loading before checking auth?
+
 --- ✄ -----------------------
 NEW PLAN:
 
@@ -136,15 +140,13 @@ NEW PLAN:
 
 ☐ Remove debug options in nginx configuration @security
 
-☐ Fix page loading and error with API on client
-  ☐ Check loading before checking auth?
 ☐ Date init (1622 1/1)
   ☐ Date interval 22 luglio 1622 - 29 luglio 1622
    - select old step (>2) or new
   - fix transcription upload
   - base search
-☐ Fix file upload
-  ☐ After upload: modal for editing metadata
+✔ Fix file upload @done (15-05-11 17:08)
+  ✔ After upload: modal for editing metadata @done (15-05-11 17:08)
   ☐ (file code, transcription, traduzione francese) - ARSI.FB.62.[f10R]
     ☐ latin + francese + italiano + greco antico
     ☐ symbols? email alessandro
@@ -156,7 +158,7 @@ NEW PLAN:
 
 ☐ Fix news
 ☐ spectaclebaroque domain
-☐ API joins?
+☐ API joins??
 
 ☐ Views
   ☐ estratto
