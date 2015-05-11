@@ -286,7 +286,6 @@ class RethinkConnection(Connection):
             self.log.debug("Failed converting timestamp '" + string + "'")
         return string
 
-
     # === Insert ===
     @check_model
     @TryExcept("Failed to insert data inside DB", RqlRuntimeError)

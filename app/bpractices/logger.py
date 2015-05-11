@@ -42,10 +42,10 @@ class GlobalLogs(object):
     def get_logger(self, log_name="Unknown"):
         """ Give a new logger if not saved before """
         if log_name not in self._logs:
-            self._logs[log_name] = self.setup_istance(log_name)
+            self._logs[log_name] = self.setup_instance(log_name)
         return self._logs[log_name]
 
-    def setup_istance(self, log_name, logobj=None, write_to_screen=True, write_to_file=True):
+    def setup_instance(self, log_name, logobj=None, write_to_screen=True, write_to_file=True):
         """ set file rotate and/or screen for other apps like flask """
 
 # TO FIX - this should read from a fixed config file

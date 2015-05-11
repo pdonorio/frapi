@@ -23,7 +23,7 @@ INTERPRETER = 'python'
 ZBIN = '/zoomify/processor/ZoomifyFileProcessor.py'
 
 app = Flask(__name__)
-log.setup_istance(None, app.logger)
+log.setup_instance(None, app.logger)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -82,7 +82,6 @@ def upload_file():
                 app.logger.critical("Failed to process image " + abs_file + \
                     ". Error: " + err)
                 abort(hcodes.HTTP_BAD_REQUEST, "Could not process file")
-
 
             # Default redirect is to 302 state, which makes client
             # think that response was unauthorized....

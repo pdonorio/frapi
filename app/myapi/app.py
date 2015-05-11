@@ -20,7 +20,7 @@ app.config.from_object(__name__)
 # Only in debug mode?
 CORS(app, headers=['Content-Type'])
 # Create logger
-log.setup_istance(None, app.logger)
+log.setup_instance(None, app.logger)
 
 #############################################
 # === App setup ===
