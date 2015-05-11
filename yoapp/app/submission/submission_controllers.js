@@ -66,6 +66,7 @@ myApp
       logger.debug("Opened file: " + fileid);
 
       var modalInstance = $modal.open({
+        size: 'lg',
         // Html template
         templateUrl: 'upload/manage_files.html',
         // Use transcript resource

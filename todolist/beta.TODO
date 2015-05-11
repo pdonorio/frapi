@@ -108,7 +108,8 @@ CURRENT:
   ✔ Elabora trascrizioni iconfont @done (15-05-06 17:17)
   ✔ Switch to docker machine @done (15-05-06 17:18)
   ✔ Remove buttons after all uploads completed...? @done (15-05-07 08:38)
-  ☐ large modal?
+    ✔ https://github.com/nervgh/angular-file-upload/wiki/Module-API @done (15-05-07 18:14)
+  ✔ large modal? @done (15-05-11 17:06)
     ☐ div html rendering: text overflow...
   ☐ Rethinkdb record update? How does it work?
     ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
