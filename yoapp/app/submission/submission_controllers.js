@@ -61,9 +61,13 @@ myApp
     ///////////////////////////////////////////////////////////
     var refreshDocs = function(){
         DocumentsFactory.get($scope.myrecordid).then(function(data){
+            //console.log("Received", data);
             $scope.docs = data;
         });
     }
+    // Available also for uploader controller...
+    $rootScope.refreshDocs = refreshDocs;
+
     $scope.removeDoc = function(id) {
         logger.info("Removing " + id);
         DocumentsFactory.unset(id).then(function(docs){ refreshDocs(); });

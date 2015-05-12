@@ -8,7 +8,8 @@
  * Controller of the yoApp
  */
 myApp
-  .controller('UploadController', function ($scope, AppConfig, FileUploader,
+  .controller('UploadController', function (
+    $scope, AppConfig, FileUploader,
     $rootScope, DocumentsFactory, NotificationData)
 {
 
@@ -75,11 +76,9 @@ DOES NOT WORK WELL ?
             // API DB CALL to save
             DocumentsFactory.set($scope.myrecordid, item._file.name, item._file.type, $rootScope.user.myid)
              .then(function(data) {
-                //console.log("ID",$scope.myrecordid);
-                // Update view
-                DocumentsFactory.get($scope.myrecordid).then(function(out){
-                    $scope.docs = out;
-                });
+
+                // This function is defined in submission_controllers.js...
+                $rootScope.refreshDocs();
             });
         }
         NotificationData.setNotification(AppConfig.messageStatus.success, msg);

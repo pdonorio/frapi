@@ -39,6 +39,7 @@ myApp
             data = response.items[0];
             data.transcriptions = trs;
 
+            // Do not update or it will fail
             delete data.upload_time;
             delete data.upload_user;
 
