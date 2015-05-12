@@ -67,7 +67,7 @@ myApp
     // A new file is uploaded
     factory.unset = function(id) {
         // Save a new document and get the id
-        return API.set(resource, {id:id}).then(function() {
+        return API.del(resource, id).then(function() {
             logger.info("API removed: " + id);
             return true;
         });

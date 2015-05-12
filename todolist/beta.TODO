@@ -103,7 +103,6 @@ Upload files and write transcriptions:
         ✔ edit and delete via modal too? @done (15-05-05 07:21)
   ✔ http://awesome.dev/uploads/baroq/TileGroup0/0-0-0.jpg @done (15-05-06 07:17)
     ✔ put in js code @done (15-05-06 07:17)
-
 CURRENT:
   ✔ Elabora trascrizioni iconfont @done (15-05-06 17:17)
   ✔ Switch to docker machine @done (15-05-06 17:18)
@@ -114,17 +113,15 @@ CURRENT:
   ✔ editor buttons inside textarea edit @done (15-05-11 18:33)
     ✔ http://textangular.com/ @done (15-05-11 18:33)
   ✔ Remove button for images @done (15-05-12 07:22)
+    ✔ Does NOT work!! @done (15-05-12 08:46)
   ✔ Save changes via textangular @done (15-05-12 06:45)
-    ☐ Change upload notifications
-    ☐ icons alignment
-    ☐ API save via URL of bad symbols, e.g. à
+  ☐ API save via URL of bad symbols, e.g. à @IMPORTANT
   ☐ Rethinkdb record update? How does it work?
     ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
-
   ☐ Remove debug in fileapi
 
-  ☐ Fix page loading and error with API on client
-    ☐ Check loading before checking auth?
+  ☐ Change upload notifications
+    ☐ icons bad alignment
   ☐ code ??
     ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?
   ☐ Plan tasks...
@@ -132,8 +129,6 @@ CURRENT:
   ☐ range detach: https://github.com/fraywing/textAngular/issues/417
 
 --- ✄ -----------------------
-NEW PLAN:
-
 ✔ Fix WSGI maledetto? @done (15-04-24 07:38)
   ✔ Installare gunicorn @done (15-04-24 07:38)
     ✔ http proxy for API @done (15-04-24 17:15)
@@ -141,7 +136,6 @@ NEW PLAN:
       ✔ use nginx official image? @done (15-04-28 06:30)
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
-
 ☐ Remove debug options in nginx configuration @security
 
 ☐ Date init (1622 1/1)
@@ -154,21 +148,20 @@ NEW PLAN:
   ☐ (file code, transcription, traduzione francese) - ARSI.FB.62.[f10R]
     ☐ latin + francese + italiano + greco antico
     ☐ symbols? email alessandro
+☐ Basic search: substring search inside transciption
+  ☐ text indexing rethinkdb?
 ☐ Publishing
 ☐ Patterns, dark for admin pages
 ☐ API check at page load
-  ☐ Basic search: substring search inside transciption
-    ☐ text indexing rethinkdb?
+  ☐ Fix page loading and error with API on client
+    ☐ Check loading before checking auth?
 
-☐ Fix news
 ☐ spectaclebaroque domain
+☐ Fix news
 ☐ API joins??
-
 ☐ Views
   ☐ estratto
   ☐ fonte
-
-☐ Check cookie timer...
 ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
 ☐ CORS: Pre-flight OPTIONS requests
 ☐ HTTPS proxy
