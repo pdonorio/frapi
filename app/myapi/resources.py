@@ -3,7 +3,7 @@
 Impement restful Resources for flask
 """
 
-import json
+import json, types
 # Will use the restful plugin instead!
 from flask.ext.restful import reqparse, abort, Resource, request
 # Log is a good advice
@@ -46,9 +46,9 @@ def clean_parameter(param=""):
 def check_empty_data(data):
     """ Make sure parser didn't get an empty request """
     counter = 0
-    # check if all data is empty (None)
+    # check if all data is empty
     for value in data.iteritems():
-        if value == None or value == '':
+        if isinstance(value, types.NoneType) or value == '':
             counter += 1
     if data.__len__() == counter:
         return True
@@ -137,6 +137,21 @@ class GenericDBResource(Resource):
 
         return self.parser
 
+    def get_params(self):
+        """ Checks on data received """
+        params = self.parser.parse_args()
+
+        data = {}
+        for (parname, value) in params.iteritems():
+            #print "Param", parname, value, type(value)
+
+            # Very important: this sanitize updates, avoid to set
+            # empty values for we did not receive from POST/PUT
+            if not isinstance(value, types.NoneType):
+                data[parname] = value
+
+        return data
+
     @abort_on_db_fail
     def get(self, data_key=None):
         """
@@ -146,10 +161,7 @@ class GenericDBResource(Resource):
 
         self.log.debug("IP: " + get_ip())
         self.log.info("API: Received 'search'")
-        params = self.parser.parse_args()
-        for (parname, value) in params.iteritems():
-            #print "Param", parname, value
-            params[parname] = value
+        params = self.get_params()
 
         # Query RDB filtering on a single key
         if data_key != None:
@@ -179,12 +191,11 @@ class GenericDBResource(Resource):
         """
 
         # This call will raise errors if types are not as defined in the Model
-        data = self.parser.parse_args()
+        data = self.get_params()
         if check_empty_data(data):
             return "Received empty request", hcodes.HTTP_BAD_REQUEST
         self.log.debug("API: POST request open")
 
-##############################
         #self.log.debug(data)
         #################
         # Check if PUT or POST - depends on data_key presence
@@ -192,6 +203,7 @@ class GenericDBResource(Resource):
         if "id" in data:
             data_key = data.pop("id")
 
+##############################
         key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
 ##############################
@@ -208,17 +220,17 @@ class GenericDBResource(Resource):
         """
         data_key = clean_parameter(data_key)
 
-        data = self.parser.parse_args()
+        data = self.get_params()
         if check_empty_data(data):
             return "Received empty request", hcodes.HTTP_BAD_REQUEST
         self.log.debug("API: PUT request open for " + data_key)
 
-##############################
         # always empty in put - or don't care.
         if "id" in data:
             data.pop("id")  #trash it
         # in this case i use the data_key
 
+##############################
         key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
 ##############################
