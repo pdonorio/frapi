@@ -115,10 +115,12 @@ CURRENT:
   ✔ Remove button for images @done (15-05-12 07:22)
     ✔ Does NOT work!! @done (15-05-12 08:46)
   ✔ Save changes via textangular @done (15-05-12 06:45)
-  ☐ API save via URL of bad symbols, e.g. à @IMPORTANT
+  ✔ Remove debug in fileapi @done (15-05-12 22:36)
   ☐ Rethinkdb record update? How does it work?
     ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
-  ☐ Remove debug in fileapi
+    ☐ VERY TRICKY
+      ☐ check by updating via python code...
+  ☐ API save via URL of bad symbols, e.g. à @IMPORTANT
 
   ☐ Change upload notifications
     ☐ icons bad alignment

@@ -18,6 +18,7 @@ elif [ ! `which docker-machine` == "" ]; then
         echo "Error: Please start your docker machine vm...";
         exit 1;
     fi
+    docker-machine active dev
 fi
 
 ###########################################

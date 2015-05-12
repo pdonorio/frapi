@@ -20,9 +20,9 @@ while testdb:
 ################################################
 bind = "0.0.0.0:5000"
 
-workers = 1
 #import multiprocessing
-#workers = multiprocessing.cpu_count() * 2 + 1
+workers = multiprocessing.cpu_count() * 2 + 1
+#workers = 1
 
 accesslog = "/tmp/logs/guni.log"
 access_log_format = '%(h)s %(l)s %(u)s %(t)s ' \

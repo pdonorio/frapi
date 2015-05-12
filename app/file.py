@@ -53,17 +53,14 @@ def upload_file():
 
             if os.path.exists(abs_file):
 
-#####################
-# DEBUG
-                os.remove(abs_file)
+# #####################
+# # DEBUG
+#                 os.remove(abs_file)
+# #####################
 
-                """
                 app.logger.debug("Already existing file: "+ abs_file)
                 abort(hcodes.HTTP_BAD_REQUEST, "File '"+ filename +"' already exists. " + \
                     "Please change your file name and retry.")
-                """
-# DEBUG
-#####################
 
             # Save the file
             myfile.save(abs_file)
