@@ -110,22 +110,25 @@ CURRENT:
   ✔ Remove buttons after all uploads completed...? @done (15-05-07 08:38)
     ✔ https://github.com/nervgh/angular-file-upload/wiki/Module-API @done (15-05-07 18:14)
   ✔ large modal? @done (15-05-11 17:06)
-    ☐ div html rendering: text overflow...
-  ☐ Rethinkdb record update? How does it work?
-    ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
+    ✔ div html rendering: text overflow... @done (15-05-11 22:57)
   ✔ editor buttons inside textarea edit @done (15-05-11 18:33)
     ✔ http://textangular.com/ @done (15-05-11 18:33)
-      ☐ range detach: https://github.com/fraywing/textAngular/issues/417
-  ☐ Change upload notifications
+  ☐ Remove button for images
+  ✔ Save changes via textangular @done (15-05-12 06:45)
+    ☐ Change upload notifications
+    ☐ icons alignment
+  ☐ Rethinkdb record update? How does it work?
+    ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
 
   ☐ Remove debug in fileapi
-  ☐ code ??
-    ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?
 
-  ☐ Plan tasks...
-      ☐ only the ones made by current user
   ☐ Fix page loading and error with API on client
     ☐ Check loading before checking auth?
+  ☐ code ??
+    ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?
+  ☐ Plan tasks...
+    ☐ only the ones made by current user
+  ☐ range detach: https://github.com/fraywing/textAngular/issues/417
 
 --- ✄ -----------------------
 NEW PLAN:

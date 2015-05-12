@@ -18,6 +18,7 @@
                       <b>{{trans.length}}</b> trascrizione/i disponibili.
                 </div>
             </td>
+        </tr><tr>
             <td width='10%'>
                 <button class="btn btn-primary" ng-click="addElement()">
                   aggiungi
@@ -26,31 +27,23 @@
         </tr>
     </table>
 
-    <table class="table">
-      <tr ng-repeat='tr in trans track by $index'>
+    <table class="table table-hover">
+      <tr ng-repeat='tr in trans track by $index' ng-init='myedit=false'>
         <td>
-          <a href>
-            <i class='fa fa-trash-o fa-2x' ng-click='removeElement($index)'></i>
-          </a>
+          <a href><i
+            class='fa fa-fix fa-2x fa-trash'
+            ng-click='removeElement($index)'></i></a>
+        </td><td>
+          <a href ng-hide='myedit'><i
+            class='fa fa-fix fa-2x fa-edit' ng-click='myedit = true'></i></a>
+          <a href ng-show='myedit' ng-click='saveElement($index)'><i
+            class='fa fa-fix fa-2x fa-save' ng-click='myedit = false'></i></a>
         </td>
-        <td>
-          <a href>
-            <i class='fa fa-edit fa-2x' ng-click='switch($index)'></i>
-          </a>
+        <td width='90%'>
+          <div ng-hide='myedit' style='max-height:82px; overflow: auto;'
+            ng-bind-html="trans[$index] || 'Clicca per modificare'"></div>
+          <text-angular ng-show='myedit' ng-model="trans[$index]"></text-angular>
         </td>
-
-        <td>
-          <div ng-bind-html="trans[$index] || 'Clicca per modificare'"></div>
-          <text-angular ng-show='test' ng-model="trans[$index]"></text-angular>
-        </td>
-
-<!--             <td editable-textarea='trans[$index]'
-                e-rows="6" e-cols="80"
-                e-placeholder='Incolla qui il testo...'
-                onaftersave='saveElement($index)' >
-                <div ng-bind-html="trans[$index] || 'Clicca per modificare'"></div>
-            </td>
- -->
       </tr>
     </table>
 
