@@ -6,7 +6,7 @@ myApp
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
     $rootScope, $scope, $state, $stateParams, $timeout, $modal,
-    Logger, NotificationData, AppConfig, StepList, draft)
+    Logger, NotificationData, AppConfig, StepList, draft, DocumentsFactory )
 {
     ////////////////////////////////
     // Do not start with a current value as default (Let the URL decide)
@@ -59,6 +59,15 @@ myApp
 
     ///////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////
+    var refreshDocs = function(){
+        DocumentsFactory.get($scope.myrecordid).then(function(data){
+            $scope.docs = data;
+        });
+    }
+    $scope.removeDoc = function(id) {
+        logger.info("Removing " + id);
+        DocumentsFactory.unset(id).then(function(docs){ refreshDocs(); });
+    }
 
     // Modal
     $scope.openModal = function (fileid) {
@@ -81,12 +90,13 @@ myApp
                     if (!resp.transcriptions)
                         resp.transcriptions = [];
                     $scope.trans = resp.transcriptions;
-// TO FIX -
-                    // Also refresh docs in the main scope?
-                    // don't like this
-                    DocumentsFactory.get($scope.myrecordid).then(function(data){
-                        $rootScope.docs = data;
-                    });
+
+                    $scope.editor = [];
+                    for (var j = 0; j < $scope.trans.length; j++) {
+                        $scope.editor[j] = false;
+                    };
+                    // refresh main view
+                    refreshDocs();
                 });
             }
             var update = function() {
@@ -100,6 +110,7 @@ myApp
 
             $scope.addElement = function() {
                 $scope.trans.push(null);
+                $scope.editor[$scope.trans.length-1]=true;
             }
             $scope.removeElement = function(key) {
                 logger.warn("Removing "+ key);
@@ -115,7 +126,7 @@ myApp
     };
 
 //DEBUG //DEBUG
-//$scope.openModal("38493943-bb08-479c-b4fd-973028ff0343");
+//$scope.openModal("809f6c25-4db1-4632-b52c-6767e6117984");
 //DEBUG //DEBUG
 
 }) //end SubmissionController

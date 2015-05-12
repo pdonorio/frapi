@@ -27,22 +27,24 @@
         </tr>
     </table>
 
+    <hr></hr>
+
     <table class="table table-hover">
-      <tr ng-repeat='tr in trans track by $index' ng-init='myedit=false'>
+      <tr ng-repeat='tr in trans track by $index'>
         <td>
           <a href><i
             class='fa fa-fix fa-2x fa-trash'
             ng-click='removeElement($index)'></i></a>
         </td><td>
-          <a href ng-hide='myedit'><i
-            class='fa fa-fix fa-2x fa-edit' ng-click='myedit = true'></i></a>
-          <a href ng-show='myedit' ng-click='saveElement($index)'><i
-            class='fa fa-fix fa-2x fa-save' ng-click='myedit = false'></i></a>
+          <a href ng-hide='editor[$index]'><i
+            class='fa fa-fix fa-2x fa-edit' ng-click='editor[$index] = true'></i></a>
+          <a href ng-show='editor[$index]' ng-click='saveElement($index)'><i
+            class='fa fa-fix fa-2x fa-save' ng-click='editor[$index] = false'></i></a>
         </td>
         <td width='90%'>
-          <div ng-hide='myedit' style='max-height:82px; overflow: auto;'
+          <div ng-hide='editor[$index]' style='max-height:82px; overflow: auto;'
             ng-bind-html="trans[$index] || 'Clicca per modificare'"></div>
-          <text-angular ng-show='myedit' ng-model="trans[$index]"></text-angular>
+          <text-angular ng-show='editor[$index]' ng-model="trans[$index]"></text-angular>
         </td>
       </tr>
     </table>

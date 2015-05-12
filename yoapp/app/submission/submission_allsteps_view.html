@@ -48,10 +48,10 @@
         <div class="panel-body">
 
         <span ng-hide='docs.length > 0'>
-            Non sono ancora stati caricati documenti.
+            Non ci sono documenti.
         </span>
 
-        <table class="table" ng-if='docs.length > 0'>
+        <table class="table table-hover" ng-if='docs.length > 0'>
             <thead>
              <tr>
                 <th>Code</th>
@@ -61,7 +61,6 @@
             </thead>
             <tbody>
              <tr ng-repeat='doc in docs'>
-                <!-- <td>{{doc.filename}}</td> -->
                 <td>{{doc.code || '-'}}</td>
                 <td>
                     <img ng-src="uploads/{{doc.code}}/TileGroup0/0-0-0.jpg"></img>
@@ -73,6 +72,11 @@
                  <a href> <!-- open modal -->
                  <button class="btn btn-default" ng-click='openModal(doc.id)'> manage </button>
                  </a>
+                </td>
+                <td>
+                    <button class='btn btn-danger' ng-click='removeDoc(doc.id)'>
+                    Remove <i class='fa fa-trash'></i>
+                    </button>
                 </td>
              </tr>
             </tbody>
