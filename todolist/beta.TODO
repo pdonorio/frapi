@@ -128,7 +128,6 @@ CURRENT:
       ✔ use nginx official image? @done (15-04-28 06:30)
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
-
   ☐ Change upload notifications
     ☐ icons bad alignment
   ☐ Remove debug options in nginx configuration @security

@@ -20,45 +20,53 @@ myApp
     //Set upload path
     $scope.uploader.url = AppConfig.apiFileBase;
 
-/*
-    onBeforeUploadItem function(item) {
-    onSuccessItem function(item, response, status, headers) {
-*/
-
     $scope.uploader.onAfterAddingFile = function(item) {
         var msg = "File <b>" + item._file.name + "</b>"
             + "<br>pronto al caricamento "+
             "<i class=\"fa fa-upload fa-fw\"></i> <br>";
-        NotificationData.setNotification(AppConfig.messageStatus.success, msg, shortMessageTime);
+        //NotificationData.setNotification(AppConfig.messageStatus.success, msg, shortMessageTime);
         $scope.noOtherUploads = false;
+        //console.log(item);
     }
 
 /*
-DOES NOT WORK WELL ?
+    onBeforeUploadItem function(item) {
+    onSuccessItem function(item, response, status, headers) {
+
+//DOES NOT WORK WELL ?
     $scope.uploader.onProgressItem = function(item, progress) {
         var msg = "File " + item._file.name + "<br>\n";
         NotificationData.setNotification(AppConfig.messageStatus.loading, msg);
     }
 */
     $scope.uploader.onErrorItem = function(item, response, status, headers) {
-        var msg = "File " + item._file.name + "<br>Fallito <br>\n";
-        NotificationData.setNotification(AppConfig.messageStatus.error, msg);
+//ERROR
+        item.MsgError = "Epic fail";
+        console.log(response);
+
+// STRIP doctype & title tag
+        //item.MsgError = response;
+
     }
     $scope.uploader.onWhenAddingFileFailed = function(item, filter, options) {
         var msg = "File " + item._file.name +
             "<br>Problema locale con permessi disco<br>\n";
-        NotificationData.setNotification(AppConfig.messageStatus.error, msg);
+//ERROR
+        //NotificationData.setNotification(AppConfig.messageStatus.error, msg);
     }
     $scope.uploader.onCancelItem = function(item, response, status, headers) {
         var msg = "File <b>" + item._file.name + "</b> <br>caricamento annullato<br>\n";
-        NotificationData.setNotification(AppConfig.messageStatus.warning, msg, shortMessageTime);
+//ERROR
+        //NotificationData.setNotification(AppConfig.messageStatus.warning, msg, shortMessageTime);
     }
+
+/* useless
     $scope.myRemoveItem = function(item) {
         var msg = "File <b>" + item._file.name + "</b> <br>Rimosso dalla coda<br>\n";
         item.remove();
-        NotificationData.setNotification(AppConfig.messageStatus.warning, msg, shortMessageTime);
+        //NotificationData.setNotification(AppConfig.messageStatus.warning, msg, shortMessageTime);
     }
-
+*/
     $scope.uploader.onCompleteItem = function(item, response, status, headers)
     {
         //console.log(item);
@@ -71,6 +79,7 @@ DOES NOT WORK WELL ?
                 "Errore " + item._xhr.status + ":" +
                 item._xhr.statusText + "\n" +
                 item._xhr.response + "\n";
+//ERROR
         } else {
             msg += "Salvato sul server con successo";
             // API DB CALL to save
@@ -81,7 +90,7 @@ DOES NOT WORK WELL ?
                 $rootScope.refreshDocs();
             });
         }
-        NotificationData.setNotification(AppConfig.messageStatus.success, msg);
+        //NotificationData.setNotification(AppConfig.messageStatus.success, msg);
 
         // Handle buttons: clean them if no files to be uploaded yet
         $scope.noOtherUploads = true;
