@@ -128,13 +128,15 @@ CURRENT:
       ✔ use nginx official image? @done (15-04-28 06:30)
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
-  ☐ Change upload notifications
-    ☐ icons bad alignment
+  ✔ Change upload notifications @done (15-05-13 18:38)
+  ☐ remove errors when adding file
+  ☐ icons bad alignment
   ☐ Remove debug options in nginx configuration @security
 
 --- ✄ -----------------------
 
 ☐ spectaclebaroque domain @IMPORTANT
+☐ Change single step subimission notification
 ☐ ARSI.FB.62.[f10R]
 ☐ Date init (1622 1/1)
   ☐ Date interval 22 luglio 1622 - 29 luglio 1622

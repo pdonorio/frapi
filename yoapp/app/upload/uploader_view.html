@@ -40,15 +40,17 @@
         </div>
 
         <!-- progress bar -->
-        <div ng-if='item.isUploading'
-            class="progress" style="margin-bottom: 0;">
-            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+        <div ng-if='item.isUploading' class="progress" style="margin-bottom: 0;">
+          <div class="progress-bar" role="progressbar"
+            ng-style="{ 'width': item.progress + '%' }"></div>
         </div>
     </td>
     <td class="text-center">
-        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"
+            style="color:green"></i></span>
+        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"
+            style="color:red"></i></span>
         <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
     </td>
 <!--
     <td nowrap>
@@ -64,9 +66,9 @@
             <button type="button" class="btn btn-danger btn-xs" ng-click="myRemoveItem(item)">
                 <i class="fa fa-times fa-fw"></i>
             </button>
- -->
         </div>
     </td>
+ -->
     </tr>
     </tbody>
 </table>
@@ -75,8 +77,8 @@
 
   <div ng-repeat="item in uploader.queue" ng-if="item.isError"
     class="alert alert-danger">
-    '<b>{{item.file.name}}</b>':
-    <div ng-bind>{{item.MsgError}}</div>
+    <!-- '<b>{{item.file.name}}</b>': -->
+    <span ng-bind-html='item.MsgError'></span>
   </div>
 
   <div class="panel-body" ng-show="uploader.queue.length>0">

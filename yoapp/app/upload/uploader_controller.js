@@ -39,14 +39,19 @@ myApp
         NotificationData.setNotification(AppConfig.messageStatus.loading, msg);
     }
 */
+
+    function stripHtml(text) {
+
+        text = String(text).replace(/<[^>]+DOCTYPE[^>]+>/gm, '');
+        text = String(text).replace(/<title>[^<]+<\/title>/gm, '');
+        text = String(text).replace(/h1>/gm, 'h3>');
+        text = String(text).replace(/p>/gm, 'span>');
+        //text = String(text).replace(/<[^>]+>/gm, '');
+        return text;
+    }
+
     $scope.uploader.onErrorItem = function(item, response, status, headers) {
-//ERROR
-        item.MsgError = "Epic fail";
-        console.log(response);
-
-// STRIP doctype & title tag
-        //item.MsgError = response;
-
+        item.MsgError = stripHtml(response);
     }
     $scope.uploader.onWhenAddingFileFailed = function(item, filter, options) {
         var msg = "File " + item._file.name +
