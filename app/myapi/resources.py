@@ -127,7 +127,12 @@ class GenericDBResource(Resource):
             loc = ['headers', 'values'] #multiple locations
             # Decide type based on attribute
             if value == 'makearray':
-                value = str
+
+                #value = str #NO!!
+                # http://flask-restful.readthedocs.org/en/latest/api.html#module-reqparse
+                # http://stackoverflow.com/a/9942822/2114395
+
+                value = unicode
                 act = 'append'
             # elif '_time' in key:
             #     print "Type ", key, value, act, loc
@@ -161,6 +166,7 @@ class GenericDBResource(Resource):
 
         self.log.debug("IP: " + get_ip())
         self.log.info("API: Received 'search'")
+
         params = self.get_params()
 
         # Query RDB filtering on a single key

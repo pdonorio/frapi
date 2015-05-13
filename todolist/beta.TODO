@@ -116,11 +116,11 @@ CURRENT:
     ✔ Does NOT work!! @done (15-05-12 08:46)
   ✔ Save changes via textangular @done (15-05-12 06:45)
   ✔ Remove debug in fileapi @done (15-05-12 22:36)
-  ☐ Rethinkdb record update? How does it work?
-    ☐ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry
-    ☐ VERY TRICKY
-      ☐ check by updating via python code...
-  ☐ API save via URL of bad symbols, e.g. à @IMPORTANT
+  ✔ Rethinkdb record update? How does it work? @done (15-05-12 22:39)
+    ✔ https://rethinkorm.readthedocs.org/en/latest/model.html#updating-an-entry @done (15-05-12 22:39)
+    ✔ VERY TRICKY @done (15-05-12 22:39)
+      ✔ check by updating via python code... @done (15-05-12 22:39)
+  ✔ API save via URL of bad symbols, e.g. à @IMPORTANT @done (15-05-13 16:52)
 
   ☐ Change upload notifications
     ☐ icons bad alignment
@@ -139,6 +139,10 @@ CURRENT:
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
 ☐ Remove debug options in nginx configuration @security
+
+☐ Relative ui route view
+  ☐ https://bitbucket.org/tempo_pause/jsinterface/issue/1/testing-angular-js-for-webdav-calls#comment-18072866
+  ☐ https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views
 
 ☐ Date init (1622 1/1)
   ☐ Date interval 22 luglio 1622 - 29 luglio 1622
