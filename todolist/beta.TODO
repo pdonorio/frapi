@@ -121,16 +121,6 @@ CURRENT:
     ✔ VERY TRICKY @done (15-05-12 22:39)
       ✔ check by updating via python code... @done (15-05-12 22:39)
   ✔ API save via URL of bad symbols, e.g. à @IMPORTANT @done (15-05-13 16:52)
-
-  ☐ Change upload notifications
-    ☐ icons bad alignment
-  ☐ code ??
-    ☐ ARSI.FB.62.[f10R] -  Should i give error if  code is wrong? When?
-  ☐ Plan tasks...
-    ☐ only the ones made by current user
-  ☐ range detach: https://github.com/fraywing/textAngular/issues/417
-
---- ✄ -----------------------
 ✔ Fix WSGI maledetto? @done (15-04-24 07:38)
   ✔ Installare gunicorn @done (15-04-24 07:38)
     ✔ http proxy for API @done (15-04-24 17:15)
@@ -138,31 +128,37 @@ CURRENT:
       ✔ use nginx official image? @done (15-04-28 06:30)
       ✘ gunicorn -w3 --certfile=server.crt --keyfile=server.key test:app @cancelled (15-04-24 17:15)
 ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
-☐ Remove debug options in nginx configuration @security
 
-☐ Relative ui route view
-  ☐ https://bitbucket.org/tempo_pause/jsinterface/issue/1/testing-angular-js-for-webdav-calls#comment-18072866
-  ☐ https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views
+  ☐ Change upload notifications
+    ☐ icons bad alignment
+  ☐ Remove debug options in nginx configuration @security
 
+--- ✄ -----------------------
+
+☐ spectaclebaroque domain @IMPORTANT
+☐ ARSI.FB.62.[f10R]
 ☐ Date init (1622 1/1)
   ☐ Date interval 22 luglio 1622 - 29 luglio 1622
-   - select old step (>2) or new
-  - fix transcription upload
-  - base search
+   ☐  select old step (>2) or new
+  ☐  fix transcription upload
 ✔ Fix file upload @done (15-05-11 17:08)
   ✔ After upload: modal for editing metadata @done (15-05-11 17:08)
-  ☐ (file code, transcription, traduzione francese) - ARSI.FB.62.[f10R]
-    ☐ latin + francese + italiano + greco antico
-    ☐ symbols? email alessandro
+  ✔ (file code, transcription, traduzione francese) - ARSI.FB.62.[f10R] @done (15-05-13 16:58)
+    ✔ latin + francese + italiano + greco antico @done (15-05-13 16:58)
+    ✔ symbols? email alessandro @done (15-05-13 16:58)
 ☐ Basic search: substring search inside transciption
   ☐ text indexing rethinkdb?
+☐ Plan tasks...
+  ☐ only the ones made by current user
 ☐ Publishing
 ☐ Patterns, dark for admin pages
+☐ range detach: https://github.com/fraywing/textAngular/issues/417
 ☐ API check at page load
   ☐ Fix page loading and error with API on client
     ☐ Check loading before checking auth?
-
-☐ spectaclebaroque domain
+☐ Relative ui route view
+  ☐ https://bitbucket.org/tempo_pause/jsinterface/issue/1/testing-angular-js-for-webdav-calls#comment-18072866
+  ☐ https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views
 ☐ Fix news
 ☐ API joins??
 ☐ Views
