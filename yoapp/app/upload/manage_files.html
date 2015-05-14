@@ -33,13 +33,13 @@
       <tr ng-repeat='tr in trans track by $index'>
         <td>
           <a href><i
-            class='fa fa-fix fa-2x fa-trash'
+            class='fa fa-trash fa-2x fa-fw'
             ng-click='removeElement($index)'></i></a>
         </td><td>
           <a href ng-hide='editor[$index]'><i
-            class='fa fa-fix fa-2x fa-edit' ng-click='editor[$index] = true'></i></a>
+            class='fa fa-pencil-square fa-2x fa-fw' ng-click='editor[$index] = true'></i></a>
           <a href ng-show='editor[$index]' ng-click='saveElement($index)'><i
-            class='fa fa-fix fa-2x fa-save' ng-click='editor[$index] = false'></i></a>
+            class='fa fa-save fa-2x fa-fw' ng-click='editor[$index] = false'></i></a>
         </td>
         <td width='90%'>
           <div ng-hide='editor[$index]' style='max-height:82px; overflow: auto;'
