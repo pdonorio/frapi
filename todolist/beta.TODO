@@ -138,6 +138,7 @@ CURRENT:
   ✔ icons bad alignment @done (15-05-14 23:24)
   ✔ remove errors when adding file @done (15-05-15 07:03)
   ☐ check bugs
+  ☐ check cors
   ☐ Remove debug options in nginx configuration @security
 
 Security:
@@ -147,9 +148,17 @@ Security:
     ☐ ssh, backup_export, sync
     ☐ import
 ☐ Limit (gunicorn?) max requests per second? per user?
-☐ Db mask with login
+☐ Db mask with login??
 
 ☐ change bad gateway message nginx
+
+ ☐ limit_remote_addr
+   ☐ app.py
+   ☐ resources.py
+
+☐ Compose yaml configuration for production
+  ☐ list of production services
+  ☐ list of development services
 
 --- ✄ -----------------------
 What else:
@@ -181,8 +190,6 @@ What else:
 ☐ CORS: Pre-flight OPTIONS requests
 ☐ HTTPS proxy
   ☐ https://gist.github.com/yosemitebandit/1252240
-☐ Compose yaml configuration for production
-  ☐ But how?
 
 Real authentication on API side with Token (OAuth2):
 

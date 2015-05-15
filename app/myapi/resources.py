@@ -25,6 +25,9 @@ dthandler = lambda obj: ( obj.isoformat()
 # This one above could/should be a class
 # http://stackoverflow.com/a/23287543
 
+###############################
+# TO FIX - make one function/class from what you find in app.py
+#limit_remote_addr
 # Please fix me here: http://esd.io/blog/flask-apps-heroku-real-ip-spoofing.html
 def get_ip():
     ip = None
@@ -36,6 +39,7 @@ def get_ip():
        #print request.headers
        #print "Forward", ip
     return ip
+###############################
 
 def clean_parameter(param=""):
     """ I get parameters already with '"' quotes from curl? """
