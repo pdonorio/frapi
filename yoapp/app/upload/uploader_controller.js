@@ -21,6 +21,17 @@ myApp
     $scope.uploader.url = AppConfig.apiFileBase;
 
     $scope.uploader.onAfterAddingFile = function(item) {
+
+        for (var i = 0, len = $scope.uploader.queue.length; i < len; i++) {
+
+            //console.log("Test", i, $scope.uploader.queue[i]);
+            if ($scope.uploader.queue[i].isError) {
+                delete $scope.uploader.queue[i].MsgError;
+            }
+
+        }
+
+
         var msg = "File <b>" + item._file.name + "</b>"
             + "<br>pronto al caricamento "+
             "<i class=\"fa fa-upload fa-fw\"></i> <br>";
@@ -92,6 +103,8 @@ myApp
         // Handle buttons: clean them if no files to be uploaded yet
         $scope.noOtherUploads = true;
         for (var i = 0, len = $scope.uploader.queue.length; i < len; i++) {
+            //console.log("Test", i, $scope.uploader.queue[i]);
+
             if (!$scope.uploader.queue[i].isUploaded) {
                 $scope.noOtherUploads = false;
                 break;

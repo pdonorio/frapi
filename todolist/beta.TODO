@@ -130,37 +130,39 @@ Editor:
   ✔ Update to rethinkdb 2 http://rethinkdb.com/blog/2.0-release/ @done (15-04-23 20:44)
     ✔ Change upload notifications @done (15-05-13 18:38)
 CURRENT:
-  ☐ remove errors when adding file
-  ✔ icons bad alignment @done (15-05-14 23:24)
-  ☐ Remove debug options in nginx configuration @security
-
---- ✄ -----------------------
-
-Security:
-☐ spectaclebaroque domain @IMPORTANT
-  ☐ Script import
-    ☐ ssh, backup_export, sync
-    ☐ import
-  ☐ SSL
-
-☐ change bad gateway message nginx
-
-
-☐ Change single step subimission notification
-☐ ARSI.FB.62.[f10R]
-☐ Date init (1622 1/1)
-  ☐ Date interval 22 luglio 1622 - 29 luglio 1622
-   ☐  select old step (>2) or new
-  ☐  fix transcription upload
 ✔ Fix file upload @done (15-05-11 17:08)
   ✔ After upload: modal for editing metadata @done (15-05-11 17:08)
   ✔ (file code, transcription, traduzione francese) - ARSI.FB.62.[f10R] @done (15-05-13 16:58)
     ✔ latin + francese + italiano + greco antico @done (15-05-13 16:58)
     ✔ symbols? email alessandro @done (15-05-13 16:58)
+  ✔ icons bad alignment @done (15-05-14 23:24)
+  ✔ remove errors when adding file @done (15-05-15 07:03)
+  ☐ check bugs
+  ☐ Remove debug options in nginx configuration @security
+
+Security:
+☐ spectaclebaroque domain @IMPORTANT
+  ☐ SSL
+  ☐ Script import
+    ☐ ssh, backup_export, sync
+    ☐ import
+☐ Limit (gunicorn?) max requests per second? per user?
+☐ Db mask with login
+
+☐ change bad gateway message nginx
+
+--- ✄ -----------------------
+What else:
+☐ Plan tasks
+  ☐ only the ones made by current user
+☐ Change single step subimission notifications
+☐ ARSI.FB.62.[f10R]
+☐ Date init (1622 1/1)
+  ☐ Date interval 22 luglio 1622 - 29 luglio 1622
+   ☐  select old step (>2) or new
+  ☐  fix transcription upload
 ☐ Basic search: substring search inside transciption
   ☐ text indexing rethinkdb?
-☐ Plan tasks...
-  ☐ only the ones made by current user
 ☐ Publishing
 ☐ Patterns, dark for admin pages
 ☐ range detach: https://github.com/fraywing/textAngular/issues/417

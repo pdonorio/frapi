@@ -9,7 +9,7 @@
     <thead>
      <tr>
       <th>Nome</th>
-      <th class='hidden-xs' ng-show="uploader.isHTML5">Dim</th>
+      <th class='hidden-xs' ng-show="uploader.isHTML5">Dimensioni</th>
       <th ng-show="uploader.isHTML5">Progresso</th>
       <th></th> <!--status-->
       <th></th> <!--action-->
@@ -37,6 +37,9 @@
         </div>
         <div ng-if='item.isError'>
             <span class='label label-danger'>error!</span>
+        </div>
+        <div ng-if='item.isSuccess'>
+            <span class='label label-success'>completed</span>
         </div>
 
         <!-- progress bar -->
@@ -75,7 +78,7 @@
 
 <div ng-class="{'panel panel-default': uploader.queue.length>0}">
 
-  <div ng-repeat="item in uploader.queue" ng-if="item.isError"
+  <div ng-repeat="item in uploader.queue" ng-if="item.isError && item.MsgError"
     class="alert alert-danger">
     <!-- '<b>{{item.file.name}}</b>': -->
     <span ng-bind-html='item.MsgError'></span>
