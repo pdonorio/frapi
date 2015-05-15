@@ -32,14 +32,21 @@
     <table class="table table-hover">
       <tr ng-repeat='tr in trans track by $index'>
         <td>
-          <a href><i
-            class='fa fa-trash fa-2x fa-fw'
-            ng-click='removeElement($index)'></i></a>
+            <a href class="fa-stack fa-lg" ng-click='removeElement($index)' >
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+            </a>
         </td><td>
-          <a href ng-hide='editor[$index]'><i
-            class='fa fa-pencil-square fa-2x fa-fw' ng-click='editor[$index] = true'></i></a>
-          <a href ng-show='editor[$index]' ng-click='saveElement($index)'><i
-            class='fa fa-save fa-2x fa-fw' ng-click='editor[$index] = false'></i></a>
+            <a href class="fa-stack fa-lg" ng-hide='editor[$index]'
+                ng-click='editor[$index] = true' >
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+            </a>
+            <a href class="fa-stack fa-lg" ng-show='editor[$index]'
+                ng-click='editor[$index] = false' >
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-save fa-stack-1x fa-inverse"></i>
+            </a>
         </td>
         <td width='90%'>
           <div ng-hide='editor[$index]' style='max-height:82px; overflow: auto;'
