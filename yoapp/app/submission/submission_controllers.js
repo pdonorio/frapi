@@ -83,7 +83,7 @@ myApp
         // Html template
         templateUrl: 'upload/manage_files.html',
         // Use transcript resource
-        controller: function($rootScope, $scope, Logger, DocumentsFactory) {
+        controller: function($rootScope, $scope, Logger, DocumentsFactory, focus) {
 
             var logger = Logger.getInstance('transcr_modal');
             $scope.selectedFile = fileid;
@@ -97,32 +97,39 @@ myApp
 
                     $scope.editor = [];
                     for (var j = 0; j < $scope.trans.length; j++) {
-                        $scope.editor[j] = false;
+                        if ($scope.trans[j] == '')
+                            $scope.trans.splice(j, 1);
+                        else
+                            $scope.editor[j] = false;
                     };
                     // refresh main view
                     refreshDocs();
                 });
             }
             var update = function() {
-                DocumentsFactory.setTranscriptions($scope.selectedFile, $scope.trans)
-                 .then(function(){
-                    refresh();
-                });
+              DocumentsFactory.setTranscriptions(
+                $scope.selectedFile, $scope.trans).then(function(){refresh()});
             }
             //first time
             refresh();
 
             $scope.addElement = function() {
                 $scope.trans.push(null);
-                $scope.editor[$scope.trans.length-1]=true;
+                var key = $scope.trans.length-1;
+                $scope.editor[key] = true;
+                focus("tangular" + key, true);
             }
             $scope.removeElement = function(key) {
                 logger.warn("Removing "+ key);
-                delete $scope.trans[key];
+                $scope.trans.splice(key, 1);
                 update();
+            }
+            $scope.editElement = function(key) {
+                $scope.editor[key] = true;
             }
             $scope.saveElement = function(key) {
                 logger.info("Saving from key "+key);
+                $scope.editor[key] = false;
                 update();
             }
         }
@@ -265,7 +272,7 @@ myApp
           return true;
         }
         // Validation
-        console.log("Check data", data);
+        //console.log("Check data", data);
         // Unknown type. Problem in configuration.
         return "La tipologia '"+type+"' non e' ancora implementata";
     }

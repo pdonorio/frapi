@@ -86,20 +86,35 @@ var myApp = angular.module('archivi',
 /////////////////////////////////////////
 // HOW TO GET FOCUS - this can be used from any controller
 // http://stackoverflow.com/a/18295416
-.directive('focusOn', function() {
+.directive('focusOn', function(textAngularManager) {
+
    return function(scope, elem, attrs) {
-      scope.$on('focusOn', function(e, name) {
-        if(name === attrs.focusOn) {
-          //console.log("TEST", elem, elem[0].focus);
-          elem[0].focus();
+      scope.$on('focusOn', function(e, name, tangular) {
+
+        /////////////////////
+        // Fix the focus for textAngular editor
+        if (tangular) {
+            // Retrieve the scope and trigger focus
+            var editorScope = textAngularManager.retrieveEditor(name).scope;
+            //console.log("Get", name);
+            editorScope.displayElements.text[0].focus();
+        /////////////////////
+        } else {
+            // Normal mode
+            if(name === attrs.focusOn) {
+              //console.log("TEST", elem, elem[0].focus);
+              elem[0].focus();
+            }
         }
+        /////////////////////
       });
    };
 })
+
 .factory('focus', function ($rootScope, $timeout) {
-  return function(name) {
+  return function(name, tangular) {
     $timeout(function (){
-      $rootScope.$broadcast('focusOn', name);
+      $rootScope.$broadcast('focusOn', name, tangular);
     }, 150);
   }
 })

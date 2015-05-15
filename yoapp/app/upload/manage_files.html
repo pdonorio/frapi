@@ -30,7 +30,7 @@
     <hr></hr>
 
     <table class="table table-hover">
-      <tr ng-repeat='tr in trans track by $index'>
+      <tr ng-repeat='tr in trans track by $index' ng-if='trans[$index] != ""'>
         <td>
             <a href class="fa-stack fa-lg" ng-click='removeElement($index)' >
               <i class="fa fa-circle fa-stack-2x"></i>
@@ -38,20 +38,25 @@
             </a>
         </td><td>
             <a href class="fa-stack fa-lg" ng-hide='editor[$index]'
-                ng-click='editor[$index] = true' >
+                ng-click='editElement($index)' >
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
             </a>
             <a href class="fa-stack fa-lg" ng-show='editor[$index]'
-                ng-click='editor[$index] = false' >
+                ng-click='saveElement($index)' >
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-save fa-stack-1x fa-inverse"></i>
             </a>
         </td>
         <td width='90%'>
-          <div ng-hide='editor[$index]' style='max-height:82px; overflow: auto;'
+            <div ng-hide='editor[$index]' style='max-height:82px; overflow: auto;'
             ng-bind-html="trans[$index] || 'Clicca per modificare'"></div>
-          <text-angular ng-show='editor[$index]' ng-model="trans[$index]"></text-angular>
+
+            <!-- TEXT EDITOR -->
+            <text-angular
+                focus-on="tangular{{$index}}" name="tangular{{$index}}"
+                ng-show='editor[$index]' ng-model="trans[$index]"
+            ></text-angular>
         </td>
       </tr>
     </table>
