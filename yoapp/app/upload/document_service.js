@@ -37,12 +37,27 @@ myApp
                 return false;
             }
             data = response.items[0];
+
+        //////////////////////////////////////////
+            // HANDLING AN ARRAY!
+            // EMPTY TRANSCRIPTIONS PROBLEM
+
+            //console.log("Transcriptions", trs);
+
+            // workaround after modification in API rdb handler
+            if (trs.length < 1) {
+                trs = [""];
+            }
+
             data.transcriptions = trs;
+            //data['transcriptions'] = trs;
+        //////////////////////////////////////////
 
             // Do not update or it will fail
             delete data.upload_time;
             delete data.upload_user;
 
+            //console.log("Data", data);
             return API.set(resource, data).then(function(response) {
                 console.log("Updated", response);
                 return true;
