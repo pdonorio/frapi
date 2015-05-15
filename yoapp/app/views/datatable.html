@@ -17,7 +17,8 @@
               <i class="fa fa-plus-square-o fa-1x"></i>
             </button>
           </span>
-          <input type="text" placeholder="Cerca" class="form-control"
+          <input type="text" focus-on="search"
+            placeholder="Cerca" class="form-control"
             typeahead="element for element in typeahead.data | filter:$viewValue | limitTo:9"
             typeahead-wait-ms="0" typeahead-on-select="onTypeaheadSelect($item, $model, $label)"
             ng-focus="doFocus()"

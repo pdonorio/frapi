@@ -9,7 +9,7 @@
  */
 
 myApp
- .controller('ViewController', function ($scope, $rootScope, API, perpageDefault, currentpageDefault)
+ .controller('ViewController', function ($scope, $rootScope, API, perpageDefault, currentpageDefault, focus)
 {
 
     // Init: Html scope data
@@ -29,6 +29,9 @@ myApp
       $rootScope.searching = true;
       $rootScope.edit.available = false;
     }
+
+    // Put focus on the first search bar
+    focus("search");
 
   /* ************************************
   ***************************************
