@@ -102,7 +102,19 @@ else:
 
 @app.before_request
 def limit_remote_addr():
-    ip = request.headers.getlist("X-Forwarded-Ip")[0]
+
+    ip = "localhost"    #localhost will note be in the iplist
+
+    fwd = "X-Forwarded-Ip"
+    iplist = request.headers.getlist(fwd)
+    if len(iplist) > 0:
+        ip = iplist[0]
+    else:
+        real = "X-Real-Ip"
+        iplist = request.headers.getlist(real)
+        if len(iplist) > 0:
+            ip = iplist[0]
+
     # Trust a proxy only if inside my private LAN network ;)
     if mynet not in ip:
         app.logger.warning("Rejected " + ip + " [expecting "+mynet+".*]")
