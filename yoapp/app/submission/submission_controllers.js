@@ -83,7 +83,7 @@ myApp
         // Html template
         templateUrl: 'upload/manage_files.html',
         // Use transcript resource
-        controller: function($rootScope, $scope, Logger, DocumentsFactory, focus) {
+        controller: function($rootScope, $scope, $modalInstance, Logger, DocumentsFactory, focus) {
 
             var logger = Logger.getInstance('transcr_modal');
             $scope.selectedFile = fileid;
@@ -126,11 +126,15 @@ myApp
             }
             $scope.editElement = function(key) {
                 $scope.editor[key] = true;
+                focus("tangular" + key, true);
             }
             $scope.saveElement = function(key) {
                 logger.info("Saving from key "+key);
                 $scope.editor[key] = false;
                 update();
+            }
+            $scope.closeModal = function() {
+                $modalInstance.close();
             }
         }
       }); // END UPLOAD CONTROLLER

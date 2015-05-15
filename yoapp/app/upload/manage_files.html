@@ -1,27 +1,30 @@
 
 <div class="panel panel-info">
   <div class="panel panel-heading">
-      <h3>Gestione trascrizioni</h3>
+        <p align='right' ng-click='closeModal()'
+            ><button class="btn btn-primary"><i class="fa fa-fw fa-close"
+            ></i></button></p>
+        <h3>Gestione trascrizioni</h3>
   </div>
   <div class="panel panel-body">
 
-    <p> File '<b>{{selectedFile}}</b>' </p>
-    <p></p>
 
     <table>
         <tr>
             <td width='90%'>
+                File <b>{{selectedFile}}</b>:
                 <div ng-hide='trans.length > 0'>
-                      Nessuna trascrizione disponibile per questo documento.
+                      nessuna trascrizione disponibile per questo documento.
                 </div>
                 <div ng-show='trans.length > 0'>
-                      <b>{{trans.length}}</b> trascrizione/i disponibili.
+                      trovate <b>{{trans.length}}</b> trascrizione/i.
                 </div>
             </td>
         </tr><tr>
             <td width='10%'>
-                <button class="btn btn-primary" ng-click="addElement()">
-                  aggiungi
+                <br>
+                <button class="btn btn-default" ng-click="addElement()">
+                  Aggiungi
                 </button>
             </td>
         </tr>
@@ -30,22 +33,33 @@
     <hr></hr>
 
     <table class="table table-hover">
+
+    <thead><tr>
+        <th>Trascrizione</th>
+        <th>Azioni</th>
+        <th>Testo</th>
+    </tr></thead>
+
       <tr ng-repeat='tr in trans track by $index' ng-if='trans[$index] != ""'>
         <td>
-            <a href class="fa-stack fa-lg" ng-click='removeElement($index)' >
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-            </a>
-        </td><td>
+            <button class="btn btn-info" type="button">
+              n. <span class="badge">{{$index+1}}</span>
+            </button>
+        </td>
+        <td>
             <a href class="fa-stack fa-lg" ng-hide='editor[$index]'
                 ng-click='editElement($index)' >
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                <i class="fa fa-circle-o fa-stack-2x"></i>
+                <i class="fa fa-pencil fa-stack-1x"></i>
             </a>
             <a href class="fa-stack fa-lg" ng-show='editor[$index]'
                 ng-click='saveElement($index)' >
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-save fa-stack-1x fa-inverse"></i>
+            </a>
+            <a href class="fa-stack fa-lg" ng-click='removeElement($index)' >
+              <i class="fa fa-circle-o fa-stack-2x"></i>
+              <i class="fa fa-trash fa-stack-1x "></i>
             </a>
         </td>
         <td width='90%'>

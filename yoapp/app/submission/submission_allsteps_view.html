@@ -66,17 +66,14 @@
                     <img ng-src="uploads/{{doc.code}}/TileGroup0/0-0-0.jpg"></img>
                 </td>
                 <td>
-                 <p> Found
+                  <button class="btn btn-default" ng-click='openModal(doc.id)'>
+                    Edit
                     <span class="badge">{{doc.transcriptions.length || '0'}}</span>
-                 </p>
-                 <a href> <!-- open modal -->
-                 <button class="btn btn-default" ng-click='openModal(doc.id)'> manage </button>
-                 </a>
-                </td>
-                <td>
-                    <button class='btn btn-danger' ng-click='removeDoc(doc.id)'>
+                  </button>
+                 or
+                 <button class='btn btn-danger' ng-click='removeDoc(doc.id)'>
                     Remove <i class='fa fa-trash'></i>
-                    </button>
+                 </button>
                 </td>
              </tr>
             </tbody>
