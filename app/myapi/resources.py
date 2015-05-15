@@ -156,7 +156,7 @@ class GenericDBResource(Resource):
 
         data = {}
         for (parname, parval) in params.iteritems():
-            print "Param", parname, parval, type(parval)
+            #print "Param", parname, parval, type(parval)
 
             # Handling lists with checks
             if isinstance(parval, types.ListType):
