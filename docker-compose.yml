@@ -63,17 +63,6 @@ fileapi:
     working_dir: /opt/app
 
 ######################
-# Web development angular pages running on a javascript server
-# ONLY DEBUG
-webdev:
-    build: ./docker/jsdev
-    command: sleep 123456789
-    volumes:
-        - ./yoapp:/opt/jsapp
-    links:
-        - rdb:db
-
-######################
 # A proxy for all requests from the outside world
 proxy:
     image: nginx
@@ -102,6 +91,28 @@ proxy:
         - ./docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
     volumes_from:
         - updata
+
+#########################################
+#########################################
+# DEBUG
+
+######################
+# Web development angular pages running on a javascript server
+# ONLY DEBUG
+webdev:
+    build: ./docker/jsdev
+    command: sleep 123456789
+    volumes:
+        - ./yoapp:/opt/jsapp
+    links:
+        - rdb:db
+######################
+
+## ALSO
+
+#proxydebug:?
+#apidebug/fileapidebug? different command
+
 
 # If you modify proxy configuration, then:
 # docker exec frapi_proxy_1 nginx -s reload
