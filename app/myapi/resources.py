@@ -117,22 +117,26 @@ class GenericDBResource(Resource):
         which were not added here as argument ***
         """
         self.parser = reqparse.RequestParser()
+
+        #value = str #NO!!
+        basevalue = unicode
+        # http://flask-restful.readthedocs.org/en/latest/api.html#module-reqparse
+        # http://stackoverflow.com/a/9942822/2114395
+
         # Extra parameter id for POST updates or key forcing
-        self.parser.add_argument("id", type=str)
+        self.parser.add_argument("id", type=basevalue)
 
         # Based on my datamodelled ORM class
         # Cycle class attributes
         for key, value in g.rdb.model.list_attributes().iteritems():
             act = 'store'
             loc = ['headers', 'values'] #multiple locations
+
             # Decide type based on attribute
+            # Base is function return value
+            # I am creating an option to handle arrays:
             if value == 'makearray':
-
-                #value = str #NO!!
-                # http://flask-restful.readthedocs.org/en/latest/api.html#module-reqparse
-                # http://stackoverflow.com/a/9942822/2114395
-
-                value = unicode
+                value = basevalue
                 act = 'append'
             # elif '_time' in key:
             #     print "Type ", key, value, act, loc
@@ -147,13 +151,27 @@ class GenericDBResource(Resource):
         params = self.parser.parse_args()
 
         data = {}
-        for (parname, value) in params.iteritems():
-            #print "Param", parname, value, type(value)
+        for (parname, parval) in params.iteritems():
+            print "Param", parname, parval, type(parval)
 
-            # Very important: this sanitize updates, avoid to set
-            # empty values for we did not receive from POST/PUT
-            if not isinstance(value, types.NoneType):
-                data[parname] = value
+            # Handling lists with checks
+            if isinstance(parval, types.ListType):
+                newlist = list()
+                parlist = list(parval)
+                print "This is a list", parlist
+                #print dir(parlist)
+
+                for content in list(parval):
+                    print "Content: *" + content + "*"
+                    if content != "" and not isinstance(content, types.NoneType):
+                        newlist.append(content)
+
+                data[parname] = newlist
+
+            elif not isinstance(parval, types.NoneType):
+                # Very important: this sanitize updates, avoid to set
+                # empty values for we did not receive from POST/PUT
+                data[parname] = parval
 
         return data
 

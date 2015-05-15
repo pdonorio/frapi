@@ -333,6 +333,8 @@ class RethinkConnection(Connection):
             # Workaround: because model_data[key] = value does not work
             model_data._data[key] = value
             #print "Test", key + ":'" + str(value) + "'"
+
+        #print "DEBUG", model_data
 ##############################################
 
         model_data.save()
