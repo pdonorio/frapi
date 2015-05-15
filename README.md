@@ -20,13 +20,20 @@ Those have been the main objectives:
 
 ====
 
-This started as a test, and it has become the real project:
-FRANGUI = flask restful api nginx Gui
+I am now providing an interface to use rethinkdb api via angularjs.
+The stack is based on [docker compose tool](https://docs.docker.com/compose).
 
-Run with
 ```
-$ ./cluster.sh run_with_gui
+# Build and execute the full stack of development
+docker-compose up -d
+# By default i run a db master and also one db slave
+# To increase the number of slaves
+docker-compose scale rdbslave=3
+# Check the stack status
+docker-compose ps
+# Monitor the cluster usage
+docker stats $(docker-compose ps | grep frapi | awk '{print $1}')
 ```
 
 Page tests:
-http://*serverhost*/
+http://localhost (or server IP)

@@ -8,42 +8,46 @@ if [ `which docker` == "" ]; then
     echo "Error: 'docker' could not be found"
     exit 1;
 # check if fig exists
-elif [ `which fig` == "" ]; then
-    echo "Error: 'fig' could not be found"
+elif [ `which docker-compose` == "" ]; then
+    echo "Error: 'docker-compose' could not be found"
     exit 1;
 # check if boot2docker exists, if it's running!
-elif [ ! `which boot2docker` == "" ]; then
+elif [ ! `which docker-machine` == "" ]; then
     #verify VM status
-    if [ `boot2docker status` != "running" ]; then
-        echo "Error: Please start your boot2docker vm...";
+    if [ `docker-machine ls dev | grep Running | awk '{print $4}'` != "Running" ]; then
+        echo "Error: Please start your docker machine vm...";
         exit 1;
     fi
+    docker-machine active dev
 fi
 
 ###########################################
 # Decide file configuration based on key "_with_guy"
 
-dir="apic"
-case "$1" in
-    *_prod)
-       echo "Going in production"
-       param=`echo $1 | sed 's/_with_prod\$//'`;
-       file="$dir/production.yml"
-    ;;
-    *_with_gui)
-       echo "Full gui cluster"
-       param=`echo $1 | sed 's/_with_gui\$//'`;
-       file="$dir/pygui.yml"
-    ;;
-    *)
-       echo "Normal api cluster"
-       param=$1
-       file="$dir/pywebapp.yml"
-    ;;
-esac
+param=$1
+
+# dir="apic"
+# case "$1" in
+#     *_prod)
+#        echo "Going in production"
+#        param=`echo $1 | sed 's/_with_prod\$//'`;
+#        file="$dir/production.yml"
+#     ;;
+#     *_with_gui)
+#        echo "Full gui cluster"
+#        param=`echo $1 | sed 's/_with_gui\$//'`;
+#        file="$dir/pygui.yml"
+#     ;;
+#     *)
+#        echo "Normal api cluster"
+#        param=$1
+#        file="$dir/pywebapp.yml"
+#     ;;
+# esac
 
 # command
-figcom="fig -f $file"
+figcom="docker-compose "
+#figcom="docker-compose -f $file"
 
 ###########################################
 # This is main command switch
@@ -51,8 +55,11 @@ case "$param" in
     "build")
         $figcom build
     ;;
+    "rmimgs")
+        $figcom build
+    ;;
     "run")
-        mkdir -p ../data
+        mkdir -p data
         $figcom up -d
 
         # DEBUG API MODE FOR DEVELOPMENT
@@ -102,7 +109,7 @@ case "$param" in
     ;;
     *)
         echo "Unknown command *$param*"
-        echo "Usage: $0 [start|stop|build|remove|dcheck|cleanall]";
+        echo "Usage: $0 [start|stop|build|remove|rmimgs|dcheck|cleanall]";
         echo ""
         echo "This script must be executed from its base dir"
         exit 1;

@@ -134,10 +134,13 @@ myApp
           "contain": {
             templateUrl: "views/main.html",
           },
+/*
+ * To show search inside the home page
           "extra": {
             templateUrl: "views/datatable.html",
             controller: 'ViewController',
           },
+*/
         },
         onEnter: function($rootScope) {
           //make project text appear
@@ -171,7 +174,7 @@ myApp
             // Create an object with service result
             draft: function($stateParams, user, provider) {
               // This promise has been resolved inside the Service
-              return provider.get($stateParams.myId,user);
+              return provider.get($stateParams.myId,user.myid);
             },
         },
       })
@@ -182,6 +185,18 @@ myApp
             templateUrl: 'submission/submission_allsteps_view.html',
             controller: 'StepController',
           },
+        },
+        resolve: {
+            // The factory of all images and transcriptions
+            docs: function(DocumentsFactory, $rootScope, $stateParams) {
+                // Ugly but necessary. Ui router objects are injectable
+                // only into controllers...
+                DocumentsFactory.get($stateParams.myId).then(function(data){
+                    //console.log("Resolve docs", $stateParams);
+                    $rootScope.docs = data;
+                });
+                return true;
+            },
         },
       })
 
@@ -223,6 +238,7 @@ myApp
         onEnter: function($rootScope) {
           $rootScope.$emit('rootScope:emit', 'gbgon');
           $rootScope.edit.available = false;
+          $rootScope.searching = undefined;
         },
       })
       .state('logged.view', {

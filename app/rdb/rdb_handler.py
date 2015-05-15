@@ -286,7 +286,6 @@ class RethinkConnection(Connection):
             self.log.debug("Failed converting timestamp '" + string + "'")
         return string
 
-
     # === Insert ===
     @check_model
     @TryExcept("Failed to insert data inside DB", RqlRuntimeError)
@@ -316,13 +315,28 @@ class RethinkConnection(Connection):
         data[TIME_COLUMN] = time.time()
         data[IP_COLUMN] = lastip
 
-        # Save data inside the choosed model
-        model_data = self.model(**data)
+##############################################
+        #print "DATA", data
+        #model_data = self.model(**data)
 
-        if force_id != None:
+        # Save data inside the choosed model
+        # This command will init a new record without saving it
+        if force_id == None:
+            model_data = self.model()
+        else:
             # Force key of this data row. Usefull for updates?
             # Warning: if it's not a string the index will not work :O
-            model_data.id = str(force_id)
+            model_data = self.model(str(force_id))
+            #model_data.id = str(force_id)
+
+        for key, value in data.iteritems():
+            # Workaround: because model_data[key] = value does not work
+            model_data._data[key] = value
+            #print "Test", key + ":'" + str(value) + "'"
+
+        #print "DEBUG", model_data
+##############################################
+
         model_data.save()
         # Return the index key
         return model_data.id

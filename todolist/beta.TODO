@@ -1,105 +1,55 @@
-TO DISCUSS:
-  ☐ changing labels position and name when user data exists
-  ☐ date only for years?
-    ☐ do i have an example
-  ☐ define the search basic idea
---- ✄ -----------------------
 
-Cookies security 1:
- ✔ Cookie to save information about the fact i used login to get in @done (15-04-02 17:12)
-   ✔ save at login time @done (15-04-02 17:12)
-     ✔ if cookie exists, force login @done (15-04-02 17:24)
-   ✔ Check login everytime i switch route at least @done (15-04-02 17:25)
-   ✔ Raw logout @done (15-04-03 16:49)
-     ✔ /logout route @done (15-04-03 16:49)
-     ✔ learning to use ui router in some better forms.... @done (15-04-03 16:49)
-       ✔ stateChangeSuccess @done (15-04-03 16:49)
-  ✔ Logout fontawesome @done (15-04-07 09:47)
-    ✔ Others icons @done (15-04-07 09:52)
-  ✔ SSL certificate @done (15-04-07 10:53)
-  ✔ free domain check @done (15-04-07 12:26)
-    ✔ startssl check on pile.wf domain @done (15-04-07 12:26)
-    ✔ @itworks!! @done (15-04-07 14:53)
-      ✔ certificates as volumes inside docker compose @done (15-04-07 14:53)
-      ✔ make them work on flask too @done (15-04-07 14:53)
- ✔ Secure: cookie will only be send over https @done (15-04-03 16:51)
-   ✔ nginx https? @done (15-04-03 16:51)
-   ✔ avoid man in the middle @done (15-04-03 16:51)
-Something very difficult: LOGIN PATTERN for ANGULARJS:
-  ✔ restart.... @done (15-04-13 06:22)
-    ✔ FROM ZERO!! @done (15-04-13 06:22)
-    ✔ define cookie when login is valid.... @done (15-04-13 06:36)
-    ✔ use name inside object in topbar @done (15-04-13 06:36)
-      ✔ other fixes @done (15-04-13 06:53)
-        ✔ topbar button not changing @done (15-04-13 07:06)
-      ✔ use hash to link document submitted to user @done (15-04-13 07:37)
-  ✔ Bug at saving? @done (15-04-13 11:04)
-    ✔ insert but not loading @done (15-04-13 11:04)
-      ✔ Loading but not find in the mix @done (15-04-13 11:04)
-        ✔ missing hashes at save time @done (15-04-13 11:04)
-          ✔ should check from empty @done (15-04-13 11:04)
- ✔ Does not open edit if all fields are empty... @done (15-04-13 11:25)
-  ✔ BUG: if you create a new step, then templ obj is empty!!! @done (15-04-13 21:33)
-  ✔ LOG every insert/modification operation at content @done (15-04-13 21:33)
-    ✔ and admin template @done (15-04-13 21:34)
-    ✔ and admin step @done (15-04-13 21:34)
-      ✔ remove @done (15-04-13 21:34)
-      ✔ add and update @CURRENT @done (15-04-14 11:14)
-  ✔ Does not remove templates if removing step... @done (15-04-14 11:47)
-  ✔ Does not remove template step in the middle... @done (15-04-14 14:21)
-    ✔ error on submission too @done (15-04-14 14:21)
-  ✔ BUG: try without console.... @done (15-04-14 10:55)
-  A real User model:
-    ✔ Cookie for remembering user? @also @done (15-04-03 17:21)
-      ✔ bug fixes @done (15-04-07 15:10)
-      ✔ How to resolve the object via ui router?? @HOUSTON @done (15-04-09 18:36)
- ✔ $q.when? http://jsfiddle.net/jeremylikness/Q2jMG/ @done (15-04-13 06:38)
-    ✘ Infinite loop of user logged problem @cancelled (15-04-10 19:29)
-    ✔ learn to debug resolve testing inside controller @done (15-04-13 06:38)
-    ✔ load from db @done (15-04-13 06:49)
-  ✔ STARTSSL https://konklone.com/post/switch-to-https-now-for-free @done (15-04-09 20:01)
-Plan:
-  ✔ New button topbar @done (15-04-14 14:47)
-  ✔ List of things i am doing and status @done (15-04-14 14:58)
-    ✔ resource api @done (15-04-14 14:58)
-    ✔ controller @done (15-04-14 15:08)
-    ✔ js model factory @done (15-04-14 15:28)
-    ✔ API load @done (15-04-14 16:55)
-      ✔ Conversations like feedback @done (15-04-14 17:44)
-      ✔ conversation add @done (15-04-14 19:31)
-      ✔ show task status @done (15-04-15 07:48)
-      ✔ show user @CURRENT @done (15-04-15 08:35)
-        ✔ problem of users list... (resolve?) @done (15-04-15 08:35)
-      ✔ last update: timestamp conversion @done (15-04-15 09:27)
-      ✔ conversation edit xeditable @done (15-04-15 09:27)
-        ✔ api save @done (15-04-15 10:00)
-        ☐ only the ones made by current user
-        ☐ admin (on/off) button?
-          ☐ on change of table, python sends me an email @maperfavore
-  ☐ Publishing
-    ✔ list of documents @done (15-04-15 07:36)
-    ☐ published and not (label)
+Security:
 
-Later on:
-  ☐ Fix file upload....
-  ☐ Some clean pattern image repaeat as background
-    ☐ Dark pattern background for ADMIN
-  ☐ Fix news: Work in progress for now?
-  ☐ Should check admin pages via ui router resolve...
-  ☐ use spectaclebaroque domain @marcohelpG
-  ☐ API check at page load?
-    ☐ API joins?
+✔ focus... @done (15-05-15 21:21)
+☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
+  ☐ Remove debug options in nginx configuration @security
+  ☐ list of production services
+  ☐ list of development services
+✔ spectaclebaroque domain  @done (15-05-15 17:39)
+  ☐ SSL
+  ☐ Script import
+    ☐ ssh, backup_export, sync
+    ☐ import
+
+☐ check cors
+☐ change bad gateway message nginx
+☐ Limit (gunicorn?) max requests per second? per user?
+☐ Db mask with login??
+ ☐ limit_remote_addr function
+   ☐ app.py
+   ☐ resources.py
 
 --- ✄ -----------------------
-
-COOKIE SECURITY 2:
-  ☐ Check cookie timer...
- ☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
- ☐ Path: cookie will only be send on specified path e.g. /login
- ☐ CORS?
-   ☐ Pre-flight OPTIONS requests
-   ☐ http://stackoverflow.com/a/19576540/2114395
- ☐ $http.defaults.headers.common["X-AUTH-TOKEN"] = $cookies['AUTH-TOKEN'];
+What else:
+☐ Plan tasks
+  ☐ only the ones made by current user
+☐ Change single step subimission notifications
+☐ ARSI.FB.62.[f10R]
+☐ Date init (1622 1/1)
+  ☐ Date interval 22 luglio 1622 - 29 luglio 1622
+   ☐  select old step (>2) or new
+  ☐  fix transcription upload
+☐ Basic search: substring search inside transciption
+  ☐ text indexing rethinkdb?
+☐ Publishing
+☐ Patterns, dark for admin pages
+☐ range detach: https://github.com/fraywing/textAngular/issues/417
+☐ API check at page load
+  ☐ Fix page loading and error with API on client
+    ☐ Check loading before checking auth?
+☐ Relative ui route view
+  ☐ https://bitbucket.org/tempo_pause/jsinterface/issue/1/testing-angular-js-for-webdav-calls#comment-18072866
+  ☐ https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views
+☐ Fix news
+☐ API joins??
+☐ Views
+  ☐ estratto
+  ☐ fonte
+☐ HTTPOnly: cookie can't be accessed by javascript (XSS protection)
+☐ CORS: Pre-flight OPTIONS requests
+☐ HTTPS proxy
+  ☐ https://gist.github.com/yosemitebandit/1252240
 
 Real authentication on API side with Token (OAuth2):
 

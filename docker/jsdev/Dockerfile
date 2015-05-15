@@ -21,6 +21,7 @@ WORKDIR $DIR
 ENV NVMV 0.20.0
 ENV NODEV 0.10.13
 ENV GANGV 0.10.0
+ENV TERM xterm
 
 # Local latest Nodejs + yoeman (via nvm)
 RUN touch .bashrc
@@ -35,14 +36,11 @@ RUN source ~/.bashrc && nvm install $NODEV \
     && npm install -g chateau
 
 # Chateau (phpmyadmin for rethinkdb) configuration
-ADD confs/config.js /opt/.nvm/v$NODEV/lib/node_modules/chateau/config.js
+ADD chateau_config.js /opt/config.js
+#ADD chateau_config.js /opt/.nvm/v$NODEV/lib/node_modules/chateau/config.js
+#EXPOSE 9000
 #######################################
 # Get the environment ready
 RUN echo "nvm use v$NODEV" >> ~/.bashrc
 
-USER root
 USER $NEWUSER
-
-ADD startup.sh /
-EXPOSE 9000
-ENV TERM xterm

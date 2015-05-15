@@ -104,6 +104,7 @@ myApp.factory('API', function(RestAPI, apiTimeout, currentpageDefault, perpageDe
       var api = RestAPI.all(resource);
       var route = ''; //no route
 
+      //console.log("data", data);
       //post(subElement, elementToPost, [queryParams, headers])
       //customPOST([elem, path, params, headers])
 

@@ -12,10 +12,11 @@
 angular.module('AppConfig', [])
 
   //API
-  .constant('apiPort', '5507')
-  .constant('apiBase', '/api/v1.0')
-  .constant('apiFilePort', '5346')
-  .constant('apiFileResource', 'uploads')
+  .constant('apiPort', '80')
+  //.constant('apiPort', '5507')
+  .constant('apiBase', '/api/v1')
+  .constant('apiFilePort', '80')
+  .constant('apiFileResource', 'file/uploads')
 
   //USERS
   .constant('USER_ROLES',{

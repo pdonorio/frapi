@@ -16,7 +16,6 @@ var myApp = angular.module('archivi',
     'ny.logger',
   // DEPENCIES: base yeoman modules
     'ngAnimate',
-    //'ngRoute',
     'ngCookies',
     'ngSanitize',
     'ngTouch',
@@ -26,6 +25,7 @@ var myApp = angular.module('archivi',
     'restangular',  //api calls from js
     'xeditable',    //make html content editable with click/switch
     'angularFileUpload',  //uploader for files
+    'textAngular', //html editor inside transcriptions inline
   // DEPENCIES: own filters
     'textOperations', //my filters on strings
     'arrayOperations', //my filters on arrays
@@ -67,6 +67,57 @@ var myApp = angular.module('archivi',
   // use more time to load the page
   .constant('someInitTime', 1000)
 
+/////////////////////////////////////////
+// How to force reload (controller init) with ui router
+// http://stackoverflow.com/a/23198743/2114395
+.config(function($provide) {
+    $provide.decorator('$state', function($delegate, $stateParams) {
+        $delegate.forceReload = function() {
+            return $delegate.go($delegate.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+        };
+        return $delegate;
+    });
+})
+
+/////////////////////////////////////////
+// HOW TO GET FOCUS - this can be used from any controller
+// http://stackoverflow.com/a/18295416
+.directive('focusOn', function(textAngularManager) {
+
+   return function(scope, elem, attrs) {
+      scope.$on('focusOn', function(e, name, tangular) {
+
+        /////////////////////
+        // Fix the focus for textAngular editor
+        if (tangular) {
+            // Retrieve the scope and trigger focus
+            var editorScope = textAngularManager.retrieveEditor(name).scope;
+            //console.log("Get", name);
+            editorScope.displayElements.text[0].focus();
+        /////////////////////
+        } else {
+            // Normal mode
+            if(name === attrs.focusOn) {
+              //console.log("TEST", elem, elem[0].focus);
+              elem[0].focus();
+            }
+        }
+        /////////////////////
+      });
+   };
+})
+
+.factory('focus', function ($rootScope, $timeout) {
+  return function(name, tangular) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name, tangular);
+    }, 150);
+  }
+})
 
 /////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY

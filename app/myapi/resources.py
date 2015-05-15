@@ -3,9 +3,9 @@
 Impement restful Resources for flask
 """
 
-import json
+import json, types
 # Will use the restful plugin instead!
-from flask.ext.restful import reqparse, abort, Resource
+from flask.ext.restful import reqparse, abort, Resource, request
 # Log is a good advice
 from bpractices.exceptions import log, LoggedError
 # The global data
@@ -25,15 +25,21 @@ dthandler = lambda obj: ( obj.isoformat()
 # This one above could/should be a class
 # http://stackoverflow.com/a/23287543
 
+###############################
+# TO FIX - make one function/class from what you find in app.py
+#limit_remote_addr
 # Please fix me here: http://esd.io/blog/flask-apps-heroku-real-ip-spoofing.html
-from flask import request # handle ip
 def get_ip():
     ip = None
     if not request.headers.getlist("X-Forwarded-For"):
        ip = request.remote_addr
+       #print "Remote", ip
     else:
        ip = request.headers.getlist("X-Forwarded-For")[0]
+       #print request.headers
+       #print "Forward", ip
     return ip
+###############################
 
 def clean_parameter(param=""):
     """ I get parameters already with '"' quotes from curl? """
@@ -44,9 +50,9 @@ def clean_parameter(param=""):
 def check_empty_data(data):
     """ Make sure parser didn't get an empty request """
     counter = 0
-    # check if all data is empty (None)
+    # check if all data is empty
     for value in data.iteritems():
-        if value == None or value == '':
+        if isinstance(value, types.NoneType) or value == '':
             counter += 1
     if data.__len__() == counter:
         return True
@@ -115,17 +121,26 @@ class GenericDBResource(Resource):
         which were not added here as argument ***
         """
         self.parser = reqparse.RequestParser()
+
+        #value = str #NO!!
+        basevalue = unicode
+        # http://flask-restful.readthedocs.org/en/latest/api.html#module-reqparse
+        # http://stackoverflow.com/a/9942822/2114395
+
         # Extra parameter id for POST updates or key forcing
-        self.parser.add_argument("id", type=str)
+        self.parser.add_argument("id", type=basevalue)
 
         # Based on my datamodelled ORM class
         # Cycle class attributes
         for key, value in g.rdb.model.list_attributes().iteritems():
             act = 'store'
             loc = ['headers', 'values'] #multiple locations
+
             # Decide type based on attribute
+            # Base is function return value
+            # I am creating an option to handle arrays:
             if value == 'makearray':
-                value = str
+                value = basevalue
                 act = 'append'
             # elif '_time' in key:
             #     print "Type ", key, value, act, loc
@@ -135,6 +150,35 @@ class GenericDBResource(Resource):
 
         return self.parser
 
+    def get_params(self):
+        """ Checks on data received """
+        params = self.parser.parse_args()
+
+        data = {}
+        for (parname, parval) in params.iteritems():
+            #print "Param", parname, parval, type(parval)
+
+            # Handling lists with checks
+            if isinstance(parval, types.ListType):
+                newlist = list()
+                parlist = list(parval)
+                print "This is a list", parlist
+                #print dir(parlist)
+
+                for content in list(parval):
+                    print "Content: *" + content + "*"
+                    if content != "" and not isinstance(content, types.NoneType):
+                        newlist.append(content)
+
+                data[parname] = newlist
+
+            elif not isinstance(parval, types.NoneType):
+                # Very important: this sanitize updates, avoid to set
+                # empty values for we did not receive from POST/PUT
+                data[parname] = parval
+
+        return data
+
     @abort_on_db_fail
     def get(self, data_key=None):
         """
@@ -142,11 +186,10 @@ class GenericDBResource(Resource):
         restful docs in /quickstart.html#data-formatting
         """
 
+        self.log.debug("IP: " + get_ip())
         self.log.info("API: Received 'search'")
-        params = self.parser.parse_args()
-        for (parname, value) in params.iteritems():
-            #print "Param", parname, value
-            params[parname] = value
+
+        params = self.get_params()
 
         # Query RDB filtering on a single key
         if data_key != None:
@@ -176,27 +219,27 @@ class GenericDBResource(Resource):
         """
 
         # This call will raise errors if types are not as defined in the Model
-        data = self.parser.parse_args()
-
+        data = self.get_params()
         if check_empty_data(data):
             return "Received empty request", hcodes.HTTP_BAD_REQUEST
-
         self.log.debug("API: POST request open")
-        self.log.debug(data)
 
+        #self.log.debug(data)
         #################
         # Check if PUT or POST - depends on data_key presence
         data_key = None
         if "id" in data:
             data_key = data.pop("id")
 
+##############################
         key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
-        #################
+##############################
 
         # Should build a better json array response
         return key, hcodes.HTTP_OK_CREATED
 
+# TO FIX - this is almost a post duplicate...
     @abort_on_db_fail
     def put(self, data_key):
         """
@@ -205,19 +248,21 @@ class GenericDBResource(Resource):
         """
         data_key = clean_parameter(data_key)
 
-        self.log.debug("API: PUT request open for " + data_key)
-
-        data = self.parser.parse_args()
+        data = self.get_params()
         if check_empty_data(data):
             return "Received empty request", hcodes.HTTP_BAD_REQUEST
+        self.log.debug("API: PUT request open for " + data_key)
 
         # always empty in put - or don't care.
         if "id" in data:
             data.pop("id")  #trash it
         # in this case i use the data_key
 
+##############################
         key = g.rdb.insert(data, data_key, get_ip())
         self.log.debug("API: Insert of key " + key.__str__())
+##############################
+
         return key, hcodes.HTTP_OK_CREATED
 
     @abort_on_db_fail

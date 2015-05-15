@@ -209,6 +209,30 @@ class StepContent(GenericORMModel):
     hashes = 'list'
 
 ##############################
+class DocumentsUploaded(GenericORMModel):
+    """ The list of files and transcriptions uploaded """
+    table = 'docs'
+    @staticmethod
+    def code(value):
+        return value
+    @staticmethod
+    def filename(value):
+        return value
+    @staticmethod
+    def filetype(value):
+        return value
+    @staticmethod
+    def upload_time(value):
+        return value
+    @staticmethod
+    def upload_user(value):
+        return value
+    @staticmethod
+    def recordid(value):
+        return value
+    transcriptions = 'list'
+
+##############################
 class RegisterIdentifier(GenericORMModel):
     """ A service used to provide identifiers to drafts and published documents """
     table = 'myidprovider'

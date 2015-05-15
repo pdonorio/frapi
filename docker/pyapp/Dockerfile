@@ -1,25 +1,32 @@
-##############################################
-FROM apic_data
+FROM ubuntu:14.04
 MAINTAINER "Paolo D'Onorio De Meo" p.donoriodemeo@gmail.com
+ENV TERM xterm
 
-# Debug with updated package if errors comes with next command
-RUN apt-get update
+##PYTHON: # Update packages check (or it won't find setuptools)
+RUN apt-get update && apt-get install -y python-setuptools python-dev \
+    build-essential \
+    libjpeg-dev \
+    && easy_install pip
+
+# ##GNU SCREEN
+# RUN apt-get install screen
+# ADD rc/screenrc /root/.screenrc
+# RUN echo "screen" >> /screen.sh
 
 #Install curl if not exists - to query and test
-#Benchmarks on concurrency?
 RUN apt-get install -y curl apache2-utils git
-# Clean up APT
-    #&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#Benchmarks on concurrency?
 
 #PIP installs
 RUN pip install --upgrade pip
-RUN pip install rethinkdb==1.16.0-2
-ADD requirements.txt /src/requirements.txt
+ADD requirements.txt /requirements.txt
 #Install flask and rethinkdb driver
-RUN pip install -r /src/requirements.txt
 #Install crossdomain add-on
-#http://flask-cors.readthedocs.org/en/latest/
-RUN pip install -U flask-cors
+#http://flask-cors.readthedocs.org/en/latest/ #RUN pip install -U flask-cors
+# rethinkdb==1.16.0-2
+# RethinkORM==0.3.0
+#RUN pip install -r /requirements.txt
+RUN cat /requirements.txt | xargs -n 1 -L 1 pip install
 
 #apply patch to ORM!! rethinkdb driver has a new option...
 ADD rethinkdb.patch /tmp/rethinkdb.patch
@@ -35,18 +42,15 @@ RUN cd /usr/local/lib/python2.7/dist-packages && git apply /tmp/rethinkdb.patch
 # USER web
 # RUN ln -s /usr/local/shared app
 
-# #USE SCREEN?
-RUN echo "screen" >> /screen.sh
-
 # Put main script inside root directory
-ADD security.sh /root/security.sh
+#ADD security.sh /root/security.sh
 
 # Open the port to other containers?
-EXPOSE 5000
-
+EXPOSE 5000 6000
 # DEBUG MODE FOR DEVELOPMENT
 # ENTRYPOINT ["bash"]
 # CMD ["/root/security.sh"]
 # If needed in production use fig config file
 
-ENV TERM xterm
+RUN mkdir -p /tmp/logs
+VOLUME /tmp/logs

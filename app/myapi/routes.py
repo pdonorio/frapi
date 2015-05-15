@@ -40,7 +40,8 @@ api = Api(app, catch_all_404s=True)
 ## AUTH EXAMPLE:
 #api.add_resource(resources.LogUser, '/login')
 
-FIXED_APIURL = '/api/v1.0'
+#FIXED_APIURL = '/api/v1.0'
+FIXED_APIURL = ''
 
 def resources_init(myresources):
     for name, content in myresources.iteritems():

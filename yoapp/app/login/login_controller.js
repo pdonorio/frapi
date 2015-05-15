@@ -3,25 +3,6 @@
 // List of controllers
 myApp
 
-// HOW TO GET FOCUS
-// http://stackoverflow.com/a/18295416
-.directive('focusOn', function() {
-   return function(scope, elem, attr) {
-      scope.$on('focusOn', function(e, name) {
-        if(name === attr.focusOn) {
-          elem[0].focus();
-        }
-      });
-   };
-})
-.factory('focus', function ($rootScope, $timeout) {
-  return function(name) {
-    $timeout(function (){
-      $rootScope.$broadcast('focusOn', name);
-    });
-  }
-})
-
 //////////////////////////////////////////////////////////////
 .controller('LoginController',
     function ($scope, $state, $stateParams, Logger, focus, user)

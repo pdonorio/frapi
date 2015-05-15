@@ -18,14 +18,69 @@
   </submission-step>
 
   <!-- Upload - This will be last step, so take double the necessary space -->
-  <div class="col-md-8"
+  <div class="col-md-10"
     ng-show="current == steps.length-1 || current == steps.length" >
      <article ng-class="{'blur': current < steps.length}" >
       <div class="well">
         <h4 ng-if='current == steps.length-1'>Successivo:</h4>
+
+        <!-- uploader directive -->
         <file-uploader></file-uploader>
+
+        <!-- button to tell user to go to next step... -->
+        <div ng-if='current == steps.length && docs.length > 0'>
+          <a href ui-sref='logged.submission.step({myId:myrecordid, stepId:current+1})'
+          ><button type="button" class="btn btn-warning"
+          >Elabora trascrizioni
+              <i class="fa fa-caret-right"></i>
+          </button></a>
+        </div>
       </div>
      </article>
+  </div>
+
+  <!-- FILE PROCESS -->
+  <div class="col-md-9" ng-show="current == steps.length+1" >
+      <div class="panel panel-default shad">
+        <div class="panel-heading">
+            <h3> Lista di immagini associate </h3>
+        </div>
+        <div class="panel-body">
+
+        <span ng-hide='docs.length > 0'>
+            Non ci sono documenti.
+        </span>
+
+        <table class="table table-hover" ng-if='docs.length > 0'>
+            <thead>
+             <tr>
+                <th>Code</th>
+                <th>Image</th>
+                <th>Transcription</th>
+             </tr>
+            </thead>
+            <tbody>
+             <tr ng-repeat='doc in docs'>
+                <td>{{doc.code || '-'}}</td>
+                <td>
+                    <img ng-src="uploads/{{doc.code}}/TileGroup0/0-0-0.jpg"></img>
+                </td>
+                <td>
+                  <button class="btn btn-default" ng-click='openModal(doc.id)'>
+                    Edit
+                    <span class="badge">{{doc.transcriptions.length || '0'}}</span>
+                  </button>
+                 or
+                 <button class='btn btn-danger' ng-click='removeDoc(doc.id)'>
+                    Remove <i class='fa fa-trash'></i>
+                 </button>
+                </td>
+             </tr>
+            </tbody>
+        </table>
+
+        </div>
+      </div>
   </div>
 
 </div>

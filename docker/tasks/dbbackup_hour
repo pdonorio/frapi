@@ -1,0 +1,6 @@
+#!/bin/bash
+dir="backup"
+mkdir -p /$dir
+cd /$dir
+rethinkdb dump -c rdb_1 -e webapp
+echo "Completed backup"

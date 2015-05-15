@@ -4,11 +4,14 @@
 myApp
 
 //////////////////////////////////////////////////////////////
-.controller('SubmissionController', function ($scope, $state, $stateParams, $timeout, NotificationData, AppConfig, StepList, draft)
+.controller('SubmissionController', function (
+    $rootScope, $scope, $state, $stateParams, $timeout, $modal,
+    Logger, NotificationData, AppConfig, StepList, draft, DocumentsFactory )
 {
     ////////////////////////////////
     // Do not start with a current value as default (Let the URL decide)
     $scope.current = null;
+    var logger = Logger.getInstance('submission_main');
 
     ////////////////////////////////
     // STEPS as a parameter for the whole view
@@ -29,11 +32,11 @@ myApp
 
     // 0. Inject to all DOM elements
     // get variable inside url as param
-    $scope.myrecordid = $stateParams.myId;
+    $rootScope.myrecordid = $stateParams.myId;
     // 1. If id is 'new' get the identifier and set it inside the URL
     // This was moved to the resolve part in the routing section
     if (draft)
-        console.log("Obtained draft id", draft);
+        logger.info("Obtained draft id: " + draft);
     // 2. Switch to edit of the new dratf + step 1 (default if not set)
     if (draft !== null) {
         $timeout( function() {
@@ -53,6 +56,94 @@ myApp
             $scope.stepsNum = $scope.steps.length;
         });
     }
+
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    var refreshDocs = function(){
+        DocumentsFactory.get($scope.myrecordid).then(function(data){
+            //console.log("Received", data);
+            $scope.docs = data;
+        });
+    }
+    // Available also for uploader controller...
+    $rootScope.refreshDocs = refreshDocs;
+
+    $scope.removeDoc = function(id) {
+        logger.info("Removing " + id);
+        DocumentsFactory.unset(id).then(function(docs){ refreshDocs(); });
+    }
+
+    // Modal
+    $scope.openModal = function (fileid) {
+
+      logger.debug("Opened file: " + fileid);
+
+      var modalInstance = $modal.open({
+        size: 'lg',
+        // Html template
+        templateUrl: 'upload/manage_files.html',
+        // Use transcript resource
+        controller: function($rootScope, $scope, $modalInstance, Logger, DocumentsFactory, focus) {
+
+            var logger = Logger.getInstance('transcr_modal');
+            $scope.selectedFile = fileid;
+
+            var refresh = function() {
+                logger.debug("Refresh views");
+                DocumentsFactory.getTranscription(fileid).then(function(resp){
+                    if (!resp.transcriptions)
+                        resp.transcriptions = [];
+                    $scope.trans = resp.transcriptions;
+
+                    $scope.editor = [];
+                    for (var j = 0; j < $scope.trans.length; j++) {
+                        if ($scope.trans[j] == '')
+                            $scope.trans.splice(j, 1);
+                        else
+                            $scope.editor[j] = false;
+                    };
+                    // refresh main view
+                    refreshDocs();
+                });
+            }
+            var update = function() {
+              DocumentsFactory.setTranscriptions(
+                $scope.selectedFile, $scope.trans).then(function(){refresh()});
+            }
+            //first time
+            refresh();
+
+            $scope.addElement = function() {
+                $scope.trans.push(null);
+                var key = $scope.trans.length-1;
+                $scope.editor[key] = true;
+                focus("tangular" + key, true);
+            }
+            $scope.removeElement = function(key) {
+                logger.warn("Removing "+ key);
+                $scope.trans.splice(key, 1);
+                update();
+            }
+            $scope.editElement = function(key) {
+                $scope.editor[key] = true;
+                focus("tangular" + key, true);
+            }
+            $scope.saveElement = function(key) {
+                logger.info("Saving from key "+key);
+                $scope.editor[key] = false;
+                update();
+            }
+            $scope.closeModal = function() {
+                $modalInstance.close();
+            }
+        }
+      }); // END UPLOAD CONTROLLER
+    };
+
+//DEBUG //DEBUG
+//$scope.openModal("809f6c25-4db1-4632-b52c-6767e6117984");
+//DEBUG //DEBUG
+
 }) //end SubmissionController
 
 //////////////////////////////////////////////////////////////
@@ -65,7 +156,7 @@ myApp
 .controller('StepDirectiveController', function (
     $rootScope, $filter,
     $scope, $timeout, directiveTimeout, NotificationData, AppConfig,
-    StepTemplate, StepContent, IdProvider)
+    StepTemplate, StepContent)
 {
 
     ////////////////////////////////////////////////
@@ -185,7 +276,7 @@ myApp
           return true;
         }
         // Validation
-        console.log("Check data", data);
+        //console.log("Check data", data);
         // Unknown type. Problem in configuration.
         return "La tipologia '"+type+"' non e' ancora implementata";
     }

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js" ng-app="archivi" ng-controller="InitController">
   <head>
-    <!-- <base href="/app/" /> -->
+    <!--
+    <base href="/app/" />
     <meta charset="utf-8">
+    -->
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
     <title>Spectacle</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -13,6 +17,7 @@
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel='stylesheet' href='/bower_components/textAngular/src/textAngular.css'>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -56,6 +61,9 @@
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
     <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/cryptojslib/rollups/sha256.js"></script>
+    <script src='/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+    <script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+    <script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -64,7 +72,6 @@
         <script src="scripts/conf.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/routing.js"></script>
-        <!-- new logic -->
         <script src="submission/idprovider_service.js"></script>
         <script src="submission/steplist_model.js"></script>
         <script src="submission/stepcontent_model.js"></script>
@@ -75,11 +82,12 @@
         <script src="login/authorization_service.js"></script>
         <script src="login/accounting_model.js"></script>
         <script src="login/login_controller.js"></script>
+        <script src="upload/document_service.js"></script>
         <script src="upload/uploader_controller.js"></script>
         <script src="upload/fileuploader_directive.js"></script>
         <script src="tasks/task_service.js"></script>
         <script src="tasks/task_controller.js"></script>
-        <!-- new logic -->
+        <!-- old logic... -->
         <script src="scripts/controllers/initcontroller.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/search.js"></script>

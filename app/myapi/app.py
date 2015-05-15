@@ -2,7 +2,7 @@
 """ Beautiful and fun server API - thanks to ***flask*** """
 
 # Flask app for the api handling
-from flask import Flask, g, abort # 'g' obj is global share for app context, NOT REQUEST
+from flask import Flask, g, abort, request # 'g' obj is global share for app context, NOT REQUEST
 # Handle opening and closing of my Database
 from rdb.rdb_handler import RethinkConnection as db
 # Import html codes
@@ -14,12 +14,13 @@ from bpractices.logger import log
 
 # === Create the app ===
 app = Flask(__name__)
+
 # config init
 app.config.from_object(__name__)
 # Only in debug mode?
 CORS(app, headers=['Content-Type'])
 # Create logger
-log.setup_istance(None, app.logger)
+log.setup_instance(None, app.logger)
 
 #############################################
 # === App setup ===
@@ -79,6 +80,45 @@ def before_request():
         try_to_connect()
     # Database should be already connected in "before_first_request"
     # But the post method fails to find the object!
+
+
+################################################
+## I want API to respond only to my Proxy
+## otherwise reject
+
+# Find the current network this node is in
+import os, re
+SOCK = os.environ.get('DB_PORT')
+# Only check first two numbers.
+# Also the third one may change inside a big stack of container cluster.
+reg = re.compile('([0-9]+\\.[0-9]+)\\.[0-9]+\\.')
+match = reg.findall(SOCK)
+mynet = ""
+if match:
+    # First 3 numbers of the IP
+    mynet = match[0]
+else:
+    raise BaseException("No network environment available")
+
+@app.before_request
+def limit_remote_addr():
+
+    ip = "localhost"    #localhost will note be in the iplist
+
+    fwd = "X-Forwarded-Ip"
+    iplist = request.headers.getlist(fwd)
+    if len(iplist) > 0:
+        ip = iplist[0]
+    else:
+        real = "X-Real-Ip"
+        iplist = request.headers.getlist(real)
+        if len(iplist) > 0:
+            ip = iplist[0]
+
+    # Trust a proxy only if inside my private LAN network ;)
+    if mynet not in ip:
+        app.logger.warning("Rejected " + ip + " [expecting "+mynet+".*]")
+        abort(403)  # Forbidden
 
 # === What to do AFTER a single request ===
 # @app.teardown_request

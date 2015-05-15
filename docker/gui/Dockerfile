@@ -1,8 +1,5 @@
 # Nginx Dockerfile **official**
 # https://github.com/dockerfile/nginx
-
-#http://blog.tryolabs.com/2015/03/26/configurable-docker-containers-for-multiple-environments/
-# Pull base image.
 FROM ubuntu:14.04
 ENV TERM xterm
 
@@ -31,26 +28,7 @@ RUN cp /etc/nginx/nginx.conf /tmp/conf && \
 # also Increase max upload size
 
 #################################################
-#################################################
-###### CERTIFICATES
-
-### take 1 - DEBUG - Configure your own SSL
-# ADD *ssl* /tmp/
-# WORKDIR /tmp
-# RUN /bin/bash /tmp/ssl.sh
-# WORKDIR /var/www
-
-### take 2 - Configure from certificate
-#ADD privateUnKey.pem /etc/nginx/ssl/server.key
-#RUN chmod 400 /etc/nginx/ssl/server.key
-#ADD publicCert.pem /etc/nginx/ssl/server.crt
-
-### take 3 - PRODUCTION - Configure valid certificates from volumes
-# see pygui.yml
-#################################################
-#################################################
-
-# Expose ports
+## Expose ports
 # ssl port
 EXPOSE 443
 # redirection from http to https
@@ -58,4 +36,4 @@ EXPOSE 80
 
 # Finish
 VOLUME ['/etc/nginx/sites-enabled','/var/www']
-#CMD ["nginx"]
+CMD ["nginx"]
