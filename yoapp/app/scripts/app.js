@@ -84,6 +84,27 @@ var myApp = angular.module('archivi',
 })
 
 /////////////////////////////////////////
+// HOW TO GET FOCUS - this can be used from any controller
+// http://stackoverflow.com/a/18295416
+.directive('focusOn', function() {
+   return function(scope, elem, attrs) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attrs.focusOn) {
+          //console.log("TEST", elem, elem[0].focus);
+          elem[0].focus();
+        }
+      });
+   };
+})
+.factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    }, 150);
+  }
+})
+
+/////////////////////////////////////////
 // FOR TESTING PURPOSE ONLY
 .controller('SomeController', function($scope)
 {
