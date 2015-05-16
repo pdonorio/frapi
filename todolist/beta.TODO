@@ -13,8 +13,8 @@ Security:
     ☐ Sync from old to local
       ✘ use docker machine? @cancelled (15-05-16 17:47)
       ✔ try with ftp container @done (15-05-16 17:47)
-        ☐ ftp in composer
-        ☐ set user/passw
+        ✔ ftp in composer @done (15-05-16 17:51)
+        ✔ set user/passw @done (15-05-16 17:51)
         ☐ copy file
     ☐ ssh new
       ☐ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/rdb_latest_dump.tar.gz

@@ -103,6 +103,8 @@ myftp:
         - "222:21"
     volumes_from:
         - backupdata
+# Add user:
+#docker exec -it frapi_myftp_1 bash -c "yes 'test' | pure-pw useradd bob -u ftpuser -d /backup && pure-pw mkdb"
 
 #########################################
 #########################################
