@@ -7,10 +7,18 @@ Security:
   ☐ list of production services
   ☐ list of development services
 ✔ spectaclebaroque domain  @done (15-05-15 17:39)
-  ☐ SSL
   ☐ Script import
-    ☐ ssh, backup_export, sync
-    ☐ import
+    ☐ ssh old
+      ☐ docker exec -it frapi_tasker_1 rethinkdb-dump -c db -f /backup/rdb_latest_dump.tar.gz
+    ☐ Sync from old to local
+      ✘ use docker machine? @cancelled (15-05-16 17:47)
+      ✔ try with ftp container @done (15-05-16 17:47)
+        ☐ ftp in composer
+        ☐ set user/passw
+        ☐ copy file
+    ☐ ssh new
+      ☐ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/rdb_latest_dump.tar.gz
+  ☐ SSL
 
 ☐ check cors
 ☐ change bad gateway message nginx
