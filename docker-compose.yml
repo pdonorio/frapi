@@ -94,6 +94,22 @@ proxy:
 
 #########################################
 #########################################
+# FILE SHARE
+
+myftp:
+    image: stilliard/pure-ftpd
+    #command:
+    ports:
+        - "222:21"
+    volumes_from:
+        - backupdata
+# Add user:
+##docker exec -it frapi_myftp_1 bash -c "yes 'test' | pure-pw useradd bob -u ftpuser -d /backup && pure-pw mkdb"
+# Put the file via ftp:
+##echo put data/backup/old/rdb_latest_dump.tar.gz test.tar.gz | ftp ftp://bob:test@awesome.dev:222/
+
+#########################################
+#########################################
 # DEBUG
 
 ######################
