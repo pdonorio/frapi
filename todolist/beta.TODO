@@ -1,26 +1,30 @@
 
 Security:
+  ✔ focus... @done (15-05-15 21:21)
 
-✔ focus... @done (15-05-15 21:21)
-☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
-  ☐ Remove debug options in nginx configuration @security
-  ☐ list of production services
-  ☐ list of development services
-✔ spectaclebaroque domain  @done (15-05-15 17:39)
+  #whatabout this
+  ✔ spectaclebaroque domain  @done (15-05-15 17:39)
   ☐ Script import
-    ☐ ssh old
+    ☐ ssh old:
       ☐ docker exec -it frapi_tasker_1 rethinkdb-dump -c db -f /backup/rdb_latest_dump.tar.gz
-    ☐ Sync from old to local
+      ☐ sync?
+    ✔ Sync from old to local @done (15-05-16 18:19)
       ✘ use docker machine? @cancelled (15-05-16 17:47)
       ✔ try with ftp container @done (15-05-16 17:47)
         ✔ ftp in composer @done (15-05-16 17:51)
         ✔ set user/passw @done (15-05-16 17:51)
         ✔ copy file @done (15-05-16 17:52)
-    ☐ ssh new
+    ☐ docker-machine new
       ☐ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/rdb_latest_dump.tar.gz
-  ☐ SSL
 
+☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
+  ☐ Remove debug options in nginx configuration @security
+  ☐ list of production services
+  ☐ list of development services
+
+☐ SSL
 ☐ check cors
+
 ☐ change bad gateway message nginx
 ☐ Limit (gunicorn?) max requests per second? per user?
 ☐ Db mask with login??
