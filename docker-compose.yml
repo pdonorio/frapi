@@ -100,13 +100,22 @@ myftp:
     image: stilliard/pure-ftpd
     #command:
     ports:
-        - "222:21"
+        - "20-21"
+        - "20000-20010"
+    voluems:
+        - docker/ftp/ports:/etc/pure-ftpd/conf/PassivePortRange
+        - docker/ftp/clients:/etc/pure-ftpd/conf/MaxClientsNumber
     volumes_from:
         - backupdata
-# Add user:
-##docker exec -it frapi_myftp_1 bash -c "yes 'test' | pure-pw useradd bob -u ftpuser -d /backup && pure-pw mkdb"
-# Put the file via ftp:
-##echo put data/backup/old/rdb_latest_dump.tar.gz test.tar.gz | ftp ftp://bob:test@awesome.dev:222/
+
+## Add user:
+#$ docker exec -it frapi_myftp_1 bash -c "yes 'test' | pure-pw useradd bob -u ftpuser -d /backup && pure-pw mkdb"
+
+## Fix permissions?
+#$ docker-machine ssh myocean1 chmod 777 /Users/projects/frapi/data/backup
+
+## Put the file via ftp:
+#$ echo put data/backup/old/rdb_latest_dump.tar.gz db.tar.gz | ftp ftp://bob:test@HOSTNAME:222/
 
 #########################################
 #########################################
