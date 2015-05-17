@@ -81,11 +81,17 @@ myApp
     }
 
     // A new file is uploaded
-    factory.unset = function(id) {
-        // Save a new document and get the id
-        return API.del(resource, id).then(function() {
-            logger.info("API removed: " + id);
-            return true;
+    factory.unset = function(id, fname) {
+
+        // Remove directories and files first
+        // File api has only one resource
+        return API.removeFile(fname).then(function() {
+            // Remove the document inside db via id
+            logger.info("Files deleted: " + fname);
+            return API.del(resource, id).then(function() {
+                logger.info("API removed: " + id);
+                return true;
+            });
         });
     }
 

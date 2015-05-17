@@ -68,9 +68,9 @@ myApp
     // Available also for uploader controller...
     $rootScope.refreshDocs = refreshDocs;
 
-    $scope.removeDoc = function(id) {
+    $scope.removeDoc = function(id, fname) {
         logger.info("Removing " + id);
-        DocumentsFactory.unset(id).then(function(docs){ refreshDocs(); });
+        DocumentsFactory.unset(id, fname).then(function(docs){ refreshDocs(); });
     }
 
     // Modal

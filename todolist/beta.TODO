@@ -17,10 +17,12 @@ Backup and restore:
       ✔ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/db.tar.gz @done (15-05-17 09:24)
 
 BUGS:
-  ☐ Fix file remove when deleting...
-    ☐ method inside API file
+  ✔ Fix file remove when deleting... @done (15-05-17 17:49)
+    ✔ method inside API file @done (15-05-17 12:23)
+    ✔ call the method via interface @done (15-05-17 17:44)
   ☐ Little improvement inside document search view
   ☐ Change password for MB
+    ☐ info@buonomo.eu
 
 Configuration:
   ☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
