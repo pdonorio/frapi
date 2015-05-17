@@ -16,6 +16,12 @@ Backup and restore:
     ✔ docker-machine new @done (15-05-17 09:23)
       ✔ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/db.tar.gz @done (15-05-17 09:24)
 
+BUGS:
+  ☐ Fix file remove when deleting...
+    ☐ method inside API file
+  ☐ Little improvement inside document search view
+  ☐ Change password for MB
+
 Configuration:
   ☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
     ☐ Remove debug options in nginx configuration @security
