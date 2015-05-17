@@ -1,36 +1,37 @@
 
-Security:
+Backup and restore:
   ✔ focus... @done (15-05-15 21:21)
-
   #whatabout this
   ✔ spectaclebaroque domain  @done (15-05-15 17:39)
-  ☐ Script import
-    ☐ ssh old:
-      ☐ docker exec -it frapi_tasker_1 rethinkdb-dump -c db -f /backup/rdb_latest_dump.tar.gz
-      ☐ sync?
+  ✔ Script import @done (15-05-17 09:23)
+    ✔ ssh old: @done (15-05-17 09:23)
+      ✔ docker exec -it frapi_tasker_1 rethinkdb-dump -c db -f /backup/rdb_latest_dump.tar.gz @done (15-05-17 09:23)
+      ✔ sync? @done (15-05-17 09:23)
     ✔ Sync from old to local @done (15-05-16 18:19)
       ✘ use docker machine? @cancelled (15-05-16 17:47)
       ✔ try with ftp container @done (15-05-16 17:47)
         ✔ ftp in composer @done (15-05-16 17:51)
         ✔ set user/passw @done (15-05-16 17:51)
         ✔ copy file @done (15-05-16 17:52)
-    ☐ docker-machine new
-      ☐ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/rdb_latest_dump.tar.gz
+    ✔ docker-machine new @done (15-05-17 09:23)
+      ✔ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/db.tar.gz @done (15-05-17 09:24)
 
-☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
-  ☐ Remove debug options in nginx configuration @security
-  ☐ list of production services
-  ☐ list of development services
+Configuration:
+  ☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
+    ☐ Remove debug options in nginx configuration @security
+    ☐ list of production services
+    ☐ list of development services
 
-☐ SSL
-☐ check cors
+  ☐ SSL
+  ☐ check cors
+  ☐ change bad gateway message nginx
 
-☐ change bad gateway message nginx
-☐ Limit (gunicorn?) max requests per second? per user?
-☐ Db mask with login??
- ☐ limit_remote_addr function
-   ☐ app.py
-   ☐ resources.py
+  ☐ Limit (gunicorn?) max requests per second? per user?
+  ☐ An init dump saved in a dropbox link
+  ☐ Db mask with login??
+   ☐ limit_remote_addr function
+     ☐ app.py
+     ☐ resources.py
 
 --- ✄ -----------------------
 What else:
