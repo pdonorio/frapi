@@ -51,6 +51,19 @@ fileapi:
         - pycode
         - updata
 
+##############################
+## Periodic tasks
+backupdata:
+    extends:
+        file: common.yml
+        service: backupdata
+tasker:
+    build: ../docker/tasks
+    links:
+        - rdb:db #Slave?
+    volumes_from:
+        - backupdata
+
 ##########################
 ## PROXY
 proxy:
@@ -62,5 +75,3 @@ proxy:
         - fileapi:fapi
     volumes_from:
         - updata
-
-##############################

@@ -5,9 +5,13 @@ Configuration:
     ✔ list of base services @done (15-05-18 17:22)
       ✔ data containers @done (15-05-18 17:22)
       ✔ others? @done (15-05-18 20:35)
-    ☐ list of development services
-      ☐ Split debug options in nginx configuration in another sites enabled file
-    ☐ list of production services
+    ✔ list of development services @done (15-05-18 21:30)
+      ☐ Split debug options in nginx configuration in another sites enabled file?
+    ✔ list of production services @done (15-05-18 21:30)
+    ☐ List of init tasks
+    ☐ Sync conf (e.g. ftp)
+      ☐ external links
+        ☐ https://docs.docker.com/compose/yml/#external_links
 
   ☐ SSL
   ☐ check cors
