@@ -22,6 +22,7 @@ BUGS:
     ✔ call the method via interface @done (15-05-17 17:44)
   ✔ Little improvement inside document search view @done (15-05-18 07:23)
   ☐ Record remove?
+    ☐ StepContent object, foreach on every step of the record
   ☐ Change password for MB
     ☐ info@buonomo.eu
   ☐ Write plans?

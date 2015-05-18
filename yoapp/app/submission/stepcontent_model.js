@@ -71,6 +71,18 @@ myApp
     });
   }
 
+  function removeData(id) {
+
+    console.log("TEST", id);
+    return API.del(resource, id)
+    .then(function(){
+        console.log("Removed:", id);
+        return id;
+    });
+
+
+  }
+
   /*********************************
   ** CLASS *
   ******************************** */
@@ -139,9 +151,8 @@ myApp
     return saveData(this, data);
 
   }
-  StepContent.prototype.unsetData = function (key) {
-    console.log("Content remove", key);
-    //return removeData(key);
+  StepContent.prototype.unsetData = function () {
+    return removeData(this.Record);
   };
 
   /*********************************

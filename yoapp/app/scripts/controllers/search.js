@@ -9,7 +9,7 @@
  */
 
 myApp
- .controller('ViewController', function ($scope, $rootScope, API, perpageDefault, currentpageDefault, focus)
+ .controller('ViewController', function ($scope, $rootScope, API, StepContent, perpageDefault, currentpageDefault, focus)
 {
 
     // Init: Html scope data
@@ -68,6 +68,8 @@ myApp
    Refresh datatable from API call
   ***************************************
   ************************************* */
+    var resource = 'stepscontent';
+    var userresource = 'accounts';
 
     //Bind data in html to function
     $scope.reloadTable = function(perpage, currentpage)
@@ -75,8 +77,6 @@ myApp
 
       // Get the data (as a promise)
       var params = {perpage: perpage, currentpage: currentpage};
-      var resource = 'stepscontent';
-      var userresource = 'accounts';
 
 // TO FIX - use userlist inside resolve
       // GET USERS list
@@ -90,6 +90,7 @@ myApp
           });
           //console.log("Users", users);
 
+// TO FIX - use StepContent
           // Get raw content...
           API.get(resource, params).then(function(data) {
 
@@ -142,8 +143,8 @@ myApp
     // First time call to get data - with defaults
     $scope.reloadTable(perpageDefault, currentpageDefault);
 
-
     $scope.removeRecord = function(id) {
-        console.log("Remove:", id);
+        var contentHandle = StepContent.build(id, null);
+        contentHandle.unsetData(id).then();
     }
 });

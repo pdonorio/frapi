@@ -92,13 +92,12 @@ myApp.factory('API', function(RestAPI, RestFileAPI, apiTimeout,
     //###################################
     //DELETE DATA
     Factory.del = function(resource, id) {
-
       // Check id
       if (!id) {
         console.log("Trying to delete no rows");
         return false;
       }
-
+      // Use resource
       resource += "/" + id;
       var api = RestAPI.all(resource);
       return api

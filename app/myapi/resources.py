@@ -269,6 +269,7 @@ class GenericDBResource(Resource):
     def delete(self, data_key):
         """ Remove specific element """
         data_key = clean_parameter(data_key)
+
         self.log.info("API: DELETE request for " + data_key)
         g.rdb.remove(data_key)
         return '', hcodes.HTTP_OK_NORESPONSE
