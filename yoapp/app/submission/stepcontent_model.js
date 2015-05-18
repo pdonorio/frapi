@@ -25,13 +25,20 @@ myApp
         step: step,
         perpage: 999,
     };
+    //if (step) parameters.step = step;
 
     return API.get(resource, parameters)
       .then(function(response) {
           var data = [];
           // Response should be one row in this case
-          if (response.count > 0)
-            data = response.items.pop();
+          if (response.count > 0) {
+            // Only one step, mean only one row
+            if (step)
+                data = response.items.pop();
+            // All steps?
+            else
+                data = response.items;
+          }
           return data;
       });
   }
@@ -63,7 +70,6 @@ myApp
         data.myid = response;
         return logOperation(data).then(function(){
             obj.saveBackup(data);
-            //console.log(response);
             return true;
         });
     }, function() {
@@ -73,11 +79,16 @@ myApp
 
   function removeData(id) {
 
-    console.log("TEST", id);
-    return API.del(resource, id)
-    .then(function(){
-        console.log("Removed:", id);
-        return id;
+    return loadData(id, null).then(function(data){
+
+        console.log("Data", data);
+        for (var j = 0; j < data.length; j++) {
+            logger.warn("Removing step " + data[j].step +": " + data[j].id);
+            // remove
+            API.del(resource, data[j].id).then();
+        };
+        return true;
+
     });
 
 

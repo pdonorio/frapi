@@ -78,11 +78,12 @@
                 </span>
 
               </td>
-              <!--buttons-->
               <td>
+
+              <!--buttons-->
                <a ui-sref='logged.view({myId:record})'>
                 <button type="button" class="btn btn-xs btn-default"
-                  tooltip-placement="left" disabled
+                  tooltip-placement="left"
                   tooltip="Guarda il record {{record | limitTo:8}}">
                   <i class="fa fa-eye fa-2x"> </i>
 
@@ -95,12 +96,14 @@
                   <i class="fa fa-edit fa-2x"></i>
                 </button>
                </a>
+               <a href ng-click="removeRecord(record)">
                 <button type="button" class="btn btn-xs btn-danger"
-                  ng-click="removeRecord(record)"
                   tooltip-placement="right"
                   tooltip="Elimina il record {{record | limitTo:8}}">
                   <i class="fa fa-trash fa-2x"></i>
                 </button>
+               </a>
+
               </td>
             </tr>
           </tbody>

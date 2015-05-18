@@ -145,6 +145,14 @@ myApp
 
     $scope.removeRecord = function(id) {
         var contentHandle = StepContent.build(id, null);
-        contentHandle.unsetData(id).then();
+
+// REMOVING
+        contentHandle.unsetData(id).then(function(completed){
+            if (completed) {
+                console.log("Refresh");
+                $scope.reloadTable(perpageDefault, currentpageDefault);
+// REMOVED
+            }
+        });
     }
 });
