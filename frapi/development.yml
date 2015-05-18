@@ -1,0 +1,31 @@
+# Everything here is HTTP (not https and certificates)
+
+##########################
+## From common
+
+# DB
+dbdata:
+  extends:
+    file: common.yml
+    service: dbdata
+devdb:
+    extends:
+        file: common.yml
+        service: rdb
+# API
+pycode:
+    extends:
+        file: common.yml
+        service: pycode
+devapi:
+    extends:
+        file: common.yml
+        service: api
+    command: python main.py # debug mode, with restart
+    volumes_from:
+        - pycode
+    links:
+        - devdb:db
+
+##########################
+## Only for development
