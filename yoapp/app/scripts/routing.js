@@ -252,6 +252,8 @@ myApp
             // send broadcast signal to who is listening:
             // i want the grey background (gbg)
             $rootScope.$emit('rootScope:emit', 'gbgon');
+
+            $rootScope.edit.available = false;
         },
       })
       .state('logged.about', {
