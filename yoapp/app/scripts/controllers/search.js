@@ -93,7 +93,6 @@ myApp
           // Get raw content...
           API.get(resource, params).then(function(data) {
 
-                var lastKey = -1;
                 var documents = {}
                 var hashes = {};
 
@@ -104,24 +103,24 @@ myApp
                     // hashes
                     hashes[el.recordid] = true;
                     // Current element
-                    documents[++lastKey] =
+                    documents[el.recordid] =
                     {
-                        record: el.recordid,
+                        //record: el.recordid,
                         ts: el.latest_timestamp,
                         user: users[el.user],
                         steps: {},
                     }
                   }
                   //Add steps
-                  documents[lastKey].steps[el.step] = el.values;
+                  documents[el.recordid].steps[el.step] = el.values;
 
                 });
-
-                console.log(documents);
+                //console.log(documents);
 
                 //console.log(documents);
                 $scope.data = documents;
-                $scope.datacount = documents.length;
+                //$scope.datacount = documents.length;
+                $scope.datalength = Object.keys(documents).length;
 
                 var from = (parseInt(perpage) * (parseInt(currentpage)-1)) +1;
                 if (from < 1) { from = 1; }

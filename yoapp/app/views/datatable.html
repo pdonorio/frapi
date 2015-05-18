@@ -5,7 +5,7 @@
     </div>
 
     <div class="panel-body">
-     <div ng-show='data.length > 0'>
+     <div ng-show='datalength > 0'>
 
       <!-- FORM -->
       <form role="form" ng-submit="search()">
@@ -44,7 +44,7 @@
     <div ng-show='mytable.show'>
 
       <!-- data table -->
-      <div ng-show='data.length > 0'>
+      <div ng-show='datalength > 0'>
 
         <table class="table table-striped">
           <thead>
@@ -53,8 +53,9 @@
             </tr>
           </thead>
 
+
           <tbody>
-            <tr ng-repeat="row in data track by row.ts"> <!-- use timestamp to order -->
+            <tr ng-repeat="(record,row) in data"> <!-- use timestamp to order -->
               <td>
                 {{row.user}}:<b>{{row.record | limitTo:8}}</b>
                 <br>
@@ -99,15 +100,15 @@
       <hr>
       <div>
           <!-- LOADING -->
-          <div id='spinner' ng-hide='data.length >= 0'>
+          <div id='spinner' ng-hide='datalength >= 0'>
             Loading <i class="fa fa-refresh fa-spin"></i>
           </div>
 
           <!-- NO DATA -->
-          <div id='nodata' ng-show='data.length == 0'> Nessun risultato. </div>
+          <div id='nodata' ng-show='datalength == 0'> Nessun risultato. </div>
 
           <!-- DATA stats and paging -->
-          <div ng-show='data.length >= 0'>
+          <div ng-show='datalength >= 0'>
             <div class="row">
               <div class="col-md-6 col-xs-6">
                 <span  class="label label-default"> Pagina corrente:</span> &nbsp;
@@ -119,11 +120,11 @@
               </div>
               <div class="col-md-6 col-xs-6">
                 <span  class="label label-primary">
-                  Elementi da {{from}} a {{from + data.length - 1}}
+                  Elementi da {{from}} a {{from + datalength - 1}}
                 </span>
                 &nbsp;
                 <span  class="label label-info">
-                  Totale: {{datacount}}
+                  Totale: {{datalength}}
                 </span>
               </div>
             </div>
