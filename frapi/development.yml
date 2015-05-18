@@ -36,4 +36,30 @@ devfapi:
         - updata
 
 ##########################
+## PROXY
+devproxy:
+    extends:
+        file: common.yml
+        service: proxy
+    ports:
+        - "4321:9090" #the debug db chateau
+        - "5432:7070" #the debug db monitor
+    links:
+        - devapi:api # i need to know the internal container which exposes api
+        - devfapi:fapi
+        - webdev:capi
+        - devdb:rmonitor
+    volumes_from:
+        - updata
+
+##########################
 ## Only for development?
+
+# Nodejs: Database admin and dist build
+webdev:
+    build: ../docker/jsdev
+    command: /opt/.nvm/v0.10.13/bin/node /opt/.nvm/v0.10.13/bin/chateau
+    volumes:
+        - ../yoapp:/opt/jsapp
+    links:
+        - devdb:db
