@@ -31,8 +31,12 @@ rdb:
     image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
 
 #############################
-## Restful API to access database
+## Restful API to access database and files
 api:
     build: ../docker/pyapp
     command: gunicorn -c gunicorn.conf.py main:app
+    working_dir: /opt/app
+fileapi:
+    build: ../docker/pyapp
+    command: python file.py #gunicorn?
     working_dir: /opt/app

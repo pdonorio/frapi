@@ -4,7 +4,7 @@ Configuration:
   ✔ Compose yaml configurations @done (15-05-18 17:22)
     ✔ list of base services @done (15-05-18 17:22)
       ✔ data containers @done (15-05-18 17:22)
-      ☐ others?
+      ✔ others? @done (15-05-18 20:35)
     ☐ list of development services
       ☐ Split debug options in nginx configuration in another sites enabled file
     ☐ list of production services
@@ -26,6 +26,9 @@ Configuration:
 
   ☐ Switch to angularstrap
     ☐ http://mgcrea.github.io/angular-strap/#
+
+  ☐ Git prune
+    ☐ http://stackoverflow.com/a/17029936/2114395
 
 --- ✄ -----------------------
 What else:

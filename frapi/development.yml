@@ -3,29 +3,37 @@
 ##########################
 ## From common
 
-# DB
-dbdata:
-  extends:
-    file: common.yml
-    service: dbdata
+# DB with no data dir, i restart every time from zero?
 devdb:
     extends:
         file: common.yml
         service: rdb
-# API
+# APIs in debug mode
 pycode:
     extends:
         file: common.yml
         service: pycode
+updata:
+    extends:
+        file: common.yml
+        service: updata
 devapi:
     extends:
         file: common.yml
         service: api
-    command: python main.py # debug mode, with restart
+    command: python main.py
     volumes_from:
         - pycode
     links:
         - devdb:db
+devfapi:
+    extends:
+        file: common.yml
+        service: fileapi
+    command: python file.py
+    volumes_from:
+        - pycode
+        - updata
 
 ##########################
-## Only for development
+## Only for development?
