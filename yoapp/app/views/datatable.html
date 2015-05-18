@@ -38,6 +38,7 @@
         <div collapse="isCollapsed">
           <div class="well well-lg">
             Advanced search options
+            <h4> <i>work in progress...</i> </h4>
           </div>
         </div>
 
@@ -162,7 +163,8 @@
 
   <div >
     <!-- ALERTS -->
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}"
+        close="closeAlert($index)">
         {{alert.msg}}
     </alert>
   </div>
