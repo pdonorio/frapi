@@ -53,13 +53,14 @@ myApp
 
       var cOptions = {
           secure: securing,
-// TO FIX - verify expiration
-          expires: exp,
+          //expires: exp,
           //domain: 'http://test.goo.devs', //path: '/login',
       };
       // Save
-      $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
       $cookies.put(COOKIEVAR_USER, username, cOptions);
+      // Only token will expire in one da
+      cOptions.expires = exp;
+      $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
       logger.log("Saved new cookie");
   }
 
