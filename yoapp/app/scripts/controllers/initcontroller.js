@@ -21,6 +21,7 @@ myApp
         "styles/main.css",
         "styles/topbar.css",
         "styles/blur.css",
+        //"styles/alerts_fade.css",
     ];
     var cssFont = 'https://fonts.googleapis.com/css?family=Mr+De+Haviland';
 

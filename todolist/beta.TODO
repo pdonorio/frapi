@@ -21,8 +21,8 @@ BUGS:
     ✔ method inside API file @done (15-05-17 12:23)
     ✔ call the method via interface @done (15-05-17 17:44)
   ✔ Little improvement inside document search view @done (15-05-18 07:23)
-  ☐ Record remove?
-    ☐ StepContent object, foreach on every step of the record
+  ✔ Record remove? @done (15-05-18 14:20)
+    ✔ StepContent object, foreach on every step of the record @done (15-05-18 14:20)
   ☐ Change password for MB
     ☐ info@buonomo.eu
   ☐ Write plans?
@@ -43,6 +43,8 @@ Configuration:
    ☐ limit_remote_addr function
      ☐ app.py
      ☐ resources.py
+
+  ☐ Switch to angularstrap
 
 --- ✄ -----------------------
 What else:
