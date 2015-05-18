@@ -5,24 +5,23 @@ import os, time
 import rethinkdb as r
 from rethinkdb.errors import RqlDriverError
 RDB_HOST = "db"
-RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
+RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT')
 
-testdb = True
-while testdb:
-    try:
-        r.connect(host=RDB_HOST, port=RDB_PORT)
-        print "Yeah"
-        testdb = False
-    except RqlDriverError, e:
-        print "Not reachable yet"
-    time.sleep(2)
+if RDB_PORT != None:
+    testdb = True
+    while testdb:
+        try:
+            r.connect(host=RDB_HOST, port=RDB_PORT)
+            print "Yeah"
+            testdb = False
+        except RqlDriverError, e:
+            print "Not reachable yet"
+        time.sleep(2)
 
 ################################################
 bind = "0.0.0.0:5000"
-
 import multiprocessing
 workers = multiprocessing.cpu_count() * 2 + 1
-#workers = 1
 
 accesslog = "/tmp/logs/guni.log"
 access_log_format = '%(h)s %(l)s %(u)s %(t)s ' \
@@ -36,3 +35,5 @@ access_log_format = '%(h)s %(l)s %(u)s %(t)s ' \
 # def pre_request(worker, req):
 #     print "TEST ME", worker, dir(req)
 #     #worker.log.debug("%s %s" % (req.method, req.path))
+
+################################################

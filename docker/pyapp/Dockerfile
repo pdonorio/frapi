@@ -46,7 +46,7 @@ RUN cd /usr/local/lib/python2.7/dist-packages && git apply /tmp/rethinkdb.patch
 #ADD security.sh /root/security.sh
 
 # Open the port to other containers?
-EXPOSE 5000 6000
+#EXPOSE 5000 6000
 # DEBUG MODE FOR DEVELOPMENT
 # ENTRYPOINT ["bash"]
 # CMD ["/root/security.sh"]

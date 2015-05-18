@@ -22,6 +22,8 @@ devapi:
         file: common.yml
         service: api
     command: python main.py
+    exposes:
+        - "5000"
     volumes_from:
         - pycode
     links:
@@ -31,6 +33,8 @@ devfapi:
         file: common.yml
         service: fileapi
     command: python file.py
+    exposes:
+        - "6000"
     volumes_from:
         - pycode
         - updata

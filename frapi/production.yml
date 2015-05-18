@@ -1,0 +1,66 @@
+# Everything here should be HTTPS!
+# use certificates!!
+
+##############################
+## Production database
+dbdata:
+  extends:
+    file: common.yml
+    service: dbdata
+rdb:
+    extends:
+        file: common.yml
+        service: rdb
+    volumes_from:
+         - dbdata     # Import data directory from storage container
+# We can join as many as we want
+rdbslave:
+    image: rethinkdb
+    command: rethinkdb --join master:29015 --bind all
+    links:
+        - rdb:master
+##############################
+## REST API
+pycode:
+    extends:
+        file: common.yml
+        service: pycode
+api:
+    extends:
+        file: common.yml
+        service: api
+    command: gunicorn -c gunicorn.conf.py main:app
+    exposes:
+        - "5000"
+    volumes_from:
+        - pycode
+    links:
+        - rdb:db
+updata:
+    extends:
+        file: common.yml
+        service: updata
+fileapi:
+    extends:
+        file: common.yml
+        service: fileapi
+    command: gunicorn -c gunicorn.conf.py file:app
+    exposes:
+        - "6000"
+    volumes_from:
+        - pycode
+        - updata
+
+##########################
+## PROXY
+proxy:
+    extends:
+        file: common.yml
+        service: proxy
+    links:
+        - api:api
+        - fileapi:fapi
+    volumes_from:
+        - updata
+
+##############################
