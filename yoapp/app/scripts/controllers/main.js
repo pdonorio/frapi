@@ -60,7 +60,7 @@ myApp
         {active:true,  link:'logged.main', name:'main', icon:'home', },
         //{active:false, link:'logged.submission', name:'add'},
         {active:false, link:'logged.search', name:'search', icon:'search'},
-        {active:false, link:'logged.status', name:'plan', icon:'cog', },
+        //{active:false, link:'logged.status', name:'plan', icon:'briefcase', },
 // TO FIX - give news back
         //{active:false, link:'logged.about', name:'about', icon:'info-circle', },
     ];

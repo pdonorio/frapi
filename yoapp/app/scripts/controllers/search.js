@@ -163,7 +163,7 @@ myApp
     };
 
 //debug
-$scope.addAlert('test');
+//$scope.addAlert('test');
     /////////////////////////////////////////////
 
     $scope.removeRecord = function(id) {

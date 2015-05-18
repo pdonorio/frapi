@@ -23,9 +23,10 @@ BUGS:
   ✔ Little improvement inside document search view @done (15-05-18 07:23)
   ✔ Record remove? @done (15-05-18 14:20)
     ✔ StepContent object, foreach on every step of the record @done (15-05-18 14:20)
-  ☐ Change password for MB
-    ☐ info@buonomo.eu
+  ✔ Change password for MB @done (15-05-18 14:22)
   ☐ Write plans?
+    ✔ Remove for now @done (15-05-18 14:48)
+    ☐ done/doing/todo/failed
 
 Configuration:
   ☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
@@ -45,6 +46,7 @@ Configuration:
      ☐ resources.py
 
   ☐ Switch to angularstrap
+    ☐ http://mgcrea.github.io/angular-strap/#
 
 --- ✄ -----------------------
 What else:
