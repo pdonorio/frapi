@@ -93,23 +93,31 @@ myApp
           // Get raw content...
           API.get(resource, params).then(function(data) {
 
-                var documents = [];
+                var lastKey = -1;
+                var documents = {}
                 var hashes = {};
-                //console.log("Data", data);
+
                 data.items.forEach(function(el, key){
-                    //console.log("Found", el);
-                    //var hash = el.recordid.substr(0, 8);
-                    if (!hashes[el.recordid]) {
-                        hashes[el.recordid] = true;
-                        var curr = {
-                            user: users[el.user],
-                            record: el.recordid,
-                            step: el.step,
-                            content: el.values,
-                        }
-                        documents.push(curr);
+
+                  // Create record
+                  if (!hashes[el.recordid]) {
+                    // hashes
+                    hashes[el.recordid] = true;
+                    // Current element
+                    documents[++lastKey] =
+                    {
+                        record: el.recordid,
+                        ts: el.latest_timestamp,
+                        user: users[el.user],
+                        steps: {},
                     }
+                  }
+                  //Add steps
+                  documents[lastKey].steps[el.step] = el.values;
+
                 });
+
+                console.log(documents);
 
                 //console.log(documents);
                 $scope.data = documents;

@@ -54,14 +54,24 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="row in data track by row.record">
+            <tr ng-repeat="row in data track by row.ts"> <!-- use timestamp to order -->
               <td>
                 {{row.user}}:<b>{{row.record | limitTo:8}}</b>
                 <br>
-                <small>not published</small>
+                <small> <i> not published </i> </small>
               </td>
-              <td> [<i>Step {{row.step}}</i>]
-                <span ng-repeat='el in row.content track by $index'> {{el}} </span>
+              <td>
+                <span ng-repeat='(key, values) in row.steps track by $index'>
+                    [
+                    <i>Step <b>{{key}}</b> </i>:
+                    <span ng-repeat='piece in values track by $index'
+                        ng-if="piece != ''">
+                        {{piece}}
+                    </span>
+                    ]
+                    <br>
+                </span>
+
               </td>
               <!--buttons-->
               <td>
