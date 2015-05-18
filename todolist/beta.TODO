@@ -21,10 +21,10 @@ BUGS:
     ✔ method inside API file @done (15-05-17 12:23)
     ✔ call the method via interface @done (15-05-17 17:44)
   ✔ Little improvement inside document search view @done (15-05-18 07:23)
+  ☐ Record remove?
   ☐ Change password for MB
     ☐ info@buonomo.eu
   ☐ Write plans?
-  ☐ Record remove?
 
 Configuration:
   ☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT

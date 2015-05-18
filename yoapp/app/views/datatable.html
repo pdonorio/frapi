@@ -1,4 +1,8 @@
-<div class="container" ng-init="mytable = {show:false}">
+
+<div class="col-md-1"></div>
+
+<div class="col-md-10" ng-init="mytable = {show:false}">
+
   <div class="panel shad">
     <div class="panel-heading orange">
       <h4>Ricerca l'archivio</h4>
@@ -54,10 +58,10 @@
           </thead>
 
 
-          <tbody>
-            <tr ng-repeat="(record,row) in data"> <!-- use timestamp to order -->
+          <tbody> <!-- use timestamp to order -->
+            <tr ng-repeat="(record,row) in data | orderBy: row.ts">
               <td>
-                {{row.user}}:<b>{{row.record | limitTo:8}}</b>
+                {{row.user}}:<b>{{record | limitTo:8}}</b>
                 <br>
                 <small> <i> not published </i> </small>
               </td>
@@ -76,20 +80,27 @@
               </td>
               <!--buttons-->
               <td>
-               <a ui-sref='logged.view({myId:row.record})'>
+               <a ui-sref='logged.view({myId:record})'>
                 <button type="button" class="btn btn-xs btn-default"
                   tooltip-placement="left" disabled
-                  tooltip="Guarda il record {{row.record | limitTo:8}}">
+                  tooltip="Guarda il record {{record | limitTo:8}}">
                   <i class="fa fa-eye fa-2x"> </i>
+
                 </button>
                </a>
-               <a ui-sref='logged.submission.step({myId:row.record, stepId:1})'>
+               <a ui-sref='logged.submission.step({myId:record, stepId:1})'>
                 <button type="button" class="btn btn-xs btn-warning"
-                  tooltip-placement="right"
-                  tooltip="Modifica il record {{row.record | limitTo:8}}">
+                  tooltip-placement="bottom"
+                  tooltip="Modifica il record {{record | limitTo:8}}">
                   <i class="fa fa-edit fa-2x"></i>
                 </button>
                </a>
+                <button type="button" class="btn btn-xs btn-danger"
+                  ng-click="removeRecord(record)"
+                  tooltip-placement="right"
+                  tooltip="Elimina il record {{record | limitTo:8}}">
+                  <i class="fa fa-trash fa-2x"></i>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -144,3 +155,5 @@
   </button>
 
 </div>
+
+<div class="col-md-1"></div>

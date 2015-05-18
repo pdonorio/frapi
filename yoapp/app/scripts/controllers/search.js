@@ -105,7 +105,6 @@ myApp
                     // Current element
                     documents[el.recordid] =
                     {
-                        //record: el.recordid,
                         ts: el.latest_timestamp,
                         user: users[el.user],
                         steps: {},
@@ -115,9 +114,8 @@ myApp
                   documents[el.recordid].steps[el.step] = el.values;
 
                 });
-                //console.log(documents);
 
-                //console.log(documents);
+                // Inject into scope
                 $scope.data = documents;
                 //$scope.datacount = documents.length;
                 $scope.datalength = Object.keys(documents).length;
@@ -144,4 +142,8 @@ myApp
     // First time call to get data - with defaults
     $scope.reloadTable(perpageDefault, currentpageDefault);
 
+
+    $scope.removeRecord = function(id) {
+        console.log("Remove:", id);
+    }
 });
