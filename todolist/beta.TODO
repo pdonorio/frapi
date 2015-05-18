@@ -1,9 +1,11 @@
 
 Configuration:
-  ☐ Compose yaml configuration for production!?!? GOOGLE! @IMPORTANT
-    ☐ Remove debug options in nginx configuration @security
-    ☐ list of production services
+  ✔ Move the real configuration @done (15-05-18 17:20)
+  ☐ Compose yaml configurations
+    ☐ list of base services
     ☐ list of development services
+      ☐ Split debug options in nginx configuration in another sites enabled file
+    ☐ list of production services
 
   ☐ SSL
   ☐ check cors
