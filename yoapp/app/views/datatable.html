@@ -113,6 +113,7 @@
 
       <hr>
       <div>
+
           <!-- LOADING -->
           <div id='spinner' ng-hide='datalength >= 0'>
             Loading <i class="fa fa-refresh fa-spin"></i>
@@ -156,6 +157,15 @@
     <td> Nuovo record </td>
     </tr> </table>
   </button>
+
+  <br></br>
+
+  <div >
+    <!-- ALERTS -->
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+        {{alert.msg}}
+    </alert>
+  </div>
 
 </div>
 

@@ -9,7 +9,7 @@
  */
 
 myApp
- .controller('ViewController', function ($scope, $rootScope, API, StepContent, perpageDefault, currentpageDefault, focus)
+ .controller('ViewController', function ($scope, $rootScope, $timeout, API, StepContent, perpageDefault, currentpageDefault, focus)
 {
 
     // Init: Html scope data
@@ -143,15 +143,47 @@ myApp
     // First time call to get data - with defaults
     $scope.reloadTable(perpageDefault, currentpageDefault);
 
+    /////////////////////////////////////////////
+    // ALERTS
+    $scope.alerts = [];
+    $scope.addAlert = function(text, atype) {
+        // Types:
+        // success, danger, warning, primary
+        if (!atype)
+            atype = 'info'
+        $scope.alerts.push({msg: text, type: atype});
+    };
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+    $scope.closeAlerts = function(index) {
+        do{
+            $scope.closeAlert();
+        } while($scope.alerts.length > 0);
+    };
+
+//debug
+$scope.addAlert('test');
+    /////////////////////////////////////////////
+
     $scope.removeRecord = function(id) {
         var contentHandle = StepContent.build(id, null);
 
-// REMOVING
+        // REMOVING
+        $scope.addAlert("Removing...");
+
         contentHandle.unsetData(id).then(function(completed){
+            // clean alerts
+            $scope.closeAlerts();
+
             if (completed) {
+                // REMOVED
                 console.log("Refresh");
                 $scope.reloadTable(perpageDefault, currentpageDefault);
-// REMOVED
+                $scope.addAlert("Removed item!", 'success');
+                $timeout(function(){
+                    $scope.closeAlert();
+                }, 2000);
             }
         });
     }
