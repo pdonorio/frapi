@@ -53,6 +53,8 @@ devproxy:
         - devfapi:fapi
         - webdev:capi
         - devdb:rmonitor
+    volumes:
+        - ../docker/proxy/dev-enabled.conf:/etc/nginx/sites-enabled/development
     volumes_from:
         - updata
 

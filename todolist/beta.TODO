@@ -6,9 +6,12 @@ Configuration:
       ✔ data containers @done (15-05-18 17:22)
       ✔ others? @done (15-05-18 20:35)
     ✔ list of development services @done (15-05-18 21:30)
-      ☐ Split debug options in nginx configuration in another sites enabled file?
+      ✔ Split debug options in nginx configuration in another sites enabled file? @done (15-05-19 07:39)
     ✔ list of production services @done (15-05-18 21:30)
     ☐ List of init tasks
+      ☐ Create db
+      ☐ Create tables
+      ☐ Admin user
     ☐ Sync conf (e.g. ftp)
       ☐ external links
         ☐ https://docs.docker.com/compose/yml/#external_links
