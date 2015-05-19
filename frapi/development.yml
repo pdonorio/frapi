@@ -61,6 +61,16 @@ devproxy:
 ##########################
 ## Only for development?
 
+# Db init with db, table and admin user
+devdbinit:
+    extends:
+        file: common.yml
+        service: api
+    command: python devinit.py
+    links:
+        - devdb:db
+    volumes_from:
+        - pycode
 # Nodejs: Database admin and dist build
 webdev:
     build: ../docker/jsdev
