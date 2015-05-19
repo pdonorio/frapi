@@ -21,7 +21,7 @@ if RDB_PORT != None:
 ################################################
 bind = "0.0.0.0:5000"
 import multiprocessing
-workers = multiprocessing.cpu_count() * 2 + 1
+workers = multiprocessing.cpu_count() +1 #* 2 + 1
 
 accesslog = "/tmp/logs/guni.log"
 access_log_format = '%(h)s %(l)s %(u)s %(t)s ' \

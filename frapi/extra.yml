@@ -1,0 +1,55 @@
+#########################################
+# FILE SHARE
+
+### IMPORTANT
+## Add user:
+#$ docker exec -it frapi_myftp_1 bash -c "yes 'test' | pure-pw useradd bob -u ftpuser -d /backup && pure-pw mkdb"
+### IMPORTANT
+
+## Fix permissions:
+#$ docker-machine ssh myocean1 chmod 777 /Users/projects/frapi/data/backup
+
+## Switch to old node and backup:
+#$ docker exec -it frapi_tasker_1 rethinkdb-dump -c db -f /backup/latest_dump.tar.gz
+
+### IMPORTANT
+## Transfer the file via ftp to new node:
+#$ echo put latest.tar.gz init.tar.gz | ftp ftp://bob:test@HOSTNAME
+### IMPORTANT
+
+## Switch to the new node via machine and restore:
+#$ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/init.tar.gz
+
+## Also consider about cleaning old tables inside 'webapp' if any
+
+myftp:
+    image: stilliard/pure-ftpd
+    #command:
+    ports:
+        - "20:20"
+        - "21:21"
+        #############################
+        - "20000:20000"
+        - "20001:20001"
+        - "20002:20002"
+        - "20003:20003"
+        - "20004:20004"
+        - "20005:20005"
+        - "20006:20006"
+        - "20007:20007"
+        - "20008:20008"
+        - "20009:20009"
+        - "20010:20010"
+        # When the issue is fixed
+        # https://github.com/docker/compose/issues/1102
+        # https://github.com/docker/compose/pull/1191
+        # then ports will be
+        # - "20000-20010"
+        #############################
+    volumes:
+        - docker/ftp/ports:/etc/pure-ftpd/conf/PassivePortRange
+        - docker/ftp/clients:/etc/pure-ftpd/conf/MaxClientsNumber
+    # using a container from outside this composer
+    volumes_from:
+        #- backupdata
+        - frapi_backupdata_1

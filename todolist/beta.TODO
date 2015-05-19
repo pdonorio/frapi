@@ -12,9 +12,9 @@ Configuration:
       ✔ Create db @done (15-05-19 07:42)
       ✔ Create tables @done (15-05-19 07:42)
       ✔ Admin user @done (15-05-19 07:42)
-    ☐ Sync conf (e.g. ftp)
-      ☐ external links
-        ☐ https://docs.docker.com/compose/yml/#external_links
+    ✔ Sync conf (e.g. ftp) @done (15-05-19 16:31)
+      ✘ external links @cancelled (15-05-19 16:31)
+        ✔ https://docs.docker.com/compose/yml/#external_links @done (15-05-19 16:31)
 
   ☐ SSL
   ☐ check cors
