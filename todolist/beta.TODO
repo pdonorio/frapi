@@ -18,7 +18,6 @@ Configuration:
 
   ☐ SSL
   ☐ check cors
-  ☐ change bad gateway message nginx
 
   ☐ Write plans?
     ✔ Remove for now @done (15-05-18 14:48)
@@ -36,6 +35,8 @@ Configuration:
 
   ☐ Git prune
     ☐ http://stackoverflow.com/a/17029936/2114395
+
+  ☐ change bad gateway message nginx
 
 --- ✄ -----------------------
 What else:
