@@ -74,7 +74,9 @@ devdbinit:
 # Nodejs: Database admin and dist build
 webdev:
     build: ../docker/jsdev
-    command: /opt/.nvm/v0.10.13/bin/node /opt/.nvm/v0.10.13/bin/chateau
+    # environment:
+    #     TESTENV: hello world
+    command: chateau
     volumes:
         - ../yoapp:/opt/jsapp
     links:
