@@ -15,8 +15,8 @@ Flask-Cache
 flask-cors
 
 Flask-OAuthlib
-python-oauth2
-pyoauth2
+Flask-Security
+Flask-SQLAlchemy
 
 gunicorn
 nose
