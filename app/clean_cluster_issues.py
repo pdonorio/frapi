@@ -1,7 +1,16 @@
-# Load libraries
-import rethinkdb as r
+# -*- coding: utf-8 -*-
+""" Remove slave servers which do not exists anymore """
 
-conn = r.connect(host="db", db='rethinkdb')
+# Load libraries
+from rdb.rdb_handler import r, RDB_HOST, RDB_PORT
+ADMIN_DB = 'rethinkdb'
+
+try:
+    conn = r.connect(host=RDB_HOST, port=RDB_PORT, db=ADMIN_DB)
+except r.errors.RqlDriverError, e:
+    print "No connection!\n", e.__str__()
+    exit(1)
+print "Connected"
 
 q = r.table("current_issues").run(conn)
 

@@ -64,9 +64,11 @@ class RethinkConnection(Connection):
         """ My abstract method already connect by default """
         super(RethinkConnection, self).__init__(load_setup)
 
+        # Leaving this to docker & init
         #create and use DB? and table?
         if load_setup:
-            self.setup()
+            print "SKIPPING!"
+            #self.setup()
 
     # === Connect ===
     def make_connection(self, use_database):

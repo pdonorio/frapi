@@ -1,0 +1,52 @@
+#############################
+## Data containers
+
+# Database
+dbdata:
+    image: busybox
+    volumes:
+        - ../data/rdb:/data:rw
+# Database backup
+backupdata:
+    image: busybox
+    volumes:
+        - ../data/backup:/backup:rw
+        - ../docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
+# Python API code
+pycode:
+    image: busybox
+    volumes:
+        - ../app:/opt/app:ro
+        - ../imgresize:/zoomify:rw
+# Upload files
+updata:
+    image: busybox
+    volumes:
+        - ../data/files:/uploads:rw
+        - ../yoapp/app:/var/www:ro
+
+#############################
+## Master database resource
+rdb:
+    image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
+
+#############################
+## Restful API to access database and files
+api:
+    build: ../docker/pyapp
+    command: gunicorn -c gunicorn.conf.py main:app
+    working_dir: /opt/app
+fileapi:
+    build: ../docker/pyapp
+    command: python file.py #gunicorn?
+    working_dir: /opt/app
+
+#############################
+# A proxy for all requests from the outside world
+proxy:
+    image: nginx
+    volumes:
+        - ../docker/proxy/nginx.conf:/etc/nginx/nginx.conf
+        - ../docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
+    ports:
+        - "80:8080" #the proxy

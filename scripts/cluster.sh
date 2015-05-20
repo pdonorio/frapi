@@ -13,11 +13,11 @@ elif [ `which docker-compose` == "" ]; then
     exit 1;
 # check if boot2docker exists, if it's running!
 elif [ ! `which docker-machine` == "" ]; then
-    #verify VM status
-    if [ `docker-machine ls dev | grep Running | awk '{print $4}'` != "Running" ]; then
-        echo "Error: Please start your docker machine vm...";
-        exit 1;
-    fi
+    # #verify VM status
+    # if [ `docker-machine ls dev | grep Running | awk '{print $4}'` != "Running" ]; then
+    #     echo "Error: Please start your docker machine vm...";
+    #     exit 1;
+    # fi
     docker-machine active dev
 fi
 

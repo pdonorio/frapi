@@ -112,19 +112,21 @@
 
       </div>
 
-      <hr>
+      <hr ng-show='datalength > 0'>
       <div>
 
           <!-- LOADING -->
           <div id='spinner' ng-hide='datalength >= 0'>
             Loading <i class="fa fa-refresh fa-spin"></i>
           </div>
-
-          <!-- NO DATA -->
-          <div id='nodata' ng-show='datalength == 0'> Nessun risultato. </div>
+          <div ng-if='datalength == 0'>
+            <span  class="label label-info">
+              Risultati: {{datalength}}
+            </span>
+          </div>
 
           <!-- DATA stats and paging -->
-          <div ng-show='datalength >= 0'>
+          <div ng-show='datalength > 0'>
             <div class="row">
               <div class="col-md-6 col-xs-6">
                 <span  class="label label-default"> Pagina corrente:</span> &nbsp;
@@ -151,6 +153,12 @@
 
    </div> <!--panel body-->
   </div> <!-- panel -->
+
+<!-- NO DATA -->
+<div id='nodata' ng-show='datalength == 0'>
+    <alert type='warning'> Attenzione: nessun documento ancora pubblicato. </alert>
+</div>
+
 
   <button type="button" class="btn btn-warning shad" ng-click="go('app/submission/new/step/1')">
     <table> <tr>

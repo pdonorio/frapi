@@ -4,7 +4,7 @@
 dbdata:
     image: busybox
     volumes:
-        - ./data/rdb:/data:rw
+        - ../data/rdb:/data:rw
 rdb:
     image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
     volumes_from:
@@ -20,10 +20,10 @@ rdb:
 backupdata:
     image: busybox
     volumes:
-        - ./data/backup:/backup:rw
-        - ./docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
+        - ../data/backup:/backup:rw
+        - ../docker/tasks/dbbackup_hour:/etc/cron.hourly/dbbackup
 tasker:
-    build: ./docker/tasks
+    build: ../docker/tasks
     links:
         - rdb:db
     volumes_from:
@@ -34,12 +34,11 @@ tasker:
 pycode:
     image: busybox
     volumes:
-        - ./app:/opt/app:ro
-        - ./imgresize:/zoomify:rw
+        - ../app:/opt/app:ro
+        - ../imgresize:/zoomify:rw
 api:
-    build: ./docker/pyapp
+    build: ../docker/pyapp
     command: gunicorn -c gunicorn.conf.py main:app
-    #command: sleep 1234567890  #DEBUG
     volumes_from:
         - pycode
     working_dir: /opt/app
@@ -51,10 +50,10 @@ api:
 updata:
     image: busybox
     volumes:
-        - ./data/files:/uploads:rw
-        - ./yoapp/app:/var/www:ro
+        - ../data/files:/uploads:rw
+        - ../yoapp/app:/var/www:ro
 fileapi:
-    build: ./docker/pyapp
+    build: ../docker/pyapp
     command: python file.py #https?
     #command: sleep 12345898
     volumes_from:
@@ -80,15 +79,15 @@ proxy:
 
         #- "443:443" # ssl server
 # THIS WAY i only have to https certificate this server
-        #- ./certificates:/etc/nginx/certs
+        #- ../certificates:/etc/nginx/certs
 #         # # SSL
-#         # - ./docker/gui/sites.conf:/etc/nginx/sites-enabled/default
+#         # - ../docker/gui/sites.conf:/etc/nginx/sites-enabled/default
 #         # # Certificates
-#         # - ./certificates/key:/etc/nginx/ssl/server.key
-#         # - ./certificates/domain.cert:/etc/nginx/ssl/server.crt
+#         # - ../certificates/key:/etc/nginx/ssl/server.key
+#         # - ../certificates/domain.cert:/etc/nginx/ssl/server.crt
     volumes:
-        - ./docker/proxy/nginx.conf:/etc/nginx/nginx.conf
-        - ./docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
+        - ../docker/proxy/nginx.conf:/etc/nginx/nginx.conf
+        - ../docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
     volumes_from:
         - updata
 
@@ -148,10 +147,10 @@ myftp:
 # Web development angular pages running on a javascript server
 # ONLY DEBUG
 webdev:
-    build: ./docker/jsdev
+    build: ../docker/jsdev
     command: sleep 123456789
     volumes:
-        - ./yoapp:/opt/jsapp
+        - ../yoapp:/opt/jsapp
     links:
         - rdb:db
 ######################
