@@ -1,12 +1,12 @@
 urllib3
 ipython
 
-Markdown==2.5.1
+Markdown
 Pygments==1.6
-argparse==1.2.1
+argparse
 pystache==0.5.4
-smartypants==1.8.6
-wsgiref==0.1.2
+smartypants
+wsgiref
 
 Flask
 Flask-restful
@@ -14,12 +14,15 @@ Flask-HTTPAuth
 Flask-Cache
 flask-cors
 
-gunicorn
+Flask-OAuthlib
+python-oauth2
+pyoauth2
 
-Pycco==0.3.0
+gunicorn
 nose
 
 rethinkdb
 RethinkORM
-
 Image
+
+Pycco

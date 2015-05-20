@@ -33,6 +33,12 @@ ADD rethinkdb.patch /tmp/rethinkdb.patch
 RUN cd /usr/local/lib/python2.7/dist-packages && git apply /tmp/rethinkdb.patch
 
 ##############################################
+# auth provider
+ADD tmp/python-oauth2 /tmp/poauth
+WORKDIR /tmp/poauth
+RUN python setup.py install
+
+##############################################
 ##SETUP A NEW USER for development??
 # RUN adduser web --home /home/web --shell /bin/bash --disabled-password --gecos ""
 # RUN chown -R web:web /home/web
