@@ -4,7 +4,8 @@
 class Config(object):
     DEBUG = False
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
+    #SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
     SECRET_KEY = 'my-super-secret-keyword'
 # Bug fixing for csrf problem via CURL/token
     WTF_CSRF_ENABLED = False

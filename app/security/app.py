@@ -8,7 +8,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from security.mailer import mailer
 from security.config import DevelopmentConfig
 
-
 ####################################
 # Create app
 app = Flask(__name__)
