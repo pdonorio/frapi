@@ -91,4 +91,34 @@ def create_user():
         #user_datastore.find_or_create_role(ROLE_ADMIN)
         user_datastore.add_role_to_user(USER, ROLE_ADMIN)
 
+        print "Db init"
+
         db.session.commit()
+
+####################################
+# API restful test
+from flask.ext.restful import Api, Resource, abort #, request, reqparse
+api = Api(app, catch_all_404s=True)
+FIXED_APIURL = ''
+
+class ApiTest(Resource):
+    resource = __name__
+
+    def __init__(self):
+        self.resource = type(self).__name__.lower()
+        super(ApiTest, self).__init__()
+
+    @auth_token_required
+    def get(self):
+        return "test", 200
+
+    def post(self):
+        return abort(404, message='NO!')
+
+print "Name", ApiTest.resource
+api.add_resource(ApiTest, FIXED_APIURL+'/'+ApiTest().resource)
+
+# # 1. /resource      #GET
+#     FIXED_APIURL + '/' + ApiTest.resource, \
+# # 2. /resource/:id  #POST
+#     FIXED_APIURL + '/' + ApiTest.resource + '/<string:data_key>')
