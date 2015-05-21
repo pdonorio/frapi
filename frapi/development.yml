@@ -81,3 +81,14 @@ webdev:
         - ../yoapp:/opt/jsapp
     links:
         - devdb:db
+
+##########################
+provider:
+    extends:
+        file: common.yml
+        service: api
+    command: sleep 12456789
+    volumes_from:
+        - pycode
+    ports:
+        - "80:80"
