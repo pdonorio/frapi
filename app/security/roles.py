@@ -17,11 +17,16 @@ from flask.ext.security \
     UserMixin, RoleMixin, login_required, roles_required, \
     auth_token_required, http_auth_required
 
+############################
+#deadcode, justatest...
+
 # # Overide auth function ?
 # def myauth(self):
 #     return "test"
 # UserMixin.get_auth_token = myauth
+############################
 
+####################################
 # Define models
 
 class Role(db.Model, RoleMixin):
@@ -115,10 +120,23 @@ class ApiTest(Resource):
     def post(self):
         return abort(404, message='NO!')
 
-print "Name", ApiTest.resource
+print "Resource", ApiTest().resource
 api.add_resource(ApiTest, FIXED_APIURL+'/'+ApiTest().resource)
 
 # # 1. /resource      #GET
 #     FIXED_APIURL + '/' + ApiTest.resource, \
 # # 2. /resource/:id  #POST
 #     FIXED_APIURL + '/' + ApiTest.resource + '/<string:data_key>')
+
+
+# ####################################
+# ####################################
+# from datetime import timedelta
+# from flask import session
+
+# @app.before_request
+# def make_session_permanent():
+#     session.permanent = True
+#     app.permanent_session_lifetime = timedelta(minutes=1)
+# ####################################
+# ####################################

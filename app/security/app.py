@@ -18,6 +18,7 @@ app = Flask(__name__)
 ####################################
 # Conf
 if DEBUG:
+    print "Using development config"
     app.config.from_object(DevelopmentConfig)
 else:
     app.config.from_object(ProductionConfig)
