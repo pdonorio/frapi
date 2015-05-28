@@ -16,6 +16,8 @@ Configuration:
       ✘ external links @cancelled (15-05-19 16:31)
         ✔ https://docs.docker.com/compose/yml/#external_links @done (15-05-19 16:31)
 
+  ☐ Postgres db password??
+
   ☐ AUTH provider
   ☐ SSL
   ☐ check cors
