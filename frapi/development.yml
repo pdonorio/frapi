@@ -91,4 +91,22 @@ provider:
     volumes_from:
         - pycode
     ports:
-        - "80:80"
+        - "8888:80"
+    links:
+        - providerdb:db
+providerdb:
+    image: postgres
+    volumes:
+        - ../docker/init/psql.init.sh:/docker-entrypoint-initdb.d/setup-my-schema.sh
+    # Using psql init instead
+    # environment:
+    #     #POSTGRES_USER: beta
+    #     #POSTGRES_PASSWORD: password
+
+    # volumes:
+    #     - ./data/psgr:/a/volume
+
+##########################
+#Also:
+#docker run -ti -v /var/run/docker.sock:/var/run/docker.sock icecrime/docker-mon
+

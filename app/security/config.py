@@ -11,7 +11,10 @@ class Config(object):
 
 class ProductionConfig(Config):
     # TO FIX - with postgres
-    DATABASE_URI = 'mysql://user@localhost/foo'
+    #DATABASE_URI = 'mysql://user@localhost/foo'
+    SQLALCHEMY_DATABASE_URI = "postgresql://docker:test@db/docker"
+    #SECRET_KEY = 'docker'
+
     # Force token to last not more than one hour
     SECURITY_TOKEN_MAX_AGE = 3600
 

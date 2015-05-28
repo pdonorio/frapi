@@ -61,6 +61,12 @@ PWD = 'password'
 ROLE_ADMIN = 'adminer'
 
 
+########################
+try:
+    db.create_all()
+except Exception, e:
+    raise e
+
 ####################################
 # Views
 @app.route('/')

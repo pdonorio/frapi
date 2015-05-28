@@ -9,7 +9,9 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from security.mailer import mailer
 
 ####################################
-DEBUG = True
+# production?
+DEBUG = False
+#DEBUG = True
 
 ####################################
 # Create app

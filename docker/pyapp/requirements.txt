@@ -21,6 +21,8 @@ Flask-SQLAlchemy
 gunicorn
 nose
 
+psycopg2
+
 rethinkdb
 RethinkORM
 Image
