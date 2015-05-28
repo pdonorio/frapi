@@ -172,7 +172,7 @@
           </span>
           <!-- button to tell user to go to next step... -->
           <span ng-if='countTempl > 9'>
-          <a href ui-sref='logged.submission.step({myId:myrecordid, stepId:current+1})'
+          <a href ui-sref='logged.submission.step({myId:identifier, stepId:current+1})'
           ><button type="button" class="btn btn-warning"
             ng-show="!myform.$visible"
             >Prossimo Step {{current + 1}} &gt;&gt;</button></a>
