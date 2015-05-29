@@ -8,6 +8,11 @@
  *
  * Main module of the application.
  */
+
+
+// TO FIX
+    //- this is global and we do not like it
+
 var myApp = angular.module('archivi',
   [
   // CONFIGURATION and DYNAMIC CONSTANTS - made by me

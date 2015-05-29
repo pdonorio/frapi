@@ -6,7 +6,14 @@
  ✔ data on select not saved @done (15-05-29 08:20)
    ✔ switching back to xeditable (remote!) @done (15-05-29 08:20)
  ☐ dates are saved but not recognized on opening...
- ☐ gunicorn should try to reconnect if rdb connection is down
+ ☐ positions are fucked
+ ☐ gunicorn/flask should try to reconnect
+   ☐ if rdb connection is down
+
+ ☐ Gulp
+   ☐ https://gist.github.com/dickeyxxx/29634019cb2bef7f0333
+   ☐ https://medium.com/@dickeyxxx/best-practices-for-building-angular-js-apps-266c1a4a6917
+     ☐ docker-compose -f frapi/extra.yml up webdev
 
 Configuration:
   ✔ Move the real configuration @done (15-05-18 17:20)
