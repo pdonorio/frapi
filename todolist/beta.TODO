@@ -1,14 +1,20 @@
 
+Bugs:
  ✔ button fix @done (15-05-28 20:31)
  ✔ remove cache @done (15-05-29 06:26)
    ✔ http://stackoverflow.com/a/7413243/2114395 @done (15-05-29 06:26)
      ✔ add a string based on the commit? @done (15-05-29 06:26)
  ✔ data on select not saved @done (15-05-29 08:20)
    ✔ switching back to xeditable (remote!) @done (15-05-29 08:20)
- ☐ dates are saved but not recognized on opening...
- ☐ positions are fucked
+ ✔ positions are fucked @done (15-05-29 16:30)
+ ✔ Empty transcription does not work... @done (15-05-29 17:38)
+
  ☐ gunicorn/flask should try to reconnect
    ☐ if rdb connection is down
+
+ ☐ dates are saved but not recognized on opening...
+
+ ☐ modal close does not work...
 
  ☐ Gulp
    ☐ https://gist.github.com/dickeyxxx/29634019cb2bef7f0333
