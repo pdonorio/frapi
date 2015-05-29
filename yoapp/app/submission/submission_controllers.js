@@ -199,7 +199,7 @@ myApp
                 value = content.values[key];
                 if (type == 'number')
                     value = parseInt(value);
-                //console.log("key", pos, "obj", type);
+                //console.log("key", pos, "obj", type, "value", value);
             }
             if (value && value !== '')
                 count++;
@@ -213,6 +213,7 @@ myApp
 // TO FIX - how? save this data inside object?
 //probably yes
         $scope.data[$scope.step] = data;
+        //console.log("Step", $scope.step, "Data:", data);
         $scope.countTempl = index;
         return count;
 
@@ -245,6 +246,21 @@ myApp
             }
         });
      });
+
+    ////////////////////////////////////////////////
+    $scope.loadGroups = function(obj) {
+        var tmp = obj.extra.split(",");
+        var list = [];
+        for (var i = 0; i < tmp.length; i++) {
+            var current = {};
+            current.id = tmp[i];
+            current.text = tmp[i];
+            list.push(current);
+        };
+        //console.log("TMP", tmp);
+        //console.log("list", list);
+        return list;
+    }
 
     ////////////////////////////////////////////////
     // OPERATIONs:

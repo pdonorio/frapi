@@ -3,7 +3,10 @@
  ✔ remove cache @done (15-05-29 06:26)
    ✔ http://stackoverflow.com/a/7413243/2114395 @done (15-05-29 06:26)
      ✔ add a string based on the commit? @done (15-05-29 06:26)
- ☐ data on select/dates are not saved!
+ ✔ data on select not saved @done (15-05-29 08:20)
+   ✔ switching back to xeditable (remote!) @done (15-05-29 08:20)
+ ☐ dates are saved but not recognized on opening...
+ ☐ gunicorn should try to reconnect if rdb connection is down
 
 Configuration:
   ✔ Move the real configuration @done (15-05-18 17:20)

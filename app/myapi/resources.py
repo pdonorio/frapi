@@ -161,12 +161,12 @@ class GenericDBResource(Resource):
             # Handling lists with checks
             if isinstance(parval, types.ListType):
                 newlist = list()
-                parlist = list(parval)
-                print "This is a list", parlist
+                #parlist = list(parval)
+                #print "This is a list", parlist
                 #print dir(parlist)
 
                 for content in list(parval):
-                    print "Content: *" + content + "*"
+                    #print "Content: *" + content + "*"
                     if content != "" and not isinstance(content, types.NoneType):
                         newlist.append(content)
 

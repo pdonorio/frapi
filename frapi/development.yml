@@ -28,6 +28,8 @@ devapi:
         - pycode
     links:
         - devdb:db
+    volumes:
+        - ../data/backup:/backup:rw
 devfapi:
     extends:
         file: common.yml
