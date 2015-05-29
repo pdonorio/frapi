@@ -23,7 +23,7 @@ var myApp = angular.module('archivi',
     'ngAnimate',
     'ngCookies',
     'ngSanitize',
-    'ngTouch',
+    //'ngTouch',
   // DEPENCIES: external modules
     'ui.router',      //some serious and nested views (instead of ngRoute)
     'ui.bootstrap',   //https://github.com/angular-ui/bootstrap
