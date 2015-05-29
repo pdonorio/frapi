@@ -1,4 +1,10 @@
 
+ ✔ button fix @done (15-05-28 20:31)
+ ✔ remove cache @done (15-05-29 06:26)
+   ✔ http://stackoverflow.com/a/7413243/2114395 @done (15-05-29 06:26)
+     ✔ add a string based on the commit? @done (15-05-29 06:26)
+ ☐ data on select/dates are not saved!
+
 Configuration:
   ✔ Move the real configuration @done (15-05-18 17:20)
   ✔ Compose yaml configurations @done (15-05-18 17:22)

@@ -31,6 +31,18 @@ var myApp = angular.module('archivi',
     'arrayOperations', //my filters on arrays
   ])
 
+/*
+// FIX template caching...
+//http://opensourcesoftwareandme.blogspot.it/2014/02/safely-prevent-template-caching-in-angularjs.html
+.run(function($rootScope, $templateCache) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        if (typeof(current) !== 'undefined'){
+            $templateCache.remove(current.templateUrl);
+        }
+    });
+})
+*/
+
 // LOGGER
 .config(['LoggerProvider', function(LoggerProvider) {
     // We don't want the Logger service to be enabled in production

@@ -159,7 +159,7 @@ myApp
         data: { requireAdmin: false },
         views: {
           "contain": {
-            templateUrl: 'submission/submission_user_view.html',
+            templateUrl: 'submission/submission_user_view.html?v=2',
             controller: 'SubmissionController',
           },
         },
@@ -182,7 +182,7 @@ myApp
         url: "/step/:stepId",
         views: {
           "singlestep": {
-            templateUrl: 'submission/submission_allsteps_view.html',
+            templateUrl: 'submission/submission_allsteps_view.html?v=1',
             controller: 'StepController',
           },
         },
