@@ -5,7 +5,7 @@ myApp
 
 //////////////////////////////////////////////////////////////
 .controller('SubmissionController', function (
-    $rootScope, $scope, $state, $stateParams, $timeout, $modal,
+    $rootScope, $scope, $state, $stateParams, $timeout, $modal, //$modalInstance,
     Logger, NotificationData, AppConfig, StepList, draft, DocumentsFactory )
 {
     ////////////////////////////////
@@ -73,6 +73,7 @@ myApp
         DocumentsFactory.unset(id, fname).then(function(docs){ refreshDocs(); });
     }
 
+    //##############################################
     // Modal
     $scope.openModal = function (fileid) {
 
@@ -133,12 +134,31 @@ myApp
                 $scope.editor[key] = false;
                 update();
             }
+
+// NOT WORKING ANYMORE!
+// NOT WORKING ANYMORE!
             $scope.closeModal = function() {
-                $modalInstance.close();
+                console.log("CLOSE");
+                $modalInstance.close("OK");
+                //$modalInstance.dismiss("CANCEL");
             }
-        }
-      }); // END UPLOAD CONTROLLER
+// NOT WORKING ANYMORE!
+// NOT WORKING ANYMORE!
+
+        } // END UPLOAD CONTROLLER
+      }); // END MODAL INSTANCE
+
+//####################################################
+//TESTS
+modalInstance.result.then(function (selectedItem) {
+    console.log(selectedItem);
+}, function () {
+    console.log('Modal dismissed at: ' + new Date());
+});
+//####################################################
+
     };
+
 
 //DEBUG //DEBUG
 //$scope.openModal("809f6c25-4db1-4632-b52c-6767e6117984");
@@ -199,6 +219,8 @@ myApp
                 value = content.values[key];
                 if (type == 'number')
                     value = parseInt(value);
+                if (type == 'date')
+                    value = new Date(value);
                 //console.log("key", pos, "obj", type, "value", value);
             }
             if (value && value !== '')

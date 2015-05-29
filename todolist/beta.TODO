@@ -10,12 +10,11 @@ Bugs:
  ✔ Empty transcription does not work... @done (15-05-29 17:38)
  ✔ gunicorn/flask should try to reconnect @done (15-05-29 18:13)
    ✔ if rdb connection is down @done (15-05-29 18:13)
-
- ☐ dates are saved but not recognized on opening...
-
+ ✔ dates are saved but not recognized on opening... @done (15-05-29 18:34)
  ☐ modal close does not work...
+   ☐ angular 1.3? TRY
 
- ☐ Gulp
+ ☐ Gulp?? @ohboy
    ☐ https://gist.github.com/dickeyxxx/29634019cb2bef7f0333
    ☐ https://medium.com/@dickeyxxx/best-practices-for-building-angular-js-apps-266c1a4a6917
      ☐ docker-compose -f frapi/extra.yml up webdev
