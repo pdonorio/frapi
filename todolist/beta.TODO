@@ -8,9 +8,8 @@ Bugs:
    ✔ switching back to xeditable (remote!) @done (15-05-29 08:20)
  ✔ positions are fucked @done (15-05-29 16:30)
  ✔ Empty transcription does not work... @done (15-05-29 17:38)
-
- ☐ gunicorn/flask should try to reconnect
-   ☐ if rdb connection is down
+ ✔ gunicorn/flask should try to reconnect @done (15-05-29 18:13)
+   ✔ if rdb connection is down @done (15-05-29 18:13)
 
  ☐ dates are saved but not recognized on opening...
 
