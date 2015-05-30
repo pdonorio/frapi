@@ -59,112 +59,130 @@ myApp
 
     ///////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////
-    var refreshDocs = function(){
+    $rootScope.refreshDocs = function(){
         DocumentsFactory.get($scope.myrecordid).then(function(data){
             //console.log("Received", data);
             $scope.docs = data;
         });
     }
-    // Available also for uploader controller...
-    $rootScope.refreshDocs = refreshDocs;
 
     $scope.removeDoc = function(id, fname) {
         logger.info("Removing " + id);
-        DocumentsFactory.unset(id, fname).then(function(docs){ refreshDocs(); });
+        DocumentsFactory.unset(id, fname).then(function(docs){ $rootScope.refreshDocs(); });
     }
 
     //##############################################
     // Modal
     $scope.openModal = function (fileid) {
 
-      logger.debug("Opened file: " + fileid);
+        logger.debug("Opened file: " + fileid);
+        $rootScope.selectedFile = fileid;
 
-      var modalInstance = $modal.open({
-        size: 'lg',
-        // Html template
-        templateUrl: 'upload/manage_files.html',
-        // Use transcript resource
-        controller: function($rootScope, $scope, $modalInstance, Logger, DocumentsFactory, focus) {
+        $rootScope.modalInstance = $modal.open({
+            //animaton: false,
+            backdrop: false,
+            backdropClass: 'removemodal',
+            windowClass: 'removemodal',
+            controller: 'ModalController',
+            templateUrl: 'upload/manage_files.html',
+            size: 'lg',
+        }); // END MODAL INSTANCE
 
-            var logger = Logger.getInstance('transcr_modal');
-            $scope.selectedFile = fileid;
+        //TESTS
+        $rootScope.modalInstance.result.then(function (selectedItem) {
+            console.log(selectedItem);
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
 
-            var refresh = function() {
-                logger.debug("Refresh views");
-                DocumentsFactory.getTranscription(fileid).then(function(resp){
-                    if (!resp.transcriptions)
-                        resp.transcriptions = [];
-                    $scope.trans = resp.transcriptions;
+/*
+        $rootScope.closeModal = function (tmp) {
+            console.log($rootScope.modalInstance);
+            $rootScope.modalInstance.close("OK");
+        }
+*/
 
-                    $scope.editor = [];
-                    for (var j = 0; j < $scope.trans.length; j++) {
-                        if ($scope.trans[j] == '')
-                            $scope.trans.splice(j, 1);
-                        else
-                            $scope.editor[j] = false;
-                    };
-                    // refresh main view
-                    refreshDocs();
-                });
-            }
-            var update = function() {
-              DocumentsFactory.setTranscriptions(
-                $scope.selectedFile, $scope.trans).then(function(){refresh()});
-            }
-            //first time
-            refresh();
-
-            $scope.addElement = function() {
-                $scope.trans.push(null);
-                var key = $scope.trans.length-1;
-                $scope.editor[key] = true;
-                focus("tangular" + key, true);
-            }
-            $scope.removeElement = function(key) {
-                logger.warn("Removing "+ key);
-                $scope.trans.splice(key, 1);
-                update();
-            }
-            $scope.editElement = function(key) {
-                $scope.editor[key] = true;
-                focus("tangular" + key, true);
-            }
-            $scope.saveElement = function(key) {
-                logger.info("Saving from key "+key);
-                $scope.editor[key] = false;
-                update();
-            }
-
-// NOT WORKING ANYMORE!
-// NOT WORKING ANYMORE!
-            $scope.closeModal = function() {
-                console.log("CLOSE");
-                $modalInstance.close("OK");
-                //$modalInstance.dismiss("CANCEL");
-            }
-// NOT WORKING ANYMORE!
-// NOT WORKING ANYMORE!
-
-        } // END UPLOAD CONTROLLER
-      }); // END MODAL INSTANCE
-
-//####################################################
-//TESTS
-modalInstance.result.then(function (selectedItem) {
-    console.log(selectedItem);
-}, function () {
-    console.log('Modal dismissed at: ' + new Date());
-});
-//####################################################
-
-    };
-
+    }
 
 //DEBUG //DEBUG
 //$scope.openModal("809f6c25-4db1-4632-b52c-6767e6117984");
 //DEBUG //DEBUG
 
 }) //end SubmissionController
+
+//////////////////////////////////////////////////////////////
+.controller('ModalController', function($rootScope, $scope, $modalInstance,
+    Logger, DocumentsFactory, focus//, fileid
+){
+    var logger = Logger.getInstance('transcr_modal');
+    //$scope.selectedFile = fileid;
+
+    // To remove modal since angular bootstrap does not support angularjs 1.4
+    //http://stackoverflow.com/a/14066534/2114395
+    var removeElementsByClass = function(className)
+    {
+        var elements = document.getElementsByClassName(className);
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+    // NOT WORKING ANYMORE!
+    $scope.closeModal = function() {
+        $modalInstance.close("Closing");
+
+        // removes but do not reopen backdrop :)
+        removeElementsByClass("removemodal");
+
+    }
+
+    var refresh = function() {
+        logger.debug("Refresh views");
+        DocumentsFactory.getTranscription($scope.selectedFile).then(function(resp){
+            if (!resp.transcriptions)
+                resp.transcriptions = [];
+            $scope.trans = resp.transcriptions;
+
+            $scope.editor = [];
+            for (var j = 0; j < $scope.trans.length; j++) {
+                if ($scope.trans[j] == '')
+                    $scope.trans.splice(j, 1);
+                else
+                    $scope.editor[j] = false;
+            };
+            // refresh main view
+            $scope.refreshDocs();
+        });
+    }
+    var update = function() {
+      DocumentsFactory.setTranscriptions(
+        $scope.selectedFile, $scope.trans).then(function(){refresh()});
+    }
+    //first time
+    refresh();
+
+    $scope.addElement = function() {
+        $scope.trans.push(null);
+        var key = $scope.trans.length-1;
+        $scope.editor[key] = true;
+        focus("tangular" + key, true);
+    }
+    $scope.removeElement = function(key) {
+        logger.warn("Removing "+ key);
+        $scope.trans.splice(key, 1);
+        update();
+    }
+    $scope.editElement = function(key) {
+        $scope.editor[key] = true;
+        focus("tangular" + key, true);
+    }
+    $scope.saveElement = function(key) {
+        logger.info("Saving from key "+key);
+        $scope.editor[key] = false;
+        update();
+    }
+
+})
 
 //////////////////////////////////////////////////////////////
 .controller('StepController', function ($scope, $stateParams)

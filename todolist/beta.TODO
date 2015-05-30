@@ -12,8 +12,9 @@ Bugs:
    ✔ if rdb connection is down @done (15-05-29 18:13)
  ✔ dates are saved but not recognized on opening... @done (15-05-29 18:34)
  ✔ bower clean and bug fixes with angularjs 1.4 @done (15-05-30 08:42)
-
- ☐ modal close does not work...
+ ✔ modal close does not work... @done (15-05-30 09:45)
+   ✔ workaround... you damn angular-bootstrap! @done (15-05-30 09:45)
+   ✔ removed backdrop to support my self @done (15-05-30 09:45)
 
  ☐ Gulp?? @ohboy
    ☐ https://gist.github.com/dickeyxxx/29634019cb2bef7f0333

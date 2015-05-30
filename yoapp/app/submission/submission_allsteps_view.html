@@ -49,6 +49,14 @@
 
         <span ng-hide='docs.length > 0'>
             Non ci sono documenti.
+            <br>
+            <br>
+            <a href ui-sref='logged.submission.step({myId:myrecordid, stepId:current-1})'
+            ><button type="button" class="btn btn-warning"
+            ng-show="!myform.$visible"
+            >&lt;&lt; Carica delle immagini </button></a>
+
+
         </span>
 
         <table class="table table-hover" ng-if='docs.length > 0'>
