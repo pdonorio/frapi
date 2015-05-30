@@ -1,21 +1,4 @@
 
-Bugs:
- ✔ button fix @done (15-05-28 20:31)
- ✔ remove cache @done (15-05-29 06:26)
-   ✔ http://stackoverflow.com/a/7413243/2114395 @done (15-05-29 06:26)
-     ✔ add a string based on the commit? @done (15-05-29 06:26)
- ✔ data on select not saved @done (15-05-29 08:20)
-   ✔ switching back to xeditable (remote!) @done (15-05-29 08:20)
- ✔ positions are fucked @done (15-05-29 16:30)
- ✔ Empty transcription does not work... @done (15-05-29 17:38)
- ✔ gunicorn/flask should try to reconnect @done (15-05-29 18:13)
-   ✔ if rdb connection is down @done (15-05-29 18:13)
- ✔ dates are saved but not recognized on opening... @done (15-05-29 18:34)
- ✔ bower clean and bug fixes with angularjs 1.4 @done (15-05-30 08:42)
- ✔ modal close does not work... @done (15-05-30 09:45)
-   ✔ workaround... you damn angular-bootstrap! @done (15-05-30 09:45)
-   ✔ removed backdrop to support my self @done (15-05-30 09:45)
-
  ☐ Gulp?? @ohboy
    ☐ https://gist.github.com/dickeyxxx/29634019cb2bef7f0333
    ☐ https://medium.com/@dickeyxxx/best-practices-for-building-angular-js-apps-266c1a4a6917
