@@ -408,4 +408,5 @@ BUGS:
    ✔ bower clean and bug fixes with angularjs 1.4 @done (15-05-30 08:42)
    ✔ modal close does not work... @done (15-05-30 09:45)
      ✔ workaround... you damn angular-bootstrap! @done (15-05-30 09:45)
+   ✔ File api not working on production @done (15-05-30 13:06)
 

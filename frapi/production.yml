@@ -32,6 +32,7 @@ api:
     extends:
         file: common.yml
         service: api
+    # if i use environment variables it does not work...
     command: gunicorn -c gunicorn.conf.py --bind '0.0.0.0:5000' main:app
     exposes:
         - "5000"
