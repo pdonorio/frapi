@@ -13,7 +13,7 @@
 // TO FIX
     //- this is global and we do not like it
 
-var myApp = angular.module('archivi',
+var myApp = angular.module('app',
   [
   // CONFIGURATION and DYNAMIC CONSTANTS - made by me
     'AppConfig',

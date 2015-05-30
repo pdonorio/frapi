@@ -36,7 +36,7 @@ myApp
                 logger.error("No document to update!");
                 return false;
             }
-            data = response.items[0];
+            var data = response.items[0];
 
         //////////////////////////////////////////
             // HANDLING AN ARRAY!

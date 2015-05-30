@@ -134,13 +134,11 @@ myApp
           "contain": {
             templateUrl: "views/main.html",
           },
-/*
- * To show search inside the home page
-          "extra": {
-            templateUrl: "views/datatable.html",
-            controller: 'ViewController',
-          },
-*/
+// //To show search inside the home page
+//           "extra": {
+//             templateUrl: "views/datatable.html",
+//             controller: 'ViewController',
+//           },
         },
         onEnter: function($rootScope) {
           //make project text appear
@@ -313,6 +311,7 @@ myApp
     }]);
     return true;
   });
+
 });
 
 // enable html5Mode for pushstate ('#'-less URLs)

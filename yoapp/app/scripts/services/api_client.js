@@ -75,7 +75,7 @@ myApp.factory('API', function(RestAPI, RestFileAPI, apiTimeout,
 // http://farazdagi.com/talks/2014-06-dpc/#11
 
         .then( function(output) { //Success
-            data = JSON.parse(output);
+            var data = JSON.parse(output);
             //console.log(data);
             return data;
           }, function(object) { //Error (timeout?)
