@@ -158,19 +158,29 @@ class GenericDBResource(Resource):
         for (parname, parval) in params.iteritems():
             #print "Param", parname, parval, type(parval)
 
+            ##########################
             # Handling lists with checks
+                # Hard & ambigous...
+
             if isinstance(parval, types.ListType):
                 newlist = list()
-                parlist = list(parval)
-                print "This is a list", parlist
-                #print dir(parlist)
+                counter = 0
 
                 for content in list(parval):
-                    print "Content: *" + content + "*"
-                    if content != "" and not isinstance(content, types.NoneType):
+                    #print "Content: *" + content + "*"
+                    if not isinstance(content, types.NoneType):
                         newlist.append(content)
+                        # Check how many items really have content
+                        if content != "":
+                            counter += 1
 
+                # Should be an empty array if all values are empty
+                if counter < 1:
+                    newlist = list()
                 data[parname] = newlist
+
+
+                #print "Uhm", data
 
             elif not isinstance(parval, types.NoneType):
                 # Very important: this sanitize updates, avoid to set

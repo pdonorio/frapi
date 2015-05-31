@@ -19,7 +19,10 @@ if RDB_PORT != None:
         time.sleep(2)
 
 ################################################
-bind = "0.0.0.0:5000"
+# Change this from outside
+bind = "127.0.0.1:5000"
+
+################################################
 import multiprocessing
 workers = multiprocessing.cpu_count() +1 #* 2 + 1
 

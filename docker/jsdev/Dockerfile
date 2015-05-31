@@ -1,6 +1,9 @@
 FROM ubuntu:14.04
-RUN apt-get update && apt-get install -y ruby git curl sudo python build-essential
-#--fix-missing
+MAINTAINER "Paolo D'Onorio De Meo" p.donoriodemeo@gmail.com
+
+RUN apt-get update && apt-get install -y \
+    ruby git curl sudo python build-essential \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Force bash always
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -32,10 +35,12 @@ RUN curl \
     | bash
 RUN source ~/.bashrc && nvm install $NODEV \
     && npm update -g npm \
-    #&& npm install -g yo \
-    && npm install -g bower grunt grunt-cli \
-    #&& npm install -g generator-angular@$GANGV \
-    && npm install -g chateau
+    && npm install -g bower \
+    #&& npm install grunt grunt-cli \
+    #&& npm install -g yo && npm install -g generator-angular@$GANGV \
+    #&& npm install gulp gulp-concat gulp-autoprefixer gulp-rimraf \
+    && npm install -g chateau \
+    && npm cache clean
 
 #######################################
 # Chateau (phpmyadmin for rethinkdb) configuration

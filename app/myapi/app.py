@@ -77,10 +77,9 @@ def before_request():
     #     The RethinkDB server doesn’t use a thread-per-connnection approach,
     #     so opening connections per request will not slow down your database.
     if not "rdb" in g:
+        # Database should be already connected in "before_first_request"
+        # But the post method fails to find the object!
         try_to_connect()
-    # Database should be already connected in "before_first_request"
-    # But the post method fails to find the object!
-
 
 ################################################
 ## I want API to respond only to my Proxy

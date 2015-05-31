@@ -8,7 +8,12 @@
  *
  * Main module of the application.
  */
-var myApp = angular.module('archivi',
+
+
+// TO FIX
+    //- this is global and we do not like it
+
+var myApp = angular.module('app',
   [
   // CONFIGURATION and DYNAMIC CONSTANTS - made by me
     'AppConfig',
@@ -18,7 +23,7 @@ var myApp = angular.module('archivi',
     'ngAnimate',
     'ngCookies',
     'ngSanitize',
-    'ngTouch',
+    //'ngTouch',
   // DEPENCIES: external modules
     'ui.router',      //some serious and nested views (instead of ngRoute)
     'ui.bootstrap',   //https://github.com/angular-ui/bootstrap
@@ -30,6 +35,18 @@ var myApp = angular.module('archivi',
     'textOperations', //my filters on strings
     'arrayOperations', //my filters on arrays
   ])
+
+/*
+// FIX template caching...
+//http://opensourcesoftwareandme.blogspot.it/2014/02/safely-prevent-template-caching-in-angularjs.html
+.run(function($rootScope, $templateCache) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        if (typeof(current) !== 'undefined'){
+            $templateCache.remove(current.templateUrl);
+        }
+    });
+})
+*/
 
 // LOGGER
 .config(['LoggerProvider', function(LoggerProvider) {

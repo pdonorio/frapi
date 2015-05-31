@@ -134,13 +134,11 @@ myApp
           "contain": {
             templateUrl: "views/main.html",
           },
-/*
- * To show search inside the home page
-          "extra": {
-            templateUrl: "views/datatable.html",
-            controller: 'ViewController',
-          },
-*/
+// //To show search inside the home page
+//           "extra": {
+//             templateUrl: "views/datatable.html",
+//             controller: 'ViewController',
+//           },
         },
         onEnter: function($rootScope) {
           //make project text appear
@@ -159,7 +157,7 @@ myApp
         data: { requireAdmin: false },
         views: {
           "contain": {
-            templateUrl: 'submission/submission_user_view.html',
+            templateUrl: 'submission/submission_user_view.html?v=2',
             controller: 'SubmissionController',
           },
         },
@@ -182,7 +180,7 @@ myApp
         url: "/step/:stepId",
         views: {
           "singlestep": {
-            templateUrl: 'submission/submission_allsteps_view.html',
+            templateUrl: 'submission/submission_allsteps_view.html?v=1',
             controller: 'StepController',
           },
         },
@@ -313,6 +311,7 @@ myApp
     }]);
     return true;
   });
+
 });
 
 // enable html5Mode for pushstate ('#'-less URLs)

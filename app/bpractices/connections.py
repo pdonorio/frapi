@@ -52,19 +52,22 @@ class Connection(Borg):
         pass
 
     def get_connection(self, use_database):
-        """
-        Singleton: having only one _connection in your app
-        """
+        """ Singleton: having only one _connection in your app """
 
+        ##########################################################
         # **Warning**: to check if connection exists may change
         # From one db to another
-        #print "###\tConnection is :",self._connection
+        if self._connection != None:
+            # A connection exists
+            if self._connection.check_open and self._connection.check_open():
+                self.log.debug("Already connected")
+                return self._connection
+            # else:
+            #     print "OPEN?", self._connection.check_open(), self._connection
+        ##########################################################
 
-        if self._connection is None:
-            self.log.info("Making connection")
-            self._connection = self.make_connection(use_database)
-        else:
-            self.log.debug("Already connected")
+        self.log.info("Making connection")
+        self._connection = self.make_connection(use_database)
         return self._connection
 
 # === How to verify one object ===

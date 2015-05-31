@@ -14,6 +14,7 @@ myApp
 {
     // Logging
     var logger = Logger.getInstance('main');
+
     // Init time
     $scope.projectName = projectName;
     $rootScope.lastVisited = undefined;

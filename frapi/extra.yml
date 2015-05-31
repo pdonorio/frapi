@@ -1,4 +1,18 @@
 #########################################
+# Gulp build && Bower install/update
+webdev:
+    build: ../docker/jsdev
+    # environment:
+    #     TESTENV: hello world
+    command: sleep 123456
+    volumes:
+        - ../yoapp:/opt/jsapp
+    # links:
+    #     - rdb:db
+    # ports:
+    #     - "4321:3000"
+
+#########################################
 # FILE SHARE
 
 ### IMPORTANT

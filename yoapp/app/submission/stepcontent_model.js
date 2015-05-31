@@ -137,14 +137,20 @@ myApp
 
         //empty value
         var value = '';
-        if (myjson.value)
+        if (myjson.tmp)
+            value = myjson.tmp;
+        else if (myjson.value)
             value = myjson.value;
+        if (value.trim)
+            value = value.trim();
         //hash linked to step and field name
         var hash = null;
         if (myjson.hasher)
             hash = myjson.hasher;
+        //console.log("Key:hash",key+":"+hash,"Val",value);
+
         //push inside the new array
-        values.push(value);
+        values.push(value)
         hashers.push(hash);
     });
     data.values = values;

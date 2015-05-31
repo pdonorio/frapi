@@ -19,6 +19,9 @@ rdbslave:
     command: rethinkdb --join master:29015 --bind all
     links:
         - rdb:master
+# To clean:
+#$ docker exec -it frapi_api_1 python clean_cluster_issues.py
+
 ##############################
 ## REST API
 pycode:
@@ -29,7 +32,8 @@ api:
     extends:
         file: common.yml
         service: api
-    command: gunicorn -c gunicorn.conf.py main:app
+    # if i use environment variables it does not work...
+    command: gunicorn -c gunicorn.conf.py --bind '0.0.0.0:5000' main:app
     exposes:
         - "5000"
     volumes_from:
@@ -44,7 +48,7 @@ fileapi:
     extends:
         file: common.yml
         service: fileapi
-    command: gunicorn -c gunicorn.conf.py file:app
+    command: gunicorn -c gunicorn.conf.py --bind '0.0.0.0:6000' file:app
     exposes:
         - "6000"
     volumes_from:
