@@ -6,6 +6,14 @@ Using the blog post:
 http://mandarvaze.github.io/2015/01/token-auth-with-flask-security.html
 """
 
+########################
+########################
+USER = 'test@test.it'
+PWD = 'password'
+ROLE_ADMIN = 'adminer'
+########################
+########################
+
 ####################################
 # Imports
 
@@ -17,15 +25,6 @@ from flask.ext.security \
     UserMixin, RoleMixin, login_required, roles_required, \
     auth_token_required, http_auth_required
 
-############################
-#deadcode, justatest...
-
-# # Overide auth function ?
-# def myauth(self):
-#     return "test"
-# UserMixin.get_auth_token = myauth
-############################
-
 ####################################
 # Define models
 
@@ -36,10 +35,11 @@ class Role(db.Model, RoleMixin):
 
 roles_users = \
     db.Table('roles_users',
-        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+        db.Column('user_id', db.Integer(), db.ForeignKey('userauth.id')),
         db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
-class User(db.Model, UserMixin):
+# Note: do not use 'User' as it may mix with postgresql keyword
+class Userauth(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
@@ -53,19 +53,29 @@ class User(db.Model, UserMixin):
 
 ####################################
 # Setup Flask-Security
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+user_datastore = SQLAlchemyUserDatastore(db, Userauth, Role)
 security = Security(app, user_datastore)
 
-USER = 'test@test.it'
-PWD = 'password'
-ROLE_ADMIN = 'adminer'
-
-
-########################
+####################################
+# Create a user to test with - execution before first request to our server
 try:
     db.create_all()
+    print "Connected and created"
 except Exception, e:
     raise e
+
+@app.before_first_request
+def create_user():
+    db.create_all()
+    if not Userauth.query.first():
+
+        user_datastore.create_user(email=USER, password=PWD)
+        user_datastore.create_role(name=ROLE_ADMIN, description='I am the admin')
+        #user_datastore.find_or_create_role(ROLE_ADMIN)
+        user_datastore.add_role_to_user(USER, ROLE_ADMIN)
+
+        print "Db init"
+        db.session.commit()
 
 ####################################
 # Views
@@ -89,22 +99,6 @@ def dummyAPI():
 @roles_required(ROLE_ADMIN)
 def admin():
     return "Hello admin", 200
-
-####################################
-# Create a user to test with - execution before first request to our server
-@app.before_first_request
-def create_user():
-    db.create_all()
-    if not User.query.first():
-
-        user_datastore.create_user(email=USER, password=PWD)
-        user_datastore.create_role(name=ROLE_ADMIN, description='I am the admin')
-        #user_datastore.find_or_create_role(ROLE_ADMIN)
-        user_datastore.add_role_to_user(USER, ROLE_ADMIN)
-
-        print "Db init"
-
-        db.session.commit()
 
 ####################################
 # API restful test
@@ -133,7 +127,6 @@ api.add_resource(ApiTest, FIXED_APIURL+'/'+ApiTest().resource)
 #     FIXED_APIURL + '/' + ApiTest.resource, \
 # # 2. /resource/:id  #POST
 #     FIXED_APIURL + '/' + ApiTest.resource + '/<string:data_key>')
-
 
 # ####################################
 # ####################################
