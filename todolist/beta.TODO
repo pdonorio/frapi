@@ -1,9 +1,4 @@
 
- ☐ Gulp?? @ohboy
-   ☐ https://gist.github.com/dickeyxxx/29634019cb2bef7f0333
-   ☐ https://medium.com/@dickeyxxx/best-practices-for-building-angular-js-apps-266c1a4a6917
-     ☐ docker-compose -f frapi/extra.yml up webdev
-
 Configuration:
   ✔ Move the real configuration @done (15-05-18 17:20)
   ✔ Compose yaml configurations @done (15-05-18 17:22)
@@ -20,17 +15,27 @@ Configuration:
     ✔ Sync conf (e.g. ftp) @done (15-05-19 16:31)
       ✘ external links @cancelled (15-05-19 16:31)
         ✔ https://docs.docker.com/compose/yml/#external_links @done (15-05-19 16:31)
+  ✔ Postgres db password?? @done (15-05-31 22:07)
+  ✘ Write plans? @cancelled (15-05-31 22:07)
+    ✔ Remove for now @done (15-05-18 14:48)
+    ✘ done/doing/todo/failed @cancelled (15-05-31 22:07)
 
-  ☐ AUTH provider
+  ✔ AUTH provider @done (15-05-31 22:50)
+    ☐ curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.it","password":"password"}' http://awesome.dev:8888/login
+      ☐ receive a token
+    ☐ curl -X GET -H 'Authentication-Token:test' http://awesome.dev:8888/app/
+
   ☐ SSL
   ☐ check cors
 
-  ☐ Write plans?
-    ✔ Remove for now @done (15-05-18 14:48)
-    ☐ done/doing/todo/failed
+   ☐ Gulp?? @ohboy
+     ☐ https://gist.github.com/dickeyxxx/29634019cb2bef7f0333
+     ☐ https://medium.com/@dickeyxxx/best-practices-for-building-angular-js-apps-266c1a4a6917
+       ☐ docker-compose -f frapi/extra.yml up webdev
 
   ☐ Limit (gunicorn?) max requests per second? per user?
-  ☐ An init dump saved in a dropbox link
+
+  ✘ An init dump saved in a dropbox link @cancelled (15-05-31 22:07)
   ☐ Db mask with login??
    ☐ limit_remote_addr function
      ☐ app.py

@@ -6,6 +6,7 @@ ENV TERM xterm
 RUN apt-get update && apt-get install -y python-setuptools python-dev \
     build-essential \
     libjpeg-dev \
+    libpq-dev \
     && easy_install pip
 
 # ##GNU SCREEN

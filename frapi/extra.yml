@@ -1,4 +1,5 @@
 #########################################
+# BUILD + INSTALL
 # Gulp build && Bower install/update
 webdev:
     build: ../docker/jsdev
@@ -11,6 +12,50 @@ webdev:
     #     - rdb:db
     # ports:
     #     - "4321:3000"
+
+#########################################
+# AUTH PROVIDER
+providerdata:
+    image: busybox
+    command: /bin/sh -c "cd /var/lib; mkdir postgresql; chown 999:999 postgresql"
+    # volumes:
+    #     # Boot2docker bug: http://j.mp/1FMm5qj
+    #     - ../data/psgr:/var/lib/postgresql/data
+providerdb:
+    image: postgres:9.4
+    # /usr/lib/postgresql/9.4/bin/pg_ctl reload
+    environment:
+        POSTGRES_USER: myadmin
+        POSTGRES_PASSWORD: averYsecretpw
+    volumes_from:
+        - providerdata
+    volumes:
+        # Init file && Access security
+        - ../docker/init/psql.init.sh:/docker-entrypoint-initdb.d/setup-my-schema.sh
+## Switch to XL: http://www.slideshare.net/mason_s/postgres-xl-scaling
+## http://www.postmind.net/pgxl_docker-en.html
+provider:
+    extends:
+        file: common.yml
+        service: api
+    command: sleep 12456789
+    #command: python testapp.py
+    volumes_from:
+        - pycode
+    ports:
+        - "8888:80"
+    links:
+        - providerdb:db
+#REMOVEME
+backupdata:
+    extends:
+        file: common.yml
+        service: pycode
+pycode:
+    extends:
+        file: common.yml
+        service: pycode
+#REMOVEME
 
 #########################################
 # FILE SHARE
@@ -65,5 +110,10 @@ myftp:
         - docker/ftp/clients:/etc/pure-ftpd/conf/MaxClientsNumber
     # using a container from outside this composer
     volumes_from:
-        #- backupdata
-        - frapi_backupdata_1
+        - backupdata
+# REMOVEME
+backupdata:
+    extends:
+        file: common.yml
+        service: backupdata
+# REMOVEME

@@ -77,10 +77,12 @@ devdbinit:
 # Nodejs: Database admin and dist build
 webdev:
     build: ../docker/jsdev
-    # environment:
-    #     TESTENV: hello world
     command: chateau
     volumes:
         - ../yoapp:/opt/jsapp
     links:
         - devdb:db
+
+##########################
+# MONITOR
+## $ docker run -ti -v /var/run/docker.sock:/var/run/docker.sock icecrime/docker-mon
