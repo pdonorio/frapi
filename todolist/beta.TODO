@@ -25,7 +25,10 @@ Configuration:
     ☐ curl -X GET -H 'Authentication-Token:test' http://awesome.dev:8888/app/
   ✔ bower fix @done (15-06-01 11:37)
 
-  ☐ SSL
+  ✔ SSL @done (15-06-01 17:06)
+    ✔ Certifiactes and instructions @done (15-06-01 17:06)
+    ☐ Apply to proxy
+
   ☐ check cors
   ☐ Limit
     ☐ gunicorn
@@ -306,3 +309,6 @@ In the future:
  ☐ Testing
  ☐ CSS on demand!
    ☐ https://github.com/door3/angular-css
+
+ ☐ Https
+   ☐ https://konklone.com/post/switch-to-https-now-for-free

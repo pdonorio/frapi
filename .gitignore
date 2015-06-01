@@ -14,10 +14,7 @@ yoapp/app/images/yeoman*
 
 # Certificates
 *.pem
-*.crt
-*.key
-key
-*.cert
+*.p12
 
 # Data dir
 data/*
