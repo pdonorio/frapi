@@ -4,16 +4,10 @@ conf='/var/lib/postgresql/data/pg_hba.conf'
 ## http://www.postgresql.org/docs/9.1/static/auth-pg-hba-conf.html
 
 echo "Changing access"
-
 echo "" > $conf
-
-#ONLY DEBUG
-#echo "local   docker  docker  trust" >> $conf
-#ONLY DEBUG
-
-echo "hostnossl       docker  docker  172.17.0.0/16   password" >> $conf
-
-echo "******  DONE    ******"
+#echo "local   $POSTGRES_USER  $POSTGRES_USER  trust" >> $conf  #ONLY DEBUG
+echo "hostnossl       $POSTGRES_USER  $POSTGRES_USER  172.17.0.0/16   password" >> $conf
+echo "DONE"
 
 ## This is done through environment variables
 

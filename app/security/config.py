@@ -11,13 +11,24 @@ class Config(object):
     WTF_CSRF_ENABLED = False
 
 class ProductionConfig(Config):
-    # TO FIX - with postgres
-    #DATABASE_URI = 'mysql://user@localhost/foo'
-    #SECRET_KEY = 'docker'
-    SQLALCHEMY_DATABASE_URI = "postgresql://docker:test@db/docker"
+
+    # Configuration data is given through environment variables
+    import os
+    USER = os.environ.get('DB_ENV_POSTGRES_USER')
+    PW = os.environ.get('DB_ENV_POSTGRES_PASSWORD')
+    DB = os.path.basename(os.environ.get('DB_NAME'))
+
+    # Postgres connection
+    SQLALCHEMY_DATABASE_URI = "postgresql://"+ USER +":"+ PW +"@"+ DB +"/"+ USER
 
     # Force token to last not more than one hour
     SECURITY_TOKEN_MAX_AGE = 3600
+    # Add security to password
+    ##https://pythonhosted.org/Flask-Security/configuration.html
+    SECURITY_PASSWORD_HASH = "pbkdf2_sha512"
+    SECURITY_PASSWORD_SALT = "ifiwantobeinproductionihavetousesecretsalt"
+
+    #SECURITY_EMAIL_SENDER = "noreply@PROJECT"
 
 class DevelopmentConfig(Config):
     DEBUG = True
