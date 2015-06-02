@@ -11,6 +11,7 @@ Serious setup:
       ☐ api with config.py
       ☐ test file api with https
         ✔ names with spaces? @done (15-06-02 16:21)
+        ✔ also when deleting @done (15-06-02 16:24)
 
   ☐ API mix
     ☐ provider integration
