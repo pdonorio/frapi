@@ -10,7 +10,7 @@ Serious setup:
       ☐ js already working?
       ☐ api with config.py
       ☐ test file api with https
-        ☐ names with spaces?
+        ✔ names with spaces? @done (15-06-02 16:21)
 
   ☐ API mix
     ☐ provider integration

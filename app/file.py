@@ -122,7 +122,7 @@ def uploaded_file(filename):
         filebase, fileext = os.path.splitext(abs_file)
         if os.path.exists(filebase):
             shutil.rmtree(filebase)
-            app.logger.warn("Removed: "+ filebase)
+            app.logger.warn("Removed: "+ filebase +" [extension '"+fileext+"']")
 
         # Remove the real file
         os.remove(abs_file)

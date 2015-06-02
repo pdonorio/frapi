@@ -99,7 +99,11 @@ myApp
     factory.set = function(id, file, type, user) {
 
         var params = {
-            code: file.replace(/\.[^\.]+$/, ''),
+            code: file
+                // Remove extension
+                .replace(/\.[^\.]+$/, '')
+                // Since python 'join path' uses underscore for spaces
+                .replace(/[\s]/g, '_'),
             filename: file,
             filetype: type,
             recordid: id,
