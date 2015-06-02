@@ -7,15 +7,16 @@ Serious setup:
     ✔ test on API @done (15-06-02 10:03)
     ✔ Write a new configuration @done (15-06-02 13:21)
     ✔ Check variables for https @done (15-06-02 13:21)
-      ☐ js already working?
-      ☐ api with config.py
-      ☐ test file api with https
+      ✔ js already working? @done (15-06-02 16:29)
+      ✔ test file api with https @done (15-06-02 16:29)
         ✔ names with spaces? @done (15-06-02 16:21)
         ✔ also when deleting @done (15-06-02 16:24)
 
   ☐ API mix
     ☐ provider integration
     ☐ and things about https
+    ☐ api with config.py
+      ☐ production / development
     ☐ JS REQUEST
       ☐ curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.it","password":"password"}' http://awesome.dev:8888/login
         ☐ receive a token
