@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
-""" Configuration for securing application """
+""" Configuration for python API application """
+
+# Import necessary data from environoment variables
+# This is one of the most cool features in python
+import os
+MODE = os.environ.get('APP_MODE')
 
 class Config(object):
-    DEBUG = False
+    DEBUG = None
     TESTING = False
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
     SECRET_KEY = 'my-super-secret-keyword'
@@ -12,11 +17,18 @@ class Config(object):
 
 class ProductionConfig(Config):
 
-    # Configuration data is given through environment variables
-    import os
-    USER = os.environ.get('DB_ENV_POSTGRES_USER')
-    PW = os.environ.get('DB_ENV_POSTGRES_PASSWORD')
-    DB = os.path.basename(os.environ.get('DB_NAME'))
+    DEBUG = False
+
+    try:
+        # Configuration data is given through environment variables
+        USER = os.environ.get('DB_ENV_POSTGRES_USER')
+        PW = os.environ.get('DB_ENV_POSTGRES_PASSWORD')
+        DB = os.path.basename(os.environ.get('DB_NAME'))
+    except AttributeError, e:
+        print "No configuration found"
+        USER = ""
+        PW = ""
+        DB = ""
 
     # Postgres connection
     SQLALCHEMY_DATABASE_URI = "postgresql://"+ USER +":"+ PW +"@"+ DB +"/"+ USER

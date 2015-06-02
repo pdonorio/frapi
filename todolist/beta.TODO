@@ -12,8 +12,10 @@ Serious setup:
         ✔ names with spaces? @done (15-06-02 16:21)
         ✔ also when deleting @done (15-06-02 16:24)
 
-  ☐ API mix
+  ✔ API mix @letsdoit @done (15-06-02 17:22)
+    ✔ A debug decided via environment variable @done (15-06-02 17:22)
     ☐ provider integration
+      ☐ provider testing of different path (e.g. api/v1) @important
     ☐ and things about https
     ☐ api with config.py
       ☐ production / development
@@ -22,11 +24,11 @@ Serious setup:
         ☐ receive a token
       ☐ curl -X GET -H 'Authentication-Token:test' http://awesome.dev:8888/app/
 
-  ☐ save address when logout
+   ☐ JS auth
+    ☐ save address when logout
 
   ☐ check cors
-  ☐ Limit
-    ☐ gunicorn
+  ☐ Limit gunicorn in production
       ☐ max requests per second? per user?
   ☐ change bad gateway message nginx
 
