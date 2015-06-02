@@ -67,7 +67,7 @@ def abort_on_db_fail(func):
             print e
             if e.__str__() == "DB table does not exist yet":
                 # Empty table
-                abort(hcodes.HTTP_BAD_CONFLICT, message=e.__str__())
+                abort(hcodes.HTTP_SERVICE_UNAVAILABLE, message=e.__str__())
             else:
                 # Very bad
                 abort(hcodes.HTTP_BAD_NOTFOUND, message=e.__str__())
