@@ -27,7 +27,8 @@ Configuration:
 
   ✔ SSL @done (15-06-01 17:06)
     ✔ Certifiactes and instructions @done (15-06-01 17:06)
-    ☐ Apply to proxy
+    ✔ Apply to proxy @current @done (15-06-02 09:19)
+    ☐ test on API
 
   ☐ check cors
   ☐ Limit

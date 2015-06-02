@@ -18,14 +18,24 @@ script.
 
 When going online you need a real p12 certificate from a certified authority.
 
-Once you obtain the p12 file:
+Once you obtained the p12 file:
 
 ```
+## All of this operations will ask for the private key password
+
+# Get the private key
 $ openssl pkcs12 -in myp12.pfx -nocerts -out privateKey.pem
+# Get the intermediate public certificate
 $ openssl pkcs12 -in myp12.pfx -clcerts -nokeys -out publicCert.pem
-# It may not work if you don't: http://stackoverflow.com/a/18102479/2114395
+# Remove passphrase from your private key
 $ openssl rsa -in privateKey.pem -out privateUnKey.pem
+# Create a public key from your intermediate certificate
+## you need
+$ cat publicCert.pem server.ca.pem > publicUnified.pem
 ```
+
+At this point `privateUnKey.pem` and `publicUnified.pem` may be used with
+any web server application.
 
 ===
 

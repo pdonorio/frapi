@@ -49,14 +49,16 @@ devproxy:
         file: common.yml
         service: proxy
     ports:
-        - "4321:9090" #the debug db chateau
-        - "5432:7070" #the debug db monitor
+        - "80:8080" #the proxy
+        - "4321:9090" #debug db chateau
+        - "5432:7070" #debug rdb monitor
     links:
         - devapi:api # i need to know the internal container which exposes api
         - devfapi:fapi
         - webdev:capi
         - devdb:rmonitor
     volumes:
+        - ../docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
         - ../docker/proxy/dev-enabled.conf:/etc/nginx/sites-enabled/development
     volumes_from:
         - updata
