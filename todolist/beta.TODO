@@ -1,33 +1,28 @@
 
-Configuration:
-  ✔ Move the real configuration @done (15-05-18 17:20)
-  ✔ Compose yaml configurations @done (15-05-18 17:22)
-    ✔ list of base services @done (15-05-18 17:22)
-      ✔ data containers @done (15-05-18 17:22)
-      ✔ others? @done (15-05-18 20:35)
-    ✔ list of development services @done (15-05-18 21:30)
-      ✔ Split debug options in nginx configuration in another sites enabled file? @done (15-05-19 07:39)
-    ✔ list of production services @done (15-05-18 21:30)
-    ✔ List of init tasks @done (15-05-19 07:42)
-      ✔ Create db @done (15-05-19 07:42)
-      ✔ Create tables @done (15-05-19 07:42)
-      ✔ Admin user @done (15-05-19 07:42)
-    ✔ Sync conf (e.g. ftp) @done (15-05-19 16:31)
-      ✘ external links @cancelled (15-05-19 16:31)
-        ✔ https://docs.docker.com/compose/yml/#external_links @done (15-05-19 16:31)
-  ✔ Postgres db password?? @done (15-05-31 22:07)
-  ✘ Write plans? @cancelled (15-05-31 22:07)
-    ✔ Remove for now @done (15-05-18 14:48)
-    ✘ done/doing/todo/failed @cancelled (15-05-31 22:07)
+Serious setup:
   ✔ AUTH provider @done (15-05-31 22:50)
-    ☐ curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.it","password":"password"}' http://awesome.dev:8888/login
-      ☐ receive a token
-    ☐ curl -X GET -H 'Authentication-Token:test' http://awesome.dev:8888/app/
-  ✔ bower fix @done (15-06-01 11:37)
-
   ✔ SSL @done (15-06-01 17:06)
     ✔ Certifiactes and instructions @done (15-06-01 17:06)
-    ☐ Apply to proxy
+    ✔ Apply to proxy @current @done (15-06-02 09:19)
+    ✔ test on API @done (15-06-02 10:03)
+    ✔ Write a new configuration @done (15-06-02 13:21)
+    ✔ Check variables for https @done (15-06-02 13:21)
+      ✔ js already working? @done (15-06-02 16:29)
+      ✔ test file api with https @done (15-06-02 16:29)
+        ✔ names with spaces? @done (15-06-02 16:21)
+        ✔ also when deleting @done (15-06-02 16:24)
+
+  ☐ API mix
+    ☐ provider integration
+    ☐ and things about https
+    ☐ api with config.py
+      ☐ production / development
+    ☐ JS REQUEST
+      ☐ curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.it","password":"password"}' http://awesome.dev:8888/login
+        ☐ receive a token
+      ☐ curl -X GET -H 'Authentication-Token:test' http://awesome.dev:8888/app/
+
+  ☐ save address when logout
 
   ☐ check cors
   ☐ Limit

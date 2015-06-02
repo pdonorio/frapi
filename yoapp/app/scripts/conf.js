@@ -13,10 +13,9 @@ angular.module('AppConfig', [])
 
   //API
   .constant('apiPort', '80')
-  //.constant('apiPort', '5507')
-  .constant('apiBase', '/api/v1')
   .constant('apiFilePort', '80')
-  .constant('apiFileResource', 'file/uploader')
+  .constant('apiBase', '/api/v1')
+  .constant('apiFileResource', '/file/uploader')
 
   //USERS
   .constant('USER_ROLES',{
@@ -57,20 +56,22 @@ angular.module('AppConfig', [])
     return {
       $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus, USER_ROLES)
       {
+
+        // What to do with this?
         config.debug = true;
 
         //use location https://docs.angularjs.org/api/ng/service/$location
         var host = $location.host();
         var port = $location.port();
+        var protocol = $location.protocol();
+        //console.log("Procotol", protocol);
 
-// TO FIX -
-// https only for sending informations, not files, at the moment
-        var protocol = "http";
-        config.apiFileBase = protocol + "://" + host + ":" + apiFilePort
-          + "/" + apiFileResource;
+        var baseAddress = protocol + "://" + host;
+        if (protocol != 'https')
+            baseAddress += ":" + apiFilePort
 
-        protocol = $location.protocol();
-        config.apiBase = protocol + "://" + host + ":" + apiPort + apiBase;
+        config.apiFileBase = baseAddress + apiFileResource;
+        config.apiBase = baseAddress + apiBase;
 
         // Protocol
         config.currentProtocol = protocol;

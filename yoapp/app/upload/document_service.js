@@ -98,9 +98,12 @@ myApp
     // A new file is uploaded
     factory.set = function(id, file, type, user) {
 
+        // Since python 'join path' uses underscore for spaces
+        var myfile = file.replace(/[\s]/g, '_');
+
         var params = {
-            code: file.replace(/\.[^\.]+$/, ''),
-            filename: file,
+            code: myfile.replace(/\.[^\.]+$/, ''), // Remove extension
+            filename: myfile,
             filetype: type,
             recordid: id,
             upload_user: user,

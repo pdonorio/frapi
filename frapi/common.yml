@@ -47,6 +47,3 @@ proxy:
     image: nginx
     volumes:
         - ../docker/proxy/nginx.conf:/etc/nginx/nginx.conf
-        - ../docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
-    ports:
-        - "80:8080" #the proxy

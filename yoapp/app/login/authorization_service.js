@@ -42,18 +42,19 @@ myApp
           token = FAILED_TOKEN;
           username = FAILED_USER;
       }
-      // One day expiration
-      var now = new Date(),
-          exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      // days of expiration
+      var   days = 30,
+            now = new Date(),
+            exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + days);
 
-      // Depends on https and debug
+      // Depends on https
       var securing = false;
-      if (AppConfig.debug && AppConfig.protocol == 'https')
+      if (AppConfig.currentProtocol == 'https')
         securing = true;
 
       var cOptions = {
           secure: securing,
-          //expires: exp,
+          expires: exp,
           //domain: 'http://test.goo.devs', //path: '/login',
       };
       // Save
@@ -61,7 +62,7 @@ myApp
       // Only token will expire in one da
       cOptions.expires = exp;
       $cookies.put(COOKIEVAR_AUTHTOKEN, token, cOptions);
-      logger.log("Saved new cookie");
+      logger.log("Saved new cookie, expiring in days " + days);
   }
 
   Authentication.get = function() {
