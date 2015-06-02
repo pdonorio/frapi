@@ -58,7 +58,7 @@ devproxy:
         - webdev:capi
         - devdb:rmonitor
     volumes:
-        - ../docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
+        #- ../docker/proxy/sites-enabled.conf:/etc/nginx/sites-enabled/configuration
         - ../docker/proxy/dev-enabled.conf:/etc/nginx/sites-enabled/development
     volumes_from:
         - updata

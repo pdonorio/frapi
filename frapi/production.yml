@@ -69,29 +69,21 @@ tasker:
         - backupdata
 
 ##########################
-## PROXY
-proxy:
-    extends:
-        file: common.yml
-        service: proxy
-    links:
-        - api:api
-        - fileapi:fapi
-    volumes_from:
-        - updata
-
-##########################
+## PROXY and HTTPS
 sslproxy:
     extends:
         file: common.yml
         service: proxy
     volumes:
-        #- ../certificates/privateKey.pem:/etc/nginx/ssl/server.key
         - ../certificates/privateUnKey.pem:/etc/nginx/ssl/server.key
         - ../certificates/publicCert.pem:/etc/nginx/ssl/server.crt
         - ../docker/proxy/ssl-enabled.conf:/etc/nginx/sites-enabled/production
-        - ../yoapp/dist:/var/www
     ports:
         - "80:80"
         - "443:443"
+    links:
+        - api:api
+        - fileapi:fapi
+    volumes_from:
+        - updata
 ##########################

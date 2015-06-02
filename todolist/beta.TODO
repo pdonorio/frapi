@@ -28,7 +28,13 @@ Configuration:
   ✔ SSL @done (15-06-01 17:06)
     ✔ Certifiactes and instructions @done (15-06-01 17:06)
     ✔ Apply to proxy @current @done (15-06-02 09:19)
-    ☐ test on API
+    ✔ test on API @done (15-06-02 10:03)
+    ✔ Write a new configuration @done (15-06-02 13:21)
+    ✔ Check variables for https @done (15-06-02 13:21)
+      ☐ js already working?
+      ☐ api with config.py
+
+  ☐ save address when logout
 
   ☐ check cors
   ☐ Limit
