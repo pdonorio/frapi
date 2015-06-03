@@ -103,23 +103,24 @@ def admin():
 
 ####################################
 # MAIL tests
-@app.route("/mail")
-def sendmail():
+if mail != None:
+    @app.route("/mail")
+    def sendmail():
 
-    # Create the message with cool sender
-    msg = Message("Hello",
-        sender=("Me", "me@example.com"))
-    assert msg.sender == "Me <me@example.com>"
-    # Destination
-    msg.recipients = ["test@gmail.com"]
-    msg.add_recipient("somebodyelse@example.com")
-    # Body OR Html
-    msg.body = "testing the normal body"
-    msg.html = "<b>testing</b> the html body"
+        # Create the message with cool sender
+        msg = Message("Hello",
+            sender=("Me", "me@example.com"))
+        assert msg.sender == "Me <me@example.com>"
+        # Destination
+        msg.recipients = ["test@gmail.com"]
+        msg.add_recipient("somebodyelse@example.com")
+        # Body OR Html
+        msg.body = "testing the normal body"
+        msg.html = "<b>testing</b> the html body"
 
-    # SEND
-    mail.send(msg)
-    return "Sent ;)"
+        # SEND
+        mail.send(msg)
+        return "Sent ;)"
 
 ####################################
 # API restful test

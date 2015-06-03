@@ -37,13 +37,17 @@ class Config(object):
     SECURITY_RECOVERABLE = True
     SECURITY_TRACKABLE = True
     SECURITY_PASSWORDLESS = False
+
     # Email
-    MAIL_SERVER = 'mail.gandi.net'
-    MAIL_PORT = 465
-    MAIL_USE_SSL = True
+# FILL THIS TO MAKE EMAIL WORK :)
+    MAIL_SERVER = ''
     MAIL_USERNAME = ''
     MAIL_PASSWORD = ''
+# FILL THIS TO MAKE EMAIL WORK :)
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
     MAIL_DEFAULT_SENDER = 'noreply@development.it'
+
     # Security email
     SECURITY_EMAIL_SENDER = MAIL_DEFAULT_SENDER
     SECURITY_EMAIL_SUBJECT_REGISTER = 'Welcome to our project'

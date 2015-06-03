@@ -29,7 +29,6 @@ db = SQLAlchemy(app)
 
 ####################################
 # Add email
-
-# if not app.config['DEBUG']:
-
-mail = Mail(app)
+mail = None
+if not app.config['DEBUG']:
+    mail = Mail(app)
