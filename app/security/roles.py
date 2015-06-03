@@ -17,8 +17,9 @@ ROLE_ADMIN = 'adminer'
 ####################################
 # Imports
 
-from security.app import app, db
+from security.app import app, db, mail
 
+from flask_mail import Message
 from flask import jsonify
 from flask.ext.security \
     import Security, SQLAlchemyUserDatastore, \
@@ -99,6 +100,26 @@ def dummyAPI():
 @roles_required(ROLE_ADMIN)
 def admin():
     return "Hello admin", 200
+
+####################################
+# MAIL tests
+@app.route("/mail")
+def sendmail():
+
+    # Create the message with cool sender
+    msg = Message("Hello",
+        sender=("Me", "me@example.com"))
+    assert msg.sender == "Me <me@example.com>"
+    # Destination
+    msg.recipients = ["test@gmail.com"]
+    msg.add_recipient("somebodyelse@example.com")
+    # Body OR Html
+    msg.body = "testing the normal body"
+    msg.html = "<b>testing</b> the html body"
+
+    # SEND
+    mail.send(msg)
+    return "Sent ;)"
 
 ####################################
 # API restful test

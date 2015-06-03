@@ -7,7 +7,7 @@ from flask import Flask
 from security.config import MODE, \
     TestingConfig, DevelopmentConfig, ProductionConfig
 from flask.ext.sqlalchemy import SQLAlchemy
-from security.mailer import mailer
+from flask_mail import Mail
 
 ####################################
 # Create app
@@ -29,5 +29,7 @@ db = SQLAlchemy(app)
 
 ####################################
 # Add email
-if not app.config['DEBUG']:
-    mailer(app)
+
+# if not app.config['DEBUG']:
+
+mail = Mail(app)
