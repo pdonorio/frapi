@@ -20,7 +20,7 @@ rdbslave:
     links:
         - rdb:master
 # To clean:
-#$ docker exec -it frapi_api_1 python clean_cluster_issues.py
+#$ docker exec -it frapi_api_1 python scripts/clean_cluster_issues.py
 
 ##############################
 ## REST API

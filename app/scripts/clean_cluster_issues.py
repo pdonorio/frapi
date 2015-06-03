@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 """ Remove slave servers which do not exists anymore """
 
+##########################
 # Load libraries
 from rdb.rdb_handler import r, RDB_HOST, RDB_PORT
 ADMIN_DB = 'rethinkdb'
 
+##########################
+# Try connection
 try:
     conn = r.connect(host=RDB_HOST, port=RDB_PORT, db=ADMIN_DB)
 except r.errors.RqlDriverError, e:
@@ -12,8 +15,11 @@ except r.errors.RqlDriverError, e:
     exit(1)
 print "Connected"
 
+##########################
+# Select table
 q = r.table("current_issues").run(conn)
 
+##########################
 # For each issue
 for i in q:
     if 'disconnected_server' in i['info']:
