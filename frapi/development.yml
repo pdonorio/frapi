@@ -73,7 +73,7 @@ devproxy:
 #     extends:
 #         file: common.yml
 #         service: api
-#     command: python devinit.py
+#     command: python scripts/devinit.py
 #     links:
 #         - devdb:db
 #     volumes_from:

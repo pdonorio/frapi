@@ -39,7 +39,7 @@ provider:
         file: common.yml
         service: api
     command: sleep 12456789
-    #command: python testapp.py
+    #command: python scripts/testapp.py
     volumes_from:
         - pycode
     ports:
