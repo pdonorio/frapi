@@ -35,7 +35,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 ###########################################
 # Extensions
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['tiff', 'png', 'jpg', 'jpeg'])#, 'gif', 'txt', 'pdf',])
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
@@ -54,8 +54,12 @@ def upload_file():
         myfile = request.files['file']
         app.logger.info("Received FILE request")
 
-        if myfile and allowed_file(myfile.filename):
+        if myfile:
             filename = secure_filename(myfile.filename)
+
+            # Check allowed extension
+            if not allowed_file(filename):
+                abort(hcodes.HTTP_BAD_REQUEST, "Extension not allowed")
 
             # Check file name
             abs_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)

@@ -18,6 +18,7 @@ Serious setup:
     ☐ provider integration
       ✔ provider testing of different path (e.g. api/v1) @important @done (15-06-03 09:03)
       ☐ Move file.py
+        ☐ Convert to restful plugin api
       ☐ Extract app from security into main dir
       ☐ fix main.py
         ☐ api with config.py (better in __init_)
