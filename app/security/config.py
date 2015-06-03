@@ -27,6 +27,8 @@ class Config(object):
 
     ## https://pythonhosted.org/Flask-Security/configuration.html
 
+    # Adding a base to Flask Security endpoints (e.g. login, logout)
+    SECURITY_URL_PREFIX = '/api/v1'
     # Others
     SECURITY_REGISTERABLE = True
     SECURITY_CONFIRMABLE = True
