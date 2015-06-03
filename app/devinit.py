@@ -26,14 +26,19 @@ if not exists:
         print "Creating table" + model.table
         r.table_create(model.table).run(conn)
 
+    ##########################################
+## TO FIX -
+## This should add account to auth provider
     # Insert
     admin = {"activation":1, "role":999,
-        "email":"pdonoriodemeo@gmail.com", \
+        "email":"test@gmail.com", \
         "name":"Paulie", "surname":"D", \
+        # badadmin
         "token":"3a3cc3d78759da799d600678734025427b08fa69fb73e79f91d7831c1ec3f39e" \
     }
     r.table(models['Account'].table).insert(admin).run(conn)
 
+    ##########################################
     # Some documents?
 
 print "Done"

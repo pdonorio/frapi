@@ -1,21 +1,6 @@
 # Everything here is HTTP (not https and certificates)
 
 ##########################
-## A TEST TO REMOVE
-provider:
-    extends:
-        file: common.yml
-        service: api
-    command: python testapp.py
-    environment:
-        APP_MODE: 'dev'
-    volumes_from:
-        - pycode
-    ports:
-        - "5555:5555"
-## A TEST TO REMOVE
-
-##########################
 ## From common
 
 # DB with no data dir, i restart every time from zero?

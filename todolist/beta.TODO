@@ -14,15 +14,26 @@ Serious setup:
 
   ✔ API mix @letsdoit @done (15-06-02 17:22)
     ✔ A debug decided via environment variable @done (15-06-02 17:22)
+    ✔ Mail tests @done (15-06-03 09:00)
     ☐ provider integration
-      ☐ provider testing of different path (e.g. api/v1) @important
-    ☐ and things about https
-    ☐ api with config.py
+      ✔ provider testing of different path (e.g. api/v1) @important @done (15-06-03 09:03)
+      ☐ Move file.py
+      ☐ Extract app from security into main dir
+      ☐ fix main.py
+        ☐ api with config.py (better in __init_)
+      ☐ remove testapp
+      ☐ fix devinit
+      ☐ test gunicorn
+        ☐ remove options in development compose
+      ☐ Test PRODUCTION
+        ☐ and things about https
       ☐ production / development
-    ☐ JS REQUEST
-      ☐ curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.it","password":"password"}' http://awesome.dev:8888/login
-        ☐ receive a token
-      ☐ curl -X GET -H 'Authentication-Token:test' http://awesome.dev:8888/app/
+
+    ☐ JS Side
+      ☐ request
+        ☐ curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.it","password":"password"}' http://awesome.dev:8888/login
+          ☐ receive a token
+        ☐ curl -X GET -H 'Authentication-Token:test' http://awesome.dev:8888/app/
 
    ☐ JS auth
     ☐ save address when logout
