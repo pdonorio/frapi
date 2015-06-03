@@ -4,6 +4,7 @@
 import os, time
 import rethinkdb as r
 from rethinkdb.errors import RqlDriverError
+
 RDB_HOST = "db"
 RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT')
 
@@ -17,10 +18,15 @@ if RDB_PORT != None:
         except RqlDriverError, e:
             print "Not reachable yet"
         time.sleep(2)
+else:
+    print "No accessible rethinkdb port"
+    exit(1)
 
 ################################################
-# Change this from outside
-bind = "127.0.0.1:5000"
+address = '0.0.0.0'
+#address = '127.0.0.1'
+port = '5000'
+bind = address + ':' + port
 
 ################################################
 import multiprocessing
