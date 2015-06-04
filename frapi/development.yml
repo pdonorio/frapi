@@ -22,7 +22,6 @@ devapi:
         file: common.yml
         service: api
     command: python main.py
-    #command: sleep 123987123
     exposes:
         - "5000"
     volumes_from:

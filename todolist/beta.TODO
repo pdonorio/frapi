@@ -17,8 +17,9 @@ Serious setup:
     ✔ Mail tests @done (15-06-03 09:00)
     ☐ provider integration
       ✔ provider testing of different path (e.g. api/v1) @important @done (15-06-03 09:03)
-      ☐ Move file.py
-        ☐ Convert to restful plugin api
+      ✔ Tidy up python code and dirs @done (15-06-03 17:27)
+      ✔ Move file.py @done (15-06-04 06:41)
+        ☐ Convert to restful plugin api @currentpain
       ☐ Extract app from security into main dir
       ☐ fix main.py
         ☐ api with config.py (better in __init_)
