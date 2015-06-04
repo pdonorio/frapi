@@ -23,8 +23,12 @@ devapi:
         service: api
     environment:
         APP_MODE: 'dev'
+# REMOVE ME
     #command: python server.py
     command: sleep 123456789
+    ports:
+        - "5000"
+# REMOVE ME
     exposes:
         - "5000"
     volumes_from:

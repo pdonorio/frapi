@@ -21,6 +21,15 @@ from myapi import UPLOAD_FOLDER, UPLOAD_RESOURCE, INTERPRETER, ZBIN, \
 logger = log.get_logger('upload')
 
 ###########################################
+from myapi.resources import GenericApiResource, abort
+class UploadResource(GenericApiResource):
+    #@auth_token_required
+    def get(self):
+        return "test", 200
+    def post(self):
+        return abort(404, message='NO!')
+
+###########################################
 # Save files
 # http://API/uploader
 #@app.route(UPLOAD_RESOURCE, methods=['GET', 'POST'])

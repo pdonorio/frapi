@@ -9,13 +9,23 @@ from flask.ext.restful import reqparse, abort, Resource, request
 # Log is a good advice
 from bpractices.exceptions import log, LoggedError
 # The global data
-from myapi.app import g
+from flask import g
 # Data models from DB ORM
 from rdb.get_models import models
 # Import html codes
 import bpractices.htmlcodes as hcodes
 # Handling time
 import datetime as dt
+
+# == Implement a generic Resource for Restful model ==
+
+class GenericApiResource(Resource):
+
+    myname = __name__
+
+    def get_endpoint(self):
+        self.myname = type(self).__name__.lower().replace("resource", "")
+        return self.myname
 
 # == Utilities ==
 
@@ -75,7 +85,7 @@ def abort_on_db_fail(func):
 
 # == Implement a generic Resource for RethinkDB ORM model ==
 
-class GenericDBResource(Resource):
+class GenericDBResource(GenericApiResource):
     """
     Generic Database API-Resource. Provide simple operations:
 

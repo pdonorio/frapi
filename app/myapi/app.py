@@ -55,3 +55,21 @@ elif MODE == 'dev':
 elif MODE == 'test':
     app.logger.setLevel(logging.DEBUG)
     app.config.from_object(TestingConfig)
+
+####################################
+# RESTful
+from flask.ext.restful import Api
+api = Api(app, catch_all_404s=True)
+
+####################################
+# Uploader Resource
+from myapi.uploader import UploadResource
+FIXED_APIURL = ''
+
+resources = []
+resources.append(UploadResource)
+
+for resource in resources:
+    endpoint = resource().get_endpoint()
+    app.logger.info("New endpoint: " + endpoint)
+    api.add_resource(resource, FIXED_APIURL + '/' + endpoint)

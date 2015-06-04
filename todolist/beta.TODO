@@ -21,7 +21,7 @@ Serious setup:
       ✔ Move file.py @done (15-06-04 06:41)
       ✔ Remove uploader as a separated container @done (15-06-04 07:09)
         ✔ Remove file api reference in js code  @done(2015-06-04 15:26) @project(Serious setup)
-        ☐ Convert to restful plugin api @currentpain
+        ☐ Convert to restful plugin api @current(pain)
         ☐ Shell package for command execution on bash
       ✔ Extract app from security into main dir @done (15-06-04 07:21)
       ✔ fix main.py @done (15-06-04 07:21)
@@ -36,6 +36,8 @@ Serious setup:
       ☐ production / development
       ☐ Api endpoints, should they end with / ?
       ☐ postgres?
+
+ ☐ Lints, i hate you: install via pip all packages @grrrrrr
 
     ☐ JS Side
       ☐ request
