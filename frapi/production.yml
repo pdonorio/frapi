@@ -36,6 +36,8 @@ api:
     extends:
         file: common.yml
         service: api
+    environment:
+        MODE: 'prod'
     # if i use environment variables it does not work...
     command: gunicorn -c conf/gunicorn.conf.py server:app
     exposes:

@@ -21,7 +21,10 @@ devapi:
     extends:
         file: common.yml
         service: api
-    command: python server.py
+    environment:
+        MODE: 'dev'
+    #command: python server.py
+    command: sleep 123456789
     exposes:
         - "5000"
     volumes_from:

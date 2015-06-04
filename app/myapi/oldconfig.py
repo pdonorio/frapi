@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 """ Configuration for python API application """
 
-# Import necessary data from environoment variables
-# This is one of the most cool features in python
-import os
-MODE = os.environ.get('APP_MODE')
-
 # Flask Security endpoints:
 # /login
 # /logout

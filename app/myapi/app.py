@@ -7,7 +7,6 @@ from flask import Flask
 from myapi import MODE, \
     TestingConfig, DevelopmentConfig, ProductionConfig
 
-
 ####################################
 # Create app
 # and then add every other part
