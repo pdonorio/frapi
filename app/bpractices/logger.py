@@ -59,7 +59,7 @@ class GlobalLogs(object):
             # Remove all old handlers on existing logger
             for hdlr in logobj.handlers:
                 logobj.removeHandler(hdlr)
-        logobj.setLevel(logging.DEBUG)
+        logobj.setLevel(self._debug_level)
 
         if write_to_screen:
             handler = logging.StreamHandler()
@@ -93,4 +93,4 @@ to save more complex data
 
 log = GlobalLogs()
 
-# === The end ===
+# The end

@@ -3,23 +3,30 @@
 The main flask app :)
 """
 
-from flask import Flask
-from myapi import MODE, \
-    TestingConfig, DevelopmentConfig, ProductionConfig
-
 ####################################
 # Create app
-# and then add every other part
+from flask import Flask
 app = Flask(__name__)
+# and then add every other part
 
 ####################################
-# Config logs ??
+# log: is a good advice
+from bpractices.logger import log
+log.setup_instance(__name__, app.logger)
+
+# Allow cross-domain requests for JS and Upload
+from flask.ext.cors import CORS
+CORS(app, headers=['Content-Type'])
 
 ####################################
 # Application mode
-app.logger.debug('Running app in ' + MODE + ' mode')
+import logging
+from myapi import MODE, \
+    TestingConfig, DevelopmentConfig, ProductionConfig
+app.logger.critical('Running app in ' + MODE + ' mode')
 
 if MODE == 'prod':
+    app.logger.setLevel(logging.WARNING)
     from flask.ext.sqlalchemy import SQLAlchemy
     from flask_mail import Mail
     from werkzeug.contrib.fixers import ProxyFix
@@ -42,7 +49,9 @@ if MODE == 'prod':
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
 elif MODE == 'dev':
+    app.logger.setLevel(logging.INFO)
     app.config.from_object(DevelopmentConfig)
 
 elif MODE == 'test':
+    app.logger.setLevel(logging.DEBUG)
     app.config.from_object(TestingConfig)
