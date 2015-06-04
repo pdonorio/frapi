@@ -23,8 +23,8 @@ Serious setup:
       ✔ Remove uploader as a separated container @done (15-06-04 07:09)
         ☐ Convert to restful plugin api @currentpain
         ☐ Shell package for command execution on bash
-      ☐ Extract app from security into main dir
-      ☐ fix main.py
+      ✔ Extract app from security into main dir @done (15-06-04 07:21)
+      ✔ fix main.py @done (15-06-04 07:21)
         ☐ init rdb like sqlalchemy db
         ☐ api with config.py (better in __init_)
       ☐ remove testapp

@@ -21,7 +21,7 @@ devapi:
     extends:
         file: common.yml
         service: api
-    command: python main.py
+    command: python server.py
     exposes:
         - "5000"
     volumes_from:

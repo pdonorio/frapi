@@ -37,7 +37,7 @@ api:
         file: common.yml
         service: api
     # if i use environment variables it does not work...
-    command: gunicorn -c conf/gunicorn.conf.py main:app
+    command: gunicorn -c conf/gunicorn.conf.py server:app
     exposes:
         - "5000"
     volumes_from:
