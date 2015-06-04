@@ -9,17 +9,9 @@ myApp.factory('RestAPI', function(Restangular, AppConfig)
 
   });
 });
-myApp.factory('RestFileAPI', function(Restangular, AppConfig)
-{
-  return Restangular.withConfig(function(RestangularConfigurer) {
-    //i will use the same base url for all my api requests
-    RestangularConfigurer.setBaseUrl(AppConfig.apiFileBase);
-
-  });
-});
 
 // Inject my Restangular class to create a factory/service that uses my API
-myApp.factory('API', function(RestAPI, RestFileAPI, apiTimeout,
+myApp.factory('API', function(RestAPI, apiTimeout,
     currentpageDefault, perpageDefault)
 {
 
@@ -109,13 +101,15 @@ myApp.factory('API', function(RestAPI, RestFileAPI, apiTimeout,
     //FILE: remove
     Factory.removeFile = function(filename) {
 
+      var fileBase = 'uploader'
+
       // Check file
       if (!filename) {
         console.log("Trying to delete no file");
         return false;
       }
 
-      var api = RestFileAPI.all(filename);
+      var api = RestAPI.all(fileBase + '/' + filename);
       return api
         .withHttpConfig({timeout: apiTimeout})
         .doDELETE();

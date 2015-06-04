@@ -21,6 +21,7 @@ Serious setup:
       ✔ Tidy up python code and dirs @done (15-06-03 17:27)
       ✔ Move file.py @done (15-06-04 06:41)
       ✔ Remove uploader as a separated container @done (15-06-04 07:09)
+        ☐ Remove file api reference in js code
         ☐ Convert to restful plugin api @currentpain
         ☐ Shell package for command execution on bash
       ✔ Extract app from security into main dir @done (15-06-04 07:21)

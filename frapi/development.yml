@@ -44,7 +44,6 @@ devproxy:
         - "5432:7070" #debug rdb monitor
     links:
         - devapi:api # i need to know the internal container which exposes api
-        - devfapi:fapi
         - webdev:capi
         - devdb:rmonitor
     volumes:

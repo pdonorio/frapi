@@ -61,7 +61,6 @@ sslproxy:
         - "443:443"
     links:
         - api:api
-        - fileapi:fapi
     volumes_from:
         - updata
 

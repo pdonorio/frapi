@@ -13,9 +13,7 @@ angular.module('AppConfig', [])
 
   //API
   .constant('apiPort', '80')
-  .constant('apiFilePort', '80')
   .constant('apiBase', '/api/v1')
-  .constant('apiFileResource', '/file/uploader')
 
   //USERS
   .constant('USER_ROLES',{
@@ -54,7 +52,7 @@ angular.module('AppConfig', [])
 
     //save in a variable the path to API
     return {
-      $get: function ($location, apiBase, apiPort, apiFilePort, apiFileResource, messageStatus, USER_ROLES)
+      $get: function ($location, apiBase, apiPort, messageStatus, USER_ROLES)
       {
 
         // What to do with this?
@@ -68,9 +66,7 @@ angular.module('AppConfig', [])
 
         var baseAddress = protocol + "://" + host;
         if (protocol != 'https')
-            baseAddress += ":" + apiFilePort
-
-        config.apiFileBase = baseAddress + apiFileResource;
+            baseAddress += ":" + apiPort
         config.apiBase = baseAddress + apiBase;
 
         // Protocol
