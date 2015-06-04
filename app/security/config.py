@@ -6,22 +6,20 @@
 import os
 MODE = os.environ.get('APP_MODE')
 
-"""
-Flask Security endpoints:
-/login
-/logout
-/register (should add fields)
-/reset (send me a new password via email)
-/change (change the current password)
-/confirm (send a link to confirm the account)
-"""
+# Flask Security endpoints:
+# /login
+# /logout
+# /register (should add fields)
+# /reset (send me a new password via email)
+# /change (change the current password)
+# /confirm (send a link to confirm the account)
 
 class Config(object):
     DEBUG = None
     TESTING = False
+
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
     SECRET_KEY = 'my-super-secret-keyword'
-
     # Bug fixing for csrf problem via CURL/token
     WTF_CSRF_ENABLED = False
 

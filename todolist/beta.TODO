@@ -20,6 +20,7 @@ Serious setup:
       ✔ Tidy up python code and dirs @done (15-06-03 17:27)
       ✔ Move file.py @done (15-06-04 06:41)
         ☐ Convert to restful plugin api @currentpain
+        ☐ Shell package for command execution on bash
       ☐ Extract app from security into main dir
       ☐ fix main.py
         ☐ api with config.py (better in __init_)
@@ -30,6 +31,7 @@ Serious setup:
       ☐ Test PRODUCTION
         ☐ and things about https
       ☐ production / development
+      ☐ Api endpoints, should they end with / ?
 
     ☐ JS Side
       ☐ request
