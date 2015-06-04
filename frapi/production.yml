@@ -28,6 +28,10 @@ pycode:
     extends:
         file: common.yml
         service: pycode
+updata:
+    extends:
+        file: common.yml
+        service: updata
 api:
     extends:
         file: common.yml
@@ -38,24 +42,9 @@ api:
         - "5000"
     volumes_from:
         - pycode
+        - updata
     links:
         - rdb:db
-updata:
-    extends:
-        file: common.yml
-        service: updata
-
-## Will be removed
-fileapi:
-    extends:
-        file: common.yml
-        service: fileapi
-    command: gunicorn -c gunicorn.conf.py --bind '0.0.0.0:6000' file:app
-    exposes:
-        - "6000"
-    volumes_from:
-        - pycode
-        - updata
 
 ##########################
 ## PROXY and HTTPS

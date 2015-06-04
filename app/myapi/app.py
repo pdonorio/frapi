@@ -12,19 +12,13 @@ from flask.ext.cors import CORS
 # log is a good advice
 from bpractices.logger import log
 
-# === Create the app ===
+## Create the 'app'
 app = Flask(__name__)
-
-# config init
 app.config.from_object(__name__)
-# Only in debug mode?
 CORS(app, headers=['Content-Type'])
-# Create logger
 log.setup_instance(None, app.logger)
 
-#############################################
-# === App setup ===
-
+## App setup
 # Need a pool of connections: http://j.mp/1yNP4p0
 def try_to_connect(create_db=False):
     try:
@@ -37,6 +31,12 @@ def try_to_connect(create_db=False):
         abort(hcodes.HTTP_INTERNAL_TIMEOUT,
             "Problem: no database connection could be established.")
 
+# ## Init tables if not exist?
+# # DataList and DataSingle share the same table
+# tmp = resources.DataList(g.rdb)
+# g.rdb.create_table()
+# g.rdb.indexing()
+
 # Data models from DB ORM
 from rdb.get_models import models
 tmp = db(True)
@@ -44,38 +44,16 @@ tmp.default_database()
 for (name, model) in models.iteritems():
     print "Indexing: ", name
     tmp.define_model(model)
-    # a = tmp.search()
-    # print a
-    # break
-    #tmp.indexing()
-    print "DEBUG: NOT AVAILABLE FOR NOW"
-    break
-
-# # Setup only first time,
-# # before the first request
-# @app.before_first_request
-# def before_first_request():
-#     # === Init logger for flask ===
-#     app.logger.info("ONE TIME SETUP!")
-#     # === Init database if not exists ===
-#     try_to_connect(True)
-#     g.rdb.indexing()
-
-#     # === Init tables if not exist? ===
-#     ## DataList and DataSingle share the same table
-#     # tmp = resources.DataList(g.rdb)
-#     # g.rdb.create_table()
-#     # del tmp
+    tmp.indexing()
 
 # WHAT ELSE?
 
-# === What to do BEFORE handling a request ===
+# What to do BEFORE handling EVERY request
 @app.before_request
 def before_request():
-    app.logger.debug("Hello request")
-    # === Connection ===
-    #     The RethinkDB server doesn’t use a thread-per-connnection approach,
-    #     so opening connections per request will not slow down your database.
+    ## Connection
+    # The RethinkDB server doesn’t use a thread-per-connnection approach,
+    # so opening connections per request will not slow down your database.
     if not "rdb" in g:
         # Database should be already connected in "before_first_request"
         # But the post method fails to find the object!
@@ -84,6 +62,9 @@ def before_request():
 ################################################
 ## I want API to respond only to my Proxy
 ## otherwise reject
+
+# TO FIX -
+    #this should be done with cors/nginx/gunicorn?
 
 # Find the current network this node is in
 import os, re

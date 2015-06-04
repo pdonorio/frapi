@@ -19,10 +19,12 @@ Serious setup:
       ✔ provider testing of different path (e.g. api/v1) @important @done (15-06-03 09:03)
       ✔ Tidy up python code and dirs @done (15-06-03 17:27)
       ✔ Move file.py @done (15-06-04 06:41)
+      ✔ Remove uploader as a separated container @done (15-06-04 07:09)
         ☐ Convert to restful plugin api @currentpain
         ☐ Shell package for command execution on bash
       ☐ Extract app from security into main dir
       ☐ fix main.py
+        ☐ init rdb like sqlalchemy db
         ☐ api with config.py (better in __init_)
       ☐ remove testapp
       ☐ fix devinit

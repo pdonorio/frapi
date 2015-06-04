@@ -26,20 +26,11 @@ devapi:
         - "5000"
     volumes_from:
         - pycode
+        - updata
     links:
         - devdb:db
     volumes:
         - ../data/backup:/backup:rw
-devfapi:
-    extends:
-        file: common.yml
-        service: fileapi
-    command: python file.py
-    exposes:
-        - "6000"
-    volumes_from:
-        - pycode
-        - updata
 
 ##########################
 ## PROXY
