@@ -1,34 +1,45 @@
 # -*- coding: utf-8 -*-
 """
-The main flask app
+The main flask app :)
 """
 
 from flask import Flask
-from security.config import MODE, \
+from myapi import MODE, \
     TestingConfig, DevelopmentConfig, ProductionConfig
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask_mail import Mail
+
 
 ####################################
 # Create app
+# and then add every other part
 app = Flask(__name__)
 
 ####################################
-# Conf
-if MODE == 'dev':
+# Application mode
+
+if MODE == 'prod':
+    from flask.ext.sqlalchemy import SQLAlchemy
+    from flask_mail import Mail
+    from werkzeug.contrib.fixers import ProxyFix
+
+    # Config
+    app.config.from_object(ProductionConfig)
+
+    ####################################
+    # Create database connection object
+    db = SQLAlchemy(app)
+
+    ####################################
+    # Add email
+    mail = None
+    if not app.config['DEBUG']:
+        mail = Mail(app)
+
+    ####################################
+    # Gunicorn fix
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+
+elif MODE == 'dev':
     print "Using development config"
     app.config.from_object(DevelopmentConfig)
-elif MODE == 'prod':
-    app.config.from_object(ProductionConfig)
 elif MODE == 'test':
     app.config.from_object(TestingConfig)
-
-####################################
-# Create database connection object
-db = SQLAlchemy(app)
-
-####################################
-# Add email
-mail = None
-if not app.config['DEBUG']:
-    mail = Mail(app)
