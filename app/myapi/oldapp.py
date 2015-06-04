@@ -7,16 +7,10 @@ from flask import Flask, g, abort, request # 'g' obj is global share for app con
 from rdb.rdb_handler import RethinkConnection as db
 # Import html codes
 import bpractices.htmlcodes as hcodes
-# Allow cross-domain requests for JS and Upload
-from flask.ext.cors import CORS
-# log is a good advice
-from bpractices.logger import log
 
 ## Create the 'app'
 app = Flask(__name__)
 app.config.from_object(__name__)
-CORS(app, headers=['Content-Type'])
-log.setup_instance(None, app.logger)
 
 ## App setup
 # Need a pool of connections: http://j.mp/1yNP4p0

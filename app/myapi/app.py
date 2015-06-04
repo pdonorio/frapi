@@ -13,7 +13,11 @@ from myapi import MODE, \
 app = Flask(__name__)
 
 ####################################
+# Config logs ??
+
+####################################
 # Application mode
+app.logger.debug('Running app in ' + MODE + ' mode')
 
 if MODE == 'prod':
     from flask.ext.sqlalchemy import SQLAlchemy
@@ -38,7 +42,7 @@ if MODE == 'prod':
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
 elif MODE == 'dev':
-    print "Using development config"
     app.config.from_object(DevelopmentConfig)
+
 elif MODE == 'test':
     app.config.from_object(TestingConfig)

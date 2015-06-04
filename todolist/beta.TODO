@@ -36,6 +36,7 @@ Serious setup:
         ☐ and things about https
       ☐ production / development
       ☐ Api endpoints, should they end with / ?
+      ☐ postgres?
 
     ☐ JS Side
       ☐ request

@@ -22,7 +22,7 @@ devapi:
         file: common.yml
         service: api
     environment:
-        MODE: 'dev'
+        APP_MODE: 'dev'
     #command: python server.py
     command: sleep 123456789
     exposes:
