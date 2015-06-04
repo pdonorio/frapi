@@ -15,7 +15,8 @@ Serious setup:
   ✔ API mix @letsdoit @done (15-06-02 17:22)
     ✔ A debug decided via environment variable @done (15-06-02 17:22)
     ✔ Mail tests @done (15-06-03 09:00)
-    ☐ provider integration
+    ✔ provider integration @done (15-06-04 07:12)
+      ✔ Rearrange all the three parts inside one api package @done (15-06-04 07:12)
       ✔ provider testing of different path (e.g. api/v1) @important @done (15-06-03 09:03)
       ✔ Tidy up python code and dirs @done (15-06-03 17:27)
       ✔ Move file.py @done (15-06-04 06:41)
