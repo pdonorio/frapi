@@ -23,12 +23,21 @@ from myapi.resources import GenericApiResource, abort
 logger = log.get_logger('upload')
 
 ###########################################
-# FIX: with a shell package?
-def zoomification():
+from shell.bash import PyShell
+def zoomification(abs_file):
+
+    # # Create command
+    # cmd = "ls \n"
+
+    # # # Execute command
+    # myclass = PyShell()
+    # myclass.add_command(cmd)
+    # myclass.execute()
 
     # Make zoomify object and thumbnail
     logger.info("Elaborate image")
     # Proc via current shell
+# FIX: with a shell package?
     cmd = [INTERPRETER, ZBIN, abs_file]
     proc = shell.Popen(cmd, stdout=shell.PIPE, stderr=shell.PIPE)
     out, err = proc.communicate()
