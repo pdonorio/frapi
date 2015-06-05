@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-A package to define the top of available python API
-"""
+""" A package to define the best available python API ^_^ """
 
 ################## ## UPLOADER
 # Directories
@@ -29,6 +27,7 @@ MODE = os.environ.get('APP_MODE')
 class Config(object):
     # Upload max size
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+    UPLOAD_FOLDER = UPLOAD_FOLDER
 
 ################################
 class ProductionConfig(Config):

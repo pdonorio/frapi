@@ -23,11 +23,35 @@ logger = log.get_logger('upload')
 ###########################################
 from myapi.resources import GenericApiResource, abort
 class UploadResource(GenericApiResource):
-    #@auth_token_required
+
+    endtype = 'path:file'    #http://stackoverflow.com/a/19876667/2114395
+
     def get(self):
-        return "test", 200
+        logger.debug("Request: " + request.method)
+
+        # No key specified?
+        return '''<!doctype html> <title>Upload</title> <h2>Uploader</h2>
+            Empty: this is just for receiving!<br>''', hcodes.HTTP_OK_BASIC
+
     def post(self):
-        return abort(404, message='NO!')
+        # Get file
+        myfile = request.files['file']
+        if not myfile:
+            abort(hcodes.HTTP_BAD_REQUEST, message='Unable to get file')
+
+        # Clean filename
+        filename = secure_filename(myfile.filename)
+        logger.info("Received FILE request: " + filename)
+
+        # Check allowed extension
+        if not allowed_file(filename):
+            abort(hcodes.HTTP_BAD_REQUEST, message="Extension not allowed")
+
+        print dir(myfile), myfile.name, myfile.filename
+        #myfile.save()
+        print myfile
+
+        return "success", hcodes.HTTP_OK_ACCEPTED
 
 ###########################################
 # Save files
@@ -35,26 +59,14 @@ class UploadResource(GenericApiResource):
 #@app.route(UPLOAD_RESOURCE, methods=['GET', 'POST'])
 def upload_file():
 
-    logger.info("Normal request: " + request.method)
-
-    if request.method == 'GET':
-
-        return '''
-        <!doctype html>
-        <title>Uploader</title> <h2>Uploader</h2> Empty. Just for receiving!<br>
-        '''
-
     if request.method == 'POST':
 
+# FROM HERE
         myfile = request.files['file']
         logger.info("Received FILE request")
 
         if myfile:
             filename = secure_filename(myfile.filename)
-
-            # Check allowed extension
-            if not allowed_file(filename):
-                abort(hcodes.HTTP_BAD_REQUEST, "Extension not allowed")
 
             # Check file name
             abs_file = os.path.join(UPLOAD_FOLDER, filename)

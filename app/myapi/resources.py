@@ -22,10 +22,11 @@ import datetime as dt
 class GenericApiResource(Resource):
 
     myname = __name__
+    endtype = 'string:data_key'
 
     def get_endpoint(self):
         self.myname = type(self).__name__.lower().replace("resource", "")
-        return self.myname
+        return (self.myname, self.endtype)
 
 # == Utilities ==
 

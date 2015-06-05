@@ -64,12 +64,15 @@ api = Api(app, catch_all_404s=True)
 ####################################
 # Uploader Resource
 from myapi.uploader import UploadResource
-FIXED_APIURL = ''
+FIXED_APIURL = '' + '/'
 
 resources = []
 resources.append(UploadResource)
 
 for resource in resources:
-    endpoint = resource().get_endpoint()
+    endpoint, endkey = resource().get_endpoint()
     app.logger.info("New endpoint: " + endpoint)
-    api.add_resource(resource, FIXED_APIURL + '/' + endpoint)
+
+    # Create restful endpoint
+    api.add_resource(resource, \
+        FIXED_APIURL + endpoint, FIXED_APIURL + endpoint +'/<'+ endkey +'>')
