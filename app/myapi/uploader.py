@@ -17,11 +17,31 @@ from bpractices.logger import log
 # Read costants
 from myapi import UPLOAD_FOLDER, UPLOAD_RESOURCE, INTERPRETER, ZBIN, \
     allowed_file
-
+# Restful class
+from myapi.resources import GenericApiResource, abort
+# Set log
 logger = log.get_logger('upload')
 
 ###########################################
-from myapi.resources import GenericApiResource, abort
+# FIX: with a shell package?
+def zoomification():
+
+    # Make zoomify object and thumbnail
+    logger.info("Elaborate image")
+    # Proc via current shell
+    cmd = [INTERPRETER, ZBIN, abs_file]
+    proc = shell.Popen(cmd, stdout=shell.PIPE, stderr=shell.PIPE)
+    out, err = proc.communicate()
+    # Handle output
+    if proc.returncode == 0:
+        if out != None and out != "":
+            logger.info("Comm output: " + out)
+    else:
+        logger.critical("Failed to process image " + abs_file + \
+            ". Error: " + err)
+        abort(hcodes.HTTP_BAD_REQUEST, "Could not process file")
+
+###########################################
 class UploadResource(GenericApiResource):
 
     endtype = 'path:file'    #http://stackoverflow.com/a/19876667/2114395
@@ -33,6 +53,9 @@ class UploadResource(GenericApiResource):
         return '''<!doctype html> <title>Upload</title> <h2>Uploader</h2>
             Empty: this is just for receiving!<br>''', hcodes.HTTP_OK_BASIC
 
+    #######################
+    # Save files
+    # http://API/uploader
     def post(self):
         # Get file
         myfile = request.files['file']
@@ -47,66 +70,29 @@ class UploadResource(GenericApiResource):
         if not allowed_file(filename):
             abort(hcodes.HTTP_BAD_REQUEST, message="Extension not allowed")
 
-        print dir(myfile), myfile.name, myfile.filename
-        #myfile.save()
-        print myfile
+        # Check file name
+        abs_file = os.path.join(UPLOAD_FOLDER, filename)
+        logger.info("A file allowed: "+ filename + ". Path: " +abs_file)
 
-        return "success", hcodes.HTTP_OK_ACCEPTED
+        # Check if already exists
+        if os.path.exists(abs_file):
+            #os.remove(abs_file) #DEBUG
+            logger.warn("Already existing file: "+ abs_file)
+            abort(hcodes.HTTP_BAD_REQUEST, message="File '"+ filename \
+                +"' already exists! " + \
+                "Please change your file name and retry.")
 
-###########################################
-# Save files
-# http://API/uploader
-#@app.route(UPLOAD_RESOURCE, methods=['GET', 'POST'])
-def upload_file():
+        # Save the file
+        myfile.save(abs_file)
 
-    if request.method == 'POST':
+        return 'Yeah!'
 
-# FROM HERE
-        myfile = request.files['file']
-        logger.info("Received FILE request")
-
-        if myfile:
-            filename = secure_filename(myfile.filename)
-
-            # Check file name
-            abs_file = os.path.join(UPLOAD_FOLDER, filename)
-            logger.info("A file allowed: "+ filename + ". Path: " +abs_file)
-
-            if os.path.exists(abs_file):
-
-# #####################
-# # DEBUG
-#                 os.remove(abs_file)
-# #####################
-
-                logger.warn("Already existing file: "+ abs_file)
-                abort(hcodes.HTTP_BAD_REQUEST, "File '"+ filename +"' already exists. " + \
-                    "Please change your file name and retry.")
-
-            # Save the file
-            myfile.save(abs_file)
-
-# TO FIX with a shell package?
-            # Make zoomify object and thumbnail
-            logger.info("Elaborate image")
-            # Proc via current shell
-            cmd = [INTERPRETER, ZBIN, abs_file]
-            proc = shell.Popen(cmd, stdout=shell.PIPE, stderr=shell.PIPE)
-            out, err = proc.communicate()
-            # Handle output
-            if proc.returncode == 0:
-                if out != None and out != "":
-                    logger.info("Comm output: " + out)
-            else:
-                logger.critical("Failed to process image " + abs_file + \
-                    ". Error: " + err)
-                abort(hcodes.HTTP_BAD_REQUEST, "Could not process file")
-
-            # Default redirect is to 302 state, which makes client
-            # think that response was unauthorized....
-            # see http://dotnet.dzone.com/articles/getting-know-cross-origin
-            return redirect(url_for('uploaded_file', filename='/' + filename),
-                hcodes.HTTP_OK_BASIC)
+# FIX: not working with restful
+        # Default redirect is to 302 state, which makes client
+        # think that response was unauthorized....
+        # see http://dotnet.dzone.com/articles/getting-know-cross-origin
+        return redirect(url_for('uploaded_file', filename='/' + filename),
+            hcodes.HTTP_OK_BASIC)
 
 ###########################################
 # http://API/uploader/filename

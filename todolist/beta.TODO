@@ -21,7 +21,8 @@ Serious setup:
       ✔ Move file.py @done (15-06-04 06:41)
       ✔ Remove uploader as a separated container @done (15-06-04 07:09)
         ✔ Remove file api reference in js code  @done(2015-06-04 15:26) @project(Serious setup)
-        ☐ Convert to restful plugin api @current(pain)
+        ✔ Convert to restful plugin api @current(pain) @done (15-06-05 07:14)
+        ☐ Restful not working with url_for
         ☐ Shell package for command execution on bash
       ✔ Extract app from security into main dir @done (15-06-04 07:21)
       ✔ fix main.py @done (15-06-04 07:21)
@@ -32,6 +33,7 @@ Serious setup:
       ☐ test gunicorn
         ☐ remove options in development compose
       ☐ Test PRODUCTION
+        ☐ via js
         ☐ and things about https
       ☐ production / development
       ☐ Api endpoints, should they end with / ?
@@ -39,7 +41,7 @@ Serious setup:
 
  ☐ Lints, i hate you: install via pip all packages @grrrrrr
 
-    ☐ JS Side
+    ☐ JS Side AUTH
       ☐ request
         ☐ curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.it","password":"password"}' http://awesome.dev:8888/login
           ☐ receive a token
