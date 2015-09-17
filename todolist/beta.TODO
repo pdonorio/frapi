@@ -39,7 +39,22 @@ Serious setup:
       ☐ Api endpoints, should they end with / ?
       ☐ postgres?
 
+Validate a url
+https://pythonadventures.wordpress.com/2015/08/23/flask-validate-a-url/
+
+Use markdown for formatting?
+https://pythonadventures.wordpress.com/2015/09/07/python-markdown-add-support-for-strikethrough/
+
+Cool interface to copy
+http://recap.bigcartel.com/2014/
+
+docker run -it -p 4321:3000 --link frapi_rdb_1:db frapi_webdev bash
+
+Payments with flask
+https://stripe.com/docs/checkout/guides/flask
+
  ☐ Lints, i hate you: install via pip all packages @grrrrrr
+   ☐ use requirements from pip mac shell
 
     ☐ JS Side AUTH
       ☐ request

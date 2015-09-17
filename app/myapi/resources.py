@@ -24,6 +24,13 @@ class GenericApiResource(Resource):
     myname = __name__
     endtype = 'string:data_key'
 
+    @staticmethod
+    def clean_parameter(param=""):
+        """ I get parameters already with '"' quotes from curl? """
+        if param == None:
+            return param
+        return param.strip('"')
+
     def get_endpoint(self):
         self.myname = type(self).__name__.lower().replace("resource", "")
         return (self.myname, self.endtype)
@@ -33,6 +40,7 @@ class GenericApiResource(Resource):
 # Handling time format for json_dumps
 dthandler = lambda obj: ( obj.isoformat()
     if isinstance(obj, dt.datetime) or isinstance(obj, dt.date) else None)
+# TOFIX:
 # This one above could/should be a class
 # http://stackoverflow.com/a/23287543
 
@@ -52,11 +60,6 @@ def get_ip():
     return ip
 ###############################
 
-def clean_parameter(param=""):
-    """ I get parameters already with '"' quotes from curl? """
-    if param == None:
-        return param
-    return param.strip('"')
 
 def check_empty_data(data):
     """ Make sure parser didn't get an empty request """
@@ -267,7 +270,7 @@ class GenericDBResource(GenericApiResource):
         - you can PUT a new resource representation of this article directly
         - or update if you already know the key
         """
-        data_key = clean_parameter(data_key)
+        data_key = self.clean_parameter(data_key)
 
         data = self.get_params()
         if check_empty_data(data):
@@ -289,7 +292,7 @@ class GenericDBResource(GenericApiResource):
     @abort_on_db_fail
     def delete(self, data_key):
         """ Remove specific element """
-        data_key = clean_parameter(data_key)
+        data_key = self.clean_parameter(data_key)
 
         self.log.info("API: DELETE request for " + data_key)
         g.rdb.remove(data_key)

@@ -18,7 +18,7 @@ elif [ ! `which docker-machine` == "" ]; then
     #     echo "Error: Please start your docker machine vm...";
     #     exit 1;
     # fi
-    docker-machine active dev
+    eval $(docker-machine env dev)
 fi
 
 ###########################################
@@ -96,6 +96,7 @@ case "$param" in
         docker ps -a;
     ;;
     "cleanall")
+        #eval "$(docker-machine env dev)";
         com="docker ps -a -q";
         list=`$com | tr "\n" " "`
         if [ ! -z "$list" ]; then

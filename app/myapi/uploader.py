@@ -23,7 +23,10 @@ from myapi.resources import GenericApiResource, abort
 logger = log.get_logger('upload')
 
 ###########################################
+
+# TOFIX: use it
 from shell.bash import PyShell
+
 def zoomification(abs_file):
 
     # # Create command
@@ -55,8 +58,23 @@ class UploadResource(GenericApiResource):
 
     endtype = 'path:file'    #http://stackoverflow.com/a/19876667/2114395
 
-    def get(self):
+# TOFIX: define properties from API
+    def __init__(self):
+        """ Implement a parser for validating arguments of api """
+
+        loc = ['headers', 'values'] #multiple locations
+        print loc
+        # self.parser.add_argument("pippo", \
+        #     type=unicode, action='store', location=loc)
+
+    def get(self, abs_file=None):
+
         logger.debug("Request: " + request.method)
+
+# TOFIX: Request parse?
+        if abs_file != None:
+            logger.info("Should provide: "+ abs_file)
+            return send_from_directory(UPLOAD_FOLDER, filename)
 
         # No key specified?
         return '''<!doctype html> <title>Upload</title> <h2>Uploader</h2>
@@ -66,8 +84,10 @@ class UploadResource(GenericApiResource):
     # Save files
     # http://API/uploader
     def post(self):
+
         # Get file
         myfile = request.files['file']
+# TOFIX: Request parse?
         if not myfile:
             abort(hcodes.HTTP_BAD_REQUEST, message='Unable to get file')
 
@@ -103,16 +123,13 @@ class UploadResource(GenericApiResource):
         return redirect(url_for('uploaded_file', filename='/' + filename),
             hcodes.HTTP_OK_BASIC)
 
-###########################################
-# http://API/uploader/filename
-#@app.route(UPLOAD_RESOURCE + '/<filename>', methods=['GET', 'DELETE'])
-def uploaded_file(filename):
+    def delete(self, data_key):
 
-    logger.info("Specific request: " + request.method + ", " + filename)
-
-    abs_file = os.path.join(UPLOAD_FOLDER, filename)
-
-    if request.method == 'DELETE':
+# TOFIX: Request parse?
+        filename = self.clean_parameter(data_key)
+        print "TEST DATA KEY", data_key
+        abs_file = os.path.join(UPLOAD_FOLDER, filename)
+#TEST
 
         # Check file existence
         if not os.path.exists(abs_file):
@@ -132,9 +149,3 @@ def uploaded_file(filename):
 
         return "Deleted", hcodes.HTTP_OK_NORESPONSE
 
-    # To get?
-    elif request.method == 'GET':
-        logger.info("Should provide: "+ abs_file)
-        return send_from_directory(UPLOAD_FOLDER, filename)
-
-    return ''' <!doctype html> <title>Uploader</title> Empty<br> '''
