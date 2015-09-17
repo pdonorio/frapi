@@ -22,6 +22,9 @@ Serious setup:
       ✔ Remove uploader as a separated container @done (15-06-04 07:09)
         ✔ Remove file api reference in js code  @done(2015-06-04 15:26) @project(Serious setup)
         ✔ Convert to restful plugin api @current(pain) @done (15-06-05 07:14)
+
+OPEN app.py and uploader.py
+
         ☐ Restful not working with url_for
         ☐ Shell package for command execution on bash
       ✔ Extract app from security into main dir @done (15-06-04 07:21)
