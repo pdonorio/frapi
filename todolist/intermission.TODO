@@ -4,9 +4,10 @@ INTERMISSION
 
 TODO:
  ☐ repeat insert extrait with fixed other steps
- ☐ ricerca (ordinamento) sulla data della realizzazione del record
- ☐ ricerca sul numero estratto (autocompletamento)
  ☐ Mostra risultati: festa = step 3, source step 2
+   ☐ Mostra immagine se esiste?
+ ☐ ordinamento sulla data della realizzazione del record
+ ☐ ricerca sul numero estratto (autocompletamento?)
 
 HARD:
  ☐ aggiungere un attributo multiplo (!)
@@ -17,4 +18,4 @@ BUGS:
 
 PROTOTYPE:
  ☐ Prototipo basato su powerpoint
-
+   ✔ a new dir @done (15-09-19 16:19)
