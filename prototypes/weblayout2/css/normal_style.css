@@ -4,6 +4,13 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+ @media (min-width: 680px) {
+  body {
+    padding-top: 50px;
+    padding-bottom: 42px;
+  }
+}
+
 /* Toggle Styles */
 
 #wrapper {

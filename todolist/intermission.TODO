@@ -23,7 +23,9 @@ PROTOTYPE:
      ✔ http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/ @done (15-09-20 12:26)
      ✔ Official: http://getbootstrap.com/examples/offcanvas/ @done (15-09-20 12:26)
    ✔ Fixing links @done (15-09-20 12:34)
-   ☐ colors
+   ✔ colors @done (15-09-20 15:16)
+   ✔ navbar @done (15-09-20 15:16)
+   ☐ collapse side bar at the first touch inside the page
 
 TIPS:
   ☐ make simpler loading (rolling gif and failed just in case)
