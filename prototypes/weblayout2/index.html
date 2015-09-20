@@ -8,8 +8,7 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <!-- Optional theme -->
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="sstyle.css">
+<link rel="stylesheet" href="css/normal_style.css">
 
 </head>
 <body>
@@ -18,34 +17,35 @@
 
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                    Start Bootstrap
-                </a>
-            </li>
-            <li>
-                <a href="#">Dashboard</a>
-            </li>
-            <li>
-                <a href="#">Shortcuts</a>
-            </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
+
+        <div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#"> Start Bootstrap </a>
+                </li>
+<li>
+            <div class="col-md-10">
+                <div class="list-group">
+    <!--
+                    <a href="#" class="list-group-item active">Link</a>
+     -->
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                </div>
+            </div>
+
+</li>
+                <li> Submenu </li>
+                <li> <a href="#">Shortcuts</a> </li>
+                <li> <a href="#">Overview</a> </li>
+                <li> <a href="#">Events</a> </li>
+                <li> <a href="#">About</a> </li>
+                <li> <a href="#">Services</a> </li>
+                <li> <a href="#">Contact</a> </li>
+            </ul>
+        </div>
+
     </div>
     <!-- /#sidebar-wrapper -->
 
@@ -118,6 +118,7 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    $("#wrapper").toggleClass("toggled");
     </script>
 
 <!-- <script type="text/javascript">
