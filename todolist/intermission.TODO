@@ -19,6 +19,12 @@ BUGS:
 PROTOTYPE:
  ☐ Prototipo basato su powerpoint
    ✔ a new dir @done (15-09-19 16:19)
-   ☐ off canvas
-     ☐ http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/
-     ☐ Official: http://getbootstrap.com/examples/offcanvas/
+   ✔ off canvas @done (15-09-20 12:26)
+     ✔ http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/ @done (15-09-20 12:26)
+     ✔ Official: http://getbootstrap.com/examples/offcanvas/ @done (15-09-20 12:26)
+   ✔ Fixing links @done (15-09-20 12:34)
+   ☐ colors
+
+TIPS:
+  ☐ make simpler loading (rolling gif and failed just in case)
+  ☐ no 2 seconds addon to loader
