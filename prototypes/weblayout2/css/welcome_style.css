@@ -1,4 +1,10 @@
 /*
+
+font-family: 'Lovers Quarrel', cursive;
+font-family: 'Mr De Haviland', cursive;
+font-family: 'Rouge Script', cursive;
+font-family: 'Miss Fajardose', cursive;
+
 http://javierbyte.github.io/cohesive-colors/
 
 #205767
@@ -19,21 +25,29 @@ with overlay #AB1111
 
 */
 
+.btn-primary {
+background-image: linear-gradient(to bottom,#816A4D 0,#816A4D 100%);
+}
 
-@import url(http://fonts.googleapis.com/css?family=Antic+Slab);
 
+@import url(http://fonts.googleapis.com/css?family=Lovers Quarrel);
+/*@import url(http://fonts.googleapis.com/css?family=Antic+Slab); */
 html,body {
   height:100%;
 }
 
 h1 {
-  font-family: 'Antic Slab', serif;
-  font-size:80px;
+  font-family: 'Lovers Quarrel', cursive;
+/*  font-family: 'Antic Slab', serif;
   color:#DDCCEE;
+*/
+font-size:142px;
+  color:#E2D5C5;
 }
 
 .lead {
-    color:#DDCCEE;
+/*    color:#DDCCEE;
+*/    color:#816A4D;
 }
 
 
@@ -42,7 +56,8 @@ h1 {
   margin: 0 auto;
   width: 100%;
   min-height:100%;
-  background-color:#110022;
+  background-color: #205767;
+/*  #110022; */
   color:#eee;
   overflow:hidden;
 }
