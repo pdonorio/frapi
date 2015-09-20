@@ -1,0 +1,130 @@
+/*
+
+font-family: 'Lovers Quarrel', cursive;
+font-family: 'Mr De Haviland', cursive;
+font-family: 'Rouge Script', cursive;
+font-family: 'Miss Fajardose', cursive;
+
+http://javierbyte.github.io/cohesive-colors/
+
+#205767
+#6E9FA2
+#816A4D
+#E2D5C5
+#F4F3EC
+
+overlay #FF9C00
+
+---
+
+Or my test
+http://www.colourlovers.com/palette/46688/fresh_cut_day
++ another color #202223
+
+with overlay #AB1111
+
+*/
+
+.btn-primary {
+background-image: linear-gradient(to bottom,#816A4D 0,#816A4D 100%);
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Lovers Quarrel);
+/*@import url(http://fonts.googleapis.com/css?family=Antic+Slab); */
+html,body {
+  height:100%;
+}
+
+h1 {
+  font-family: 'Lovers Quarrel', cursive;
+/*  font-family: 'Antic Slab', serif;
+  color:#DDCCEE;
+*/
+font-size:142px;
+  color:#E2D5C5;
+}
+
+.lead {
+/*    color:#DDCCEE;
+*/    color:#816A4D;
+}
+
+
+/* Custom container */
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+  min-height:100%;
+  background-color: #205767;
+/*  #110022; */
+  color:#eee;
+  overflow:hidden;
+}
+
+.container-full a {
+  color:#efefef;
+  text-decoration:none;
+}
+
+.v-center {
+  margin-top:7%;
+}
+
+/* Else
+body {
+  padding-top: 51px;
+}
+*/
+
+.text-center {
+  padding-top: 20px;
+}
+.col-xs-12 {
+  background-color: #fff;
+}
+#sidebar {
+  height: 100%;
+  padding-right: 0;
+  padding-top: 20px;
+}
+#sidebar .nav {
+  width: 95%;
+}
+#sidebar li {
+  border:0 #f2f2f2 solid;
+  border-bottom-width:1px;
+}
+
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -41.6%;
+  }
+  .row-offcanvas-right.active {
+    right: 41.6%;
+  }
+  .row-offcanvas-left.active {
+    left: 41.6%;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+  #sidebar {
+    padding-top:0;
+  }
+}

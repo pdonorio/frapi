@@ -4,9 +4,10 @@ INTERMISSION
 
 TODO:
  ☐ repeat insert extrait with fixed other steps
- ☐ ricerca (ordinamento) sulla data della realizzazione del record
- ☐ ricerca sul numero estratto (autocompletamento)
  ☐ Mostra risultati: festa = step 3, source step 2
+   ☐ Mostra immagine se esiste?
+ ☐ ordinamento sulla data della realizzazione del record
+ ☐ ricerca sul numero estratto (autocompletamento?)
 
 HARD:
  ☐ aggiungere un attributo multiplo (!)
@@ -17,4 +18,15 @@ BUGS:
 
 PROTOTYPE:
  ☐ Prototipo basato su powerpoint
+   ✔ a new dir @done (15-09-19 16:19)
+   ✔ off canvas @done (15-09-20 12:26)
+     ✔ http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/ @done (15-09-20 12:26)
+     ✔ Official: http://getbootstrap.com/examples/offcanvas/ @done (15-09-20 12:26)
+   ✔ Fixing links @done (15-09-20 12:34)
+   ✔ colors @done (15-09-20 15:16)
+   ✔ navbar @done (15-09-20 15:16)
+   ☐ collapse side bar at the first touch inside the page
 
+TIPS:
+  ☐ make simpler loading (rolling gif and failed just in case)
+  ☐ no 2 seconds addon to loader
