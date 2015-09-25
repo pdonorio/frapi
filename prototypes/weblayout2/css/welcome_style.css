@@ -36,18 +36,60 @@ html,body {
   height:100%;
 }
 
-h1 {
-  font-family: 'Lovers Quarrel', cursive;
-/*  font-family: 'Antic Slab', serif;
-  color:#DDCCEE;
-*/
-font-size:142px;
-  color:#E2D5C5;
-}
-
 .lead {
 /*    color:#DDCCEE;
 */    color:#816A4D;
+    font-size: 28px;
+}
+
+.wrapperlayers {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.textlayer h1 {
+  font-family: 'Lovers Quarrel', cursive;
+/*  font-family: 'Antic Slab', serif;
+  color:#DDCCEE;
+    color:#E2D5C5;
+*/
+    color:#205767;
+    text-shadow: 3px 1px #aaa;
+    font-size:122px;
+    background-color: rgba(248, 247, 216, 0.35);
+}
+
+.imagelayer {
+    width: 800px;
+    height: 300px;
+    background-image: url("../images/baroq2.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+/*    -webkit-filter: grayscale;
+    -webkit-filter: brightness(95%);
+    filter: blur(20px) grayscale(20%);
+*/
+-webkit-filter: opacity(.85);
+filter: opacity(.85);
+/*-webkit-filter: blur(0.8px);
+filter: blur(0.8px);
+*/
+
+    border-radius: 10px;
+}
+.colorlayer {
+    background-color: rgba(248, 247, 216, 0.4);
+    background-position: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 9px;
 }
 
 
