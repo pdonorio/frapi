@@ -13,14 +13,14 @@ rdb:
         service: rdb
     volumes_from:
          - dbdata     # Import data directory from storage container
-# We can join as many as we want
-rdbslave:
-    image: rethinkdb
-    command: rethinkdb --join master:29015 --bind all
-    links:
-        - rdb:master
-# To clean:
-#$ docker exec -it frapi_api_1 python clean_cluster_issues.py
+# # We can join as many as we want
+# rdbslave:
+#     image: rethinkdb
+#     command: rethinkdb --join master:29015 --bind all
+#     links:
+#         - rdb:master
+# # To clean:
+# #$ docker exec -it frapi_api_1 python clean_cluster_issues.py
 
 ##############################
 ## REST API
