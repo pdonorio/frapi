@@ -2,6 +2,13 @@
 INTERMISSION
   #a discussion about spectacle baroque
 
+MATERIAL:
+  ☐ angular material https://material.angularjs.org/latest/#/getting-started
+  ☐ materialize (requires jquery)
+    ☐ http://materializecss.com/about.html
+    ☐ http://krescruz.github.io/angular-materialize
+      ☐ https://github.com/krescruz/angular-materialize
+
 TODO:
  ☐ repeat insert extrait with fixed other steps
  ☐ Mostra risultati: festa = step 3, source step 2
