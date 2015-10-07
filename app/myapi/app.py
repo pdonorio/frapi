@@ -15,6 +15,17 @@ from bpractices.logger import log
 # === Create the app ===
 app = Flask(__name__)
 
+##############################################
+# Opbeat invite!
+## JUST TESTING
+from opbeat.contrib.flask import Opbeat
+from security.config import DevelopmentConfig
+opbeat = Opbeat(app, organization_id=DevelopmentConfig.OPBEAT_ORG,
+    app_id=DevelopmentConfig.OPBEAT_APP,
+    secret_token=DevelopmentConfig.OPBEAT_BEAR)
+app.logger.debug(opbeat)
+##############################################
+
 # config init
 app.config.from_object(__name__)
 # Only in debug mode?

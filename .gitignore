@@ -20,6 +20,7 @@ yoapp/app/images/yeoman*
 data/*
 tmp
 logs
+confs
 
 # Sublime stuff
 *sublime*
