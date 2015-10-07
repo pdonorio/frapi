@@ -6,7 +6,8 @@ INTERMISSION
    ☐ test trial
 
 TODO:
-☐ load backup from remote to local
+✔ load backup from remote to local @done (15-10-07 07:46)
+  ☐ TO TEST!
 ☐ fare ricerca nome estratto
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
