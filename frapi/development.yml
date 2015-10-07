@@ -21,8 +21,8 @@ devapi:
     extends:
         file: common.yml
         service: api
-    command: python main.py
-    #command: sleep 123987123
+    #command: python main.py
+    command: sleep 123987123
     exposes:
         - "5000"
     volumes_from:
@@ -64,9 +64,9 @@ devproxy:
         - updata
 
 ##########################
-## Only for development?
 
 ## Chooose if INIT or Load from latest dump
+## If you want the FIRST init remove comments in the block below
 
 # # Db init with db, table and admin user
 # devdbinit:
@@ -79,6 +79,7 @@ devproxy:
 #     volumes_from:
 #         - pycode
 
+##########################
 # Nodejs: Database admin and dist build
 webdev:
     build: ../docker/jsdev

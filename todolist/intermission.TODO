@@ -2,14 +2,22 @@
 INTERMISSION
   #a discussion about spectacle baroque
 
-MATERIAL:
-  ☐ angular material https://material.angularjs.org/latest/#/getting-started
-  ☐ materialize (requires jquery)
-    ☐ http://materializecss.com/about.html
-    ☐ http://krescruz.github.io/angular-materialize
-      ☐ https://github.com/krescruz/angular-materialize
+ OPBEAT:
+   ☐ test trial
 
 TODO:
+☐ load backup from remote to local
+☐ fare ricerca nome estratto
+☐ check smtp email send (mailchimp /mailgun?)
+  ☐ ipython script?
+  ☐ send a backup email daily (crond in tasker)
+ ☐ welcome page nuova
+  ☐ projects in scroll
+  ☐ editor project inside app
+ ☐ app
+  ☐ loading azzerato
+  ☐ links solo se fatto login
+
  ☐ repeat insert extrait with fixed other steps
  ☐ Mostra risultati: festa = step 3, source step 2
    ☐ Mostra immagine se esiste?
@@ -24,7 +32,7 @@ BUGS:
  ☐ numero di pagina estratto
 
 PROTOTYPE:
- ☐ Prototipo basato su powerpoint
+ ✔ Prototipo basato su powerpoint @done (15-10-06 17:38)
    ✔ a new dir @done (15-09-19 16:19)
    ✔ off canvas @done (15-09-20 12:26)
      ✔ http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/ @done (15-09-20 12:26)
@@ -32,7 +40,13 @@ PROTOTYPE:
    ✔ Fixing links @done (15-09-20 12:34)
    ✔ colors @done (15-09-20 15:16)
    ✔ navbar @done (15-09-20 15:16)
-   ☐ collapse side bar at the first touch inside the page
+   ✔ collapse side bar at the first touch inside the page @done (15-10-06 17:38)
+#MATERIAL
+  ☐ angular material https://material.angularjs.org/latest/#/getting-started
+  ☐ materialize (requires jquery)
+    ☐ http://materializecss.com/about.html
+    ☐ http://krescruz.github.io/angular-materialize
+      ☐ https://github.com/krescruz/angular-materialize
 
 TIPS:
   ☐ make simpler loading (rolling gif and failed just in case)
@@ -65,15 +79,3 @@ TIPS:
     - solo trascrizione
     - traduzione?
     - entrambe
-
-# How to
-- fare ricerca nome estratto
-  * check smtp email send (mailchimp /mailgun?)
-- send a backup email daily (crond in tasker)
-  * ipython script?
-- welcome page nuova
-  * projects in scroll
-  * editor project inside app
-- app
-  * loading azzerato
-  * links solo se fatto login

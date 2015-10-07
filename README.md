@@ -23,9 +23,14 @@ Those have been the main objectives:
 ## Build and devel
 
 ```bash
-$ cd FRAPIGIT_MAIN_DIR
+$ cd FRAPI_GIT_MAIN_DIR
 # Build images
 $ docker-compose -f frapi/development.yml build
+# Download official images
+$ docker-compose -f frapi/development.yml pull
+
+# you are now ready to use containers
+
 # Run a development stack
 $ docker-compose -f frapi/development.yml up
 
@@ -46,7 +51,7 @@ I am now providing an interface to use rethinkdb api via angularjs.
 The stack is based on [docker compose tool](https://docs.docker.com/compose).
 
 ```bash
-# Build and execute the full stack of development
+# Build, pull and execute the full stack of development
 $ docker-compose -f frapi/production.yml up -d
 
 # By default you have one db master and also one db slave
