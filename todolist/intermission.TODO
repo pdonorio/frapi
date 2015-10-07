@@ -8,7 +8,10 @@ INTERMISSION
 TODO:
 ✔ load backup from remote to local @done (15-10-07 07:46)
   ☐ TO TEST!
-☐ fare ricerca nome estratto
+☐ search Estratto
+  ☐ TypeHead auto complete
+  ☐ what to show in search? lista delle feste
+
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
   ☐ send a backup email daily (crond in tasker)
@@ -24,6 +27,19 @@ TODO:
    ☐ Mostra immagine se esiste?
  ☐ ordinamento sulla data della realizzazione del record
  ☐ ricerca sul numero estratto (autocompletamento?)
+
+QUERIES
+
+r.db('webapp').table('stepfields').filter({'step':1}).filter(
+   lambda fields: fields[‘name’].match(“extrait”)
+).getField('id')
+
+r.db('webapp').table('stepfields')
+  .filter({'step':1})
+  .filter({'name':"Numero de l'extrait"})
+  .getField('id')
+
+r.db('webapp').table('stepscontent').filter({'step': 1})
 
 HARD:
  ☐ aggiungere un attributo multiplo (!)
@@ -52,7 +68,6 @@ PROTOTYPE:
 TIPS:
   ☐ make simpler loading (rolling gif and failed just in case)
   ☐ no 2 seconds addon to loader
-
 
   # Welcome
 - casella di ricerca (tutto il sito)

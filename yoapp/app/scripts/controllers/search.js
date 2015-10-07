@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name yoApp.controller:ViewController
- * @description
- * # ViewController
- * Controller of the yoApp
- */
-
 myApp
  .controller('ViewController', function ($scope, $rootScope, $timeout, API, StepContent, perpageDefault, currentpageDefault, focus)
 {
@@ -33,22 +25,21 @@ myApp
     // Put focus on the first search bar
     focus("search");
 
-  /* ************************************
-  ***************************************
-   TYPEAHEAD
-  ***************************************
-  ************************************* */
-
+    // ***************************************
+    // TYPEAHEAD
     $scope.selected = undefined;
+    $scope.lastSelected = undefined;
     $scope.search = function()
     {
+      if ($scope.selected == $scope.lastSelected)
+        return
       console.log("Searching: " + $scope.selected);
 
-// TO FIX -
-      //should check if this value has already been requested
+// TO FIX - do some search :)
 
-      //1. Skip if equal to latest
-      //2. Cache?
+// TO FIX - enable some cache
+
+      $scope.lastSelected = $scope.selected
     }
     $scope.onTypeaheadSelect = function (item, model, label)
     {
@@ -58,6 +49,8 @@ myApp
       // console.log("Label "+label);
     }
 
+// TO FIX:
+    // Do query to DB instead
     $scope.typeahead = {
       data: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
     };
