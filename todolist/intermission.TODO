@@ -60,12 +60,30 @@ PROTOTYPE:
    ✔ colors @done (15-09-20 15:16)
    ✔ navbar @done (15-09-20 15:16)
    ✔ collapse side bar at the first touch inside the page @done (15-10-06 17:38)
+
 #MATERIAL
   ☐ angular material https://material.angularjs.org/latest/#/getting-started
   ☐ materialize (requires jquery)
     ☐ http://materializecss.com/about.html
     ☐ http://krescruz.github.io/angular-materialize
       ☐ https://github.com/krescruz/angular-materialize
+  ☐ template
+  http://joashpereira.com/templates/material_one_pager/
+
+ #OTHER FRAMEWORKS
+ http://getskeleton.com/
+
+How to restart libs dependencies:
+  ☐ nodejs 4 ?
+    ☐ bower & gulp angular
+    ☐ with jquery
+ ☐ Creative TIM
+   ☐ paper kit components
+   http://demos.creative-tim.com/paper-kit/components#
+   ☐ datatable
+   http://demos.creative-tim.com/fresh-bootstrap-table
+   ☐ dashboard
+   http://demos.creative-tim.com/light-bootstrap-dashboard/dashboard
 
 TIPS:
   ☐ make simpler loading (rolling gif and failed just in case)
