@@ -72,18 +72,21 @@ PROTOTYPE:
 
  #OTHER FRAMEWORKS
  http://getskeleton.com/
+ http://semantic-ui.com/
 
 How to restart libs dependencies:
-  ☐ nodejs 4 ?
-    ☐ bower & gulp angular
-    ☐ with jquery
- ☐ Creative TIM
-   ☐ paper kit components
-   http://demos.creative-tim.com/paper-kit/components#
-   ☐ datatable
-   http://demos.creative-tim.com/fresh-bootstrap-table
-   ☐ dashboard
-   http://demos.creative-tim.com/light-bootstrap-dashboard/dashboard
+☐ nodejs 4 ?
+  ☐ bower & gulp angular
+  ☐ with jquery
+☐ Callout
+http://cpratt.co/twitter-bootstrap-callout-css-styles/
+☐Creative TIM
+ ☐ paper kit components
+ http://demos.creative-tim.com/paper-kit/components#
+ ☐ datatable
+ http://demos.creative-tim.com/fresh-bootstrap-table
+ ☐ dashboard
+ http://demos.creative-tim.com/light-bootstrap-dashboard/dashboard
 
 TIPS:
   ☐ make simpler loading (rolling gif and failed just in case)
