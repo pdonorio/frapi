@@ -4,12 +4,15 @@ INTERMISSION
 
  OPBEAT:
    ✔ test trial @done (15-10-07 14:52)
+   ☐ check out how it goes?
 
 TODO:
 ✔ load backup from remote to local @done (15-10-07 07:46)
   ☐ TO TEST!
 ✔ no more modification to one git file @done (15-10-07 14:52)
   git update-index --assume-unchanged scripts/update_local_from_remote.sh
+☐ Remove... remove button!
+  ☐ Remove button with yes, make sure...
 ☐ search Estratto
   ☐ TypeHead auto complete
   ☐ what to show in search? lista delle feste

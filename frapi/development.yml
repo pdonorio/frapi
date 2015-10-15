@@ -43,6 +43,17 @@ devfapi:
         - updata
 
 ##########################
+# Nodejs: Database admin and dist build
+webdev:
+    build: ../docker/jsdev
+    #command: chateau
+    command: sleep 12345789
+    volumes:
+        - ../yoapp:/opt/jsapp
+    links:
+        - devdb:db
+
+##########################
 ## PROXY
 devproxy:
     extends:
@@ -78,16 +89,6 @@ devproxy:
 #         - devdb:db
 #     volumes_from:
 #         - pycode
-
-##########################
-# Nodejs: Database admin and dist build
-webdev:
-    build: ../docker/jsdev
-    command: chateau
-    volumes:
-        - ../yoapp:/opt/jsapp
-    links:
-        - devdb:db
 
 ##########################
 # MONITOR
