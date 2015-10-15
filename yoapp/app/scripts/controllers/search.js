@@ -34,6 +34,7 @@ myApp
       if ($scope.selected == $scope.lastSelected)
         return
       console.log("Searching: " + $scope.selected);
+      console.log($scope.data);
 
 // TO FIX - do some search :)
 
@@ -48,13 +49,7 @@ myApp
       // console.log("Model "+model);
       // console.log("Label "+label);
     }
-
-// TO FIX:
-    // Do query to DB instead
-    $scope.typeahead = {
-      data: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
-    };
-
+    $scope.typeahead = { data:[] };
 
   /* ************************************
   ***************************************
@@ -64,9 +59,26 @@ myApp
     var resource = 'stepscontent';
     var userresource = 'accounts';
 
+
     //Bind data in html to function
     $scope.reloadTable = function(perpage, currentpage)
     {
+
+//////////////////////////////
+//////////////////////////////
+// Extrait
+var ext = {};
+API.get(resource, {perpage: 100000, currentpage: 1}).then(function(data) {
+    data.items.forEach(function(el, key){
+        if (el.step == "1")
+            ext[el.values[0]] = el.id;
+    });
+    $scope.typeahead = { data: Object.keys(ext) };
+      //'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California'
+console.log(ext);
+});
+//////////////////////////////
+//////////////////////////////
 
       // Get the data (as a promise)
       var params = {perpage: perpage, currentpage: currentpage};
@@ -127,7 +139,6 @@ myApp
     $scope.mytable.show = true;
     $scope.searching = true;
 */
-
             }); // api content
 
         }); // api users
