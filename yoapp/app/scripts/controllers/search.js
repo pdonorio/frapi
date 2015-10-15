@@ -25,8 +25,6 @@ myApp
     // Put focus on the first search bar
     focus("search");
 
-    // ***************************************
-    // TYPEAHEAD
     $scope.selected = undefined;
     $scope.lastSelected = undefined;
     $scope.search = function()
@@ -39,11 +37,19 @@ myApp
         console.log("Filter!", $scope.extra[$scope.selected]);
 
 // TO FIX - do some search :)
+    // Filter $scope.data...?
+    // probably use some filter function applyied to angular repeat?
+        // so we avoid calling database every time???
+    // Otherwise apply to api call
+
+
 
 // TO FIX - enable some cache
 
       $scope.lastSelected = $scope.selected
     }
+    // ***************************************
+    // TYPEAHEAD init
     $scope.onTypeaheadSelect = function (item, model, label)
     {
       $scope.search(item);
@@ -52,6 +58,7 @@ myApp
       // console.log("Label "+label);
     }
     $scope.typeahead = { data:[] };
+    // ***************************************
 
   /* ************************************
   ***************************************
