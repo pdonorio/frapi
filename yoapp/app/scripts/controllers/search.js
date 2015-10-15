@@ -32,9 +32,11 @@ myApp
     $scope.search = function()
     {
       if ($scope.selected == $scope.lastSelected)
-        return
-      console.log("Searching: " + $scope.selected);
-      console.log($scope.data);
+        return;
+      console.log("Searching: ", $scope.selected);
+      //console.log($scope.data);
+      if (typeof $scope.extra[$scope.selected] !== "undefined")
+        console.log("Filter!", $scope.extra[$scope.selected]);
 
 // TO FIX - do some search :)
 
@@ -67,15 +69,17 @@ myApp
 //////////////////////////////
 //////////////////////////////
 // Extrait
-var ext = {};
+$scope.extra = {};
 API.get(resource, {perpage: 100000, currentpage: 1}).then(function(data) {
+    var ext = {};
     data.items.forEach(function(el, key){
         if (el.step == "1")
             ext[el.values[0]] = el.id;
     });
     $scope.typeahead = { data: Object.keys(ext) };
       //'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California'
-console.log(ext);
+    console.log(ext);
+    $scope.extra = ext;
 });
 //////////////////////////////
 //////////////////////////////
