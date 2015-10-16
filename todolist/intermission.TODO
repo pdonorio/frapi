@@ -27,11 +27,13 @@ TODO:
    ✔ not inside the html part... @done (15-10-16 18:03)
 ☐ add paging
  ☐ bootstrap
+☐ Search keypress timeout longer?
+☐ Extract empty for some cases...?
+   ☐ Maybe the first element of values (values[0]) is empty
 
 ✔ load backup from remote to local @done (15-10-07 07:46)
   ☐ TO TEST!
 
-☐ Search keypress timeout longer?
 
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
