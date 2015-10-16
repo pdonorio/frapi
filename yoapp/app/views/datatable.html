@@ -54,7 +54,6 @@
 
       <!-- data table -->
       <div ng-show='datalength > 0'>
-
         <table class="table table-striped">
           <thead>
             <tr>
@@ -62,13 +61,15 @@
             </tr>
           </thead>
 
-
           <tbody> <!-- use timestamp to order -->
-            <tr ng-repeat="(record,row) in data | orderBy: row.ts">
-              <td>
+            <tr ng-repeat="(record,row) in data | orderBy: row.name">
+              <td> {{row.user}} </td>
+              <td> {{row.name}} </td>
+              <td> {{row.modified | date:'dd/MM/yy HH:mm'}} </td>
+
+<!--               <td>
                 {{row.user}}:<b>{{record | limitTo:8}}</b>
-                <br>
-                <small> <i> not published </i> </small>
+                <br> <small> <i> not published </i> </small>
               </td>
               <td>
                 <span ng-repeat='(key, values) in row.steps track by $index'>
@@ -83,6 +84,7 @@
                 </span>
 
               </td>
+ -->              
               <td>
 
               <!--buttons-->

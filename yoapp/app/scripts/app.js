@@ -79,7 +79,7 @@ var myApp = angular.module('app',
   .constant('apiTimeout', 15750) //remember: a refused connection waits no time
   .constant('messageTimeout', 3000)
   .constant('warningInitTime', 7500)
-  .constant('perpageDefault', 7)
+  .constant('perpageDefault', 10)
   .constant('currentpageDefault', 1)
   // use more time to load the page
   .constant('someInitTime', 1000)

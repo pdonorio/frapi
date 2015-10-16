@@ -8,7 +8,7 @@ myApp
     $scope.datacount = 0;
     $scope.from = 0;
     $scope.data = {};
-    $scope.headers = [ "Documento", "Contenuto", "Azioni" ];
+    $scope.headers = [ "Operatore", "Estratto", "Altro", "Azioni" ];
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
 
@@ -25,6 +25,31 @@ myApp
     // Put focus on the first search bar
     focus("search");
 
+//######################################
+//######################################
+//######################################
+    $scope.filterFn = function(obj)
+    {
+/*
+        // Do some tests
+        console.log("OBJ", obj);
+        obj.items.forEach(function(el, key){
+          console.log(el,key);
+        });
+
+        if(car.carDetails.doors > 2)
+        {
+            return true; // this will be listed in the results
+        }
+
+        return false; // otherwise it won't be within the results
+*/
+        return obj;
+    };
+//######################################
+//######################################
+//######################################
+
     $scope.selected = undefined;
     $scope.lastSelected = undefined;
     $scope.search = function()
@@ -32,7 +57,7 @@ myApp
       if ($scope.selected == $scope.lastSelected)
         return;
       console.log("Searching: ", $scope.selected);
-      //console.log($scope.data);
+      console.log($scope.data);
       if (typeof $scope.extra[$scope.selected] !== "undefined")
         console.log("Filter!", $scope.extra[$scope.selected]);
 
@@ -41,7 +66,6 @@ myApp
     // probably use some filter function applyied to angular repeat?
         // so we avoid calling database every time???
     // Otherwise apply to api call
-
 
 
 // TO FIX - enable some cache
@@ -77,7 +101,7 @@ myApp
 //////////////////////////////
 // Extrait
 $scope.extra = {};
-API.get(resource, {perpage: 100000, currentpage: 1}).then(function(data) {
+API.get(resource, {perpage: 10000, currentpage: 1}).then(function(data) {
     var ext = {};
     data.items.forEach(function(el, key){
         if (el.step == "1")
@@ -108,6 +132,9 @@ API.get(resource, {perpage: 100000, currentpage: 1}).then(function(data) {
 
 // TO FIX - use StepContent
           // Get raw content...
+
+// Get info only about Estratto
+          params.step = 1;
           API.get(resource, params).then(function(data) {
 
                 var documents = {}
@@ -115,6 +142,7 @@ API.get(resource, {perpage: 100000, currentpage: 1}).then(function(data) {
 
                 data.items.forEach(function(el, key){
 
+                  console.log("Record", el.recordid, "Step", el.step, "vals", el.values);
                   // Create record
                   if (!hashes[el.recordid]) {
                     // hashes
@@ -123,13 +151,13 @@ API.get(resource, {perpage: 100000, currentpage: 1}).then(function(data) {
                     documents[el.recordid] =
                     {
                         ts: el.latest_timestamp,
+                        modified: new Date(el.latest_timestamp*1000),
                         user: users[el.user],
-                        steps: {},
+                        id: el.recordid,
+                        name: el.values[0],
+                        steps: el.values,
                     }
                   }
-                  //Add steps
-                  documents[el.recordid].steps[el.step] = el.values;
-
                 });
 
                 // Inject into scope

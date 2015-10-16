@@ -1,3 +1,12 @@
+A clone?
+https://github.com/JeffHeard/sondra
+
+Form Resources
+https://github.com/Textalk/angular-schema-form
+
+Comments
+https://commentit.io/getting-started
+
 
 INTERMISSION
   #a discussion about spectacle baroque
@@ -6,16 +15,30 @@ INTERMISSION
    ✔ test trial @done (15-10-07 14:52)
    ☐ check out how it goes?
 
+---
+docker-compose -f frapi/development.yml up -d
+docker exec -it frapi_devapi_1 rethinkdb-restore -c db --force /backup/latest_dump.tar.gz
+docker exec -it frapi_devapi_1 bash
+python main.py
+
+---
+
 TODO:
-✔ load backup from remote to local @done (15-10-07 07:46)
-  ☐ TO TEST!
 ✔ no more modification to one git file @done (15-10-07 14:52)
   git update-index --assume-unchanged scripts/update_local_from_remote.sh
-☐ Remove... remove button!
+✔ Remove... remove button! @done (15-10-16 09:47)
   ☐ Remove button with yes, make sure...
-☐ search Estratto
-  ☐ TypeHead auto complete
-  ☐ what to show in search? lista delle feste
+✔ search Estratto @done (15-10-16 09:47)
+  ✔ TypeHead auto complete @done (15-10-16 09:47)
+☐ redefine search list
+ ☐ array
+   ☐ elements computed on the javascript side as string
+   ☐ not inside the html part...
+☐ add paging 
+ ☐ bootstrap
+
+✔ load backup from remote to local @done (15-10-07 07:46)
+  ☐ TO TEST!
 
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
@@ -121,3 +144,4 @@ TIPS:
     - solo trascrizione
     - traduzione?
     - entrambe
+ 
