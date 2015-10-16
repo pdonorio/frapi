@@ -25,52 +25,25 @@ myApp
     // Put focus on the first search bar
     focus("search");
 
-//######################################
-//######################################
-//######################################
-    $scope.filterFn = function(obj)
-    {
-/*
-        // Do some tests
-        console.log("OBJ", obj);
-        obj.items.forEach(function(el, key){
-          console.log(el,key);
-        });
-
-        if(car.carDetails.doors > 2)
-        {
-            return true; // this will be listed in the results
-        }
-
-        return false; // otherwise it won't be within the results
-*/
-        return obj;
-    };
-//######################################
-//######################################
-//######################################
-
     $scope.selected = undefined;
-    $scope.lastSelected = undefined;
+    $scope.tofilter = undefined;
+    var lastSelected = undefined;
     $scope.search = function()
     {
-      if ($scope.selected == $scope.lastSelected)
+      if ($scope.selected == lastSelected)
         return;
       console.log("Searching: ", $scope.selected);
+/*
       console.log($scope.data);
       if (typeof $scope.extra[$scope.selected] !== "undefined")
-        console.log("Filter!", $scope.extra[$scope.selected]);
+      {
+          $scope.tofilter = $scope.extra[$scope.selected]
+          console.log("Filter!", $scope.tofilter);
+      }
+*/
+      $scope.reloadTable($scope.perpage, $scope.currentpage, $scope.selected)
 
-// TO FIX - do some search :)
-    // Filter $scope.data...?
-    // probably use some filter function applyied to angular repeat?
-        // so we avoid calling database every time???
-    // Otherwise apply to api call
-
-
-// TO FIX - enable some cache
-
-      $scope.lastSelected = $scope.selected
+      lastSelected = $scope.selected
     }
     // ***************************************
     // TYPEAHEAD init
@@ -92,29 +65,27 @@ myApp
     var resource = 'stepscontent';
     var userresource = 'accounts';
 
+    //////////////////////////////
+    // Extrait vocabulary
+    $scope.extra = {};
+    API.get(resource, {perpage: 10000, currentpage: 1}).then(function(data) {
+        var ext = {};
+        data.items.forEach(function(el, key){
+            if (el.step == "1")
+                ext[el.values[0]] = el.id;
+        });
+        $scope.typeahead = { data: Object.keys(ext) };
+          //'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California'
+        console.log(ext);
+        $scope.extra = ext;
+    });
 
     //Bind data in html to function
-    $scope.reloadTable = function(perpage, currentpage)
+    $scope.reloadTable = function(perpage, currentpage, searchvalue)
+// TO FIX - enable some cache
     {
 
-//////////////////////////////
-//////////////////////////////
-// Extrait
-$scope.extra = {};
-API.get(resource, {perpage: 10000, currentpage: 1}).then(function(data) {
-    var ext = {};
-    data.items.forEach(function(el, key){
-        if (el.step == "1")
-            ext[el.values[0]] = el.id;
-    });
-    $scope.typeahead = { data: Object.keys(ext) };
-      //'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California'
-    console.log(ext);
-    $scope.extra = ext;
-});
-//////////////////////////////
-//////////////////////////////
-
+      console.log("Search", searchvalue);
       // Get the data (as a promise)
       var params = {perpage: perpage, currentpage: currentpage};
 
@@ -142,7 +113,7 @@ API.get(resource, {perpage: 10000, currentpage: 1}).then(function(data) {
 
                 data.items.forEach(function(el, key){
 
-                  console.log("Record", el.recordid, "Step", el.step, "vals", el.values);
+                  //console.log("Record", el.recordid, "Step", el.step, "vals", el.values);
                   // Create record
                   if (!hashes[el.recordid]) {
                     // hashes
