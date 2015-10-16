@@ -1,9 +1,13 @@
 
-☐ Search in angularjs
-☐ every keypress reload table
-☐ change filter parameter for api
-☐ apply parameter inside api
-☐ use filter or contains with RDB??
+✔ Search in angularjs @done (15-10-16 18:02)
+✔ every keypress reload table @done (15-10-16 18:02)
+✔ change filter parameter for api @done (15-10-16 18:02)
+✔ apply parameter inside api @done (15-10-16 17:58)
+✔ use filter or contains with RDB @done (15-10-16 17:58)
+  ✔ python and lambda!! @done (15-10-16 17:57)
+
+
+#JAVASCRIPT
 
 //EXPERIMENT
 r.db('webapp').table('stepscontent').filter({'step':1}).filter(
@@ -14,9 +18,10 @@ r.db('webapp').table('stepscontent').filter({'step':1}).filter(
 r.db('webapp').table('stepscontent').filter({'step':1}).filter(
   function(row) {return row("values").contains("Agen_4")}
 );
-  
-  //MATCH
-r.db('webapp').table('stepscontent').filter({'step':1}).filter(
-  function(row) { return row("values").contains(lambda key: key.match("A"));
-  }
-)
+
+#PYTHON
+query = query.filter(lambda row: \
+    row["values"].contains(lambda key: \
+        key.match("nv")))
+
+☐ But what if i want to search only in a given position of the array?

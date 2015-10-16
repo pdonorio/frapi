@@ -101,11 +101,13 @@ myApp
           });
           //console.log("Users", users);
 
-// TO FIX - use StepContent
-          // Get raw content...
-
+// #######################################
 // Get info only about Estratto
           params.step = 1;
+          params.filterfield = 'extract';
+          params.filtervalue = searchvalue;
+// #######################################
+
           API.get(resource, params).then(function(data) {
 
                 var documents = {}

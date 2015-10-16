@@ -204,6 +204,15 @@ class StepContent(GenericORMModel):
     @staticmethod
     def recordid(value):
         return value    #e.g. 'new' or record
+
+    # Give opportunity to query the right way
+    @staticmethod
+    def filterfield(value):
+        return value
+    @staticmethod
+    def filtervalue(value):
+        return value
+
     # ARRAY!
     values = 'list'
     hashes = 'list'

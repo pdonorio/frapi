@@ -218,7 +218,19 @@ class RethinkConnection(Connection):
         # from my query
         if not query.is_empty().run():
 
-            # === Filter* ===
+            # === SPECIFIC Filter ===
+            try:
+                myk = p.pop('filterfield')
+                myv = p.pop('filtervalue')
+                print(myk,myv)
+                if myk == 'extract':
+                    query = query.filter(lambda row: \
+                        row["values"].contains(lambda key: \
+                            key.match(myv)))
+            except KeyError:
+                pass
+
+            # === AUTOMATIC Filter ===
             for key, value in p.iteritems():
                 if key == 'currentpage' or key == 'perpage':
                     continue
