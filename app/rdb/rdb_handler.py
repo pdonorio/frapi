@@ -67,8 +67,8 @@ class RethinkConnection(Connection):
         # Leaving this to docker & init
         #create and use DB? and table?
         if load_setup:
-            print "SKIPPING!"
             #self.setup()
+            print "DEV: init for now is SKIPPING!"
 
     # === Connect ===
     def make_connection(self, use_database):
@@ -159,14 +159,12 @@ class RethinkConnection(Connection):
 
     @check_model
     def indexing(self):
-# NOT WORKING AT THE MOMENT
         table = self.model.table
-        # list indexes on table "users"
         index_list = r.table(table).index_list().run()
         # check indexes or create
         for i in self.model.indexes:
             if i not in index_list:
-                print "Index '" + i + "' missing in table " + table
+                self.log.critical("Index '" + i + "' missing in table " + table)
                 r.table(table).index_create(i).run()
                 print "Waiting"
                 r.table(table).index_wait(i).run()
@@ -223,7 +221,10 @@ class RethinkConnection(Connection):
                 myk = p.pop('filterfield')
                 # ORDER BY TIMESTAMP
                 print("ORDERBY")
-                query = query.order_by(index='latest_timestamp')
+                try:
+                    query = query.order_by(index='latest_timestamp')
+                except Exception, e:
+                    print(e)
 
             except KeyError:
                 pass

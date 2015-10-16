@@ -189,6 +189,7 @@ class StepContent(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepscontent'
     order = 'step'
+    indexes = ['latest_timestamp']
 
     # Attributes as defined by static methods:
     @staticmethod

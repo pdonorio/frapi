@@ -50,17 +50,12 @@ def try_to_connect(create_db=False):
 
 # Data models from DB ORM
 from rdb.get_models import models
-tmp = db(True)
-tmp.default_database()
+dbref = db(True)
+dbref.default_database()
 for (name, model) in models.iteritems():
-    print "Indexing: ", name
-    tmp.define_model(model)
-    # a = tmp.search()
-    # print a
-    # break
-    #tmp.indexing()
-    print "DEBUG: NOT AVAILABLE FOR NOW"
-    break
+    dbref.define_model(model)
+    #app.logger.info("Indexing: %s" % name)
+    dbref.indexing()
 
 # # Setup only first time,
 # # before the first request
