@@ -21,15 +21,17 @@ TODO:
   ☐ Remove button with yes, make sure...
 ✔ search Estratto @done (15-10-16 09:47)
   ✔ TypeHead auto complete @done (15-10-16 09:47)
-☐ redefine search list
- ☐ array
-   ☐ elements computed on the javascript side as string
-   ☐ not inside the html part...
-☐ add paging 
+✔ redefine search list @done (15-10-16 18:03)
+ ✔ array @done (15-10-16 18:03)
+   ✔ elements computed on the javascript side as string @done (15-10-16 18:03)
+   ✔ not inside the html part... @done (15-10-16 18:03)
+☐ add paging
  ☐ bootstrap
 
 ✔ load backup from remote to local @done (15-10-07 07:46)
   ☐ TO TEST!
+
+☐ Search keypress timeout longer?
 
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
@@ -142,4 +144,3 @@ TIPS:
     - solo trascrizione
     - traduzione?
     - entrambe
- 

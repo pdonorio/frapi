@@ -9,7 +9,9 @@
     </div>
 
     <div class="panel-body">
-     <div ng-show='datalength > 0'>
+
+<!-- FIX -->
+     <div ng-show='datalength >= 0'>
 
       <!-- FORM -->
       <form role="form" ng-submit="search()">
@@ -21,7 +23,7 @@
               <i class="fa fa-plus-square-o fa-1x"></i>
             </button>
           </span>
-<!-- TYPEHEAD autocomplention -->
+        <!-- TYPEHEAD autocomplention -->
           <input type="text" focus-on="search"
             placeholder="Cerca" class="form-control"
 
@@ -84,16 +86,16 @@
                 </span>
 
               </td>
- -->              
+ -->
               <td>
 
-              <!--buttons-->
+              <!--buttons
                <a ui-sref='logged.view({myId:record})'>
                 <button type="button" class="btn btn-xs btn-default"
                   tooltip-placement="left"
                   tooltip="Guarda il record {{record | limitTo:8}}">
                   <i class="fa fa-eye fa-2x"> </i>
-
+-->
                 </button>
                </a>
                <a ui-sref='logged.submission.step({myId:record, stepId:1})'>

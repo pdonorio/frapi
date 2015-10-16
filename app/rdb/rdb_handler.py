@@ -221,8 +221,17 @@ class RethinkConnection(Connection):
             # === SPECIFIC Filter ===
             try:
                 myk = p.pop('filterfield')
+                # ORDER BY TIMESTAMP
+                print("ORDERBY")
+                query = query.order_by(index='latest_timestamp')
+
+            except KeyError:
+                pass
+
+            try:
                 myv = p.pop('filtervalue')
-                print(myk,myv)
+                print("REAL FILTERING", myk,myv)
+
                 if myk == 'extract':
                     query = query.filter(lambda row: \
                         row["values"].contains(lambda key: \
@@ -255,9 +264,11 @@ class RethinkConnection(Connection):
                 #this does not work: WHY??
                 #out = query.skip(start).limit(end).run()
 
-            # Order by if necessary (as defined in the model)
-            if self.model.order != None:
-                query = query.order_by(self.model.order)
+# ORDER BY
+# TO FIX:
+            # # Order by if necessary (as defined in the model)
+            # if self.model.order != None:
+            #     query = query.order_by(self.model.order)
 # TO FIX:
             # What if i have multiple orders?
             # Bug! Rethinkdb needs indexes for multiple order

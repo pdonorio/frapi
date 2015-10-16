@@ -17,10 +17,18 @@ r.connect(**params).repl()
 ##################################
 DB = 'webapp'
 TABLE = 'stepscontent'
+FIELD = 'latest_timestamp'
+
+##################################
+# CREATE indexes
+# query = r.db(DB).table(TABLE).index_create(FIELD).run()
+# exit(1)
 
 ##################################
 # SELECT ON TABLE
 query = r.db(DB).table(TABLE)
+# ORDER BY
+query = query.order_by(index=FIELD)
 # WHERE
 query = query.filter({'step':1})
 
@@ -31,7 +39,7 @@ query = query.filter({'step':1})
 # LAMBDA FILTER
 query = query.filter(lambda row: \
     row["values"].contains(lambda key: \
-        key.match("nv")))
+        key.match("Fl")))
 
 ##################################
 # Use the query?
