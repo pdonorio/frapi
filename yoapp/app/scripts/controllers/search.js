@@ -1,24 +1,23 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name yoApp.controller:ViewController
- * @description
- * # ViewController
- * Controller of the yoApp
- */
-
 myApp
  .controller('ViewController', function ($scope, $rootScope, $timeout, API, StepContent, perpageDefault, currentpageDefault, focus)
 {
+    $scope.range = function(min, max, step){
+      step = step || 1;
+      var input = [];
+      for (var i = min; i <= max; i += step) input.push(i);
+      return input;
+    };
 
     // Init: Html scope data
     $scope.datacount = 0;
     $scope.from = 0;
     $scope.data = {};
-    $scope.headers = [ "Documento", "Contenuto", "Azioni" ];
+    $scope.headers = [ "Operatore", "Estratto", "Altro", "Azioni" ];
     $scope.perpage = perpageDefault;
     $scope.currentpage = currentpageDefault;
+    $scope.pages = [];
 
     // Closed advanced search
     $scope.isCollapsed = true;
@@ -33,23 +32,28 @@ myApp
     // Put focus on the first search bar
     focus("search");
 
-  /* ************************************
-  ***************************************
-   TYPEAHEAD
-  ***************************************
-  ************************************* */
-
     $scope.selected = undefined;
+    $scope.tofilter = undefined;
+    var lastSelected = undefined;
     $scope.search = function()
     {
-      console.log("Searching: " + $scope.selected);
+      if ($scope.selected == lastSelected)
+        return;
+      //console.log("Searching: ", $scope.selected);
+/*
+      console.log($scope.data);
+      if (typeof $scope.extra[$scope.selected] !== "undefined")
+      {
+          $scope.tofilter = $scope.extra[$scope.selected]
+          console.log("Filter!", $scope.tofilter);
+      }
+*/
+      $scope.reloadTable($scope.perpage, $scope.currentpage, $scope.selected)
 
-// TO FIX -
-      //should check if this value has already been requested
-
-      //1. Skip if equal to latest
-      //2. Cache?
+      lastSelected = $scope.selected
     }
+    // ***************************************
+    // TYPEAHEAD init
     $scope.onTypeaheadSelect = function (item, model, label)
     {
       $scope.search(item);
@@ -57,11 +61,8 @@ myApp
       // console.log("Model "+model);
       // console.log("Label "+label);
     }
-
-    $scope.typeahead = {
-      data: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
-    };
-
+    $scope.typeahead = { data:[] };
+    // ***************************************
 
   /* ************************************
   ***************************************
@@ -71,14 +72,35 @@ myApp
     var resource = 'stepscontent';
     var userresource = 'accounts';
 
+    //////////////////////////////
+    // Extrait vocabulary
+    $scope.extra = {};
+    API.get(resource, {perpage: 10000, currentpage: 1}).then(function(data) {
+        var ext = {};
+        data.items.forEach(function(el, key){
+            if (el.step == "1")
+                ext[el.values[0]] = el.id;
+        });
+        $scope.typeahead = { data: Object.keys(ext) };
+          //'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California'
+        //console.log(ext);
+        $scope.extra = ext;
+    });
+
+
+
     //Bind data in html to function
-    $scope.reloadTable = function(perpage, currentpage)
+    $scope.reloadTable = function(perpage, currentpage, searchvalue)
+// TO FIX - enable some cache!
     {
+      if (currentpage < 1) currentpage = 1;
+      $scope.currentpage = currentpage;
+      //console.log(perpage, currentpage, "Search", searchvalue);
 
       // Get the data (as a promise)
       var params = {perpage: perpage, currentpage: currentpage};
 
-// TO FIX - use userlist inside resolve
+// TO FIX - use userlist inside resolve??
       // GET USERS list
       API.get(userresource).then(function(res)
       {
@@ -90,15 +112,23 @@ myApp
           });
           //console.log("Users", users);
 
-// TO FIX - use StepContent
-          // Get raw content...
+// #######################################
+// Get info only about Estratto
+          params.step = 1;
+          params.filterfield = 'extract';
+          params.filtervalue = searchvalue;
+// #######################################
+
           API.get(resource, params).then(function(data) {
+
+                //console.log(data);
 
                 var documents = {}
                 var hashes = {};
 
                 data.items.forEach(function(el, key){
 
+                  //console.log("Record", el.recordid, "Step", el.step, "vals", el.values);
                   // Create record
                   if (!hashes[el.recordid]) {
                     // hashes
@@ -107,23 +137,31 @@ myApp
                     documents[el.recordid] =
                     {
                         ts: el.latest_timestamp,
+                        modified: new Date(el.latest_timestamp*1000),
                         user: users[el.user],
-                        steps: {},
+                        id: el.recordid,
+                        name: el.values[0],
+                        steps: el.values,
                     }
                   }
-                  //Add steps
-                  documents[el.recordid].steps[el.step] = el.values;
-
                 });
 
                 // Inject into scope
                 $scope.data = documents;
-                //$scope.datacount = documents.length;
-                $scope.datalength = Object.keys(documents).length;
+                //$scope.datalength = Object.keys(documents).length;
+                $scope.datalength = data.count;
 
                 var from = (parseInt(perpage) * (parseInt(currentpage)-1)) +1;
                 if (from < 1) { from = 1; }
                 $scope.from = from;
+
+                // DEFINE pages array from perpage and currentpage and data size
+                $scope.pages = Math.floor((data.count / $scope.perpage)) + 1;
+                $scope.startpages = $scope.currentpage - 5;
+                if ($scope.startpages < 1) $scope.startpages = 1;
+                $scope.endpages = $scope.startpages + 9;
+                if ($scope.endpages > $scope.pages) $scope.endpages = $scope.pages;
+                //console.log("Pages are", $scope.pages, "for length", data.count);
 
                 // When using this view alone, open the search
                 if (typeof $rootScope.searching === "undefined")
@@ -134,7 +172,6 @@ myApp
     $scope.mytable.show = true;
     $scope.searching = true;
 */
-
             }); // api content
 
         }); // api users

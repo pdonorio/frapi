@@ -1,13 +1,61 @@
 
 INTERMISSION
-  #a discussion about spectacle baroque
+  #a discussion about spectacles
+
+---
+docker-compose -f frapi/development.yml up -d
+docker exec -it frapi_devapi_1 rethinkdb-restore -c db --force /backup/latest_dump.tar.gz
+docker exec -it frapi_devapi_1 bash
+python main.py
+---
+
+scp -i machines/myocean1/id_rsa root@188.226.216.79:/Users/projects/frapi/data/files/\*.jpg backup_pictures_baroque
+scp -i machines/myocean1/id_rsa root@188.226.216.79:/Users/projects/frapi/data/backup/latest_dump.tar.gz
+
 
 TODO:
+✔ no more modification to one git file @done (15-10-07 14:52)
+  git update-index --assume-unchanged scripts/update_local_from_remote.sh
+✔ Remove... remove button! @done (15-10-16 09:47)
+  ☐ Remove button with yes, make sure...
+✔ search Estratto @done (15-10-16 09:47)
+  ✔ TypeHead auto complete @done (15-10-16 09:47)
+✔ redefine search list @done (15-10-16 18:03)
+ ✔ array @done (15-10-16 18:03)
+   ✔ elements computed on the javascript side as string @done (15-10-16 18:03)
+   ✔ not inside the html part... @done (15-10-16 18:03)
+✔ add paging @done (15-10-17 15:25)
+ ✔ bootstrap @done (15-10-16 20:06)
+✘ Search keypress timeout longer? @cancelled (15-10-17 15:25)
+✘ Extract empty for some cases...? @cancelled (15-10-17 15:25)
+   ✘ Maybe the first element of values (values[0]) is empty @cancelled (15-10-17 15:25)
+✔ load backup from remote to local @done (15-10-07 07:46)
+☐ Add one element on the fly in a list: SPUTTANA TUTTO
+
+☐ check smtp email send (mailchimp /mailgun?)
+  ☐ ipython script?
+  ☐ send a backup email daily (crond in tasker)
+ ☐ welcome page nuova
+  ☐ projects in scroll
+  ☐ editor project inside app
+ ☐ app
+  ☐ loading azzerato
+  ☐ links solo se fatto login
+
+RESOURCES (almost) RANDOM
+* A clone?
+https://github.com/JeffHeard/sondra
+* Form Resources
+https://github.com/Textalk/angular-schema-form
+* Comments
+https://commentit.io/getting-started
+
  ☐ repeat insert extrait with fixed other steps
  ☐ Mostra risultati: festa = step 3, source step 2
    ☐ Mostra immagine se esiste?
  ☐ ordinamento sulla data della realizzazione del record
  ☐ ricerca sul numero estratto (autocompletamento?)
+ ☐ favico?
 
 HARD:
  ☐ aggiungere un attributo multiplo (!)
@@ -17,7 +65,7 @@ BUGS:
  ☐ numero di pagina estratto
 
 PROTOTYPE:
- ☐ Prototipo basato su powerpoint
+ ✔ Prototipo basato su powerpoint @done (15-10-06 17:38)
    ✔ a new dir @done (15-09-19 16:19)
    ✔ off canvas @done (15-09-20 12:26)
      ✔ http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/ @done (15-09-20 12:26)
@@ -25,12 +73,38 @@ PROTOTYPE:
    ✔ Fixing links @done (15-09-20 12:34)
    ✔ colors @done (15-09-20 15:16)
    ✔ navbar @done (15-09-20 15:16)
-   ☐ collapse side bar at the first touch inside the page
+   ✔ collapse side bar at the first touch inside the page @done (15-10-06 17:38)
+
+#MATERIAL
+  ☐ angular material https://material.angularjs.org/latest/#/getting-started
+  ☐ materialize (requires jquery)
+    ☐ http://materializecss.com/about.html
+    ☐ http://krescruz.github.io/angular-materialize
+      ☐ https://github.com/krescruz/angular-materialize
+  ☐ template
+  http://joashpereira.com/templates/material_one_pager/
+
+ #OTHER FRAMEWORKS
+ http://getskeleton.com/
+ http://semantic-ui.com/
+
+How to restart libs dependencies:
+☐ nodejs 4 ?
+  ☐ bower & gulp angular
+  ☐ with jquery
+☐ Callout
+http://cpratt.co/twitter-bootstrap-callout-css-styles/
+☐Creative TIM
+ ☐ paper kit components
+ http://demos.creative-tim.com/paper-kit/components#
+ ☐ datatable
+ http://demos.creative-tim.com/fresh-bootstrap-table
+ ☐ dashboard
+ http://demos.creative-tim.com/light-bootstrap-dashboard/dashboard
 
 TIPS:
   ☐ make simpler loading (rolling gif and failed just in case)
   ☐ no 2 seconds addon to loader
-
 
   # Welcome
 - casella di ricerca (tutto il sito)
@@ -59,14 +133,7 @@ TIPS:
     - traduzione?
     - entrambe
 
-# How to
-- fare ricerca nome estratto
-  * check smtp email send (mailchimp /mailgun?)
-- send a backup email daily (crond in tasker)
-  * ipython script?
-- welcome page nuova
-  * projects in scroll
-  * editor project inside app
-- app
-  * loading azzerato
-  * links solo se fatto login
+
+ OPBEAT:
+   ✔ test trial @done (15-10-07 14:52)
+   ✘ check out how it goes? @cancelled (15-10-17 15:24)

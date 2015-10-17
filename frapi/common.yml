@@ -28,7 +28,8 @@ updata:
 #############################
 ## Master database resource
 rdb:
-    image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
+    build: ../docker/rethinkdb
+    #image: rethinkdb    # http://rethinkdb.com/blog/docker-repo
 
 #############################
 ## Restful API to access database and files

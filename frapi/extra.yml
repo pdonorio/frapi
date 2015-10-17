@@ -71,10 +71,13 @@ pycode:
 ## Switch to old node and backup:
 #$ docker exec -it frapi_tasker_1 rethinkdb-dump -c db -f /backup/latest_dump.tar.gz
 
-### IMPORTANT
-## Transfer the file via ftp to new node:
+## COPY
+#project='myocean1'
+#path='/Users/projects/frapi/data/backup'
+#$ scp -i ~/.docker/machine/machines/$project/id_rsa \
+#    root@$(docker-machine ip $project):$path/latest_dump.tar.gz $path/
+## OR TRANSFER the file via ftp to new node:
 #$ echo put latest.tar.gz init.tar.gz | ftp ftp://bob:test@HOSTNAME
-### IMPORTANT
 
 ## Switch to the new node via machine and restore:
 #$ docker exec -it frapi_tasker_1 rethinkdb-restore -c db --force /backup/init.tar.gz

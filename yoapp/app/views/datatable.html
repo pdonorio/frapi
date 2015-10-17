@@ -9,7 +9,9 @@
     </div>
 
     <div class="panel-body">
-     <div ng-show='datalength > 0'>
+
+<!-- FIX -->
+     <div ng-show='datalength >= 0'>
 
       <!-- FORM -->
       <form role="form" ng-submit="search()">
@@ -21,12 +23,16 @@
               <i class="fa fa-plus-square-o fa-1x"></i>
             </button>
           </span>
+        <!-- TYPEHEAD autocomplention -->
           <input type="text" focus-on="search"
             placeholder="Cerca" class="form-control"
+
             typeahead="element for element in typeahead.data | filter:$viewValue | limitTo:9"
             typeahead-wait-ms="0" typeahead-on-select="onTypeaheadSelect($item, $model, $label)"
+
             ng-focus="doFocus()"
             ng-value="{{selected}}" ng-model="selected" ng-change="search()">
+<!-- TYPEHEAD autocomplention -->
           <span class="input-group-btn">
             <button type="button" class="btn btn-info" ng-click="search()">
               <i class="fa fa-search fa-1x"></i>
@@ -50,7 +56,6 @@
 
       <!-- data table -->
       <div ng-show='datalength > 0'>
-
         <table class="table table-striped">
           <thead>
             <tr>
@@ -58,13 +63,15 @@
             </tr>
           </thead>
 
-
           <tbody> <!-- use timestamp to order -->
-            <tr ng-repeat="(record,row) in data | orderBy: row.ts">
-              <td>
+            <tr ng-repeat="(record,row) in data | orderBy: row.name">
+              <td> {{row.user}} </td>
+              <td> {{row.name}} </td>
+              <td> {{row.modified | date:'dd/MM/yy HH:mm'}} </td>
+
+<!--               <td>
                 {{row.user}}:<b>{{record | limitTo:8}}</b>
-                <br>
-                <small> <i> not published </i> </small>
+                <br> <small> <i> not published </i> </small>
               </td>
               <td>
                 <span ng-repeat='(key, values) in row.steps track by $index'>
@@ -79,15 +86,16 @@
                 </span>
 
               </td>
+ -->
               <td>
 
-              <!--buttons-->
+              <!--buttons
                <a ui-sref='logged.view({myId:record})'>
                 <button type="button" class="btn btn-xs btn-default"
                   tooltip-placement="left"
                   tooltip="Guarda il record {{record | limitTo:8}}">
                   <i class="fa fa-eye fa-2x"> </i>
-
+-->
                 </button>
                </a>
                <a ui-sref='logged.submission.step({myId:record, stepId:1})'>
@@ -97,6 +105,7 @@
                   <i class="fa fa-edit fa-2x"></i>
                 </button>
                </a>
+<!--
                <a href ng-click="removeRecord(record)">
                 <button type="button" class="btn btn-xs btn-danger"
                   tooltip-placement="right"
@@ -104,6 +113,7 @@
                   <i class="fa fa-trash fa-2x"></i>
                 </button>
                </a>
+-->
 
               </td>
             </tr>
@@ -111,8 +121,9 @@
         </table>
 
       </div>
-
+<!-- 
       <hr ng-show='datalength > 0'>
+ -->      
       <div>
 
           <!-- LOADING -->
@@ -126,27 +137,52 @@
           </div>
 
           <!-- DATA stats and paging -->
-          <div ng-show='datalength > 0'>
-            <div class="row">
-              <div class="col-md-6 col-xs-6">
-                <span  class="label label-default"> Pagina corrente:</span> &nbsp;
-               <input type="text" ng-value="{{perpage}}" size=3
-                ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
-                <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
-               <input type="text" ng-value="{{currentpage}}" size=3
-                ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
+            <div class="row" ng-show='datalength > 0 && pages > 1'>
+              <div class="col-md-8 col-xs-8">
+
+                  <ul class="pagination">
+
+                    <li> <a href ng-click="reloadTable(perpage,1,searchvalue)">
+                        <i class="fa fa-angle-double-left"></i> </a> </li>
+                    <li> <a href ng-click="reloadTable(perpage,currentpage-1,searchvalue)">
+                        <i class="fa fa-angle-left"></i> </a> </li>
+
+                    <li 
+                      ng-class="{'active': currentpage==page, '': currentpage!=page}"
+                      ng-repeat='page in range(startpages,endpages)'>
+                      <a href ng-click="reloadTable(perpage,page,searchvalue)">
+                        {{page}}
+                      </a>
+                    </li>
+
+                    <li> <a href ng-click="reloadTable(perpage,currentpage+1,searchvalue)">
+                        <i class="fa fa-angle-right"></i> </a> </li>
+                    <li> <a href ng-click="reloadTable(perpage,pages,searchvalue)">
+                        <i class="fa fa-angle-double-right"></i> </a> </li>
+
+                  </ul>
+
               </div>
-              <div class="col-md-6 col-xs-6">
-                <span  class="label label-primary">
-                  Elementi da {{from}} a {{from + datalength - 1}}
-                </span>
-                &nbsp;
-                <span  class="label label-info">
-                  Totale: {{datalength}}
-                </span>
+              <div class="col-md-4 col-xs-4">
+
+
+                  &nbsp; <span  class="label label-success"> Pagine: {{pages}} </span>
+                  &nbsp; <span  class="label label-info"> Totale elementi: {{datalength}} </span>
+                  &nbsp; <span  class="label label-primary"> Da {{from}} a {{from + perpage}} </span>
+<!--
+                <span  class="label label-default"> Pagina corrente:</span> &nbsp;
+                 <input type="text" ng-value="{{perpage}}" size=3
+                  ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+
+                <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
+                 <input type="text" ng-value="{{currentpage}}" size=3
+                  ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
+-->
+
+              </div>
+              <div class="col-md-4 col-xs-4">
               </div>
             </div>
-          </div>
       </div>
 
     </div> <!--results hiding-->
@@ -156,8 +192,9 @@
 
 <!-- NO DATA -->
 <div id='nodata' ng-show='datalength == 0'>
-    <alert type='warning'> Attenzione: nessun documento ancora pubblicato. </alert>
-</div>
+    <alert type='warning'> Attenzione: nessun documento trovato con questa ricerca. </alert>
+<!--     <alert type='warning'> Attenzione: nessun documento ancora pubblicato. </alert>
+ --></div>
 
 
   <button type="button" class="btn btn-warning shad" ng-click="go('app/submission/new/step/1')">

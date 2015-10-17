@@ -23,6 +23,9 @@ nose
 
 psycopg2
 
+opbeat[flask]
+fabric
+
 rethinkdb
 RethinkORM
 Image

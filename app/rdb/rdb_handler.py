@@ -67,8 +67,8 @@ class RethinkConnection(Connection):
         # Leaving this to docker & init
         #create and use DB? and table?
         if load_setup:
-            print "SKIPPING!"
             #self.setup()
+            print "DEV: init for now is SKIPPING!"
 
     # === Connect ===
     def make_connection(self, use_database):
@@ -159,14 +159,12 @@ class RethinkConnection(Connection):
 
     @check_model
     def indexing(self):
-# NOT WORKING AT THE MOMENT
         table = self.model.table
-        # list indexes on table "users"
         index_list = r.table(table).index_list().run()
         # check indexes or create
         for i in self.model.indexes:
             if i not in index_list:
-                print "Index '" + i + "' missing in table " + table
+                self.log.critical("Index '" + i + "' missing in table " + table)
                 r.table(table).index_create(i).run()
                 print "Waiting"
                 r.table(table).index_wait(i).run()
@@ -218,7 +216,31 @@ class RethinkConnection(Connection):
         # from my query
         if not query.is_empty().run():
 
-            # === Filter* ===
+            # === SPECIFIC Filter ===
+            try:
+                myk = p.pop('filterfield')
+                # ORDER BY TIMESTAMP
+                print("ORDERBY")
+                try:
+                    query = query.order_by(index='latest_timestamp')
+                except Exception, e:
+                    print(e)
+
+            except KeyError:
+                pass
+
+            try:
+                myv = p.pop('filtervalue')
+                print("REAL FILTERING", myk,myv)
+
+                if myk == 'extract':
+                    query = query.filter(lambda row: \
+                        row["values"].contains(lambda key: \
+                            key.match(myv)))
+            except KeyError:
+                pass
+
+            # === AUTOMATIC Filter ===
             for key, value in p.iteritems():
                 if key == 'currentpage' or key == 'perpage':
                     continue
@@ -243,9 +265,11 @@ class RethinkConnection(Connection):
                 #this does not work: WHY??
                 #out = query.skip(start).limit(end).run()
 
-            # Order by if necessary (as defined in the model)
-            if self.model.order != None:
-                query = query.order_by(self.model.order)
+# ORDER BY
+# TO FIX:
+            # # Order by if necessary (as defined in the model)
+            # if self.model.order != None:
+            #     query = query.order_by(self.model.order)
 # TO FIX:
             # What if i have multiple orders?
             # Bug! Rethinkdb needs indexes for multiple order

@@ -189,6 +189,7 @@ class StepContent(GenericORMModel):
     """ Html content of elements in web pages of my application """
     table = 'stepscontent'
     order = 'step'
+    indexes = ['latest_timestamp']
 
     # Attributes as defined by static methods:
     @staticmethod
@@ -204,6 +205,15 @@ class StepContent(GenericORMModel):
     @staticmethod
     def recordid(value):
         return value    #e.g. 'new' or record
+
+    # Give opportunity to query the right way
+    @staticmethod
+    def filterfield(value):
+        return value
+    @staticmethod
+    def filtervalue(value):
+        return value
+
     # ARRAY!
     values = 'list'
     hashes = 'list'
