@@ -9,6 +9,9 @@ docker exec -it frapi_devapi_1 bash
 python main.py
 ---
 
+scp -i machines/myocean1/id_rsa root@188.226.216.79:/Users/projects/frapi/data/files/\*.jpg backup_pictures_baroque
+
+
 TODO:
 ✔ no more modification to one git file @done (15-10-07 14:52)
   git update-index --assume-unchanged scripts/update_local_from_remote.sh
@@ -50,19 +53,7 @@ https://commentit.io/getting-started
    ☐ Mostra immagine se esiste?
  ☐ ordinamento sulla data della realizzazione del record
  ☐ ricerca sul numero estratto (autocompletamento?)
-
-QUERIES
-
-r.db('webapp').table('stepfields').filter({'step':1}).filter(
-   lambda fields: fields[‘name’].match(“extrait”)
-).getField('id')
-
-r.db('webapp').table('stepfields')
-  .filter({'step':1})
-  .filter({'name':"Numero de l'extrait"})
-  .getField('id')
-
-r.db('webapp').table('stepscontent').filter({'step': 1})
+ ☐ favico?
 
 HARD:
  ☐ aggiungere un attributo multiplo (!)
