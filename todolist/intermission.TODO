@@ -10,6 +10,7 @@ python main.py
 ---
 
 scp -i machines/myocean1/id_rsa root@188.226.216.79:/Users/projects/frapi/data/files/\*.jpg backup_pictures_baroque
+scp -i machines/myocean1/id_rsa root@188.226.216.79:/Users/projects/frapi/data/backup/latest_dump.tar.gz
 
 
 TODO:
@@ -29,6 +30,7 @@ TODO:
 ✘ Extract empty for some cases...? @cancelled (15-10-17 15:25)
    ✘ Maybe the first element of values (values[0]) is empty @cancelled (15-10-17 15:25)
 ✔ load backup from remote to local @done (15-10-07 07:46)
+☐ Add one element on the fly in a list: SPUTTANA TUTTO
 
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
