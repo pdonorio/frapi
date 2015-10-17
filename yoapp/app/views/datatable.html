@@ -121,8 +121,9 @@
         </table>
 
       </div>
-
+<!-- 
       <hr ng-show='datalength > 0'>
+ -->      
       <div>
 
           <!-- LOADING -->
@@ -135,48 +136,53 @@
             </span>
           </div>
 
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-
           <!-- DATA stats and paging -->
-          <div ng-show='datalength > 0'>
-            <div class="row">
-              <div class="col-md-6 col-xs-6">
-                <span  class="label label-default"> Pagina corrente:</span> &nbsp;
-               <input type="text" ng-value="{{perpage}}" size=3
-                ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
-                <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
-               <input type="text" ng-value="{{currentpage}}" size=3
-                ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
+            <div class="row" ng-show='datalength > 0 && pages > 1'>
+              <div class="col-md-8 col-xs-8">
+
+                  <ul class="pagination">
+
+                    <li> <a href ng-click="reloadTable(perpage,1,searchvalue)">
+                        <i class="fa fa-angle-double-left"></i> </a> </li>
+                    <li> <a href ng-click="reloadTable(perpage,currentpage-1,searchvalue)">
+                        <i class="fa fa-angle-left"></i> </a> </li>
+
+                    <li 
+                      ng-class="{'active': currentpage==page, '': currentpage!=page}"
+                      ng-repeat='page in range(startpages,endpages)'>
+                      <a href ng-click="reloadTable(perpage,page,searchvalue)">
+                        {{page}}
+                      </a>
+                    </li>
+
+                    <li> <a href ng-click="reloadTable(perpage,currentpage+1,searchvalue)">
+                        <i class="fa fa-angle-right"></i> </a> </li>
+                    <li> <a href ng-click="reloadTable(perpage,pages,searchvalue)">
+                        <i class="fa fa-angle-double-right"></i> </a> </li>
+
+                  </ul>
+
               </div>
-              <div class="col-md-6 col-xs-6">
-                <span  class="label label-primary">
-                  Elementi da {{from}} a {{from + datalength - 1}}
-                </span>
-                &nbsp;
-                <span  class="label label-info">
-                  Totale: {{datalength}}
-                </span>
+              <div class="col-md-4 col-xs-4">
+
+
+                  &nbsp; <span  class="label label-success"> Pagine: {{pages}} </span>
+                  &nbsp; <span  class="label label-info"> Totale elementi: {{datalength}} </span>
+                  &nbsp; <span  class="label label-primary"> Da {{from}} a {{from + perpage}} </span>
+<!--
+                <span  class="label label-default"> Pagina corrente:</span> &nbsp;
+                 <input type="text" ng-value="{{perpage}}" size=3
+                  ng-model="currentpage" ng-change="reloadTable(perpage,currentpage)">
+
+                <span  class="label label-default"> Elementi per pagina:</span> &nbsp;
+                 <input type="text" ng-value="{{currentpage}}" size=3
+                  ng-model="perpage" ng-change="reloadTable(perpage,currentpage)">
+-->
+
+              </div>
+              <div class="col-md-4 col-xs-4">
               </div>
             </div>
-          </div>
       </div>
 
     </div> <!--results hiding-->
@@ -186,8 +192,9 @@
 
 <!-- NO DATA -->
 <div id='nodata' ng-show='datalength == 0'>
-    <alert type='warning'> Attenzione: nessun documento ancora pubblicato. </alert>
-</div>
+    <alert type='warning'> Attenzione: nessun documento trovato con questa ricerca. </alert>
+<!--     <alert type='warning'> Attenzione: nessun documento ancora pubblicato. </alert>
+ --></div>
 
 
   <button type="button" class="btn btn-warning shad" ng-click="go('app/submission/new/step/1')">

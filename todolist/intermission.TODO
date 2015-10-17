@@ -2,16 +2,11 @@
 INTERMISSION
   #a discussion about spectacles
 
- OPBEAT:
-   ✔ test trial @done (15-10-07 14:52)
-   ☐ check out how it goes?
-
 ---
 docker-compose -f frapi/development.yml up -d
 docker exec -it frapi_devapi_1 rethinkdb-restore -c db --force /backup/latest_dump.tar.gz
 docker exec -it frapi_devapi_1 bash
 python main.py
-
 ---
 
 TODO:
@@ -25,15 +20,12 @@ TODO:
  ✔ array @done (15-10-16 18:03)
    ✔ elements computed on the javascript side as string @done (15-10-16 18:03)
    ✔ not inside the html part... @done (15-10-16 18:03)
-☐ add paging
+✔ add paging @done (15-10-17 15:25)
  ✔ bootstrap @done (15-10-16 20:06)
-☐ Search keypress timeout longer?
-☐ Extract empty for some cases...?
-   ☐ Maybe the first element of values (values[0]) is empty
-
+✘ Search keypress timeout longer? @cancelled (15-10-17 15:25)
+✘ Extract empty for some cases...? @cancelled (15-10-17 15:25)
+   ✘ Maybe the first element of values (values[0]) is empty @cancelled (15-10-17 15:25)
 ✔ load backup from remote to local @done (15-10-07 07:46)
-  ☐ TO TEST!
-
 
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
@@ -45,6 +37,7 @@ TODO:
   ☐ loading azzerato
   ☐ links solo se fatto login
 
+RESOURCES (almost) RANDOM
 * A clone?
 https://github.com/JeffHeard/sondra
 * Form Resources
@@ -146,3 +139,8 @@ TIPS:
     - solo trascrizione
     - traduzione?
     - entrambe
+
+
+ OPBEAT:
+   ✔ test trial @done (15-10-07 14:52)
+   ✘ check out how it goes? @cancelled (15-10-17 15:24)

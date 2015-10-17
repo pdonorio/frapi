@@ -24,4 +24,5 @@ query = query.filter(lambda row: \
     row["values"].contains(lambda key: \
         key.match("nv")))
 
+ ☐ RDB:
 ☐ But what if i want to search only in a given position of the array?
