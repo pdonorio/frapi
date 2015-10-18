@@ -56,6 +56,7 @@ https://commentit.io/getting-started
  ☐ ordinamento sulla data della realizzazione del record
  ☐ ricerca sul numero estratto (autocompletamento?)
  ☐ favico?
+    <link rel="shortcut icon" href="favicon.ico?v=1" />
 
 HARD:
  ☐ aggiungere un attributo multiplo (!)

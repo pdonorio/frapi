@@ -75,8 +75,8 @@ sslproxy:
         file: common.yml
         service: proxy
     volumes:
-        - ../certificates/privateUnKey.pem:/etc/nginx/ssl/server.key
-        - ../certificates/publicCert.pem:/etc/nginx/ssl/server.crt
+        - ../certificates/privateUnKey.pem:/etc/nginx/server.key
+        - ../certificates/publicCert.pem:/etc/nginx/server.crt
         - ../docker/proxy/ssl-enabled.conf:/etc/nginx/sites-enabled/production
     ports:
         - "80:80"
