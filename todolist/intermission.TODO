@@ -26,11 +26,11 @@ TODO:
    ✔ not inside the html part... @done (15-10-16 18:03)
 ✔ add paging @done (15-10-17 15:25)
  ✔ bootstrap @done (15-10-16 20:06)
-✘ Search keypress timeout longer? @cancelled (15-10-17 15:25)
 ✘ Extract empty for some cases...? @cancelled (15-10-17 15:25)
    ✘ Maybe the first element of values (values[0]) is empty @cancelled (15-10-17 15:25)
 ✔ load backup from remote to local @done (15-10-07 07:46)
 ☐ Add one element on the fly in a list: SPUTTANA TUTTO
+☐ Search keypress timeout longer?
 
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
