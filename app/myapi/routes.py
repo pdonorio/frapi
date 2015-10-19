@@ -76,7 +76,7 @@ RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
 params = {"host":RDB_HOST, "port":RDB_PORT}
 r.connect(**params).repl()
 DB = 'webapp'
-TABLE = 'stepscontent'
+TABLE = 'objtest'
 FIELD = 'latest_timestamp'
 
 ##########################################
@@ -87,8 +87,15 @@ class Test(Resource):
     def post(self):
         json_data = request.get_json(force=True) # this issues Bad request
         print("TESTING", json_data)
-#query = r.db(DB).table(TABLE)
+        base = r.db(DB)
+        # # CREATE?
+        # base.table_create(TABLE).run()
+        query = base.table(TABLE)
+        query.insert(json_data).run()
+        for document in query.run():
+            print(document)
 #query = query.filter({'step':1})
-        return json_data
+        #return json_data
+        return document
 
 api.add_resource(Test, '/objtest')
