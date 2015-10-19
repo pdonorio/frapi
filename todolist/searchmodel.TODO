@@ -6,7 +6,6 @@
 ✔ use filter or contains with RDB @done (15-10-16 17:58)
   ✔ python and lambda!! @done (15-10-16 17:57)
 
-
 #JAVASCRIPT
 
 //EXPERIMENT
@@ -24,5 +23,43 @@ query = query.filter(lambda row: \
     row["values"].contains(lambda key: \
         key.match("nv")))
 
- ☐ RDB:
+NEW:
+  ☐ documentation!
+    ☐ MARKDOWN please :D
+  ☐ start from rest-mock
+    ☐ handle non json request
+    ☐ marshal to define models (from json file)
+      ☐ a list of json files in a certain directory.
+        ☐ only flask sees this file, but via javascript you should use the same structures
+    ☐ redirect post completed to list the document (get + id)
+  ☐ rdb borg connection
+  ☐ rdb saves json into table!
+    ☐ no rdb models
+    ☐ no javascript models!!
+  ☐ convert old data
+  ☐ production / develpoment
+    ☐ docker compose
+      ☐ flask / gunicorn
+      ☐ nginx / ssl
+    ☐ flask config
+      ☐ blueprints?
+      ☐ app factory?
+  ☐ Users
+    ☐ tokens
+    ☐ RBAC
+    ☐ admin
+  ☐ Upload
+
+RDB:
 ☐ But what if i want to search only in a given position of the array?
+☐ Testing json save
+ ☐ serializing javascript class/objects?
+☐ Marshal restful
+
+RESOURCES (almost) RANDOM
+* A clone?
+https://github.com/JeffHeard/sondra
+* Form Resources
+https://github.com/Textalk/angular-schema-form
+* Comments
+https://commentit.io/getting-started

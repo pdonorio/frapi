@@ -12,10 +12,21 @@ myApp
     console.log(api)
     var obj = {
         'Hello':'World',
-        'array': [1,2,"tre"],
+        'array': [
+            1,2,"tre",
+            {
+                1: 'tmp',
+                'tmp': 2,
+            },
+        ],
         'hash': {
             'test': 1,
             'use': "AAA",
+            'innerarray': [1,2,'quattro'],
+            'innerhash': {
+                1: 'tmp',
+                'tmp': 2,
+            },
         }
     };
     api.post(obj).then(function(out){

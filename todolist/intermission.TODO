@@ -42,14 +42,6 @@ TODO:
   ☐ loading azzerato
   ☐ links solo se fatto login
 
-RESOURCES (almost) RANDOM
-* A clone?
-https://github.com/JeffHeard/sondra
-* Form Resources
-https://github.com/Textalk/angular-schema-form
-* Comments
-https://commentit.io/getting-started
-
  ☐ repeat insert extrait with fixed other steps
  ☐ Mostra risultati: festa = step 3, source step 2
    ☐ Mostra immagine se esiste?
