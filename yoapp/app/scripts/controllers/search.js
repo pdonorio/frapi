@@ -1,8 +1,30 @@
 'use strict';
 
 myApp
- .controller('ViewController', function ($scope, $rootScope, $timeout, API, StepContent, perpageDefault, currentpageDefault, focus)
+ .controller('ViewController', function ($scope, $rootScope, $timeout, API, StepContent, perpageDefault, currentpageDefault, focus
+    , RestAPI)
 {
+
+    ////////////////////////////////////////
+    ////////////////////////////////////////
+    var api = RestAPI.all('objtest');
+    console.log("HELLO");
+    console.log(api)
+    var obj = {
+        'Hello':'World',
+        'array': [1,2,"tre"],
+        'hash': {
+            'test': 1,
+            'use': "AAA",
+        }
+    };
+    api.post(obj).then(function(out){
+        console.log("Received", out);
+        console.log(out.Hello)
+    });
+    ////////////////////////////////////////
+    ////////////////////////////////////////
+
     $scope.range = function(min, max, step){
       step = step || 1;
       var input = [];

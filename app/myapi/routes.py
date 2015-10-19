@@ -86,7 +86,7 @@ from flask import Flask, request
 class Test(Resource):
     def post(self):
         json_data = request.get_json(force=True) # this issues Bad request
-        print(json_data)
+        print("TESTING", json_data)
 #query = r.db(DB).table(TABLE)
 #query = query.filter({'step':1})
         return json_data
