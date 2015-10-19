@@ -292,6 +292,7 @@ class TaskManagement(GenericORMModel):
     @staticmethod
     def description(value):
         return value
+
 ##############################
 class TaskSocial(GenericORMModel):
     """ Conversations inside task management """
@@ -307,3 +308,13 @@ class TaskSocial(GenericORMModel):
     @staticmethod
     def user(value):
         return value
+
+# ##############################
+# class ObjectTest(GenericORMModel):
+#     """ Conversations inside task management """
+#     table = 'objtest'
+
+#     @staticmethod
+#     def obj(value):
+#         print("TEST VALUE", value)
+#         return value

@@ -310,3 +310,4 @@ for (name, data_model) in models.iteritems():
     new_class = resource_builder(name + "Resource", data_model)
     # Save it for restful routing inside an array
     resources[name] = (new_class, data_model.table)
+

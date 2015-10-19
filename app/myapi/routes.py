@@ -62,3 +62,33 @@ def resources_init(myresources):
 
 # === Load each API resource ===
 resources_init(resources.resources)
+
+#################################################################
+#################################################################
+#################################################################
+#################################################################
+
+##################################
+import os
+import rethinkdb as r
+RDB_HOST = "db"
+RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
+params = {"host":RDB_HOST, "port":RDB_PORT}
+r.connect(**params).repl()
+DB = 'webapp'
+TABLE = 'stepscontent'
+FIELD = 'latest_timestamp'
+
+##########################################
+from flask.ext.restful import Resource
+from flask import Flask, request
+
+class Test(Resource):
+    def post(self):
+        json_data = request.get_json(force=True) # this issues Bad request
+        print(json_data)
+#query = r.db(DB).table(TABLE)
+#query = query.filter({'step':1})
+        return json_data
+
+api.add_resource(Test, '/objtest')

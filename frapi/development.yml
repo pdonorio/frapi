@@ -31,6 +31,19 @@ devapi:
         - devdb:db
     volumes:
         - ../data/backup:/backup:rw
+
+# ##################
+# # Debugging API from outside
+# clientapi:
+#     build: ../docker/pyapp
+#     command: sleep 1234567890
+#     working_dir: /opt/app
+#     volumes_from:
+#         - pycode
+#     links:
+#         - devapi:api
+# ##################
+
 devfapi:
     extends:
         file: common.yml
