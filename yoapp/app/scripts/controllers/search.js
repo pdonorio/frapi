@@ -13,9 +13,11 @@ myApp
 var obj =
 {
     "title": "Javascript",
+/*
     "description": "JS",
     "done": 3,
     "uri": "http://google.it",
+*/
     'Hello':'World',
     'array': [
         1,2,"tre",
@@ -41,7 +43,7 @@ var obj =
 */
     api.post(obj).then(function(out){
         console.log("Received", out);
-        console.log(out.Hello)
+        console.log(out.title)
     });
     return;
     ////////////////////////////////////////

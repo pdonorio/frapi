@@ -67,6 +67,8 @@ RDB:
 ✔ Testing json save @done (15-10-20 07:30)
  ✘ serializing javascript class/objects? @cancelled (15-10-20 07:30)
 ✔ Marshal restful @done (15-10-20 09:03)
+ ☐ what if no elements are matching?
+   ☐ respond with the json template?
 
 RESOURCES (almost) RANDOM
 * A clone?
