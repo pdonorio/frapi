@@ -50,32 +50,24 @@ def convert_to_marshal(data):
     return mymarshal
 
 ##########################################
-# Read model template
+# The generic resource
+class MyResource(Resource):
 
-for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
-    data = {}
-    print("FILE is ", fileschema)
-    with open(fileschema) as f:
-        data = json.load(f)
-    print(data)
-
-    ##########################################
-    # Build current model
-
-    reference_schema = convert_to_marshal(data)
-
-    break
-
-##########################################
-# Build resource
-
-class Test(Resource):
-
-    schema = reference_schema
+    schema = None
 
     def post(self):
         json_data = request.get_json(force=True) # this issues Bad request
         print("Raw json", json_data)
+        valid = False
+        for key, obj in json_data.iteritems():
+            if key in self.schema:
+                valid = True
+# // TO FIX:
+# How to return the schema?
+        if not valid:
+            print("FAIL")
+            return None
+
         marshal_data = marshal(json_data, self.schema, envelope='data')
         print("Interpreted", marshal_data)
 
@@ -98,3 +90,20 @@ class Test(Resource):
         document.pop('id')
         return document
 
+##########################################
+# Read model template
+
+for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
+    data = {}
+    print("FILE is " + fileschema)
+    with open(fileschema) as f:
+        data = json.load(f)
+
+    ##########################################
+    # Build current model resource
+    reference_schema = convert_to_marshal(data)
+
+    class Test(MyResource):
+        schema = reference_schema
+
+    break

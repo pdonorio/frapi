@@ -12,8 +12,8 @@ myApp
 
 var obj =
 {
-    "title": "Javascript",
 /*
+    "title": "Javascript",
     "description": "JS",
     "done": 3,
     "uri": "http://google.it",
