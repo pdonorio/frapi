@@ -31,6 +31,7 @@ NEW:
       ☐ refuse and list accepted types (only JSON :D)
     ☐ marshal to define models (from json file)
       ☐ a list of json files in a certain directory.
+        ☐ recursive definition of marshal
         ☐ only flask sees this file, but via javascript you should use the same structures
         ☐ create table if not exist at app runtime
     ☐ redirect post completed to list the document (get + id)
@@ -74,3 +75,18 @@ https://github.com/JeffHeard/sondra
 https://github.com/Textalk/angular-schema-form
 * Comments
 https://commentit.io/getting-started
+
+VALIDATORS
+
+$ pip install validators
+$ python
+>>> import validators
+>>> url = "http://index.hu"
+>>> validators.url(url)
+True
+>>> url = "http://index.h/"
+>>> validators.url(url)
+ValidationFailure(func=url, args={'value': 'http://index.h/', 'require_tld': True})
+
+if not validators.url(url):
+    flash("Error: you must provide a valid URL!")

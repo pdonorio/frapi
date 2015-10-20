@@ -100,10 +100,13 @@ myre = re.compile('^http[s]?://[^\.]+\..{2,}')
 from flask.ext.restful import fields
 
 def marshal_type(obj):
-    mytype = fields.String
+#http://flask-restful-cn.readthedocs.org/en/0.3.4/api.html#module-fields
+    mytype = fields.Raw
     if isinstance(obj, str) or isinstance(obj, unicode):
         if myre.search(obj):
-            mytype = fields.Url
+            mytype = fields.Url()#endpoint=obj, absolute=True)
+        else:
+            mytype = fields.String
     if isinstance(obj, int):
         mytype = fields.Integer
     return mytype
@@ -128,21 +131,27 @@ from flask import Flask, request
 class Test(Resource):
     def post(self):
         json_data = request.get_json(force=True) # this issues Bad request
-        print("TESTING", json_data)
-        check = marshal(data, schema, envelope='data')
-        print(check)
+        print("Raw json", json_data)
+        marshal_data = marshal(json_data, schema, envelope='data')
+        print("Interpreted", marshal_data)
 
-        # Rethinkdb query
+        # Rethinkdb base query
         query = base.table(TABLE)
+
         # CREATE?
         #base.table_create(TABLE).run()
+
         # Execute the insert
-        dbout = query.insert(json_data).run()
+        dbout = query.insert(marshal_data['data']).run()
+
         # GET THE ID
         myid = dbout['generated_keys'].pop()
+
+# // TO FIX:
+# redirect to GET method of this same endpoint, instead
         # Recover the element to check we are done
-        for document in query.get(myid).run():
-            print(document)
+        document = query.get(myid).run()
+        document.pop('id')
         return document
 
 api.add_resource(Test, '/objtest')

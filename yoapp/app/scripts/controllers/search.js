@@ -9,15 +9,25 @@ myApp
     ////////////////////////////////////////
     var api = RestAPI.all('objtest');
     console.log(api)
+
+var obj =
+{
+    "title": "Javascript",
+    "description": "JS",
+    "done": 3,
+    "uri": "http://google.it",
+    'Hello':'World',
+    'array': [
+        1,2,"tre",
+        {
+            1: 'tmp',
+            'tmp': 2,
+        },
+    ],
+};
+
+/*
     var obj = {
-        'Hello':'World',
-        'array': [
-            1,2,"tre",
-            {
-                1: 'tmp',
-                'tmp': 2,
-            },
-        ],
         'hash': {
             'test': 1,
             'use': "AAA",
@@ -28,11 +38,12 @@ myApp
             },
         }
     };
+*/
     api.post(obj).then(function(out){
         console.log("Received", out);
         console.log(out.Hello)
     });
-    //exit()
+    return;
     ////////////////////////////////////////
     ////////////////////////////////////////
 
