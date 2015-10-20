@@ -8,7 +8,6 @@ myApp
     ////////////////////////////////////////
     ////////////////////////////////////////
     var api = RestAPI.all('objtest');
-    console.log("HELLO");
     console.log(api)
     var obj = {
         'Hello':'World',

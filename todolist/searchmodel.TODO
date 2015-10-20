@@ -28,14 +28,23 @@ NEW:
     ☐ MARKDOWN please :D
   ☐ start from rest-mock
     ☐ handle non json request
+      ☐ refuse and list accepted types (only JSON :D)
     ☐ marshal to define models (from json file)
       ☐ a list of json files in a certain directory.
         ☐ only flask sees this file, but via javascript you should use the same structures
+        ☐ create table if not exist at app runtime
     ☐ redirect post completed to list the document (get + id)
+    ☐ GET
+      ☐ filter parameter
+        ☐ apply filter in RethinkDB
+        ☐ regular expression = contains?
   ☐ rdb borg connection
   ☐ rdb saves json into table!
     ☐ no rdb models
     ☐ no javascript models!!
+  ☐ Add UI
+    ☐ gulp-angular
+    ☐ bootstrap 4 alpha?
   ☐ convert old data
   ☐ production / develpoment
     ☐ docker compose
@@ -44,6 +53,8 @@ NEW:
     ☐ flask config
       ☐ blueprints?
       ☐ app factory?
+  ☐ Angular Autoforms
+    ☐ from json!!
   ☐ Users
     ☐ tokens
     ☐ RBAC
@@ -52,9 +63,9 @@ NEW:
 
 RDB:
 ☐ But what if i want to search only in a given position of the array?
-☐ Testing json save
- ☐ serializing javascript class/objects?
-☐ Marshal restful
+✔ Testing json save @done (15-10-20 07:30)
+ ✘ serializing javascript class/objects? @cancelled (15-10-20 07:30)
+✔ Marshal restful @done (15-10-20 09:03)
 
 RESOURCES (almost) RANDOM
 * A clone?

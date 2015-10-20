@@ -69,33 +69,80 @@ resources_init(resources.resources)
 #################################################################
 
 ##################################
+# Rethinkdb connection
 import os
 import rethinkdb as r
 RDB_HOST = "db"
 RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
-params = {"host":RDB_HOST, "port":RDB_PORT}
-r.connect(**params).repl()
 DB = 'webapp'
 TABLE = 'objtest'
 FIELD = 'latest_timestamp'
+params = {"host":RDB_HOST, "port":RDB_PORT}
+r.connect(**params).repl()
+base = r.db(DB)
 
 ##########################################
-from flask.ext.restful import Resource
+# Read model template
+import glob, json
+JSONS_PATH = 'jsonmodels'
+JSONS_EXT = 'json'
+for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
+    data = {}
+    with open(fileschema) as f:
+        data = json.load(f)
+    print(data)
+    break
+
+##########################################
+# Build current model
+import re
+myre = re.compile('^http[s]?://[^\.]+\..{2,}')
+from flask.ext.restful import fields
+
+def marshal_type(obj):
+    mytype = fields.String
+    if isinstance(obj, str) or isinstance(obj, unicode):
+        if myre.search(obj):
+            mytype = fields.Url
+    if isinstance(obj, int):
+        mytype = fields.Integer
+    return mytype
+
+def convert_to_marshal(data):
+    ## recursive?
+    mymarshal = {}
+    # Case of dict
+    for key, obj in data.iteritems():
+        mymarshal[key] = marshal_type(obj)
+    # Case of lists?
+    print(mymarshal)
+    return mymarshal
+
+schema = convert_to_marshal(data)
+
+##########################################
+# Build resource
+from flask.ext.restful import Resource, marshal
 from flask import Flask, request
 
 class Test(Resource):
     def post(self):
         json_data = request.get_json(force=True) # this issues Bad request
         print("TESTING", json_data)
-        base = r.db(DB)
-        # # CREATE?
-        # base.table_create(TABLE).run()
+        check = marshal(data, schema, envelope='data')
+        print(check)
+
+        # Rethinkdb query
         query = base.table(TABLE)
-        query.insert(json_data).run()
-        for document in query.run():
+        # CREATE?
+        #base.table_create(TABLE).run()
+        # Execute the insert
+        dbout = query.insert(json_data).run()
+        # GET THE ID
+        myid = dbout['generated_keys'].pop()
+        # Recover the element to check we are done
+        for document in query.get(myid).run():
             print(document)
-#query = query.filter({'step':1})
-        #return json_data
         return document
 
 api.add_resource(Test, '/objtest')
