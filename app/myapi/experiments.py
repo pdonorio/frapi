@@ -4,25 +4,21 @@
 
 ##################################
 # CONF
-import glob, json, os, re
+import glob, json, os #, re
 import rethinkdb as r
 from flask.ext.restful import fields, Resource, marshal
 from flask import Flask, request
 
 JSONS_PATH = 'jsonmodels'
 JSONS_EXT = 'json'
-RDB_HOST = "db"
-RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
-DB = 'webapp'
-TABLE = 'objtest'
-FIELD = 'latest_timestamp'
-#myre = re.compile('^http[s]?://[^\.]+\..{2,}')
 
 ##################################
 # Rethinkdb connection
+RDB_HOST = "db"
+RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
+#myre = re.compile('^http[s]?://[^\.]+\..{2,}')
 params = {"host":RDB_HOST, "port":RDB_PORT}
 r.connect(**params).repl()
-base = r.db(DB)
 
 ##########################################
 # Marshal STUFF
@@ -54,6 +50,9 @@ def convert_to_marshal(data):
 class MyResource(Resource):
 
     schema = None
+    table = 'test'
+    db = 'webapp'
+    order = 'latest_timestamp'
 
     def post(self):
         json_data = request.get_json(force=True) # this issues Bad request
@@ -72,10 +71,13 @@ class MyResource(Resource):
         print("Interpreted", marshal_data)
 
         # Rethinkdb base query
-        query = base.table(TABLE)
-
+        base = r.db(self.db)
         # CREATE?
-        #base.table_create(TABLE).run()
+# NOTE: only for POST/PUT ?
+        if self.table not in base.table_list().run():
+            base.table_create(self.table).run()
+
+        query = base.table(self.table)
 
         # Execute the insert
         dbout = query.insert(marshal_data['data']).run()
@@ -105,5 +107,6 @@ for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
 
     class Test(MyResource):
         schema = reference_schema
+        table = 'objtest'
 
     break

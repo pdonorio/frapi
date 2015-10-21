@@ -87,6 +87,7 @@ PROTOTYPE:
 How to restart libs dependencies:
 ☐ nodejs 4 ?
   ☐ bower & gulp angular
+    https://medium.com/@YOzaz/generation-angularjs-production-files-with-gulp-12214f076a50#.dioonkwrn
   ☐ with jquery
 ☐ Callout
 http://cpratt.co/twitter-bootstrap-callout-css-styles/
