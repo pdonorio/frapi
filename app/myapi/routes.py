@@ -11,23 +11,37 @@ i will need to create db and tables if they are not available yet!
 # routes are needed for them
 from myapi.app import app
 # Use the flask plugin for a more complex yet powerful restful service
-from flask.ext.restful import Api
+#from flask.ext.restful import Api
 # Load the resources that have been created
 from myapi import resources
+
+################################################################
+import json
+from flask import make_response
+from flask.ext.restful import Api as RestfulApi
+
+def unavailable_output(data, code, headers=None):
+    return make_response("Application type unavailable", 400)
+
+def output_json(data, code, headers=None):
+    """Makes a Flask response with a JSON encoded body"""
+    resp = make_response(json.dumps(data), code)
+    resp.headers.extend(headers or {})
+    return resp
+
+class Api(RestfulApi):
+    def __init__(self, *args, **kwargs):
+        super(Api, self).__init__(*args, **kwargs)
+        self.representations = {
+            'text/html': unavailable_output,
+            'text/csv': unavailable_output,
+            'application/xml': unavailable_output,
+            'application/json': output_json,
+        }
 
 #############################################
 # Create the api object
 api = Api(app, catch_all_404s=True)
-
-# To Do in the future:
-
-## You could define your error for the status code you prefer
-#http://flask-restful.readthedocs.org/en/latest/extending.html#define-custom-error-messages
-## Implement csv for download of tables purpose?
-#http://flask-restful.readthedocs.org/en/latest/extending.html#response-formats
-## Log to a different file or send email for errors or save it to db?
-# #http://flask-restful.readthedocs.org/en/latest/extending.html#custom-error-handlers
-
 
 #############################################
 # === Setup the Api resource routing ===
@@ -35,12 +49,6 @@ api = Api(app, catch_all_404s=True)
 # This is where you tell the app what to do with requests
 # For this resources make sure you create the table
 
-## EXAMPLE:
-#api.add_resource(resources.GenericDBResource, '/test')
-## AUTH EXAMPLE:
-#api.add_resource(resources.LogUser, '/login')
-
-#FIXED_APIURL = '/api/v1.0'
 FIXED_APIURL = ''
 
 def resources_init(myresources):

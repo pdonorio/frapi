@@ -68,6 +68,7 @@ RDB:
  ✘ serializing javascript class/objects? @cancelled (15-10-20 07:30)
 ✔ Marshal restful @done (15-10-20 09:03)
  ✔ create table if not exists @done (15-10-21 14:39)
+ ✔ respond to unknown content type with 'unavailable' @done (15-10-22 08:56)
  ☐ what if no elements are matching?
    ☐ respond with the json template?
 
