@@ -5,7 +5,8 @@ Public main and server proxy
 """
 
 # Load the pre-configured api with all services
-from myapi.routes import app
+#from myapi.routes import app
+from myapi.experiments import app
 # Handle command line parameters
 import sys, os
 # Gunicorn fix

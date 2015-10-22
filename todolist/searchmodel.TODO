@@ -63,14 +63,14 @@ NEW:
   ☐ Upload
 
 RDB:
-☐ But what if i want to search only in a given position of the array?
 ✔ Testing json save @done (15-10-20 07:30)
  ✘ serializing javascript class/objects? @cancelled (15-10-20 07:30)
 ✔ Marshal restful @done (15-10-20 09:03)
  ✔ create table if not exists @done (15-10-21 14:39)
  ✔ respond to unknown content type with 'unavailable' @done (15-10-22 08:56)
- ☐ what if no elements are matching?
-   ☐ respond with the json template?
+ ✔ what if no elements are matching? @done (15-10-22 09:35)
+   ✔ respond with the json template? @done (15-10-22 09:35)
+ ☐ redirect after insert, from POST to GET
 
 Extend flask:
   https://github.com/anjianshi/flask-restful-extend

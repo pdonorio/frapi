@@ -70,6 +70,3 @@ def resources_init(myresources):
 
 # === Load each API resource ===
 resources_init(resources.resources)
-
-from myapi.experiments import Test
-api.add_resource(Test, '/objtest')
