@@ -15,7 +15,7 @@ JSONS_EXT = 'json'
 ##################################
 # Rethinkdb connection
 RDB_HOST = "db"
-RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
+RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015 # this is ugly :(
 #myre = re.compile('^http[s]?://[^\.]+\..{2,}')
 params = {"host":RDB_HOST, "port":RDB_PORT}
 r.connect(**params).repl()
@@ -50,6 +50,7 @@ def convert_to_marshal(data):
 class MyResource(Resource):
 
     schema = None
+    template = None
     table = 'test'
     db = 'webapp'
     order = 'latest_timestamp'
@@ -64,8 +65,7 @@ class MyResource(Resource):
 # // TO FIX:
 # How to return the schema?
         if not valid:
-            print("FAIL")
-            return None
+            return self.template, 400
 
         marshal_data = marshal(json_data, self.schema, envelope='data')
         print("Interpreted", marshal_data)
@@ -96,17 +96,18 @@ class MyResource(Resource):
 # Read model template
 
 for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
-    data = {}
+    mytemplate = {}
     print("FILE is " + fileschema)
     with open(fileschema) as f:
-        data = json.load(f)
+        mytemplate = json.load(f)
 
     ##########################################
     # Build current model resource
-    reference_schema = convert_to_marshal(data)
+    reference_schema = convert_to_marshal(mytemplate)
 
     class Test(MyResource):
         schema = reference_schema
+        template = mytemplate
         table = 'objtest'
 
     break
