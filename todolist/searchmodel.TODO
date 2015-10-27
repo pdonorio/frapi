@@ -29,17 +29,18 @@ query = query.filter(lambda row: \
  https://github.com/wg/wrk
 
 NEW:
+
   ☐ documentation!
-    ☐ MARKDOWN please :D
-  ☐ start from rest-mock
-    ☐ handle non json request
-      ☐ refuse and list accepted types (only JSON :D)
+    ☐ MARKDOWN please
+
+  ☐ create a separate list of resources to overcome the old ones
+
+  ☐ handle non json request
     ☐ marshal to define models (from json file)
       ☐ a list of json files in a certain directory.
         ☐ recursive definition of marshal
-        ☐ only flask sees this file, but via javascript you should use the same structures
-        ☐ create table if not exist at app runtime
     ☐ redirect post completed to list the document (get + id)
+
     ☐ GET
       ☐ filter parameter
         ☐ apply filter in RethinkDB
