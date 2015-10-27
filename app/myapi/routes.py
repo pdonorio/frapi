@@ -11,33 +11,35 @@ i will need to create db and tables if they are not available yet!
 # routes are needed for them
 from myapi.app import app
 # Use the flask plugin for a more complex yet powerful restful service
-#from flask.ext.restful import Api
+from flask.ext.restful import Api
 # Load the resources that have been created
 from myapi import resources
 
 ################################################################
 import json
 from flask import make_response
-from flask.ext.restful import Api as RestfulApi
 
-def unavailable_output(data, code, headers=None):
-    return make_response("Application type unavailable", 400)
 
-def output_json(data, code, headers=None):
-    """Makes a Flask response with a JSON encoded body"""
-    resp = make_response(json.dumps(data), code)
-    resp.headers.extend(headers or {})
-    return resp
+# from flask.ext.restful import Api as RestfulApi
 
-class Api(RestfulApi):
-    def __init__(self, *args, **kwargs):
-        super(Api, self).__init__(*args, **kwargs)
-        self.representations = {
-            'text/html': unavailable_output,
-            'text/csv': unavailable_output,
-            'application/xml': unavailable_output,
-            'application/json': output_json,
-        }
+# def unavailable_output(data, code, headers=None):
+#     return make_response("Application type unavailable", 400)
+
+# def output_json(data, code, headers=None):
+#     """Makes a Flask response with a JSON encoded body"""
+#     resp = make_response(json.dumps(data), code)
+#     resp.headers.extend(headers or {})
+#     return resp
+
+# class Api(RestfulApi):
+#     def __init__(self, *args, **kwargs):
+#         super(Api, self).__init__(*args, **kwargs)
+#         self.representations = {
+#             'text/html': unavailable_output,
+#             'text/csv': unavailable_output,
+#             'application/xml': unavailable_output,
+#             'application/json': output_json,
+#         }
 
 #############################################
 # Create the api object

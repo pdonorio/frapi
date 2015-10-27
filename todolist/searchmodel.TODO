@@ -23,6 +23,11 @@ query = query.filter(lambda row: \
     row["values"].contains(lambda key: \
         key.match("nv")))
 
+ ☐ Gunicorn flask bug
+ https://github.com/mitsuhiko/flask/issues/1512#issuecomment-114454800
+ ☐ banchmarks api
+ https://github.com/wg/wrk
+
 NEW:
   ☐ documentation!
     ☐ MARKDOWN please :D
@@ -43,6 +48,8 @@ NEW:
   ☐ rdb saves json into table!
     ☐ no rdb models
     ☐ no javascript models!!
+  ☐ UPLOAD
+    https://pythonhosted.org/Flask-Uploads/
   ☐ Add UI
     ☐ gulp-angular
     ☐ bootstrap 4 alpha?
@@ -70,7 +77,7 @@ RDB:
  ✔ respond to unknown content type with 'unavailable' @done (15-10-22 08:56)
  ✔ what if no elements are matching? @done (15-10-22 09:35)
    ✔ respond with the json template? @done (15-10-22 09:35)
- ☐ redirect after insert, from POST to GET
+ ✔ redirect after insert, from POST to GET @done (15-10-22 09:36)
 
 Extend flask:
   https://github.com/anjianshi/flask-restful-extend
@@ -79,6 +86,9 @@ Marshmallow:
     http://marshmallow.readthedocs.org/en/latest/
 httpie:
   https://github.com/jkbrzt/httpie
+
+Other resources:
+  flask guides?
 
   ---
 

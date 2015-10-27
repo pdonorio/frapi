@@ -87,10 +87,11 @@ class MyResource(Resource):
         myid = dbout['generated_keys'].pop()
 
         address = api.url_for(self.__class__, myid=myid)
-        return redirect(address)
 
 # // TO FIX:
 # redirect to GET method of this same endpoint, instead
+        #return redirect(address)
+
         # Recover the element to check we are done
         document = query.get(myid).run()
         document.pop('id')

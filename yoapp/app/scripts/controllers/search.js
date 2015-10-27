@@ -12,20 +12,19 @@ myApp
 
 var obj =
 {
-/*
     "title": "Javascript",
     "description": "JS",
     "done": 3,
     "uri": "http://google.it",
-*/
     'Hello':'World',
-    'array': [
-        1,2,"tre",
-        {
-            1: 'tmp',
-            'tmp': 2,
-        },
-    ],
+    // 'peppe': 3,
+    // 'uri': [
+    //     1,2,"tre",
+    //     {
+    //         1: 'tmp',
+    //         'tmp': 2,
+    //     },
+    // ],
 };
 
 /*
