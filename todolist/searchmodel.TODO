@@ -1,45 +1,28 @@
 
-✔ Search in angularjs @done (15-10-16 18:02)
-✔ every keypress reload table @done (15-10-16 18:02)
-✔ change filter parameter for api @done (15-10-16 18:02)
-✔ apply parameter inside api @done (15-10-16 17:58)
-✔ use filter or contains with RDB @done (15-10-16 17:58)
-  ✔ python and lambda!! @done (15-10-16 17:57)
+Extend flask:
+  https://github.com/anjianshi/flask-restful-extend
+httpie:
+  https://github.com/jkbrzt/httpie
+Marshmallow:
+  https://github.com/marshmallow-code/flask-marshmallow
+    http://marshmallow.readthedocs.org/en/latest/
 
-#JAVASCRIPT
-
-//EXPERIMENT
-r.db('webapp').table('stepscontent').filter({'step':1}).filter(
-  function(row) {return row("values").contains("A")}
-)
-
-//CONTAINS
-r.db('webapp').table('stepscontent').filter({'step':1}).filter(
-  function(row) {return row("values").contains("Agen_4")}
-);
-
-#PYTHON
-query = query.filter(lambda row: \
-    row["values"].contains(lambda key: \
-        key.match("nv")))
-
- ☐ Gunicorn flask bug
- https://github.com/mitsuhiko/flask/issues/1512#issuecomment-114454800
- ☐ banchmarks api
- https://github.com/wg/wrk
 
 NEW:
+☐ create a separate list of resources to overcome the old ones
 
-  ☐ documentation!
-    ☐ MARKDOWN please
+☐ handle non json request
+  ☐ marshal to define models (from json file)
+    ☐ a list of json files in a certain directory.
+      ☐ recursive definition of marshal
+  ☐ redirect post completed to list the document (get + id)
 
-  ☐ create a separate list of resources to overcome the old ones
-
-  ☐ handle non json request
-    ☐ marshal to define models (from json file)
-      ☐ a list of json files in a certain directory.
-        ☐ recursive definition of marshal
-    ☐ redirect post completed to list the document (get + id)
+☐ Gunicorn flask bug
+https://github.com/mitsuhiko/flask/issues/1512#issuecomment-114454800
+☐ banchmarks api
+https://github.com/wg/wrk
+☐ media with bootstrap 4
+  http://v4-alpha.getbootstrap.com/layout/media-object/
 
     ☐ GET
       ☐ filter parameter
@@ -80,17 +63,6 @@ RDB:
    ✔ respond with the json template? @done (15-10-22 09:35)
  ✔ redirect after insert, from POST to GET @done (15-10-22 09:36)
 
-Extend flask:
-  https://github.com/anjianshi/flask-restful-extend
-Marshmallow:
-  https://github.com/marshmallow-code/flask-marshmallow
-    http://marshmallow.readthedocs.org/en/latest/
-httpie:
-  https://github.com/jkbrzt/httpie
-
-Other resources:
-  flask guides?
-
   ---
 
 RESOURCES (almost) RANDOM
@@ -101,7 +73,7 @@ https://github.com/Textalk/angular-schema-form
 * Comments
 https://commentit.io/getting-started
 
-VALIDATORS
+VALIDATORS:
 
 $ pip install validators
 $ python
@@ -115,3 +87,27 @@ ValidationFailure(func=url, args={'value': 'http://index.h/', 'require_tld': Tru
 
 if not validators.url(url):
     flash("Error: you must provide a valid URL!")
+
+#JAVASCRIPT
+
+//EXPERIMENT
+r.db('webapp').table('stepscontent').filter({'step':1}).filter(
+  function(row) {return row("values").contains("A")}
+)
+
+//CONTAINS
+r.db('webapp').table('stepscontent').filter({'step':1}).filter(
+  function(row) {return row("values").contains("Agen_4")}
+);
+
+#PYTHON
+query = query.filter(lambda row: \
+    row["values"].contains(lambda key: \
+        key.match("nv")))
+
+✔ Search in angularjs @done (15-10-16 18:02)
+✔ every keypress reload table @done (15-10-16 18:02)
+✔ change filter parameter for api @done (15-10-16 18:02)
+✔ apply parameter inside api @done (15-10-16 17:58)
+✔ use filter or contains with RDB @done (15-10-16 17:58)
+  ✔ python and lambda!! @done (15-10-16 17:57)
