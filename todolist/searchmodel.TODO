@@ -10,8 +10,10 @@ Marshmallow:
 NEW:
 ☐ create a separate list of resources to overcome the old ones
   ✔ fix rethinkdb connection? @done (15-11-04 15:08)
-  ☐ read json files from a folder
-  ☐ new resource from every json
+  ✔ read json files from a folder @done (15-11-04 18:47)
+  ✔ new resource from every json @done (15-11-04 18:47)
+    ✔ dynamic class @done (15-11-04 18:48)
+    ☐ refactor
   ☐ load resources into resource.py
    ☐  from experiments load resources
 

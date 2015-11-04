@@ -53,22 +53,21 @@ api = Api(app, catch_all_404s=True)
 
 FIXED_APIURL = ''
 
+
 def resources_init(myresources):
     for name, content in myresources.iteritems():
-        (resource_class, resource_name) = content
-        #print resource_name, resource_class.__dict__
+        (rclass, rname) = content
+        # print rname, rclass.__dict__
 
         # Add resource from ORM class
-        api.add_resource(resource_class, \
-        # 1. /resource      #GET
-            FIXED_APIURL + '/' + resource_name, \
-        # 2. /resource/:id  #POST
-            FIXED_APIURL + '/' + resource_name + '/<string:data_key>')
+        api.add_resource(rclass,
+                         FIXED_APIURL + '/' + rname,
+                         FIXED_APIURL + '/' + rname + '/<string:data_key>')
         # Warning: due to restful plugin system,
-        # methods get and get(value) require 2 different resources.
+        # methods get and get(value) require 2 different resources.
         # This is why we provide two times the same resource
 
-        app.logger.info("Resource '" + resource_name + "' ["+name+"]: loaded")
+        app.logger.info("Resource '" + rname + "' [" + name + "]: loaded")
 
 # === Load each API resource ===
 resources_init(resources.resources)

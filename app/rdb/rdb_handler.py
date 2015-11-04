@@ -35,6 +35,12 @@ TIME_COLUMN = 'latest_timestamp'
 IP_COLUMN = 'latest_ipaddress'
 DEFAULT_COLLECTION = GenericORMModel
 
+
+class RDBdefaults(object):
+    table = DEFAULT_TABLE
+    db = APP_DB
+    order = TIME_COLUMN
+
 # == Utilities ==
 
 def check_model(func):

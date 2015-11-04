@@ -11,7 +11,7 @@ import os
 import glob
 import json
 # This Rethinkdb refernce is already connected at app init
-from rdb.rdb_handler import r
+from rdb.rdb_handler import r, RDBdefaults
 from flask.ext.restful import fields, Resource, marshal, request
 
 JSONS_PATH = 'jsonmodels'
@@ -43,13 +43,11 @@ def convert_to_marshal(data):
 
 ##########################################
 # The generic resource
-class MyResource(Resource):
+class MyResource(Resource, RDBdefaults):
+    """ The json endpoint to rethinkdb class """
 
     schema = None
     template = None
-    table = 'test'
-    db = 'webapp'
-    order = 'latest_timestamp'
 
     def get(self, myid='id'):
         return "TEST"
@@ -64,7 +62,7 @@ class MyResource(Resource):
             return self.template, 400
 
         marshal_data = marshal(json_data, self.schema, envelope='data')
-        #print("Interpreted", marshal_data)
+        # print("Interpreted", marshal_data)
 
         # Rethinkdb base query
         base = r.db(self.db)
@@ -75,26 +73,26 @@ class MyResource(Resource):
         query = base.table(self.table)
         # Execute the insert
         dbout = query.insert(marshal_data['data']).run()
-        # Get the id
+        # Get the id
         myid = dbout['generated_keys'].pop()
 
-        address = api.url_for(self.__class__, myid=myid)
 
-# // TO FIX:
-# redirect to GET method of this same endpoint, instead
-        #return redirect(address)
+# # // TO FIX:
+# # redirect to GET method of this same endpoint, instead
+#         address = api.url_for(self.__class__, myid=myid)
+#         return redirect(address)
 
-        # Recover the element to check we are done
+        # Recover the element to check we are done
         document = query.get(myid).run()
         document.pop('id')
         return document
 
 ##########################################
-# Read model template
+# Read model template
 
 for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
     mytemplate = {}
-    #print("FILE is " + fileschema)
+    print("FILE is " + fileschema)
     with open(fileschema) as f:
         mytemplate = json.load(f)
 
@@ -102,13 +100,15 @@ for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
     # Build current model resource
     reference_schema = convert_to_marshal(mytemplate)
 
-    class ObjTest(MyResource):
-        schema = reference_schema
-        template = mytemplate
-        table = 'objtest'
+    # Name for the class. Remove path and extension (json)
+    label = os.path.splitext(os.path.basename(fileschema))[0].lower()
+    methods = dict(MyResource.__dict__)
+    # methods.update({'model': model})
+    newclass = type(label, (MyResource,), methods)
+    newclass.schema = reference_schema
+    newclass.template = mytemplate
+    newclass.table = label
 
-    entity = ObjTest.__name__.lower()
-    api.add_resource(ObjTest, \
-        '/' + entity, \
-        '/' + entity + '/<myid>')
-    break
+    api.add_resource(newclass,
+                     '/' + label,
+                     '/' + label + '/<myid>')
