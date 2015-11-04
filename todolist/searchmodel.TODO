@@ -7,9 +7,15 @@ Marshmallow:
   https://github.com/marshmallow-code/flask-marshmallow
     http://marshmallow.readthedocs.org/en/latest/
 
-
 NEW:
 ☐ create a separate list of resources to overcome the old ones
+  ✔ fix rethinkdb connection? @done (15-11-04 15:08)
+  ☐ read json files from a folder
+  ☐ new resource from every json
+  ☐ load resources into resource.py
+   ☐  from experiments load resources
+
+---- ✄ -----------------------
 
 ☐ handle non json request
   ☐ marshal to define models (from json file)

@@ -2,53 +2,47 @@
 
 """ Experiments """
 
+# // TO FIX
 from myapi.routes import api, app
 
 ##################################
-# CONF
-import glob, json, os #, re
-import rethinkdb as r
-from flask.ext.restful import fields, Resource, marshal
-from flask import Flask, request, redirect, url_for
+# CONF
+import os
+import glob
+import json
+# This Rethinkdb refernce is already connected at app init
+from rdb.rdb_handler import r
+from flask.ext.restful import fields, Resource, marshal, request
 
 JSONS_PATH = 'jsonmodels'
 JSONS_EXT = 'json'
 
-##################################
-# Rethinkdb connection
-RDB_HOST = "db"
-RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015 # this is ugly :(
-#myre = re.compile('^http[s]?://[^\.]+\..{2,}')
-params = {"host":RDB_HOST, "port":RDB_PORT}
-r.connect(**params).repl()
 
 ##########################################
-# Marshal STUFF
+# ## Marshal
+# http://flask-restful-cn.readthedocs.org/en/0.3.4/api.html#module-fields
 def marshal_type(obj):
-#http://flask-restful-cn.readthedocs.org/en/0.3.4/api.html#module-fields
     mytype = fields.Raw
     if isinstance(obj, str) or isinstance(obj, unicode):
         mytype = fields.String
-        #if myre.search(obj):
-# // TO FIX:
-# what about default values
     elif isinstance(obj, int):
         mytype = fields.Integer
-
     return mytype
 
+
+# // TO FIX:
+# should be recursive for nested structures
 def convert_to_marshal(data):
-    ## recursive?
     mymarshal = {}
     # Case of dict
     for key, obj in data.iteritems():
         mymarshal[key] = marshal_type(obj)
     # Case of lists?
-    print(mymarshal)
     return mymarshal
 
+
 ##########################################
-# The generic resource
+# The generic resource
 class MyResource(Resource):
 
     schema = None
@@ -61,9 +55,7 @@ class MyResource(Resource):
         return "TEST"
 
     def post(self):
-        json_data = request.get_json(force=True) # this issues Bad request
-        #print("Raw json", json_data)
-
+        json_data = request.get_json(force=True)
         valid = False
         for key, obj in json_data.iteritems():
             if key in self.schema:

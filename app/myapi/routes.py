@@ -47,7 +47,7 @@ api = Api(app, catch_all_404s=True)
 
 #############################################
 # === Setup the Api resource routing ===
-# 
+
 # This is where you tell the app what to do with requests
 # For this resources make sure you create the table
 
