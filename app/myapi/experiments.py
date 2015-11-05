@@ -13,6 +13,7 @@ import json
 # This Rethinkdb refernce is already connected at app init
 from rdb.rdb_handler import r, RDBdefaults
 from flask.ext.restful import fields, Resource, marshal, request
+from bpractices.metaclasses import metaclassing
 
 JSONS_PATH = 'jsonmodels'
 JSONS_EXT = 'json'
@@ -102,12 +103,12 @@ for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
 
     # Name for the class. Remove path and extension (json)
     label = os.path.splitext(os.path.basename(fileschema))[0].lower()
-    methods = dict(MyResource.__dict__)
-    # methods.update({'model': model})
-    newclass = type(label, (MyResource,), methods)
-    newclass.schema = reference_schema
-    newclass.template = mytemplate
-    newclass.table = label
+    new_attributes = {
+        "schema": reference_schema,
+        "template": mytemplate,
+        "table": label,
+    }
+    newclass = metaclassing(MyResource, label, new_attributes)
 
     api.add_resource(newclass,
                      '/' + label,

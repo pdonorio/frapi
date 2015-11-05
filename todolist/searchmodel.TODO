@@ -14,8 +14,11 @@ NEW:
   ✔ new resource from every json @done (15-11-04 18:47)
     ✔ dynamic class @done (15-11-04 18:48)
     ☐ refactor
+      ✔ metaclassing @done (15-11-05 08:47)
   ☐ load resources into resource.py
    ☐  from experiments load resources
+
+ ☐ play a little more with nested json
 
 ---- ✄ -----------------------
 
