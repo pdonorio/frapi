@@ -2,10 +2,6 @@
 
 """ Experiments """
 
-# // TO FIX
-from myapi.routes import api, app
-
-##################################
 # CONF
 import os
 import glob
@@ -91,25 +87,23 @@ class MyResource(Resource, RDBdefaults):
 ##########################################
 # Read model template
 
+
+mytemplate = {}
+json_autoresources = []
 for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
-    mytemplate = {}
-    print("FILE is " + fileschema)
+    # Build current model resource
     with open(fileschema) as f:
         mytemplate = json.load(f)
-
-    ##########################################
-    # Build current model resource
     reference_schema = convert_to_marshal(mytemplate)
 
     # Name for the class. Remove path and extension (json)
     label = os.path.splitext(os.path.basename(fileschema))[0].lower()
+    # Dynamic attributes
     new_attributes = {
         "schema": reference_schema,
         "template": mytemplate,
         "table": label,
     }
+    # Generating the new class
     newclass = metaclassing(MyResource, label, new_attributes)
-
-    api.add_resource(newclass,
-                     '/' + label,
-                     '/' + label + '/<myid>')
+    json_autoresources.append(newclass)
