@@ -17,7 +17,6 @@ var obj =
     "done": 3,
     "uri": "http://google.it",
     'Hello':'World',
-    // 'peppe': 3,
     // 'uri': [
     //     1,2,"tre",
     //     {

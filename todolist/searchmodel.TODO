@@ -17,6 +17,8 @@ NEW:
       ✔ metaclassing @done (15-11-05 08:47)
   ✔ load resources into resource.py @done (15-11-05 09:04)
    ✘  from experiments load resources @cancelled (15-11-05 09:04)
+ ☐ Fixing rethinkdb queries as a new class
+ ☐ Fixing GET method
  ☐ play a little more with nested json
 
 ---- ✄ -----------------------

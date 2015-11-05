@@ -10,9 +10,35 @@ import json
 from rdb.rdb_handler import r, RDBdefaults
 from flask.ext.restful import fields, Resource, marshal, request
 from bpractices.metaclasses import metaclassing
+from flask.ext.restful import url_for
+from flask import redirect
 
 JSONS_PATH = 'jsonmodels'
 JSONS_EXT = 'json'
+
+
+##########################################
+# ## RethinkBD quick class
+class RDBquery(RDBdefaults):
+    """ An object to query Rethinkdb """
+
+    def get_table_query(self, table=None):
+        if table is None:
+            table = self.table
+        # Build a base query: starting from default DB from RDBdefaults.
+        base = r.db(self.db)
+        # Create
+        if table not in base.table_list().run():
+            base.table_create(table).run()
+        # Use the table
+        return base.table(table)
+
+    def insert(self, data):
+        query = self.get_table_query()
+        # Execute the insert
+        rdb_out = query.insert(data).run()
+        # Get the id
+        return rdb_out['generated_keys'].pop()
 
 
 ##########################################
@@ -40,13 +66,13 @@ def convert_to_marshal(data):
 
 ##########################################
 # The generic resource
-class MyResource(Resource, RDBdefaults):
+class MyResource(Resource, RDBquery):
     """ The json endpoint to rethinkdb class """
 
     schema = None
     template = None
 
-    def get(self, myid='id'):
+    def get(self, data_key=None):
         return "TEST"
 
     def post(self):
@@ -59,30 +85,17 @@ class MyResource(Resource, RDBdefaults):
             return self.template, 400
 
         marshal_data = marshal(json_data, self.schema, envelope='data')
-        # print("Interpreted", marshal_data)
-
-        # Rethinkdb base query
-        base = r.db(self.db)
-        # Create
-        if self.table not in base.table_list().run():
-            base.table_create(self.table).run()
-        # Use the table
-        query = base.table(self.table)
-        # Execute the insert
-        dbout = query.insert(marshal_data['data']).run()
-        # Get the id
-        myid = dbout['generated_keys'].pop()
-
+        myid = self.insert(marshal_data['data'])
 
 # # // TO FIX:
 # # redirect to GET method of this same endpoint, instead
-#         address = api.url_for(self.__class__, myid=myid)
-#         return redirect(address)
+        address = url_for(self.table, data_key=myid)
+        return redirect(address)
 
-        # Recover the element to check we are done
-        document = query.get(myid).run()
-        document.pop('id')
-        return document
+        # # Recover the element to check we are done
+        # document = query.get(myid).run()
+        # document.pop('id')
+        # return document
 
 ##########################################
 # Read model template
