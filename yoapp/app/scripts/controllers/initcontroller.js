@@ -32,7 +32,7 @@ myApp
         $rootScope.analytics = true;
         $rootScope.css.push(cssFont);
     }
-    //console.log("Analytics? " + $rootScope.analytics);
+    console.log("Analytics? " + $rootScope.analytics);
 
     // Today, for any scope of my app
     $rootScope.date = new Date();

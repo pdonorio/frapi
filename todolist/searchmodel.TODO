@@ -1,11 +1,104 @@
 
-✔ Search in angularjs @done (15-10-16 18:02)
-✔ every keypress reload table @done (15-10-16 18:02)
-✔ change filter parameter for api @done (15-10-16 18:02)
-✔ apply parameter inside api @done (15-10-16 17:58)
-✔ use filter or contains with RDB @done (15-10-16 17:58)
-  ✔ python and lambda!! @done (15-10-16 17:57)
+Extend flask:
+  https://github.com/anjianshi/flask-restful-extend
+httpie:
+  https://github.com/jkbrzt/httpie
+Marshmallow:
+  https://github.com/marshmallow-code/flask-marshmallow
+    http://marshmallow.readthedocs.org/en/latest/
 
+NEW:
+✔ create a separate list of resources to overcome the old ones @done (15-11-05 09:04)
+  ✔ fix rethinkdb connection? @done (15-11-04 15:08)
+  ✔ read json files from a folder @done (15-11-04 18:47)
+  ✔ new resource from every json @done (15-11-04 18:47)
+    ✔ dynamic class @done (15-11-04 18:48)
+    ✔ refactor @done (15-11-05 09:04)
+      ✔ metaclassing @done (15-11-05 08:47)
+  ✔ load resources into resource.py @done (15-11-05 09:04)
+   ✘  from experiments load resources @cancelled (15-11-05 09:04)
+ ✔ Fixing GET method @done (15-11-05 09:34)
+ ✔ Fixing rethinkdb queries as a new class @done (15-11-05 10:10)
+ ☐ play a little more with nested json
+
+---- ✄ -----------------------
+
+☐ handle non json request
+  ☐ marshal to define models (from json file)
+    ☐ a list of json files in a certain directory.
+      ☐ recursive definition of marshal
+  ☐ redirect post completed to list the document (get + id)
+
+☐ Gunicorn flask bug
+https://github.com/mitsuhiko/flask/issues/1512#issuecomment-114454800
+☐ banchmarks api
+https://github.com/wg/wrk
+☐ media with bootstrap 4
+  http://v4-alpha.getbootstrap.com/layout/media-object/
+
+    ☐ GET
+      ☐ filter parameter
+        ☐ apply filter in RethinkDB
+        ☐ regular expression = contains?
+  ☐ rdb borg connection
+  ☐ rdb saves json into table!
+    ☐ no rdb models
+    ☐ no javascript models!!
+  ☐ UPLOAD
+    https://pythonhosted.org/Flask-Uploads/
+  ☐ Add UI
+    ☐ gulp-angular
+    ☐ bootstrap 4 alpha?
+  ☐ convert old data
+  ☐ production / develpoment
+    ☐ docker compose
+      ☐ flask / gunicorn
+      ☐ nginx / ssl
+    ☐ flask config
+      ☐ blueprints?
+      ☐ app factory?
+  ☐ Angular Autoforms
+    ☐ from json!!
+  ☐ Users
+    ☐ tokens
+    ☐ RBAC
+    ☐ admin
+  ☐ Upload
+
+RDB:
+✔ Testing json save @done (15-10-20 07:30)
+ ✘ serializing javascript class/objects? @cancelled (15-10-20 07:30)
+✔ Marshal restful @done (15-10-20 09:03)
+ ✔ create table if not exists @done (15-10-21 14:39)
+ ✔ respond to unknown content type with 'unavailable' @done (15-10-22 08:56)
+ ✔ what if no elements are matching? @done (15-10-22 09:35)
+   ✔ respond with the json template? @done (15-10-22 09:35)
+ ✔ redirect after insert, from POST to GET @done (15-10-22 09:36)
+
+  ---
+
+RESOURCES (almost) RANDOM
+* A clone?
+https://github.com/JeffHeard/sondra
+* Form Resources
+https://github.com/Textalk/angular-schema-form
+* Comments
+https://commentit.io/getting-started
+
+VALIDATORS:
+
+$ pip install validators
+$ python
+>>> import validators
+>>> url = "http://index.hu"
+>>> validators.url(url)
+True
+>>> url = "http://index.h/"
+>>> validators.url(url)
+ValidationFailure(func=url, args={'value': 'http://index.h/', 'require_tld': True})
+
+if not validators.url(url):
+    flash("Error: you must provide a valid URL!")
 
 #JAVASCRIPT
 
@@ -24,5 +117,9 @@ query = query.filter(lambda row: \
     row["values"].contains(lambda key: \
         key.match("nv")))
 
- ☐ RDB:
-☐ But what if i want to search only in a given position of the array?
+✔ Search in angularjs @done (15-10-16 18:02)
+✔ every keypress reload table @done (15-10-16 18:02)
+✔ change filter parameter for api @done (15-10-16 18:02)
+✔ apply parameter inside api @done (15-10-16 17:58)
+✔ use filter or contains with RDB @done (15-10-16 17:58)
+  ✔ python and lambda!! @done (15-10-16 17:57)

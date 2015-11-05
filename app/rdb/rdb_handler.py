@@ -35,6 +35,12 @@ TIME_COLUMN = 'latest_timestamp'
 IP_COLUMN = 'latest_ipaddress'
 DEFAULT_COLLECTION = GenericORMModel
 
+
+class RDBdefaults(object):
+    table = DEFAULT_TABLE
+    db = APP_DB
+    order = TIME_COLUMN
+
 # == Utilities ==
 
 def check_model(func):
@@ -167,7 +173,28 @@ class RethinkConnection(Connection):
                 self.log.critical("Index '" + i + "' missing in table " + table)
                 r.table(table).index_create(i).run()
                 print "Waiting"
-                r.table(table).index_wait(i).run()
+
+    #http://rethinkdb.com/docs/cookbook/python/#storing-timestamps-and-json-date-strings-as-t
+    def get_time(self, string):
+        """ Get timezone and set the received time to rdb object """
+        # Time makes us real
+        try:
+            num = float(string)
+            # Convert to python from natural javascript time...
+            d = dt.datetime.fromtimestamp(num / 1e3)
+            # Timezone https://docs.python.org/2/library/time.html#time.timezone
+            timezone = time.strftime("%z")
+            tmz = timezone[:3] + ":" + timezone[3:]
+            # The required string from RDB
+            dformat = "%Y-%m-%dT%H:%M:%S" + tmz
+            datevalue = d.strftime(dformat).__str__()
+            # Convert to rdb time
+            mytime = r.iso8601(datevalue) #.to_iso8601()
+            return mytime
+
+        except TypeError:
+            self.log.debug("Failed converting timestamp '" + string + "'")
+        return string
 
     @staticmethod
     def get_parameters_with_defaults(params):
@@ -290,27 +317,6 @@ class RethinkConnection(Connection):
                 del data_dict[i]
         return data_dict
 
-    #http://rethinkdb.com/docs/cookbook/python/#storing-timestamps-and-json-date-strings-as-t
-    def get_time(self, string):
-        """ Get timezone and set the received time to rdb object """
-        # Time makes us real
-        try:
-            num = float(string)
-            # Convert to python from natural javascript time...
-            d = dt.datetime.fromtimestamp(num / 1e3)
-            # Timezone https://docs.python.org/2/library/time.html#time.timezone
-            timezone = time.strftime("%z")
-            tmz = timezone[:3] + ":" + timezone[3:]
-            # The required string from RDB
-            dformat = "%Y-%m-%dT%H:%M:%S" + tmz
-            datevalue = d.strftime(dformat).__str__()
-            # Convert to rdb time
-            mytime = r.iso8601(datevalue) #.to_iso8601()
-            return mytime
-
-        except TypeError:
-            self.log.debug("Failed converting timestamp '" + string + "'")
-        return string
 
     # === Insert ===
     @check_model

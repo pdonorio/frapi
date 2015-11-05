@@ -3,12 +3,13 @@
 Impement restful Resources for flask
 """
 
-import json, types
+import json
+import types
 # Will use the restful plugin instead!
 from flask.ext.restful import reqparse, abort, Resource, request
 # Log is a good advice
 from bpractices.exceptions import log, LoggedError
-# The global data
+# The global data
 from myapi.app import g
 # Data models from DB ORM
 from rdb.get_models import models
@@ -16,36 +17,41 @@ from rdb.get_models import models
 import bpractices.htmlcodes as hcodes
 # Handling time
 import datetime as dt
+# Meta class generator
+from bpractices.metaclasses import metaclassing
 
 # == Utilities ==
 
 # Handling time format for json_dumps
-dthandler = lambda obj: ( obj.isoformat()
+dthandler = lambda obj: (obj.isoformat()
     if isinstance(obj, dt.datetime) or isinstance(obj, dt.date) else None)
+# // TO FIX:
 # This one above could/should be a class
 # http://stackoverflow.com/a/23287543
 
+
 ###############################
-# TO FIX - make one function/class from what you find in app.py
-#limit_remote_addr
-# Please fix me here: http://esd.io/blog/flask-apps-heroku-real-ip-spoofing.html
+# TO FIX
+#   make one function/class from what you find in app.py
+#   limit_remote_addr
+#   Please fix me here:
+# http://esd.io/blog/flask-apps-heroku-real-ip-spoofing.html
 def get_ip():
     ip = None
     if not request.headers.getlist("X-Forwarded-For"):
-       ip = request.remote_addr
-       #print "Remote", ip
+        ip = request.remote_addr
     else:
-       ip = request.headers.getlist("X-Forwarded-For")[0]
-       #print request.headers
-       #print "Forward", ip
+        ip = request.headers.getlist("X-Forwarded-For")[0]
     return ip
 ###############################
 
+
 def clean_parameter(param=""):
     """ I get parameters already with '"' quotes from curl? """
-    if param == None:
+    if param is None:
         return param
     return param.strip('"')
+
 
 def check_empty_data(data):
     """ Make sure parser didn't get an empty request """
@@ -57,6 +63,7 @@ def check_empty_data(data):
     if data.__len__() == counter:
         return True
     return False
+
 
 def abort_on_db_fail(func):
     """ Decorator for methods who use the model """
@@ -73,8 +80,8 @@ def abort_on_db_fail(func):
                 abort(hcodes.HTTP_BAD_NOTFOUND, message=e.__str__())
     return wrapper
 
-# == Implement a generic Resource for RethinkDB ORM model ==
 
+# == Implement a generic Resource for RethinkDB ORM model ==
 class GenericDBResource(Resource):
     """
     Generic Database API-Resource. Provide simple operations:
@@ -94,7 +101,6 @@ class GenericDBResource(Resource):
     parser = None
     model = None
 
-    #define
     def __init__(self):
         """ Implement a parser for validating arguments of api """
 
@@ -104,12 +110,12 @@ class GenericDBResource(Resource):
         ############################
 
         # IMPORTANT!
-        # This model will be defined inside the resource factory
+        # This model will be defined inside the resource factory
         g.rdb.define_model(self.model)
 
         # Init self logger
         self.log = log.get_logger(self.__class__.__name__)
-        # Read all the properties that will be used from API methods
+        # Read all the properties that will be used from API methods
         self.__configure_parsing()
 
     def __configure_parsing(self):
@@ -287,26 +293,14 @@ class GenericDBResource(Resource):
 ################################################################
 # === Implement Resources ===
 
-# Get instances of the generic resources
-# based on a specific data_models
-
-# The Factory method for my resources classes (SUPER COOL!)
-def resource_builder(label, model):
-    # My new resource class have to inherict everything from the Generic Resource
-    methods = dict(GenericDBResource.__dict__)
-    # Here is the trick:
-    # I set a property in the new class, and it's the ORM model
-    # This way every action will dinamically change based on this content
-    methods.update({'model': model})
-    # Use 'type' standard python to dynamically create a new Class on the fly
-    return type(label, (GenericDBResource,), methods)
-
 # Resources factory: create as many as there are ORM models
 resources = {}
 for (name, data_model) in models.iteritems():
     if 'Base' in name:
         continue
-    # Create the new class using the factory
-    new_class = resource_builder(name + "Resource", data_model)
-    # Save it for restful routing inside an array
+    # Get instances of the generic resources
+    # based on a specific data_models
+    new_class = metaclassing(GenericDBResource,
+                             name + "Resource", {'model': data_model})
+    # Save it for restful routing inside an array
     resources[name] = (new_class, data_model.table)

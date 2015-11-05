@@ -12,6 +12,8 @@ python main.py
 scp -i machines/myocean1/id_rsa root@188.226.216.79:/Users/projects/frapi/data/files/\*.jpg backup_pictures_baroque
 scp -i machines/myocean1/id_rsa root@188.226.216.79:/Users/projects/frapi/data/backup/latest_dump.tar.gz
 
+CHECKS
+https://www.browserling.com/?ref=producthunt
 
 TODO:
 ✔ no more modification to one git file @done (15-10-07 14:52)
@@ -26,11 +28,11 @@ TODO:
    ✔ not inside the html part... @done (15-10-16 18:03)
 ✔ add paging @done (15-10-17 15:25)
  ✔ bootstrap @done (15-10-16 20:06)
-✘ Search keypress timeout longer? @cancelled (15-10-17 15:25)
 ✘ Extract empty for some cases...? @cancelled (15-10-17 15:25)
    ✘ Maybe the first element of values (values[0]) is empty @cancelled (15-10-17 15:25)
 ✔ load backup from remote to local @done (15-10-07 07:46)
 ☐ Add one element on the fly in a list: SPUTTANA TUTTO
+☐ Search keypress timeout longer?
 
 ☐ check smtp email send (mailchimp /mailgun?)
   ☐ ipython script?
@@ -42,23 +44,17 @@ TODO:
   ☐ loading azzerato
   ☐ links solo se fatto login
 
-RESOURCES (almost) RANDOM
-* A clone?
-https://github.com/JeffHeard/sondra
-* Form Resources
-https://github.com/Textalk/angular-schema-form
-* Comments
-https://commentit.io/getting-started
-
  ☐ repeat insert extrait with fixed other steps
  ☐ Mostra risultati: festa = step 3, source step 2
    ☐ Mostra immagine se esiste?
  ☐ ordinamento sulla data della realizzazione del record
  ☐ ricerca sul numero estratto (autocompletamento?)
  ☐ favico?
+    <link rel="shortcut icon" href="favicon.ico?v=1" />
 
 HARD:
  ☐ aggiungere un attributo multiplo (!)
+   ☐ becomes attribute array inside the database
 
 BUGS:
  ☐ bug non si riesce a scendere con il mouse al cambio di pagina
@@ -91,6 +87,7 @@ PROTOTYPE:
 How to restart libs dependencies:
 ☐ nodejs 4 ?
   ☐ bower & gulp angular
+    https://medium.com/@YOzaz/generation-angularjs-production-files-with-gulp-12214f076a50#.dioonkwrn
   ☐ with jquery
 ☐ Callout
 http://cpratt.co/twitter-bootstrap-callout-css-styles/

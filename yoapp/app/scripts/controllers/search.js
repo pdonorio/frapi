@@ -1,8 +1,42 @@
 'use strict';
 
 myApp
- .controller('ViewController', function ($scope, $rootScope, $timeout, API, StepContent, perpageDefault, currentpageDefault, focus)
+ .controller('ViewController', function ($scope, $rootScope, $timeout, API, StepContent, perpageDefault, currentpageDefault, focus
+    , RestAPI)
 {
+
+/*
+    ////////////////////////////////////////
+    ////////////////////////////////////////
+    var api = RestAPI.all('objtest');
+    console.log(api)
+
+var obj =
+{
+    "title": "Javascript",
+    "description": "JS",
+    "done": 3,
+    "uri": "http://google.it",
+    'Hello':'World',
+    // 'uri': [
+    //     1,2,"tre",
+    //     {
+    //         1: 'tmp',
+    //         'tmp': 2,
+    //     },
+    // ],
+};
+
+    api.post(obj).then(function(out){
+        console.log("Received", out);
+        console.log(out.title)
+    });
+    return;
+    ////////////////////////////////////////
+    ////////////////////////////////////////
+
+*/
+
     $scope.range = function(min, max, step){
       step = step || 1;
       var input = [];
