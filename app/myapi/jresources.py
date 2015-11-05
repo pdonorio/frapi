@@ -7,7 +7,7 @@ import os
 import glob
 import json
 # This Rethinkdb refernce is already connected at app init
-from rdb.rdb_handler import r, RDBdefaults
+from rdb.query import RDBquery
 from flask.ext.restful import fields, Resource, marshal, request
 from bpractices.metaclasses import metaclassing
 from flask.ext.restful import url_for
@@ -15,49 +15,6 @@ from flask import redirect
 
 JSONS_PATH = 'jsonmodels'
 JSONS_EXT = 'json'
-
-
-##########################################
-# ## RethinkBD quick class
-class RDBquery(RDBdefaults):
-    """ An object to query Rethinkdb """
-
-    def get_table_query(self, table=None):
-        if table is None:
-            table = self.table
-        # Build a base query: starting from default DB from RDBdefaults.
-        base = r.db(self.db)
-        # Create
-        if table not in base.table_list().run():
-            base.table_create(table).run()
-        # Use the table
-        return base.table(table)
-
-    def get_content(self, myid=None):
-
-        data = {}
-        query = self.get_table_query()
-        if myid is not None:
-            query = query.get_all(myid, index='id')
-
-        count = 0
-        if not query.is_empty().run():
-            count = query.count().run()
-            data = query.run()
-
-        # # Recover only one document
-        # document = query.get(myid).run()
-        # if document is not None:
-        #     document.pop('id')
-
-        return (count, list(data))
-
-    def insert(self, data):
-        query = self.get_table_query()
-        # Execute the insert
-        rdb_out = query.insert(data).run()
-        # Get the id
-        return rdb_out['generated_keys'].pop()
 
 
 ##########################################
