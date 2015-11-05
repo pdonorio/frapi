@@ -89,7 +89,7 @@ class MyResource(Resource, RDBdefaults):
 
 
 mytemplate = {}
-json_autoresources = []
+json_autoresources = {}
 for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
     # Build current model resource
     with open(fileschema) as f:
@@ -106,4 +106,6 @@ for fileschema in glob.glob(os.path.join(JSONS_PATH, "*") + "." + JSONS_EXT):
     }
     # Generating the new class
     newclass = metaclassing(MyResource, label, new_attributes)
-    json_autoresources.append(newclass)
+    # Using the same structure i previously used in resources:
+    # resources[name] = (new_class, data_model.table)
+    json_autoresources[label] = (newclass, label)

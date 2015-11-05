@@ -8,16 +8,15 @@ Marshmallow:
     http://marshmallow.readthedocs.org/en/latest/
 
 NEW:
-☐ create a separate list of resources to overcome the old ones
+✔ create a separate list of resources to overcome the old ones @done (15-11-05 09:04)
   ✔ fix rethinkdb connection? @done (15-11-04 15:08)
   ✔ read json files from a folder @done (15-11-04 18:47)
   ✔ new resource from every json @done (15-11-04 18:47)
     ✔ dynamic class @done (15-11-04 18:48)
-    ☐ refactor
+    ✔ refactor @done (15-11-05 09:04)
       ✔ metaclassing @done (15-11-05 08:47)
-  ☐ load resources into resource.py
-   ☐  from experiments load resources
-
+  ✔ load resources into resource.py @done (15-11-05 09:04)
+   ✘  from experiments load resources @cancelled (15-11-05 09:04)
  ☐ play a little more with nested json
 
 ---- ✄ -----------------------
