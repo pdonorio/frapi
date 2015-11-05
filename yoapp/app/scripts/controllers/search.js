@@ -5,6 +5,7 @@ myApp
     , RestAPI)
 {
 
+/*
     ////////////////////////////////////////
     ////////////////////////////////////////
     var api = RestAPI.all('objtest');
@@ -26,19 +27,6 @@ var obj =
     // ],
 };
 
-/*
-    var obj = {
-        'hash': {
-            'test': 1,
-            'use': "AAA",
-            'innerarray': [1,2,'quattro'],
-            'innerhash': {
-                1: 'tmp',
-                'tmp': 2,
-            },
-        }
-    };
-*/
     api.post(obj).then(function(out){
         console.log("Received", out);
         console.log(out.title)
@@ -46,6 +34,8 @@ var obj =
     return;
     ////////////////////////////////////////
     ////////////////////////////////////////
+
+*/
 
     $scope.range = function(min, max, step){
       step = step || 1;
