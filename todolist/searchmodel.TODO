@@ -18,7 +18,7 @@ NEW:
   ✔ load resources into resource.py @done (15-11-05 09:04)
    ✘  from experiments load resources @cancelled (15-11-05 09:04)
  ✔ Fixing GET method @done (15-11-05 09:34)
- ☐ Fixing rethinkdb queries as a new class
+ ✔ Fixing rethinkdb queries as a new class @done (15-11-05 10:10)
  ☐ play a little more with nested json
 
 ---- ✄ -----------------------

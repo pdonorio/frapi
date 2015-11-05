@@ -34,16 +34,23 @@ class RDBquery(RDBdefaults):
         return base.table(table)
 
     def get_content(self, myid=None):
+
+        data = {}
         query = self.get_table_query()
-        # Return all the elements of current table
-# // TO FIX
-        if myid is None:
-            return query.get_all().run()
-        # Recover only one document
-        document = query.get(myid).run()
-        if document is not None:
-            document.pop('id')
-        return document
+        if myid is not None:
+            query = query.get_all(myid, index='id')
+
+        count = 0
+        if not query.is_empty().run():
+            count = query.count().run()
+            data = query.run()
+
+        # # Recover only one document
+        # document = query.get(myid).run()
+        # if document is not None:
+        #     document.pop('id')
+
+        return (count, list(data))
 
     def insert(self, data):
         query = self.get_table_query()
@@ -85,13 +92,10 @@ class MyResource(Resource, RDBquery):
     template = None
 
     def get(self, data_key=None):
-        content = self.get_content(data_key)
+        (count, data) = self.get_content(data_key)
 # // TO FIX:
 # Marshal?
-        if content is None:
-            return {}
-        print(content)
-        return content
+        return data
 
     def post(self):
         json_data = request.get_json(force=True)
