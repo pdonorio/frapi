@@ -23,7 +23,7 @@ devapi:
         service: api
     #command: python main.py
     command: sleep 123987123
-    exposes:
+    expose:
         - "5000"
     volumes_from:
         - pycode
@@ -49,7 +49,7 @@ devfapi:
         file: common.yml
         service: fileapi
     command: python file.py
-    exposes:
+    expose:
         - "6000"
     volumes_from:
         - pycode
