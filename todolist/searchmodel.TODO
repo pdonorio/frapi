@@ -7,6 +7,13 @@ Marshmallow:
   https://github.com/marshmallow-code/flask-marshmallow
     http://marshmallow.readthedocs.org/en/latest/
 
+☐ Gunicorn flask bug
+https://github.com/mitsuhiko/flask/issues/1512#issuecomment-114454800
+☐ benchmarks api
+https://github.com/wg/wrk
+☐ media with bootstrap 4
+  http://v4-alpha.getbootstrap.com/layout/media-object/
+
 NEW:
 ✔ create a separate list of resources to overcome the old ones @done (15-11-05 09:04)
   ✔ fix rethinkdb connection? @done (15-11-04 15:08)
@@ -19,31 +26,24 @@ NEW:
    ✘  from experiments load resources @cancelled (15-11-05 09:04)
  ✔ Fixing GET method @done (15-11-05 09:34)
  ✔ Fixing rethinkdb queries as a new class @done (15-11-05 10:10)
- ☐ play a little more with nested json
+✔ redirect post completed to list the document (get + id) @done (15-11-06 15:53)
+  ✔ rdb borg connection @done (15-11-06 15:54)
+  ✔ rdb saves json into table! @done (15-11-06 15:54)
+    ✔ no rdb models @done (15-11-06 15:54)
+    ✔ no javascript models!! @done (15-11-06 15:54)
 
----- ✄ -----------------------
+☐ Flask security integration: see/use #angulask or #restmock
+☐ Api save latest  action (timestap, ip, user) as array
+   ☐ recover user via javascript and pass it to basic call? @porcata
+☐ UPDATE BOWER LIBS? @important
 
-☐ handle non json request
-  ☐ marshal to define models (from json file)
-    ☐ a list of json files in a certain directory.
-      ☐ recursive definition of marshal
-  ☐ redirect post completed to list the document (get + id)
+✔ Define the basic structure @done (15-11-06 16:27)
+  ☐ play a little more with nested json
+  ☐ create python conversion script, from "oldcrap" to json
+  ☐ recursive definition of marshal
 
-☐ Gunicorn flask bug
-https://github.com/mitsuhiko/flask/issues/1512#issuecomment-114454800
-☐ banchmarks api
-https://github.com/wg/wrk
-☐ media with bootstrap 4
-  http://v4-alpha.getbootstrap.com/layout/media-object/
+☐ Modal bug in types list (admin step)
 
-    ☐ GET
-      ☐ filter parameter
-        ☐ apply filter in RethinkDB
-        ☐ regular expression = contains?
-  ☐ rdb borg connection
-  ☐ rdb saves json into table!
-    ☐ no rdb models
-    ☐ no javascript models!!
   ☐ UPLOAD
     https://pythonhosted.org/Flask-Uploads/
   ☐ Add UI
@@ -57,13 +57,12 @@ https://github.com/wg/wrk
     ☐ flask config
       ☐ blueprints?
       ☐ app factory?
-  ☐ Angular Autoforms
-    ☐ from json!!
   ☐ Users
     ☐ tokens
     ☐ RBAC
     ☐ admin
-  ☐ Upload
+
+---- ✄ -----------------------
 
 RDB:
 ✔ Testing json save @done (15-10-20 07:30)

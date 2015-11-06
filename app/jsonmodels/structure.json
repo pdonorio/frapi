@@ -1,0 +1,15 @@
+{
+    "step": {
+        "name": "Tipo di festa",
+        "number": 2
+    },
+    "fields": [
+        {"name": "a num", "position": 4, "type": "int", "required": 1},
+        {"name": "a list", "position": 1, "type": "list",
+            "options": ["one",2,"three"] },
+        {"name": "a field", "position": 3, "type": "str"},
+        {"name": "default", "position": 2}
+    ],
+    "old": [ "field", "hash", "position", "required", "step", "type", "extra" ]
+
+}
