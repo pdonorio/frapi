@@ -50,9 +50,10 @@ class MyResource(Resource, RDBquery):
 
     def get(self, data_key=None):
         (count, data) = self.get_content(data_key)
-# // TO FIX:
-# Marshal?
-        return data
+        # return marshal(data, self.schema, envelope='data')
+        return marshal(
+            {'data': data, 'count': count},
+            {'data': fields.Nested(self.schema), 'count': fields.Integer})
 
     def post(self):
         json_data = request.get_json(force=True)
@@ -63,11 +64,10 @@ class MyResource(Resource, RDBquery):
         if not valid:
             return self.template, 400
 
-        marshal_data = marshal(json_data, self.schema, envelope='data')
-        myid = self.insert(marshal_data['data'])
+        # marshal_data = marshal(json_data, self.schema, envelope='data')
+        myid = self.insert(json_data)
 
-# # // TO FIX:
-# # redirect to GET method of this same endpoint, instead
+        # redirect to GET method of this same endpoint, with the id found
         address = url_for(self.table, data_key=myid)
         return redirect(address)
 

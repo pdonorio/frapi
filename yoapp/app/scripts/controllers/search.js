@@ -5,11 +5,18 @@ myApp
     , RestAPI)
 {
 
+/* NEW JSON API TEST */
+
+var myapi = RestAPI.all('newsteps');
+myapi.get('').then(function(out){
+  console.log("Received", out.count);
+  console.log(out.data);
+});
+
 /*
-    ////////////////////////////////////////
-    ////////////////////////////////////////
-    var api = RestAPI.all('objtest');
-    console.log(api)
+////////////////////////////////////////
+var api = RestAPI.all('newstep');
+//console.log(api)
 
 var obj =
 {
@@ -32,9 +39,7 @@ var obj =
         console.log(out.title)
     });
     return;
-    ////////////////////////////////////////
-    ////////////////////////////////////////
-
+////////////////////////////////////////
 */
 
     $scope.range = function(min, max, step){

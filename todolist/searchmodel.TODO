@@ -33,17 +33,22 @@ NEW:
     ✔ no javascript models!! @done (15-11-06 15:54)
 
 ☐ Flask security integration: see/use #angulask or #restmock
-☐ Api save latest  action (timestap, ip, user) as array
-   ☐ recover user via javascript and pass it to basic call? @porcata
-☐ UPDATE BOWER LIBS? @important
 
 ✔ Define the basic structure @done (15-11-06 16:27)
-  ☐ play a little more with nested json
+  ✔ play a little more with nested json @done (15-11-07 17:59)
   ✔ create python conversion script  @done (15-11-07 09:59)
     ✔ from "oldcrap" to json @done (15-11-07 15:47)
     ✔ create new table @done (15-11-07 16:51)
-    ☐ refactor
-  ☐ recursive definition of marshal
+    ✔ refactor @done (15-11-07 17:16)
+    ☐ test with javascript
+      ✔ GET @done (15-11-07 17:59)
+        ✔ recursive definition of marshal @done (15-11-07 17:39)
+        ✔ add count, along with data @done (15-11-07 17:59)
+      ☐ POST
+  ☐ Api save latest  action (timestap, ip, user) as array
+     ☐ recover user via javascript and pass it to basic call? @porcata
+☐ UPDATE BOWER LIBS? @important
+
 
 ☐ Modal bug in types list (admin step)
 

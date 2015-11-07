@@ -23,7 +23,7 @@ qtin.delete().run()
 ############################
 # FIND
 data = qt1.group("step").run()
-for step in list(data):
+for step in sorted(list(data)):
     new = {"step": None, "fields": None}
     myfilter = {'step': step}
     print("*** STEP: %s" % step)
@@ -34,20 +34,19 @@ for step in list(data):
                    "desc": element['description']}
 
     # Singles steps fields
-    tmp = []
+    tmp = {}
     fields = list(qt1.filter(myfilter).run())
     sorted_fields = sorted(fields, key=lambda k: k['position'])
     for row in sorted_fields:
-        print(row['position'])
         if 'extra' not in row:
             row['extra'] = None
-        tmp.append({
+        tmp[str(row['position'])] = {
             "name": row['field'],
             "position": row['position'],
             "required": row['required'],
             "type": row['type'],
             "options": row['extra'],
-        })
+        }
     new["fields"] = tmp
 
     # INSERT
