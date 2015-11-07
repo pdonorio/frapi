@@ -13,12 +13,15 @@ connect = db(True)
 # Query Rethinkdb via obj
 t1 = "stepstemplate"
 t2 = "steps"
+tin = "newsteps"
 query = RDBquery()
 qt1 = query.get_table_query(t1)
 qt2 = query.get_table_query(t2)
+qtin = query.get_table_query(tin)
+qtin.delete().run()
 
 ############################
-# ## QUERIES
+# FIND
 data = qt1.group("step").run()
 for step in list(data):
     new = {"step": None, "fields": None}
@@ -33,7 +36,7 @@ for step in list(data):
     # Singles steps fields
     tmp = []
     fields = list(qt1.filter(myfilter).run())
-    sorted_fields = sorted(fields, key=lambda k: k['position']) 
+    sorted_fields = sorted(fields, key=lambda k: k['position'])
     for row in sorted_fields:
         print(row['position'])
         if 'extra' not in row:
@@ -47,17 +50,6 @@ for step in list(data):
         })
     new["fields"] = tmp
 
+    # INSERT
     print(new)
-# ## QUERIES
-############################
-
-
-"""
-"fields": [
-    {"name": "a num", "position": 4, "type": "int", "required": 1},
-    {"name": "a list", "position": 1, "type": "list",
-        "options": ["one",2,"three"] },
-    {"name": "a field", "position": 3, "type": "str"},
-    {"name": "default", "position": 2}
-],
-"""
+    qtin.insert(new).run()

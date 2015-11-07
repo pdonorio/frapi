@@ -41,7 +41,8 @@ NEW:
   ☐ play a little more with nested json
   ✔ create python conversion script  @done (15-11-07 09:59)
     ✔ from "oldcrap" to json @done (15-11-07 15:47)
-    ☐ create new table
+    ✔ create new table @done (15-11-07 16:51)
+    ☐ refactor
   ☐ recursive definition of marshal
 
 ☐ Modal bug in types list (admin step)
