@@ -39,7 +39,8 @@ NEW:
 
 ✔ Define the basic structure @done (15-11-06 16:27)
   ☐ play a little more with nested json
-  ☐ create python conversion script, from "oldcrap" to json
+  ✔ create python conversion script  @done (15-11-07 09:59)
+    ☐ from "oldcrap" to json
   ☐ recursive definition of marshal
 
 ☐ Modal bug in types list (admin step)
