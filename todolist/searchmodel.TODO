@@ -45,8 +45,9 @@ NEW:
         ✔ recursive definition of marshal @done (15-11-07 17:39)
         ✔ add count, along with data @done (15-11-07 17:59)
       ☐ POST
-  ☐ Api save latest  action (timestap, ip, user) as array
-     ☐ recover user via javascript and pass it to basic call? @porcata
+    ☐ Api save latest  action (timestap, ip, user) as array
+      ☐ recover user via javascript and pass it to basic call? @porcata
+    ☐ perpage elements? current_page? @parameters
 
 ☐ UPDATE BOWER LIBS? @important
 

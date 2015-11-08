@@ -5,6 +5,7 @@ myApp
     , RestAPI)
 {
 
+////////////////////////////////////////
 /* NEW JSON API TEST */
 
 var myapi = RestAPI.all('newsteps');
@@ -13,34 +14,17 @@ myapi.get('').then(function(out){
   console.log(out.data);
 });
 
-/*
-////////////////////////////////////////
-var api = RestAPI.all('newstep');
-//console.log(api)
-
 var obj =
 {
-    "title": "Javascript",
-    "description": "JS",
-    "done": 3,
-    "uri": "http://google.it",
-    'Hello':'World',
-    // 'uri': [
-    //     1,2,"tre",
-    //     {
-    //         1: 'tmp',
-    //         'tmp': 2,
-    //     },
-    // ],
+    "step": 8
 };
 
-    api.post(obj).then(function(out){
-        console.log("Received", out);
-        console.log(out.title)
-    });
-    return;
+myapi.post(obj).then(function(out){
+    console.log("Received", out);
+    console.log(out.title)
+});
+return;
 ////////////////////////////////////////
-*/
 
     $scope.range = function(min, max, step){
       step = step || 1;
