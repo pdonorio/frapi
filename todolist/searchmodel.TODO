@@ -40,14 +40,16 @@ NEW:
     ✔ from "oldcrap" to json @done (15-11-07 15:47)
     ✔ create new table @done (15-11-07 16:51)
     ✔ refactor @done (15-11-07 17:16)
-    ☐ test with javascript
+    ✔ test with javascript @done (15-11-08 17:19)
       ✔ GET @done (15-11-07 17:59)
         ✔ recursive definition of marshal @done (15-11-07 17:39)
         ✔ add count, along with data @done (15-11-07 17:59)
-      ☐ POST
-    ☐ Api save latest  action (timestap, ip, user) as array
-      ☐ recover user via javascript and pass it to basic call? @porcata
+      ✔ POST @done (15-11-08 17:19)
+    ✔ Api save latest  action (timestap, ip, user) as array @done (15-11-08 17:19)
     ☐ perpage elements? current_page? @parameters
+    ☐ user?
+      ☐ if i do flask login the token will tell you the user
+    ☐ on api side, save each request (ip, method, endpoint, parameters, user) into db
 
 ☐ UPDATE BOWER LIBS? @important
 

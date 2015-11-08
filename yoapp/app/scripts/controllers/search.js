@@ -7,7 +7,7 @@ myApp
 
 ////////////////////////////////////////
 /* NEW JSON API TEST */
-
+/*
 var myapi = RestAPI.all('newsteps');
 myapi.get('').then(function(out){
   console.log("Received", out.count);
@@ -19,11 +19,13 @@ var obj =
     "step": 8
 };
 
+// var myuser = $rootScope.user.myid;
 myapi.post(obj).then(function(out){
     console.log("Received", out);
     console.log(out.title)
 });
 return;
+*/
 ////////////////////////////////////////
 
     $scope.range = function(min, max, step){
