@@ -18,7 +18,7 @@ elif [ ! `which docker-machine` == "" ]; then
     #     echo "Error: Please start your docker machine vm...";
     #     exit 1;
     # fi
-    docker-machine active dev
+    eval $(docker-machine env dev)
 fi
 
 ###########################################
@@ -100,12 +100,15 @@ case "$param" in
         list=`$com | tr "\n" " "`
         if [ ! -z "$list" ]; then
             echo "Stop containers"; docker stop $($com);
-            echo "Delete containers"; docker rm --volumes=false $($com)
+            echo "Delete containers (not volumes)"; docker rm --volumes=false $($com)
         fi
         list=`docker images -q --filter "dangling=true" | tr "\n" " " `
         if [ ! -z "$list" ]; then
             echo "Clean untagged images"; docker rmi $list
         fi
+
+        # Volumes?
+        #docker volume rm $(docker volume ls -q)
     ;;
     *)
         echo "Unknown command *$param*"

@@ -31,9 +31,6 @@ NEW:
   ✔ rdb saves json into table! @done (15-11-06 15:54)
     ✔ no rdb models @done (15-11-06 15:54)
     ✔ no javascript models!! @done (15-11-06 15:54)
-
-☐ Flask security integration: see/use #angulask or #restmock
-
 ✔ Define the basic structure @done (15-11-06 16:27)
   ✔ play a little more with nested json @done (15-11-07 17:59)
   ✔ create python conversion script  @done (15-11-07 09:59)
@@ -52,8 +49,8 @@ NEW:
     ☐ on api side, save each request (ip, method, endpoint, parameters, user) into db
 
 ☐ UPDATE BOWER LIBS? @important
-
 ☐ Modal bug in types list (admin step)
+☐ Flask security integration: see/use #angulask or #restmock
 
   ☐ UPLOAD
     https://pythonhosted.org/Flask-Uploads/
