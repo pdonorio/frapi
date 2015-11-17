@@ -51,7 +51,12 @@ NEW:
       ☐ if i do flask login the token will tell you the user
     ☐ on api side, save each request (ip, method, endpoint, parameters, user) into db
 
-☐ UPDATE BOWER LIBS? @important
+ ☐ App builder?
+https://github.com/dpgaspar/Flask-AppBuilder
+ ☐ Translate
+https://pythonhosted.org/Flask-Babel/
+
+☐ production UPDATE BOWER LIBS? @important
 
 ☐ Modal bug in types list (admin step)
 
