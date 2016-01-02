@@ -41,10 +41,12 @@ class RDBquery(RDBdefaults):
 
         return (count, list(data))
 
-    def insert(self, data):
+    def insert(self, data, user=None):
+        # Prepare the query
         query = self.get_table_query()
+        # Add extra info: (ip, timestamp, user)
+        data['infos'] = self.save_action_info(user)
         # Execute the insert
         rdb_out = query.insert(data).run()
         # Get the id
         return rdb_out['generated_keys'].pop()
-

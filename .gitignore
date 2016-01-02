@@ -2,7 +2,8 @@
 .bash*
 .npm
 node_modules/
-bower_components
+components
+#bower_components
 test/
 yoapp/.*
 yoapp/app/.*

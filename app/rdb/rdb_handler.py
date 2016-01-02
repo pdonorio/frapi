@@ -14,25 +14,27 @@ import datetime as dt
 from bpractices.connections import Connection
 import rethinkdb as r
 from rethinkdb.errors import RqlRuntimeError, RqlDriverError
-from rethinkORM import RethinkCollection
 # Defined in [[data_models.py]]
 from rdb.data_models import GenericORMModel
 # log is a good advice
 from bpractices.exceptions import LoggedError
 # when often handling try/except, this decorator is very handful
 from bpractices.decorators import TryExcept
+# Get ip
+from myapi.resources import get_ip
 
 # == Setup global constants ==
 
-#Using docker, "**db**"" is my alias of the ReThinkDB container
+# Using docker, "**db**"" is my alias of the ReThinkDB container
 RDB_HOST = "db"
-#Docker forwarding port system var (otherwise use standard rethinkdb port)
+# Docker forwarding port system var (otherwise use standard rethinkdb port)
 RDB_PORT = os.environ.get('DB_PORT_28015_TCP_PORT') or 28015
-#Database and tables to use
+# Database and tables to use
 APP_DB = "webapp"
 DEFAULT_TABLE = "test"
 TIME_COLUMN = 'latest_timestamp'
 IP_COLUMN = 'latest_ipaddress'
+USER_COLUMN = 'latest_user'
 DEFAULT_COLLECTION = GenericORMModel
 
 
@@ -41,7 +43,15 @@ class RDBdefaults(object):
     db = APP_DB
     order = TIME_COLUMN
 
-# == Utilities ==
+    def save_action_info(self, user=None):
+        if user is None:
+            user = 'UNKNOWN'
+        return {
+            TIME_COLUMN: time.time(),
+            IP_COLUMN: get_ip(),
+            USER_COLUMN: user
+        }
+
 
 def check_model(func):
     """ Decorator for methods who use the model """
