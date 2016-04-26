@@ -3,6 +3,14 @@ frapi
 
 Flask (+restful plugin) RethinkDB API
 
+=====
+
+*WARNING*: this repository is not developed anymore.
+
+I started a better similar project [here](https://github.com/pdonorio/restangulask)
+
+=====
+
 This project has been developed as a personal need.
 It also worked as a good exercise in my way of learning python
 and many other interesting technologies and protocol.
